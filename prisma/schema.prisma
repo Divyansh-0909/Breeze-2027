@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model EventItem {
+  id                  String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at          DateTime         @default(now()) @db.Timestamptz(6)
+  event_name          String           @default("")
+  event_description   String           @default("")
+  event_price         Int              @db.SmallInt
+  event_org           String?
+  event_venue         String?
+  event_date          String?
+  image_url           String?
+  event_type          event_category?
+  registration_open   Boolean          @default(true)
+  event_end_date      String?          // End date for multi-day events (null = single day)
+  event_pair_price    Int?             @db.SmallInt  // Price for pair tickets (null = no pair pricing)
+  ConfirmedEvent      ConfirmedEvent[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model MerchItem {
+  id                  String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at          DateTime         @default(now()) @db.Timestamptz(6)
+  product_name        String
+  product_price       Int              @default(0) @db.SmallInt
+  product_description String           @default("")
+  image_url           String?
+  ConfirmedMerch      ConfirmedMerch[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model PendingTransaction {
+  id                  String                 @id
+  amount              BigInt
+  time                DateTime               @default(now()) @db.Timestamptz(6)
+  cart                Json
+  accommodation       accommodation_option[]
+  accommodation_price BigInt
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model SubmittedTransaction {
+  token               String                 @id @db.VarChar
+  created_at          DateTime               @default(now()) @db.Timestamptz(6)
+  name                String                 @default("")
+  email               String                 @default("")
+  phone               String                 @default("")
+  address             String                 @default("")
+  amount              BigInt                 @default(0)
+  proof               String?                @default("")
+  cart                Json
+  approved            Boolean?               @default(false)
+  rejected            Boolean                @default(false)
+  rejection_reason    String?
+  email_sent          Boolean                @default(false)
+  accommodation       accommodation_option[]
+  accommodation_price BigInt
+  student_details     String?
+  ConfirmedEvent      ConfirmedEvent[]
+  ConfirmedMerch      ConfirmedMerch[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ConfirmedEvent {
+  token                String               @db.VarChar
+  id                   String               @db.Uuid
+  quantity             BigInt               @default(0)
+  EventItem            EventItem            @relation(fields: [id], references: [id], onDelete: Cascade, map: "confirmedEvent_id_fkey")
+  SubmittedTransaction SubmittedTransaction @relation(fields: [token], references: [token], onDelete: Cascade, map: "confirmedEvent_token_fkey")
+
+  @@id([token, id], map: "confirmedEvent_pkey")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ConfirmedMerch {
+  token                String               @db.VarChar
+  id                   String               @db.Uuid
+  size                 String               @default("")
+  quantity             BigInt               @default(0)
+  MerchItem            MerchItem            @relation(fields: [id], references: [id], onDelete: Cascade, map: "confirmedMerch_id_fkey")
+  SubmittedTransaction SubmittedTransaction @relation(fields: [token], references: [token], onDelete: Cascade, map: "confirmedMerch_token_fkey")
+
+  @@id([token, id, size])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Roles {
+  id        String @id(map: "roles_pkey") @db.Uuid
+  club_name String @default("")
+  email     String @default("")
+}
+
+/// This enum is commented in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+enum event_category {
+  Cultural
+  Technical
+}
+
+/// This enum is commented in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+enum accommodation_option {
+  DAY1
+  DAY2
+  DAY3
+}
+
+/// Contact form submissions from the Get In Touch page
+model ContactSubmission {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  name       String
+  email      String
+  phone      String
+  message    String
+}

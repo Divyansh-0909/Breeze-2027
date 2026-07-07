@@ -1,0 +1,46 @@
+.scrollContainer {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  padding: 20px 0;
+  padding-top: 60px;
+}
+
+
+.scroll {
+  display: flex;
+  animation: scroll 40s linear infinite;
+  gap: 1rem;
+}
+
+.scrollContent {
+  display: flex;
+  gap: 4rem;
+  padding: 0 2rem;
+  flex-shrink: 0;
+  
+}
+
+.Row3 {
+  margin-bottom: 69px; /* adjust gap as you like */
+}
+
+.scrollContent img {
+  width: 150px;   /* force uniform width */
+  height: 75px;   /* force uniform height */
+  object-fit: contain; /* fit inside without stretching */
+}
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
+
+.scroll:hover {
+  animation-play-state: paused;
+}
