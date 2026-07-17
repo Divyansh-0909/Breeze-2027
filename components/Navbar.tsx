@@ -68,6 +68,32 @@ const Navbar = ({ className }: NavbarProps) => {
     return pathname === path;
   };
 
+  const renderLink = (link: NavLink) =>
+    "scrollTo" in link ? (
+      <button
+        key={link.name}
+        onClick={() =>
+          document
+            .getElementById(link.scrollTo)
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
+        className="text-white/75 text-[15px] font-bold transition-colors hover:text-white"
+      >
+        {link.name}
+      </button>
+    ) : (
+      <Link
+        key={link.name}
+        href={link.href}
+        className={cn(
+          "text-[15px] font-bold whitespace-nowrap transition-colors hover:text-white",
+          isActiveLink(link.href) ? "text-white" : "text-white/75"
+        )}
+      >
+        {link.name}
+      </Link>
+    );
+
   return (
     <nav
       className={cn(
@@ -76,61 +102,24 @@ const Navbar = ({ className }: NavbarProps) => {
         className
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        {/* LOGO */}
-        <Link href="/" className="-my-3">
-          <Image
-            src={heroimg}
-            className="md:w-[120px] md:h-[65px] w-[80px] h-[50px] object-contain"
-            alt="Breeze Logo"
-            width={120}
-            height={65}
-          />
-        </Link>
-
-        {/* CENTER NAV LINKS - Desktop */}
-        <div className="hidden md:flex flex-1 justify-center">
-          <div className="flex space-x-8 bg-black/40 backdrop-blur-md px-8 py-2 rounded-full border border-white/10">
-            {navLinks.map((link) =>
-              "scrollTo" in link ? (
-                <button
-                  key={link.name}
-                  onClick={() =>
-                    document
-                      .getElementById(link.scrollTo)
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="text-navbar_text text-[15px] font-bold transition-colors hover:text-navbar_text_select"
-                >
-                  {link.name}
-                </button>
-              ) : (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "text-[15px] font-bold transition-colors hover:text-navbar_text_select",
-                    isActiveLink(link.href)
-                      ? "text-navbar_text_select"
-                      : "text-navbar_text"
-                  )}
-                >
-                  {link.name}
-                </Link>
-              )
-            )}
-          </div>
+      {/* Split navbar: Home/Events pinned to the far left edge, Team/Contact
+          Us/cart pinned to the far right. The center stays clear for the 3D
+          signage board on the front top truss. */}
+      <div className="flex items-center px-5 md:px-8 pt-[5.5vh]">
+        {/* LEFT: links on a black panel, extreme left */}
+        <div className="hidden md:flex items-center gap-6 bg-black/70 backdrop-blur-md border border-white/10 rounded-xl px-6 py-2.5 [text-shadow:0_1px_8px_rgba(0,0,0,0.9)]">
+          {navLinks.slice(0, 3).map(renderLink)}
         </div>
+        {/* <SoundButton isPlaying={isPlaying} onToggle={handleTogglePlay} /> */}
 
-        {/* RIGHT SIDE ACTIONS */}
-        <div className="flex items-center space-x-3 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
-          {/* SOUND BUTTON */}
-          <SoundButton isPlaying={isPlaying} onToggle={handleTogglePlay} />
-
-          {/* CART ICON */}
+        {/* RIGHT: links + cart on a black panel, extreme right */}
+        <div className="ml-auto flex items-center gap-4 md:gap-6 bg-black/70 backdrop-blur-md border border-white/10 rounded-xl px-4 md:px-6 py-1.5">
+          <div className="hidden md:flex items-center gap-6 [text-shadow:0_1px_8px_rgba(0,0,0,0.9)]">
+            {navLinks.slice(3).map(renderLink)}
+          </div>
           <Link
             href="/cart"
-            className="flex items-center justify-center w-10 h-10 transition duration-200 hover:bg-purple-900 rounded"
+            className="flex items-center justify-center w-10 h-10 transition duration-200 hover:bg-purple-900 rounded [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.9))]"
             aria-label="Cart"
           >
             <svg
@@ -151,7 +140,11 @@ const Navbar = ({ className }: NavbarProps) => {
           </Link>
 
           {/* MOBILE MENU BUTTON */}
-          <button className="md:hidden" onClick={toggleSidebar}>
+          <button
+            className="md:hidden [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.9))]"
+            onClick={toggleSidebar}
+            aria-label="Menu"
+          >
             <FaBars className="text-white text-xl cursor-pointer" />
           </button>
         </div>

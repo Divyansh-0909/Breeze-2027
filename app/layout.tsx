@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-full">
+    <html lang="en" className="w-full" suppressHydrationWarning>
       <body className={`${inter.className} w-full min-w-full`}>
         {children}
         <Analytics />
