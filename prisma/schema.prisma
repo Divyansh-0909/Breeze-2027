@@ -4,7 +4,14 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
+  // DATABASE_URL is the pooled connection (port 6543, pgbouncer).
+  // This is required for Supabase serverless environments (Next.js Edge/Serverless)
+  // because each function invocation opens a connection. Pooling prevents connection exhaustion.
   url       = env("DATABASE_URL")
+  
+  // DIRECT_URL is the direct connection (port 5432).
+  // Prisma's migration engine (prisma migrate / prisma db push) requires a persistent, 
+  // non-pooled connection to the database to track locks and apply schema changes safely.
   directUrl = env("DIRECT_URL")
 }
 
