@@ -30,7 +30,7 @@ export default function CameraRig({
     if (focus) {
       // zoomed composition: closer to the LED wall, parallax nearly frozen
       const azimuth = px * 0.015;
-      const radius = 19;
+      const radius = 17;
       desired.set(Math.sin(azimuth) * radius, 5.9 + py * 0.25, Math.cos(azimuth) * radius);
       desiredTarget.set(0, 5.9, -2.5);
     } else {

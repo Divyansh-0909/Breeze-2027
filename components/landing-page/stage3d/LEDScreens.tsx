@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { PALETTE, STAGE } from "./palette";
@@ -10,7 +10,7 @@ import { PALETTE, STAGE } from "./palette";
  *
  * Two modes:
  * - idle: shader content (waves + scanlines + glitch bars); the center screen
- *   invites "PLAY THE AFTERMOVIE" and is clickable.
+ *   invites "RELIVE THE NIGHT — BREEZE '26" and is clickable.
  * - video: all 7 panels become one segmented video wall — each panel samples
  *   its slice of ONE shared VideoTexture (single GPU upload per frame),
  *   width-fit across the combined wall, vertically center-cropped.
@@ -46,77 +46,88 @@ const FRAG = /* glsl */ `
     float edge = smoothstep(0.0, 0.05, uv.x) * smoothstep(1.0, 0.95, uv.x)
                * smoothstep(0.0, 0.04, uv.y) * smoothstep(1.0, 0.96, uv.y);
 
-    // ---- video wall mode: sample this panel's slice of the shared video,
-    // rendered as a physical LED matrix (pixel cells + grout + shimmer) ----
-    if (uVideoOn > 0.5) {
-      vec2 wallUv = uUvOffset + uv * uUvRepeat; // continuous across all panels
-      const vec2 RES = vec2(368.0, 207.0);      // square LED cells wall-wide
-      // sample at LED-cell centers → visible pixelation
-      vec2 cellUv = (floor(wallUv * RES) + 0.5) / RES;
-      vec3 vcol = texture2D(uVideo, cellUv).rgb;
-      // saturation boost — LED walls render punchier color than the source
-      float luma = dot(vcol, vec3(0.2126, 0.7152, 0.0722));
-      vcol = mix(vec3(luma), vcol, 1.35);
-      // round LED dot with dark grout between cells
-      vec2 cell = fract(wallUv * RES);
-      float led = smoothstep(0.62, 0.25, length(cell - 0.5));
-      vcol *= 0.30 + 0.85 * led;
-      // faint refresh shimmer rolling down the wall
-      vcol *= 1.0 + 0.05 * sin(wallUv.y * 40.0 - uTime * 2.2);
-      vcol *= mix(0.55, 1.0, edge);
-      gl_FragColor = vec4(vcol * 0.85, 1.0);
-      return;
-    }
-
-    // ---- idle mode: black panels; center screen carries the play prompt ----
-    vec3 col = vec3(0.010, 0.012, 0.016); // barely-there panel tone
+    // ---- idle layer: black panels; center screen carries the play prompt ----
+    vec3 idle = vec3(0.010, 0.012, 0.016); // barely-there panel tone
     if (uHasLogo > 0.5) {
       vec4 logo = texture2D(uLogo, uv);
       float pulse = 0.85 + 0.15 * sin(uTime * 1.3);
-      col += logo.rgb * 1.3 * pulse * logo.a;
+      idle += logo.rgb * 1.3 * pulse * logo.a;
     }
-    col *= mix(0.35, 1.0, edge);
-    gl_FragColor = vec4(col, 1.0);
+    idle *= mix(0.35, 1.0, edge);
+
+    // ---- video layer: this panel's slice of the shared video, rendered as
+    // a physical LED matrix (pixel cells + grout + shimmer) ----
+    vec2 wallUv = uUvOffset + uv * uUvRepeat; // continuous across all panels
+    const vec2 RES = vec2(368.0, 207.0);      // square LED cells wall-wide
+    // sample at LED-cell centers → visible pixelation
+    vec2 cellUv = (floor(wallUv * RES) + 0.5) / RES;
+    vec3 vcol = texture2D(uVideo, cellUv).rgb;
+    // saturation boost — LED walls render punchier color than the source
+    float luma = dot(vcol, vec3(0.2126, 0.7152, 0.0722));
+    vcol = mix(vec3(luma), vcol, 1.35);
+    // round LED dot with dark grout between cells
+    vec2 cell = fract(wallUv * RES);
+    float led = smoothstep(0.62, 0.25, length(cell - 0.5));
+    vcol *= 0.30 + 0.85 * led;
+    // faint refresh shimmer rolling down the wall
+    vcol *= 1.0 + 0.05 * sin(wallUv.y * 40.0 - uTime * 2.2);
+    vcol *= mix(0.55, 1.0, edge);
+    vcol *= 0.85;
+
+    // uVideoOn is a 0→1 fade; ease it so the wall breathes in, not snaps
+    gl_FragColor = vec4(mix(idle, vcol, smoothstep(0.0, 1.0, uVideoOn)), 1.0);
   }
 `;
 
 /** Play prompt for the tall center screen. */
 function makePromptTexture(): THREE.CanvasTexture {
   const c = document.createElement("canvas");
-  c.width = 512;
+  // matches the center panel's 6.8 : 9.2 aspect so glyphs aren't stretched
+  c.width = 568;
   c.height = 768;
   const g = c.getContext("2d")!;
+  const cx = c.width / 2;
   g.clearRect(0, 0, c.width, c.height);
   g.textAlign = "center";
   g.textBaseline = "middle";
 
   // one voice: everything in the truss lights' yellowish-white, no colored glow
   const WARM = "#fffbe8";
+  const FONT = "'Segoe UI', Arial, sans-serif";
 
-  // play button — ring + triangle
+  // play button — ring + triangle, optically centered
   g.strokeStyle = WARM;
-  g.lineWidth = 9;
+  g.lineWidth = 7;
   g.shadowColor = WARM;
-  g.shadowBlur = 6;
+  g.shadowBlur = 5;
   g.beginPath();
-  g.arc(256, 245, 85, 0, Math.PI * 2);
+  g.arc(cx, 236, 76, 0, Math.PI * 2);
   g.stroke();
   g.fillStyle = WARM;
   g.beginPath();
-  g.moveTo(232, 197);
-  g.lineTo(232, 293);
-  g.lineTo(316, 245);
+  g.moveTo(cx - 20, 200);
+  g.lineTo(cx - 20, 272);
+  g.lineTo(cx + 42, 236);
   g.closePath();
   g.fill();
 
-  // copy
-  g.shadowBlur = 4;
-  g.font = "600 34px Arial, sans-serif";
-  g.fillText("PLAY LAST YEAR'S", 256, 420);
-  g.font = "900 76px Arial, sans-serif";
-  g.fillText("BREEZE", 256, 498);
-  g.font = "800 50px Arial, sans-serif";
-  g.fillText("AFTERMOVIE", 256, 572);
+  // copy — eyebrow / display / subtitle hierarchy with tracking
+  g.shadowBlur = 3;
+  g.globalAlpha = 0.78;
+  (g as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = "7px";
+  g.font = `600 27px ${FONT}`;
+  g.fillText("RELIVE THE NIGHT", cx + 3, 412);
+
+  g.globalAlpha = 1;
+  (g as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = "3px";
+  g.font = `800 76px ${FONT}`;
+  g.fillText("BREEZE '26", cx + 1, 486);
+
+  g.globalAlpha = 0.9;
+  (g as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = "13px";
+  g.font = `600 36px ${FONT}`;
+  g.fillText("TAP TO WATCH", cx + 6, 556);
+  g.globalAlpha = 1;
 
   const tex = new THREE.CanvasTexture(c);
   tex.anisotropy = 4;
@@ -229,17 +240,33 @@ export default function LEDScreens({ videoTexture, onPlay }: LEDScreensProps): R
     return m;
   }, []);
 
-  // flip all panels between idle shader and video wall
+  // bind the shared video texture; the idle↔video blend animates in useFrame
   useEffect(() => {
-    for (const m of materials) {
-      if (videoTexture) m.uniforms.uVideo.value = videoTexture;
-      m.uniforms.uVideoOn.value = videoTexture ? 1 : 0;
-    }
+    if (!videoTexture) return;
+    for (const m of materials) m.uniforms.uVideo.value = videoTexture;
   }, [videoTexture, materials]);
 
-  useFrame(({ clock }) => {
+  // fade timing: hold the blackout beat, then breathe the wall up right as
+  // the video starts (ConcertStageHero delays playback by ~0.9s); exit is quick
+  const FADE_DELAY = 0.6;
+  const FADE_IN = 1.0;
+  const FADE_OUT = 0.35;
+  const fade = useRef(0);
+  const fadeStartAt = useRef<number | null>(null);
+
+  useFrame(({ clock }, delta) => {
     const t = clock.elapsedTime;
-    for (const m of materials) m.uniforms.uTime.value = t;
+    if (videoTexture) {
+      if (fadeStartAt.current === null) fadeStartAt.current = t + FADE_DELAY;
+      if (t >= fadeStartAt.current) fade.current = Math.min(1, fade.current + delta / FADE_IN);
+    } else {
+      fadeStartAt.current = null;
+      fade.current = Math.max(0, fade.current - delta / FADE_OUT);
+    }
+    for (const m of materials) {
+      m.uniforms.uTime.value = t;
+      m.uniforms.uVideoOn.value = fade.current;
+    }
   });
 
   return (

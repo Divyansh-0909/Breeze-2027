@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -75,7 +75,7 @@ function makeGeometry(p: Pool): THREE.BufferGeometry {
   return g;
 }
 
-export default function Fireworks(): React.ReactElement {
+export default function Fireworks({ active }: { active: boolean }): React.ReactElement {
   const s = useMemo(
     () => ({ t: 0, done: false, sparks: makePool(SPARK_MAX), flames: makePool(FLAME_MAX) }),
     []
@@ -83,6 +83,10 @@ export default function Fireworks(): React.ReactElement {
   const sparkGeo = useMemo(() => makeGeometry(s.sparks), [s]);
   const flameGeo = useMemo(() => makeGeometry(s.flames), [s]);
   const lightRefs = useRef<(THREE.PointLight | null)[]>([]);
+  // mount the firelights only while the show runs — even zero-intensity
+  // lights cost every lit material a slot in its light loop
+  const [lightsLive, setLightsLive] = useState(false);
+  useEffect(() => setLightsLive(active), [active]);
 
   const sparkMat = useMemo(() => {
     const m = new THREE.PointsMaterial({
@@ -112,13 +116,17 @@ export default function Fireworks(): React.ReactElement {
   }, []);
 
   useFrame((_, rawDt) => {
-    if (s.done) return;
+    if (s.done) return; // pods stay visible; fire only when triggered
     const dt = Math.min(rawDt, 0.05);
     s.t += dt;
 
+    // emission requires `active` — if the user exits mid-show, jets shut off
+    // immediately and the airborne sparks burn out naturally below
     const activeJets = new Set<number>();
-    for (const w of SEQUENCE) {
-      if (s.t >= w.start && s.t <= w.end) w.jets.forEach((j) => activeJets.add(j));
+    if (active) {
+      for (const w of SEQUENCE) {
+        if (s.t >= w.start && s.t <= w.end) w.jets.forEach((j) => activeJets.add(j));
+      }
     }
 
     // emit
@@ -224,7 +232,10 @@ export default function Fireworks(): React.ReactElement {
       light.intensity += (target - light.intensity) * Math.min(1, dt * 14);
     });
 
-    if (!anyAlive && s.t > SHOW_END) s.done = true; // show over — go idle
+    if (!anyAlive && (!active || s.t > SHOW_END)) {
+      s.done = true; // show over — go idle
+      setLightsLive(false);
+    }
   });
 
   return (
@@ -242,16 +253,18 @@ export default function Fireworks(): React.ReactElement {
             <meshStandardMaterial color="#1c2027" roughness={0.4} metalness={0.7} />
           </mesh>
           {/* firelight kissing the deck + pod while the jet burns */}
-          <pointLight
-            ref={(el) => {
-              lightRefs.current[i] = el;
-            }}
-            position-y={1}
-            color="#ffb347"
-            intensity={0}
-            decay={2}
-            distance={7}
-          />
+          {lightsLive && (
+            <pointLight
+              ref={(el) => {
+                lightRefs.current[i] = el;
+              }}
+              position-y={1}
+              color="#ffb347"
+              intensity={0}
+              decay={2}
+              distance={7}
+            />
+          )}
         </group>
       ))}
       <points geometry={sparkGeo} material={sparkMat} frustumCulled={false} />

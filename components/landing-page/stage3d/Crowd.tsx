@@ -13,7 +13,7 @@ import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js
  * 4 pose variants → 4 InstancedMeshes → 4 draw calls for the whole crowd.
  */
 
-const COUNT = 600;
+const COUNT = 900;
 const MAN_SHARE = 0.6; // men are ~3x cheaper (1.8k vs 6.1k tris)
 const POSE_TIMES = [0.35, 1.35]; // two different idle frames per model
 
@@ -99,7 +99,9 @@ export default function Crowd(): React.ReactElement {
       const x = (rand() * 2 - 1) * 22;
       const z = 4.5 + rand() * 18;
       if (Math.abs(x) < 3.7 && z < 15.2) continue; // keep the runway clear
-      const isMan = rand() < MAN_SHARE;
+      // far rows (near the stage) read as pure silhouette — lean harder on
+      // the 3x-cheaper man mesh there; near rows keep the full mix
+      const isMan = rand() < (z < 14 ? 0.8 : MAN_SHARE);
       out.push({
         x,
         z,
@@ -137,10 +139,9 @@ export default function Crowd(): React.ReactElement {
     });
   }, [people, variants]);
 
-  const silhouette = useMemo(
-    () => new THREE.MeshStandardMaterial({ color: "#05060a", roughness: 0.95, metalness: 0.05 }),
-    []
-  );
+  // Lambert, not Standard: near-black silhouettes show no specular anyway,
+  // and PBR × ~3M crowd triangles × every dynamic light is the frame budget
+  const silhouette = useMemo(() => new THREE.MeshLambertMaterial({ color: "#05060a" }), []);
 
   return (
     <group>

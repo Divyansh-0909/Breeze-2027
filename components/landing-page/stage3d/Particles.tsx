@@ -22,7 +22,7 @@ export default function Particles(): React.ReactElement {
 
   const material = useMemo(() => {
     const m = new THREE.PointsMaterial({
-      color: "#8fd4ef",
+      color: "#fffbe8", // matches the front-truss moving-head color (HEAD_COLORS in Lights.tsx)
       size: 0.07,
       transparent: true,
       opacity: 0.4,

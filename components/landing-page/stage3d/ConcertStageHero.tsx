@@ -1,10 +1,11 @@
 "use client";
 import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 
 import { PALETTE } from "./palette";
+import Barricades from "./Barricades";
 import Crowd from "./Crowd";
 import Fireworks from "./Fireworks";
 import Stage from "./Stage";
@@ -39,6 +40,45 @@ function Env(): null {
   return null;
 }
 
+/**
+ * Frame-time governor: steps render resolution down when the GPU can't hold
+ * ~50fps and cautiously back up once it's comfortably fast again. Each
+ * downgrade doubles the streak of fast windows required before retrying, so
+ * a machine that genuinely can't afford a level stops oscillating into it.
+ */
+const DPR_LEVELS = [1.5, 1.25, 1.0, 0.8];
+function AdaptiveDpr(): null {
+  const setDpr = useThree((s) => s.setDpr);
+  const a = useRef({ t: 0, n: 0, level: 0, streak: 0, needStreak: 4 });
+
+  useFrame((_, dt) => {
+    const g = a.current;
+    g.t += dt;
+    g.n += 1;
+    if (g.t < 1) return; // evaluate once per ~1s window
+    const avg = g.t / g.n;
+    g.t = 0;
+    g.n = 0;
+
+    const apply = () => setDpr(Math.min(DPR_LEVELS[g.level], window.devicePixelRatio));
+    if (avg > 1 / 50 && g.level < DPR_LEVELS.length - 1) {
+      g.level += 1;
+      g.streak = 0;
+      g.needStreak = Math.min(g.needStreak * 2, 60);
+      apply();
+    } else if (avg < 1 / 57 && g.level > 0) {
+      if (++g.streak >= g.needStreak) {
+        g.level -= 1;
+        g.streak = 0;
+        apply();
+      }
+    } else {
+      g.streak = 0;
+    }
+  });
+  return null;
+}
+
 function usePrefersReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
@@ -62,42 +102,53 @@ export default function ConcertStageHero(): React.ReactElement {
   const [playing, setPlaying] = useState(false);
   const [pyroKey, setPyroKey] = useState(0);
 
+  const playTimer = useRef<number | null>(null);
+
   const stopMovie = useCallback(() => {
+    if (playTimer.current !== null) window.clearTimeout(playTimer.current);
+    playTimer.current = null;
     videoRef.current?.pause();
     setPlaying(false);
   }, []);
 
-  const startMovie = useCallback(() => {
-    let video = videoRef.current;
-    if (!video) {
-      // created lazily — the 600MB file only downloads for viewers who ask
-      video = document.createElement("video");
-      video.src = "/after-movie.mp4";
-      video.playsInline = true;
-      video.preload = "metadata";
-      video.addEventListener("ended", stopMovie);
-      videoRef.current = video;
-      const tex = new THREE.VideoTexture(video);
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.minFilter = THREE.LinearFilter;
-      textureRef.current = tex;
-    }
-    video.currentTime = 0;
-    void video.play();
-    setPlaying(true);
-    setPyroKey((k) => k + 1); // re-fire the stage pyro as the show opens
+  // created on page load with preload=auto so the browser buffers the index
+  // + opening seconds ahead of time — the play click then starts instantly
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = "/after-movie.mp4";
+    video.playsInline = true;
+    video.preload = "auto";
+    video.addEventListener("ended", stopMovie);
+    videoRef.current = video;
+    const tex = new THREE.VideoTexture(video);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.minFilter = THREE.LinearFilter;
+    textureRef.current = tex;
+
+    return () => {
+      // unmount: tear the video down so it stops downloading/decoding
+      video.removeEventListener("ended", stopMovie);
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      tex.dispose();
+      videoRef.current = null;
+      textureRef.current = null;
+    };
   }, [stopMovie]);
 
-  useEffect(
-    () => () => {
-      // unmount: tear the video down so it stops downloading/decoding
-      videoRef.current?.pause();
-      videoRef.current?.removeAttribute("src");
-      videoRef.current?.load();
-      textureRef.current?.dispose();
-    },
-    []
-  );
+  const startMovie = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    // the camera dolly, light blackout and pyro lead the moment — the video
+    // itself comes in a beat later, like a real show opening
+    setPlaying(true);
+    setPyroKey((k) => k + 1);
+    playTimer.current = window.setTimeout(() => {
+      video.currentTime = 0;
+      void video.play();
+    }, 900);
+  }, []);
 
   // Esc exits the aftermovie
   useEffect(() => {
@@ -119,11 +170,14 @@ export default function ConcertStageHero(): React.ReactElement {
         <color attach="background" args={[PALETTE.void]} />
         <fog attach="fog" args={[PALETTE.void, 24, 62]} />
         <Suspense fallback={null}>
+          <AdaptiveDpr />
           <Env />
           <Stage />
+          <Barricades />
           <Crowd />
-          {/* pyro only fires as the aftermovie show opens — never on page load */}
-          {motion && pyroKey > 0 && <Fireworks key={pyroKey} />}
+          {/* pods are permanent set-dressing; the fire itself only runs as
+              the aftermovie show opens — never on page load */}
+          <Fireworks key={pyroKey} active={motion && pyroKey > 0 && playing} />
           <Trusses />
           <LEDScreens videoTexture={playing ? textureRef.current : null} onPlay={startMovie} />
           <Speakers />
@@ -133,16 +187,6 @@ export default function ConcertStageHero(): React.ReactElement {
           <Effects />
         </Suspense>
       </Canvas>
-      {/* close the aftermovie */}
-      {playing && (
-        <button
-          onClick={stopMovie}
-          aria-label="Close aftermovie"
-          className="absolute right-5 top-[11vh] z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white/80 transition-colors hover:text-white hover:border-white/40"
-        >
-          ✕
-        </button>
-      )}
       {/* exit hint while the movie runs */}
       {playing && (
         <div className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 rounded-full bg-black/60 backdrop-blur-md border border-white/15 px-4 py-1.5 text-sm text-white/75">
