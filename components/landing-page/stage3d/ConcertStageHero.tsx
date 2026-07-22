@@ -91,74 +91,121 @@ function usePrefersReducedMotion(): boolean {
   return reduced;
 }
 
+type Phase = "idle" | "loading" | "playing";
+
 export default function ConcertStageHero(): React.ReactElement {
   const reduced = usePrefersReducedMotion();
   const motion = !reduced;
 
-  // ---- aftermovie on the LED wall: click-to-play (user gesture → plays
-  // WITH sound), camera zooms in while it runs, ✕ or video end returns ----
+  // ---- aftermovie on the LED wall ----
+  // Nothing downloads up-front: clicking play zooms the camera in, dims the
+  // rig, and only THEN starts fetching /after-movie.mp4 — the center screen
+  // shows a loading bar while it buffers. The video wall and the pyro both
+  // wait for the first real playback frame.
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const textureRef = useRef<THREE.VideoTexture | null>(null);
-  const [playing, setPlaying] = useState(false);
+  const [phase, setPhase] = useState<Phase>("idle");
+  const [loadProgress, setLoadProgress] = useState(0);
   const [pyroKey, setPyroKey] = useState(0);
 
   const playTimer = useRef<number | null>(null);
+  const clickedAt = useRef(0);
 
   const stopMovie = useCallback(() => {
     if (playTimer.current !== null) window.clearTimeout(playTimer.current);
     playTimer.current = null;
-    videoRef.current?.pause();
-    setPlaying(false);
-  }, []);
-
-  // created on page load with preload=auto so the browser buffers the index
-  // + opening seconds ahead of time — the play click then starts instantly
-  useEffect(() => {
-    const video = document.createElement("video");
-    video.src = "/after-movie.mp4";
-    video.playsInline = true;
-    video.preload = "auto";
-    video.addEventListener("ended", stopMovie);
-    videoRef.current = video;
-    const tex = new THREE.VideoTexture(video);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    tex.minFilter = THREE.LinearFilter;
-    textureRef.current = tex;
-
-    return () => {
-      // unmount: tear the video down so it stops downloading/decoding
-      video.removeEventListener("ended", stopMovie);
+    const video = videoRef.current;
+    if (video) {
+      // aborts any in-flight download as well as playback
       video.pause();
       video.removeAttribute("src");
       video.load();
-      tex.dispose();
-      videoRef.current = null;
-      textureRef.current = null;
-    };
-  }, [stopMovie]);
-
-  const startMovie = useCallback(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    // the camera dolly, light blackout and pyro lead the moment — the video
-    // itself comes in a beat later, like a real show opening
-    setPlaying(true);
-    setPyroKey((k) => k + 1);
-    playTimer.current = window.setTimeout(() => {
-      video.currentTime = 0;
-      void video.play();
-    }, 900);
+    }
+    // dispose only after the wall's ~0.35s fade-out has finished sampling it
+    const tex = textureRef.current;
+    if (tex) window.setTimeout(() => tex.dispose(), 600);
+    videoRef.current = null;
+    textureRef.current = null;
+    setPhase("idle");
+    setLoadProgress(0);
   }, []);
 
-  // Esc exits the aftermovie
+  // unmount mid-load/mid-show: tear the video down so it stops downloading
+  useEffect(() => stopMovie, [stopMovie]);
+
+  const startMovie = useCallback(() => {
+    if (videoRef.current) return; // already loading or playing
+
+    const video = document.createElement("video");
+    video.playsInline = true;
+    video.preload = "auto";
+    const tex = new THREE.VideoTexture(video);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.minFilter = THREE.LinearFilter;
+    videoRef.current = video;
+    textureRef.current = tex;
+
+    // loading bar = furthest buffered byte over duration (duration arrives
+    // with loadedmetadata, so the bar sits at 0 for the first beat)
+    const buffered = () => {
+      if (!video.duration) return 0;
+      const b = video.buffered;
+      return b.length ? Math.min(1, b.end(b.length - 1) / video.duration) : 0;
+    };
+    const onProgress = () => setLoadProgress(buffered());
+    video.addEventListener("progress", onProgress);
+    video.addEventListener("loadedmetadata", onProgress);
+
+    // buffered enough to play through uninterrupted → roll it, but never
+    // before the camera dolly has landed (~0.9s), so a cached instant load
+    // still gets the show-opening beat
+    video.addEventListener(
+      "canplaythrough",
+      () => {
+        const wait = Math.max(0, 900 - (performance.now() - clickedAt.current));
+        playTimer.current = window.setTimeout(() => {
+          video.currentTime = 0;
+          // long loads can outlive the click's user-activation window, in
+          // which case unmuted play() is blocked — degrade to muted playback
+          // rather than stalling the show
+          video.play().catch(() => {
+            video.muted = true;
+            void video.play();
+          });
+        }, wait);
+      },
+      { once: true }
+    );
+
+    // pyro + video wall are keyed off ACTUAL playback, not the click
+    video.addEventListener(
+      "playing",
+      () => {
+        setLoadProgress(1);
+        setPhase("playing");
+        setPyroKey((k) => k + 1);
+      },
+      { once: true }
+    );
+
+    video.addEventListener("ended", stopMovie);
+    video.addEventListener("error", stopMovie);
+
+    clickedAt.current = performance.now();
+    setPhase("loading");
+    video.src = "/after-movie.mp4"; // download starts here, not at page load
+    video.load();
+  }, [stopMovie]);
+
+  // Esc cancels the load / exits the aftermovie
   useEffect(() => {
-    if (!playing) return;
+    if (phase === "idle") return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") stopMovie();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [playing, stopMovie]);
+  }, [phase, stopMovie]);
 
   return (
     <div className="absolute inset-0" aria-label="3D concert stage">
@@ -175,22 +222,28 @@ export default function ConcertStageHero(): React.ReactElement {
           <Stage />
           <Barricades />
           <Crowd />
-          {/* pods are permanent set-dressing; the fire itself only runs as
-              the aftermovie show opens — never on page load */}
-          <Fireworks key={pyroKey} active={motion && pyroKey > 0 && playing} />
+          {/* pods are permanent set-dressing; the fire itself only ignites
+              when the aftermovie actually starts playing — never on page
+              load, never while it's still buffering */}
+          <Fireworks key={pyroKey} active={motion && pyroKey > 0 && phase === "playing"} />
           <Trusses />
-          <LEDScreens videoTexture={playing ? textureRef.current : null} onPlay={startMovie} />
+          <LEDScreens
+            videoTexture={phase === "playing" ? textureRef.current : null}
+            loadingProgress={phase === "loading" ? loadProgress : null}
+            onPlay={startMovie}
+          />
           <Speakers />
-          <Lights motion={motion} dimmed={playing} />
+          <Lights motion={motion} dimmed={phase !== "idle"} />
           <Particles />
-          <CameraRig motion={motion} focus={playing} />
+          <CameraRig motion={motion} focus={phase !== "idle"} />
           <Effects />
         </Suspense>
       </Canvas>
-      {/* exit hint while the movie runs */}
-      {playing && (
+      {/* cancel/exit hint while loading or playing */}
+      {phase !== "idle" && (
         <div className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 rounded-full bg-black/60 backdrop-blur-md border border-white/15 px-4 py-1.5 text-sm text-white/75">
-          Press <span className="font-semibold text-white">Esc</span> to exit
+          Press <span className="font-semibold text-white">Esc</span> to{" "}
+          {phase === "loading" ? "cancel" : "exit"}
         </div>
       )}
       {/* fade into the black content below */}
