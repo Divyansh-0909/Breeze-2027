@@ -100,12 +100,11 @@ export default function ConcertStageHero(): React.ReactElement {
   // ---- aftermovie on the LED wall ----
   // Nothing downloads up-front: clicking play zooms the camera in, dims the
   // rig, and only THEN starts fetching /after-movie.mp4 — the center screen
-  // shows a loading bar while it buffers. The video wall and the pyro both
-  // wait for the first real playback frame.
+  // shows a loading spinner while it buffers. The video wall and the pyro
+  // both wait for the first real playback frame.
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const textureRef = useRef<THREE.VideoTexture | null>(null);
   const [phase, setPhase] = useState<Phase>("idle");
-  const [loadProgress, setLoadProgress] = useState(0);
   const [pyroKey, setPyroKey] = useState(0);
 
   const playTimer = useRef<number | null>(null);
@@ -127,7 +126,6 @@ export default function ConcertStageHero(): React.ReactElement {
     videoRef.current = null;
     textureRef.current = null;
     setPhase("idle");
-    setLoadProgress(0);
   }, []);
 
   // unmount mid-load/mid-show: tear the video down so it stops downloading
@@ -144,17 +142,6 @@ export default function ConcertStageHero(): React.ReactElement {
     tex.minFilter = THREE.LinearFilter;
     videoRef.current = video;
     textureRef.current = tex;
-
-    // loading bar = furthest buffered byte over duration (duration arrives
-    // with loadedmetadata, so the bar sits at 0 for the first beat)
-    const buffered = () => {
-      if (!video.duration) return 0;
-      const b = video.buffered;
-      return b.length ? Math.min(1, b.end(b.length - 1) / video.duration) : 0;
-    };
-    const onProgress = () => setLoadProgress(buffered());
-    video.addEventListener("progress", onProgress);
-    video.addEventListener("loadedmetadata", onProgress);
 
     // buffered enough to play through uninterrupted → roll it, but never
     // before the camera dolly has landed (~0.9s), so a cached instant load
@@ -181,7 +168,6 @@ export default function ConcertStageHero(): React.ReactElement {
     video.addEventListener(
       "playing",
       () => {
-        setLoadProgress(1);
         setPhase("playing");
         setPyroKey((k) => k + 1);
       },
@@ -229,7 +215,7 @@ export default function ConcertStageHero(): React.ReactElement {
           <Trusses />
           <LEDScreens
             videoTexture={phase === "playing" ? textureRef.current : null}
-            loadingProgress={phase === "loading" ? loadProgress : null}
+            loading={phase === "loading"}
             onPlay={startMovie}
           />
           <Speakers />

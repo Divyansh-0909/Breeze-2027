@@ -11,8 +11,9 @@ import { PALETTE, STAGE } from "./palette";
  * Three modes:
  * - idle: shader content (waves + scanlines + glitch bars); the center screen
  *   invites "RELIVE THE NIGHT — BREEZE '26" and is clickable.
- * - loading: the center screen swaps the prompt for a "LOADING AFTERMOVIE"
- *   label and a segmented LED progress bar driven by `loadingProgress`.
+ * - loading: the center screen swaps the prompt for a "LOADING..." label
+ *   with a spinner above it (download progress isn't reliably measurable,
+ *   so the treatment is indeterminate on purpose).
  * - video: all 7 panels become one segmented video wall — each panel samples
  *   its slice of ONE shared VideoTexture (single GPU upload per frame),
  *   width-fit across the combined wall, vertically center-cropped.
@@ -36,7 +37,6 @@ const FRAG = /* glsl */ `
   uniform float uHasLogo;
   uniform sampler2D uLoadLabel;
   uniform float uLoad;
-  uniform float uProgress;
   uniform sampler2D uVideo;
   uniform float uVideoOn;
   uniform vec2 uUvOffset;
@@ -59,18 +59,19 @@ const FRAG = /* glsl */ `
       // play prompt yields to the loading state as uLoad rises
       idle += logo.rgb * 1.3 * pulse * logo.a * (1.0 - uLoad);
 
-      // ---- loading state: label + segmented LED progress bar, in the same
-      // warm truss-light voice as the prompt ----
+      // ---- loading state: "LOADING..." label with a spinner above it, in
+      // the same warm truss-light voice as the prompt ----
       vec4 lbl = texture2D(uLoadLabel, uv);
       idle += lbl.rgb * (1.05 + 0.15 * sin(uTime * 1.8)) * lbl.a * uLoad;
-      float bx = (uv.x - 0.16) / 0.68; // 0..1 along the bar track
-      float inBar = step(0.0, bx) * (1.0 - step(1.0, bx))
-                  * smoothstep(0.300, 0.307, uv.y) * (1.0 - smoothstep(0.327, 0.334, uv.y));
-      float seg = step(fract(bx * 22.0), 0.78); // tick segments, LED-wall style
-      float fill = 1.0 - step(uProgress, bx);
+      // spinner: rotating arc with a fading tail; uv scaled by the panel's
+      // 6.8 x 9.2 world size so the ring is a true circle
+      vec2 sp = (uv - vec2(0.5, 0.49)) * vec2(6.8, 9.2);
+      float ring = smoothstep(0.10, 0.05, abs(length(sp) - 0.45));
+      float ang = atan(sp.y, sp.x) / 6.2831853; // -0.5..0.5 around the ring
+      float sweep = fract(ang - uTime * 0.7);
+      float arc = smoothstep(0.0, 0.35, sweep) * step(sweep, 0.8); // 20% gap
       vec3 warm = vec3(1.0, 0.984, 0.91);
-      idle += warm * inBar * seg
-            * (0.06 + 1.1 * fill * (0.88 + 0.12 * sin(uTime * 2.6))) * uLoad;
+      idle += warm * ring * arc * uLoad;
     }
     idle *= mix(0.35, 1.0, edge);
 
@@ -153,7 +154,7 @@ function makePromptTexture(): THREE.CanvasTexture {
   return tex;
 }
 
-/** Label shown above the shader-drawn progress bar while the movie buffers. */
+/** Label shown under the shader-drawn spinner while the movie buffers. */
 function makeLoadingTexture(): THREE.CanvasTexture {
   const c = document.createElement("canvas");
   // same 6.8 : 9.2 canvas as the prompt so glyphs aren't stretched
@@ -170,10 +171,10 @@ function makeLoadingTexture(): THREE.CanvasTexture {
   g.fillStyle = WARM;
   g.shadowColor = WARM;
   g.shadowBlur = 3;
-  // sits just above the bar band (shader draws it at uv.y ≈ 0.30–0.33)
+  // sits just below the spinner (shader draws it centered at uv.y ≈ 0.49)
   (g as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = "9px";
   g.font = `600 30px ${FONT}`;
-  g.fillText("LOADING AFTERMOVIE", cx + 4, 468);
+  g.fillText("LOADING...", cx + 4, 468);
 
   const tex = new THREE.CanvasTexture(c);
   tex.anisotropy = 4;
@@ -199,15 +200,15 @@ type Panel = { x: number; w: number; h: number; rotY: number; hasLogo: boolean; 
 type LEDScreensProps = {
   /** when set, all panels switch to segmented-video-wall mode */
   videoTexture: THREE.VideoTexture | null;
-  /** 0..1 while the aftermovie is buffering, null otherwise */
-  loadingProgress: number | null;
+  /** true while the aftermovie is buffering — center screen shows the spinner */
+  loading: boolean;
   /** click handler for the center screen's play prompt */
   onPlay: () => void;
 };
 
 export default function LEDScreens({
   videoTexture,
-  loadingProgress,
+  loading,
   onPlay,
 }: LEDScreensProps): React.ReactElement {
   const { topY, screenZ } = STAGE;
@@ -273,7 +274,6 @@ export default function LEDScreens({
             uHasLogo: { value: p.hasLogo ? 1 : 0 },
             uLoadLabel: { value: p.hasLogo ? loadingLabel : (blank as THREE.Texture) },
             uLoad: { value: 0 },
-            uProgress: { value: 0 },
             uVideo: { value: blank as THREE.Texture },
             uVideoOn: { value: 0 },
             uUvOffset: { value: videoWindows[i].offset },
@@ -310,14 +310,12 @@ export default function LEDScreens({
   const fade = useRef(0);
   const fadeStartAt = useRef<number | null>(null);
 
-  // latest loading props, readable from useFrame without re-subscribing
-  const loadState = useRef({ on: false, progress: 0 });
+  // latest loading prop, readable from useFrame without re-subscribing
+  const loadingRef = useRef(loading);
   useEffect(() => {
-    loadState.current.on = loadingProgress !== null;
-    if (loadingProgress !== null) loadState.current.progress = loadingProgress;
-  }, [loadingProgress]);
+    loadingRef.current = loading;
+  }, [loading]);
   const loadFade = useRef(0);
-  const barFill = useRef(0);
 
   useFrame(({ clock }, delta) => {
     const t = clock.elapsedTime;
@@ -328,16 +326,12 @@ export default function LEDScreens({
       fadeStartAt.current = null;
       fade.current = Math.max(0, fade.current - delta / FADE_OUT);
     }
-    // loading UI eases in/out; the bar glides toward the buffered fraction so
-    // chunky progress events still read as one continuous motion
-    const ui = loadState.current;
-    loadFade.current += ((ui.on ? 1 : 0) - loadFade.current) * Math.min(1, delta * 6);
-    barFill.current += (ui.progress - barFill.current) * Math.min(1, delta * 3);
+    // loading UI (spinner + label) eases in/out; the spin itself runs on uTime
+    loadFade.current += ((loadingRef.current ? 1 : 0) - loadFade.current) * Math.min(1, delta * 6);
     for (const m of materials) {
       m.uniforms.uTime.value = t;
       m.uniforms.uVideoOn.value = fade.current;
       m.uniforms.uLoad.value = loadFade.current;
-      m.uniforms.uProgress.value = barFill.current;
     }
   });
 
@@ -352,11 +346,9 @@ export default function LEDScreens({
           </mesh>
           <mesh
             material={materials[i]}
-            onClick={
-              p.hasLogo && !videoTexture && loadingProgress === null ? () => onPlay() : undefined
-            }
+            onClick={p.hasLogo && !videoTexture && !loading ? () => onPlay() : undefined}
             onPointerOver={
-              p.hasLogo && !videoTexture && loadingProgress === null
+              p.hasLogo && !videoTexture && !loading
                 ? () => (gl.domElement.style.cursor = "pointer")
                 : undefined
             }
