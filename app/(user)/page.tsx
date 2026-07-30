@@ -2,6 +2,8 @@
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 
+import { warmStage } from "../../components/landing-page/stage3d/warmup";
+
 import ParallaxHero from "../../components/landing-page/ParallaxHero";
 import Sponsorship from "../../components/landing-page/sponsorship";
 import AfterMovie from "../../components/landing-page/aftermovie";
@@ -9,9 +11,11 @@ import Gallery from "../../components/landing-page/gallery";
 import "../globals.css";
 import StatsSection from "../../components/landing-page/StatsSection";
 
-// 3D stage is client-only (WebGL) and lazy-loaded to keep the initial bundle lean
-const ConcertStageHero = dynamic(
-  () => import("../../components/landing-page/stage3d/ConcertStageHero"),
+// Night entry gate — the loading page / entry portal (client-only WebGL,
+// lazy-loaded). The concert stage (ConcertStageHero) is preserved for its own
+// page, reached later via the "aftermovie" quicklink in the camp hub.
+const GateHero = dynamic(
+  () => import("../../components/landing-page/gate3d/GateHero"),
   { ssr: false, loading: () => <div className="absolute inset-0 bg-black" /> }
 );
 
@@ -21,11 +25,21 @@ export default function Home(): React.ReactElement {
     window.scrollTo(0, 0);
   }, []);
 
+  // Warm the aftermovie route while the visitor sits at the gate: stage
+  // chunk, travel video, crowd models and pose-baking all happen here in the
+  // background, so clicking Aftermovie later plays its walk over a scene
+  // with almost nothing left to load. Delayed past the gate's own power-on
+  // (~2.1 s) so the warm-up never competes with this page's entrance.
+  useEffect(() => {
+    const t = window.setTimeout(() => warmStage(), 3500);
+    return () => window.clearTimeout(t);
+  }, []);
+
   return (
     <main className="min-h-screen bg-black text-white relative w-full overflow-x-hidden">
-      {/* Hero Section — 3D concert stage */}
+      {/* Entry Section — 3D night gate (loading page / entry portal) */}
       <div className="relative z-0 w-full min-h-screen h-dvh">
-        <ConcertStageHero />
+        <GateHero />
       </div>
 
       {/* Main Content - positioned to overlap hero */}

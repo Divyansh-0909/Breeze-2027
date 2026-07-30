@@ -1,8 +1,8 @@
 "use client";
-import React, { useLayoutEffect, useMemo, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useLoader } from "@react-three/fiber";
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
 /**
@@ -80,17 +80,105 @@ function bakePose(root: THREE.Object3D, clips: THREE.AnimationClip[], time: numb
 
 type Person = { x: number; z: number; h: number; yaw: number; variant: number };
 
-export default function Crowd(): React.ReactElement {
+/**
+ * Module-level cache of the four baked pose variants, so the expensive work
+ * can be done ONCE, anywhere, ahead of time — the landing page warms it while
+ * the visitor reads "click anywhere to continue", and by the time the stage
+ * mounts on the aftermovie route the crowd costs nothing at all. Survives
+ * client-side navigation precisely because it lives at module scope.
+ */
+let warmBaked: THREE.BufferGeometry[] | null = null;
+
+/** Pre-bake the crowd off the critical path. Safe to call repeatedly. */
+let warming: Promise<void> | null = null;
+export function warmCrowd(): Promise<void> {
+  if (warmBaked) return Promise.resolve();
+  if (warming) return warming;
+  warming = (async () => {
+    const loader = new GLTFLoader();
+    const [man, woman] = await Promise.all([
+      loader.loadAsync("/models/Man.glb"),
+      loader.loadAsync("/models/Animated-Woman.glb"),
+    ]);
+    const jobs: [GLTF, number][] = [
+      [man, POSE_TIMES[0]],
+      [man, POSE_TIMES[1]],
+      [woman, POSE_TIMES[0]],
+      [woman, POSE_TIMES[1]],
+    ];
+    const out: THREE.BufferGeometry[] = [];
+    for (const [gltf, t] of jobs) {
+      // spaced out so the page hosting the warm-up never feels it
+      await new Promise((r) => setTimeout(r, 150));
+      out.push(bakePose(gltf.scene, gltf.animations, t));
+    }
+    warmBaked = out;
+  })().catch(() => {
+    warming = null; // a failed warm-up must not poison later attempts
+  }) as Promise<void>;
+  return warming;
+}
+
+export default function Crowd({
+  immediate = false,
+}: {
+  /**
+   * Bake all four pose variants synchronously on mount. Right for contexts
+   * that must have the full crowd on their first frame (the flythrough
+   * recorder). The default spreads the baking across tasks — one variant at
+   * a time with breathing room between — because the whole ~quarter-second
+   * burst in one frame is a visible hitch in anything playing over the
+   * scene while it warms up.
+   */
+  immediate?: boolean;
+}): React.ReactElement {
   const [manGltf, womanGltf] = useLoader(GLTFLoader, ["/models/Man.glb", "/models/Animated-Woman.glb"]);
 
-  // 4 baked pose variants: man × 2 idle frames, woman × 2 idle frames
-  const variants = useMemo(
-    () => [
-      ...POSE_TIMES.map((t) => bakePose(manGltf.scene, manGltf.animations, t)),
-      ...POSE_TIMES.map((t) => bakePose(womanGltf.scene, womanGltf.animations, t)),
-    ],
-    [manGltf, womanGltf]
+  // 4 baked pose variants: man × 2 idle frames, woman × 2 idle frames.
+  // The warm cache wins over everything — if the landing page already did
+  // this work, both paths below are skipped entirely.
+  const syncVariants = useMemo(
+    () =>
+      warmBaked ??
+      (immediate
+        ? [
+            ...POSE_TIMES.map((t) => bakePose(manGltf.scene, manGltf.animations, t)),
+            ...POSE_TIMES.map((t) => bakePose(womanGltf.scene, womanGltf.animations, t)),
+          ]
+        : null),
+    [immediate, manGltf, womanGltf]
   );
+
+  const [chunked, setChunked] = useState<THREE.BufferGeometry[]>([]);
+  useEffect(() => {
+    if (immediate || syncVariants) return;
+    let alive = true;
+    const jobs: [typeof manGltf, number][] = [
+      [manGltf, POSE_TIMES[0]],
+      [manGltf, POSE_TIMES[1]],
+      [womanGltf, POSE_TIMES[0]],
+      [womanGltf, POSE_TIMES[1]],
+    ];
+    const out: THREE.BufferGeometry[] = [];
+    void (async () => {
+      for (const [gltf, t] of jobs) {
+        // a real gap, not just a yield: each bake ends with a GPU buffer
+        // upload when its mesh mounts, and those need room to drain too
+        await new Promise((r) => setTimeout(r, 150));
+        if (!alive) return;
+        out.push(bakePose(gltf.scene, gltf.animations, t));
+        setChunked([...out]);
+      }
+      warmBaked = out; // whoever baked it, everyone after gets it for free
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [immediate, syncVariants, manGltf, womanGltf]);
+
+  // instanced meshes mount per-variant as bakes land, spreading the GPU
+  // uploads the same way the CPU work is spread
+  const variants = syncVariants ?? chunked;
 
   const people = useMemo<Person[]>(() => {
     const rand = mulberry32(2027);

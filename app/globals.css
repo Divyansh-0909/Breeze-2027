@@ -234,6 +234,49 @@ body {
   font-style: normal;
 }
 
+/* Satoshi — the entry menu's utility face (indexes, eyebrow). The woff2s have
+   been sitting in public/fonts unused; declared here so the menu's small text
+   doesn't fall back to whatever the OS ships. */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2'),
+    url('/fonts/Satoshi-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Bold.woff2') format('woff2'),
+    url('/fonts/Satoshi-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mans Greback's graffiti tag face — the entry menu's display type.
+   LICENCE: personal use only. A commercial licence must be bought from
+   mansgreback.com/product/aerosoldier before this ships publicly. */
+@font-face {
+  font-family: 'Aerosoldier';
+  src: url('/fonts/Aerosoldier-PersonalUse.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ek Type's Devanagari display face. Used on the entry menu because its
+   letterforms are literally outlines — the same shape a can leaves — and
+   because loading it means the Devanagari renders on machines with no
+   Indic system font, which is most Linux boxes. */
+@font-face {
+  font-family: 'KumarOneOutline';
+  src: url('/fonts/KumarOneOutline-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .font-wallpoet-{
   font-family: 'WallpoetRegular', sans-serif !important;
   font-weight: normal;

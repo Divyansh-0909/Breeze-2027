@@ -204,12 +204,16 @@ type LEDScreensProps = {
   loading: boolean;
   /** click handler for the center screen's play prompt */
   onPlay: () => void;
+  /** hide the centre panel's play prompt — for shots where the wall is
+   *  scenery (the flythrough recording) rather than an invitation */
+  promptless?: boolean;
 };
 
 export default function LEDScreens({
   videoTexture,
   loading,
   onPlay,
+  promptless = false,
 }: LEDScreensProps): React.ReactElement {
   const { topY, screenZ } = STAGE;
   const gl = useThree((s) => s.gl);
@@ -271,7 +275,7 @@ export default function LEDScreens({
             uColorA: { value: new THREE.Color(PALETTE.cyan) },
             uColorB: { value: new THREE.Color(PALETTE.violet) },
             uLogo: { value: p.hasLogo ? prompt : (blank as THREE.Texture) },
-            uHasLogo: { value: p.hasLogo ? 1 : 0 },
+            uHasLogo: { value: p.hasLogo && !promptless ? 1 : 0 },
             uLoadLabel: { value: p.hasLogo ? loadingLabel : (blank as THREE.Texture) },
             uLoad: { value: 0 },
             uVideo: { value: blank as THREE.Texture },
@@ -281,7 +285,7 @@ export default function LEDScreens({
           },
         })
     );
-  }, [panels, videoWindows]);
+  }, [panels, videoWindows, promptless]);
 
   const glowMat = useMemo(() => {
     const m = new THREE.MeshBasicMaterial({

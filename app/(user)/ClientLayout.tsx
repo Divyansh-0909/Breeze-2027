@@ -37,7 +37,9 @@ export default function ClientLayout({
           : "linear-gradient(90deg, #3D025ABD 0%, transparent 50%, #3D025ABD 100%), black",
       }}
     >
-      <Navbar />
+      {/* the homepage is the 3D entry gate — a full-bleed scene with its own
+          "click to continue" affordance; the navbar would break the illusion */}
+      {!isHomepage && <Navbar />}
 
       <main className="w-full">{children}</main>
 

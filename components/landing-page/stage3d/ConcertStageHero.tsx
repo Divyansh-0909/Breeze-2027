@@ -1,8 +1,9 @@
 "use client";
 import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 import { PALETTE } from "./palette";
 import Barricades from "./Barricades";
@@ -47,9 +48,9 @@ function Env(): null {
  * a machine that genuinely can't afford a level stops oscillating into it.
  */
 const DPR_LEVELS = [1.5, 1.25, 1.0, 0.8];
-function AdaptiveDpr(): null {
+function AdaptiveDpr({ startLevel = 0 }: { startLevel?: number }): null {
   const setDpr = useThree((s) => s.setDpr);
-  const a = useRef({ t: 0, n: 0, level: 0, streak: 0, needStreak: 4 });
+  const a = useRef({ t: 0, n: 0, level: startLevel, streak: 0, needStreak: 4 });
 
   useFrame((_, dt) => {
     const g = a.current;
@@ -93,9 +94,79 @@ function usePrefersReducedMotion(): boolean {
 
 type Phase = "idle" | "loading" | "playing";
 
-export default function ConcertStageHero(): React.ReactElement {
+/**
+ * Fires `onReady` once the scene has PROVEN it renders smoothly: thirty
+ * consecutive frames, not the first one. Mounted last inside the Suspense
+ * boundary, so counting can't start until every sibling has resolved. A
+ * loading screen that stands down on this signal reveals a scene that is
+ * already fluid — never one still stuttering through warm-up.
+ */
+function ReadySignal({ onReady }: { onReady?: () => void }): null {
+  const frames = useRef(0);
+  useFrame(() => {
+    if (frames.current > 30) return;
+    frames.current += 1;
+    if (frames.current === 30) onReady?.();
+  });
+  return null;
+}
+
+
+/**
+ * While an opaque overlay covers the canvas, render at a fraction of the
+ * resolution. The scene must keep rendering under the travel video — that is
+ * what warms it — but nobody can see it, and at full DPR it competes with
+ * the video for the GPU hard enough to stutter playback. At 0.45 DPR the
+ * hidden warm-up costs roughly a fifth of the pixels; the jump back to full
+ * resolution happens as the reveal fade begins, behind the overlay.
+ */
+function CoveredThrottle({ covered }: { covered: boolean }): null {
+  const setDpr = useThree((s) => s.setDpr);
+  useEffect(() => {
+    setDpr(covered ? 0.45 : Math.min(1, window.devicePixelRatio));
+  }, [covered, setDpr]);
+  return null;
+}
+
+export default function ConcertStageHero({
+  onReady,
+  pov = false,
+  covered = false,
+}: {
+  /** Called once, on the first frame the stage actually renders. */
+  onReady?: () => void;
+  /** Rest the camera in the crowd at eye height instead of the wide shot. */
+  pov?: boolean;
+  /** True while a loading overlay hides the canvas — renders cheap until then. */
+  covered?: boolean;
+} = {}): React.ReactElement {
   const reduced = usePrefersReducedMotion();
   const motion = !reduced;
+
+  // ---- staged warm-up (pov only) ----
+  // The scene arrives in WAVES rather than at once. Mounting everything
+  // together stacks GLB parsing, crowd pose-baking and one monolithic shader
+  // compile into a single frame — a stall long enough to visibly stutter the
+  // travel video playing on top, wherever in the video it lands. Split into
+  // waves, each mount is a small burst with breathing room between: the
+  // set first, then rig and lights, then the crowd (whose models started
+  // fetching at wave one), then post-processing. Outside pov there is no
+  // video to protect and everything mounts at once, as it always did.
+  const [wave, setWave] = useState(pov ? 1 : 4);
+  useEffect(() => {
+    if (!pov) return;
+    const ts = [
+      window.setTimeout(() => setWave(2), 1200),
+      window.setTimeout(() => setWave(3), 2600),
+      window.setTimeout(() => setWave(4), 4200),
+    ];
+    return () => ts.forEach((t) => window.clearTimeout(t));
+  }, [pov]);
+  useEffect(() => {
+    // models fetch and parse from the first moment, well before the crowd
+    // mounts and needs them — its wave then pays only for pose-baking
+    useLoader.preload(GLTFLoader, ["/models/Man.glb", "/models/Animated-Woman.glb"]);
+  }, []);
 
   // ---- aftermovie on the LED wall ----
   // Nothing downloads up-front: clicking play zooms the camera in, dims the
@@ -196,33 +267,71 @@ export default function ConcertStageHero(): React.ReactElement {
   return (
     <div className="absolute inset-0" aria-label="3D concert stage">
       <Canvas
-        dpr={[1, 1.5]}
+        // pov opens at 1.0 dpr and earns its way up instead of opening at 1.5
+        // and discovering it can't afford it — the discovery is a slow first
+        // second exactly when the loading screen hands over.
+        // NOTE: no frameloop gating. A shader-compile gate was tried here
+        // (frameloop "never" until compileAsync resolved) and produced black
+        // screens — the parked loop didn't reliably restart. The sync compile
+        // cost lands on the first frame instead, early under the travel
+        // video, which is a hitch nobody sees rather than a page nobody sees.
+        dpr={pov ? 1 : [1, 1.5]}
         camera={{ fov: 42, near: 0.5, far: 150, position: [0, 7.2, 28.5] }}
         gl={{ antialias: false, powerPreference: "high-performance" }}
       >
         <color attach="background" args={[PALETTE.void]} />
         <fog attach="fog" args={[PALETTE.void, 24, 62]} />
         <Suspense fallback={null}>
-          <AdaptiveDpr />
+          {/* wave 1: the set AND the full light rig. Lights must be in the
+              first wave: three.js recompiles every material in the scene
+              whenever the light count changes, so lights arriving in a later
+              wave would stall the page on a full recompile of everything the
+              earlier waves had already paid for. */}
+          {/* the governor stays out of the way while covered — it would fight
+              the throttle's pinned low resolution */}
+          {pov && <CoveredThrottle covered={covered} />}
+          {!covered && <AdaptiveDpr startLevel={pov ? 2 : 0} />}
           <Env />
           <Stage />
-          <Barricades />
-          <Crowd />
-          {/* pods are permanent set-dressing; the fire itself only ignites
-              when the aftermovie actually starts playing — never on page
-              load, never while it's still buffering */}
-          <Fireworks key={pyroKey} active={motion && pyroKey > 0 && phase === "playing"} />
-          <Trusses />
           <LEDScreens
             videoTexture={phase === "playing" ? textureRef.current : null}
             loading={phase === "loading"}
             onPlay={startMovie}
           />
-          <Speakers />
           <Lights motion={motion} dimmed={phase !== "idle"} />
-          <Particles />
-          <CameraRig motion={motion} focus={phase !== "idle"} />
-          <Effects />
+          <CameraRig motion={motion} focus={phase !== "idle"} pov={pov} />
+
+          {/* wave 2: the rig's steel */}
+          {wave >= 2 && (
+            <>
+              <Trusses />
+              <Speakers />
+            </>
+          )}
+
+          {/* wave 3: the crowd — its OWN Suspense boundary, so its loaders
+              re-suspending can never blank the already-visible waves. The
+              crowd itself then chunks its pose-baking (see Crowd) unless
+              told otherwise. */}
+          {wave >= 3 && (
+            <Suspense fallback={null}>
+              <Crowd immediate={!pov} />
+              <Barricades />
+            </Suspense>
+          )}
+
+          {/* wave 4: post-processing and set dressing; ready is only
+              reportable once everything above is in */}
+          {wave >= 4 && (
+            <>
+              {/* pods are permanent set-dressing; the fire itself only
+                  ignites when the aftermovie actually starts playing */}
+              <Fireworks key={pyroKey} active={motion && pyroKey > 0 && phase === "playing"} />
+              <Particles />
+              <Effects />
+              <ReadySignal onReady={onReady} />
+            </>
+          )}
         </Suspense>
       </Canvas>
       {/* cancel/exit hint while loading or playing */}
