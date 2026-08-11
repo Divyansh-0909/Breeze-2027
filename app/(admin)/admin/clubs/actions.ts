@@ -6,6 +6,11 @@ import { createClient } from "@/utils/supabase/server";
 import { verifyAuth } from "@/lib/auth";
 
 export async function createEvent(formData: FormData) {
+  const auth = await verifyAuth();
+  if (auth.authenticated === false) {
+    return { success: false, error: "Unauthorized" };
+  }
+
   try {
     const supabase = await createClient();
     const eventPoster = formData.get("event_poster") as File;
@@ -23,7 +28,7 @@ export async function createEvent(formData: FormData) {
       event_price: Number(formData.get("event_price")),
       event_venue: formData.get("event_venue"),
       event_date: formData.get("event_date"),
-      event_org: formData.get("event_org"),
+      event_org: auth.isBreezeAdmin ? formData.get("event_org") : auth.clubName,
       event_type: formData.get("event_type"),
       event_end_date: formData.get("event_end_date") || null,
       event_pair_price: formData.get("event_pair_price") ? Number(formData.get("event_pair_price")) : null,
@@ -52,6 +57,24 @@ export async function createEvent(formData: FormData) {
 }
 
 export async function deleteEvent(eventId: string) {
+  const auth = await verifyAuth();
+  if (auth.authenticated === false) {
+    return { success: false, error: "Unauthorized" };
+  }
+
+  const event = await prisma.eventItem.findUnique({
+    where: { id: eventId },
+    select: { event_org: true },
+  });
+
+  if (!event) {
+    return { success: false, error: "Event not found" };
+  }
+
+  if (!auth.isBreezeAdmin && event.event_org !== auth.clubName) {
+    return { success: false, error: "You can only delete your club's events" };
+  }
+
   try {
     await prisma.eventItem.delete({
       where: {
@@ -66,6 +89,24 @@ export async function deleteEvent(eventId: string) {
 }
 
 export async function updateEvent(eventId: string, formData: FormData) {
+  const auth = await verifyAuth();
+  if (auth.authenticated === false) {
+    return { success: false, error: "Unauthorized" };
+  }
+
+  const event = await prisma.eventItem.findUnique({
+    where: { id: eventId },
+    select: { event_org: true },
+  });
+
+  if (!event) {
+    return { success: false, error: "Event not found" };
+  }
+
+  if (!auth.isBreezeAdmin && event.event_org !== auth.clubName) {
+    return { success: false, error: "You can only modify your club's events" };
+  }
+
   try {
     const eventData = {
       event_name: formData.get("event_name"),
@@ -73,7 +114,7 @@ export async function updateEvent(eventId: string, formData: FormData) {
       event_price: Number(formData.get("event_price")),
       event_venue: formData.get("event_venue"),
       event_date: formData.get("event_date"),
-      event_org: formData.get("event_org"),
+      event_org: auth.isBreezeAdmin ? formData.get("event_org") : auth.clubName,
       event_type: formData.get("event_type") as "Cultural" | "Technical",
       event_end_date: formData.get("event_end_date") || null,
       event_pair_price: formData.get("event_pair_price") ? Number(formData.get("event_pair_price")) : null,

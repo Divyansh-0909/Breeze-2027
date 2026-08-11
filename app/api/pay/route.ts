@@ -82,26 +82,91 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await prisma.$transaction([
-      prisma.submittedTransaction.create({
-        data: {
-          name: validatedData.name,
-          email: validatedData.email,
-          phone: validatedData.phone,
-          address: validatedData.rollNumber, // Storing roll number in address field
-          student_details: validatedData.college_status,
-          amount: validatedData.amount,
-          proof: uploadData?.path || null,
-          token: validatedData.token,
-          accommodation: cart.accommodation,
-          cart: cart.cart,
-          accommodation_price: cart.accommodation_price,
-        },
-      }),
-      prisma.pendingTransaction.deleteMany({
-        where: { id: validatedData.token },
-      }),
-    ]);
+    // Duplicate registration check
+    const cartItemIds = Object.keys(cart.cart as object);
+    if (cartItemIds.length > 0) {
+      // 1. Get real event IDs and names
+      const cartEvents = await prisma.eventItem.findMany({
+        where: { id: { in: cartItemIds } },
+        select: { id: true, event_name: true },
+      });
+
+      if (cartEvents.length > 0) {
+        const cartEventIds = cartEvents.map(e => e.id);
+
+        // 2. Check for already approved events
+        const alreadyConfirmed = await prisma.confirmedEvent.findFirst({
+          where: {
+            id: { in: cartEventIds },
+            SubmittedTransaction: {
+              email: validatedData.email,
+            },
+          },
+          include: { EventItem: { select: { event_name: true } } }
+        });
+
+        if (alreadyConfirmed) {
+          return NextResponse.json(
+            { success: false, error: `You are already registered for ${alreadyConfirmed.EventItem.event_name}.` },
+            { status: 400 }
+          );
+        }
+
+        // 3. Check for pending events
+        const pendingTxs = await prisma.submittedTransaction.findMany({
+          where: {
+            email: validatedData.email,
+            approved: false,
+            rejected: false,
+          },
+          select: { cart: true }
+        });
+
+        for (const tx of pendingTxs) {
+          const txCartIds = Object.keys(tx.cart as object);
+          for (const event of cartEvents) {
+            if (txCartIds.includes(event.id)) {
+              return NextResponse.json(
+                { success: false, error: `You already have a pending registration for ${event.event_name}.` },
+                { status: 400 }
+              );
+            }
+          }
+        }
+      }
+    }
+
+    try {
+      await prisma.$transaction([
+        prisma.submittedTransaction.create({
+          data: {
+            name: validatedData.name,
+            email: validatedData.email,
+            phone: validatedData.phone,
+            address: validatedData.rollNumber, // Storing roll number in address field
+            student_details: validatedData.college_status,
+            amount: validatedData.amount,
+            proof: uploadData?.path || null,
+            token: validatedData.token,
+            accommodation: cart.accommodation,
+            cart: cart.cart,
+            accommodation_price: cart.accommodation_price,
+          },
+        }),
+        prisma.pendingTransaction.deleteMany({
+          where: { id: validatedData.token },
+        }),
+      ]);
+    } catch (error) {
+      const dbError = error as Error;
+      if (dbError.message?.includes("DUPLICATE_REGISTRATION")) {
+        return NextResponse.json(
+          { success: false, error: "Duplicate registration detected: You already have an approved or pending registration for one of these events." },
+          { status: 400 }
+        );
+      }
+      throw dbError;
+    }
 
     // Send confirmation email to user
     if (process.env.EMAIL_HOST && process.env.EMAIL_USERNAME) {
