@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { requireBreezeAdmin } from "@/lib/auth";
 import * as z from "zod";
 
 const contactSchema = z.object({
@@ -45,6 +46,9 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
+    const adminCheck = await requireBreezeAdmin();
+    if (adminCheck.authorized === false) return adminCheck.response;
+
     try {
         const submissions = await prisma.contactSubmission.findMany({
             orderBy: { created_at: "desc" },

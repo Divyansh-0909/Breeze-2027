@@ -46,6 +46,7 @@ const LINKS = [
   { name: "Aftermovie", href: "/aftermovie" },
   { name: "Team", href: "/team" },
   { name: "Contact", href: "/get-in-touch" },
+  { name: "Past Performers", href: "/past-performers" },
 ] as const;
 
 /** Drawn arrow, so the hover affordance can't fall back to an emoji glyph. */
