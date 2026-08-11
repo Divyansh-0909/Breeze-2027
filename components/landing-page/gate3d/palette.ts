@@ -72,16 +72,27 @@ export const GATE = {
 } as const;
 
 // ---- the graffiti tunnel behind the arch ----
-// A flat-roofed brick tunnel, cut to the arch's OWN opening rather than to
-// numbers of its own: same 4.6 m width, same 5.0 m head height, butted against
-// the back face of the structure. Sharing the opening's dimensions is what
-// makes it read as starting at the boards — anything even slightly off and it
-// looks like a separate box parked behind them. The camera flies its whole
-// length on entry and stops at the mouth, where the fest ground begins.
-const T_HALF_W = openingW / 2;
+// A flat-roofed brick tunnel butted against the back face of the structure,
+// taking its 5.0 m head height straight from the opening's own head. The camera
+// flies its whole length on entry and stops at the mouth, where the fest ground
+// begins.
+//
+// Its WIDTH, though, is its own: 6.2 m against the opening's 4.6, so the walls
+// stand back off the flight line and the paint on them is read across rather
+// than scraped past. The flare is hidden — anything outboard of the opening
+// sits behind the pillar boards, which are opaque from x = 2.3 out to the
+// facade's 4.27, so no sightline from in front of the arch reaches it. That
+// half-width is the ceiling on this number: widen past GATE.halfW and the
+// tunnel starts poking out from behind the structure it is supposed to be
+// running through.
+const T_HALF_W = 3.1;
 const T_ROOF_Y = plinthH + pillarH; // the beam's underside = the opening's head
 const T_START_Z = -pillarD / 2; // hard against the arch's back face
-const T_END_Z = -58;
+// 38 m, not 58: the flight covers it in a shade less time than it used to
+// cover the longer run, which is what makes the walk slower — the same eased
+// curve over two-thirds the distance. Long enough to be a tunnel, short
+// enough that you are never just waiting in one.
+const T_END_Z = -38;
 
 // once around the section: up one wall, across the roof, down the other
 const T_PROFILE_S = 2 * T_ROOF_Y + 2 * T_HALF_W;
@@ -101,14 +112,32 @@ export const TUNNEL = {
   ceilEndV: (T_ROOF_Y + 2 * T_HALF_W) / T_PROFILE_S,
 } as const;
 
+/**
+ * The tunnel's surfaces, pulled off the printed boards on the arch itself
+ * (`public/gate/*.webp`) so the walls you fly between are the same artwork
+ * you just flew through: aged screenprint cream, one heavy ink black, and
+ * the three spray colours those posters are built from.
+ */
 export const VAULT = {
-  brick: "#241d1a", // soot-darkened brick behind the paint
-  mortar: "#332a25",
-  ceiling: "#0b0b0e", // the roof, under its black-and-white line-work
-  chalk: "#cfd4dc", // the pale ink that line-work is drawn in
-  fixture: "#ffe6bd", // the light rods and hoops
+  paper: "#ded4bb", // the posters' aged screenprint stock
+  paperDim: "#bfb193", // its shadowed patches and water staining
+  // the masonry the whole tunnel is built of. Warm rather than the usual cold
+  // red: the arch it runs out of is lit gold and printed on cream stock, and a
+  // pink-grey brick under those floods reads as a different building.
+  brick: "#8d5b42",
+  brickDark: "#6b4130", // the over-fired ones, and everything the soot found
+  brickPale: "#ab7a5c", // the under-fired ones — what stops a wall reading as one flat tone
+  mortar: "#c8bda6", // lime, close enough to the poster stock to tie the two together
+  ink: "#141210", // the tag black everything is lettered in
+  red: "#d0342a", // the splats and starbursts
+  blue: "#1f4f9c", // the washes and the cooler tags
+  yellow: "#e5a81c", // the accent marks and the year blocks
+  // the patch of white that goes up before the lettering does. Not #fff: this
+  // wall is lit gold and graded through ACES, and pure white clips to a flat
+  // hole the moment a travelling lamp passes it
+  whitewash: "#ecebe4",
+  fixture: "#ffe6bd", // the light rods
   dead: "#2a2b30", // the tubes that gave up years ago
-  road: "#191a1f",
 } as const;
 
 /**
@@ -125,24 +154,20 @@ export const SIGN = {
   rightSpec: ["50 MP", "ZEISS Night", "Telephoto Camera"] as const,
   // the plinths carry no copy — they take their colour from the pillar art
   theme: "GULLYVERSE", // the hanging cut-out letters beyond the arch
-  // The legible pieces sprayed along the tunnel, in the order you pass them.
-  // Everything else on those walls is abstract or pictorial, so this list is
-  // the only copy anyone actually reads on the way in — the theme is Indian
-  // street hip-hop, so it runs bilingual. `deva` is used wherever the device
-  // can render the script and the Latin is the transliteration, not a
-  // translation, so the fallback still says the same word out loud.
-  tunnel: [
-    { text: "GULLYVERSE" },
-    { text: "GALI", deva: "गली" },
-    { text: "BREEZE" },
-    { text: "APNA SHOR", deva: "अपना शोर" },
-    { text: "SNU" },
-    { text: "HAWA", deva: "हवा" },
-    { text: "BOL", deva: "बोल" },
-    { text: "27" },
-    { text: "TAAL", deva: "ताल" },
-    { text: "SHEHAR", deva: "शहर" },
-    { text: "BRZ" },
-    { text: "2027" },
+  /**
+   * Everyone who has played, in the order you pass them — the tunnel is a
+   * wall of past headliners, so the walk in is the fest's own history and
+   * the far end is this year. Chronological on purpose: add next year's act
+   * to the bottom and the walk grows a year longer.
+   *
+   * These are the only words anyone actually reads on the way in; the rest
+   * of the wall is abstract.
+   */
+  lineup: [
+    { act: "NEHA KAKKAR", year: "2017" },
+    { act: "TWIN STRINGS", year: "2023" },
+    { act: "KHULLAR G", year: "2025" },
+    { act: "NIKHITHA GANDHI", year: "2025" },
+    { act: "TWIN STRINGS", year: "2026" },
   ] as const,
 } as const;

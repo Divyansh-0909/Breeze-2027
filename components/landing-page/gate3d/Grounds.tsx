@@ -1,12 +1,13 @@
 "use client";
 import React, { useMemo } from "react";
 import * as THREE from "three";
-import { NIGHT } from "./palette";
 import {
   makeAsphaltTexture,
   makeConcreteTexture,
   makeMudTexture,
   makePaverTexture,
+  makeTurfPatchTexture,
+  makeTurfTexture,
 } from "./textures";
 
 /**
@@ -39,6 +40,20 @@ const ROAD_LEN = 64;
 const SHOULDER_Z0 = O_Z + ARC_OUT; // 9.0 — outer arc apex
 const SHOULDER_W = 1.5;
 
+/**
+ * How much of the 90 m grass field the dead patches actually cover.
+ *
+ * Not all of it, on purpose. The sheet is one non-repeating texture, so its
+ * resolution is fixed and every extra metre it spans costs detail everywhere:
+ * over the full field it works out to 17 px/m and the patch edges turn to
+ * mush. At 64 m it is 24 px/m over the only ground anyone gets close to —
+ * beyond this the fog has taken the field anyway, and the sheet feathers out
+ * rather than ending on a line.
+ */
+const PATCH_SPAN = 64;
+/** ~3 m of turf per tile, matching the tunnel floor so one lawn runs through. */
+const TURF_TILE = 3.0;
+
 export default function Grounds(): React.ReactElement {
   // One paver tile spans 2.4 m → its 8 × 16 blocks land at a true-to-life
   // 0.30 × 0.15 m, identical on every strip of the ring.
@@ -67,6 +82,29 @@ export default function Grounds(): React.ReactElement {
     t.repeat.set(BAND_LEN / 3.2, BAND_LEN / 3.2); // one tile ≈ 3.2 m
     return t;
   }, []);
+
+  const turf = useMemo(() => {
+    const t = makeTurfTexture();
+    t.repeat.set(90 / TURF_TILE, 90 / TURF_TILE);
+    return t;
+  }, []);
+
+  // The patches are sized in METRES first and converted: 1536 px over 64 m is
+  // 24 px/m, so these come out at roughly 0.3 m across at the smallest and 2.6 m
+  // at the largest, which is the spread in a lawn that has been left to it.
+  const turfPatches = useMemo(
+    () =>
+      makeTurfPatchTexture({
+        w: 1536,
+        h: 1536,
+        count: 240,
+        minR: 7,
+        maxR: 62,
+        seed: 7714,
+        feather: 120,
+      }),
+    []
+  );
 
   const concrete = useMemo(() => {
     const t = makeConcreteTexture();
@@ -117,10 +155,28 @@ export default function Grounds(): React.ReactElement {
         <meshStandardMaterial color={"#0a0d0b"} roughness={0.98} />
       </mesh>
 
-      {/* grass everywhere outside the ring — under the bands, over the earth */}
+      {/* grass everywhere outside the ring — under the bands, over the earth.
+          The map carries the colour now, so no `color` tint: the two would
+          multiply and put the field back under the flat value it just left. */}
       <mesh rotation-x={-Math.PI / 2} position={[0, 0.002, -8]} receiveShadow>
         <planeGeometry args={[90, 90]} />
-        <meshStandardMaterial color={NIGHT.grass} roughness={0.97} />
+        <meshStandardMaterial map={turf} roughness={0.97} />
+      </mesh>
+
+      {/* the dead patches, over the near half of the field. Its own quad rather
+          than baked into the turf because the turf TILES every 3 m, and a brown
+          blotch recurring on a 3 m grid is the one thing that gives a tiled
+          ground away — the same reason the tunnel's worn track is a separate
+          pull. */}
+      <mesh rotation-x={-Math.PI / 2} position={[0, 0.004, -8]}>
+        <planeGeometry args={[PATCH_SPAN, PATCH_SPAN]} />
+        <meshStandardMaterial
+          map={turfPatches}
+          transparent
+          depthWrite={false}
+          roughness={0.97}
+          metalness={0}
+        />
       </mesh>
 
       {/* the ground interior: a mud square whose corner touches the ring

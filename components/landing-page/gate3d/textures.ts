@@ -697,6 +697,235 @@ export function makeMudTexture(): THREE.CanvasTexture {
 }
 
 /**
+ * Turf seen from above — the fine layer, tiled.
+ *
+ * Half of what makes a lawn read is here and half is in `makeTurfPatchTexture`,
+ * and the split is deliberate: blade detail has to repeat every few metres or
+ * it costs a texture the size of the field, while the dead patches must NOT
+ * repeat, because a brown blotch that recurs on a grid is the one thing that
+ * announces a tiled ground instantly. Fine grain tiles; big shapes don't.
+ *
+ * Strokes go in at every angle rather than combed one way: from overhead you
+ * are looking at blade TIPS, and directional strokes read as brushed fabric.
+ *
+ * Keyed to `NIGHT.grass` rather than to a photograph. Turf carrying daylight
+ * values under a moon does not read as a bright lawn, it reads as a lawn lit
+ * at noon and pasted into a night scene — the value has to sit down where the
+ * rest of the frame is and let the fest's own lights do the lifting.
+ */
+export function makeTurfTexture(): THREE.CanvasTexture {
+  const S = 512;
+  const { c, ctx } = mk(S, S);
+  const r = rng(9314);
+
+  ctx.fillStyle = "#1b2c1d";
+  ctx.fillRect(0, 0, S, S);
+
+  // Everything below is stamped through this: anything landing within `m` of
+  // an edge is drawn again on the opposite side, so shapes run off one edge and
+  // back in the other instead of being clipped. A tile whose CONTENT wraps is
+  // what makes the seam disappear — matching the border colour is not enough,
+  // because the eye finds the discontinuity in the shapes, not in the tone.
+  const at = (x: number, y: number, m: number, draw: (x: number, y: number) => void) => {
+    const offs = (v: number) => (v < m ? [0, S] : v > S - m ? [0, -S] : [0]);
+    for (const dx of offs(x)) for (const dy of offs(y)) draw(x + dx, y + dy);
+  };
+
+  // broad tonal drift — where the mower caught it, where it grows thicker
+  for (let i = 0; i < 46; i++) {
+    const cx = r() * S;
+    const cy = r() * S;
+    const rad = 34 + r() * 120;
+    const up = r() > 0.45;
+    at(cx, cy, rad, (x, y) => {
+      const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
+      g.addColorStop(
+        0,
+        up
+          ? `rgba(64,92,52,${0.07 + r() * 0.1})`
+          : `rgba(8,18,10,${0.09 + r() * 0.12})`
+      );
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(x - rad, y - rad, rad * 2, rad * 2);
+    });
+  }
+
+  // the blades themselves
+  const GREENS = [
+    "#213a22",
+    "#1a2e1c",
+    "#2b4726",
+    "#16251a",
+    "#33502c",
+    "#3d5730",
+    "#48542c", // the odd one already going over
+  ];
+  ctx.lineCap = "round";
+  for (let i = 0; i < 1700; i++) {
+    const x = r() * S;
+    const y = r() * S;
+    const a = r() * Math.PI * 2;
+    const len = 3.5 + r() * 8;
+    const col = GREENS[Math.floor(r() * GREENS.length)];
+    const lw = 0.9 + r() * 1.3;
+    at(x, y, len + 2, (px, py) => {
+      ctx.strokeStyle = col;
+      ctx.lineWidth = lw;
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(px + Math.cos(a) * len, py + Math.sin(a) * len);
+      ctx.stroke();
+    });
+  }
+
+  grain(ctx, S, S, 14, 21);
+  return finish(c, [1, 1]);
+}
+
+/**
+ * The dead patches — one non-repeating sheet laid over the turf.
+ *
+ * Sized in CANVAS pixels by the caller, because the two surfaces this covers
+ * are wildly different shapes (a 4.6 m tunnel floor and a 60 m field) and the
+ * only thing that has to match between them is how big a patch is IN METRES.
+ * Pass the pixels-per-metre you want and scale the radii to it.
+ *
+ * Softness without `ctx.filter` or `shadowBlur`: each patch is five wobbly
+ * outlines at falling radius, stacked at low alpha, each with its own harmonic
+ * phases so they don't nest concentrically. The union has a feathered, organic
+ * edge and never reaches full opacity — which is right, because a dead patch
+ * is thinned grass with soil showing through, not a hole cut in the lawn.
+ */
+export function makeTurfPatchTexture(opts: {
+  /** canvas size */
+  w: number;
+  h: number;
+  count: number;
+  /** patch radii, in canvas pixels */
+  minR: number;
+  maxR: number;
+  seed: number;
+  /** px of alpha falloff at the canvas border, so the sheet has no visible end */
+  feather?: number;
+}): THREE.CanvasTexture {
+  const { w, h, count, minR, maxR, seed, feather = 0 } = opts;
+  const { c, ctx } = mk(w, h);
+  const r = rng(seed);
+
+  /** One wobbly closed curve. Three harmonics is the fewest that stops reading as an ellipse. */
+  const blob = (
+    cx: number,
+    cy: number,
+    rad: number,
+    squash: number,
+    rot: number,
+    ph: number[]
+  ) => {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(rot);
+    ctx.scale(1, squash);
+    ctx.beginPath();
+    const N = 30;
+    for (let i = 0; i <= N; i++) {
+      const t = (i / N) * Math.PI * 2;
+      const rr =
+        rad *
+        (1 +
+          ph[0] * Math.sin(2 * t + ph[3]) +
+          ph[1] * Math.sin(3 * t + ph[4]) +
+          ph[2] * Math.sin(5 * t + ph[5]));
+      const x = Math.cos(t) * rr;
+      const y = Math.sin(t) * rr;
+      if (i) ctx.lineTo(x, y);
+      else ctx.moveTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  };
+
+  for (let i = 0; i < count; i++) {
+    const cx = r() * w;
+    const cy = r() * h;
+    // heavily skewed small: a field of same-sized blotches is a pattern. Most
+    // are the size of a footprint, a few are the ones you actually notice.
+    const rad = minR + Math.pow(r(), 2.1) * (maxR - minR);
+    const squash = 0.55 + r() * 0.75;
+    const rot = r() * Math.PI;
+    const strength = 0.5 + r() * 0.5;
+    // dead grass runs from bleached straw to a dark oxidised tan; the mix is
+    // what keeps a field of them from reading as one paint colour
+    const warm = r();
+    const col =
+      warm < 0.4
+        ? [104, 92, 60]
+        : warm < 0.78
+          ? [88, 78, 50]
+          : [70, 62, 42];
+    // the ring form: brown patch comes up as an arc with the middle recovering,
+    // and it is the single most recognisable thing in a bad lawn
+    const ring = r() < 0.22 && rad > minR * 2;
+
+    ctx.globalCompositeOperation = "source-over";
+    for (let L = 0; L < 5; L++) {
+      const ph = [
+        0.16 + r() * 0.2,
+        0.08 + r() * 0.14,
+        0.05 + r() * 0.09,
+        r() * 6.283,
+        r() * 6.283,
+        r() * 6.283,
+      ];
+      ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${0.15 * strength})`;
+      blob(cx, cy, rad * (1 - L * 0.12), squash, rot, ph);
+    }
+    // bare soil, in the worst of the bigger ones
+    if (!ring && rad > minR * 1.8 && r() < 0.45) {
+      for (let L = 0; L < 2; L++) {
+        const ph = [0.2 + r() * 0.22, 0.1 + r() * 0.14, 0.06 + r() * 0.1, r() * 6.283, r() * 6.283, r() * 6.283];
+        ctx.fillStyle = `rgba(58,46,32,${0.16 * strength})`;
+        blob(cx, cy, rad * (0.5 - L * 0.14), squash, rot, ph);
+      }
+    }
+    if (ring) {
+      // punched rather than drawn as an annulus, so the inner edge inherits the
+      // same wobble the outer one has instead of being a clean circle
+      ctx.globalCompositeOperation = "destination-out";
+      for (let L = 0; L < 3; L++) {
+        const ph = [0.18 + r() * 0.2, 0.09 + r() * 0.14, 0.05 + r() * 0.1, r() * 6.283, r() * 6.283, r() * 6.283];
+        ctx.fillStyle = `rgba(0,0,0,${0.45 - L * 0.1})`;
+        blob(cx, cy, rad * (0.62 - L * 0.1), squash, rot, ph);
+      }
+      ctx.globalCompositeOperation = "source-over";
+    }
+  }
+
+  if (feather > 0) {
+    // the sheet covers only the ground worth detailing, and has to die out into
+    // the plain turf beyond rather than ending on four straight lines
+    ctx.globalCompositeOperation = "destination-out";
+    const edges: [number, number, number, number, number, number][] = [
+      [0, 0, feather, 0, feather, h],
+      [w, 0, w - feather, 0, feather, h],
+      [0, 0, 0, feather, w, feather],
+      [0, h, 0, h - feather, w, feather],
+    ];
+    for (const [x0, y0, x1, y1, fw, fh] of edges) {
+      const g = ctx.createLinearGradient(x0, y0, x1, y1);
+      g.addColorStop(0, "rgba(0,0,0,1)");
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(Math.min(x0, x1), Math.min(y0, y1), fw, fh);
+    }
+    ctx.globalCompositeOperation = "source-over";
+  }
+
+  return finish(c);
+}
+
+/**
  * A clump of leaves with alpha. Instanced a few hundred times this builds a
  * believable canopy — far better than cones, and at night the silhouette is
  * what sells it.

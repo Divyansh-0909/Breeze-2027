@@ -5,8 +5,8 @@ import * as THREE from "three";
 import { PALETTE, STAGE } from "./palette";
 
 /**
- * The signature element: a 7-panel LED wall — one large vertical center
- * screen flanked by 3 progressively smaller panels per side.
+ * The signature element: a 3-panel LED wall — one wide center screen
+ * flanked by a single smaller panel per side.
  *
  * Three modes:
  * - idle: shader content (waves + scanlines + glitch bars); the center screen
@@ -14,10 +14,17 @@ import { PALETTE, STAGE } from "./palette";
  * - loading: the center screen swaps the prompt for a "LOADING..." label
  *   with a spinner above it (download progress isn't reliably measurable,
  *   so the treatment is indeterminate on purpose).
- * - video: all 7 panels become one segmented video wall — each panel samples
+ * - video: all 3 panels become one segmented video wall — each panel samples
  *   its slice of ONE shared VideoTexture (single GPU upload per frame),
  *   width-fit across the combined wall, vertically center-cropped.
  */
+
+/** Panel geometry, in world units. The center screen carries the prompt. */
+const CENTER_W = 13.6;
+const CENTER_H = 9.2;
+const SIDE_W = 4.0;
+const SIDE_H = 7.2;
+const GAP = 0.4;
 
 const VERT = /* glsl */ `
   varying vec2 vUv;
@@ -41,6 +48,7 @@ const FRAG = /* glsl */ `
   uniform float uVideoOn;
   uniform vec2 uUvOffset;
   uniform vec2 uUvRepeat;
+  uniform vec2 uPanelSize;
 
   float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
@@ -64,8 +72,8 @@ const FRAG = /* glsl */ `
       vec4 lbl = texture2D(uLoadLabel, uv);
       idle += lbl.rgb * (1.05 + 0.15 * sin(uTime * 1.8)) * lbl.a * uLoad;
       // spinner: rotating arc with a fading tail; uv scaled by the panel's
-      // 6.8 x 9.2 world size so the ring is a true circle
-      vec2 sp = (uv - vec2(0.5, 0.49)) * vec2(6.8, 9.2);
+      // world size so the ring is a true circle
+      vec2 sp = (uv - vec2(0.5, 0.49)) * uPanelSize;
       float ring = smoothstep(0.10, 0.05, abs(length(sp) - 0.45));
       float ang = atan(sp.y, sp.x) / 6.2831853; // -0.5..0.5 around the ring
       float sweep = fract(ang - uTime * 0.7);
@@ -78,7 +86,7 @@ const FRAG = /* glsl */ `
     // ---- video layer: this panel's slice of the shared video, rendered as
     // a physical LED matrix (pixel cells + grout + shimmer) ----
     vec2 wallUv = uUvOffset + uv * uUvRepeat; // continuous across all panels
-    const vec2 RES = vec2(368.0, 207.0);      // square LED cells wall-wide
+    const vec2 RES = vec2(336.0, 189.0);      // square LED cells wall-wide
     // sample at LED-cell centers → visible pixelation
     vec2 cellUv = (floor(wallUv * RES) + 0.5) / RES;
     vec3 vcol = texture2D(uVideo, cellUv).rgb;
@@ -102,9 +110,9 @@ const FRAG = /* glsl */ `
 /** Play prompt for the tall center screen. */
 function makePromptTexture(): THREE.CanvasTexture {
   const c = document.createElement("canvas");
-  // matches the center panel's 6.8 : 9.2 aspect so glyphs aren't stretched
-  c.width = 568;
+  // matches the center panel's aspect so glyphs aren't stretched
   c.height = 768;
+  c.width = Math.round((768 * CENTER_W) / CENTER_H);
   const g = c.getContext("2d")!;
   const cx = c.width / 2;
   g.clearRect(0, 0, c.width, c.height);
@@ -157,9 +165,9 @@ function makePromptTexture(): THREE.CanvasTexture {
 /** Label shown under the shader-drawn spinner while the movie buffers. */
 function makeLoadingTexture(): THREE.CanvasTexture {
   const c = document.createElement("canvas");
-  // same 6.8 : 9.2 canvas as the prompt so glyphs aren't stretched
-  c.width = 568;
+  // same aspect as the prompt canvas so glyphs aren't stretched
   c.height = 768;
+  c.width = Math.round((768 * CENTER_W) / CENTER_H);
   const g = c.getContext("2d")!;
   const cx = c.width / 2;
   g.clearRect(0, 0, c.width, c.height);
@@ -219,25 +227,20 @@ export default function LEDScreens({
   const gl = useThree((s) => s.gl);
 
   const panels = useMemo<Panel[]>(() => {
-    const out: Panel[] = [{ x: 0, w: 6.8, h: 9.2, rotY: 0, hasLogo: true, seed: 0.5 }];
-    const widths = [3.2, 2.8, 2.3];
-    const heights = [7.2, 5.6, 4.1];
-    const gap = 0.4;
-    let edge = 3.4; // running outer edge from center (half the center panel width)
-    widths.forEach((w, i) => {
-      const x = edge + gap + w / 2;
-      edge = x + w / 2;
-      for (const side of [-1, 1]) {
-        out.push({
-          x: x * side,
-          w,
-          h: heights[i],
-          rotY: -side * (i + 1) * 0.045, // subtle fan, outer panels turn toward camera
-          hasLogo: false,
-          seed: (i + 1) * 0.17 + (side + 1) * 0.31,
-        });
-      }
-    });
+    const out: Panel[] = [
+      { x: 0, w: CENTER_W, h: CENTER_H, rotY: 0, hasLogo: true, seed: 0.5 },
+    ];
+    const x = CENTER_W / 2 + GAP + SIDE_W / 2;
+    for (const side of [-1, 1]) {
+      out.push({
+        x: x * side,
+        w: SIDE_W,
+        h: SIDE_H,
+        rotY: -side * 0.06, // subtle fan, flanks turn toward camera
+        hasLogo: false,
+        seed: 0.17 + (side + 1) * 0.31,
+      });
+    }
     return out;
   }, []);
 
@@ -282,6 +285,7 @@ export default function LEDScreens({
             uVideoOn: { value: 0 },
             uUvOffset: { value: videoWindows[i].offset },
             uUvRepeat: { value: videoWindows[i].repeat },
+            uPanelSize: { value: new THREE.Vector2(p.w, p.h) },
           },
         })
     );

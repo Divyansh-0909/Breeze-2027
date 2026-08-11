@@ -68,11 +68,22 @@ function Arrow(): React.ReactElement {
 
 export default function EntryNav({
   arrived,
+  departing = false,
+  onDepart,
   blockRef,
   shadeRef,
 }: {
   /** False while the camera is still on its way to it. */
   arrived: boolean;
+  /** True once a link has been picked and the camera is walking out. */
+  departing?: boolean;
+  /**
+   * Hands the destination to GateHero, which walks the camera through this
+   * block and out of the tunnel before changing route. Optional: without it
+   * the links are ordinary links and still work, which is the point — the
+   * only way out of the entry scene must not depend on a camera move.
+   */
+  onDepart?: (href: string) => void;
   blockRef: React.RefObject<HTMLDivElement>;
   shadeRef: React.RefObject<HTMLDivElement>;
 }): React.ReactElement {
@@ -85,8 +96,11 @@ export default function EntryNav({
   // Not armed until the flight lands: mid-flight the menu is a distant object
   // and there is nothing to stand down from, so a stray wheel tick on the way
   // in would throw away the arrival before it happened.
+  // Once the walk out has started there is nothing left to stand down from,
+  // and a stray wheel tick would blank the menu out from under a camera move
+  // that is still passing through it.
   useEffect(() => {
-    if (docked || !arrived) return;
+    if (docked || !arrived || departing) return;
     const dock = () => setDocked(true);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" || e.key === "PageDown" || e.key === "ArrowDown") dock();
@@ -102,7 +116,24 @@ export default function EntryNav({
       window.removeEventListener("scroll", dock);
       window.removeEventListener("keydown", onKey);
     };
-  }, [docked, arrived]);
+  }, [docked, arrived, departing]);
+
+  /**
+   * Holds the navigation back so the camera can walk out first.
+   *
+   * Everything that isn't a plain left click is left to the browser — a middle
+   * click or ctrl-click means "open this somewhere else", and swallowing it to
+   * play a camera move in a tab the visitor is leaving anyway is the kind of
+   * thing that makes a nice transition into an annoying one. The `href` stays
+   * real for the same reason it always was: right-click-copy, prefetch, and
+   * the no-JS case all keep working.
+   */
+  const walkOut = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!onDepart) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    onDepart(href);
+  };
 
   return (
     <>
@@ -125,10 +156,14 @@ export default function EntryNav({
         <div
           ref={shadeRef}
           className="absolute inset-0"
+          // Tight and light. It exists to seat the type against the night past
+          // the mouth, not to black the shot out — the graffiti down both sides
+          // is what the flight was for, and a broad 0.8 scrim erases it and
+          // leaves an arrival that could have happened anywhere.
           style={{
             opacity: 0,
             background:
-              "radial-gradient(58% 62% at 50% 50%, rgba(3,4,8,0.8) 0%, rgba(3,4,8,0.52) 55%, rgba(3,4,8,0) 100%)",
+              "radial-gradient(34% 40% at 50% 50%, rgba(3,4,8,0.55) 0%, rgba(3,4,8,0.3) 60%, rgba(3,4,8,0) 100%)",
           }}
         />
       </div>
@@ -139,12 +174,14 @@ export default function EntryNav({
         style={{
           opacity: docked ? 0 : 1,
           // dead to the pointer until the flight lands: while it is a distant
-          // sign at the end of the tunnel, a click on it is a mis-click
-          pointerEvents: docked || !arrived ? "none" : "auto",
+          // sign at the end of the tunnel, a click on it is a mis-click. Dead
+          // again the moment one is picked, so a second click during the walk
+          // out can't queue a second destination behind the first.
+          pointerEvents: docked || !arrived || departing ? "none" : "auto",
         }}
         // out of the tab order both before the menu has arrived and after it
         // has stood down — either way these are links nobody can see
-        inert={docked || !arrived}
+        inert={docked || !arrived || departing}
       >
         <div
           ref={blockRef}
@@ -172,6 +209,7 @@ export default function EntryNav({
               <li key={link.href} style={{ borderBottom: `1px solid ${RULE}` }}>
                 <Link
                   href={link.href}
+                  onClick={(e) => walkOut(e, link.href)}
                   // the wide index channel is load-bearing: Aerosoldier's
                   // opening swashes reach well left of the glyph box, and on a
                   // tighter gutter the T of "Team" lands on its own number
