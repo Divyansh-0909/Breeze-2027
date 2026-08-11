@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useRouter } from "next/navigation";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   EffectComposer,
@@ -24,6 +25,7 @@ import Sky from "./Sky";
 import Lights from "./Lights";
 import Tunnel from "./Tunnel";
 import EntryNav from "./EntryNav";
+import { warmStage } from "../stage3d/warmup";
 
 /**
  * The night entry gate — the site's loading screen and way in.
@@ -33,13 +35,58 @@ import EntryNav from "./EntryNav";
  * flies the camera through the opening, down the graffiti tunnel behind it,
  * and out to the mouth where the ground opens up. `onEnter` fires on arrival,
  * which is where the rest of the site's chrome docks in.
+ *
+ * Picking a menu item doesn't cut: the camera walks on THROUGH the sign and
+ * out of the mouth onto the fest ground, and the route only changes once that
+ * has carried the frame to black. So the aftermovie's own walk-through-the-
+ * crowd video opens on the step after the one you took here.
  */
 
-type Phase = "loading" | "ready" | "entering" | "arrived";
+type Phase = "loading" | "ready" | "entering" | "arrived" | "departing";
 
-/** Seconds from the click to standing at the tunnel's mouth. */
-const TRAVEL_S = 5.4;
+/**
+ * Seconds from the click to standing at the tunnel's mouth.
+ *
+ * Long, and deliberately: the walls carry the name of every act that has
+ * played, and a walk nobody can read them on is a walk that wasted them.
+ * Over ~48 m this averages a shade under 7 m/s — walking pace for a camera —
+ * so each piece holds the frame for about a second.
+ */
+const TRAVEL_S = 7.4;
 const BASE_FOV = 45;
+
+/**
+ * Seconds from picking a menu item to the black the next route opens on.
+ *
+ * Short — this is a step off the mark, not a second tour. Long enough that the
+ * sign visibly passes the camera rather than dissolving where it stands, short
+ * enough that nobody who has decided where they're going is made to wait for a
+ * camera move to finish.
+ */
+const DEPART_S = 1.55;
+
+/**
+ * Metres past the tunnel's mouth the departure carries you.
+ *
+ * Past `TUNNEL.endZ`, so the walls, the roof and the mouth all leave the frame
+ * behind you: the move has to end OUTSIDE, on open ground, or the cut to black
+ * happens while the tunnel is still wrapped around the shot and the whole thing
+ * reads as a fade rather than as having walked out of it.
+ */
+const DEPART_PAST = 11;
+
+/**
+ * How hard the menu pushes in as you walk at it, as a fraction of its own size
+ * added over the full walk.
+ *
+ * Read against the fade rather than the walk: the block is invisible by ~58% of
+ * the move, and on the squared curve that is where it lands at about 1.6× — the
+ * last of the distance closed, and nothing past the point where anyone can see
+ * it. Turning this up is the knob for a more aggressive arrival; it cannot run
+ * away, because unlike a true projection it is not dividing by a depth heading
+ * for zero.
+ */
+const DEPART_ZOOM = 1.8;
 /**
  * How far to push the scene DOWN the frame, in metres of look-at height.
  *
@@ -51,46 +98,66 @@ const BASE_FOV = 45;
  * in the whole shot where that matters.
  */
 const FRAME_DROP = 2.15;
-/** Where the flight stops: just short of the mouth, so it still frames the view. */
-const ARRIVE_Z = TUNNEL.endZ + 2.4;
 
-// ---- the arrival pose, named because two things solve off it ----
-// The rig flies to it; the menu is planted on the axis it ends up looking down.
-// Left as loose numbers they would drift apart on the first retune and the menu
-// would land off-centre for reasons nobody could find.
+// ---- the arrival pose ----
 const ARRIVE_EYE_Y = 1.72;
 const AIM_Y = 2.1; // eye level down the tunnel, before FRAME_DROP
 const AIM_AHEAD = 34; // how far in front of the camera the look-at rides
 
 /**
- * How far past the camera's resting point the menu physically stands, in
- * metres — the one knob for the whole arrival.
+ * How much of the frame the tunnel's mouth takes at rest — the composition the
+ * flight lands on, and the reason it stops where it does.
  *
- * Small on purpose, and the ceiling is not a matter of taste. The menu is a
- * fixed-pixel block, so pushing it further out makes it proportionally WIDER in
- * world units to hold the same size on arrival — and once it is wider than the
- * tunnel's 4.6 m opening, its outer edges cross the tunnel walls for most of
- * the way in. A DOM overlay has no way to be occluded by them, so it would sit
- * over the brick instead of behind it.
+ * The run ends INSIDE the tunnel, back far enough that the opening reads as a
+ * frame: painted wall down both sides, roof overhead, road running out, and the
+ * night beyond the mouth as a lit rectangle in the middle of it. Stopping at
+ * the mouth instead — which is what `endZ + 2.4` did — puts the camera past
+ * everything it spent the whole flight travelling through, and the arrival is a
+ * menu on black with no evidence the tunnel was ever there.
  *
- * 4.4 keeps the block inside the mouth's cone at every aspect the layout
- * produces, worst case being a short landscape window (the block is capped in
- * pixels, the world is measured in vertical fov, so a short viewport is where
- * it eats the most of the frame).
+ * Solved per aspect rather than fixed, the same way `solveFraming` sizes the
+ * arch: a phone's horizontal field is a third of a desktop's, so one hard-coded
+ * distance either buries the mouth off both edges of a portrait screen or
+ * strands the camera 20 m back on a wide one.
  */
-const MENU_DIST = 4.4;
+const MOUTH_FILL_W = 0.78; // of frame width — the rest is painted wall
+const MOUTH_FILL_H = 0.95; // of frame height — the rest is roof and road
+
+/** Metres back from the mouth that the flight comes to rest, at this aspect. */
+function solveArrival(aspect: number, fovDeg: number): number {
+  const halfH = Math.tan((fovDeg * Math.PI) / 180 / 2);
+  const byW = TUNNEL.halfW / (MOUTH_FILL_W * halfH * aspect);
+  const byH = TUNNEL.roofY / 2 / (MOUTH_FILL_H * halfH);
+  // never so far back that the last of the graffiti is behind you unread, and
+  // never so close that the mouth stops being a frame
+  return THREE.MathUtils.clamp(Math.max(byW, byH), 4.5, 22);
+}
+
+// ---- where the menu stands ----
+/**
+ * In the plane of the tunnel's mouth, on its centre line.
+ *
+ * Being coplanar with the opening is what makes the containment exact: the menu
+ * and the mouth are then the same distance from the camera at every point of
+ * the run, so a block narrower than 4.6 m is inside the opening at 70 m out and
+ * at 7 m out and everywhere between — one comparison of two numbers, no solve,
+ * no aspect to get wrong. It matters because a DOM overlay cannot be occluded
+ * by the walls: the moment it is wider than the mouth it is painted over the
+ * brick instead of framed by it.
+ */
+const MENU_ANCHOR = new THREE.Vector3(0, 2.3, TUNNEL.endZ);
 
 /**
- * Where the menu stands in the world: on the arrival camera's own view axis,
- * MENU_DIST ahead of where it comes to rest — so at the end of the flight it is
- * dead centre of frame at exactly its authored size, and every metre before
- * that it is the same object seen from further away.
+ * How wide the menu is IN THE WORLD, in metres — it is an object out there, so
+ * this is its size, and how many pixels that comes to is the framing's business
+ * rather than the layout's.
+ *
+ * Under the opening's 4.6 m by enough to leave daylight down both sides, so the
+ * mouth reads as containing it rather than being plugged by it. This is also
+ * the knob for how big the menu lands: it is measured against the mouth, so it
+ * cannot quietly grow into the full-screen panel this replaced.
  */
-const MENU_ANCHOR = (() => {
-  const eye = new THREE.Vector3(0, ARRIVE_EYE_Y, ARRIVE_Z);
-  const aim = new THREE.Vector3(0, AIM_Y + FRAME_DROP, ARRIVE_Z - AIM_AHEAD);
-  return eye.clone().add(aim.sub(eye).normalize().multiplyScalar(MENU_DIST));
-})();
+const MENU_W = 3.5;
 
 function usePrefersReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);
@@ -177,16 +244,22 @@ function CameraRig({
   phase,
   motion: allowMotion,
   travelS,
+  departS,
   skipTravel,
   progressRef,
+  departRef,
   onArrive,
+  onDeparted,
 }: {
   phase: Phase;
   motion: boolean;
   travelS: number;
+  departS: number;
   skipTravel: boolean;
   progressRef: React.MutableRefObject<number>;
+  departRef: React.MutableRefObject<number>;
   onArrive: () => void;
+  onDeparted: () => void;
 }): null {
   const size = useThree((s) => s.size);
   const target = useRef(new THREE.Vector3(0, 2.05, 0));
@@ -195,6 +268,9 @@ function CameraRig({
   // seconds since the click — or already spent, when the run is being skipped
   const flown = useRef(skipTravel ? 1e6 : 0);
   const landed = useRef(false);
+  // seconds since a menu item was picked, and whether the walk out has ended
+  const walked = useRef(0);
+  const left = useRef(false);
 
   useFrame((state, dt) => {
     const cam = state.camera as THREE.PerspectiveCamera;
@@ -203,11 +279,18 @@ function CameraRig({
     // widens the lens for speed, and feeding that back into the framing would
     // have the arch drifting away from the composition it was solved for
     const { dist } = solveFraming(aspect, BASE_FOV);
+    const arriveZ = TUNNEL.endZ + solveArrival(aspect, BASE_FOV);
 
     if (phase === "entering" || phase === "arrived") flown.current += dt;
     const p = THREE.MathUtils.clamp(flown.current / travelS, 0, 1);
     progressRef.current = p;
-    const e = p * p * (3 - 2 * p); // smoothstep: pushes off, and lands soft
+    // Mostly linear, with just enough smoothstep blended in to push off and
+    // land soft. Pure smoothstep peaks at 1.5× its own average, and that
+    // midpoint surge is exactly where the lineup is painted — the walls blur
+    // through the one stretch they most need to be read in. This holds the
+    // peak to about 1.15×, so the pace through the middle is near constant.
+    const s = p * p * (3 - 2 * p);
+    const e = 0.32 * s + 0.68 * p;
     const rush = 4 * p * (1 - p); // 0 at both ends, 1 through the middle
 
     if (!landed.current && p >= 1) {
@@ -215,12 +298,34 @@ function CameraRig({
       onArrive();
     }
 
+    // The walk out, which only ever runs from the arrival pose. Accelerating
+    // rather than eased at both ends: you push off from a standstill and keep
+    // gaining, and the frame is black before there is anywhere to slow down
+    // for — an ease-out here would be the camera politely parking itself half a
+    // second after the visitor has already committed to leaving.
+    if (phase === "departing") walked.current += dt;
+    const dp = THREE.MathUtils.clamp(walked.current / departS, 0, 1);
+    departRef.current = dp;
+    const d = dp * dp;
+
+    if (!left.current && phase === "departing" && dp >= 1) {
+      left.current = true;
+      onDeparted();
+    }
+
     const px = allowMotion ? state.pointer.x : 0;
     const py = allowMotion ? state.pointer.y : 0;
     const t = allowMotion ? state.clock.elapsedTime : 0;
     const idle = 1 - e; // parallax and breathing belong to the held shot only
 
-    const z = THREE.MathUtils.lerp(dist, ARRIVE_Z, e);
+    // one line of Z for the whole scene: the flight in, then the walk out
+    // stacked on its end. `d` is 0 until a menu item is picked, so the inner
+    // lerp is untouched for the entire approach.
+    const z = THREE.MathUtils.lerp(
+      THREE.MathUtils.lerp(dist, arriveZ, e),
+      TUNNEL.endZ - DEPART_PAST,
+      d
+    );
     const y = THREE.MathUtils.lerp(
       1.6 + Math.sin(t * 0.35) * 0.03 * idle,
       ARRIVE_EYE_Y,
@@ -257,7 +362,16 @@ function CameraRig({
       // register at all once the walls stop being individually readable
       cam.position.x += Math.sin(flown.current * 7.3) * 0.05 * rush;
       cam.position.y += Math.sin(flown.current * 5.1) * 0.038 * rush;
-      const fov = BASE_FOV + 12 * rush;
+      // the departure is a walk, not a dolly: footfall in the vertical, the
+      // sway of shifting weight in the horizontal, at roughly half the step
+      // rate. Ramped over the first quarter-second so it starts from the still
+      // arrival pose instead of snapping into gait on frame one.
+      const gait = Math.min(1, dp * 6);
+      cam.position.y += Math.sin(walked.current * 9.4) * 0.055 * gait;
+      cam.position.x += Math.sin(walked.current * 4.7) * 0.05 * gait;
+      // and the same wider lens the flight used for speed, brought back in as
+      // the walk gathers pace
+      const fov = BASE_FOV + 12 * rush + 13 * d;
       if (Math.abs(cam.fov - fov) > 0.02) {
         cam.fov = fov;
         cam.updateProjectionMatrix();
@@ -293,15 +407,33 @@ function CameraRig({
 function MenuAnchor({
   blockRef,
   shadeRef,
+  veilRef,
   progressRef,
+  departRef,
 }: {
   blockRef: React.RefObject<HTMLDivElement>;
   shadeRef: React.RefObject<HTMLDivElement>;
+  veilRef: React.RefObject<HTMLDivElement>;
   progressRef: React.MutableRefObject<number>;
+  departRef: React.MutableRefObject<number>;
 }): null {
   const size = useThree((s) => s.size);
   const ndc = useRef(new THREE.Vector3());
   const view = useRef(new THREE.Vector3());
+  // the last pose the approach wrote — i.e. where the block is standing at the
+  // moment a link is picked, which is what the walk out pushes in on
+  const pose = useRef({ dx: 0, dy: 0, k: 1 });
+
+  // the block's own laid-out width, which is what the world size has to be
+  // converted into. Measured on resize rather than in the frame loop: reading
+  // offsetWidth forces layout, and doing that every frame during the flight is
+  // the one thing guaranteed to cost more than the whole rest of this file.
+  // (offsetWidth reports the pre-transform box, which is exactly what's wanted.)
+  const blockW = useRef(1);
+  useEffect(() => {
+    const el = blockRef.current;
+    if (el) blockW.current = el.offsetWidth || 1;
+  }, [blockRef, size.width, size.height]);
 
   useFrame((state) => {
     const el = blockRef.current;
@@ -312,37 +444,94 @@ function MenuAnchor({
     // one and the menu lags the walls it is supposed to be standing behind
     cam.updateMatrixWorld();
 
-    // where the anchor lands on screen, as an offset from centre: the block is
-    // already flex-centred, so at rest these are both 0 and it sits exactly
-    // where it was authored
-    ndc.current.copy(MENU_ANCHOR).project(cam);
-    const dx = (ndc.current.x * size.width) / 2;
-    const dy = (-ndc.current.y * size.height) / 2;
-
-    // perspective, done honestly: apparent size goes as 1 / (depth · tan(fov/2)),
-    // and the fov term matters — the flight widens the lens through the middle
-    // of the run, and without it the menu would swell as the walls rushed past
-    view.current.copy(MENU_ANCHOR).applyMatrix4(cam.matrixWorldInverse);
-    const depth = Math.max(0.01, -view.current.z);
-    const k =
-      (MENU_DIST * Math.tan(THREE.MathUtils.degToRad(BASE_FOV) / 2)) /
-      (depth * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2));
-
     const p = progressRef.current;
-    el.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${k})`;
+    const dp = departRef.current;
+
+    // The full world pin belongs to the APPROACH, and only to it. Its endgame
+    // is unusable here: the departure crosses `MENU_ANCHOR`'s own plane around
+    // 60% of the way through, so an honest projection spends the fade racing
+    // the block off the bottom of the frame at a dozen times its size. That was
+    // the lurch. But freezing it outright is the other error — a block nailed
+    // to the screen while the walls slide past it is the menu travelling WITH
+    // the camera, not the camera closing on the menu.
+    //
+    // So: the centre is frozen at the arrival pose, and only the scale moves.
+    // Growth alone is what the eye reads as approach — the sweep across the
+    // frame was never carrying that, it was just the near plane arriving.
+    if (dp === 0) {
+      // where the anchor lands on screen, as an offset from centre: the block
+      // is already flex-centred, so at rest these are both 0 and it sits
+      // exactly where it was authored
+      ndc.current.copy(MENU_ANCHOR).project(cam);
+      const dx = (ndc.current.x * size.width) / 2;
+      const dy = (-ndc.current.y * size.height) / 2;
+
+      // How many pixels MENU_W metres comes to from here. The fov term is
+      // load-bearing — the flight widens the lens through the middle of the
+      // run, and without it the menu would swell as the walls rushed past.
+      //
+      // Note what this does NOT reference: the block's authored pixel width.
+      // The menu is 3.5 m of the world and is drawn at whatever size that works
+      // out to, so it is measured against the tunnel it stands in rather than
+      // against the viewport. That is the whole reason it can't take the screen
+      // over on arrival — the mouth is 4.6 m and it is 3.5, at any distance, on
+      // any display.
+      view.current.copy(MENU_ANCHOR).applyMatrix4(cam.matrixWorldInverse);
+      const depth = Math.max(0.01, -view.current.z);
+      const mPerPx =
+        (2 * depth * Math.tan(THREE.MathUtils.degToRad(cam.fov) / 2)) /
+        size.height;
+      const k = MENU_W / mPerPx / blockW.current;
+
+      // kept so the walk out has an arrival pose to grow from — on the frame a
+      // link is picked this is already exactly where the block stands
+      pose.current.dx = dx;
+      pose.current.dy = dy;
+      pose.current.k = k;
+
+      el.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${k})`;
+    } else {
+      // On the camera's own accelerating curve rather than a linear ramp, so
+      // the push-in starts from nothing and gathers exactly as the walk does —
+      // the sign barely stirs on the first few frames because the camera has
+      // barely left the mark, then comes on as it picks up.
+      const q = pose.current;
+      el.style.transform = `translate3d(${q.dx}px, ${q.dy}px, 0) scale(${
+        q.k * (1 + DEPART_ZOOM * dp * dp)
+      })`;
+    }
     // up almost immediately and long before the end. The menu has to be
     // established while it is still a distant smudge at the mouth — the entire
     // point is that you watch it come to you, and anything held back until the
     // walls stop rushing is the old pop-in with a longer fuse. It spends the
     // first half of the run under a tenth of its size, which is a sign read
     // from 70 metres, not a panel competing with the graffiti.
-    el.style.opacity = String(THREE.MathUtils.smoothstep(p, 0.05, 0.5));
+    //
+    // Going the other way it is a plain fade, held off the click by about a
+    // third of a second. The pause is the acknowledgement: leave on frame one
+    // and the menu appears to vanish from under the cursor, which reads as a
+    // mis-click rather than as a choice being taken. It stays lit long enough
+    // for the walk to visibly start under it, then goes.
+    const stand = 1 - THREE.MathUtils.smoothstep(dp, 0.2, 0.58);
+    el.style.opacity = String(THREE.MathUtils.smoothstep(p, 0.05, 0.5) * stand);
 
     // the well of shade the type sits in belongs to the resting shot alone: run
     // it any earlier and it reads as the tunnel dimming rather than the ground
-    // beyond it being dark
+    // beyond it being dark. It leaves with the type, and a touch slower — it is
+    // the ground out there, not part of the sign.
     const shade = shadeRef.current;
-    if (shade) shade.style.opacity = String(THREE.MathUtils.smoothstep(p, 0.62, 1));
+    if (shade) {
+      shade.style.opacity = String(
+        THREE.MathUtils.smoothstep(p, 0.62, 1) * (1 - THREE.MathUtils.smoothstep(dp, 0.1, 0.85))
+      );
+    }
+
+    // Black, on the back half of the walk — the hand-off to whatever route was
+    // picked. Late on purpose: the first half is spent watching the mouth come
+    // at you, and darkening from the moment of the click would throw that away
+    // to save no time at all.
+    const veil = veilRef.current;
+    if (veil) veil.style.opacity = String(THREE.MathUtils.smoothstep(dp, 0.52, 1));
   });
 
   return null;
@@ -388,6 +577,7 @@ export default function GateHero({
 }): React.ReactElement {
   const reduced = usePrefersReducedMotion();
   const motionOn = !reduced;
+  const router = useRouter();
 
   // `/?arrived` skips straight to the end state: the camera is already at the
   // mouth and the menu already at full size. Read before the first render
@@ -408,6 +598,13 @@ export default function GateHero({
   const progressRef = useRef(0);
   const menuBlockRef = useRef<HTMLDivElement>(null);
   const menuShadeRef = useRef<HTMLDivElement>(null);
+
+  // the walk out, driven the same way: progress by ref, and the black it ends
+  // on written straight to a node rather than transitioned by CSS, so it can
+  // never finish early or late relative to the camera it is covering
+  const departRef = useRef(0);
+  const veilRef = useRef<HTMLDivElement>(null);
+  const destination = useRef<string | null>(null);
 
   // width of the arch's opening on screen, measured from the same framing
   // solve the camera uses, so the CTA tracks the gap through any resize
@@ -441,6 +638,32 @@ export default function GateHero({
     setPhase("arrived");
     onEnter?.();
   }, [onEnter]);
+
+  /**
+   * A menu item was picked: walk out first, change route after.
+   *
+   * The fetching is started here rather than on arrival at the far end, so the
+   * ~1.5 s of camera move is also the route's head start. For the aftermovie
+   * that matters most — its walk-through-the-crowd video and the stage chunk
+   * behind it are the heaviest things on the site, and this is the moment they
+   * stop being speculative.
+   */
+  const depart = useCallback(
+    (href: string) => {
+      if (phase !== "arrived") return;
+      destination.current = href;
+      router.prefetch(href);
+      if (href.startsWith("/aftermovie")) warmStage();
+      setPhase("departing");
+    },
+    [phase, router]
+  );
+
+  // fired by the rig on the walk's last frame, by which point the veil is
+  // opaque — so the route swap happens behind black rather than cutting
+  const departed = useCallback(() => {
+    if (destination.current) router.push(destination.current);
+  }, [router]);
 
   useEffect(() => {
     if (phase !== "ready") return;
@@ -500,15 +723,20 @@ export default function GateHero({
             phase={phase}
             motion={motionOn}
             travelS={reduced ? 1.4 : TRAVEL_S}
+            departS={reduced ? 0.5 : DEPART_S}
             skipTravel={skipTravel}
             progressRef={progressRef}
+            departRef={departRef}
             onArrive={arrive}
+            onDeparted={departed}
           />
           {/* after the rig, so it projects against the pose set this frame */}
           <MenuAnchor
             blockRef={menuBlockRef}
             shadeRef={menuShadeRef}
+            veilRef={veilRef}
             progressRef={progressRef}
+            departRef={departRef}
           />
           <EffectComposer multisampling={0}>
             <SMAA />
@@ -573,14 +801,35 @@ export default function GateHero({
 
         {/* mounted the moment the flight starts, not on landing: it is out
             there the whole way in, and the approach IS its entrance */}
-        {(phase === "entering" || phase === "arrived") && (
+        {(phase === "entering" ||
+          phase === "arrived" ||
+          phase === "departing") && (
           <EntryNav
-            arrived={phase === "arrived"}
+            // still "arrived" through the walk out: the block keeps its place
+            // in the world and MenuAnchor keeps fading it. Flipping this back
+            // would hand it to EntryNav's own CSS mid-move and the two would
+            // fight over the same opacity.
+            arrived={phase === "arrived" || phase === "departing"}
+            departing={phase === "departing"}
+            onDepart={depart}
             blockRef={menuBlockRef}
             shadeRef={menuShadeRef}
           />
         )}
       </div>
+
+      {/* The black the next route opens on — above the canvas AND above the
+          overlay, since it has to cover the menu it just walked through.
+          Opacity is written per frame by MenuAnchor; the seeded 0 is only so
+          it can't flash before that first write. #04050a rather than #000 to
+          match what /aftermovie's travel overlay paints, so the hand-off
+          between two pages is one continuous colour. */}
+      <div
+        ref={veilRef}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-30"
+        style={{ opacity: 0, backgroundColor: "#04050a", willChange: "opacity" }}
+      />
     </div>
   );
 }
