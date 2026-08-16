@@ -8,8 +8,20 @@ export default async function Page() {
   const supabase = await createClient();
   const user = await supabase.auth.getUser();
   const curr_club = await prisma.roles.findFirst({
-    where: { email: user.data.user.email },
+    where: { email: user.data.user?.email || "" },
   });
+
+  if (!curr_club) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[#202020] mb-2">Access Denied</h1>
+          <p className="text-gray-500">Your account is not assigned to any club role.</p>
+        </div>
+      </div>
+    );
+  }
+
   const events = await prisma.eventItem.findMany({
     where: { event_org: curr_club.club_name },
   });

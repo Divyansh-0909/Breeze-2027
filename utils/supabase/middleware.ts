@@ -48,16 +48,19 @@ export async function updateSession(request: NextRequest) {
     const { data, error } = await supabase
       .from("Roles")
       .select("*")
-      .eq("id", user.id);
+      .eq("email", user.email);
     if (error) {
       console.error(error);
       const url = request.nextUrl.clone();
       url.pathname = "/admin/login";
       return NextResponse.redirect(url);
     }
+    
+    const clubName = data && data.length > 0 ? data[0].club_name : null;
+
     // If the clubs user is not a BREEZE admin, redirect to the clubs page
     if (
-      data[0].club_name != "BREEZE" &&
+      clubName !== "BREEZE" &&
       (request.nextUrl.pathname.startsWith("/admin/breeze-admin") ||
         request.nextUrl.pathname.startsWith("/api/breeze-admin")) &&
       !request.nextUrl.pathname.startsWith("/admin/login")
