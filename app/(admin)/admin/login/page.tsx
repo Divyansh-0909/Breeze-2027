@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -22,6 +24,8 @@ const formSchema = z.object({
 });
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [errorMsg, setErrorMsg] = useState("");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,10 +35,17 @@ export default function LoginPage() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setErrorMsg("");
     const formData = new FormData();
     formData.append("email", values.email);
     formData.append("password", values.password);
-    await login(formData);
+    const result = await login(formData);
+    
+    if (result?.error) {
+      setErrorMsg(result.error);
+    } else if (result?.success && result.redirect) {
+      router.push(result.redirect);
+    }
   }
 
   return (
@@ -43,6 +54,11 @@ export default function LoginPage() {
         <h2 className="text-3xl font-bold text-center text-[#202020] tracking-tight">
           Admin Login
         </h2>
+        {errorMsg && (
+          <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
+            {errorMsg}
+          </div>
+        )}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField

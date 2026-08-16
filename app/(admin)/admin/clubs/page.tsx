@@ -33,7 +33,7 @@ export default async function Page() {
             All events for {curr_club.club_name}
           </h1>
           <p className="text-gray-500 text-sm">
-            View your club's events and manage registrations
+            View your club&apos;s events and manage registrations
           </p>
         </div>
         <EventTable curr_club={curr_club} events={events} />
