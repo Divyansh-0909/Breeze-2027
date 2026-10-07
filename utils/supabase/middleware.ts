@@ -1,8 +1,13 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { prisma } from "@/lib/prisma";
+
 
 export async function updateSession(request: NextRequest) {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    if (request.nextUrl.pathname.startsWith("/api/breeze-admin")) return NextResponse.json({ error: "Authentication unavailable" }, { status: 503 });
+    if (request.nextUrl.pathname.startsWith("/admin") && request.nextUrl.pathname !== "/admin/login") return NextResponse.redirect(new URL("/admin/login", request.url));
+    return NextResponse.next({ request });
+  }
   let supabaseResponse = NextResponse.next({
     request,
   });
@@ -37,34 +42,26 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user && !request.nextUrl.pathname.startsWith("/admin/login")) {
-    // no user, redirect to the admin login page
-    const url = request.nextUrl.clone();
-    url.pathname = "/admin/login";
-    return NextResponse.redirect(url);
+  const pathname = request.nextUrl.pathname;
+  const protectedRoute = (pathname === "/admin" || pathname.startsWith("/admin/") || pathname.startsWith("/api/breeze-admin/")) && pathname !== "/admin/login";
+  const redirectWithCookies = (path: string) => {
+    const response = NextResponse.redirect(new URL(path, request.url));
+    supabaseResponse.cookies.getAll().forEach(cookie => response.cookies.set(cookie));
+    return response;
+  };
+  if (protectedRoute && !user) {
+    if (pathname.startsWith("/api/")) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return redirectWithCookies("/admin/login");
   }
-
-  if (user) {
-    const { data, error } = await supabase
-      .from("Roles")
-      .select("*")
-      .eq("id", user.id);
-    if (error) {
-      console.error(error);
-      const url = request.nextUrl.clone();
-      url.pathname = "/admin/login";
-      return NextResponse.redirect(url);
+  if (protectedRoute && user) {
+    const { data: role, error } = await supabase.from("Roles").select("club_name").eq("id", user.id).maybeSingle();
+    if (error || !role?.club_name) {
+      if (pathname.startsWith("/api/")) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return redirectWithCookies("/");
     }
-    // If the clubs user is not a BREEZE admin, redirect to the clubs page
-    if (
-      data[0].club_name != "BREEZE" &&
-      (request.nextUrl.pathname.startsWith("/admin/breeze-admin") ||
-        request.nextUrl.pathname.startsWith("/api/breeze-admin")) &&
-      !request.nextUrl.pathname.startsWith("/admin/login")
-    ) {
-      const url = request.nextUrl.clone();
-      url.pathname = "/admin/clubs";
-      return NextResponse.redirect(url);
+    if (role.club_name !== "BREEZE" && (pathname.startsWith("/admin/breeze-admin") || pathname.startsWith("/api/breeze-admin"))) {
+      if (pathname.startsWith("/api/")) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      return redirectWithCookies("/admin/clubs");
     }
   }
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're

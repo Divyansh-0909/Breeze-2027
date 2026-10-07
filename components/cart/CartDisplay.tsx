@@ -7,11 +7,13 @@ import { useEffect, useState } from "react";
 interface CartDisplayProps {
   merch_items: MerchItem[];
   event_items: EventItem[];
+  catalogAvailable?: boolean;
 }
 
 export default function CartDisplay({
   merch_items,
   event_items,
+  catalogAvailable = true,
 }: CartDisplayProps) {
   const [cartItems, setCartItems] = useState<{
     merch: {
@@ -24,10 +26,20 @@ export default function CartDisplay({
   });
 
   const [isLoading, setIsLoading] = useState(true);
+  const [hasSavedItems, setHasSavedItems] = useState(false);
 
   useEffect(() => {
     const updateCartFromStorage = () => {
-      const cart = JSON.parse(localStorage.getItem("cart") || "{}") || {};
+      let cart: Record<string, Record<string, number>> = {};
+      try {
+        const saved = JSON.parse(localStorage.getItem("cart") || "{}");
+        if (saved && typeof saved === "object" && !Array.isArray(saved)) cart = saved;
+      } catch {
+        // Keep the page usable when browser storage is unavailable or malformed.
+      }
+      setHasSavedItems(Object.values(cart).some(variants =>
+        variants && typeof variants === "object" && Object.values(variants).some(quantity => typeof quantity === "number" && quantity > 0)
+      ));
       const updatedCart: typeof cartItems = { merch: {}, events: {} };
 
       if (merch_items && Array.isArray(merch_items)) {
@@ -180,6 +192,16 @@ export default function CartDisplay({
 
   if (isLoading) {
     return <div className="text-center text-xl">Your cart is loading...</div>;
+  }
+
+  if (!catalogAvailable && hasSavedItems) {
+    return (
+      <div role="status" className="mx-auto max-w-md px-6 py-16 text-center space-y-4">
+        <h2 className="text-xl font-semibold">Your cart is temporarily unavailable</h2>
+        <p className="text-white/70">Your saved items are still in your cart. We could not load their details right now. Please try again shortly.</p>
+        <button type="button" onClick={() => window.location.reload()} className="rounded-xl border border-white/25 px-5 py-3 hover:bg-white/10">Try again</button>
+      </div>
+    );
   }
 
   const allCartItems = [
