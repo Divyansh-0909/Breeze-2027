@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 import { NIGHT, SIGN } from "./palette";
 
 /**
@@ -22,8 +21,7 @@ import { NIGHT, SIGN } from "./palette";
  * that would be the pop-in this replaced, wearing a longer coat.
  *
  * What it does own: standing down. The first time you try to move the page the
- * menu bows out and the real `Navbar` docks at the top, so every route after
- * this behaves like the rest of the site.
+ * arrival menu bows out, leaving the persistent site navigation available.
  *
  * Plain CSS transitions on purpose, for the same reason the "click to continue"
  * line is: this is the only route out of the entry scene, and it must never
@@ -138,12 +136,6 @@ export default function EntryNav({
 
   return (
     <>
-      {docked && (
-        <div className="pointer-events-auto animate-in fade-in duration-500">
-          <Navbar />
-        </div>
-      )}
-
       {/* a centred well of shade for the type to sit in — broad and soft, so
           the tunnel mouth and the night still read around it. Two nested nodes
           because two things fade it independently: the approach ramps it in

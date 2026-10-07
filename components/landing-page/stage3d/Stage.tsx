@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { PALETTE, STAGE } from "./palette";
+import BlenderAsset from "../../three/BlenderAsset";
 
 /**
  * Static architecture: stage deck, thrust runway (matches the reference's
@@ -8,9 +8,6 @@ import { PALETTE, STAGE } from "./palette";
  */
 
 export default function Stage(): React.ReactElement {
-  const { topY, halfW, frontZ, backZ } = STAGE;
-  const deckH = topY;
-
   return (
     <group>
       {/* Ground */}
@@ -19,18 +16,7 @@ export default function Stage(): React.ReactElement {
         <meshStandardMaterial color="#07080b" roughness={0.9} metalness={0.1} />
       </mesh>
 
-      {/* Main platform */}
-      <mesh position={[0, deckH / 2, (frontZ + backZ) / 2]}>
-        <boxGeometry args={[halfW * 2, deckH, frontZ - backZ]} />
-        <meshStandardMaterial color={PALETTE.carbon} roughness={0.55} metalness={0.35} />
-      </mesh>
-
-      {/* Thrust runway toward the audience */}
-      <mesh position={[0, deckH / 2, frontZ + 5]}>
-        <boxGeometry args={[6, deckH, 10]} />
-        <meshStandardMaterial color={PALETTE.carbon} roughness={0.55} metalness={0.35} />
-      </mesh>
-
+      <BlenderAsset url="/models/breeze/aftermovie-stage.glb" />
     </group>
   );
 }

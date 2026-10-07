@@ -118,8 +118,10 @@ const ROD_COUNT = 9;
 
 function Shell({
   litRef,
+  powerRef,
 }: {
   litRef: React.MutableRefObject<number>;
+  powerRef: React.MutableRefObject<number>;
 }): React.ReactElement {
   const geo = useMemo(buildShell, []);
   const fontReady = useTagFont();
@@ -160,7 +162,7 @@ function Shell({
     // white over brick, roughly half of each — so this sits between the two.
     // The point it is protecting either way is that you can read the walls as
     // you go past them.
-    mat.emissiveIntensity = 0.14 + litRef.current * 0.16;
+    mat.emissiveIntensity = powerRef.current * (0.14 + litRef.current * 0.16);
   });
 
   return <mesh geometry={geo} material={mat} />;
@@ -536,8 +538,13 @@ function Weeds(): React.ReactElement {
  * a couple of centimetres off the brick so the paint reads as being ON the
  * wall rather than being the wall.
  */
-function Pieces(): React.ReactElement {
+function Pieces({
+  powerRef,
+}: {
+  powerRef: React.MutableRefObject<number>;
+}): React.ReactElement {
   const fontReady = useTagFont();
+  const groupRef = useRef<THREE.Group>(null);
   const items = useMemo(() => {
     const r = rng(5150);
     const acts = SIGN.lineup;
@@ -701,6 +708,21 @@ function Pieces(): React.ReactElement {
    * the lineup goes up first and the scrawled tags go over it, which is how a
    * wall like this actually accumulates.
    */
+  useFrame(() => {
+    const group = groupRef.current;
+    if (!group) return;
+    const p = powerRef.current;
+    group.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      const peak = mesh.userData.emissivePeak;
+      if (typeof peak !== "number") return;
+      const material = mesh.material;
+      if (material instanceof THREE.MeshStandardMaterial) {
+        material.emissiveIntensity = p * peak;
+      }
+    });
+  });
+
   const paint = (
     p: { tex: THREE.CanvasTexture; w: number; h: number; side: number; z: number; y: number; tilt: number },
     key: string,
@@ -712,13 +734,14 @@ function Pieces(): React.ReactElement {
       position={[p.side * (TUNNEL.halfW - 0.025), p.y, p.z]}
       rotation={[0, (p.side * -Math.PI) / 2, p.tilt]}
       renderOrder={order}
+      userData={{ emissivePeak: lit }}
     >
       <planeGeometry args={[p.w, p.h]} />
       <meshStandardMaterial
         map={p.tex}
         emissiveMap={p.tex}
         emissive={new THREE.Color("#ffffff")}
-        emissiveIntensity={lit}
+        emissiveIntensity={0}
         transparent
         alphaTest={0.06}
         roughness={0.95}
@@ -728,7 +751,7 @@ function Pieces(): React.ReactElement {
   );
 
   return (
-    <group>
+    <group ref={groupRef}>
       {items.map((p, i) => paint(p, `act-${i}`, 0.16, 1 + i))}
       {tags.map((p, i) => paint(p, `tag-${i}`, 0.1, 1 + items.length + i))}
     </group>
@@ -744,11 +767,15 @@ function Pieces(): React.ReactElement {
  * fourth one is dead and one flickers, because a run of thirteen identical
  * working tubes is the single most CG thing you could put on that ceiling.
  */
-function Fixtures(): React.ReactElement {
+function Fixtures({
+  powerRef,
+}: {
+  powerRef: React.MutableRefObject<number>;
+}): React.ReactElement {
   const { startZ, length, roofY, halfW } = TUNNEL;
 
   const litMat = useMemo(
-    () => new THREE.MeshBasicMaterial({ color: VAULT.fixture, toneMapped: false }),
+    () => new THREE.MeshBasicMaterial({ color: "#000000", toneMapped: false }),
     []
   );
   const deadMat = useMemo(
@@ -756,7 +783,7 @@ function Fixtures(): React.ReactElement {
     []
   );
   const flickerMat = useMemo(
-    () => new THREE.MeshBasicMaterial({ color: VAULT.fixture, toneMapped: false }),
+    () => new THREE.MeshBasicMaterial({ color: "#000000", toneMapped: false }),
     []
   );
   const housingMat = useMemo(
@@ -794,9 +821,11 @@ function Fixtures(): React.ReactElement {
     // phase multiplied together, then hard-clipped, gets close enough
     const t = state.clock.elapsedTime;
     const s = Math.sin(t * 21) * Math.sin(t * 6.3);
+    const p = powerRef.current;
+    litMat.color.set(VAULT.fixture).multiplyScalar(p);
     flickerMat.color
       .set(VAULT.fixture)
-      .multiplyScalar(s > 0.1 ? 1 : 0.06 + Math.max(0, s) * 2);
+      .multiplyScalar(p * (s > 0.1 ? 1 : 0.06 + Math.max(0, s) * 2));
   });
 
   return (
@@ -835,8 +864,10 @@ function Fixtures(): React.ReactElement {
  */
 function TravellingLight({
   litRef,
+  powerRef,
 }: {
   litRef: React.MutableRefObject<number>;
+  powerRef: React.MutableRefObject<number>;
 }): React.ReactElement {
   const ahead = useRef<THREE.PointLight>(null);
   const behind = useRef<THREE.PointLight>(null);
@@ -847,6 +878,7 @@ function TravellingLight({
     // 0 outside the tunnel → 1 once a few metres in
     const lit = THREE.MathUtils.clamp((TUNNEL.startZ - cam.position.z) / 6, 0, 1);
     litRef.current = lit;
+    const powered = lit * powerRef.current;
 
     // Cream paper is a ~0.87 albedo, so this room reaches white on very little
     // light and every source here was fighting for the same headroom: at
@@ -855,14 +887,14 @@ function TravellingLight({
     // is now split so the sum peaks just under 1 beside the camera — ambient
     // carries the base exposure, the points do shape and travel on top.
     if (ahead.current) {
-      ahead.current.intensity = lit * 34;
+      ahead.current.intensity = powered * 34;
       ahead.current.position.set(cam.position.x * 0.4, 2.6, cam.position.z - 3.4);
     }
     if (behind.current) {
-      behind.current.intensity = lit * 18;
+      behind.current.intensity = powered * 18;
       behind.current.position.set(cam.position.x * 0.4, 2.4, cam.position.z + 4.5);
     }
-    if (fill.current) fill.current.intensity = lit * 0.55;
+    if (fill.current) fill.current.intensity = powered * 0.55;
   });
 
   return (
@@ -874,19 +906,23 @@ function TravellingLight({
   );
 }
 
-export default function Tunnel(): React.ReactElement {
+export default function Tunnel({
+  powerRef,
+}: {
+  powerRef: React.MutableRefObject<number>;
+}): React.ReactElement {
   // how lit the interior is, shared so the shell's self-illumination and the
   // travelling lamp come up together instead of drifting apart
   const litRef = useRef(0);
 
   return (
     <group>
-      <TravellingLight litRef={litRef} />
-      <Shell litRef={litRef} />
+      <TravellingLight litRef={litRef} powerRef={powerRef} />
+      <Shell litRef={litRef} powerRef={powerRef} />
       <Path />
       <Weeds />
-      <Pieces />
-      <Fixtures />
+      <Pieces powerRef={powerRef} />
+      <Fixtures powerRef={powerRef} />
     </group>
   );
 }

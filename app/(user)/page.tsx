@@ -1,25 +1,22 @@
 "use client";
-import React, { useEffect } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
 
 import { warmStage } from "../../components/landing-page/stage3d/warmup";
+import GateHero from "../../components/landing-page/gate3d/GateHero";
 
-import ParallaxHero from "../../components/landing-page/ParallaxHero";
-import Sponsorship from "../../components/landing-page/sponsorship";
-import AfterMovie from "../../components/landing-page/aftermovie";
-import Gallery from "../../components/landing-page/gallery";
 import "../globals.css";
-import StatsSection from "../../components/landing-page/StatsSection";
 
 // Night entry gate — the loading page / entry portal (client-only WebGL,
-// lazy-loaded). The concert stage (ConcertStageHero) is preserved for its own
-// page, reached later via the "aftermovie" quicklink in the camp hub.
-const GateHero = dynamic(
-  () => import("../../components/landing-page/gate3d/GateHero"),
-  { ssr: false, loading: () => <div className="absolute inset-0 bg-black" /> }
-);
-
+// mounted after hydration). The concert stage remains on its own route,
+// reached later through the Aftermovie quicklink.
 export default function Home(): React.ReactElement {
+  // GateHero stays out of the server-rendered tree, but is statically bundled
+  // with this client route. This avoids a separately requested Webpack chunk
+  // becoming stale after HMR or a `.next` cache rebuild.
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
   // Scroll to top on page load/refresh
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,9 +34,30 @@ export default function Home(): React.ReactElement {
 
   return (
     <main className="min-h-screen bg-black text-white relative w-full overflow-x-hidden">
+      <link
+        rel="preload"
+        as="image"
+        href="/gate/beam.webp"
+        type="image/webp"
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href="/gate/board-left.webp"
+        type="image/webp"
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href="/gate/board-right.webp"
+        type="image/webp"
+        fetchPriority="high"
+      />
       {/* Entry Section — 3D night gate (loading page / entry portal) */}
       <div className="relative z-0 w-full min-h-screen h-dvh">
-        <GateHero />
+        {mounted ? <GateHero /> : <div className="absolute inset-0 bg-black" />}
       </div>
 
       {/* Main Content - positioned to overlap hero */}

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { PERFORMERS } from "./performers";
 import SprayHeadline from "./SprayHeadline";
 
@@ -228,15 +227,6 @@ export default function PastPerformersGallery() {
         })}
       </div>
 
-      <div className="fixed top-8 left-8 z-50">
-        <Link
-          href="/"
-          className="text-[#f4efe2] opacity-50 hover:opacity-100 transition-opacity uppercase tracking-widest text-sm font-bold drop-shadow-md"
-          style={{ fontFamily: "system-ui, sans-serif" }}
-        >
-          ← BACK TO STAGE
-        </Link>
-      </div>
     </section>
   );
 }

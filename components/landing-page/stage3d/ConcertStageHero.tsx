@@ -169,10 +169,11 @@ export default function ConcertStageHero({
   }, []);
 
   // ---- aftermovie on the LED wall ----
-  // Nothing downloads up-front: clicking play zooms the camera in, dims the
-  // rig, and only THEN starts fetching /after-movie.mp4 — the center screen
-  // shows a loading spinner while it buffers. The video wall and the pyro
-  // both wait for the first real playback frame.
+  // Keep the 52 MB movie completely out of the travel/warm-up phase. Clicking
+  // play first lets the camera dolly toward the LED wall; only when that move
+  // lands do we attach the MP4 and call play(). With preload="none" the browser
+  // uses normal HTTP range requests and buffers progressively as playback
+  // advances instead of trying to satisfy canplaythrough up front.
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const textureRef = useRef<THREE.VideoTexture | null>(null);
   const [phase, setPhase] = useState<Phase>("idle");
@@ -207,33 +208,12 @@ export default function ConcertStageHero({
 
     const video = document.createElement("video");
     video.playsInline = true;
-    video.preload = "auto";
+    video.preload = "none";
     const tex = new THREE.VideoTexture(video);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.minFilter = THREE.LinearFilter;
     videoRef.current = video;
     textureRef.current = tex;
-
-    // buffered enough to play through uninterrupted → roll it, but never
-    // before the camera dolly has landed (~0.9s), so a cached instant load
-    // still gets the show-opening beat
-    video.addEventListener(
-      "canplaythrough",
-      () => {
-        const wait = Math.max(0, 900 - (performance.now() - clickedAt.current));
-        playTimer.current = window.setTimeout(() => {
-          video.currentTime = 0;
-          // long loads can outlive the click's user-activation window, in
-          // which case unmuted play() is blocked — degrade to muted playback
-          // rather than stalling the show
-          video.play().catch(() => {
-            video.muted = true;
-            void video.play();
-          });
-        }, wait);
-      },
-      { once: true }
-    );
 
     // pyro + video wall are keyed off ACTUAL playback, not the click
     video.addEventListener(
@@ -250,8 +230,22 @@ export default function ConcertStageHero({
 
     clickedAt.current = performance.now();
     setPhase("loading");
-    video.src = "/after-movie.mp4"; // download starts here, not at page load
-    video.load();
+
+    // Do not attach the source during the camera move. Once it lands, play()
+    // starts the first byte-range request and native media buffering continues
+    // alongside playback instead of downloading the whole movie first.
+    const wait = Math.max(0, 900 - (performance.now() - clickedAt.current));
+    playTimer.current = window.setTimeout(() => {
+      if (videoRef.current !== video) return;
+      video.src = "/after-movie.mp4";
+      video.currentTime = 0;
+      video.play().catch(() => {
+        // If the user-activation window has expired while the camera moved,
+        // muted playback is still allowed and keeps the experience moving.
+        video.muted = true;
+        void video.play();
+      });
+    }, wait);
   }, [stopMovie]);
 
   // Esc cancels the load / exits the aftermovie

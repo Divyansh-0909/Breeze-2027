@@ -5,63 +5,61 @@ import * as THREE from "three";
 import { GATE, NIGHT } from "./palette";
 import {
   lighten,
-  makeBeamTexture,
-  makePillarTexture,
   makePlinthTexture,
   sampleBottomColor,
 } from "./textures";
 
 /**
- * Real artwork for a board if it has been dropped into `public/gate/`,
- * otherwise the procedural print stays. Keeping the fallback means the scene
- * never renders a blank face while art is still being produced, and the app
- * doesn't hard-fail on a missing file.
+ * Keep a board completely blank while its real artwork is loading. The scene
+ * uses the settled flag to decide when it is safe to start the power-on reveal.
+ * A failed image also settles so the loading screen cannot hang forever; that
+ * board simply stays black instead of flashing procedural branding.
  */
 function useBoardArt(
   url: string,
-  fallback: THREE.Texture,
   faceAspect: number
-): THREE.Texture {
+): { texture: THREE.Texture | null; settled: boolean } {
   const [art, setArt] = useState<THREE.Texture | null>(null);
+  const [settled, setSettled] = useState(false);
 
   useEffect(() => {
     let alive = true;
-    // HEAD first so a missing board doesn't spew 404s into the console
-    fetch(url, { method: "HEAD" })
-      .then((res) => {
-        if (!res.ok || !alive) return;
-        new THREE.TextureLoader().load(url, (t) => {
-          if (!alive) {
-            t.dispose();
-            return;
-          }
-          t.colorSpace = THREE.SRGBColorSpace;
-          t.anisotropy = 8;
+    new THREE.TextureLoader().load(
+      url,
+      (t) => {
+        if (!alive) {
+          t.dispose();
+          return;
+        }
+        t.colorSpace = THREE.SRGBColorSpace;
+        t.anisotropy = 8;
 
-          // cover-fit: centre-crop the overhanging axis rather than stretch,
-          // so artwork whose ratio doesn't exactly match its board still
-          // reads undistorted
-          const img = t.image as { width: number; height: number };
-          const ia = img.width / img.height;
-          if (ia > faceAspect) {
-            t.repeat.set(faceAspect / ia, 1);
-          } else {
-            t.repeat.set(1, ia / faceAspect);
-          }
-          t.offset.set((1 - t.repeat.x) / 2, (1 - t.repeat.y) / 2);
-          t.needsUpdate = true;
-          setArt(t);
-        });
-      })
-      .catch(() => {
-        /* no artwork yet — the procedural board stands in */
-      });
+        // cover-fit: centre-crop the overhanging axis rather than stretch,
+        // so artwork whose ratio doesn't exactly match its board still
+        // reads undistorted
+        const img = t.image as { width: number; height: number };
+        const ia = img.width / img.height;
+        if (ia > faceAspect) {
+          t.repeat.set(faceAspect / ia, 1);
+        } else {
+          t.repeat.set(1, ia / faceAspect);
+        }
+        t.offset.set((1 - t.repeat.x) / 2, (1 - t.repeat.y) / 2);
+        t.needsUpdate = true;
+        setArt(t);
+        setSettled(true);
+      },
+      undefined,
+      () => {
+        if (alive) setSettled(true);
+      }
+    );
     return () => {
       alive = false;
     };
   }, [url, faceAspect]);
 
-  return art ?? fallback;
+  return { texture: art, settled };
 }
 
 /**
@@ -77,8 +75,10 @@ function useBoardArt(
  */
 export default function Gate({
   powerRef,
+  onArtworkReady,
 }: {
   powerRef: React.MutableRefObject<number>;
+  onArtworkReady?: () => void;
 }): React.ReactElement {
   const {
     pillarX,
@@ -94,14 +94,20 @@ export default function Gate({
     faceZ,
   } = GATE;
 
-  const beamProc = useMemo(() => makeBeamTexture(), []);
-  const leftProc = useMemo(() => makePillarTexture("left"), []);
-  const rightProc = useMemo(() => makePillarTexture("right"), []);
+  const beamArt = useBoardArt("/gate/beam.webp", (halfW * 2) / beamH);
+  const leftArt = useBoardArt("/gate/board-left.webp", pillarW / pillarH);
+  const rightArt = useBoardArt("/gate/board-right.webp", pillarW / pillarH);
+  const beamTex = beamArt.texture;
+  const leftTex = leftArt.texture;
+  const rightTex = rightArt.texture;
+  const artworkReady = beamArt.settled && leftArt.settled && rightArt.settled;
+  const reportedReady = useRef(false);
 
-  // supplied artwork wins over the procedural print when present
-  const beamTex = useBoardArt("/gate/beam.webp", beamProc, (halfW * 2) / beamH);
-  const leftTex = useBoardArt("/gate/board-left.webp", leftProc, pillarW / pillarH);
-  const rightTex = useBoardArt("/gate/board-right.webp", rightProc, pillarW / pillarH);
+  useEffect(() => {
+    if (!artworkReady || reportedReady.current) return;
+    reportedReady.current = true;
+    onArtworkReady?.();
+  }, [artworkReady, onArtworkReady]);
 
   // the plinths carry the poster's colour down to the ground instead of
   // cutting it off with a white shelf. Both take the *left* board's foot tint
@@ -113,7 +119,10 @@ export default function Gate({
   // near-black footer band, and taking that literally left the arch standing
   // on two dark blocks that vanished into the ground at night.
   const baseTint = useMemo(
-    () => lighten(sampleBottomColor(leftTex, NIGHT.boardEdge), 0.62, NIGHT.baseCream),
+    () =>
+      leftTex
+        ? lighten(sampleBottomColor(leftTex, NIGHT.boardEdge), 0.62, NIGHT.baseCream)
+        : "#000000",
     [leftTex]
   );
 
@@ -128,8 +137,9 @@ export default function Gate({
     []
   );
 
-  const printed = (tex: THREE.Texture) =>
+  const printed = (tex: THREE.Texture | null) =>
     new THREE.MeshStandardMaterial({
+      color: tex ? "#ffffff" : "#000000",
       map: tex,
       emissiveMap: tex,
       emissive: new THREE.Color("#ffffff"),

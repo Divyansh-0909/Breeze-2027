@@ -8,13 +8,7 @@ import React, {
 } from "react";
 import { useRouter } from "next/navigation";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import {
-  EffectComposer,
-  Bloom,
-  Vignette,
-  Noise,
-  SMAA,
-} from "@react-three/postprocessing";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 import { GATE, NIGHT, TUNNEL } from "./palette";
@@ -42,7 +36,13 @@ import { warmStage } from "../stage3d/warmup";
  * crowd video opens on the step after the one you took here.
  */
 
-type Phase = "loading" | "ready" | "entering" | "arrived" | "departing";
+type Phase =
+  | "loading"
+  | "ready"
+  | "entering"
+  | "arrived"
+  | "returning"
+  | "departing";
 
 /**
  * Seconds from the click to standing at the tunnel's mouth.
@@ -53,6 +53,7 @@ type Phase = "loading" | "ready" | "entering" | "arrived" | "departing";
  * so each piece holds the frame for about a second.
  */
 const TRAVEL_S = 7.4;
+const RETURN_SPEED = 1.2;
 const BASE_FOV = 45;
 
 /**
@@ -174,16 +175,18 @@ function usePrefersReducedMotion(): boolean {
 /** Ramps the shared power-on level, then reports ready exactly once. */
 function Warmup({
   powerRef,
+  enabled,
   duration,
   onReady,
 }: {
   powerRef: React.MutableRefObject<number>;
+  enabled: boolean;
   duration: number;
   onReady: () => void;
 }): null {
   const done = useRef(false);
   useFrame((_, dt) => {
-    if (done.current) return;
+    if (done.current || !enabled) return;
     powerRef.current = Math.min(1, powerRef.current + dt / duration);
     if (powerRef.current >= 1) {
       done.current = true;
@@ -249,6 +252,7 @@ function CameraRig({
   progressRef,
   departRef,
   onArrive,
+  onReturned,
   onDeparted,
 }: {
   phase: Phase;
@@ -259,6 +263,7 @@ function CameraRig({
   progressRef: React.MutableRefObject<number>;
   departRef: React.MutableRefObject<number>;
   onArrive: () => void;
+  onReturned: () => void;
   onDeparted: () => void;
 }): null {
   const size = useThree((s) => s.size);
@@ -266,8 +271,9 @@ function CameraRig({
   const desired = useRef(new THREE.Vector3());
   const desiredTarget = useRef(new THREE.Vector3());
   // seconds since the click — or already spent, when the run is being skipped
-  const flown = useRef(skipTravel ? 1e6 : 0);
+  const flown = useRef(skipTravel ? travelS : 0);
   const landed = useRef(false);
+  const returned = useRef(false);
   // seconds since a menu item was picked, and whether the walk out has ended
   const walked = useRef(0);
   const left = useRef(false);
@@ -281,7 +287,15 @@ function CameraRig({
     const { dist } = solveFraming(aspect, BASE_FOV);
     const arriveZ = TUNNEL.endZ + solveArrival(aspect, BASE_FOV);
 
-    if (phase === "entering" || phase === "arrived") flown.current += dt;
+    if (phase === "entering") {
+      returned.current = false;
+      flown.current = Math.min(travelS, flown.current + dt);
+    } else if (phase === "arrived") {
+      flown.current = travelS;
+    } else if (phase === "returning") {
+      landed.current = false;
+      flown.current = Math.max(0, flown.current - dt * RETURN_SPEED);
+    }
     const p = THREE.MathUtils.clamp(flown.current / travelS, 0, 1);
     progressRef.current = p;
     // Mostly linear, with just enough smoothstep blended in to push off and
@@ -296,6 +310,12 @@ function CameraRig({
     if (!landed.current && p >= 1) {
       landed.current = true;
       onArrive();
+    }
+
+    if (!returned.current && phase === "returning" && p <= 0) {
+      returned.current = true;
+      landed.current = false;
+      onReturned();
     }
 
     // The walk out, which only ever runs from the arrival pose. Accelerating
@@ -591,7 +611,11 @@ export default function GateHero({
   ).current;
 
   const powerRef = useRef(0);
+  const [artworkReady, setArtworkReady] = useState(false);
   const [phase, setPhase] = useState<Phase>(skipTravel ? "arrived" : "loading");
+  const phaseRef = useRef<Phase>(phase);
+  phaseRef.current = phase;
+  const [directRoute, setDirectRoute] = useState(false);
 
   // the flight's progress, and the two overlay nodes that ride the world with
   // it — shared by ref so the frame loop can drive them without a re-render
@@ -605,11 +629,13 @@ export default function GateHero({
   const departRef = useRef(0);
   const veilRef = useRef<HTMLDivElement>(null);
   const destination = useRef<string | null>(null);
+  const routeTimer = useRef<number | null>(null);
 
   // width of the arch's opening on screen, measured from the same framing
   // solve the camera uses, so the CTA tracks the gap through any resize
   const rootRef = useRef<HTMLDivElement>(null);
   const [gapPx, setGapPx] = useState(0);
+  const artworkLoaded = useCallback(() => setArtworkReady(true), []);
 
   useEffect(() => {
     const el = rootRef.current;
@@ -627,17 +653,98 @@ export default function GateHero({
   }, []);
 
   const enter = useCallback(() => {
-    if (phase !== "ready") return;
+    if (phaseRef.current !== "ready") return;
+    phaseRef.current = "entering";
     setPhase("entering");
-  }, [phase]);
+  }, []);
 
   // fired by the rig itself when the flight actually lands, rather than by a
   // timer racing it — a slow first frame or a dropped tab would otherwise put
   // the menu on screen while the camera was still somewhere in the tunnel
+  const fadeToDestination = useCallback(() => {
+    const href = destination.current;
+    if (!href || routeTimer.current !== null) return;
+    const duration = reduced ? 180 : 480;
+    const veil = veilRef.current;
+    if (veil) {
+      veil.style.transition = `opacity ${duration}ms cubic-bezier(0.23, 1, 0.32, 1)`;
+      window.requestAnimationFrame(() => {
+        if (destination.current === href && veilRef.current) {
+          veilRef.current.style.opacity = "1";
+        }
+      });
+    }
+    routeTimer.current = window.setTimeout(() => {
+      routeTimer.current = null;
+      router.push(href);
+    }, duration + 40);
+  }, [reduced, router]);
+
+  useEffect(() => () => {
+    if (routeTimer.current !== null) window.clearTimeout(routeTimer.current);
+  }, []);
+
   const arrive = useCallback(() => {
+    phaseRef.current = "arrived";
     setPhase("arrived");
+    if (destination.current) {
+      fadeToDestination();
+      return;
+    }
     onEnter?.();
-  }, [onEnter]);
+  }, [fadeToDestination, onEnter]);
+
+  const returned = useCallback(() => {
+    destination.current = null;
+    departRef.current = 0;
+    setDirectRoute(false);
+    phaseRef.current = "ready";
+    setPhase("ready");
+  }, []);
+
+  const returnHome = useCallback((event: Event) => {
+    if (phaseRef.current !== "arrived") return;
+    event.preventDefault();
+    if (routeTimer.current !== null) {
+      window.clearTimeout(routeTimer.current);
+      routeTimer.current = null;
+    }
+    destination.current = null;
+    setDirectRoute(false);
+    const veil = veilRef.current;
+    if (veil) {
+      veil.style.transition = "opacity 180ms ease-out";
+      veil.style.opacity = "0";
+    }
+    phaseRef.current = "returning";
+    setPhase("returning");
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("breeze:return-home", returnHome);
+    return () => window.removeEventListener("breeze:return-home", returnHome);
+  }, [returnHome]);
+
+  const openContact = useCallback((event: Event) => {
+    const currentPhase = phaseRef.current;
+    event.preventDefault();
+    if (currentPhase === "departing") return;
+    const href = "/get-in-touch";
+    destination.current = href;
+    setDirectRoute(true);
+    router.prefetch(href);
+    if (currentPhase === "ready" || currentPhase === "returning") {
+      phaseRef.current = "entering";
+      setPhase("entering");
+    } else if (currentPhase === "arrived") {
+      fadeToDestination();
+    }
+  }, [fadeToDestination, router]);
+
+  useEffect(() => {
+    window.addEventListener("breeze:open-contact", openContact);
+    return () => window.removeEventListener("breeze:open-contact", openContact);
+  }, [openContact]);
 
   /**
    * A menu item was picked: walk out first, change route after.
@@ -650,13 +757,14 @@ export default function GateHero({
    */
   const depart = useCallback(
     (href: string) => {
-      if (phase !== "arrived") return;
+      if (phaseRef.current !== "arrived") return;
       destination.current = href;
       router.prefetch(href);
       if (href.startsWith("/aftermovie")) warmStage();
+      phaseRef.current = "departing";
       setPhase("departing");
     },
-    [phase, router]
+    [router]
   );
 
   // fired by the rig on the walk's last frame, by which point the veil is
@@ -668,6 +776,8 @@ export default function GateHero({
   useEffect(() => {
     if (phase !== "ready") return;
     const onKey = (e: KeyboardEvent) => {
+      // Let focused links and controls handle their own keyboard activation.
+      if (e.target !== document.body && e.target !== rootRef.current) return;
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         enter();
@@ -706,15 +816,21 @@ export default function GateHero({
           <AdaptiveDpr />
           <Warmup
             powerRef={powerRef}
+            enabled={artworkReady}
             duration={reduced ? 1.0 : 2.1}
-            onReady={() => setPhase((p) => (p === "loading" ? "ready" : p))}
+            onReady={() => {
+              if (phaseRef.current !== "loading") return;
+              const nextPhase = destination.current ? "entering" : "ready";
+              phaseRef.current = nextPhase;
+              setPhase(nextPhase);
+            }}
           />
           <Sky />
           <Lights powerRef={powerRef} />
           <Grounds />
-          <Gate powerRef={powerRef} />
+          <Gate powerRef={powerRef} onArtworkReady={artworkLoaded} />
           <Trees />
-          <Tunnel />
+          <Tunnel powerRef={powerRef} />
           {/* the ground past the mouth is deliberately empty for now — the
               landmark layer (stage, photobooth: ./Distant.tsx) is parked
               until the arrival menu is settled. Mounting <Distant /> here is
@@ -728,6 +844,7 @@ export default function GateHero({
             progressRef={progressRef}
             departRef={departRef}
             onArrive={arrive}
+            onReturned={returned}
             onDeparted={departed}
           />
           {/* after the rig, so it projects against the pose set this frame */}
@@ -739,9 +856,7 @@ export default function GateHero({
             departRef={departRef}
           />
           <EffectComposer multisampling={0}>
-            <SMAA />
-            {/* threshold high enough that the lit boards themselves don't
-                bloom — only the bulbs and the letter lights do */}
+            {/* threshold high enough that the lit boards themselves don't bloom — only the bulbs and the letter lights do */}
             <Bloom
               mipmapBlur
               intensity={0.42}
@@ -749,8 +864,6 @@ export default function GateHero({
               luminanceSmoothing={0.28}
               radius={0.7}
             />
-            <Vignette eskil={false} offset={0.22} darkness={0.72} />
-            <Noise opacity={0.028} premultiply />
           </EffectComposer>
         </Suspense>
       </Canvas>
@@ -801,9 +914,11 @@ export default function GateHero({
 
         {/* mounted the moment the flight starts, not on landing: it is out
             there the whole way in, and the approach IS its entrance */}
-        {(phase === "entering" ||
-          phase === "arrived" ||
-          phase === "departing") && (
+        {!directRoute &&
+          (phase === "entering" ||
+            phase === "arrived" ||
+            phase === "returning" ||
+            phase === "departing") && (
           <EntryNav
             // still "arrived" through the walk out: the block keeps its place
             // in the world and MenuAnchor keeps fading it. Flipping this back
