@@ -305,16 +305,32 @@ export default function LEDScreens({
   }, []);
 
   // bind the shared video texture; the idle↔video blend animates in useFrame
+  const blankVideo = useMemo(() => materials[0].uniforms.uVideo.value as THREE.Texture, [materials]);
   useEffect(() => {
-    if (!videoTexture) return;
-    for (const m of materials) m.uniforms.uVideo.value = videoTexture;
-  }, [videoTexture, materials]);
+    if (videoTexture) { for (const m of materials) m.uniforms.uVideo.value = videoTexture; return; }
+    // Stop sampling the released media texture after the existing exit fade.
+    const timer = window.setTimeout(() => { for (const m of materials) m.uniforms.uVideo.value = blankVideo; }, 400);
+    return () => window.clearTimeout(timer);
+  }, [videoTexture, materials, blankVideo]);
 
   // fade timing: the texture prop now arrives with the first real playback
   // frame, so the wall breathes up almost immediately; exit is quick
   const FADE_DELAY = 0.15;
   const FADE_IN = 1.0;
   const FADE_OUT = 0.35;
+  // Generated textures belong to this scene. The externally owned video and
+  // useLoader assets are excluded so return travel cannot poison shared caches.
+  const ownedTextures = useMemo(() => {
+    const textures = new Set<THREE.Texture>();
+    materials.forEach((m) => ["uLogo", "uLoadLabel", "uVideo"].forEach((name) => textures.add(m.uniforms[name].value)));
+    if (glowMat.map) textures.add(glowMat.map);
+    return textures;
+  }, [materials, glowMat]);
+  useEffect(() => () => {
+    ownedTextures.forEach((texture) => texture.dispose());
+    materials.forEach((material) => material.dispose());
+    glowMat.dispose();
+  }, [ownedTextures, materials, glowMat]);
   const fade = useRef(0);
   const fadeStartAt = useRef<number | null>(null);
 

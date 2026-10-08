@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Thank You - Breeze '26",
+  title: "Payment Details Received - Breeze '27",
 };
 
 export default function Page() {
@@ -28,7 +28,7 @@ export default function Page() {
       </div>
       <div className="text-center">
         <div className=" text-[3.5vw] sm:text-[2vw] italic font-serif">
-          Thank you for your payment!
+          Your payment details have been received.
         </div>
         <div className=" text-[2vw] sm:text-[1vw]">
           We will send you an email confirmation as soon as we have verified the

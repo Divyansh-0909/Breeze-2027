@@ -26,7 +26,7 @@ declare module "next/image" {
   }
   
   const Image: {
-    (props: ImageProps): JSX.Element;
+    (props: ImageProps): import("react").ReactElement;
     displayName?: string;
   };
   export default Image;

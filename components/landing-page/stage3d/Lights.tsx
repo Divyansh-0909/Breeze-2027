@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -77,6 +77,7 @@ function MovingHead({
     return m;
   }, [color]);
   const lensBase = useMemo(() => new THREE.Color(color), [color]);
+  useEffect(() => () => { beamMat.dispose(); lensMat.dispose(); }, [beamMat, lensMat]);
   // real spotlight target riding inside the rig, 10 units down the beam axis —
   // the light pool on the deck follows the visible cone exactly
   const spotTarget = useMemo(() => {

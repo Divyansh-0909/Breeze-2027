@@ -18,9 +18,10 @@ export default function AdminLayout({
   };
 
   return (
-    <div className="flex min-h-screen">
-      <div className="w-64 bg-white border-r border-gray-200 shadow-sm flex flex-col">
+    <div className="flex min-h-screen flex-col md:flex-row">
+      <div className="w-full md:w-64 md:shrink-0 bg-white border-r border-gray-200 shadow-sm flex flex-col">
         <nav className="p-4 space-y-2 flex-1">
+          <Link href="/admin/breeze-admin/payments" className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg transition-colors">Payment accounts &amp; statements</Link>
           <Link
             href="/admin/breeze-admin"
             className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg transition-colors"
@@ -62,7 +63,7 @@ export default function AdminLayout({
           </Button>
         </div>
       </div>
-      <div className="flex-1 p-8">{children}</div>
+      <div className="min-w-0 flex-1 p-4 md:p-8">{children}</div>
     </div>
   );
 }

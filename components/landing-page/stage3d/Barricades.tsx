@@ -1,5 +1,5 @@
 "use client";
-import React, { useLayoutEffect, useMemo, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { STAGE } from "./palette";
@@ -46,6 +46,7 @@ export default function Barricades(): React.ReactElement {
     []
   );
 
+  useEffect(() => () => { geometry.dispose(); material.dispose(); }, [geometry, material]);
   const segments = useMemo<Seg[]>(() => {
     const { halfW, frontZ } = STAGE;
     const runwayHalfW = 3.55; // crowd keeps |x| > 3.7

@@ -121,7 +121,16 @@ export function warmCrowd(): Promise<void> {
 
 export default function Crowd({
   immediate = false,
+  count = COUNT,
+  onReady,
+  bakeDelayMs = 150,
+  onBake,
 }: {
+  count?: number;
+  onReady?: () => void;
+  /** Covered preparation can yield without pacing delays; standalone behavior stays unchanged. */
+  bakeDelayMs?: number;
+  onBake?: (ms: number) => void;
   /**
    * Bake all four pose variants synchronously on mount. Right for contexts
    * that must have the full crowd on their first frame (the flythrough
@@ -164,9 +173,11 @@ export default function Crowd({
       for (const [gltf, t] of jobs) {
         // a real gap, not just a yield: each bake ends with a GPU buffer
         // upload when its mesh mounts, and those need room to drain too
-        await new Promise((r) => setTimeout(r, 150));
+        await new Promise((r) => setTimeout(r, bakeDelayMs));
         if (!alive) return;
+        const start = performance.now();
         out.push(bakePose(gltf.scene, gltf.animations, t));
+        onBake?.(performance.now() - start);
         setChunked([...out]);
       }
       warmBaked = out; // whoever baked it, everyone after gets it for free
@@ -174,16 +185,22 @@ export default function Crowd({
     return () => {
       alive = false;
     };
-  }, [immediate, syncVariants, manGltf, womanGltf]);
+  }, [immediate, syncVariants, manGltf, womanGltf, bakeDelayMs, onBake]);
 
   // instanced meshes mount per-variant as bakes land, spreading the GPU
   // uploads the same way the CPU work is spread
   const variants = syncVariants ?? chunked;
+  useEffect(() => {
+    if (variants.length === 4) {
+      warmBaked = variants;
+      onReady?.();
+    }
+  }, [variants, onReady]);
 
   const people = useMemo<Person[]>(() => {
     const rand = mulberry32(2027);
     const out: Person[] = [];
-    while (out.length < COUNT) {
+    while (out.length < count) {
       const x = (rand() * 2 - 1) * 22;
       const z = 4.5 + rand() * 18;
       if (Math.abs(x) < 3.7 && z < 15.2) continue; // keep the runway clear
@@ -199,7 +216,7 @@ export default function Crowd({
       });
     }
     return out;
-  }, []);
+  }, [count]);
 
   const refs = useRef<(THREE.InstancedMesh | null)[]>([]);
 
@@ -226,10 +243,17 @@ export default function Crowd({
       mesh.instanceMatrix.needsUpdate = true;
     });
   }, [people, variants]);
+  useLayoutEffect(() => {
+    const instances = refs.current.filter((mesh): mesh is THREE.InstancedMesh => mesh !== null);
+    // dispose=null protects shared baked geometry, but each mesh still owns
+    // its instance buffers and must release those on density change/unmount.
+    return () => instances.forEach((mesh) => mesh.dispose());
+  }, [variants, count]);
 
   // Lambert, not Standard: near-black silhouettes show no specular anyway,
   // and PBR × ~3M crowd triangles × every dynamic light is the frame budget
   const silhouette = useMemo(() => new THREE.MeshLambertMaterial({ color: "#05060a" }), []);
+  useEffect(() => () => silhouette.dispose(), [silhouette]);
 
   return (
     <group>
@@ -239,7 +263,8 @@ export default function Crowd({
           ref={(el) => {
             refs.current[vi] = el;
           }}
-          args={[geo, silhouette, COUNT]}
+          args={[geo, silhouette, count]}
+          dispose={null}
           frustumCulled={false}
         />
       ))}

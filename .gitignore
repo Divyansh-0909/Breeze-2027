@@ -34,6 +34,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+.payment-test-data/
+.payment-test-artifacts/
+.payment-ocr-cache/
 next-env.d.ts
 
 # markdown files except README
@@ -48,3 +51,7 @@ reciept.html
 # large media (exceeds GitHub 100MB limit)
 # public/after-movie.mp4 is compressed to <100MB and committed; the 4K master stays out
 Assets/after-movie-original.mp4
+.gullyverse-artifacts/
+!docs/immersive-vertical-slice.md
+!docs/gullyverse-environment-pipeline.md
+!docs/immersive-environment-acceptance.md

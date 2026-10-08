@@ -61,30 +61,35 @@ export default function TransactionVerify({
   isRejected?: boolean;
 }) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageError, setImageError] = useState("");
   const [isAccepting, setIsAccepting] = useState(false);
   const [isDenying, setIsDenying] = useState(false);
   const [rejectionReason, setRejectionReason] = useState("");
   const [showRejectionDialog, setShowRejectionDialog] = useState(false);
 
   useEffect(() => {
+    if (!transaction.proof) return;
+    let alive = true;
+    let objectUrl: string | undefined;
+    setImageError("");
+    setImageUrl(null);
     async function loadImage() {
+      try {
       const supabase = createClient();
       const { data, error } = await supabase.storage
         .from("transaction-proofs")
         .download(transaction.proof);
 
-      if (data) {
-        const url = URL.createObjectURL(data);
-        setImageUrl(url);
-      }
+      if (error || !data) throw new Error("Receipt could not be loaded.");
+      if (alive) { objectUrl = URL.createObjectURL(data); setImageUrl(objectUrl); }
+      } catch { if (alive) setImageError("Receipt could not be loaded. Check the bank entry or ask the customer to resend it."); }
     }
 
     loadImage();
 
     return () => {
-      if (imageUrl) {
-        URL.revokeObjectURL(imageUrl);
-      }
+      alive = false;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
   }, [transaction.proof]);
 
@@ -193,7 +198,7 @@ export default function TransactionVerify({
     }
   };
 
-  if (transaction.proof && !imageUrl) {
+  if (transaction.proof && !imageUrl && !imageError) {
     return (
       <div className="flex items-center justify-center p-8">Loading...</div>
     );
@@ -205,7 +210,7 @@ export default function TransactionVerify({
     <div className="mt-4">
       <div className="flex flex-col md:flex-row gap-6">
         {/* Image Section */}
-        {transaction.proof ? (
+        {transaction.proof && imageUrl ? (
           <div className="flex-shrink-0">
             <div
               className="relative w-[250px] h-[250px] rounded-lg overflow-hidden border-2 border-gray-200 hover:border-blue-500 transition-all cursor-pointer"
@@ -224,7 +229,7 @@ export default function TransactionVerify({
           </div>
         ) : (
           <div className="flex items-center justify-center p-8">
-            No Transaction Proof Available
+            {imageError || "No receipt submitted. Check the order reference and bank statement."}
           </div>
         )}
 
@@ -234,6 +239,12 @@ export default function TransactionVerify({
             <h3 className="text-lg font-semibold text-gray-800 mb-3">
               Order Details
             </h3>
+            {transaction.paymentReference && <div className="mb-4 rounded-lg bg-purple-50 p-3 text-sm">
+              <p>Order reference: <strong className="font-mono">{transaction.paymentReference}</strong></p>
+              <p>Receiving UPI ID: {transaction.paymentUpiId}</p>
+              <p>Bank reference: {transaction.bankReference || transaction.claimedBankReference || "Not supplied"}</p>
+              {transaction.paymentReviewReason && <p className="mt-2 text-amber-800">{transaction.paymentReviewReason}</p>}
+            </div>}
             <div className="mb-4 pb-3 border-b border-gray-200">
               <h4 className="text-sm font-medium text-gray-600 mb-2">
                 Student Status

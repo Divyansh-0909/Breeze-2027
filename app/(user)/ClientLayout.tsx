@@ -4,6 +4,9 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
+
+const ImmersiveShell = dynamic(() => import("@/components/immersive/ImmersiveShell"), { ssr: false });
 
 // Define the page order for overscroll navigation
 const pageOrder = ["/", "/events", "/get-in-touch"];
@@ -15,6 +18,7 @@ export default function ClientLayout({
 }>) {
   const pathname = usePathname();
   const isHomepage = pathname === "/";
+  const isPaymentRoute = pathname === "/checkout" || pathname === "/thank-you" || pathname.startsWith("/payments/");
 
   // Determine the next page based on current route
   const getNextPage = () => {
@@ -27,6 +31,12 @@ export default function ClientLayout({
   };
 
   const nextPage = getNextPage();
+
+  // This layout survives public destination navigation, keeping one Canvas.
+  // Ordinary content/payment routes continue to use their existing layout.
+  if (pathname === "/" || pathname === "/aftermovie") {
+    return <><ImmersiveShell />{children}</>;
+  }
 
   return (
     <div
@@ -41,7 +51,7 @@ export default function ClientLayout({
 
       <main className="w-full">{children}</main>
 
-      {!pathname.startsWith("/team") && <Footer nextPage={nextPage} />}
+      {!pathname.startsWith("/team") && !isPaymentRoute && <Footer nextPage={nextPage} />}
     </div>
   );
 }

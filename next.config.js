@@ -1,5 +1,6 @@
 // next.config.js
 module.exports = {
+  serverExternalPackages: ['pdf-parse', '@napi-rs/canvas', 'tesseract.js', 'tesseract.js-core'],
   experimental: {
     serverActions: {
       bodySizeLimit: '5mb',

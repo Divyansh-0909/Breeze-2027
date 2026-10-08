@@ -9,6 +9,7 @@ interface CheckoutButtonProps {
 
 export default function CheckoutButton({ accommodation }: CheckoutButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [cart, setCart] = useState({});
   const router = useRouter();
 
@@ -25,6 +26,7 @@ export default function CheckoutButton({ accommodation }: CheckoutButtonProps) {
 
   const handleCheckout = async () => {
     setIsLoading(true);
+    setError("");
     try {
       const cartData = JSON.parse(localStorage.getItem("cart") || "{}");
       setCart(cartData);
@@ -36,12 +38,14 @@ export default function CheckoutButton({ accommodation }: CheckoutButtonProps) {
           accommodation,
         }),
       });
-      const data: { message: string; id: string } = await response.json();
+      const data: { message: string; id: string; error?: string } = await response.json();
       if (response.ok) {
         router.push(`/checkout?token=${data.id}`);
+      } else {
+        setError(data.error || "Checkout is temporarily unavailable.");
       }
     } catch (error) {
-      alert("Error processing checkout");
+      setError("Could not reach checkout. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -54,6 +58,7 @@ export default function CheckoutButton({ accommodation }: CheckoutButtonProps) {
   }
   return (
     <div>
+      {error && <p role="alert" className="mb-3 max-w-md text-center text-red-300">{error}</p>}
       <Button
         onClick={handleCheckout}
         disabled={isLoading}

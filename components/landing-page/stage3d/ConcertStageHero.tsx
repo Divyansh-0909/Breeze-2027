@@ -17,6 +17,7 @@ import Lights from "./Lights";
 import Particles from "./Particles";
 import Effects from "./Effects";
 import CameraRig from "./CameraRig";
+import { useStageVideo } from "./useStageVideo";
 
 /**
  * Hero entry point. Import with next/dynamic + ssr: false.
@@ -168,95 +169,7 @@ export default function ConcertStageHero({
     useLoader.preload(GLTFLoader, ["/models/Man.glb", "/models/Animated-Woman.glb"]);
   }, []);
 
-  // ---- aftermovie on the LED wall ----
-  // Keep the 52 MB movie completely out of the travel/warm-up phase. Clicking
-  // play first lets the camera dolly toward the LED wall; only when that move
-  // lands do we attach the MP4 and call play(). With preload="none" the browser
-  // uses normal HTTP range requests and buffers progressively as playback
-  // advances instead of trying to satisfy canplaythrough up front.
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const textureRef = useRef<THREE.VideoTexture | null>(null);
-  const [phase, setPhase] = useState<Phase>("idle");
-  const [pyroKey, setPyroKey] = useState(0);
-
-  const playTimer = useRef<number | null>(null);
-  const clickedAt = useRef(0);
-
-  const stopMovie = useCallback(() => {
-    if (playTimer.current !== null) window.clearTimeout(playTimer.current);
-    playTimer.current = null;
-    const video = videoRef.current;
-    if (video) {
-      // aborts any in-flight download as well as playback
-      video.pause();
-      video.removeAttribute("src");
-      video.load();
-    }
-    // dispose only after the wall's ~0.35s fade-out has finished sampling it
-    const tex = textureRef.current;
-    if (tex) window.setTimeout(() => tex.dispose(), 600);
-    videoRef.current = null;
-    textureRef.current = null;
-    setPhase("idle");
-  }, []);
-
-  // unmount mid-load/mid-show: tear the video down so it stops downloading
-  useEffect(() => stopMovie, [stopMovie]);
-
-  const startMovie = useCallback(() => {
-    if (videoRef.current) return; // already loading or playing
-
-    const video = document.createElement("video");
-    video.playsInline = true;
-    video.preload = "none";
-    const tex = new THREE.VideoTexture(video);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    tex.minFilter = THREE.LinearFilter;
-    videoRef.current = video;
-    textureRef.current = tex;
-
-    // pyro + video wall are keyed off ACTUAL playback, not the click
-    video.addEventListener(
-      "playing",
-      () => {
-        setPhase("playing");
-        setPyroKey((k) => k + 1);
-      },
-      { once: true }
-    );
-
-    video.addEventListener("ended", stopMovie);
-    video.addEventListener("error", stopMovie);
-
-    clickedAt.current = performance.now();
-    setPhase("loading");
-
-    // Do not attach the source during the camera move. Once it lands, play()
-    // starts the first byte-range request and native media buffering continues
-    // alongside playback instead of downloading the whole movie first.
-    const wait = Math.max(0, 900 - (performance.now() - clickedAt.current));
-    playTimer.current = window.setTimeout(() => {
-      if (videoRef.current !== video) return;
-      video.src = "/after-movie.mp4";
-      video.currentTime = 0;
-      video.play().catch(() => {
-        // If the user-activation window has expired while the camera moved,
-        // muted playback is still allowed and keeps the experience moving.
-        video.muted = true;
-        void video.play();
-      });
-    }, wait);
-  }, [stopMovie]);
-
-  // Esc cancels the load / exits the aftermovie
-  useEffect(() => {
-    if (phase === "idle") return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") stopMovie();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [phase, stopMovie]);
+  const { phase, pyroKey, texture, startMovie } = useStageVideo();
 
   return (
     <div className="absolute inset-0" aria-label="3D concert stage">
@@ -288,7 +201,7 @@ export default function ConcertStageHero({
           <Env />
           <Stage />
           <LEDScreens
-            videoTexture={phase === "playing" ? textureRef.current : null}
+            videoTexture={phase === "playing" ? texture : null}
             loading={phase === "loading"}
             onPlay={startMovie}
           />

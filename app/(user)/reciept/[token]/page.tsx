@@ -41,6 +41,7 @@ export default async function Page({
       </div>
     );
   }
+  const pricingSnapshot = (transaction.pricingSnapshot || {}) as Record<string, Record<string, number>>;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen pt-10 p-4">
@@ -53,6 +54,10 @@ export default async function Page({
         <h1 className="text-2xl font-bold text-center mb-6 text-primary">
           Receipt
         </h1>
+        {transaction.paymentReference && <div className="rounded-lg bg-white/10 p-3 text-sm">
+          <p>Order reference: <strong className="font-mono">{transaction.paymentReference}</strong></p>
+          {transaction.bankReference && <p>Bank reference: {transaction.bankReference}</p>}
+        </div>}
         <div className="flex justify-between items-center">
           <div className="space-y-1">
             <h2 className="text-lg font-semibold text-foreground">
@@ -95,7 +100,7 @@ export default async function Page({
                         x{quantity}
                       </p>
                       <p className="text-lg font-medium">
-                        ₹{(merchMap[id].product_price * quantity).toFixed(2)}
+                        ₹{((pricingSnapshot[id]?.[size] ?? merchMap[id].product_price) * quantity).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -103,7 +108,7 @@ export default async function Page({
               } else if (eventsMap[id]) {
                 return Object.entries(sizes).map(([ticketType, quantity]) => {
                   const isPair = ticketType === "PAIR";
-                  const price = isPair ? (eventsMap[id].event_pair_price || eventsMap[id].event_price) : eventsMap[id].event_price;
+                  const price = pricingSnapshot[id]?.[ticketType] ?? (isPair ? (eventsMap[id].event_pair_price || eventsMap[id].event_price) : eventsMap[id].event_price);
                   return (
                     <div
                       key={id + ticketType}

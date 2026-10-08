@@ -54,6 +54,11 @@ model PendingTransaction {
   cart                Json
   accommodation       accommodation_option[]
   accommodation_price BigInt
+  paymentReference    String? @unique
+  paymentAccountId    String?
+  paymentUpiId        String?
+  paymentPayeeName    String?
+  pricingSnapshot     Json?
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -77,6 +82,102 @@ model SubmittedTransaction {
   student_details     String?
   ConfirmedEvent      ConfirmedEvent[]
   ConfirmedMerch      ConfirmedMerch[]
+  paymentReference    String? @unique
+  paymentAccountId    String?
+  paymentAccount      PaymentAccount? @relation(fields: [paymentAccountId], references: [id])
+  paymentUpiId        String?
+  paymentPayeeName    String?
+  pricingSnapshot     Json?
+  claimedBankReference String?
+  bankReference       String?
+  paymentStatus       String @default("AWAITING_STATEMENT")
+  paymentReportedAt   DateTime?
+  paymentReviewReason String?
+  matchedCreditId     String? @unique
+  matchedCredit       BankCredit? @relation(fields: [matchedCreditId], references: [id])
+  paymentAudits       PaymentAudit[]
+  paymentEmails       PaymentEmail[]
+
+  @@index([paymentAccountId, approved, rejected])
+}
+
+model PaymentAccount {
+  id                    String @id @default(cuid())
+  label                 String
+  bankName              String
+  accountLast4          String
+  upiId                 String
+  payeeName             String
+  active                Boolean @default(false)
+  noteMatchingVerified  Boolean @default(false)
+  noteVerifiedBy        String?
+  noteVerifiedAt        DateTime?
+  createdAt             DateTime @default(now())
+  createdBy             String
+  transactions          SubmittedTransaction[]
+  statements            BankStatement[]
+  credits               BankCredit[]
+}
+
+model BankStatement {
+  id              String @id @default(cuid())
+  accountId       String
+  account         PaymentAccount @relation(fields: [accountId], references: [id])
+  fileHash        String
+  filename        String
+  format          String
+  extractedRows   Json
+  sourceText      String
+  reviewed        Boolean @default(false)
+  importedAt      DateTime @default(now())
+  importedBy      String
+  credits         BankCredit[]
+
+  @@unique([accountId, fileHash])
+}
+
+model BankCredit {
+  id              String @id @default(cuid())
+  accountId       String
+  account         PaymentAccount @relation(fields: [accountId], references: [id])
+  statementId     String
+  statement       BankStatement @relation(fields: [statementId], references: [id])
+  identity        String
+  rowHash         String
+  bookedAt        DateTime
+  amountPaise     BigInt
+  direction       String
+  bankReference   String?
+  description     String
+  orderReferences String[]
+  conflict        Boolean @default(false)
+  matchedOrder    SubmittedTransaction?
+
+  @@unique([accountId, identity])
+  @@index([accountId, bankReference])
+}
+
+model PaymentAudit {
+  id           String @id @default(cuid())
+  token        String
+  transaction  SubmittedTransaction @relation(fields: [token], references: [token])
+  action       String
+  actor        String
+  details      Json
+  createdAt    DateTime @default(now())
+}
+
+model PaymentEmail {
+  id          String @id @default(cuid())
+  token       String
+  transaction SubmittedTransaction @relation(fields: [token], references: [token])
+  kind        String
+  status      String @default("PENDING")
+  attempts    Int @default(0)
+  lastError   String?
+  updatedAt   DateTime @updatedAt
+
+  @@unique([token, kind])
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments

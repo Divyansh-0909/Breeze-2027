@@ -82,6 +82,7 @@ export default function Fireworks({ active }: { active: boolean }): React.ReactE
   );
   const sparkGeo = useMemo(() => makeGeometry(s.sparks), [s]);
   const flameGeo = useMemo(() => makeGeometry(s.flames), [s]);
+  useEffect(() => () => { sparkGeo.dispose(); flameGeo.dispose(); }, [sparkGeo, flameGeo]);
   const lightRefs = useRef<(THREE.PointLight | null)[]>([]);
   // mount the firelights only while the show runs — even zero-intensity
   // lights cost every lit material a slot in its light loop
@@ -101,6 +102,7 @@ export default function Fireworks({ active }: { active: boolean }): React.ReactE
     return m;
   }, []);
 
+  useEffect(() => () => { sparkMat.map?.dispose(); sparkMat.dispose(); }, [sparkMat]);
   const flameMat = useMemo(() => {
     const m = new THREE.PointsMaterial({
       size: 0.65,
@@ -115,6 +117,7 @@ export default function Fireworks({ active }: { active: boolean }): React.ReactE
     return m;
   }, []);
 
+  useEffect(() => () => { flameMat.map?.dispose(); flameMat.dispose(); }, [flameMat]);
   useFrame((_, rawDt) => {
     if (s.done) return; // pods stay visible; fire only when triggered
     const dt = Math.min(rawDt, 0.05);
