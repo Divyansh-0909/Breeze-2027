@@ -11,13 +11,14 @@ import Fireworks from "@/components/landing-page/stage3d/Fireworks";
 import { useStageVideo } from "@/components/landing-page/stage3d/useStageVideo";
 import { ReadinessGate } from "./rendering";
 import { recordPreparation } from "./diagnostics";
-import { CavernBoundary, WorldSign } from "./HubScene";
+import HubScene from "./HubScene";
+import { point3, world } from "./world";
 import type { ImmersiveRuntime } from "./runtime";
 
-export default function AftermovieScene({ runtime, serial, quality }: { runtime: ImmersiveRuntime; serial: number; quality: number }) {
+export default function AftermovieScene({ runtime, serial, quality, nearStage, overview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean }) {
   const video = useStageVideo();
-  const [crowdReady, setCrowdReady] = useState(false);
-  const ready = useCallback(() => setCrowdReady(true), []);
+  const [crowdReadySerial, setCrowdReadySerial] = useState<number | null>(null);
+  const ready = useCallback(() => setCrowdReadySerial(serial), [serial]);
   const baked = useCallback((ms: number) => recordPreparation(runtime, "crowd-pose-bake", performance.now() - ms, ms), [runtime]);
   useEffect(() => { runtime.setMovie(video.phase !== "idle"); }, [runtime, video.phase]);
   useEffect(() => {
@@ -25,18 +26,17 @@ export default function AftermovieScene({ runtime, serial, quality }: { runtime:
     return () => { runtime.movieActions = null; };
   }, [runtime, video.startMovie, video.stopMovie, video.enableSound, video.getStatus]);
   return <>
-    <color attach="background" args={["#b2bbb9"]} />
-    <fog attach="fog" args={["#b2bbb9", 55, 130]} />
-    <hemisphereLight args={["#d8e0dd", "#686b59", 0.65]} />
-    <CavernBoundary centerZ={-8} />
-    <Stage />
+    <HubScene nearStage={nearStage} quality={quality} overview={overview} />
+    {/* One original stage in the shared world. Navigation changes interaction/crowd detail. */}
+    <group position={point3(world.stage.origin)} rotation-y={world.stage.yaw}>
+    <Stage ground={false} />
     <Trusses /><Speakers /><Barricades />
-    <LEDScreens videoTexture={video.phase === "playing" ? video.texture : null} loading={video.phase === "loading"} onPlay={() => { if (runtime.getSnapshot().phase === "local") video.startMovie(); }} />
-    <Lights motion={!runtime.reduced} dimmed={video.phase !== "idle"} />
+    <LEDScreens videoTexture={video.phase === "playing" ? video.texture : null} loading={video.phase === "loading"} onPlay={() => { const state = runtime.getSnapshot(); if (nearStage && state.phase === "local" && !state.map && !state.destinationMenu) video.startMovie(); }} />
+    <Lights motion={nearStage && !runtime.reduced} dimmed={video.phase !== "idle"} />
     {/* Already fully covered: yield between poses, without the standalone scene's 150ms pacing gaps. */}
-    <Crowd count={quality >= 2 ? 300 : quality === 1 ? 600 : 900} onReady={ready} bakeDelayMs={0} onBake={baked} />
+    {nearStage && <Crowd clearApproach count={quality >= 2 ? 300 : quality === 1 ? 600 : 900} onReady={ready} bakeDelayMs={0} onBake={baked} />}
     <Fireworks key={video.pyroKey} active={!runtime.reduced && quality === 0 && video.pyroKey > 0 && video.phase === "playing"} />
-    <WorldSign label="GULLYVERSE  →" position={[0, 2.8, 27.8]} rotation={[0, Math.PI, 0]} />
-    {crowdReady && ["boot", "covered", "recovering"].includes(runtime.getSnapshot().phase) && <ReadinessGate key={serial} runtime={runtime} serial={serial} />}
+    </group>
+    {(!nearStage || crowdReadySerial === serial) && ["boot", "covered", "recovering"].includes(runtime.getSnapshot().phase) && <ReadinessGate key={serial} runtime={runtime} serial={serial} />}
   </>;
 }

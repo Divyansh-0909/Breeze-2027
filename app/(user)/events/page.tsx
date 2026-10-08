@@ -1,5 +1,6 @@
 import BasicCards from "@/components/events/BasicCards";
 import { prisma } from "@/lib/prisma";
+import { eventCatalogUnavailableMessage, readEventCatalog } from "@/lib/events/catalog";
 
 export const dynamic = "force-dynamic";
 import Image from "next/image";
@@ -38,7 +39,7 @@ const page = async ({
   searchParams: Promise<{ page?: string }>;
 }) => {
   const params = await searchParams;
-  const cultural = await prisma.eventItem.findMany({
+  const culturalCatalog = await readEventCatalog(() => prisma.eventItem.findMany({
     select: {
       event_name: true,
       event_description: true,
@@ -56,8 +57,8 @@ const page = async ({
       },
     },
     take: 5,
-  });
-  const technical = await prisma.eventItem.findMany({
+  }));
+  const technicalCatalog = await readEventCatalog(() => prisma.eventItem.findMany({
     select: {
       event_name: true,
       event_description: true,
@@ -75,7 +76,9 @@ const page = async ({
       },
     },
     take: 5,
-  });
+  }));
+  const cultural = culturalCatalog.available ? culturalCatalog.data : [];
+  const technical = technicalCatalog.available ? technicalCatalog.data : [];
   return (
     <div className="relative">
       <title>Events - Breeze '26</title>
@@ -119,6 +122,11 @@ const page = async ({
         </div>
       </div>
 
+      {(!culturalCatalog.available || !technicalCatalog.available) && (
+        <p role="status" data-event-catalog="unavailable" className="mx-10 my-6 px-2 text-center text-white/90 sm:px-6">
+          {eventCatalogUnavailableMessage}
+        </p>
+      )}
       <div className="flex flex-col gap-2 sm:gap-1 m-10 mb-0 px-2 sm:px-6">
         <h1 className="text-xl sm:text-2xl font-urban-vogue text-[#F6FC50]">
           संस्कारी AF

@@ -1,5 +1,6 @@
 import React from "react";
 import { prisma } from "@/lib/prisma";
+import { eventCatalogUnavailableMessage, readEventCatalog } from "@/lib/events/catalog";
 import { AddToCartEvent } from "@/components/product/AddToCart";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
@@ -9,9 +10,19 @@ export default async function Page({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const event = await prisma.eventItem.findUnique({
-    where: { id: (await params).id },
-  });
+  const { id } = await params;
+  const catalog = await readEventCatalog(() => prisma.eventItem.findUnique({
+    where: { id },
+  }));
+
+  if (!catalog.available) {
+    return (
+      <div className="flex min-h-screen items-center justify-center px-6 text-center text-white text-xl">
+        <p role="status" data-event-catalog="unavailable">{eventCatalogUnavailableMessage}</p>
+      </div>
+    );
+  }
+  const event = catalog.data;
 
   if (!event) {
     return (

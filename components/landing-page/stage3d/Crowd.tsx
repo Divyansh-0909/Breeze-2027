@@ -123,11 +123,14 @@ export default function Crowd({
   immediate = false,
   count = COUNT,
   onReady,
+  clearApproach = false,
   bakeDelayMs = 150,
   onBake,
 }: {
   count?: number;
   onReady?: () => void;
+  /** Shared quarry needs a continuous walking lane through the viewing enclosure. */
+  clearApproach?: boolean;
   /** Covered preparation can yield without pacing delays; standalone behavior stays unchanged. */
   bakeDelayMs?: number;
   onBake?: (ms: number) => void;
@@ -203,7 +206,7 @@ export default function Crowd({
     while (out.length < count) {
       const x = (rand() * 2 - 1) * 22;
       const z = 4.5 + rand() * 18;
-      if (Math.abs(x) < 3.7 && z < 15.2) continue; // keep the runway clear
+      if (Math.abs(x) < 3.7 && (clearApproach || z < 15.2)) continue;
       // far rows (near the stage) read as pure silhouette — lean harder on
       // the 3x-cheaper man mesh there; near rows keep the full mix
       const isMan = rand() < (z < 14 ? 0.8 : MAN_SHARE);
@@ -216,7 +219,7 @@ export default function Crowd({
       });
     }
     return out;
-  }, [count]);
+  }, [count,clearApproach]);
 
   const refs = useRef<(THREE.InstancedMesh | null)[]>([]);
 

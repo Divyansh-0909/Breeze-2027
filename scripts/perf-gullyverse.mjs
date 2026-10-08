@@ -3,7 +3,7 @@
  * GULLYVERSE_PROFILES=desktop,mobile-emulated (default). Mobile emulation is NOT real device certification.
  */
 import assert from "node:assert/strict";
-import { mkdir, unlink, writeFile } from "node:fs/promises";
+import { mkdir, readFile, unlink, writeFile } from "node:fs/promises";
 import os from "node:os";
 import { chromium } from "playwright";
 
@@ -16,6 +16,16 @@ const browser = await chromium.launch({
   headless: true,
 });
 const results = [];
+const attemptedApiWrites = [];
+async function guardWrites(context) {
+  await context.route("**/api/**",route=>{
+    if(!["GET","HEAD"].includes(route.request().method())) {
+      attemptedApiWrites.push({method:route.request().method(),url:route.request().url()});return route.abort();
+    }
+    return route.continue();
+  });
+}
+const world = JSON.parse(await readFile(new URL("../public/models/gullyverse/blockout.layout.json",import.meta.url),"utf8"));
 const quantile = (sorted, q) => sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * q))] ?? 0;
 function summarize(samples) {
   const ms = samples.map((s) => s.ms).sort((a, b) => a - b);
@@ -43,7 +53,8 @@ const pose = (page) => page.evaluate(() => ({ ...window.__gullyverse.runtime.pos
 async function key(page, code, duration) { await page.keyboard.down(code); await page.waitForTimeout(duration); await page.keyboard.up(code); }
 async function mapTravel(page, id) {
   await page.getByRole("button", { name: /^Map/ }).click();
-  await page.getByRole("button", { name: id === "hub" ? "Gullyverse hub" : "Aftermovie Travel" }).click();
+  await page.getByRole("region", { name: "Festival aerial map" }).waitFor();
+  await page.getByRole("button", { name: id === "hub" ? "Gullyverse hub" : "Aftermovie", exact: true }).click();
   await waitLocal(page, id);
 }
 async function capture(page, name) {
@@ -83,6 +94,7 @@ async function run(profile) {
   console.log(`[${profile}] cold load and entrance`);
   const mobile = profile === "mobile-emulated";
   const context = await browser.newContext(mobile ? { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true } : { viewport: { width: 1366, height: 768 }, deviceScaleFactor: 1 });
+  await guardWrites(context);
   const page = await context.newPage();
   const errors = [];
   const expectedLocalTelemetry404s = [];
@@ -113,8 +125,9 @@ async function run(profile) {
     record(); runtime.subscribe(record);
   });
   const originalCanvas = await page.locator("canvas").evaluateHandle((c) => c);
-  await page.keyboard.down("KeyW"); await page.waitForTimeout(150); await page.keyboard.up("KeyW"); assert.equal((await pose(page)).z, 8);
-  await page.screenshot({ path: `${artifactDir}/${profile}-landing.png` });
+  await page.keyboard.down("KeyW"); await page.waitForTimeout(150); await page.keyboard.up("KeyW"); assert.equal((await pose(page)).z, world.landing.position[2]);
+  // Keep visitor UI proof separate from the clean composition/camera captures.
+  await page.screenshot({ path: `${artifactDir}/${profile}-landing-with-ui.png` });
   const enterAt = Date.now();
   if (mobile) await page.getByRole("button", { name: "Enter Gullyverse" }).tap();
   else await page.keyboard.press("Enter");
@@ -127,9 +140,22 @@ async function run(profile) {
   // Recenter laterally; this is ordinary movement, not test teleportation.
   const position = await pose(page);
   if (Math.abs(position.x) > 0.4) await key(page, position.x > 0 ? "KeyA" : "KeyD", Math.abs(position.x) / 4.2 * 1000);
+  // Turn toward the actual offset stage through the public drag controls.
+  const approachPose = await pose(page);
+  const zone = world.hub.travelZones.find(z=>z.sign==="main-stage") ?? world.hub.travelZones.find(z=>z.id==="aftermovie");
+  const a = world.hub.movementBoundary[zone.edge], b = world.hub.movementBoundary[(zone.edge+1)%world.hub.movementBoundary.length];
+  const t = (zone.range[0]+zone.range[1])/2;
+  const target = [a[0]+(b[0]-a[0])*t,world.eyeHeight,a[1]+(b[1]-a[1])*t];
+  const yaw = Math.atan2(-(target[0]-approachPose.x),-(target[2]-approachPose.z));
+  const delta = Math.atan2(Math.sin(yaw-approachPose.yaw),Math.cos(yaw-approachPose.yaw));
+  let remaining=delta;
+  while(Math.abs(remaining)>.0001) {
+    const turn=Math.max(-.3,Math.min(.3,remaining)),x=mobile?190:600,y=mobile?350:300;
+    await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x-turn/.003,y,{steps:8});await page.mouse.up();remaining-=turn;
+  }
   const routeAt = Date.now();
   await page.keyboard.down("KeyW");
-  await page.waitForSelector('[data-phase="departure"]', { timeout: 12000 });
+  await page.waitForSelector('[data-phase="departure"]', { timeout: 45000 });
   await page.keyboard.up("KeyW");
   const committedAt = Date.now();
   await waitLocal(page, "aftermovie");
@@ -155,10 +181,13 @@ async function run(profile) {
   assert.ok(Math.abs((await pose(page)).y - beforePlay.y) < 0.01);
   assert.ok(rangeRequest, "Preserved movie should request media only after play");
   page.off("request", recordMovie);
-  // Walk through the deliberately bounded return route.
-  const after = await pose(page);
-  if (Math.abs(after.x) > 3) await key(page, after.x > 0 ? "KeyA" : "KeyD", (Math.abs(after.x) - 1) / 4.2 * 1000);
-  await page.keyboard.down("KeyS"); await page.waitForSelector('[data-phase="departure"]', { timeout: 10000 }); await page.keyboard.up("KeyS");
+  // Every outer edge now clamps walking and asks the visitor where to go.
+  // Return requires an explicit overlay selection; touching an edge never leaves.
+  await page.keyboard.down("KeyS"); await page.getByRole("dialog", { name: "Where to next?" }).waitFor({timeout:10000}); await page.keyboard.up("KeyS");
+  const boundaryPose = await pose(page);
+  assert.equal(new URL(page.url()).pathname,"/aftermovie");
+  await page.waitForTimeout(250); assert.deepEqual(await pose(page),boundaryPose);
+  await page.getByRole("button", { name:"Return to Hub",exact:true }).click();
   await waitLocal(page, "hub"); assert.equal(new URL(page.url()).pathname, "/");
   const mapAt = Date.now(); await mapTravel(page, "aftermovie"); const warmMapTravelMs = Date.now() - mapAt;
   await page.goBack(); await waitLocal(page, "hub");
@@ -210,6 +239,9 @@ async function run(profile) {
     await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
     assert.ok((await pose(page)).x < before.x - 0.5, "Touch movement must reach shared input axes");
     await page.getByRole("button", { name: /^Map/ }).tap(); await page.getByRole("button", { name: "Close map" }).tap();
+    // Map close now owns a continuous descent. Test look only after camera/input
+    // ownership has returned, rather than dragging during the intended freeze.
+    await page.waitForFunction(() => !window.__gullyverse.runtime.getSnapshot().map, { timeout: 10000 });
     const beforeLook = await pose(page);
     await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: 420, y: 160 }] });
     await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: 475, y: 170 }] });
@@ -240,7 +272,7 @@ async function run(profile) {
   await page.getByRole("button", { name: "Use without 3D" }).click(); assert.equal(await page.locator("canvas").count(), 0);
   assert.equal(await page.locator("video[controls]").count(), 1);
   assert.equal(await page.getByRole("navigation", { name: "Festival information" }).count(), 1);
-  const result = { profile, mode: process.env.GULLYVERSE_MODE ?? "unspecified", viewport: mobile ? "390x844; landscape 844x390" : "1366x768; resize 1024x700", cpuThrottle: mobile ? 4 : 1, renderer: main.renderer, browser: browser.version(), cpu: os.cpus()[0]?.model, platform: `${os.platform()} ${os.release()}`, timings: { landingMs, entranceMs, approachMs, coldTravelMs, warmMapTravelMs, directMs }, inputResponse, backgroundVisibilityObserved, movement, statsAfterRepeat, mediaRange: rangeRequest, heapMB: main.heapMB, longTasks: { count: main.flow.longTasks.length, maxMs: Math.max(0, ...main.flow.longTasks.map((t) => t.ms)) }, phases: main.flow.phases, errors, checks: ["cold landing", "controlled entrance", "hub movement", "physical Aftermovie threshold", "hidden handoff", "bounded Aftermovie movement", "video playback + Escape", "physical hub return", "map", "repeat navigation", "persistent Canvas", "back/forward", "warm direct URL", "resize", "blur/focus held-key interruption", "background tab/restore", "reduced motion", "2D fallback", ...(mobile ? ["tap entrance", "touch movement", "touch drag look", "touch map"] : [])] };
+  const result = { profile, mode: process.env.GULLYVERSE_MODE ?? "unspecified", viewport: mobile ? "390x844; landscape 844x390" : "1366x768; resize 1024x700", cpuThrottle: mobile ? 4 : 1, renderer: main.renderer, browser: browser.version(), cpu: os.cpus()[0]?.model, platform: `${os.platform()} ${os.release()}`, timings: { landingMs, entranceMs, approachMs, coldTravelMs, warmMapTravelMs, directMs }, inputResponse, backgroundVisibilityObserved, movement, statsAfterRepeat, mediaRange: rangeRequest, heapMB: main.heapMB, longTasks: { count: main.flow.longTasks.length, maxMs: Math.max(0, ...main.flow.longTasks.map((t) => t.ms)) }, phases: main.flow.phases, errors, checks: ["cold landing", "controlled entrance", "hub movement", "local Aftermovie directional threshold", "hidden handoff", "bounded Aftermovie movement", "video playback + Escape", "boundary stops movement without automatic return", "explicit text-overlay hub selection", "aerial map", "repeat navigation", "persistent Canvas", "back/forward", "warm direct URL", "resize", "blur/focus held-key interruption", "background tab/restore", "reduced motion", "2D fallback", ...(mobile ? ["tap entrance", "touch movement", "touch drag look", "touch map"] : [])] };
   result.expectedLocalTelemetry404s = expectedLocalTelemetry404s;
   result.phasePerformance = phaseReport(main.diagnostics, main.flow.longTasks);
   result.preparation = main.diagnostics.preparations;
@@ -257,6 +289,7 @@ async function run(profile) {
 async function edgeCases() {
   console.log("[edge cases] cold direct URL, delayed/failing assets, interrupted travel, residency and context loss");
   const context = await browser.newContext({ viewport: { width: 1366, height: 768 } });
+  await guardWrites(context);
   const page = await context.newPage();
   await page.route("**/models/Man.glb", async (route) => { await new Promise((resolve) => setTimeout(resolve, 2500)); await route.continue(); });
   await page.goto(`${base}/aftermovie?diagnostics`, { waitUntil: "domcontentloaded" });
@@ -274,7 +307,7 @@ async function edgeCases() {
   assert.equal(await page.getByRole("button", { name: "Enter Gullyverse" }).count(), 0);
   await page.unroute("**/models/Man.glb");
   await mapTravel(page, "hub");
-  await page.getByRole("button", { name: /^Map/ }).click(); await page.getByRole("button", { name: "Aftermovie Travel" }).click();
+  await page.getByRole("button", { name: /^Map/ }).click(); await page.getByRole("button", { name: "Aftermovie",exact:true }).click();
   // A URL change supersedes an already committed trip through the shared model.
   await page.evaluate(() => { history.pushState(null, "", "/?diagnostics"); window.dispatchEvent(new PopStateEvent("popstate")); });
   await waitLocal(page, "hub");
@@ -329,7 +362,7 @@ async function edgeCases() {
   assert.equal(await page.locator("video[controls]").count(), 1);
   await recoveredCanvas.dispose();
   await context.close();
-  const failureContext = await browser.newContext(); const failurePage = await failureContext.newPage();
+  const failureContext = await browser.newContext(); await guardWrites(failureContext); const failurePage = await failureContext.newPage();
   await failurePage.route("**/models/Man.glb", (route) => route.abort());
   await failurePage.goto(`${base}/aftermovie`, { waitUntil: "domcontentloaded" });
   await failurePage.waitForSelector('[data-phase="error"]', { timeout: 60000 });
@@ -342,6 +375,7 @@ async function captureBlockoutViewpoints(profile) {
   // tunnel viewpoints in a separate journey, outside performance measurements.
   const mobile = profile === "mobile-emulated";
   const context = await browser.newContext(mobile ? { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true } : { viewport: { width: 1366, height: 768 } });
+  await guardWrites(context);
   try {
     const page = await context.newPage();
     await page.goto(`${base}/?diagnostics`, { waitUntil: "domcontentloaded" });
@@ -362,6 +396,8 @@ try {
   }
   for (const profile of profiles) await captureBlockoutViewpoints(profile);
   const edges = await edgeCases();
+  assert.deepEqual(attemptedApiWrites,[],"Browser profiling must remain read only");
+  edges.attemptedApiWrites=attemptedApiWrites;
   await writeFile(`${artifactDir}/edge-cases.json`, JSON.stringify(edges, null, 2));
   await unlink(`${artifactDir}/failure.txt`).catch((error) => { if (error.code !== "ENOENT") throw error; });
   console.log(JSON.stringify(edges));

@@ -3,6 +3,7 @@ import Heading2 from "@/components/events/heading2";
 import BasicCards from "@/components/events/BasicCards";
 import BottomButtons from "@/components/events/bottombuttons";
 import { prisma } from "@/lib/prisma";
+import { eventCatalogUnavailableMessage, readEventCatalog } from "@/lib/events/catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,7 @@ const page = async ({
   searchParams: Promise<{ page?: string }>;
 }) => {
   const params = await searchParams;
-  const all_events = await prisma.eventItem.findMany({
+  const catalog = await readEventCatalog(() => prisma.eventItem.findMany({
     select: {
       event_name: true,
       event_description: true,
@@ -29,7 +30,8 @@ const page = async ({
         equals: "Technical",
       },
     },
-  });
+  }));
+  const all_events = catalog.available ? catalog.data : [];
 
   const currentPage = Number(params.page) || 1;
   const totalItems = all_events.length;
@@ -42,6 +44,12 @@ const page = async ({
       <title>Technical Events - Breeze '26</title>
       <Heading2 content="Here's all the technical events Breeze 26' has in store for you" />
 
+      {!catalog.available && (
+        <p role="status" data-event-catalog="unavailable" className="mx-10 my-6 text-center text-white/90">
+          {eventCatalogUnavailableMessage}
+        </p>
+      )}
+
       <div className="m-10 mt-0">
         <div className="flex justify-center py-10">
           <div className="">
@@ -50,7 +58,7 @@ const page = async ({
         </div>
       </div>
 
-      <BottomButtons currentPage={currentPage} totalItems={totalItems} />
+      {catalog.available && <BottomButtons currentPage={currentPage} totalItems={totalItems} />}
     </div>
   );
 };

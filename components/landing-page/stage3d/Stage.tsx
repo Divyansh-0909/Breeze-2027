@@ -7,14 +7,14 @@ import BlenderAsset from "../../three/BlenderAsset";
  * arrow-shaped catwalk) and ground.
  */
 
-export default function Stage(): React.ReactElement {
+export default function Stage({ ground = true }: { ground?: boolean }): React.ReactElement {
   return (
     <group>
       {/* Ground */}
-      <mesh rotation-x={-Math.PI / 2} position-y={-0.01}>
+      {ground && <mesh rotation-x={-Math.PI / 2} position-y={-0.01}>
         <circleGeometry args={[70, 48]} />
         <meshStandardMaterial color="#07080b" roughness={0.9} metalness={0.1} />
-      </mesh>
+      </mesh>}
 
       <BlenderAsset url="/models/breeze/aftermovie-stage.glb" />
     </group>

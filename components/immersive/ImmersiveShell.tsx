@@ -1,13 +1,14 @@
 "use client";
 import React, { Component, lazy, Suspense, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Canvas } from "@react-three/fiber";
-import HubScene from "./HubScene";
+import { point3, world } from "./world";
 import { FrameController, SceneRenderer, QUALITY_DPR } from "./rendering";
 import { ImmersiveRuntime } from "./runtime";
-import { locationFromPath, locations, mapLabels } from "./navigation";
+import { locationFromPath, locations } from "./navigation";
 import { useImmersiveInput } from "./input";
+import WorldOverlays, { MapMarkerProjection, type MapDOM } from "./WorldOverlays";
 import styles from "./immersive.module.css";
 
 const AftermovieScene = lazy(() => import("./AftermovieScene"));
@@ -31,27 +32,9 @@ class SceneBoundary extends Component<{ children: React.ReactNode; onError: (mes
   render() { return this.state.failed ? null : this.props.children; }
 }
 
-function FestivalMap({ runtime }: { runtime: ImmersiveRuntime }) {
-  const dialog = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
-    const previous = document.activeElement as HTMLElement | null;
-    const node = dialog.current;
-    node?.showModal();
-    return () => { node?.close(); previous?.focus(); };
-  }, []);
-  return <dialog ref={dialog} className={styles.map} aria-labelledby="map-title" onCancel={() => runtime.setMap(false)}>
-    <div className={styles.mapHeader}><h2 id="map-title">Find your way</h2><button onClick={() => runtime.setMap(false)} aria-label="Close map">×</button></div>
-    <p>One festival. Follow the music.</p>
-    <div className={styles.mapDrawing} aria-hidden="true"><span className={styles.mapTunnel}>Entrance</span><span className={styles.mapHub}>Gullyverse</span><span className={styles.mapStage}>Aftermovie</span><i /></div>
-    <button className={styles.destination} onClick={() => { runtime.request("hub", "map"); runtime.setMap(false); }}>Gullyverse hub</button>
-    {mapLabels.map((label) => <button key={label} className={styles.destination} disabled={label !== "Aftermovie"} onClick={() => { runtime.request("aftermovie", "map"); runtime.setMap(false); }}>
-      <span>{label}</span><small>{label === "Aftermovie" ? "Travel →" : "Coming soon"}</small>
-    </button>)}
-  </dialog>;
-}
-
 export default function ImmersiveShell() {
   const pathname = usePathname();
+  const router = useRouter();
   const [runtime] = useState(() => new ImmersiveRuntime(locationFromPath(pathname) ?? "hub", (id, source) => {
     // Next's supported native history integration updates usePathname without
     // fetching/remounting a second renderer. Popstate enters the same request path.
@@ -62,8 +45,13 @@ export default function ImmersiveShell() {
   }));
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   const curtain = useRef<HTMLDivElement>(null);
+  const [mapElements] = useState<MapDOM>(() => ({ container: null, nodes: new Map(), dots: new Map(), lines: new Map() }));
   const [flat, setFlat] = useState(false);
   useImmersiveInput(runtime);
+  useEffect(() => {
+    runtime.onCoveredRoute = href => router.push(href);
+    return () => { runtime.onCoveredRoute = null; };
+  }, [runtime, router]);
   useEffect(() => {
     const destination = locationFromPath(pathname);
     if (destination && destination !== runtime.getSnapshot().destination) runtime.request(destination, "url");
@@ -85,22 +73,24 @@ export default function ImmersiveShell() {
   }, [runtime]);
   const local = state.phase === "local";
   if (flat || state.phase === "error") return <div className={styles.shell} data-phase={state.phase}><Fallback error={state.error ?? undefined} /></div>;
-  return <section className={styles.shell} data-phase={state.phase} data-location={state.scene} aria-label="Gullyverse immersive experience">
+  return <section className={styles.shell} data-phase={state.phase} data-location={state.scene} data-inspection={state.inspection ?? undefined} data-map-stage={state.mapStage ?? undefined} data-destination-menu={state.destinationMenu || undefined} aria-label="Gullyverse immersive experience">
     <SceneBoundary onError={(message) => runtime.fail(message)}>
-      <Canvas dpr={Math.min(window.devicePixelRatio, QUALITY_DPR[state.quality])} camera={{ fov: 58, near: 0.1, far: 250, position: [0, 1.72, 8] }} gl={{ antialias: false, powerPreference: "high-performance" }} fallback={<Fallback error="WebGL2 unavailable" />}>
+      <Canvas dpr={Math.min(window.devicePixelRatio, QUALITY_DPR[state.quality])} camera={{ ...world.camera, position: point3(world.landing.position) }} gl={{ antialias: false, powerPreference: "high-performance" }} fallback={<Fallback error="WebGL2 unavailable" />}>
         <FrameController runtime={runtime} curtain={curtain} />
+        <MapMarkerProjection runtime={runtime} elements={mapElements} />
         <SceneRenderer runtime={runtime} />
         <Suspense fallback={null}>
-          {state.scene === "hub" ? <HubScene runtime={runtime} serial={state.serial} quality={state.quality} /> : <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} />}
+          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.inspection === "overview"} />
         </Suspense>
       </Canvas>
     </SceneBoundary>
     <div ref={curtain} className={styles.curtain} style={{ opacity: 1 }} aria-hidden="true"><div className={styles.occluder} /></div>
+    {state.inspection && <aside className={styles.inspection}>STAGE 1 / {state.inspection.toUpperCase()} · 1 unit = 1 m <button onClick={() => runtime.inspect(null)}>Resume view</button></aside>}
     <header className={styles.header}><Link href="/" onClick={(e) => { if (!e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) { e.preventDefault(); if (state.phase === "landing") return; runtime.request("hub", "map"); } }}>BREEZE <span>2027</span></Link><span>GULLYVERSE</span></header>
-    {state.phase === "landing" && <div className={styles.landing}><p>FOLLOW THE MUSIC</p><h1>A world<br />beyond the walls.</h1><button onClick={() => runtime.enter()}>Enter Gullyverse <span>→</span></button><small>Click, tap, or press Enter</small></div>}
+    {state.phase === "landing" && <div className={styles.landing}><p>FOLLOW THE MUSIC</p><h1>A world<br />beyond the walls.</h1><button aria-label="Enter Gullyverse" onClick={() => runtime.enter()}>Enter Gullyverse <span aria-hidden="true">→</span></button><small>Click, tap, or press Enter</small></div>}
     <p className={styles.status} role="status" aria-live="polite">{["context-lost", "recovering"].includes(state.phase) ? "Restoring your view…" : state.phase === "boot" ? "Preparing your view…" : state.phase === "covered" ? `On the way to ${locations[state.destination].label}…` : state.phase === "entrance" ? "Welcome to Gullyverse" : local ? locations[state.scene].label : "Follow the music"}</p>
-    {local && <div className={styles.controls}>
-      <p>{state.movie ? "Esc exits the Aftermovie" : state.scene === "hub" ? "WASD / arrows to walk · drag to look · follow AFTERMOVIE" : "WASD / arrows to walk · return path behind you"}</p>
+    {local && !state.map && !state.destinationMenu && <div className={styles.controls}>
+      <p>{state.movie ? "Esc exits the Aftermovie" : state.scene === "hub" ? "WASD / arrows to walk · drag to look · follow a direction" : "WASD / arrows to walk · edge to choose your next stop"}</p>
       <div className={styles.actions}>
         <button onClick={() => runtime.setMap(true)} disabled={state.movie}>Map <kbd>M</kbd></button>
         {state.scene === "aftermovie" && <>
@@ -111,6 +101,6 @@ export default function ImmersiveShell() {
       {!state.movie && <div className={styles.touchPad} aria-label="Movement controls"><button data-move="forward" aria-label="Walk forward">↑</button><div><button data-move="left" aria-label="Walk left">←</button><button data-move="back" aria-label="Walk backward">↓</button><button data-move="right" aria-label="Walk right">→</button></div><small>Drag the scene to look</small></div>}
     </div>}
     <div className={styles.access}><button onClick={() => { runtime.movieActions?.stop(); runtime.clearInput(); setFlat(true); }}>Use without 3D</button><details onToggle={(e) => { if (e.currentTarget.open) runtime.clearInput(); }}><summary>Festival information</summary><InformationLinks /></details></div>
-    {state.map && <FestivalMap runtime={runtime} />}
+    <WorldOverlays runtime={runtime} state={state} elements={mapElements} />
   </section>;
 }

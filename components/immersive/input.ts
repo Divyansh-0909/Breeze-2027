@@ -18,9 +18,11 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
     const down = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement)?.closest("input, textarea, select, [contenteditable=true]")) return;
       const s = runtime.getSnapshot();
+      if (e.code === "Escape" && runtime.handleEscape()) { e.preventDefault(); e.stopImmediatePropagation(); return; }
+      if (s.inspection) return;
       if (s.phase === "landing" && ["Enter", "Space"].includes(e.code) && !(e.target as HTMLElement)?.closest("button, a")) { e.preventDefault(); runtime.enter(); return; }
-      if (e.code === "KeyM" && s.phase === "local" && !s.movie && !e.repeat) { e.preventDefault(); runtime.setMap(!s.map); return; }
-      if (movementCodes.has(e.code) && s.phase === "local" && !s.map && !s.movie) { e.preventDefault(); keys.current.add(e.code); update(); }
+      if (e.code === "KeyM" && s.phase === "local" && !s.movie && !s.destinationMenu && !e.repeat) { e.preventDefault(); runtime.setMap(!s.map || s.mapStage === "descent"); return; }
+      if (movementCodes.has(e.code) && s.phase === "local" && !s.map && !s.movie && !s.destinationMenu) { e.preventDefault(); keys.current.add(e.code); update(); }
     };
     const up = (e: KeyboardEvent) => { keys.current.delete(e.code); update(); };
     const visibility = () => { runtime.suspended = document.hidden; clear(); };
@@ -29,10 +31,10 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const reduced = () => { runtime.reduced = media.matches; };
     reduced(); media.addEventListener("change", reduced);
-    let ownership = `${runtime.getSnapshot().phase}:${runtime.getSnapshot().map}:${runtime.getSnapshot().movie}`;
+    let ownership = `${runtime.getSnapshot().phase}:${runtime.getSnapshot().map}:${runtime.getSnapshot().movie}:${runtime.getSnapshot().inspection}:${runtime.getSnapshot().destinationMenu}`;
     const unsubscribe = runtime.subscribe(() => {
       const state = runtime.getSnapshot();
-      const next = `${state.phase}:${state.map}:${state.movie}`;
+      const next = `${state.phase}:${state.map}:${state.movie}:${state.inspection}:${state.destinationMenu}`;
       if (ownership !== next) clear();
       ownership = next;
     });
@@ -41,7 +43,7 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
       if (!(e.target as HTMLElement)?.closest("canvas")) return;
       const s = runtime.getSnapshot();
       if (s.phase === "landing") { runtime.enter(); return; }
-      if (s.phase !== "local" || s.map || s.movie) return;
+      if (s.phase !== "local" || s.map || s.movie || s.inspection || s.destinationMenu) return;
       drag.current = { id: e.pointerId, x: e.clientX, y: e.clientY };
       (e.target as HTMLElement).setPointerCapture(e.pointerId);
     };
@@ -55,12 +57,12 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
     // Touch pad events are converted to the same axes as the keyboard.
     const padDown = (e: PointerEvent) => {
       const pad = (e.target as HTMLElement)?.closest<HTMLElement>("[data-move]"); if (!pad) return;
-      const s = runtime.getSnapshot(); if (s.phase !== "local" || s.map || s.movie) return;
+      const s = runtime.getSnapshot(); if (s.phase !== "local" || s.map || s.movie || s.inspection || s.destinationMenu) return;
       e.preventDefault(); pad.setPointerCapture(e.pointerId);
       const direction = pad.dataset.move;
       virtual.current.set(e.pointerId, { forward: direction === "forward" ? 1 : direction === "back" ? -1 : 0, strafe: direction === "right" ? 1 : direction === "left" ? -1 : 0 }); update();
     };
-    window.addEventListener("keydown", down); window.addEventListener("keyup", up);
+    window.addEventListener("keydown", down, true); window.addEventListener("keyup", up);
     window.addEventListener("blur", blur); window.addEventListener("focus", focus); document.addEventListener("visibilitychange", visibility);
     document.addEventListener("freeze", blur); document.addEventListener("resume", focus);
     window.addEventListener("pointerdown", pointerDown); window.addEventListener("pointerdown", padDown);
@@ -68,7 +70,7 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
     window.addEventListener("lostpointercapture", pointerUp);
     return () => {
       clear(); unsubscribe(); media.removeEventListener("change", reduced);
-      window.removeEventListener("keydown", down); window.removeEventListener("keyup", up);
+      window.removeEventListener("keydown", down, true); window.removeEventListener("keyup", up);
       window.removeEventListener("blur", blur); window.removeEventListener("focus", focus); document.removeEventListener("visibilitychange", visibility);
       document.removeEventListener("freeze", blur); document.removeEventListener("resume", focus);
       window.removeEventListener("pointerdown", pointerDown); window.removeEventListener("pointerdown", padDown);

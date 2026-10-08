@@ -4,9 +4,9 @@
 .header a { font-weight: 900; letter-spacing: -.05em; font-size: 30px; pointer-events: auto; }
 .header a span { font-size: 12px; letter-spacing: .1em; margin-left: 8px; }
 .header > span { font-size: 11px; letter-spacing: .22em; }
-.landing { position: absolute; top: 33%; left: 8%; z-index: 4; text-shadow: 0 2px 25px #0008; }
+.landing { position: absolute; bottom: 15%; left: 5%; z-index: 4; text-shadow: 0 2px 25px #0008; }
 .landing p { font-size: 11px; letter-spacing: .25em; }
-.landing h1 { font-size: clamp(38px, 5vw, 76px); font-weight: 700; line-height: 1.02; letter-spacing: -.045em; margin: 20px 0 30px; }
+.landing h1 { font-size: clamp(32px, 3.2vw, 46px); font-weight: 700; line-height: 1.02; letter-spacing: -.045em; margin: 14px 0 20px; }
 .shell button { border: 1px solid #f2f0df66; border-radius: 3px; padding: 12px 18px; background: #1d2a24ed; color: #f2f0df; cursor: pointer; }
 .shell button:hover { background: #35483d; }
 .shell button:focus-visible, .shell a:focus-visible, .shell summary:focus-visible { outline: 3px solid #e3cf86; outline-offset: 4px; }
@@ -29,19 +29,42 @@
 .touchPad { display: none; pointer-events: auto; position: absolute; right: 0; bottom: 0; text-align: center; touch-action: none; }
 .touchPad button { width: 47px; height: 47px; padding: 10px; margin: 3px; touch-action: none; font-size: 20px; user-select: none; }
 .touchPad small { display: block; font-size: 10px; background: #1d2a24cc; padding: 3px; }
-.map { width: min(430px, calc(100% - 32px)); max-height: 90dvh; background: #e3dfc9; color: #24332b; border: 0; border-radius: 8px; padding: 24px; z-index: 10; }
-.map::backdrop { background: #101c17b8; }
-.mapHeader { display: flex; justify-content: space-between; align-items: center; }
-.map h2 { font-size: 25px; font-weight: 700; }
-.map p { font-size: 12px; margin: 12px 0; }
-.map .mapHeader button { padding: 5px 13px; font-size: 24px; }
-.mapDrawing { height: 150px; position: relative; border: 2px solid #6b786380; border-radius: 50%; margin: 20px 0; background: #c1c6ac; font-size: 11px; }
-.mapDrawing span { position: absolute; z-index: 1; background: #e3dfc9; padding: 5px 8px; border-radius: 4px; }
-.mapTunnel { bottom: 10px; left: 15%; }.mapHub { top: 50%; left: 38%; }.mapStage { top: 10px; right: 18%; }
-.mapDrawing i { position: absolute; width: 2px; background: #657159; height: 85px; top: 30px; left: 49%; transform: rotate(35deg); }
-.map .destination { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; margin: 4px 0; }
-.map button:disabled { opacity: .45; cursor: default; background: #52604a; }
-.map small { font-size: 10px; }
+.inspection { position: absolute; bottom: 18px; left: 18px; z-index: 8; padding: 10px; background: #1d2a24e8; font-size: 11px; }
+.inspection button { margin-left: 12px; padding: 6px; }
+.shell[data-inspection] .landing, .shell[data-inspection] .header, .shell[data-inspection] .controls, .shell[data-inspection] .access, .shell[data-inspection] .status { display: none; }
+.shell[data-map-stage] .header, .shell[data-map-stage] .status, .shell[data-map-stage] .access,
+.shell[data-destination-menu] .header, .shell[data-destination-menu] .status, .shell[data-destination-menu] .access { display: none; }
+.aerialMap { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
+.aerialHeader { position: absolute; top: max(20px, env(safe-area-inset-top)); left: 28px; right: 28px; display: flex; align-items: center; justify-content: space-between; text-shadow: 0 2px 12px #000; }
+.aerialHeader p { font-size: 10px; letter-spacing: .2em; color: #dfc995; margin-bottom: 6px; }
+.aerialHeader h2 { font-size: clamp(20px, 2.4vw, 32px); font-weight: 700; letter-spacing: -.03em; }
+.aerialHeader button { pointer-events: auto; padding: 10px 14px; background: #171918b0; border-color: #ddc89377; }
+.aerialHeader kbd { font-size: 9px; opacity: .65; margin-left: 12px; }
+.mapMarkers { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.markerLines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.markerLines line { stroke: #ead9af; stroke-opacity: .65; stroke-width: 1; }
+.mapDot { position: absolute; left: -3px; top: -3px; width: 6px; height: 6px; border: 1px solid #fff0c7; background: #c4a76c; border-radius: 50%; box-shadow: 0 0 0 3px #15171980; }
+.shell .mapMarker, .mapLandmark { position: absolute; top: 0; left: 0; white-space: nowrap; max-width: 190px; text-align: center; box-shadow: 0 2px 12px #0006; }
+.shell .mapMarker { pointer-events: auto; border: 1px solid #decc9970; border-radius: 0; background: #1d211be8; padding: 10px 12px; min-height: 40px; font-size: 12px; }
+.shell .mapMarker:hover { background: #e0c78f; color: #151914; }
+.shell .mapMarker:disabled { cursor: default; color: #c1c4b5; background: #1a1e19d9; border-color: #c2c5b343; }
+.mapMarker small { display: block; font-size: 9px; color: #d3b26e; margin-top: 2px; }
+.mapLandmark { background: #171a17b8; padding: 5px 8px; font-size: 10px; color: #e3e0d1; }
+.aerialHint { position: absolute; bottom: max(24px, env(safe-area-inset-bottom)); width: 100%; text-align: center; padding: 0 12px; font-size: 11px; letter-spacing: .04em; text-shadow: 0 2px 8px #000; }
+.boundaryMenu { position: absolute; inset: 0; z-index: 9; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #060b0c66; text-shadow: 0 2px 18px #000; animation: overlayAppear .35s ease both; }
+.boundaryMenu h2 { font-size: clamp(32px, 4vw, 56px); font-weight: 700; letter-spacing: -.04em; margin-bottom: 30px; }
+.boundaryOptions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 48px; }
+.shell .boundaryMenu button { border: 0; border-radius: 0; background: transparent; padding: 9px 4px; font-size: clamp(17px, 2vw, 25px); font-weight: 500; text-align: left; }
+.shell .boundaryMenu button:hover { background: transparent; color: #f0ce7b; }
+.boundaryMenu button:disabled { color: #a1a69e; cursor: default; }
+.boundaryMenu small { display: block; font-size: 10px; letter-spacing: .08em; opacity: .6; margin-top: 3px; }
+.shell .boundaryMenu .stayHere { margin-top: 28px; font-size: 14px; text-decoration: underline; text-align: center; }
+.boundaryMenu p { font-size: 10px; letter-spacing: .14em; opacity: .7; margin-top: 12px; }
+.destinationNotice { position: absolute; bottom: 145px; left: 50%; transform: translateX(-50%); z-index: 8; display: flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 13px; text-shadow: 0 2px 8px #000; }
+.destinationNotice button { padding: 6px 10px; background: #20251ecc; }
+@keyframes overlayAppear { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .boundaryMenu { animation-duration: .01s; } }
+@media (max-width: 600px) { .aerialHeader { left: 16px; right: 16px; align-items: start; } .aerialHeader p { font-size: 8px; } .aerialHeader h2 { font-size: 20px; } .aerialHeader button { font-size: 11px; padding: 8px; } .aerialHeader kbd { display: block; margin: 3px 0 0; } .shell .mapMarker { font-size: 10px; padding: 8px; max-width: 158px; } .mapLandmark { font-size: 8px; padding: 5px; } .boundaryOptions { gap: 7px 24px; } .boundaryMenu h2 { margin-bottom: 24px; } }
 .fallback { height: 100%; overflow-y: auto; padding: 55px 8%; background: #17241e; }
 .fallback h1 { font-size: clamp(30px, 4vw, 55px); font-weight: 700; margin: 15px 0; }
 .fallback p { max-width: 650px; margin: 18px 0; }

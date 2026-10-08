@@ -1,5 +1,7 @@
 # Environment implementation acceptance — 8 October 2026
 
+Historical preparation/performance baseline. The reference pack was subsequently supplied and inspected for [Stage 1 spatial acceptance](gullyverse-stage-1-spatial-acceptance.md). That report supersedes the missing-reference and temporary-layout status below; these measurements remain the before baseline.
+
 The production environment is **not implemented or accepted**. The original graffiti-tunnel and daylight open-roof quarry reference images are unavailable in the supplied attachments and have not been located in the project assets. This revision advances loading diagnostics and recovery while keeping the existing temporary environment. It does not certify its geometry, materials, composition, sign framing, crowd density or artist graffiti against references.
 
 ## Reference and authoring gate

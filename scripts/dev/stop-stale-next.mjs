@@ -7,7 +7,9 @@ const repositoryRoot = resolve(scriptDirectory, "../..");
 const normalizedNextRoot = `${repositoryRoot.replaceAll("\\", "/").toLowerCase()}/node_modules/next/dist/`;
 
 function isRepositoryNextProcess(commandLine = "") {
-  const normalized = commandLine.replaceAll("\\", "/").toLowerCase();
+  // Windows npm shims may spell Next as node_modules/.bin/../next. Resolve
+  // that spelling before matching the repository, so its Prisma DLL unlocks.
+  const normalized = commandLine.replaceAll("\\", "/").toLowerCase().replace(/\/\.bin\/+\.\.\//g, "/");
   if (!normalized.includes(normalizedNextRoot)) return false;
 
   return normalized.includes("/bin/next") || normalized.includes("/server/lib/start-server.js");

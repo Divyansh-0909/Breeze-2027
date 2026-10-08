@@ -4,7 +4,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import type { ImmersiveRuntime } from "./runtime";
 import { installDiagnostics, recordPreparation, sampleMemory, type FrameSample } from "./diagnostics";
-import { spawnPose } from "./navigation";
+import { world } from "./world";
 
 /** The whole critical scene must instantiate before this gate mounts. */
 export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; serial: number }) {
@@ -49,7 +49,7 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
     // Warm the final viewing composition under the curtain. The approach pose
     // culls more crowd and previously underestimated the cost of the reveal.
     // Recovery warms the exact saved pose; it never relocates the visitor.
-    const view = runtime.getSnapshot().phase === "recovering" ? runtime.pose : spawnPose(runtime.getSnapshot().scene);
+    const view = runtime.preparationPose();
     camera.position.set(view.x, view.y, view.z);
     warmEuler.current.set(view.pitch, view.yaw, 0, "YXZ"); camera.quaternion.setFromEuler(warmEuler.current);
     if (!warmStartedAt.current) warmStartedAt.current = performance.now();
@@ -93,6 +93,10 @@ export function FrameController({ runtime, curtain }: { runtime: ImmersiveRuntim
   const poseEuler = useRef(new THREE.Euler(0, 0, 0, "YXZ"));
   useEffect(() => {
     setDpr(Math.min(window.devicePixelRatio, QUALITY_DPR[runtime.getSnapshot().quality]));
+    // Opt-in authoring camera: absent from standard production builds and UI.
+    const query = new URLSearchParams(window.location.search);
+    runtime.inspectionEnabled = (process.env.NODE_ENV === "development" || process.env.NEXT_PUBLIC_GULLYVERSE_INSPECTION === "1") && query.has("diagnostics");
+    if (runtime.inspectionEnabled && query.has("inspect")) runtime.inspect(query.get("inspect"));
     return installDiagnostics(gl, runtime);
   }, [runtime, gl, setDpr]);
   useEffect(() => {
@@ -111,8 +115,9 @@ export function FrameController({ runtime, curtain }: { runtime: ImmersiveRuntim
   useFrame(({ camera }, delta) => {
     const updateStart = performance.now();
     runtime.tick(delta);
-    const p = runtime.pose;
+    const p = runtime.cameraPose(camera instanceof THREE.PerspectiveCamera ? camera.aspect : 16/9);
     camera.position.set(p.x, p.y, p.z);
+    if (camera instanceof THREE.PerspectiveCamera && camera.fov !== p.fov) { camera.fov = p.fov; camera.updateProjectionMatrix(); }
     poseEuler.current.set(p.pitch, p.yaw, 0, "YXZ");
     camera.quaternion.setFromEuler(poseEuler.current);
     if (curtain.current) curtain.current.style.opacity = String(runtime.opacity);
@@ -127,7 +132,7 @@ export function FrameController({ runtime, curtain }: { runtime: ImmersiveRuntim
       if (updateStart - memoryAt.current > 1000) { memoryAt.current = updateStart; sampleMemory(scene, gl, runtime); }
     }
     // Ignore loading, focus changes, and tab restore in the quality decision.
-    if (state.phase !== "local" || runtime.suspended || state.map || state.movie || delta > 0.25) { windowStats.current.elapsed = windowStats.current.count = 0; return; }
+    if (state.phase !== "local" || runtime.suspended || state.map || state.movie || state.inspection || delta > 0.25) { windowStats.current.elapsed = windowStats.current.count = 0; return; }
     const w = windowStats.current;
     w.elapsed += delta; w.count++;
     if (w.elapsed < 2) return;
