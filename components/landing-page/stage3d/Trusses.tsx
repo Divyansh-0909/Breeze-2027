@@ -1,5 +1,5 @@
 "use client";
-import React, { useLayoutEffect, useMemo, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 import { PALETTE, STAGE } from "./palette";
@@ -63,28 +63,41 @@ function boxTruss(out: Member[], a: THREE.Vector3, b: THREE.Vector3, w = 0.5) {
 
 const v = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
 
-export default function Trusses(): React.ReactElement {
+type TrussesProps = {
+  /** Reuse only the stage's front portal and logo for hub wayfinding. */
+  frontOnly?: boolean;
+  width?: number;
+  height?: number;
+  frontZ?: number;
+};
+
+export default function Trusses({ frontOnly = false, width = 26, height = 12.15, frontZ = STAGE.frontZ + 2.5 }: TrussesProps = {}): React.ReactElement {
+  const topY = height - 0.5;
   const members = useMemo<Member[]>(() => {
     const m: Member[] = [];
-    const { frontZ, backZ } = STAGE;
-    const rigFrontZ = frontZ + 2.5; // front plane of the rig pushed out past the deck edge
+    const { backZ } = STAGE;
+    const rigFrontZ = frontZ;
+    const halfWidth = width / 2;
+    const overhang = width * 4 / 26;
     // Roof support towers (4 corners of the canopy) — slightly wider than the
     // deck so the rig visually clears the LED wall
-    for (const x of [-13, 13]) {
-      boxTruss(m, v(x, 0, rigFrontZ), v(x, 12.15, rigFrontZ), 0.75);
-      boxTruss(m, v(x, 0, backZ), v(x, 12.15, backZ), 0.75);
+    for (const x of [-halfWidth, halfWidth]) {
+      boxTruss(m, v(x, 0, rigFrontZ), v(x, height, rigFrontZ), 0.75);
+      if (!frontOnly) boxTruss(m, v(x, 0, backZ), v(x, height, backZ), 0.75);
     }
     // Roof beams: front (carries moving heads, overhangs the towers) + back
-    boxTruss(m, v(-17, 11.65, rigFrontZ), v(17, 11.65, rigFrontZ), 0.75);
-    boxTruss(m, v(-13, 11.65, backZ), v(13, 11.65, backZ), 0.75);
-    // Side beams — connect the front and back corners so the rig reads as one box
-    boxTruss(m, v(-13, 11.65, rigFrontZ), v(-13, 11.65, backZ), 0.75);
-    boxTruss(m, v(13, 11.65, rigFrontZ), v(13, 11.65, backZ), 0.75);
-    // Mid cross beam — spans the middle of the roof, parallel to the front beam
-    const midZ = (rigFrontZ + backZ) / 2;
-    boxTruss(m, v(-13, 11.65, midZ), v(13, 11.65, midZ), 0.75);
+    boxTruss(m, v(-halfWidth - overhang, topY, rigFrontZ), v(halfWidth + overhang, topY, rigFrontZ), 0.75);
+    if (!frontOnly) {
+      boxTruss(m, v(-halfWidth, topY, backZ), v(halfWidth, topY, backZ), 0.75);
+      // Side beams — connect the front and back corners so the rig reads as one box
+      boxTruss(m, v(-halfWidth, topY, rigFrontZ), v(-halfWidth, topY, backZ), 0.75);
+      boxTruss(m, v(halfWidth, topY, rigFrontZ), v(halfWidth, topY, backZ), 0.75);
+      // Mid cross beam — spans the middle of the roof, parallel to the front beam
+      const midZ = (rigFrontZ + backZ) / 2;
+      boxTruss(m, v(-halfWidth, topY, midZ), v(halfWidth, topY, midZ), 0.75);
+    }
     return m;
-  }, []);
+  }, [frontOnly, width, height, frontZ, topY]);
 
   const ref = useRef<THREE.InstancedMesh>(null!);
   useLayoutEffect(() => {
@@ -98,6 +111,11 @@ export default function Trusses(): React.ReactElement {
       scale.set(mem.r, mem.len, mem.r);
       mat.compose(mem.pos, mem.quat, scale);
       ref.current.setMatrixAt(i, mat);
+      if (frontOnly) {
+        // Hub daylight shades the reused steel; stage-only LED occlusion does not.
+        ref.current.setColorAt(i, lit);
+        return;
+      }
       // shade per member by how much LED-wall light can actually reach it:
       // - depth: fully shadowed behind the wall, ramping up toward the front
       // - height: the wall tops out ~y 10.5, so high members dim with altitude
@@ -124,27 +142,27 @@ export default function Trusses(): React.ReactElement {
     });
     ref.current.instanceMatrix.needsUpdate = true;
     if (ref.current.instanceColor) ref.current.instanceColor.needsUpdate = true;
-  }, [members]);
+  }, [members, frontOnly]);
 
   return (
-    <group>
+    <group name={frontOnly ? "navigation-front-truss" : "stage-trusses"}>
       <instancedMesh ref={ref} args={[undefined, undefined, members.length]} frustumCulled={false}>
         <cylinderGeometry args={[1, 1, 1, 6, 1]} />
         <meshStandardMaterial color={PALETTE.steel} metalness={0.85} roughness={0.35} />
       </instancedMesh>
       {/* black signage board mounted on the front face of the front top beam */}
-      <mesh position={[0, 11.65, 7.05]}>
+      <mesh position={[0, topY, frontZ + 0.55]}>
         <boxGeometry args={[4.6, 2.2, 0.3]} />
         <meshStandardMaterial color="#050608" roughness={0.8} metalness={0.2} />
       </mesh>
-      <LogoBoard />
+      <LogoBoard position={[0, topY, frontZ + 0.72]} />
     </group>
   );
 }
 
 /** Glowing Breeze logo on the signage board (image has generous transparent
     padding, so the plane oversizes the board while the glyphs fit inside). */
-function LogoBoard(): React.ReactElement {
+function LogoBoard({ position }: { position: [number, number, number] }): React.ReactElement {
   const tex = useLoader(THREE.TextureLoader, breezeLogo.src);
   const material = useMemo(() => {
     tex.colorSpace = THREE.SRGBColorSpace;
@@ -157,9 +175,10 @@ function LogoBoard(): React.ReactElement {
     m.toneMapped = false;
     return m;
   }, [tex]);
+  useEffect(() => () => material.dispose(), [material]);
 
   return (
-    <mesh position={[0, 11.65, 7.22]} material={material}>
+    <mesh position={position} material={material}>
       <planeGeometry args={[4.4, 4.4 / 1.5]} />
     </mesh>
   );

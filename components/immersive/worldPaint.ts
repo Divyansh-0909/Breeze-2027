@@ -43,16 +43,10 @@ function surfaceCanvas(kind:"rock"|"ground") {
 }
 export const makeRockTexture=()=>surfaceCanvas("rock");
 export const makeGroundTexture=()=>surfaceCanvas("ground");
-function crown(ctx:CanvasRenderingContext2D,x:number,y:number,size:number) {
-  ctx.strokeStyle="#d4ad42";ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(x-size*.5,y+size*.4);ctx.lineTo(x-size*.7,y-size*.3);ctx.lineTo(x-size*.15,y);ctx.lineTo(x,y-size*.6);ctx.lineTo(x+size*.2,y);ctx.lineTo(x+size*.65,y-size*.35);ctx.lineTo(x+size*.4,y+size*.35);ctx.closePath();ctx.stroke();
-}
-function orbit(ctx:CanvasRenderingContext2D,x:number,y:number,size:number) {
-  ctx.strokeStyle="#e5e0d2";ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,size*.4,0,Math.PI*2);ctx.stroke();
-  for(const scale of [.45,.8]) {ctx.beginPath();ctx.ellipse(x,y,size*.4*scale,size*.4,0,0,Math.PI*2);ctx.stroke();}
-  ctx.beginPath();ctx.ellipse(x,y,size*.59,size*.14,-.35,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(x,y-size*.5);ctx.lineTo(x,y+size*.5);ctx.stroke();
-}
-export function makeBoardTexture(label:string,color:string,arrow?:readonly number[]) {
-  const hero=label==="GULLYVERSE",canvas=document.createElement("canvas");canvas.width=hero?1024:512;canvas.height=hero?256:128;
+export function makeBoardTexture(label:string,color:string,arrow?:readonly number[],aspect=4,fontScale?:number) {
+  const hero=label==="GULLYVERSE",canvas=document.createElement("canvas");
+  // Match the physical board so one texel has the same scale on both axes.
+  canvas.height=256;canvas.width=Math.round(canvas.height*aspect);
   const ctx=canvas.getContext("2d")!,w=canvas.width,h=canvas.height,rnd=random(label.length*113+label.charCodeAt(0));
   ctx.fillStyle="#20211f";ctx.fillRect(0,0,w,h);
   for(let i=0;i<650;i++) {ctx.fillStyle=i%3?"#a79b7344":"#01050744";ctx.fillRect(rnd()*w,rnd()*h,rnd()*11+1,rnd()*3+1);}
@@ -60,16 +54,29 @@ export function makeBoardTexture(label:string,color:string,arrow?:readonly numbe
   for(let i=0;i<100;i++) {ctx.fillStyle="#bca879";const x=rnd()*w,y=rnd()<.5?rnd()*6:h-rnd()*6;ctx.fillRect(x,y,rnd()*8+1,rnd()*3+1);}
   for(const x of [9,w-9]) for(const y of [9,h-9]) {ctx.fillStyle="#bcb09a";ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill();}
   ctx.textBaseline="middle";ctx.textAlign="center";
+  const fitFont=(family:string,startSize:number,maxWidth:number,weight=400)=>{
+    ctx.font=`${weight} ${startSize}px ${family}`;
+    const size=Math.min(startSize,startSize*maxWidth/ctx.measureText(label).width);
+    ctx.font=`${weight} ${size}px ${family}`;
+  };
   if(hero) {
-    orbit(ctx,94,128,145);crown(ctx,290,33,48);
-    ctx.save();ctx.translate(590,113);ctx.rotate(-.035);ctx.font="156px GullyversePaint";ctx.fillStyle="#ece7db";ctx.fillText("GULLYVERSE",0,0,805);ctx.restore();
-    ctx.save();ctx.translate(702,213);ctx.rotate(-.035);ctx.fillStyle="#d4ad42";ctx.fillRect(-221,-31,442,63);ctx.fillStyle="#1b1c18";ctx.font="60px GullyversePaint";ctx.fillText("BREEZE 2027",0,0,422);ctx.restore();
+    fitFont("GullyversePaint",h*.695,w*.86);
+    ctx.textAlign="left";ctx.textBaseline="alphabetic";
+    // Center the painted glyph bounds, including this font's uneven bearings.
+    const bounds=ctx.measureText(label);
+    const x=(w+bounds.actualBoundingBoxLeft-bounds.actualBoundingBoxRight)/2;
+    const y=(h+bounds.actualBoundingBoxAscent-bounds.actualBoundingBoxDescent)/2;
+    ctx.fillStyle="#ece7db";ctx.fillText(label,x,y);
   } else {
     const hasArrow=!!arrow,side=arrow&&arrow[0]>Math.abs(arrow[1])*.3?1:-1;
-    const cx=hasArrow?(side<0?w*.6:w*.41):w*.5,maxWidth=hasArrow?w*.75:w*.92;
-    ctx.font="900 97px 'Arial Narrow',Arial,sans-serif";ctx.fillStyle=color;ctx.fillText(label,cx,h*.54,maxWidth);
+    const inset=h*.15,arrowSpace=hasArrow?h*.92:0;
+    const left=inset+(hasArrow&&side<0?arrowSpace:0),right=w-inset-(hasArrow&&side>0?arrowSpace:0);
+    // Navigation signs share a physical font size; other labels fit individually.
+    if(fontScale!==undefined) ctx.font=`700 ${h*fontScale}px Arial,sans-serif`;
+    else fitFont("Arial,sans-serif",h*.67,right-left,700);
+    ctx.fillStyle=color;ctx.fillText(label,(left+right)/2,h*.54);
     if(arrow) {
-      ctx.save();ctx.translate(side<0?w*.1:w*.9,h*.5);ctx.rotate(Math.atan2(arrow[1],arrow[0]));
+      ctx.save();ctx.translate(side<0?inset+arrowSpace/2:w-inset-arrowSpace/2,h*.5);ctx.rotate(Math.atan2(arrow[1],arrow[0]));ctx.scale(h/128,h/128);
       ctx.strokeStyle=color;ctx.lineWidth=11;ctx.lineCap="square";ctx.lineJoin="miter";
       ctx.beginPath();ctx.moveTo(-25,0);ctx.lineTo(25,0);ctx.moveTo(3,-24);ctx.lineTo(27,0);ctx.lineTo(3,24);ctx.stroke();ctx.restore();
     }

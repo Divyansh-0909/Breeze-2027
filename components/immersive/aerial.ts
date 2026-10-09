@@ -42,7 +42,10 @@ export function composeCamera(base: CameraView, aspect: number, scene: LocationI
   if (scene === "aftermovie" && !inspection) return base;
   const landing = inspection === "landing" || (!inspection && ["boot", "landing"].includes(phase));
   const tunnel = inspection?.startsWith("tunnel") || (!inspection && base.z > world.tunnel.endZ && !landing);
-  const minimumHorizontal = tunnel ? 34 : 42;
+  // The wider, nearer hanging signs need more horizontal room in portrait.
+  // Ease that framing in after the exit rather than snapping to a wider lens.
+  const hubReveal = scene !== "hub" || landing || tunnel ? 0 : ease((world.tunnel.endZ - base.z) / (world.tunnel.endZ - world.hub.spawn[2]));
+  const minimumHorizontal = tunnel ? 34 : 42 + 16 * hubReveal;
   const fitted = 2 * Math.atan(Math.tan(minimumHorizontal * radians / 2) / Math.max(aspect, 0.25)) / radians;
-  return { ...base, fov: Math.max(base.fov, Math.min(82, fitted)) };
+  return { ...base, fov: Math.max(base.fov, Math.min(82 + 22 * hubReveal, fitted)) };
 }

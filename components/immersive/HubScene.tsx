@@ -1,19 +1,20 @@
 "use client";
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import Trusses from "@/components/landing-page/stage3d/Trusses";
 import { exitGeometry, groundGeometry, portalGeometry, quarryGeometry, tunnelGeometry, wallPaintGeometry } from "./blockoutGeometry";
 import { point3, world } from "./world";
 import { travelZones } from "./navigation";
 import { makeBoardTexture, makeGraffitiTexture, makeGroundTexture, makeRockTexture, requireWorldFonts } from "./worldPaint";
 
-export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], color="#e4ded0", arrow }: { label:string;position:[number,number,number];rotation?:[number,number,number];size?:[number,number];color?:string;arrow?:[number,number] }) {
+export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], color="#e4ded0", arrow, textSize }: { label:string;position:[number,number,number];rotation?:[number,number,number];size?:[number,number];color?:string;arrow?:[number,number];textSize?:number }) {
   requireWorldFonts();
   const [width,height]=size,arrowX=arrow?.[0],arrowY=arrow?.[1];
   const board=useMemo(()=>{
     const g=new THREE.BoxGeometry(width,height,.16);
     g.setIndex(Array.from(g.index!.array).filter((_,i)=>i<24||i>=30));g.clearGroups();return g;
   },[width,height]);
-  const texture=useMemo(()=>makeBoardTexture(label,color,arrowX===undefined||arrowY===undefined?undefined:[arrowX,arrowY]),[label,color,arrowX,arrowY]);
+  const texture=useMemo(()=>makeBoardTexture(label,color,arrowX===undefined||arrowY===undefined?undefined:[arrowX,arrowY],width/height,textSize===undefined?undefined:textSize/height),[label,color,arrowX,arrowY,width,height,textSize]);
   useEffect(()=>()=>{board.dispose();texture.dispose();},[board,texture]);
   return <group position={position} rotation={rotation}>
     <mesh><primitive object={board} attach="geometry" dispose={null} /><meshLambertMaterial color="#363932" /></mesh>
@@ -45,64 +46,52 @@ function Bulbs({positions,scale=.075}:{positions:number[][];scale?:number}) {
   return <instancedMesh ref={mesh} args={[undefined,undefined,positions.length]}><sphereGeometry args={[1,8,4]} /><meshBasicMaterial color="#ffdaa0" toneMapped={false} /></instancedMesh>;
 }
 function HangingLamps() {
-  const mesh=useRef<THREE.InstancedMesh>(null),positions=useMemo(()=>[[-6,8.25,2.35],[0,8.25,2.35],[6,8.25,2.35]],[]);
+  const mesh=useRef<THREE.InstancedMesh>(null),positions=useMemo(()=>[[-6.4,10,2.35],[0,10,2.35],[6.4,10,2.35]],[]);
   useLayoutEffect(()=>{const m=new THREE.Matrix4();positions.forEach((p,i)=>{m.makeTranslation(...point3(p));mesh.current!.setMatrixAt(i,m);});mesh.current!.instanceMatrix.needsUpdate=true;mesh.current!.computeBoundingSphere();},[positions]);
   return <>
     <instancedMesh ref={mesh} args={[undefined,undefined,3]}><coneGeometry args={[.42,.38,12,1,true]} /><meshLambertMaterial color="#50574b" side={THREE.DoubleSide} /></instancedMesh>
     <Bulbs positions={positions.map(p=>[p[0],p[1]-.16,p[2]])} scale={.18} />
-    <pointLight position={[0,8,2.6]} intensity={42} distance={21} decay={2} color="#ffc681" />
+    <pointLight position={[0,9.75,2.6]} intensity={42} distance={21} decay={2} color="#ffc681" />
   </>;
 }
 function Scaffold() {
   const {position:p,width:w,height:h,depth:d}=world.scaffold;
-  const entries=useMemo(()=>{
-    const boxes:Box[]=[];
-    const beam=(a:number[],b:number[],thickness=.12,color="#60665c")=>{
-      const av=new THREE.Vector3(...point3(a)),bv=new THREE.Vector3(...point3(b)),delta=bv.clone().sub(av);
-      boxes.push({p:point3(av.add(bv).multiplyScalar(.5).toArray()),size:[thickness,delta.length(),thickness],color,rotation:new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize())});
-    };
-    for(const x of [-w/2,w/2]) for(const z of [-d/2,d/2]) {
-      beam([x,0,z],[x,h,z],.19);boxes.push({p:[x,.18,z],size:[1.2,.36,1.2],color:"#6f6b5f"});
-    }
-    for(const y of [2,4,6,8.6,12.2,h]) for(const z of [-d/2,d/2]) beam([-w/2,y,z],[w/2,y,z],.12);
-    for(const x of [-w/2,w/2]) for(let i=0;i<4;i++) {
-      beam([x,i*h/4,-d/2],[x,(i+1)*h/4,d/2],.095);beam([x,i*h/4,d/2],[x,(i+1)*h/4,-d/2],.095);
-    }
-    for(const y of [12.2,h]) for(let x=-w/2;x<w/2-1;x+=1.4) beam([x,y,-d/2],[Math.min(w/2,x+1.4),y+.6,d/2],.085);
-    beam([-w/2,1,-d/2],[w/2,8.6,-d/2],.09);beam([-w/2,8.6,-d/2],[w/2,1,-d/2],.09);
-    for(const x of [-2,2]) beam([x,1,d/2],[x,8.6,d/2],.09);
-    // Corrugated recycled panels at the base, which visually ground the landmark.
-    for(let i=0;i<17;i++) boxes.push({p:[-7.2+i*.9,.52,1.75],size:[.85,.85,.18],color:i%3?"#6b6a53":"#754e3d"});
-    for(const x of [-6,0,6]) beam([x,8.6,d/2],[x,8.6,2.35],.085);
-    return boxes;
-  },[w,h,d]);
+  // One world-space font size fits even Past Sponsors beside its arrow.
+  const navigationTextSize=.58;
   const signs=[
-    {label:"MAIN STAGE",id:"main-stage",x:0,y:7.1,tilt:.012,size:[8.8,1.35]},
-    {label:"EVENTS",id:"events",x:-4.3,y:5.6,tilt:.026,size:[6.4,1.16]},
-    {label:"AFTERMOVIE",id:"aftermovie",x:4.2,y:5.6,tilt:-.025,size:[6.5,1.16]},
-    {label:"TEAM",id:"team",x:-4.45,y:4.05,tilt:.018,size:[6.3,1.13]},
-    {label:"CONTACT US",id:"contact",x:4.25,y:4.0,tilt:-.032,size:[6.5,1.13]},
-    {label:"ACCOMMODATION",id:"accommodation",x:0,y:2.5,tilt:.018,size:[9.2,1.17]},
-    {label:"PAST SPONSORS",id:"sponsors",x:0,y:1.16,tilt:-.014,size:[7.8,.68]},
+    {label:"EVENTS",id:"events",x:-5.1,y:8.8,tilt:.026,size:[6.4,1.16]},
+    {label:"PAST SPONSORS",id:"sponsors",x:5.1,y:8.8,tilt:-.025,size:[6.5,1.16]},
+    {label:"TEAM",id:"team",x:-5.1,y:7.25,tilt:.018,size:[6.3,1.13]},
+    {label:"CONTACT US",id:"contact",x:5.1,y:7.25,tilt:-.032,size:[6.5,1.13]},
+    {label:"AFTERMOVIE",id:"aftermovie",x:0,y:5.65,tilt:0,size:[9.2,1.18]},
   ];
   const cables=useMemo(()=>{
     const segments:number[]=[];
-    for(const x of [-6,0,6]) segments.push(x,8.6,1.7,x,8.4,2.35);
-    for(const s of signs) for(const x of [-s.size[0]*.36,s.size[0]*.36]) segments.push(s.x+x,s.y+s.size[1]/2,1.79,s.x+x,s.y+s.size[1]/2+.32,1.7);
+    const cable=(x:number,top:number,bottom:number,z=1.8)=>segments.push(x,top,z,x,bottom,z);
+    // The entire hanging hierarchy is carried by the reused front top beam.
+    for(const x of [-3.7,3.7]) cable(x,h-.5,11.4+1.2/Math.cos(.02)+x*Math.tan(.02));
+    for(const x of [-7.4,-2.8,2.8,7.4]) {
+      cable(x,h-.5,9.38);cable(x,8.22,7.815);
+    }
+    for(const x of [-3.3,3.3]) cable(x,6.685,6.24);
+    // Run lamp suspension behind the header before reaching the shades below it.
+    for(const x of [-6.4,0,6.4]) segments.push(x,h-.5,1.7,x,10.19,1.7,x,10.19,1.7,x,10.19,2.35);
     return segments;
-  // The hierarchy is static authored structure; travel targets remain registry driven.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+  },[h]);
+  const feet=useMemo<Box[]>(()=>[-w/2,w/2].map(x=>({p:[x,.18,d/2],size:[1.2,.36,1.2],color:"#6f6b5f"})),[w,d]);
   return <group position={point3(p)}>
-    <Boxes entries={entries} /><Cables segments={cables} /><HangingLamps />
-    <WorldSign label="GULLYVERSE" position={[0,10.5,1.8]} rotation={[0,0,.02]} size={[15.2,3.1]} />
+    <Trusses frontOnly width={w} height={h} frontZ={d/2} />
+    <Boxes entries={feet} /><Cables segments={cables} /><HangingLamps />
+    <WorldSign label="GULLYVERSE" position={[0,11.4,1.8]} rotation={[0,0,.02]} size={[10,2.4]} />
     {signs.map(sign=>{
-      const zone=sign.id==="main-stage"?travelZones.find(zone=>zone.sign==="main-stage"):travelZones.find(zone=>zone.id===sign.id&&!zone.sign);
-      const target=zone?.center??world.destinations.find(d=>d.id===sign.id)!.anchor;
-      // Every arrow indicates its deliberate nearby travel boundary. Main
-      // Stage and Aftermovie take different hub approaches to the same stage.
-      const dx=target[0]-world.hub.spawn[0],dz=target[2]-world.hub.spawn[2],c=Math.cos(sign.tilt),s=Math.sin(sign.tilt);
-      return <WorldSign key={sign.label} label={sign.label} position={[sign.x,sign.y,1.8]} rotation={[0,0,sign.tilt]} size={sign.size as [number,number]} arrow={[dx*c+dz*s,-dx*s+dz*c]} />;
+      const zone=travelZones.find(zone=>zone.id===sign.id);
+      const target=zone!.center;
+      const dx=target[0]-world.hub.spawn[0],dz=target[2]-world.hub.spawn[2];
+      // Diagonal arrows match the corresponding corner sectors. Aftermovie
+      // stays directly behind the visitor, so its arrow remains downward.
+      const arrow:[number,number]=[Math.sign(dx),Math.sign(dz)];
+      const c=Math.cos(sign.tilt),s=Math.sin(sign.tilt);
+      return <WorldSign key={sign.label} label={sign.label} position={[sign.x,sign.y,1.8]} rotation={[0,0,sign.tilt]} size={sign.size as [number,number]} textSize={navigationTextSize} arrow={[arrow[0]*c+arrow[1]*s,-arrow[0]*s+arrow[1]*c]} />;
     })}
   </group>;
 }
@@ -125,7 +114,7 @@ function StallBlocks() {
   return <>
     <Boxes entries={entries} /><Bulbs positions={bulbs} /><Cables segments={cables} />
     {world.destinations.filter(d=>d.id==="team"||d.id==="contact").map(d=><WorldSign key={d.id} label={d.label.toUpperCase()} position={[d.position[0]+Math.sin(d.yaw)*(d.size[2]/2+.16),3.05,d.position[2]]} rotation={[0,d.yaw,0]} size={[5,.8]} />)}
-    {world.destinations.filter(d=>d.status==="reserved").map(d=><group key={d.id}>
+    {world.destinations.filter(d=>d.status==="reserved"&&d.id!=="accommodation").map(d=><group key={d.id}>
       <WorldSign label={d.label.toUpperCase()} position={[d.position[0],1.5,d.position[2]]} size={[7,1]} />
       <mesh position={[d.position[0],.65,d.position[2]-.1]}><boxGeometry args={[.12,1.3,.12]} /><meshLambertMaterial color="#5e6254" /></mesh>
     </group>)}

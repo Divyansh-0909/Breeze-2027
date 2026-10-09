@@ -134,7 +134,7 @@ test("context loss exits film focus and returns to the saved walking pose", () =
   assert.deepEqual(runtime.pose, pose); assert.equal(runtime.getSnapshot().phase, "local");
 });
 
-test("all six destinations and both stage aliases cross deliberately while unavailable sectors stay truthful", () => {
+test("all signed destinations cross deliberately while unavailable sectors stay truthful", () => {
   for (const zone of travelZones) {
     const runtime=hub(),routes:{href:string;opacity:number;phase:string}[]=[];
     runtime.onCoveredRoute=(href)=>routes.push({href,opacity:runtime.opacity,phase:runtime.getSnapshot().phase});
@@ -157,18 +157,33 @@ test("all six destinations and both stage aliases cross deliberately while unava
     }
   }
 });
-test("straight forward walking selects Main Stage and its right-hand Aftermovie alias selects the same scene", () => {
-  assert.equal(travelZones.length,7,"Two stage aliases plus five other destination sectors");
-  assert.equal(new Set(travelZones.map((zone)=>zone.id)).size,6);
-  const primary=travelZones.find((zone)=>zone.sign==="main-stage")!;
-  const side=travelZones.find((zone)=>zone.id==="aftermovie" && !zone.sign)!;
-  assert.equal(primary.id,side.id);assert.equal(primary.edge,4);assert.equal(side.edge,3);
-  const forward=hub();forward.input.forward=1;
-  for(let frame=0;frame<5*60 && forward.getSnapshot().phase==="local";frame++) forward.tick(1/60);
-  assert.equal(forward.getSnapshot().phase,"departure");assert.equal(forward.getSnapshot().destination,"aftermovie");
+test("five signed directions match diagonal movement and removed Main Stage has no hidden sector", () => {
+  assert.equal(travelZones.length,5);
+  assert.equal(new Set(travelZones.map(zone=>zone.id)).size,5);
+  assert.equal(travelZones.some(zone=>zone.sign==="main-stage" || zone.id==="accommodation"),false);
+  const expected=[
+    ["events",1,-1], ["sponsors",1,1], ["team",-1,-1], ["contact",-1,1], ["aftermovie",-1,0],
+  ] as const;
+  for(const [id,forward,strafe] of expected) {
+    const zone=travelZones.find(zone=>zone.id===id)!;
+    assert.equal(Math.sign(zone.center[0]-world.hub.spawn[0]),strafe,id+" horizontal direction");
+    assert.equal(Math.sign(zone.center[2]-world.hub.spawn[2]),-forward,id+" vertical direction");
+    const runtime=hub(),routes:string[]=[];
+    runtime.onCoveredRoute=href=>routes.push(href);
+    runtime.input.forward=forward;runtime.input.strafe=strafe;
+    for(let frame=0;frame<8*60 && runtime.getSnapshot().phase==="local" && !runtime.getSnapshot().unavailableDestination;frame++) runtime.tick(1/60);
+    if(id==="sponsors") {
+      assert.equal(runtime.getSnapshot().unavailableDestination,id);
+      assert.deepEqual(routes,[]);
+    } else {
+      assert.equal(runtime.getSnapshot().phase,"departure",id);
+      if(id==="aftermovie") assert.equal(runtime.getSnapshot().destination,id);
+      else {advance(runtime,1);assert.deepEqual(routes,[zone.href]);}
+    }
+  }
+  const forward=hub();forward.input.forward=1;advance(forward,8);
+  assert.equal(forward.getSnapshot().phase,"local","Removed Main Stage direction cannot initiate travel");
   assert.equal(forward.getSnapshot().unavailableDestination,null);
-  const right=hub();approach(right);assert.equal(right.getSnapshot().destination,"aftermovie");assert.equal(right.getSnapshot().phase,"departure");
-  assert.equal(crossedHubDestination([{edge:4,t:.72,outward:1}]),null,"Gap separates Main Stage and Accommodation");
 });
 test("collision stops capsules before every solid footprint and quarry wall", () => {
   for (const o of obstacles) {
