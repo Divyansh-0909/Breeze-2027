@@ -18,6 +18,20 @@ import {
 import * as THREE from "three";
 
 import { GATE, NIGHT, TUNNEL } from "./palette";
+import LiveLayer, { GALLERY } from "./live/LiveLayer";
+import LiveHud from "./live/LiveHud";
+import LiveTopBar from "./live/LiveTopBar";
+import LineupDrawer from "./live/LineupDrawer";
+import LiveDebug from "./live/LiveDebug";
+import LiveList from "./live/LiveList";
+import { Toaster } from "sonner";
+import { useTimeline } from "./live/useTimeline";
+import { useScrub } from "./live/useScrub";
+import {
+  buildSlotTable,
+  selectWindow,
+  timelineCoord,
+} from "./live/timelineMath";
 import Gate from "./Gate";
 import Grounds from "./Grounds";
 import Trees from "./Trees";
@@ -54,6 +68,24 @@ type Phase = "loading" | "ready" | "entering" | "arrived" | "departing";
  */
 const TRAVEL_S = 7.4;
 const BASE_FOV = 45;
+
+/**
+ * Menu ⇄ Live camera blend rate (exponential approach per second).
+ *
+ * The turnaround is a look, not a trip — slow enough to read as turning
+ * around inside the tunnel (~1.8 s to settle, roughly 45% slower than the
+ * 2.6 it replaced), with the smoothstep below supplying the gentle ease-out
+ * at the end. Lower = slower. One knob drives both directions: entering Live
+ * and Back share this blend.
+ */
+const LIVE_BLEND_RATE = 1.7;
+/**
+ * The HUD card fades in once the blend passes this — i.e. over the last
+ * ~30% of the move, after the camera has found the gate.
+ */
+const LIVE_SETTLE_MIX = 0.7;
+/** How long the card gets to fade out before the view unmounts on Back. */
+const LIVE_EXIT_FADE_MS = 320;
 
 /**
  * Seconds from picking a menu item to the black the next route opens on.
@@ -239,6 +271,13 @@ function openingFraction(aspect: number, fovDeg = 45): number {
  * chase never actually lands — over 58 metres it spends the last second
  * crawling the final half-metre, which reads as the flight stalling. An
  * explicit eased progress arrives, and arrives when the overlay expects it to.
+ *
+ * Live extension: when `liveOnRef` is set, the same rig blends to a second
+ * pose — a 90° turn to face the gallery wall head-on — reusing the arrival
+ * math rather than a separate system. All live refs are optional and
+ * default to inert, so the gate → intro → menu flow is byte-identical when
+ * the timeline is never opened. The wall camera is LOCKED: no free-look,
+ * no scrub, no push-in — taps open the drawer instead.
  */
 function CameraRig({
   phase,
@@ -250,6 +289,9 @@ function CameraRig({
   departRef,
   onArrive,
   onDeparted,
+  liveOnRef,
+  liveMixRef,
+  cardFracRef,
 }: {
   phase: Phase;
   motion: boolean;
@@ -260,6 +302,12 @@ function CameraRig({
   departRef: React.MutableRefObject<number>;
   onArrive: () => void;
   onDeparted: () => void;
+  /** 1 = turn to face the gallery wall (Live Timeline). */
+  liveOnRef?: React.MutableRefObject<number>;
+  /** Shared 0..1 blend, also read by MenuAnchor to stand the menu down. */
+  liveMixRef?: React.MutableRefObject<number>;
+  /** Bottom-card viewport fraction — the row lifts above it. */
+  cardFracRef?: React.MutableRefObject<number>;
 }): null {
   const size = useThree((s) => s.size);
   const target = useRef(new THREE.Vector3(0, 2.05, 0));
@@ -271,6 +319,11 @@ function CameraRig({
   // seconds since a menu item was picked, and whether the walk out has ended
   const walked = useRef(0);
   const left = useRef(false);
+  // live turnaround scratch (reused, never allocated per frame)
+  const livePos = useRef(new THREE.Vector3());
+  const liveTgt = useRef(new THREE.Vector3());
+  // eased live blend, hoisted so the FOV ease below can share it
+  let liveLe = 0;
 
   useFrame((state, dt) => {
     const cam = state.camera as THREE.PerspectiveCamera;
@@ -344,6 +397,45 @@ function CameraRig({
       z - AIM_AHEAD
     );
 
+    // ---- Live Timeline gallery wall ----
+    // A 90° turn to face one side wall head-on, blended, not cut, and
+    // driven through the same chase smoothing as everything else above.
+    // Same blend rate both ways (LIVE_BLEND_RATE); the camera then locks.
+    if (liveOnRef && liveMixRef) {
+      const goal = liveOnRef.current;
+      const m = liveMixRef.current;
+      const mix = allowMotion
+        ? m + (goal - m) * (1 - Math.exp(-LIVE_BLEND_RATE * dt))
+        : goal;
+      liveMixRef.current = mix;
+      liveLe = mix * mix * (3 - 2 * mix);
+      if (liveLe > 0.0001) {
+        // stand off the opposite wall, square to the gallery wall, gaze
+        // level: the row rides the upper frame, clear of the bottom card.
+        // The card reports its viewport fraction and the gaze drops to
+        // lift the row into the free space above it (0 lift at/below the
+        // 30% the framing was tuned for, so menu flow is untouched).
+        const cardFrac = cardFracRef?.current ?? 0.3;
+        const fullH =
+          2 *
+          Math.tan(THREE.MathUtils.degToRad(GALLERY.fov) / 2) *
+          (GALLERY.camX + TUNNEL.halfW);
+        const lift = THREE.MathUtils.clamp(
+          (cardFrac - 0.3) * fullH * 0.5,
+          0,
+          1.0
+        );
+        livePos.current.set(GALLERY.camX, GALLERY.camY, GALLERY.zc);
+        liveTgt.current.set(
+          GALLERY.side * TUNNEL.halfW,
+          GALLERY.aimY - lift,
+          GALLERY.zc
+        );
+        desired.current.lerp(livePos.current, liveLe);
+        desiredTarget.current.lerp(liveTgt.current, liveLe);
+      }
+    }
+
     // The chase gives the held shot its weight — the camera trails the pointer
     // rather than being nailed to it. But a chase never arrives, and over this
     // run it leaves the camera nearly two metres short at the moment progress
@@ -370,8 +462,23 @@ function CameraRig({
       cam.position.y += Math.sin(walked.current * 9.4) * 0.055 * gait;
       cam.position.x += Math.sin(walked.current * 4.7) * 0.05 * gait;
       // and the same wider lens the flight used for speed, brought back in as
-      // the walk gathers pace
-      const fov = BASE_FOV + 12 * rush + 13 * d;
+      // the walk gathers pace — then eased out to the gallery framing while
+      // live holds the camera (wider lens = smaller posters, clear of the
+      // card and top bar alike)
+      const fov = THREE.MathUtils.lerp(
+        BASE_FOV + 12 * rush + 13 * d,
+        GALLERY.fov,
+        liveLe
+      );
+      if (Math.abs(cam.fov - fov) > 0.02) {
+        cam.fov = fov;
+        cam.updateProjectionMatrix();
+      }
+    }
+
+    // same framing snap for reduced motion (the block above never runs)
+    if (!allowMotion && liveLe > 0.0001) {
+      const fov = THREE.MathUtils.lerp(BASE_FOV, GALLERY.fov, liveLe);
       if (Math.abs(cam.fov - fov) > 0.02) {
         cam.fov = fov;
         cam.updateProjectionMatrix();
@@ -410,12 +517,15 @@ function MenuAnchor({
   veilRef,
   progressRef,
   departRef,
+  liveMixRef,
 }: {
   blockRef: React.RefObject<HTMLDivElement>;
   shadeRef: React.RefObject<HTMLDivElement>;
   veilRef: React.RefObject<HTMLDivElement>;
   progressRef: React.MutableRefObject<number>;
   departRef: React.MutableRefObject<number>;
+  /** While the Live Timeline holds the camera, the menu stands down. */
+  liveMixRef?: React.MutableRefObject<number>;
 }): null {
   const size = useThree((s) => s.size);
   const ndc = useRef(new THREE.Vector3());
@@ -513,7 +623,13 @@ function MenuAnchor({
     // mis-click rather than as a choice being taken. It stays lit long enough
     // for the walk to visibly start under it, then goes.
     const stand = 1 - THREE.MathUtils.smoothstep(dp, 0.2, 0.58);
-    el.style.opacity = String(THREE.MathUtils.smoothstep(p, 0.05, 0.5) * stand);
+    // and the Live Timeline stands it down on its own blend: the menu fades
+    // as the camera turns, and is back by the time the camera returns
+    const liveMix = liveMixRef?.current ?? 0;
+    const liveStand = 1 - THREE.MathUtils.smoothstep(liveMix, 0.05, 0.5);
+    el.style.opacity = String(
+      THREE.MathUtils.smoothstep(p, 0.05, 0.5) * stand * liveStand
+    );
 
     // the well of shade the type sits in belongs to the resting shot alone: run
     // it any earlier and it reads as the tunnel dimming rather than the ground
@@ -522,7 +638,9 @@ function MenuAnchor({
     const shade = shadeRef.current;
     if (shade) {
       shade.style.opacity = String(
-        THREE.MathUtils.smoothstep(p, 0.62, 1) * (1 - THREE.MathUtils.smoothstep(dp, 0.1, 0.85))
+        THREE.MathUtils.smoothstep(p, 0.62, 1) *
+          (1 - THREE.MathUtils.smoothstep(dp, 0.1, 0.85)) *
+          (1 - THREE.MathUtils.smoothstep(liveMixRef?.current ?? 0, 0.05, 0.5))
       );
     }
 
@@ -606,6 +724,206 @@ export default function GateHero({
   const veilRef = useRef<HTMLDivElement>(null);
   const destination = useRef<string | null>(null);
 
+  // ---- Live Timeline: a camera state inside this scene, not a route ----
+  // `view` only matters once the flight has landed; every ref below defaults
+  // to inert so the gate → intro → menu flow is untouched until Live opens.
+  // The wall camera is locked (no drag, no scrub): taps open the drawer.
+  const timeline = useTimeline();
+  const [view, setView] = useState<"menu" | "live">("menu");
+  const [simple, setSimple] = useState(false);
+  /** True once the turnaround has settled — gates the HUD card fade-in. */
+  const [liveSettled, setLiveSettled] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const liveOnRef = useRef(0);
+  const liveMixRef = useRef(0);
+  const exitTimerRef = useRef(0);
+  const pausedRef = useRef(false);
+  const speedRef = useRef(1);
+  const scrubHoldRef = useRef<number | null>(null);
+  // mirror the sim knobs into frame-loop refs (re-renders only on change)
+  useEffect(() => {
+    pausedRef.current = timeline.sim.paused;
+    speedRef.current = timeline.sim.speed;
+    scrubHoldRef.current = timeline.sim.scrubTo;
+  }, [timeline.sim]);
+  // `?view=live` opens straight into the live camera once the intro lands.
+  // Read once: the param is also how a shared link survives the gate flow.
+  const wantLive = useRef(
+    typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("view") === "live"
+  ).current;
+  // Debug panel: `?debug=1` only, so ordinary reviews stay uncluttered.
+  const debugLive = useRef(
+    typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("debug") === "1"
+  ).current;
+
+  const setViewParam = (live: boolean) => {
+    try {
+      const url = new URL(window.location.href);
+      if (live) url.searchParams.set("view", "live");
+      else url.searchParams.delete("view");
+      window.history.replaceState(null, "", url.toString());
+    } catch {
+      /* URL nicety only — the view state itself is already set */
+    }
+  };
+
+  const enterLive = useCallback(() => {
+    if (phase !== "arrived") return;
+    window.clearTimeout(exitTimerRef.current);
+    liveOnRef.current = 1;
+    setDrawerOpen(false);
+    setLiveSettled(false);
+    setView("live");
+    setViewParam(true);
+  }, [phase]);
+
+  const exitLive = useCallback(() => {
+    liveOnRef.current = 0;
+    setDrawerOpen(false);
+    // the card fades out at the START of the way back; the view unmounts
+    // once the fade has cleared (at once under reduced motion)
+    setLiveSettled(false);
+    window.clearTimeout(exitTimerRef.current);
+    if (reduced) {
+      setView("menu");
+    } else {
+      exitTimerRef.current = window.setTimeout(
+        () => setView("menu"),
+        LIVE_EXIT_FADE_MS
+      );
+    }
+    setViewParam(false);
+  }, [reduced]);
+
+  // tapping a poster focuses it on the wall (the card follows)
+  const openAct = useCallback((id: string) => {
+    scrubApiRef.current?.focusEvent(id);
+  }, []);
+
+  const openLineup = useCallback(() => {
+    setDrawerOpen(true);
+  }, []);
+
+  // drawer rows close the sheet and scrub the wall to that act
+  const selectDrawerAct = useCallback((id: string) => {
+    setDrawerOpen(false);
+    // let the sheet start sliding away before the wall glides
+    window.setTimeout(() => scrubApiRef.current?.focusEvent(id), 120);
+  }, []);
+
+  // the render window: previous act + current + next few. Membership
+  // refreshes at the hook's 1 Hz tick; poster POSITIONS update per frame
+  // in the layer from the continuous timeline coordinate.
+  const windowed = React.useMemo(
+    () => selectWindow(timeline.allEvents, timeline.nowMs, 5).map((w) => w.ev),
+    [timeline.allEvents, timeline.nowMs]
+  );
+
+  // global slot order for the wall scrub (rebuilt only on data change)
+  const liveSlots = React.useMemo(() => {
+    const sorted = [...timeline.allEvents].sort(
+      (a, b) =>
+        Date.parse(a.startTime) - Date.parse(b.startTime) ||
+        a.sortOrder - b.sortOrder
+    );
+    return { sorted, table: buildSlotTable(sorted) };
+  }, [timeline.allEvents]);
+  const followCoord = timelineCoord(liveSlots.table, timeline.nowMs);
+
+  // poster-only wall scrub: camera locked, row translates in slot space.
+  // Assigned into a ref so poster taps (defined above) stay stable.
+  const scrubApiRef = React.useRef<ReturnType<typeof useScrub> | null>(null);
+  // measured card height as a viewport fraction — the rig lifts the poster
+  // row above it (written by LiveHud, read per frame, never re-renders)
+  const cardFracRef = useRef(0.35);
+  const onCardHeight = useCallback((frac: number) => {
+    cardFracRef.current = frac;
+  }, []);
+  const scrub = useScrub({
+    count: liveSlots.sorted.length,
+    followCoord,
+    enabled: phase === "arrived" && view === "live" && !simple,
+    drawerOpen,
+    reduced,
+    events: liveSlots.sorted,
+  });
+  scrubApiRef.current = scrub;
+
+  // a shared link lands here after the intro instead of on the menu
+  useEffect(() => {
+    if (phase === "arrived" && wantLive) {
+      liveOnRef.current = 1;
+      setView("live");
+      setViewParam(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
+
+  // the HUD card waits for the camera: it fades in over the last stretch of
+  // the turnaround (past LIVE_SETTLE_MIX), at once under reduced motion
+  useEffect(() => {
+    if (view !== "live") return;
+    if (reduced) {
+      setLiveSettled(true);
+      return;
+    }
+    const iv = window.setInterval(() => {
+      if (liveMixRef.current > LIVE_SETTLE_MIX) {
+        setLiveSettled(true);
+        window.clearInterval(iv);
+      }
+    }, 120);
+    return () => window.clearInterval(iv);
+  }, [view, reduced]);
+
+  // Escape steps back out to the menu
+  useEffect(() => {
+    if (!(phase === "arrived" && view === "live")) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") exitLive();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [phase, view, exitLive]);
+
+  // Dev-only layering check: Back / view-toggle / steppers must be the
+  // topmost element at their own centres in every live state. Warns (no
+  // throw) so a regression shows up in reviews, never for visitors.
+  useEffect(() => {
+    if (!debugLive) return;
+    if (!(phase === "arrived" && view === "live")) return;
+    const selectors = [
+      '[data-testid="live-back"]',
+      '[data-testid="live-view-toggle"]',
+      '[data-testid="live-step-prev"]',
+      '[data-testid="live-step-next"]',
+    ];
+    const iv = window.setInterval(() => {
+      for (const sel of selectors) {
+        const el = document.querySelector(sel);
+        if (!(el instanceof HTMLElement)) continue;
+        const r = el.getBoundingClientRect();
+        if (r.width === 0 || r.height === 0) continue;
+        const top = document.elementFromPoint(
+          r.x + r.width / 2,
+          r.y + r.height / 2
+        );
+        if (top && top !== el && !el.contains(top)) {
+          console.warn(
+            `[live] overlap: ${sel} is covered by`,
+            top instanceof HTMLElement
+              ? (top.getAttribute("data-testid") ??
+                top.className?.toString?.().slice(0, 80))
+              : top
+          );
+        }
+      }
+    }, 2000);
+    return () => window.clearInterval(iv);
+  }, [debugLive, phase, view]);
+
   // width of the arch's opening on screen, measured from the same framing
   // solve the camera uses, so the CTA tracks the gap through any resize
   const rootRef = useRef<HTMLDivElement>(null);
@@ -686,13 +1004,29 @@ export default function GateHero({
       aria-label={phase === "ready" ? "Enter Breeze" : undefined}
       tabIndex={phase === "ready" ? 0 : -1}
       onClick={phase === "ready" ? enter : undefined}
-      style={{ cursor: phase === "ready" ? "pointer" : "default" }}
+      {...(phase === "arrived" && view === "live"
+        ? scrub.rootHandlers
+        : {})}
+      style={{
+        cursor: phase === "ready" ? "pointer" : "default",
+        // horizontal wall gestures are ours; vertical stays with the page
+        touchAction:
+          phase === "arrived" && view === "live" ? "pan-y" : undefined,
+        overscrollBehaviorX:
+          phase === "arrived" && view === "live" ? "none" : undefined,
+      }}
     >
       <Canvas
         shadows
         dpr={[1, 1.5]}
         camera={{ fov: 45, near: 0.1, far: 220, position: [0, 1.6, 12] }}
         gl={{ antialias: false, powerPreference: "high-performance" }}
+        // List view is DOM-only: pause the render loop (and the sim clock
+        // riding it) and resume cleanly on return — scrub focus refs live
+        // outside the Canvas so nothing is lost
+        frameloop={
+          phase === "arrived" && view === "live" && simple ? "never" : "always"
+        }
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.toneMappingExposure = 0.98;
@@ -729,7 +1063,28 @@ export default function GateHero({
             departRef={departRef}
             onArrive={arrive}
             onDeparted={departed}
+            liveOnRef={liveOnRef}
+            liveMixRef={liveMixRef}
+            cardFracRef={cardFracRef}
           />
+          {/* Gallery wall: the windowed posters, laid flat in a row. Only
+              mounted in live view — the arrival/menu shot is untouched. */}
+          {phase === "arrived" && view === "live" && (
+            <LiveLayer
+              events={windowed}
+              allEvents={timeline.allEvents}
+              nowMs={timeline.nowMs}
+              nowRef={timeline.nowRef}
+              pausedRef={pausedRef}
+              speedRef={speedRef}
+              scrubRef={scrubHoldRef}
+              dimmed
+              onSelect={openAct}
+              modeRef={scrub.modeRef}
+              scrubCoordRef={scrub.displayRef}
+              focusIdx={scrub.focusIdx}
+            />
+          )}
           {/* after the rig, so it projects against the pose set this frame */}
           <MenuAnchor
             blockRef={menuBlockRef}
@@ -737,6 +1092,7 @@ export default function GateHero({
             veilRef={veilRef}
             progressRef={progressRef}
             departRef={departRef}
+            liveMixRef={liveMixRef}
           />
           <EffectComposer multisampling={0}>
             <SMAA />
@@ -814,9 +1170,105 @@ export default function GateHero({
             onDepart={depart}
             blockRef={menuBlockRef}
             shadeRef={menuShadeRef}
+            onLive={enterLive}
+            liveActive={timeline.live.length > 0}
+            liveHidden={view === "live"}
           />
         )}
       </div>
+
+      {/* Live Timeline DOM: top bar, HUD card, drawer, flat fallback, toasts.
+          Explicit stacking: 3D canvas < bottom card (z-20) < drawer (z-50)
+          < top bar (z-60, always clickable). Card sits in the thumb zone
+          (bottom on phones, bottom-left on desktop); posters are framed in
+          the upper viewport between them. */}
+      {phase === "arrived" && view === "live" && (
+        <>
+          <LiveTopBar
+            nowMs={timeline.nowMs}
+            simple={simple}
+            onToggleSimple={() => setSimple((s) => !s)}
+            onBack={exitLive}
+          />
+          {/* edge steppers: same slot stepping as the arrow keys */}
+          {!simple && !drawerOpen && (
+            <>
+              <button
+                onClick={() => scrub.goToIndex(scrub.focusIdx - 1)}
+                aria-label="Previous act"
+                data-testid="live-step-prev"
+                className="absolute left-2 top-[30%] z-20 rounded-full px-3 py-2 text-[18px] font-bold"
+                style={{
+                  color: "#f4efe2",
+                  background: "rgba(11,12,16,0.7)",
+                  border: "1px solid rgba(244,239,226,0.3)",
+                }}
+              >
+                ◀
+              </button>
+              <button
+                onClick={() => scrub.goToIndex(scrub.focusIdx + 1)}
+                aria-label="Next act"
+                data-testid="live-step-next"
+                className="absolute right-2 top-[30%] z-20 rounded-full px-3 py-2 text-[18px] font-bold"
+                style={{
+                  color: "#f4efe2",
+                  background: "rgba(11,12,16,0.7)",
+                  border: "1px solid rgba(244,239,226,0.3)",
+                }}
+              >
+                ▶
+              </button>
+            </>
+          )}
+          {simple ? (
+            // List view: standalone opaque panel. The 3D card, meter,
+            // steppers and wall gestures are gone (unmounted / disabled);
+            // the container itself is click-through so the top bar stays
+            // live. The render loop is paused via frameloop="never".
+            <div className="pointer-events-none absolute inset-0 z-20 flex flex-col">
+              <LiveList
+                api={timeline}
+                onSwitchToAct={(id) => {
+                  setSimple(false);
+                  scrub.focusEvent(id);
+                }}
+              />
+            </div>
+          ) : (
+            <div className="absolute inset-x-0 bottom-0 z-20 flex justify-center px-3 pb-3 md:justify-start md:pl-6">
+              <LiveHud
+                api={timeline}
+                settled={liveSettled}
+                focusIdx={scrub.focusIdx}
+                atLive={scrub.atLive}
+                liveDir={scrub.liveDir}
+                onBackToLive={scrub.goLive}
+                onFocusEvent={(id) => scrub.focusEvent(id)}
+                onOpenLineup={openLineup}
+                onHeight={onCardHeight}
+              />
+            </div>
+          )}
+          <LineupDrawer
+            api={timeline}
+            open={drawerOpen}
+            onOpenChange={setDrawerOpen}
+            onSelect={selectDrawerAct}
+          />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                background: "#0b0c10",
+                border: "1px solid rgba(255,194,75,0.45)",
+                color: "#f4efe2",
+              },
+            }}
+          />
+          {debugLive && <LiveDebug api={timeline} />}
+        </>
+      )}
 
       {/* The black the next route opens on — above the canvas AND above the
           overlay, since it has to cover the menu it just walked through.

@@ -425,3 +425,15 @@ body {
   }
 } */
 
+/* Live Timeline day meter: a soft sheen glides inside the clipped fill
+   on transform only. Rendered only when the viewer allows motion and the
+   tab is visible (see DayMeter). */
+@keyframes meter-sheen {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+

@@ -134,3 +134,33 @@ model ContactSubmission {
   phone      String
   message    String
 }
+
+/// Live Timeline acts (fest schedule). Draft-1 frontend serves mock data;
+/// these tables activate only when NEXT_PUBLIC_TIMELINE_SOURCE=supabase.
+/// See supabase_timeline_migration.sql for the RLS + server-time setup.
+model TimelineEvent {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  title       String    @default("")
+  artist      String    @default("")
+  stage       String    @default("Main Stage")
+  description String    @default("")
+  start_time  DateTime  @db.Timestamptz(6)
+  end_time    DateTime  @db.Timestamptz(6)
+  /// Admin override only: scheduled | live | delayed | cancelled | done | null
+  status      String?
+  poster_url  String?
+  /// Hero pick when several acts overlap live. Admin-managed, default false.
+  featured    Boolean @default(false)
+  sort_order  Int       @default(0)
+  updated_at  DateTime  @updatedAt @db.Timestamptz(6)
+}
+
+/// Live Timeline announcement banner entries.
+model TimelineAnnouncement {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  message    String
+  severity   String   @default("info")
+  active     Boolean  @default(true)
+}

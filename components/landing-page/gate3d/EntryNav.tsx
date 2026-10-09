@@ -73,6 +73,9 @@ export default function EntryNav({
   onDepart,
   blockRef,
   shadeRef,
+  onLive,
+  liveActive = false,
+  liveHidden = false,
 }: {
   /** False while the camera is still on its way to it. */
   arrived: boolean;
@@ -87,6 +90,12 @@ export default function EntryNav({
   onDepart?: (href: string) => void;
   blockRef: React.RefObject<HTMLDivElement>;
   shadeRef: React.RefObject<HTMLDivElement>;
+  /** Opens the Live Timeline camera state (no route change). */
+  onLive?: () => void;
+  /** True while any act is currently live — shows the pulsing dot. */
+  liveActive?: boolean;
+  /** True while the Live Timeline is open — the block stands down. */
+  liveHidden?: boolean;
 }): React.ReactElement {
   const [docked, setDocked] = useState(false);
 
@@ -100,8 +109,11 @@ export default function EntryNav({
   // Once the walk out has started there is nothing left to stand down from,
   // and a stray wheel tick would blank the menu out from under a camera move
   // that is still passing through it.
+  // And never while Live holds the camera: the scrub gestures and the
+  // drawer fire wheel/touch events constantly, and none of them is the
+  // visitor asking for the site chrome.
   useEffect(() => {
-    if (docked || !arrived || departing) return;
+    if (docked || !arrived || departing || liveHidden) return;
     const dock = () => setDocked(true);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" || e.key === "PageDown" || e.key === "ArrowDown") dock();
@@ -117,7 +129,7 @@ export default function EntryNav({
       window.removeEventListener("scroll", dock);
       window.removeEventListener("keydown", onKey);
     };
-  }, [docked, arrived, departing]);
+  }, [docked, arrived, departing, liveHidden]);
 
   /**
    * Holds the navigation back so the camera can walk out first.
@@ -138,8 +150,19 @@ export default function EntryNav({
 
   return (
     <>
+      {/* the docked site chrome stands down while Live holds the camera —
+          faded (not unmounted) so Back restores it on the same timing */}
       {docked && (
-        <div className="pointer-events-auto animate-in fade-in duration-500">
+        <div
+          className="pointer-events-auto animate-in fade-in duration-500"
+          style={{
+            opacity: liveHidden ? 0 : 1,
+            transition: "opacity 320ms ease-out",
+            pointerEvents: liveHidden ? "none" : "auto",
+          }}
+          aria-hidden={liveHidden}
+          inert={liveHidden}
+        >
           <Navbar />
         </div>
       )}
@@ -173,16 +196,18 @@ export default function EntryNav({
         aria-label="Enter the fest"
         className="absolute inset-0 flex items-center justify-center px-6 transition-opacity duration-500 motion-reduce:transition-none"
         style={{
-          opacity: docked ? 0 : 1,
+          opacity: docked || liveHidden ? 0 : 1,
           // dead to the pointer until the flight lands: while it is a distant
           // sign at the end of the tunnel, a click on it is a mis-click. Dead
           // again the moment one is picked, so a second click during the walk
-          // out can't queue a second destination behind the first.
-          pointerEvents: docked || !arrived || departing ? "none" : "auto",
+          // out can't queue a second destination behind the first. Also dead
+          // while the Live Timeline holds the camera.
+          pointerEvents:
+            docked || !arrived || departing || liveHidden ? "none" : "auto",
         }}
         // out of the tab order both before the menu has arrived and after it
         // has stood down — either way these are links nobody can see
-        inert={docked || !arrived || departing}
+        inert={docked || !arrived || departing || liveHidden}
       >
         <div
           ref={blockRef}
@@ -248,6 +273,52 @@ export default function EntryNav({
                 </Link>
               </li>
             ))}
+            {/* Live Timeline: a camera state inside this scene, not a route —
+                so a button, not a link. Same spray-paint register as above. */}
+            <li style={{ borderBottom: `1px solid ${RULE}` }}>
+              <button
+                onClick={onLive}
+                className="group flex w-full items-center gap-8 py-5 text-left outline-none md:gap-12 md:py-7"
+                aria-label="Open the live timeline"
+              >
+                <span
+                  className="w-8 text-[12px] font-bold tabular-nums transition-colors duration-300 md:text-[14px]"
+                  style={{
+                    fontFamily: UTILITY,
+                    color: "rgba(244,239,226,0.38)",
+                    letterSpacing: "0.1em",
+                  }}
+                >
+                  05
+                </span>
+                <span
+                  className="flex items-center gap-4 text-[44px] leading-none transition-[color,transform] duration-300 ease-out group-hover:translate-x-2 group-hover:text-[color:var(--hot)] group-focus-visible:translate-x-2 group-focus-visible:text-[color:var(--hot)] motion-reduce:transition-none sm:text-[62px] md:text-[84px]"
+                  style={
+                    {
+                      fontFamily: DISPLAY,
+                      color: CREAM,
+                      "--hot": NIGHT.gold,
+                      textShadow: "0 3px 30px rgba(0,0,0,0.9)",
+                    } as React.CSSProperties
+                  }
+                >
+                  Live
+                  {liveActive && (
+                    <span
+                      aria-label="something is live now"
+                      className="inline-block h-3 w-3 animate-pulse rounded-full md:h-4 md:w-4"
+                      style={{ background: "#ff4b4b", boxShadow: "0 0 12px #ff4b4b" }}
+                    />
+                  )}
+                </span>
+                <span
+                  className="ml-auto transition-colors duration-300 group-hover:text-[color:var(--hot)] group-focus-visible:text-[color:var(--hot)]"
+                  style={{ color: CREAM, "--hot": NIGHT.gold } as React.CSSProperties}
+                >
+                  <Arrow />
+                </span>
+              </button>
+            </li>
           </ul>
         </div>
       </nav>
