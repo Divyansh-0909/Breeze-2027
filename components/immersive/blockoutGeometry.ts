@@ -43,13 +43,18 @@ function tubeVertex(z:number,p:readonly number[]):Vertex {
   return [tunnelCenterX(z)+p[0]+n,p[1]+(p[1]>1?n*.5:0),z];
 }
 const tunnelOuterProfile=[[-26,-.08],[-28,7],[-20,16],[-8,18],[3,15],[18,16],[27,8],[30,-.08]];
+const tunnelRearHeights=[-.08,19,31,35,32,30,19,-.08];
 function outerTunnelVertex(section:number,u:number,v:number):Vertex {
   const a=tunnelOuterProfile[section],b=tunnelOuterProfile[section+1];
   const x=lerp(a[0],b[0],u),y=lerp(a[1],b[1],u);
   // Weld the last two exterior rings: the old section-local noise left seams
   // at the quarry-facing rim. The entrance and enclosed passage stay unchanged.
   const phase=lerp(u,section+u,Math.max(0,(v-.8)/.2));
-  return [x*(1+v*.13)+Math.sin(phase*6+v*13)*v*.5,y>0?lerp(y,49,v)+Math.sin(v*18+phase*9)*v*.8:y,lerp(-3,world.tunnel.endZ,v)];
+  // The rear exterior becomes a sloping geological crown rather than the
+  // old 49m-high straight panel. Only the quarry-facing 40% of the shell changes.
+  const t=Math.max(0,(v-.6)/.4),rearBlend=t*t*(3-2*t);
+  const rearHeight=lerp(tunnelRearHeights[section],tunnelRearHeights[section+1],u);
+  return [x*(1+v*.13)+Math.sin(phase*6+v*13)*v*.5,y>0?lerp(y,49,v)+(rearHeight-49)*rearBlend+Math.sin(v*18+phase*9)*v*.8:y,lerp(-3,world.tunnel.endZ,v)];
 }
 /** Work-in-progress-2027's original faceted rock ring, fitted to the current layout. */
 export function quarryGeometry() {

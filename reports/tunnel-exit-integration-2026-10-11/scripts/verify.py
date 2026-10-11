@@ -7,7 +7,11 @@ for prior in [Path('/tmp/breeze-tunnel-server-pid.txt'), root / 'reports/navigat
   if prior.exists():
     pid = int(prior.read_text())
     proc = Path('/proc') / str(pid)
-    if proc.exists() and (proc / 'cwd').resolve() == root and b'next' in (proc / 'cmdline').read_bytes():
+    try:
+        owned = proc.exists() and (proc / 'cwd').resolve() == root and b'next' in (proc / 'cmdline').read_bytes()
+    except OSError:
+        owned = False  # An exited/zombie process has no resolvable cwd.
+    if owned:
         os.kill(pid, signal.SIGTERM)
         for _ in range(40):
             if not proc.exists(): break

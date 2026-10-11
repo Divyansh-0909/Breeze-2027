@@ -11,6 +11,7 @@ try {
   await page.route('**/api/**',route=>['GET','HEAD'].includes(route.request().method())?route.continue():route.abort());
   await page.goto('http://127.0.0.1:3000/?diagnostics',{waitUntil:'domcontentloaded'});
   await page.waitForSelector('[data-phase="landing"]',{timeout:90000});
+  await page.screenshot({path:`${root}/acceptance/public-landing.png`,scale:'css'});
   await page.getByRole('button',{name:'Enter Gullyverse',exact:true}).click();
   await page.waitForSelector('[data-phase="entrance"]');
   await page.waitForSelector('[data-phase="local"][data-location="hub"]',{timeout:90000});
