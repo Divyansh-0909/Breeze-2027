@@ -48,12 +48,18 @@ test("local movement is delta-aware, diagonal speed is bounded, and stage/backst
 test("route commitment preserves the current walking velocity without a stop or jump", () => {
   const runtime = hub(); runtime.input.forward = 1;
   runtime.input.lookX = -lookAtPose(world.hub.spawn,travelZones.find((z)=>z.id==="aftermovie")!.center).yaw;
-  let previous = runtime.pose.z;
-  for (let frame = 0; frame < 2400 && runtime.getSnapshot().phase === "local"; frame++) { previous = runtime.pose.z; runtime.tick(1 / 60); }
+  let previous = runtime.pose.z, fullWalkStep = 0;
+  for (let frame = 0; frame < 2400 && runtime.getSnapshot().phase === "local"; frame++) {
+    previous = runtime.pose.z; runtime.tick(1 / 60);
+    if (runtime.getSnapshot().phase === "local") fullWalkStep = Math.abs(runtime.pose.z - previous);
+  }
   assert.equal(runtime.getSnapshot().phase, "departure");
   const lastWalkStep = Math.abs(runtime.pose.z - previous); previous = runtime.pose.z;
   runtime.tick(1 / 60); const firstGuidedStep = Math.abs(runtime.pose.z - previous);
-  assert.ok(firstGuidedStep > lastWalkStep * 0.5 && firstGuidedStep < lastWalkStep * 1.7);
+  // The crossing frame can be clipped to an arbitrarily small remainder at
+  // the boundary. Compare guided speed with the last full locomotion step.
+  assert.ok(lastWalkStep <= fullWalkStep + 1e-9);
+  assert.ok(firstGuidedStep > fullWalkStep * 0.5 && firstGuidedStep < fullWalkStep * 1.7);
 });
 test("direct URL skips introduction and an outer boundary waits for explicit covered return", () => {
   const arrivals: string[] = [];
@@ -157,8 +163,8 @@ test("all signed destinations cross deliberately while unavailable sectors stay 
     }
   }
 });
-test("five signed directions match diagonal movement and removed Main Stage has no hidden sector", () => {
-  assert.equal(travelZones.length,5);
+test("five signs keep their directions with a second Aftermovie approach through the scaffold", () => {
+  assert.equal(travelZones.length,6);
   assert.equal(new Set(travelZones.map(zone=>zone.id)).size,5);
   assert.equal(travelZones.some(zone=>zone.sign==="main-stage" || zone.id==="accommodation"),false);
   const expected=[
@@ -182,8 +188,54 @@ test("five signed directions match diagonal movement and removed Main Stage has 
     }
   }
   const forward=hub();forward.input.forward=1;advance(forward,8);
-  assert.equal(forward.getSnapshot().phase,"local","Removed Main Stage direction cannot initiate travel");
+  assert.equal(forward.getSnapshot().phase,"covered","Forward travel now uses Aftermovie instead of an unavailable Main Stage destination");
+  assert.equal(forward.getSnapshot().destination,"aftermovie");
   assert.equal(forward.getSnapshot().unavailableDestination,null);
+});
+
+test("forward walking beneath the navigation scaffold commits covered Aftermovie travel", () => {
+  const runtime = hub();
+  runtime.input.forward = 1;
+  for (let frame = 0; frame < 8 * 60 && runtime.getSnapshot().phase === "local"; frame++) runtime.tick(1 / 60);
+  assert.equal(runtime.getSnapshot().phase, "departure");
+  assert.equal(runtime.getSnapshot().destination, "aftermovie");
+  assert.ok(runtime.pose.z < world.scaffold.position[2] - world.scaffold.depth / 2, "The visitor passes the hanging structure before reaching the gate");
+  advance(runtime, 1);
+  assert.equal(runtime.getSnapshot().phase, "covered");
+  assert.equal(runtime.opacity, 1);
+  runtime.markReady(runtime.getSnapshot().serial);
+  advance(runtime, 1);
+  assert.equal(runtime.getSnapshot().scene, "aftermovie");
+  assert.equal(runtime.getSnapshot().phase, "local");
+});
+
+test("walking limits give additional clearance in every direction without removing the boundary", () => {
+  const samples = {
+    hub: [[-19, -53], [19, -53], [0, -72], [0, -43]],
+    aftermovie: [[-20.5, -112], [-3.5, -112], [-12, -119], [-12, -105.8]],
+  } as const;
+  for (const id of ["hub", "aftermovie"] as const) {
+    for (const [x, z] of samples[id]) {
+      const pose = { ...spawnPose(id), x, z };
+      assert.ok(boundaryClearance(id, pose) > 0, `${id} permits the newly added walking clearance at ${x},${z}`);
+      constrain(id, pose);
+      assert.ok(Math.hypot(pose.x - x, pose.z - z) < 1e-9);
+    }
+    const outside = { ...spawnPose(id), x: 1000, z: -1000 };
+    constrain(id, outside);
+    assert.ok(boundaryClearance(id, outside) >= -1e-6, "Outward movement remains bounded");
+  }
+});
+
+test("Team and Contact Us are the second stalls approached from the tunnel", () => {
+  for (const [side, id] of [["left", "team"], ["right", "contact"]] as const) {
+    const destination = world.destinations.find(d => d.id === id)!;
+    const row = [...world.stalls.filter(stall => stall.id.startsWith(side)), destination].sort((a, b) => b.position[2] - a.position[2]);
+    assert.equal(row[1].id, id);
+    assert.notEqual(row[0].id, id);
+    assert.equal(destination.anchor[2], destination.position[2]);
+    assert.ok(obstacles.some(obstacle => obstacle.id === id && obstacle.x === destination.position[0] && obstacle.z === destination.position[2]));
+  }
 });
 test("collision stops capsules before every solid footprint and quarry wall", () => {
   for (const o of obstacles) {

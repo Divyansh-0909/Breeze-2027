@@ -29,6 +29,8 @@ export const destinationOptions: NavigationDestination[] = [
 ];
 export const navigationDestination = (id: TravelId) => destinationOptions.find((destination) => destination.id === id)!;
 export const mapLabels = destinationOptions.filter((d) => !["hub", "entrance"].includes(d.id)).map((d) => d.label);
+// A destination may have multiple approach gates. Its first gate retains the
+// approved sign direction; additional gates use the same travel coordinator.
 export const travelZones = layout.hub.travelZones.map((zone) => {
   const destination = navigationDestination(zone.id as TravelId);
   const a = layout.hub.movementBoundary[zone.edge], b = layout.hub.movementBoundary[(zone.edge + 1) % layout.hub.movementBoundary.length];

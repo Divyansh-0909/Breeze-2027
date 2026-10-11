@@ -1,0 +1,154 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "mode": "baseline",
+  "checks": [
+    {
+      "name": "Reported forward boundary blockage reproduced",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 2,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": 0,
+        "y": 1.72,
+        "z": -63.62,
+        "yaw": 0,
+        "pitch": 0.2
+      }
+    }
+  ],
+  "captures": [
+    {
+      "id": "scaffold",
+      "position": [
+        0,
+        1.72,
+        -51
+      ],
+      "target": [
+        0,
+        8,
+        -70
+      ],
+      "file": "scaffold.png",
+      "fov": 58,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "requestedDpr": 0.25,
+      "diagnostics": {
+        "quality": 3,
+        "stats": {
+          "calls": 137,
+          "triangles": 93246,
+          "textures": 25,
+          "geometries": 141,
+          "dpr": 0.25
+        }
+      }
+    },
+    {
+      "id": "left-stalls",
+      "position": [
+        -10,
+        1.72,
+        -54
+      ],
+      "target": [
+        -24,
+        2.5,
+        -78
+      ],
+      "file": "left-stalls.png",
+      "fov": 58,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "requestedDpr": 0.25,
+      "diagnostics": {
+        "quality": 3,
+        "stats": {
+          "calls": 125,
+          "triangles": 93004,
+          "textures": 25,
+          "geometries": 143,
+          "dpr": 0.25
+        }
+      }
+    },
+    {
+      "id": "right-stalls",
+      "position": [
+        10,
+        1.72,
+        -54
+      ],
+      "target": [
+        24,
+        2.5,
+        -78
+      ],
+      "file": "right-stalls.png",
+      "fov": 58,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "requestedDpr": 0.25,
+      "diagnostics": {
+        "quality": 3,
+        "stats": {
+          "calls": 52,
+          "triangles": 86640,
+          "textures": 25,
+          "geometries": 143,
+          "dpr": 0.25
+        }
+      }
+    },
+    {
+      "id": "quarry",
+      "position": [
+        0,
+        6,
+        -51
+      ],
+      "target": [
+        0,
+        4,
+        -92
+      ],
+      "file": "quarry.png",
+      "fov": 58,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "requestedDpr": 0.25,
+      "diagnostics": {
+        "quality": 3,
+        "stats": {
+          "calls": 138,
+          "triangles": 93258,
+          "textures": 25,
+          "geometries": 143,
+          "dpr": 0.25
+        }
+      }
+    }
+  ],
+  "pageErrors": []
+}

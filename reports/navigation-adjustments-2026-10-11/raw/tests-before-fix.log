@@ -1,0 +1,153 @@
+
+> my-landing@0.1.0 test:immersive
+> tsx --test tests/immersive/*.test.ts
+
+✔ landing owns controls, entrance reaches hub, and frames don't publish React state (7.837983ms)
+✔ physical threshold uses guided departure and never reveals before critical readiness (4.114246ms)
+✔ local movement is delta-aware, diagonal speed is bounded, and stage/backstage are inaccessible (7.538794ms)
+✔ route commitment preserves the current walking velocity without a stop or jump (4.853768ms)
+✔ direct URL skips introduction and an outer boundary waits for explicit covered return (1.050229ms)
+✔ superseding navigation invalidates old readiness; background restore cannot leap across routes (1.906055ms)
+✔ reduced motion preserves readiness gating and playback restores the visitor's pose (0.743618ms)
+✔ changing motion preferences publishes immediately without taking away local controls (1.412553ms)
+✔ context restoration keeps the visitor's pose and rejects readiness from before loss (2.027358ms)
+✔ context loss pauses entrance choreography and recovers initial preparation (2.397084ms)
+✔ URL navigation during recovery supersedes the interrupted destination after preparation (1.176088ms)
+✔ context loss exits film focus and returns to the saved walking pose (0.572641ms)
+✔ all signed destinations cross deliberately while unavailable sectors stay truthful (10.465554ms)
+✖ five signs keep their directions with a second Aftermovie approach through the scaffold (1.18417ms)
+✖ forward walking beneath the navigation scaffold commits covered Aftermovie travel (1.886116ms)
+✖ walking limits give additional clearance in every direction without removing the boundary (0.246771ms)
+✖ Team and Contact Us are the second stalls approached from the tunnel (0.255864ms)
+✔ collision stops capsules before every solid footprint and quarry wall (0.901275ms)
+✔ nearby hub commitment relocates to the distant stage only after black coverage (1.224871ms)
+✔ stage, destination marker and film focus stay in the same authored coordinates (0.216896ms)
+✔ inspection cannot move a visitor and portrait framing preserves the original stage camera (1.871554ms)
+✔ entrance choreography physically follows the bent tunnel without crossing rock (1.840126ms)
+✔ portal rock shoulders stop a visitor while the arch remains clear (0.310527ms)
+✔ side stepping into a tunnel wall slides locally instead of projecting into the quarry (0.238309ms)
+✔ navigation away from playback stops media without snapping the visible film camera (0.324228ms)
+✔ every outer Aftermovie segment and chamfer opens a stationary menu without returning (0.451118ms)
+✔ front/rear/side/corner and diagonal public movement open the boundary menu (0.888917ms)
+✔ crossing the exact join of irregular perimeter segments clamps inside both faces (0.307853ms)
+✔ Stay Here preserves pose and requires moving away before another deliberate boundary crossing (0.885281ms)
+✔ looking at hub signs and sliding along a sector do not navigate (1.612835ms)
+✔ internal movement does not open a perimeter menu and playback owns movement (0.306661ms)
+✔ Escape handles overlay first, map second, and playback exactly once (0.962808ms)
+✔ boundary overlay selections use readiness and external content routing under black (2.928483ms)
+✔ map ascent/descent preserves exact player pose and does not publish on every frame (1.686876ms)
+✔ map close/open interruptions reverse continuously and reduced motion remains covered (1.35646ms)
+✔ map marker travel fades the overhead view before changing the destination pose (1.647737ms)
+✔ context loss during aerial transition restores the saved walking pose and input ownership (1.665584ms)
+✔ desktop and portrait map cameras fit the actual generated quarry rim and entrance (15.275335ms)
+✔ compact quarry contains the unscaled stage and stalls and leaves the Aftermovie rear sightline open (11.604387ms)
+✔ actual cave geometry physically occludes the exit, scaffold and stage from landing and tunnel entry (26.115643ms)
+✔ actual bent-tunnel rock releases a clear exit sightline at the authored mid and first-reveal cameras (18.651871ms)
+✔ fresh entry, session return, explicit Entrance and direct Aftermovie resolve through coordinator (1.206103ms)
+✔ 7.2s cinematic uses active elapsed time at 5 FPS; walking remains bounded (1.832425ms)
+✔ long suspended/resume frame cannot advance cinematic or locomotion (0.814795ms)
+✔ exceptional foreground cinematic gaps are covered while normal authored timing continues (0.434423ms)
+✔ cinematic event does not credit time before actual activation (0.461234ms)
+✔ map and movie restoration preserve pose with large frame intervals (0.781705ms)
+✔ rapid replay during restoration retains original walking anchor (0.343757ms)
+✔ interrupted covered preparation keeps camera covered (0.456646ms)
+✔ invalid deltas do not poison pose or clocks (0.312941ms)
+✔ projection rejects eye-plane, behind camera, invalid viewport and frustum points (1.152562ms)
+✔ projection follows orientation and resize rather than stale camera cache (0.481854ms)
+✔ retired video remains alive while LED sampler lease exists, disposes exactly once (0.555065ms)
+✔ producer with no published sampler disposes on early exit (0.257066ms)
+✔ unpublished cancelled poses dispose once while shared cache remains protected (1.074075ms)
+✔ loading deadline counts foreground budget and cancels stale callbacks (0.199029ms)
+ℹ tests 56
+ℹ suites 0
+ℹ pass 52
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 711.595291
+
+✖ failing tests:
+
+test at tests/immersive/runtime.test.ts:160:1
+✖ five signs keep their directions with a second Aftermovie approach through the scaffold (1.18417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5 !== 6
+  
+      at TestContext.<anonymous> (/workspace/Breeze-2027-navigation/tests/immersive/runtime.test.ts:161:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5,
+    expected: 6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/immersive/runtime.test.ts:189:1
+✖ forward walking beneath the navigation scaffold commits covered Aftermovie travel (1.886116ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'local'
+  - 'departure'
+  
+      at TestContext.<anonymous> (/workspace/Breeze-2027-navigation/tests/immersive/runtime.test.ts:193:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'local',
+    expected: 'departure',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/immersive/runtime.test.ts:205:1
+✖ walking limits give additional clearance in every direction without removing the boundary (0.246771ms)
+  AssertionError [ERR_ASSERTION]: hub permits the newly added walking clearance at -19,-53
+      at TestContext.<anonymous> (/workspace/Breeze-2027-navigation/tests/immersive/runtime.test.ts:213:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/immersive/runtime.test.ts:223:1
+✖ Team and Contact Us are the second stalls approached from the tunnel (0.255864ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'left-1' !== 'team'
+  
+      at TestContext.<anonymous> (/workspace/Breeze-2027-navigation/tests/immersive/runtime.test.ts:227:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'left-1',
+    expected: 'team',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

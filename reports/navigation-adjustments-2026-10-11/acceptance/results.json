@@ -1,0 +1,342 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "mode": "acceptance",
+  "checks": [
+    {
+      "name": "Forward walking through scaffold fades to Aftermovie on the same Canvas",
+      "trace": [
+        {
+          "at": 13549.70000000298,
+          "state": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 1,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -54.99755449491706,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "opacity": 0
+        },
+        {
+          "at": 19591,
+          "state": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 2,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -67.2203944732225,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "opacity": 0
+        },
+        {
+          "at": 22067.89999999851,
+          "state": {
+            "phase": "departure",
+            "scene": "hub",
+            "destination": "aftermovie",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 2,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -72.62,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "opacity": 0
+        },
+        {
+          "at": 22750.70000000298,
+          "state": {
+            "phase": "covered",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 2,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -106.8,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "opacity": 1
+        },
+        {
+          "at": 27145.5,
+          "state": {
+            "phase": "covered",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -106.8,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "opacity": 1
+        },
+        {
+          "at": 29159.29999999702,
+          "state": {
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -106.8,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "opacity": 1
+        },
+        {
+          "at": 31047.89999999851,
+          "state": {
+            "phase": "local",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -110.8,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "opacity": 0
+        }
+      ],
+      "sameCanvas": true
+    },
+    {
+      "name": "Existing return path",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 2,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      }
+    },
+    {
+      "name": "Map markers follow the relocated second stalls and projections stay finite"
+    },
+    {
+      "name": "Portrait touch hold through scaffold reaches Aftermovie",
+      "device": "Chromium touch emulation; no physical mobile GPU claim"
+    }
+  ],
+  "captures": [
+    {
+      "id": "scaffold",
+      "position": [
+        0,
+        1.72,
+        -51
+      ],
+      "target": [
+        0,
+        8,
+        -70
+      ],
+      "file": "scaffold.png",
+      "fov": 58,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "requestedDpr": 0.25,
+      "diagnostics": {
+        "quality": 3,
+        "stats": {
+          "calls": 137,
+          "triangles": 93246,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        }
+      }
+    },
+    {
+      "id": "left-stalls",
+      "position": [
+        -10,
+        1.72,
+        -54
+      ],
+      "target": [
+        -24,
+        2.5,
+        -78
+      ],
+      "file": "left-stalls.png",
+      "fov": 58,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "requestedDpr": 0.25,
+      "diagnostics": {
+        "quality": 3,
+        "stats": {
+          "calls": 125,
+          "triangles": 93004,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        }
+      }
+    },
+    {
+      "id": "right-stalls",
+      "position": [
+        10,
+        1.72,
+        -54
+      ],
+      "target": [
+        24,
+        2.5,
+        -78
+      ],
+      "file": "right-stalls.png",
+      "fov": 58,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "requestedDpr": 0.25,
+      "diagnostics": {
+        "quality": 3,
+        "stats": {
+          "calls": 52,
+          "triangles": 86640,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        }
+      }
+    },
+    {
+      "id": "quarry",
+      "position": [
+        0,
+        6,
+        -51
+      ],
+      "target": [
+        0,
+        4,
+        -92
+      ],
+      "file": "quarry.png",
+      "fov": 58,
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "requestedDpr": 0.25,
+      "diagnostics": {
+        "quality": 3,
+        "stats": {
+          "calls": 140,
+          "triangles": 93270,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        }
+      }
+    }
+  ],
+  "pageErrors": []
+}

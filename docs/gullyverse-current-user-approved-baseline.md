@@ -952,3 +952,13 @@ Quality0/1/2/3 DPRcaps1.25/1/.75/.6; stage counts900/600/300; twelve covered war
 ```
 
 Relevant sources: [HubScene](../components/immersive/HubScene.tsx), [geometry](../components/immersive/blockoutGeometry.ts), [paint](../components/immersive/worldPaint.ts), [layout](../public/models/gullyverse/blockout.layout.json), [world](../components/immersive/world.ts), [navigation](../components/immersive/navigation.ts), [runtime](../components/immersive/runtime.ts), [aerial](../components/immersive/aerial.ts), [stage scene](../components/immersive/AftermovieScene.tsx), [stage environment](../components/immersive/AftermovieEnvironment.tsx). Asset SHA256s in snapshot manifest. Baseline captures are actual running website images, separate from new acceptance images. Matched camera views are review probes, not visitor-route proof.
+
+## Later user-requested navigation adjustments — 11 October 2026
+
+Following the Stage 1 delivery and Vercel preview, the user requested travel when walking beneath the navigation board, slightly larger walking boundaries and Team/Contact Us as the second stalls on their respective sides. These later decisions supersede the walking limits and stall positions in the original snapshot above; the snapshot remains historical evidence.
+
+Current hub walking bounds: X [−20,20], Z [−73,−42]. A forward Aftermovie gate at the central edge z −73 now shares the original fade/readiness/arrival system. The original rear Aftermovie gate and approved sign composition remain. Aftermovie walking bounds: X [−21,−3], Z [−119.5,−105.3]. All bounds remain active.
+
+Team is now at [−27.6,0,−77.1], anchor [−24,1.72,−77.1]; Contact Us at [27,0,−77.1], anchor [23.4,1.72,−77.1]. Each swaps slots with its first generic stall, which now occupies the former Team/Contact location. Shared map/collision/fixture anchors follow these positions. Quarry geometry/dimensions, stage assets/composition, tunnel, scaffold and lighting remain unchanged.
+
+See [navigation adjustment verification](../reports/navigation-adjustments-2026-10-11/README.md) and [matched before/after gallery](../reports/navigation-adjustments-2026-10-11/gallery.html). The actual [shared registry](../public/models/gullyverse/blockout.layout.json) supplies the complete current polygons and gate ranges.
