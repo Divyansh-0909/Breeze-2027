@@ -1,0 +1,25 @@
+
+> my-landing@0.1.0 test:payments
+> tsx --test tests/payments/core.test.ts tests/payments/statements.test.ts tests/payments/jev.test.ts
+
+✔ UPI QR preserves recipient, amount, and public order code without exposing the private checkout token (1.517158ms)
+✔ references cannot be guessed from amounts or silently shortened (69.637913ms)
+✔ amounts use exact integer paise and dates reject ambiguous invalid calendars (1.292922ms)
+✔ one exact validated incoming credit is eligible even if customer never clicks I've paid (0.41914ms)
+✔ wrong amount, account, missing reference, conflicting claim, and allocation never approve (0.190326ms)
+✔ unverified personal-account notes, debits, reversals and duplicate credits go to review (0.180431ms)
+✔ complete customer bank reference can match without note support; another order's code blocks it (0.150727ms)
+✔ Jev is optional and uses its documented typed decision API (28.751834ms)
+✔ CSV preserves quoted bank descriptions and both credit/debit entries (5.529526ms)
+✔ unknown direction and malformed monetary values fail validation rather than approve (0.449936ms)
+✔ missing bank references remain missing; multiple numeric candidates cannot be invented (0.345028ms)
+✔ duplicate columns, swapped date formats, and corrupt CSV are explicit (0.418879ms)
+✔ text PDF extraction preserves original text and requires review (1942.597386ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3397.802465

@@ -1,0 +1,421 @@
+{
+  "checks": [
+    {
+      "name": "Aftermovie outer edge 0 clamps and presents menu; Escape stays",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "boundary": {
+          "x": -11.906786236560073,
+          "y": 1.72,
+          "z": -106.67999999999999,
+          "yaw": 2.819841979980469,
+          "pitch": 0.16
+        },
+        "after": {
+          "x": -11.906786236560073,
+          "y": 1.72,
+          "z": -106.67999999999999,
+          "yaw": 2.819841979980469,
+          "pitch": 0.16
+        },
+        "clearances": [
+          -4.551914400963142e-15,
+          4.913957317165729,
+          7.526786236560073,
+          13.003258893939853,
+          11.440000000000007,
+          13.135083062396435,
+          7.713213763439927,
+          5.045781485622307
+        ],
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        }
+      }
+    },
+    {
+      "name": "Aftermovie outer edge 1 clamps and presents menu; Escape stays",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "boundary": {
+          "x": -4.720564923065934,
+          "y": 1.72,
+          "z": -106.91683623063584,
+          "yaw": -2.1625728149414067,
+          "pitch": 0.16
+        },
+        "after": {
+          "x": -4.720564923065934,
+          "y": 1.72,
+          "z": -106.91683623063584,
+          "yaw": -2.1625728149414067,
+          "pitch": 0.16
+        },
+        "clearances": [
+          0.23683623063584036,
+          -5.551115123125783e-17,
+          0.34056492306593433,
+          7.754364567347593,
+          11.203163769364162,
+          18.049040379562165,
+          14.899435076934065,
+          10.294675812214567
+        ],
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        }
+      }
+    },
+    {
+      "name": "Aftermovie outer edge 2 clamps and presents menu; Escape stays",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "boundary": {
+          "x": -4.38,
+          "y": 1.72,
+          "z": -112.31505688519977,
+          "yaw": -1.3294409179687503,
+          "pitch": 0.16
+        },
+        "after": {
+          "x": -4.38,
+          "y": 1.72,
+          "z": -112.31505688519977,
+          "yaw": -1.3294409179687503,
+          "pitch": 0.16
+        },
+        "clearances": [
+          5.635056885199769,
+          3.5763026646492473,
+          -1.1102230246251565e-16,
+          3.696430369629951,
+          5.804943114800234,
+          14.472737714912911,
+          15.24,
+          14.35261000993221
+        ],
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        }
+      }
+    },
+    {
+      "name": "Aftermovie outer edge 3 clamps and presents menu; Escape stays",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n    pitch: 0.16,\n+   x: -4.65391003413954,\n-   x: -4.653910034139539,\n    y: 1.72,\n    yaw: -0.696084228515625,\n    z: -117.81650888043777\n  }\n\n    at file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:8:814\n    at async test (file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:4:79)\n    at async file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:7:70"
+    },
+    {
+      "name": "Aftermovie outer edge 4 clamps and presents menu; Escape stays",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "boundary": {
+          "x": -11.95294437288776,
+          "y": 1.72,
+          "z": -118.12,
+          "yaw": 0.19239569091796876,
+          "pitch": 0.16
+        },
+        "after": {
+          "x": -11.95294437288776,
+          "y": 1.72,
+          "z": -118.12,
+          "yaw": 0.19239569091796876,
+          "pitch": 0.16
+        },
+        "clearances": [
+          11.440000000000007,
+          13.035897625144095,
+          7.57294437288776,
+          4.94659604836997,
+          -4.551914400963142e-15,
+          5.013142754418067,
+          7.66705562711224,
+          13.102444331192196
+        ],
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        }
+      }
+    },
+    {
+      "name": "Aftermovie outer edge 5 clamps and presents menu; Escape stays",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "boundary": {
+          "x": -19.309116420576203,
+          "y": 1.72,
+          "z": -117.85348242572202,
+          "yaw": 0.8947166748046875,
+          "pitch": 0.16
+        },
+        "after": {
+          "x": -19.309116420576203,
+          "y": 1.72,
+          "z": -117.85348242572202,
+          "yaw": 0.8947166748046875,
+          "pitch": 0.16
+        },
+        "clearances": [
+          11.173482425722023,
+          18.049040379562165,
+          14.929116420576202,
+          10.33665157094274,
+          0.2665175742779792,
+          9.992007221626409e-16,
+          0.3108835794237973,
+          7.712388808619427
+        ],
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        }
+      }
+    },
+    {
+      "name": "Aftermovie outer edge 6 clamps and presents menu; Escape stays",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "boundary": {
+          "x": -19.62,
+          "y": 1.72,
+          "z": -112.34101669234434,
+          "yaw": 1.403941131591797,
+          "pitch": 0.16
+        },
+        "after": {
+          "x": -19.62,
+          "y": 1.72,
+          "z": -112.34101669234434,
+          "yaw": 1.403941131591797,
+          "pitch": 0.16
+        },
+        "clearances": [
+          5.661016692344343,
+          14.370966365602438,
+          15.24,
+          14.454381359242694,
+          5.77898330765566,
+          3.678074013959729,
+          -9.992007221626409e-16,
+          3.594659020319472
+        ],
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        }
+      }
+    },
+    {
+      "name": "Aftermovie outer edge 7 clamps and presents menu; Escape stays",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "boundary": {
+          "x": -19.260581788714717,
+          "y": 1.72,
+          "z": -106.89798294241649,
+          "yaw": 1.9941069946289063,
+          "pitch": 0.16
+        },
+        "after": {
+          "x": -19.260581788714717,
+          "y": 1.72,
+          "z": -106.89798294241649,
+          "yaw": 1.9941069946289063,
+          "pitch": 0.16
+        },
+        "clearances": [
+          0.2179829424164933,
+          10.26801323631944,
+          14.880581788714716,
+          18.049040379562165,
+          11.222017057583509,
+          7.781027143242727,
+          0.3594182112852832,
+          7.771561172376096e-16
+        ],
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        }
+      }
+    },
+    {
+      "name": "Map close restores bounded pose and disabled destinations remain unavailable",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "after": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "disabled": [
+          {
+            "id": "accommodation",
+            "text": "AccommodationComing soon"
+          },
+          {
+            "id": "sponsors",
+            "text": "Past SponsorsComing soon"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Playback eventually restores the exact visitor pose and releases walking",
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:11:451\n    at async test (/workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:4:79)\n    at async file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:11:2"
+    },
+    {
+      "name": "Manual Use without 3D removes Canvas and exposes native playback",
+      "status": "PASS",
+      "evidence": {
+        "text": "BREEZE 2027 / GULLYVERSE\n\nThe festival is still here.\n\nWatch the Aftermovie and explore festival information.\n\nEvents\nTeam\nContact us\nPast sponsors\nMerch\nReload immersive experience"
+      }
+    },
+    {
+      "name": "Higher-resolution hub, map and front/rear stage captures",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Critical scene preparation exceeded 45 seconds.\n    at local (file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/audit-common.mjs:25:319)\n    at async file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:15:863\n    at async test (file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:4:79)\n    at async file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/navigation-details.mjs:15:1"
+    }
+  ],
+  "errors": []
+}

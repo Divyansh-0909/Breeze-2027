@@ -12,6 +12,7 @@ export type Diagnostics = {
   phases: { at: number; phase: string; scene: string; serial: number }[]; memory: MemorySample[];
   gpuTimer: "available" | "unavailable"; discardedGpuQueries: number;
   currentFrame: FrameSample | null;
+  videoResources: { at: number; event: string; uuid: string; samplers: number; uploaded: boolean }[];
   stats: { calls: number; triangles: number; textures: number; geometries: number; dpr: number };
 };
 declare global { interface Window { __gullyverse?: Diagnostics } }
@@ -64,7 +65,7 @@ export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRu
   let timer = context.getExtension("EXT_disjoint_timer_query_webgl2") as TimerExtension | null;
   const d: Diagnostics = window.__gullyverse = {
     runtime, renderer: String(context.getParameter(debug ? debug.UNMASKED_RENDERER_WEBGL : context.RENDERER)),
-    frames: [], timeline: [], preparations: [], gpu: [], phases: [], memory: [], currentFrame: null,
+    frames: [], timeline: [], preparations: [], gpu: [], phases: [], memory: [], currentFrame: null, videoResources: [],
     gpuTimer: timer ? "available" : "unavailable", discardedGpuQueries: 0,
     stats: { calls: 0, triangles: 0, textures: 0, geometries: 0, dpr: gl.getPixelRatio() },
   };
@@ -74,6 +75,41 @@ export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRu
     if (signature !== lastPhase) { lastPhase = signature; append(d.phases, { at: performance.now(), phase: s.phase, scene: s.scene, serial: s.serial }, 1000); }
   };
   phase(); const unsubscribe = runtime.subscribe(phase);
+  // Opt-in lifetime evidence. Weak metadata never keeps retired movies alive.
+  const traceVideo = new URLSearchParams(window.location.search).has("resourceTrace");
+  const watched = new WeakMap<THREE.Texture, { disposed: boolean; reported: boolean }>();
+  const bound = new Set<THREE.Texture>();
+  const traceSamplers = (scene: THREE.Object3D) => {
+    const samplers = new Map<THREE.Texture, number>();
+    scene.traverse(object => {
+      if (!(object instanceof THREE.Mesh)) return;
+      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
+        if (!(material instanceof THREE.ShaderMaterial)) continue;
+        for (const uniform of Object.values(material.uniforms)) {
+          const texture = uniform.value;
+          if (texture instanceof THREE.VideoTexture) samplers.set(texture, (samplers.get(texture) ?? 0) + 1);
+        }
+      }
+    });
+    for (const texture of bound) if (!samplers.has(texture)) bound.delete(texture);
+    for (const [texture, count] of samplers) {
+      bound.add(texture);
+      let state = watched.get(texture);
+      if (!state) {
+        state = { disposed: false, reported: false }; watched.set(texture, state);
+        const metadata = state;
+        texture.addEventListener("dispose", () => {
+          metadata.disposed = true;
+          append(d.videoResources, { at: performance.now(), event: "dispose", uuid: texture.uuid, samplers: bound.has(texture) ? count : 0, uploaded: false }, 1000);
+        });
+      }
+      if (state.disposed && !state.reported) {
+        state.reported = true;
+        const properties = gl.properties.get(texture) as { __webglTexture?: WebGLTexture };
+        append(d.videoResources, { at: performance.now(), event: "disposed-still-sampled-after-render", uuid: texture.uuid, samplers: count, uploaded: !!properties.__webglTexture }, 1000);
+      }
+    }
+  };
   const pending: { query: WebGLQuery; sample: TimedSample }[] = [];
   const clearQueries = () => { pending.forEach(({ query }) => context.deleteQuery(query)); pending.length = 0; };
   const lost = () => { d.discardedGpuQueries += pending.length; pending.length = 0; timer = null; };
@@ -101,6 +137,7 @@ export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRu
     if (query) context.beginQuery(timer!.TIME_ELAPSED_EXT, query);
     try { originalRender.call(gl, scene, camera); }
     finally {
+      if (traceVideo) traceSamplers(scene);
       if (query) {
         context.endQuery(timer!.TIME_ELAPSED_EXT);
         pending.push({ query, sample: { name: "gpu-render", at: start, ms: 0, phase: s.phase, scene: s.scene, serial: s.serial, poseZ: runtime.pose.z } });
@@ -117,7 +154,7 @@ export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRu
   };
   GLTFLoader.prototype.parse = measuredParse;
   return () => {
-    unsubscribe(); clearQueries(); gl.render = originalRender;
+    unsubscribe(); clearQueries(); bound.clear(); gl.render = originalRender;
     gl.domElement.removeEventListener("webglcontextlost", lost); gl.domElement.removeEventListener("webglcontextrestored", restored);
     if (GLTFLoader.prototype.parse === measuredParse) GLTFLoader.prototype.parse = originalParse;
     if (window.__gullyverse === d) delete window.__gullyverse;

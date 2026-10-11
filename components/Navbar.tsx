@@ -5,6 +5,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { Home as HomeIcon, ShoppingCart } from "lucide-react";
 
+import { immersiveHref } from "@/components/immersive/navigation";
 import { cn } from "@/lib/utils";
 
 interface NavbarProps {
@@ -80,7 +81,7 @@ export default function Navbar({ className }: NavbarProps) {
     >
       <div className="pointer-events-auto flex items-center gap-3 rounded-2xl border border-neutral-500/40 bg-black/80 px-3 py-2 shadow-lg shadow-black/25 sm:gap-5 sm:px-4">
         <Link
-          href="/"
+          href={immersiveHref("hub")}
           onClick={handleHomeClick}
           aria-label="Home"
           aria-current={isActive("/") ? "page" : undefined}

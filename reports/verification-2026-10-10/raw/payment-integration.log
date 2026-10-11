@@ -1,0 +1,13 @@
+
+> my-landing@0.1.0 test:payments:integration
+> tsx tests/payments/integration.ts
+
+PASS: checkout validation, server-authoritative amount, pre-payment persistence, and retries
+PASS: account rotation preserves existing order destinations
+PASS: reviewed statements auto-confirm saved orders, deduplicate overlapping exports, and preserve one approval/receipt queue
+PASS: later reversals flag review without silently deleting fulfilled registrations
+PASS: two claims for one credit cannot race into automatic approval
+PASS: different orders with the same bank reference cannot race into manual approval
+PASS: concurrent manual approvals are idempotent, including mixed single/pair variants
+PASS: admin APIs require authentication and row-level security prevents direct browser-role statement reads
+All isolated PostgreSQL payment integration checks passed. No live database or API keys were used.

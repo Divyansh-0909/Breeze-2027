@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { destinationOptions, type TravelId } from "./navigation";
 import type { ImmersiveRuntime, Snapshot } from "./runtime";
 import { world } from "./world";
+import { projectMapPoint } from "./mapProjection";
 import styles from "./immersive.module.css";
 
 type MapPoint = { id: string; label: string; position: readonly number[]; destination?: TravelId };
@@ -26,21 +27,19 @@ export type MapDOM = {
 
 /** Project DOM labels through the same R3F camera, without a React update per frame. */
 export function MapMarkerProjection({ runtime, elements }: { runtime: ImmersiveRuntime; elements: MapDOM }) {
-  const vector = useRef(new THREE.Vector3());
-  const previousFrame = useRef("");
+  const clip = useRef(new THREE.Vector4());
   const points = mapPoints();
   useFrame(({ camera, size }) => {
-    if (!runtime.getSnapshot().map || !elements.container) { previousFrame.current = ""; return; }
-    const signature = `${size.width}:${size.height}:${runtime.mapProgress}:${camera.position.x}:${camera.position.y}:${camera.position.z}:${elements.nodes.size}`;
-    if (signature === previousFrame.current) return;
-    previousFrame.current = signature;
+    if (!runtime.getSnapshot().map || !elements.container) return;
     camera.updateMatrixWorld();
     elements.container.style.opacity = String(Math.max(0, Math.min(1, (runtime.mapProgress - 0.78) / 0.22)));
     const placed: { x: number; y: number; w: number; h: number }[] = [];
     const overlaps = (x: number, y: number, w: number, h: number) => placed.filter(p => Math.abs(x - p.x) < (w + p.w) / 2 + 5 && Math.abs(y - p.y) < (h + p.h) / 2 + 5).length;
-    const projected = points.map(point => {
-      vector.current.set(point.position[0], point.position[1] ?? 0, point.position[2]).project(camera);
-      return { point, x: (vector.current.x + 1) * size.width / 2, y: (1 - vector.current.y) * size.height / 2 };
+    const projected = points.flatMap(point => {
+      const projection = projectMapPoint(point.position, camera, size.width, size.height, clip.current);
+      const node = elements.nodes.get(point.id), dot = elements.dots.get(point.id), line = elements.lines.get(point.id);
+      for (const element of [node, dot, line]) if (element) element.style.visibility = projection ? "visible" : "hidden";
+      return projection ? [{ point, ...projection }] : [];
     }).sort((a, b) => a.y - b.y);
     for (const { point, x, y } of projected) {
       const node = elements.nodes.get(point.id), dot = elements.dots.get(point.id), line = elements.lines.get(point.id);
@@ -70,7 +69,7 @@ function useOverlayFocus(ref: React.RefObject<HTMLElement | null>) {
     node?.querySelector<HTMLElement>("button:not(:disabled)")?.focus({ preventScroll: true });
     const trap = (event: KeyboardEvent) => {
       if (event.key !== "Tab" || !node) return;
-      const controls = [...node.querySelectorAll<HTMLButtonElement>("button:not(:disabled)")];
+      const controls = [...node.querySelectorAll<HTMLButtonElement>("button:not(:disabled)")].filter(control => getComputedStyle(control).visibility !== "hidden");
       const first = controls[0], last = controls[controls.length - 1];
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }

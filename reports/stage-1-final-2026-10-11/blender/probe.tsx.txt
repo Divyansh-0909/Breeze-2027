@@ -1,0 +1,8 @@
+import React,{Suspense,useEffect,useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import {Canvas,useFrame,useThree} from '@react-three/fiber';
+import * as THREE from 'three';
+import BlenderAsset from '../../../components/three/BlenderAsset';
+function Observe(){const {gl,scene,camera}=useThree();useFrame(()=>{const objects:THREE.Mesh[]=[];scene.traverse(o=>{if(o instanceof THREE.Mesh)objects.push(o);});if(!objects.length)return;const box=new THREE.Box3().setFromObject(objects[0]);const hits=new THREE.Raycaster(new THREE.Vector3(0,.5,2),new THREE.Vector3(0,0,-1)).intersectObjects(objects);(window as any).__smoke={geometryUUID:objects[0].geometry.uuid,dimensions:box.getSize(new THREE.Vector3()).toArray(),bounds:[box.min.toArray(),box.max.toArray()],UV:!!objects[0].geometry.attributes.uv,material:(objects[0].material as THREE.Material).name,hit:hits[0]?.point.toArray(),calls:gl.info.render.calls,geometries:gl.info.memory.geometries,textures:gl.info.memory.textures,gl};});return null;}
+function App(){const [show,setShow]=useState(true);useEffect(()=>{(window as any).__mount=setShow;},[]);return <Canvas camera={{position:[2,1.5,3]}} dpr={.5}><ambientLight intensity={2}/><Suspense fallback={null}>{show&&<BlenderAsset url='/one-metre-cube.glb' castShadow={false} receiveShadow={false}/>}</Suspense><Observe/></Canvas>;}
+createRoot(document.getElementById('root')!).render(<App/>);

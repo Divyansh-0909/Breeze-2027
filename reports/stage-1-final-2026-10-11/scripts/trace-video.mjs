@@ -1,0 +1,4 @@
+import {launch,instrument,local,map,snapshot,root,base} from './audit-common.mjs';
+import {writeFile} from 'node:fs/promises';
+const b=await launch(),ctx=await b.newContext({viewport:{width:1366,height:900},deviceScaleFactor:.25});await instrument(ctx);const p=await ctx.newPage(),cycles=[];
+try{await p.goto(base+'/aftermovie?diagnostics&resourceTrace');await local(p,'aftermovie');for(let i=0;i<4;i++){await p.getByRole('button',{name:'Play Aftermovie',exact:true}).click();await p.waitForFunction(()=>window.__gullyverse.runtime.movieActions?.status().currentTime>.2,null,{timeout:45000});await p.locator('header a').click();await local(p,'hub');await map(p,'aftermovie');await p.waitForTimeout(1200);cycles.push({i,...await snapshot(p),trace:await p.evaluate(()=>window.__gullyverse.videoResources)});await writeFile(root+'/raw/baseline-video-trace.json',JSON.stringify(cycles,null,2));console.log('Trace cycle',i+1);}}finally{await b.close();}

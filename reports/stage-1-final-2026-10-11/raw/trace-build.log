@@ -1,0 +1,70 @@
+
+> my-landing@0.1.0 build
+> next build && prisma generate
+
+   ▲ Next.js 15.3.8
+
+   Creating an optimized production build ...
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled successfully in 5.0s
+   Linting and checking validity of types ...
+
+./components/landing-page/gate3d/PastPerformersGallery.tsx
+86:33  Warning: The ref value 'pathRefs.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'pathRefs.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+88:33  Warning: The ref value 'cardRefs.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'cardRefs.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+164:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page/gate3d/Tunnel.tsx
+130:49  Warning: React Hook useMemo has an unnecessary dependency: 'fontReady'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+605:6  Warning: React Hook useMemo has an unnecessary dependency: 'fontReady'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+688:6  Warning: React Hook useMemo has an unnecessary dependency: 'fontReady'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/landing-page-old/Flower.tsx
+21:7  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page-old/TimeCarousel.tsx
+43:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page-old/after-movie.tsx
+80:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+86:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page-old/clock.tsx
+16:6  Warning: React Hook useEffect has a missing dependency: 'calculateTimeLeft'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/landing-page-old/landing.tsx
+60:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+74:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+86:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page-old/procard.tsx
+55:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/sponsorship-component/SponsScroll.tsx
+77:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+95:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+113:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/ui/infinite-moving-cards.tsx
+28:6  Warning: React Hook useEffect has a missing dependency: 'addAnimation'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/ui/parallax-floating.tsx
+123:50  Warning: The ref value 'idRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'idRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+Failed to compile.
+
+./components/immersive/diagnostics.ts:140:37
+Type error: Argument of type 'Object3D<Object3DEventMap>' is not assignable to parameter of type 'Scene'.
+  Type 'Object3D<Object3DEventMap>' is missing the following properties from type 'Scene': isScene, fog, backgroundBlurriness, backgroundIntensity, and 6 more.
+
+[0m [90m 138 |[39m     [36mtry[39m { originalRender[33m.[39mcall(gl[33m,[39m scene[33m,[39m camera)[33m;[39m }[0m
+[0m [90m 139 |[39m     [36mfinally[39m {[0m
+[0m[31m[1m>[22m[39m[90m 140 |[39m       [36mif[39m (traceVideo) traceSamplers(scene)[33m;[39m[0m
+[0m [90m     |[39m                                     [31m[1m^[22m[39m[0m
+[0m [90m 141 |[39m       [36mif[39m (query) {[0m
+[0m [90m 142 |[39m         context[33m.[39mendQuery(timer[33m![39m[33m.[39m[33mTIME_ELAPSED_EXT[39m)[33m;[39m[0m
+[0m [90m 143 |[39m         pending[33m.[39mpush({ query[33m,[39m sample[33m:[39m { name[33m:[39m [32m"gpu-render"[39m[33m,[39m at[33m:[39m start[33m,[39m ms[33m:[39m [35m0[39m[33m,[39m phase[33m:[39m s[33m.[39mphase[33m,[39m scene[33m:[39m s[33m.[39mscene[33m,[39m serial[33m:[39m s[33m.[39mserial[33m,[39m poseZ[33m:[39m runtime[33m.[39mpose[33m.[39mz } })[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null

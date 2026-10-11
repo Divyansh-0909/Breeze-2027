@@ -1,0 +1,202 @@
+ .env.example                                       |     4 +
+ .github/CODEOWNERS                                 |     1 +
+ .gitignore                                         |    10 +
+ README.md                                          |   167 +-
+ app/(admin)/admin/breeze-admin/layout.tsx          |     7 +-
+ app/(admin)/admin/breeze-admin/payments/page.tsx   |     2 +
+ app/(admin)/admin/clubs/page.tsx                   |    16 +-
+ app/(admin)/admin/login/action.ts                  |    10 +-
+ app/(admin)/admin/login/page.tsx                   |    18 +-
+ app/(user)/ClientLayout.tsx                        |    16 +-
+ app/(user)/aftermovie/page.tsx                     |   134 +-
+ app/(user)/cart/page.tsx                           |    20 +-
+ app/(user)/checkout/page.tsx                       |    17 +-
+ app/(user)/events/[id]/page.tsx                    |    17 +-
+ app/(user)/events/cultural/page.tsx                |    14 +-
+ app/(user)/events/page.tsx                         |    16 +-
+ app/(user)/events/technical/page.tsx               |    14 +-
+ app/(user)/get-in-touch/page.tsx                   |    12 +-
+ app/(user)/page.tsx                                |    74 +-
+ app/(user)/payments/admin-preview/page.tsx         |     2 +
+ app/(user)/payments/preview/page.tsx               |     5 +
+ app/(user)/reciept/[token]/page.tsx                |     9 +-
+ app/(user)/team/BackstageCorridor.tsx              |    60 +
+ app/(user)/team/page.tsx                           |   272 +-
+ app/(user)/team/team-scene.module.css              |   156 +
+ app/(user)/team/team.module.css                    |   436 +
+ app/(user)/team/teamData.ts                        |    43 +
+ app/(user)/team/useTeamBoardTexture.ts             |   320 +
+ app/(user)/thank-you/page.tsx                      |     4 +-
+ app/api/breeze-admin/confirm/route.ts              |   292 +-
+ app/api/breeze-admin/payments/accounts/route.ts    |    37 +
+ app/api/breeze-admin/payments/route.ts             |    34 +
+ app/api/breeze-admin/payments/statements/route.ts  |    50 +
+ app/api/checkout/route.ts                          |    65 +-
+ app/api/pay/route.ts                               |   263 +-
+ app/api/payments/proof-preview/route.ts            |    20 +
+ app/api/payments/status/route.ts                   |    12 +
+ components/Navbar.tsx                              |   251 +-
+ components/breeze-admin/PaymentsDashboard.tsx      |   189 +
+ components/breeze-admin/transaction-verify.tsx     |    31 +-
+ components/cart/CartDisplay.tsx                    |    24 +-
+ components/cart/CheckoutButton.tsx                 |     9 +-
+ components/checkout/CheckoutForm.tsx               |   411 +-
+ components/get_in_touch/HelpDeskExperience.tsx     |   488 +
+ components/get_in_touch/help-desk.module.css       |   510 +
+ components/immersive/AftermovieScene.tsx           |    47 +
+ components/immersive/HubScene.tsx                  |   194 +
+ components/immersive/ImmersiveShell.tsx            |   106 +
+ components/immersive/WorldOverlays.tsx             |   123 +
+ components/immersive/aerial.ts                     |    52 +
+ components/immersive/blockoutGeometry.ts           |   160 +
+ components/immersive/diagnostics.ts                |   125 +
+ components/immersive/immersive.module.css          |    74 +
+ components/immersive/input.ts                      |    80 +
+ components/immersive/navigation.ts                 |   118 +
+ components/immersive/rendering.tsx                 |   148 +
+ components/immersive/runtime.ts                    |   293 +
+ components/immersive/world.ts                      |    86 +
+ components/immersive/worldPaint.ts                 |   102 +
+ components/landing-page/gate3d/EntryNav.tsx        |    10 +-
+ components/landing-page/gate3d/Gate.tsx            |   106 +-
+ components/landing-page/gate3d/GateHero.tsx        |   169 +-
+ .../landing-page/gate3d/PastPerformersGallery.tsx  |    10 -
+ components/landing-page/gate3d/Tunnel.tsx          |    68 +-
+ components/landing-page/stage3d/Barricades.tsx     |     3 +-
+ .../landing-page/stage3d/ConcertStageHero.tsx      |    99 +-
+ components/landing-page/stage3d/Crowd.tsx          |    40 +-
+ components/landing-page/stage3d/Fireworks.tsx      |     3 +
+ components/landing-page/stage3d/LEDScreens.tsx     |    22 +-
+ components/landing-page/stage3d/Lights.tsx         |     3 +-
+ components/landing-page/stage3d/Stage.tsx          |    24 +-
+ components/landing-page/stage3d/Trusses.tsx        |    63 +-
+ components/landing-page/stage3d/useStageVideo.ts   |    62 +
+ components/three/BlenderAsset.tsx                  |    57 +
+ components/three/FestivalNight.tsx                 |   205 +
+ contact-desktop-10.png                             |   Bin 0 -> 544480 bytes
+ contact-desktop-11.png                             |   Bin 0 -> 544777 bytes
+ contact-desktop-12.png                             |   Bin 0 -> 535895 bytes
+ contact-desktop-2.png                              |   Bin 0 -> 528637 bytes
+ contact-desktop-3.png                              |   Bin 0 -> 498332 bytes
+ contact-desktop-4.png                              |   Bin 0 -> 548838 bytes
+ contact-desktop-5.png                              |   Bin 0 -> 531092 bytes
+ contact-desktop-6.png                              |   Bin 0 -> 530100 bytes
+ contact-desktop-7.png                              |   Bin 0 -> 537537 bytes
+ contact-desktop-8.png                              |   Bin 0 -> 536148 bytes
+ contact-desktop-9.png                              |   Bin 0 -> 518010 bytes
+ contact-desktop-current.png                        |   Bin 0 -> 353758 bytes
+ contact-desktop-review.jpg                         |   Bin 0 -> 5493 bytes
+ contact-desktop-small.jpg                          |   Bin 0 -> 4283 bytes
+ contact-desktop.png                                |   Bin 0 -> 552026 bytes
+ contact-form-approach-final.png                    |   Bin 0 -> 527010 bytes
+ contact-form-approach-new.png                      |   Bin 0 -> 73326 bytes
+ contact-form-approach.png                          |   Bin 0 -> 77735 bytes
+ contact-form-mobile-final.png                      |   Bin 0 -> 144068 bytes
+ contact-form-mobile-final2.png                     |   Bin 0 -> 143295 bytes
+ contact-form-mobile-settled-new.png                |   Bin 0 -> 122498 bytes
+ contact-form-mobile-settled.png                    |   Bin 0 -> 122126 bytes
+ contact-form-settled-final.png                     |   Bin 0 -> 564758 bytes
+ contact-form-settled-final2.png                    |   Bin 0 -> 545611 bytes
+ contact-form-settled-new.png                       |   Bin 0 -> 525978 bytes
+ contact-form-settled.png                           |   Bin 0 -> 568367 bytes
+ contact-mobile-current.png                         |   Bin 0 -> 124473 bytes
+ contact-mobile-qa.png                              |   Bin 0 -> 133084 bytes
+ contact-mobile-small.jpg                           |   Bin 0 -> 6648 bytes
+ contact-mobile.png                                 |   Bin 0 -> 152003 bytes
+ .../01-entrance/irregular-rock-opening.jpeg        |   Bin 0 -> 186338 bytes
+ .../01-entrance/occupied-rock-tunnel.jpeg          |   Bin 0 -> 219082 bytes
+ .../01-entrance/rock-portal-shape-no-skulls.jpeg   |   Bin 0 -> 404653 bytes
+ .../01-entrance/rough-approach-warm-lights.jpeg    |   Bin 0 -> 233977 bytes
+ .../01-entrance/subway-graffiti-form.jpeg          |   Bin 0 -> 230710 bytes
+ .../natural-rock-exit-graffiti.jpeg                |   Bin 0 -> 227160 bytes
+ .../tunnel-wall-graffiti-1.jpeg                    |   Bin 0 -> 218208 bytes
+ .../tunnel-wall-graffiti-2.jpeg                    |   Bin 0 -> 209608 bytes
+ .../quarry-open-sky-geometry.jpeg                  |   Bin 0 -> 535725 bytes
+ .../quarry-warm-dappled-light.jpeg                 |   Bin 0 -> 514202 bytes
+ .../scaffold-hero-sign-closeup.jpeg                |   Bin 0 -> 571520 bytes
+ .../scaffold-sign-and-stage-composition.jpeg       |   Bin 0 -> 438214 bytes
+ .../festival-crowd-atmosphere.jpeg                 |   Bin 0 -> 225164 bytes
+ .../05-left-right-stalls/festival-stall-lane.jpeg  |   Bin 0 -> 114337 bytes
+ .../05-left-right-stalls/tent-vendor-clusters.jpeg |   Bin 0 -> 157459 bytes
+ .../festival-soft-board-branding.jpeg              |   Bin 0 -> 340692 bytes
+ .../06-team-board/polaroid-photo-treatment.jpeg    |   Bin 0 -> 32705 bytes
+ .../07-contact-booth/counter-backdrop-booth.jpeg   |   Bin 0 -> 296262 bytes
+ .../07-contact-booth/graphic-branded-counter.jpeg  |   Bin 0 -> 279646 bytes
+ .../07-contact-booth/handmade-tent-booth.jpeg      |   Bin 0 -> 263323 bytes
+ .../08-aerial-map/aerial-map-markers-layout.jpeg   |   Bin 0 -> 467156 bytes
+ .../08-aerial-map/gta-camera-rise-transition.jpeg  |   Bin 0 -> 59988 bytes
+ .../09-aftermovie/stage-offset-and-wayfinding.jpeg |   Bin 0 -> 571520 bytes
+ design/references/README.md                        |    31 +
+ .../current-implementation/01-landing.png          |   Bin 0 -> 201965 bytes
+ .../baselines/current-implementation/02-tunnel.png |   Bin 0 -> 361739 bytes
+ .../baselines/current-implementation/03-hub.png    |   Bin 0 -> 109641 bytes
+ .../current-implementation/04-stage-distance.png   |   Bin 0 -> 390469 bytes
+ .../current-implementation/05-stage-near.png       |   Bin 0 -> 405028 bytes
+ .../current-implementation/06-playback.png         |   Bin 0 -> 728171 bytes
+ .../07-current-map-modal.png                       |   Bin 0 -> 200552 bytes
+ .../original-website/01-graffiti-entrance.png      |   Bin 0 -> 874732 bytes
+ .../original-website/02-original-tunnel.png        |   Bin 0 -> 1455171 bytes
+ .../original-website/03-original-menu.png          |   Bin 0 -> 803029 bytes
+ .../original-website/04-original-stage-distant.png |   Bin 0 -> 431190 bytes
+ .../original-website/05-original-stage-near.png    |   Bin 0 -> 458126 bytes
+ .../06-original-aftermovie-playing.png             |   Bin 0 -> 1530355 bytes
+ .../original-website/07-original-team-board.png    |   Bin 0 -> 2253273 bytes
+ .../original-website/08-original-contact-form.png  |   Bin 0 -> 564758 bytes
+ docs/gullyverse-environment-pipeline.md            |   119 +
+ docs/gullyverse-stage-1-revision-2-acceptance.md   |   456 +
+ docs/gullyverse-stage-1-spatial-acceptance.md      |   411 +
+ docs/immersive-environment-acceptance.md           |   162 +
+ docs/immersive-vertical-slice.md                   |   270 +
+ lib/events/catalog.ts                              |    22 +
+ lib/payments/core.ts                               |   110 +
+ lib/payments/customer.ts                           |   126 +
+ lib/payments/email.ts                              |    49 +
+ lib/payments/http.ts                               |    27 +
+ lib/payments/import.ts                             |    35 +
+ lib/payments/jev.ts                                |    20 +
+ lib/payments/ocr.ts                                |    20 +
+ lib/payments/service.ts                            |    96 +
+ lib/payments/statements.ts                         |   119 +
+ lib/payments/validation.ts                         |    17 +
+ next.config.js                                     |     1 +
+ package-lock.json                                  | 12430 +++++++++++--------
+ package.json                                       |    36 +-
+ pnpm-lock.yaml                                     |  8378 ++++++++-----
+ .../migration.sql                                  |   151 +
+ prisma/schema.prisma                               |   101 +
+ public/after-movie.mp4                             |   Bin 87362355 -> 52291090 bytes
+ public/gate/beam.webp                              |   Bin 260848 -> 224958 bytes
+ public/gate/board-left.webp                        |   Bin 493548 -> 302504 bytes
+ public/gate/board-right.webp                       |   Bin 479768 -> 264868 bytes
+ public/models/breeze/aftermovie-stage.glb          |   Bin 0 -> 417140 bytes
+ public/models/breeze/festival-stall.glb            |   Bin 0 -> 461676 bytes
+ public/models/breeze/help-desk.glb                 |   Bin 0 -> 461676 bytes
+ public/models/breeze/team-backstage.glb            |   Bin 0 -> 323956 bytes
+ public/models/gullyverse/blockout.layout.json      |   381 +
+ scripts/blender/generate_breeze_assets.py          |   366 +
+ scripts/blender/validate_toolchain.py              |    34 +
+ scripts/capture-gullyverse-stage-1-revision-2.mjs  |    84 +
+ scripts/capture-gullyverse-stage-1.mjs             |    53 +
+ scripts/check-gullyverse-stage-1-revision-2.mjs    |   201 +
+ scripts/check-gullyverse-stage-1.mjs               |    69 +
+ scripts/dev/stop-stale-next.mjs                    |   110 +
+ scripts/payments/worker.ts                         |    33 +
+ scripts/perf-core-flow.mjs                         |     8 +
+ scripts/perf-gullyverse.mjs                        |   405 +
+ team-approach-qa.png                               |   Bin 0 -> 1166227 bytes
+ team-desktop-qa-final.png                          |   Bin 0 -> 1488970 bytes
+ team-desktop-qa.png                                |   Bin 0 -> 1491513 bytes
+ team-mobile-approach-qa-final.png                  |   Bin 0 -> 249493 bytes
+ team-mobile-qa-final.png                           |   Bin 0 -> 280756 bytes
+ team-mobile-qa.png                                 |   Bin 0 -> 345875 bytes
+ tests/events/catalog.test.ts                       |    35 +
+ tests/immersive/runtime.test.ts                    |   448 +
+ tests/payments/browser.ts                          |    61 +
+ tests/payments/core.test.ts                        |    53 +
+ tests/payments/integration.ts                      |   140 +
+ tests/payments/jev.test.ts                         |    22 +
+ tests/payments/ocr.test.ts                         |    24 +
+ tests/payments/statements.test.ts                  |    38 +
+ types/next.d.ts                                    |     2 +-
+ utils/supabase/middleware.ts                       |    54 +-
+ 201 files changed, 23413 insertions(+), 9609 deletions(-)

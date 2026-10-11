@@ -1,0 +1,493 @@
+{
+  "profile": {
+    "width": 1366,
+    "height": 900,
+    "requestedDpr": 0.25
+  },
+  "browser": "151.0.7922.173",
+  "method": "One browser at a time; no recording/screenshots during benchmark. Actual R3F frame deltas filtered by finite cpuRenderMs. HTTP cache enabled. No CPU throttling. Software GPU; not desktop or mobile hardware certification.",
+  "windows": [
+    {
+      "name": "cold-landing-load",
+      "elapsedMs": 5541,
+      "renderedFrames": 23,
+      "renderedFPS": 4.1508752932683635,
+      "renderCadenceFPS": 5.182164342203041,
+      "medianMs": 142.70000000018626,
+      "p95Ms": 187,
+      "p99Ms": 1385.8999999999069,
+      "maxMs": 1385.8999999999069,
+      "stallsOver50ms": 22,
+      "stallsOver100ms": 22,
+      "stats": {
+        "calls": 155,
+        "triangles": 105022,
+        "textures": 25,
+        "geometries": 150,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 4653.899999999907,
+        "scene": "hub",
+        "geometries": 150,
+        "textures": 25,
+        "activeGeometryBytes": 1775396,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 32137645
+      },
+      "quality": 0
+    },
+    {
+      "name": "warm-same-browser-cache-landing-load",
+      "elapsedMs": 5028,
+      "renderedFrames": 23,
+      "renderedFPS": 4.574383452665075,
+      "renderCadenceFPS": 5.232624274826527,
+      "medianMs": 144.89999999990687,
+      "p95Ms": 239.30000000004657,
+      "p99Ms": 1313.0999999998603,
+      "maxMs": 1313.0999999998603,
+      "stallsOver50ms": 22,
+      "stallsOver100ms": 21,
+      "stats": {
+        "calls": 155,
+        "triangles": 105022,
+        "textures": 25,
+        "geometries": 150,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 4319.5,
+        "scene": "hub",
+        "geometries": 150,
+        "textures": 25,
+        "activeGeometryBytes": 1775396,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 44172420
+      },
+      "quality": 0
+    },
+    {
+      "name": "tunnel-and-first-hub-arrival",
+      "elapsedMs": 16952,
+      "renderedFrames": 147,
+      "renderedFPS": 8.671543180745635,
+      "renderCadenceFPS": 8.588706143554088,
+      "medianMs": 114.5,
+      "p95Ms": 162,
+      "p99Ms": 169.5,
+      "maxMs": 178.19999999995343,
+      "stallsOver50ms": 147,
+      "stallsOver100ms": 105,
+      "stats": {
+        "calls": 138,
+        "triangles": 100818,
+        "textures": 25,
+        "geometries": 150,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 22414.199999999953,
+        "scene": "hub",
+        "geometries": 150,
+        "textures": 25,
+        "activeGeometryBytes": 1775396,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 30048549
+      },
+      "quality": 0
+    },
+    {
+      "name": "first-hub-arrival-settling",
+      "elapsedMs": 3004,
+      "renderedFrames": 32,
+      "renderedFPS": 10.652463382157125,
+      "renderCadenceFPS": 10.38927307554918,
+      "medianMs": 97.70000000018626,
+      "p95Ms": 115.5,
+      "p99Ms": 151.39999999990687,
+      "maxMs": 151.39999999990687,
+      "stallsOver50ms": 32,
+      "stallsOver100ms": 14,
+      "stats": {
+        "calls": 138,
+        "triangles": 100818,
+        "textures": 25,
+        "geometries": 150,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 24587.5,
+        "scene": "hub",
+        "geometries": 150,
+        "textures": 25,
+        "activeGeometryBytes": 1775396,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 34018425
+      },
+      "quality": 1
+    },
+    {
+      "name": "hub-local-movement",
+      "elapsedMs": 6286,
+      "renderedFrames": 71,
+      "renderedFPS": 11.294941139039135,
+      "renderCadenceFPS": 11.1102417651201,
+      "medianMs": 93.5999999998603,
+      "p95Ms": 107.80000000004657,
+      "p99Ms": 147.30000000004657,
+      "maxMs": 147.30000000004657,
+      "stallsOver50ms": 71,
+      "stallsOver100ms": 9,
+      "stats": {
+        "calls": 138,
+        "triangles": 93258,
+        "textures": 25,
+        "geometries": 150,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 31888.699999999953,
+        "scene": "hub",
+        "geometries": 150,
+        "textures": 25,
+        "activeGeometryBytes": 1769012,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 41604537
+      },
+      "quality": 2
+    },
+    {
+      "name": "hub-to-aftermovie-physical-route",
+      "elapsedMs": 15117,
+      "renderedFrames": 77,
+      "renderedFPS": 5.093603228153734,
+      "renderCadenceFPS": 5.241839409101739,
+      "medianMs": 102.89999999990687,
+      "p95Ms": 349.89999999990687,
+      "p99Ms": 1028.6999999999534,
+      "maxMs": 1028.6999999999534,
+      "stallsOver50ms": 76,
+      "stallsOver100ms": 57,
+      "stats": {
+        "calls": 115,
+        "triangles": 1020152,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 46760.80000000005,
+        "scene": "aftermovie",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 2711696,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 27758623
+      },
+      "quality": 3
+    },
+    {
+      "name": "aftermovie-local-movement",
+      "elapsedMs": 6993,
+      "renderedFrames": 23,
+      "renderedFPS": 3.289003289003289,
+      "renderCadenceFPS": 3.1512892883567316,
+      "medianMs": 318.5999999998603,
+      "p95Ms": 370.69999999995343,
+      "p99Ms": 376.39999999990687,
+      "maxMs": 376.39999999990687,
+      "stallsOver50ms": 23,
+      "stallsOver100ms": 23,
+      "stats": {
+        "calls": 115,
+        "triangles": 1020152,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 54299,
+        "scene": "aftermovie",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 2711696,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 25793888
+      },
+      "quality": 3
+    },
+    {
+      "name": "aftermovie-boundary-return-to-hub",
+      "elapsedMs": 6325,
+      "renderedFrames": 42,
+      "renderedFPS": 6.640316205533597,
+      "renderCadenceFPS": 6.620220043504594,
+      "medianMs": 100,
+      "p95Ms": 308.89999999990687,
+      "p99Ms": 379.39999999990687,
+      "maxMs": 379.39999999990687,
+      "stallsOver50ms": 41,
+      "stallsOver100ms": 20,
+      "stats": {
+        "calls": 138,
+        "triangles": 93258,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 68877.8999999999,
+        "scene": "hub",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 1769012,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 26481946
+      },
+      "quality": 3
+    },
+    {
+      "name": "map-to-aftermovie",
+      "elapsedMs": 13576,
+      "renderedFrames": 79,
+      "renderedFPS": 5.8190925162050675,
+      "renderCadenceFPS": 5.850855039511665,
+      "medianMs": 98.39999999990687,
+      "p95Ms": 355,
+      "p99Ms": 378.5,
+      "maxMs": 378.5,
+      "stallsOver50ms": 78,
+      "stallsOver100ms": 35,
+      "stats": {
+        "calls": 115,
+        "triangles": 1020152,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 83459,
+        "scene": "aftermovie",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 2711696,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 26047348
+      },
+      "quality": 3
+    },
+    {
+      "name": "repeat-1-aftermovie-hub",
+      "elapsedMs": 16581,
+      "renderedFrames": 79,
+      "renderedFPS": 4.764489475906157,
+      "renderCadenceFPS": 4.741242205457883,
+      "medianMs": 227.5,
+      "p95Ms": 362.5,
+      "p99Ms": 391.19999999995343,
+      "maxMs": 391.19999999995343,
+      "stallsOver50ms": 78,
+      "stallsOver100ms": 58,
+      "stats": {
+        "calls": 138,
+        "triangles": 93258,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 100285,
+        "scene": "hub",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 1769012,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 26628392
+      },
+      "quality": 3
+    },
+    {
+      "name": "repeat-1-hub-aftermovie",
+      "elapsedMs": 12481,
+      "renderedFrames": 80,
+      "renderedFPS": 6.409742809069786,
+      "renderCadenceFPS": 6.401792501900413,
+      "medianMs": 99.80000000004657,
+      "p95Ms": 333.80000000004657,
+      "p99Ms": 350.0999999998603,
+      "maxMs": 350.0999999998603,
+      "stallsOver50ms": 74,
+      "stallsOver100ms": 38,
+      "stats": {
+        "calls": 115,
+        "triangles": 1020152,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 112801,
+        "scene": "aftermovie",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 2711696,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 24871331
+      },
+      "quality": 3
+    },
+    {
+      "name": "repeat-2-aftermovie-hub",
+      "elapsedMs": 15700,
+      "renderedFrames": 79,
+      "renderedFPS": 5.031847133757962,
+      "renderCadenceFPS": 5.011513794350326,
+      "medianMs": 221.30000000004657,
+      "p95Ms": 314.79999999981374,
+      "p99Ms": 371.80000000004657,
+      "maxMs": 371.80000000004657,
+      "stallsOver50ms": 78,
+      "stallsOver100ms": 64,
+      "stats": {
+        "calls": 138,
+        "triangles": 93258,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 128998,
+        "scene": "hub",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 1769012,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 26002382
+      },
+      "quality": 3
+    },
+    {
+      "name": "repeat-2-hub-aftermovie",
+      "elapsedMs": 13307,
+      "renderedFrames": 79,
+      "renderedFPS": 5.936725031938078,
+      "renderCadenceFPS": 5.939179791752809,
+      "medianMs": 101.4000000001397,
+      "p95Ms": 359,
+      "p99Ms": 378.10000000009313,
+      "maxMs": 378.10000000009313,
+      "stallsOver50ms": 76,
+      "stallsOver100ms": 43,
+      "stats": {
+        "calls": 115,
+        "triangles": 1020152,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 142285,
+        "scene": "aftermovie",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 2711696,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 26550765
+      },
+      "quality": 3
+    },
+    {
+      "name": "repeat-3-aftermovie-hub",
+      "elapsedMs": 16191,
+      "renderedFrames": 79,
+      "renderedFPS": 4.879253906491261,
+      "renderCadenceFPS": 4.8505836050274285,
+      "medianMs": 232.4000000001397,
+      "p95Ms": 317.5999999998603,
+      "p99Ms": 369.19999999995343,
+      "maxMs": 369.19999999995343,
+      "stallsOver50ms": 78,
+      "stallsOver100ms": 59,
+      "stats": {
+        "calls": 138,
+        "triangles": 93258,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 159177,
+        "scene": "hub",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 1769012,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 25696346
+      },
+      "quality": 3
+    },
+    {
+      "name": "repeat-3-hub-aftermovie",
+      "elapsedMs": 13806,
+      "renderedFrames": 79,
+      "renderedFPS": 5.7221497899464,
+      "renderCadenceFPS": 5.723974031996251,
+      "medianMs": 102.60000000009313,
+      "p95Ms": 377.60000000009313,
+      "p99Ms": 401.69999999995343,
+      "maxMs": 401.69999999995343,
+      "stallsOver50ms": 77,
+      "stallsOver100ms": 41,
+      "stats": {
+        "calls": 115,
+        "triangles": 1020152,
+        "textures": 25,
+        "geometries": 154,
+        "dpr": 0.25
+      },
+      "memory": {
+        "at": 173775.6000000001,
+        "scene": "aftermovie",
+        "geometries": 154,
+        "textures": 25,
+        "activeGeometryBytes": 2711696,
+        "activeTextureBytesEstimate": 45027332,
+        "jsHeapBytes": 26652150
+      },
+      "quality": 3
+    },
+    {
+      "name": "tunnel-interior",
+      "elapsedMs": 7104.5,
+      "renderedFrames": 60,
+      "renderedFPS": 8.445351537757759,
+      "renderCadenceFPS": 8.445351537757759,
+      "medianMs": 114.9000000001397,
+      "p95Ms": 159.5,
+      "p99Ms": 169.5,
+      "maxMs": 169.5,
+      "stallsOver50ms": 60,
+      "stallsOver100ms": 48,
+      "stats": null,
+      "memory": null,
+      "quality": null
+    },
+    {
+      "name": "quarry-reveal",
+      "elapsedMs": 4267.399999999907,
+      "renderedFrames": 44,
+      "renderedFPS": 10.310727843652097,
+      "renderCadenceFPS": 10.310727843652097,
+      "medianMs": 96.69999999995343,
+      "p95Ms": 125.69999999995343,
+      "p99Ms": 148.5,
+      "maxMs": 148.5,
+      "stallsOver50ms": 44,
+      "stallsOver100ms": 16,
+      "stats": null,
+      "memory": null,
+      "quality": null
+    }
+  ]
+}

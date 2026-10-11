@@ -1,0 +1,65 @@
+
+> my-landing@0.1.0 test:immersive
+> tsx --test tests/immersive/*.test.ts
+
+✔ landing owns controls, entrance reaches hub, and frames don't publish React state (7.811218ms)
+✔ physical threshold uses guided departure and never reveals before critical readiness (7.456786ms)
+✔ local movement is delta-aware, diagonal speed is bounded, and stage/backstage are inaccessible (7.92534ms)
+✔ route commitment preserves the current walking velocity without a stop or jump (9.833818ms)
+✔ direct URL skips introduction and an outer boundary waits for explicit covered return (0.823287ms)
+✔ superseding navigation invalidates old readiness; background restore cannot leap across routes (2.613608ms)
+✔ reduced motion preserves readiness gating and playback restores the visitor's pose (1.129458ms)
+✔ changing motion preferences publishes immediately without taking away local controls (2.490072ms)
+✔ context restoration keeps the visitor's pose and rejects readiness from before loss (2.231273ms)
+✔ context loss pauses entrance choreography and recovers initial preparation (1.629408ms)
+✔ URL navigation during recovery supersedes the interrupted destination after preparation (1.04494ms)
+✔ context loss exits film focus and returns to the saved walking pose (0.511909ms)
+✔ all signed destinations cross deliberately while unavailable sectors stay truthful (38.088225ms)
+✔ five signed directions match diagonal movement and removed Main Stage has no hidden sector (7.630056ms)
+✔ collision stops capsules before every solid footprint and quarry wall (1.108646ms)
+✔ nearby hub commitment relocates to the distant stage only after black coverage (1.097549ms)
+✔ stage, destination marker and film focus stay in the same authored coordinates (0.167142ms)
+✔ inspection cannot move a visitor and portrait framing preserves the original stage camera (1.396568ms)
+✔ entrance choreography physically follows the bent tunnel without crossing rock (1.910331ms)
+✔ portal rock shoulders stop a visitor while the arch remains clear (0.136105ms)
+✔ side stepping into a tunnel wall slides locally instead of projecting into the quarry (0.185779ms)
+✔ navigation away from playback stops media without snapping the visible film camera (0.318368ms)
+✔ every outer Aftermovie segment and chamfer opens a stationary menu without returning (0.475345ms)
+✔ front/rear/side/corner and diagonal public movement open the boundary menu (0.819592ms)
+✔ crossing the exact join of irregular perimeter segments clamps inside both faces (0.324838ms)
+✔ Stay Here preserves pose and requires moving away before another deliberate boundary crossing (0.650147ms)
+✔ looking at hub signs and sliding along a sector do not navigate (1.673224ms)
+✔ internal movement does not open a perimeter menu and playback owns movement (0.313842ms)
+✔ Escape handles overlay first, map second, and playback exactly once (0.595284ms)
+✔ boundary overlay selections use readiness and external content routing under black (2.559777ms)
+✔ map ascent/descent preserves exact player pose and does not publish on every frame (1.389468ms)
+✔ map close/open interruptions reverse continuously and reduced motion remains covered (2.291744ms)
+✔ map marker travel fades the overhead view before changing the destination pose (1.265903ms)
+✔ context loss during aerial transition restores the saved walking pose and input ownership (1.196848ms)
+✔ desktop and portrait map cameras fit the actual generated quarry rim and entrance (16.374947ms)
+✔ compact quarry contains the unscaled stage and stalls and leaves the Aftermovie rear sightline open (10.755042ms)
+✔ actual cave geometry physically occludes the exit, scaffold and stage from landing and tunnel entry (58.358555ms)
+✔ actual bent-tunnel rock releases a clear exit sightline at the authored mid and first-reveal cameras (25.559939ms)
+✔ fresh entry, session return, explicit Entrance and direct Aftermovie resolve through coordinator (1.215827ms)
+✔ 7.2s cinematic uses active elapsed time at 5 FPS; walking remains bounded (1.662068ms)
+✔ long suspended/resume frame cannot advance cinematic or locomotion (0.793061ms)
+✔ exceptional foreground cinematic gaps are covered while normal authored timing continues (0.21975ms)
+✔ cinematic event does not credit time before actual activation (0.400952ms)
+✔ map and movie restoration preserve pose with large frame intervals (0.701143ms)
+✔ rapid replay during restoration retains original walking anchor (0.349184ms)
+✔ interrupted covered preparation keeps camera covered (0.401674ms)
+✔ invalid deltas do not poison pose or clocks (0.341854ms)
+✔ projection rejects eye-plane, behind camera, invalid viewport and frustum points (0.962616ms)
+✔ projection follows orientation and resize rather than stale camera cache (0.493511ms)
+✔ retired video remains alive while LED sampler lease exists, disposes exactly once (0.49291ms)
+✔ producer with no published sampler disposes on early exit (0.689686ms)
+✔ unpublished cancelled poses dispose once while shared cache remains protected (0.693092ms)
+✔ loading deadline counts foreground budget and cancels stale callbacks (0.193381ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 53
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1023.995888

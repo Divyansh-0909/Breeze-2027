@@ -1,0 +1,9 @@
+import {launch,instrument,local,snapshot,root,base} from './audit-common.mjs';
+import {writeFile} from 'node:fs/promises';
+const browser=await launch(),results=[],ctx=await browser.newContext({viewport:{width:1366,height:900},deviceScaleFactor:.25});await instrument(ctx);const p=await ctx.newPage();
+try{
+await p.goto(base+'/?diagnostics');await p.waitForSelector('[data-phase="landing"]',{timeout:90000});await p.keyboard.press('Enter');await local(p,'hub');
+await p.keyboard.down('KeyD');await p.waitForTimeout(350);await p.evaluate(()=>{let e=document.createElement('textarea');e.id='probe';document.body.append(e);e.focus();});let before=await snapshot(p);await p.waitForTimeout(700);let after=await snapshot(p);await p.keyboard.up('KeyD');results.push({name:'Held-key editable focus',before,after,displacement:Math.hypot(after.pose.x-before.pose.x,after.pose.z-before.pose.z)});await p.evaluate(()=>document.querySelector('#probe').remove());
+await p.evaluate(()=>{window.__invalid=[];const old=Element.prototype.setAttribute;Element.prototype.setAttribute=function(n,v){if(['x1','y1','x2','y2'].includes(n)&&/NaN|Infinity/.test(String(v)))window.__invalid.push({tag:this.tagName,n,v});return old.call(this,n,v);};});await p.keyboard.press('KeyM');await p.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==='open',null,{timeout:30000});results.push({name:'Nonfinite map coordinates',writes:await p.evaluate(()=>window.__invalid)});
+await p.goto(base+'/get-in-touch');await p.getByRole('link',{name:'Home',exact:true}).click();await p.waitForSelector('[data-phase]',{timeout:90000});await p.waitForTimeout(4500);results.push({name:'Navbar Home',phase:await p.locator('[data-phase]').getAttribute('data-phase'),url:p.url()});
+}finally{await writeFile(root+'/raw/baseline-defects.json',JSON.stringify(results,null,2));await browser.close();}

@@ -22,9 +22,18 @@ export class ImmersiveRuntime {
   input: Input = { forward: 0, strafe: 0, lookX: 0, lookY: 0 };
   get reduced() { return this.state.reduced; }
   set reduced(value: boolean) { if (this.state.reduced !== value) this.publish({ reduced: value }); }
-  suspended = false;
+  private paused = false;
+  private resumed = false;
+  activeFrameDelta = 0;
+  private activatedAt: number | null = null;
+  private departureOpacity = 0;
+  get suspended() { return this.paused; }
+  set suspended(value: boolean) { if (this.paused && !value) this.resumed = true; this.paused = value; }
   inspectionEnabled = false;
   opacity = 1;
+  private frameGapCover = 0;
+  /** Hide exceptional foreground camera jumps without slowing the authored clock. */
+  get revealOpacity() { return Math.max(this.opacity, this.frameGapCover); }
   mapProgress = 0;
   /** Existing content routes leave the immersive shell only after coverage. */
   onCoveredRoute: ((href: string) => void) | null = null;
@@ -47,19 +56,21 @@ export class ImmersiveRuntime {
   private boundaryArmed = true;
   private targetEntrance = false;
   private externalRoute: string | null = null;
-  private onArrival?: (id: LocationId, source: RequestSource) => void;
+  private onArrival?: (id: LocationId, source: RequestSource, entrance?: boolean) => void;
   private recovery: { phase: Phase; elapsed: number; opacity: number } | null = null;
   private pendingNavigation: { id: TravelId; source: RequestSource } | null = null;
 
-  constructor(initial: LocationId, onArrival?: (id: LocationId, source: RequestSource) => void) {
+  constructor(initial: LocationId, onArrival?: (id: LocationId, source: RequestSource, entrance?: boolean) => void, private intro = true, private clock?: () => number) {
     this.state = { phase: "boot", scene: initial, destination: initial, serial: 0, map: false, mapStage: null, destinationMenu: false, unavailableDestination: null, error: null, quality: 0, movie: false, reduced: false, inspection: null };
-    this.pose = initial === "hub" ? landingPose() : spawnPose(initial, true);
+    this.pose = initial === "hub" && intro ? landingPose() : spawnPose(initial, true);
     this.from = { ...this.pose }; this.to = spawnPose(initial);
     this.onArrival = onArrival;
   }
   getSnapshot = () => this.state;
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
-  private publish(update: Partial<Snapshot>) { this.state = { ...this.state, ...update }; this.listeners.forEach((fn) => fn()); }
+  private publish(update: Partial<Snapshot>) {
+    if (this.clock && (update.phase !== undefined || update.movie !== undefined || update.mapStage !== undefined)) this.activatedAt = this.clock();
+    this.state = { ...this.state, ...update }; this.listeners.forEach((fn) => fn()); }
   clearInput() { this.input.forward = this.input.strafe = this.input.lookX = this.input.lookY = 0; this.vx = this.vz = 0; }
   setMap(map: boolean) {
     if (map) {
@@ -114,9 +125,10 @@ export class ImmersiveRuntime {
   setMovie(movie: boolean) {
     if (movie === this.state.movie) return;
     if (movie && (this.state.map || this.state.destinationMenu || this.state.phase !== "local")) return;
+    const restoring = !this.state.movie && this.focusFrom !== null;
     this.clearInput(); this.focusFrom = { ...this.pose }; this.focusTime = 0;
     // Return to exactly the visitor's bounded viewing pose when playback exits.
-    if (movie) this.from = { ...this.pose };
+    if (movie && !restoring) this.from = { ...this.pose };
     this.to = movie ? filmPose() : { ...this.from };
     this.publish({ movie });
   }
@@ -143,6 +155,7 @@ export class ImmersiveRuntime {
     this.targetEntrance = id === "entrance";
     this.externalRoute = external ? option.href : null;
     this.source = source; this.elapsed = 0; this.ready = false;
+    this.departureOpacity = this.opacity;
     this.departureVx = source === "physical" ? this.vx : 0;
     this.departureVz = source === "physical" ? this.vz : 0;
     this.from = { ...this.pose };
@@ -166,7 +179,7 @@ export class ImmersiveRuntime {
       if (pending) this.requestDestination(pending.id, pending.source);
     }
     if (this.state.phase === "boot") {
-      if (this.state.scene === "hub") { this.opacity = 0; this.publish({ phase: "landing" }); }
+      if (this.state.scene === "hub" && this.intro) { this.opacity = 0; this.publish({ phase: "landing" }); }
       else this.beginArrival();
     }
   }
@@ -191,10 +204,22 @@ export class ImmersiveRuntime {
     this.publish({ phase: "arrival" });
   }
   tick(delta: number) {
-    if (this.suspended || ["error", "context-lost", "recovering"].includes(this.state.phase)) return;
-    const dt = Math.min(delta, 0.05); // restoring a background tab cannot teleport the player
+    this.activeFrameDelta = 0;
+    if (this.suspended || !Number.isFinite(delta) || delta < 0) return;
+    if (this.resumed) { this.resumed = false; this.activatedAt = null; return; }
+    this.activeFrameDelta = delta;
+    if (["error", "context-lost", "recovering"].includes(this.state.phase)) return;
+    let cinematicDelta = delta;
+    if (this.activatedAt !== null && this.clock) {
+      cinematicDelta = Math.min(delta, Math.max(0, this.clock() - this.activatedAt));
+      this.activatedAt = null;
+    }
+    const dt = Math.min(delta, 0.05); // locomotion never catches up across a long frame
     const phase = this.state.phase;
-    this.elapsed += dt;
+    const cameraTravel = ["entrance", "departure", "arrival"].includes(phase) ||
+      (phase === "local" && (!!this.focusFrom || this.state.mapStage === "ascent" || this.state.mapStage === "descent"));
+    this.frameGapCover = cameraTravel && cinematicDelta > 0.5 ? 1 : Math.max(0, this.frameGapCover - dt / 0.4);
+    this.elapsed += cinematicDelta;
     if (phase === "entrance") {
       if (this.reduced) { this.opacity = 1; Object.assign(this.pose, spawnPose("hub")); }
       else {
@@ -211,11 +236,11 @@ export class ImmersiveRuntime {
         this.pose.x = this.pose.z > world.tunnel.startZ ? mix(points[i][0],points[i+1][0],t) : tunnelCenter(this.pose.z);
         const dx = tunnelCenter(Math.min(world.tunnel.startZ,this.pose.z - 0.5)) - this.pose.x;
         const heading = Math.atan2(-dx,0.5);
-        this.pose.yaw += Math.atan2(Math.sin(heading-this.pose.yaw),Math.cos(heading-this.pose.yaw)) * (1-Math.exp(-8*dt));
+        this.pose.yaw += Math.atan2(Math.sin(heading-this.pose.yaw),Math.cos(heading-this.pose.yaw)) * (1-Math.exp(-8*cinematicDelta));
         const exit = smooth(Math.max(0, (u - points.length + 3) / 2));
         this.pose.pitch = mix(world.landing.pitch, world.hub.pitch, exit);
       }
-      if (this.elapsed >= (this.reduced ? 0.25 : 7.2)) { this.opacity = 0; Object.assign(this.pose, spawnPose("hub")); this.elapsed = 0; this.publish({ phase: "local" }); }
+      if (this.elapsed >= (this.reduced ? 0.25 : 7.2)) { this.opacity = 0; Object.assign(this.pose, spawnPose("hub")); this.elapsed = 0; this.publish({ phase: "local" }); this.onArrival?.("hub", "url"); }
     } else if (phase === "departure") {
       const duration = this.reduced ? 0.18 : this.source === "physical" ? connections[this.state.scene].departure : 0.3;
       const u = Math.min(1, this.elapsed / duration);
@@ -227,7 +252,7 @@ export class ImmersiveRuntime {
         this.pose.x += this.departureVx * tangent;
         this.pose.z += this.departureVz * tangent;
       }
-      this.opacity = smooth(Math.max(0, (u - 0.35) / 0.65));
+      this.opacity = mix(this.departureOpacity, 1, smooth(Math.max(0, (u - 0.35) / 0.65)));
       if (u === 1) {
         this.opacity = 1; this.elapsed = 0; this.ready = false;
         this.departureMap = null;
@@ -243,12 +268,12 @@ export class ImmersiveRuntime {
       if (!this.reduced) blendPose(this.pose, this.from, this.to, smooth(u));
       else Object.assign(this.pose, this.to);
       this.opacity = 1 - smooth(Math.min(1, u * 1.5));
-      if (u === 1) { this.opacity = 0; this.elapsed = 0; this.publish({ phase: this.targetEntrance ? "landing" : "local" }); this.onArrival?.(this.state.scene, this.source); }
+      if (u === 1) { this.opacity = 0; this.elapsed = 0; this.publish({ phase: this.targetEntrance ? "landing" : "local" }); this.onArrival?.(this.state.scene, this.source, this.targetEntrance); }
     } else if (phase === "local") {
       if (this.state.inspection) return;
       if (this.state.map) {
         const direction = this.state.mapStage === "descent" ? -1 : this.state.mapStage === "ascent" ? 1 : 0;
-        this.mapProgress = Math.max(0, Math.min(1, this.mapProgress + direction * dt / (this.reduced ? 0.18 : direction > 0 ? 1.4 : 1.1)));
+        this.mapProgress = Math.max(0, Math.min(1, this.mapProgress + direction * cinematicDelta / (this.reduced ? 0.18 : direction > 0 ? 1.4 : 1.1)));
         if (direction > 0 && this.mapProgress === 1) this.publish({ mapStage: "open" });
         if (direction < 0 && this.mapProgress === 0) {
           if (this.mapSaved) Object.assign(this.pose,this.mapSaved);
@@ -257,7 +282,7 @@ export class ImmersiveRuntime {
         return;
       }
       if (this.focusFrom) {
-        this.focusTime += dt;
+        this.focusTime += cinematicDelta;
         const u = Math.min(1, this.focusTime / (this.reduced ? 0.01 : 0.9));
         blendPose(this.pose, this.focusFrom, this.to, smooth(u));
         if (u === 1) { Object.assign(this.pose, this.to); this.focusFrom = null; }

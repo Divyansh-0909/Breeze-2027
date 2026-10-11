@@ -45,7 +45,7 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
     return () => { alive = false; };
   }, [gl, scene, camera, runtime, serial]);
   useFrame((_, dt) => {
-    if (!prepared.current || warm.current.done || gl.getContext().isContextLost() || runtime.suspended) return;
+    if (!prepared.current || warm.current.done || gl.getContext().isContextLost() || runtime.suspended || runtime.activeFrameDelta <= 0) return;
     // Warm the final viewing composition under the curtain. The approach pose
     // culls more crowd and previously underestimated the cost of the reveal.
     // Recovery warms the exact saved pose; it never relocates the visitor.
@@ -56,7 +56,7 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
     // First flush upload frames, then measure a short real-render window. If
     // the crowd exceeds the budget, lower its cost BEFORE giving input back.
     if (++rendered.current <= 2) return;
-    warm.current.seconds += dt; warm.current.count++;
+    warm.current.seconds += runtime.activeFrameDelta; warm.current.count++;
     // Twelve frames resist isolated initialization spikes while still measuring
     // the real scene. Four frames incorrectly selected the lowest tier under CPU throttling.
     if (warm.current.count < 12) return;
@@ -120,7 +120,7 @@ export function FrameController({ runtime, curtain }: { runtime: ImmersiveRuntim
     if (camera instanceof THREE.PerspectiveCamera && camera.fov !== p.fov) { camera.fov = p.fov; camera.updateProjectionMatrix(); }
     poseEuler.current.set(p.pitch, p.yaw, 0, "YXZ");
     camera.quaternion.setFromEuler(poseEuler.current);
-    if (curtain.current) curtain.current.style.opacity = String(runtime.opacity);
+    if (curtain.current) curtain.current.style.opacity = String(runtime.revealOpacity);
     const state = runtime.getSnapshot();
     const diagnostics = window.__gullyverse;
     if (diagnostics && !runtime.suspended) {

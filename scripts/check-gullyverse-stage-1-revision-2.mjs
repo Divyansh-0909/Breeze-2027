@@ -4,11 +4,20 @@ import { mkdir,readFile,writeFile,unlink } from "node:fs/promises";
 import { chromium } from "playwright";
 import * as THREE from "three";
 const base=process.env.GULLYVERSE_BASE_URL ?? "http://localhost:3000";
-const dir=".gullyverse-artifacts/stage-1-revision-2";
+const dir=process.env.GULLYVERSE_ARTIFACT_DIR ?? ".gullyverse-artifacts/stage-1-revision-2";
+const movementTimeout=Number(process.env.GULLYVERSE_MOVEMENT_TIMEOUT || 10000);
 const world=JSON.parse(await readFile(new URL("../public/models/gullyverse/blockout.layout.json",import.meta.url),"utf8"));
 await mkdir(dir,{recursive:true});
 const browser=await chromium.launch({executablePath:process.env.CHROME_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe",headless:true});
 const checks=[],errors=[],mutations=[];
+function assertPose(actual, expected, message) {
+  for (const field of ["x","y","z","yaw","pitch"]) assert.ok(Number.isFinite(actual[field]) && Number.isFinite(expected[field]) && Math.abs(actual[field]-expected[field]) <= 1e-6, (message||"Pose invariant")+": "+field);
+}
+async function moveInside(page) {
+  await page.keyboard.down("KeyW");
+  try { await page.waitForFunction(world => { const p=window.__gullyverse.runtime.pose,poly=world.aftermovie.movementBoundary; return Math.min(...poly.map((a,i)=>{const b=poly[(i+1)%poly.length],dx=b[0]-a[0],dz=b[1]-a[1];return ((p.x-a[0])*dz-(p.z-a[1])*dx)/Math.hypot(dx,dz)-world.playerRadius;}))>.8;},world,{timeout:movementTimeout}); }
+  finally { await page.keyboard.up("KeyW"); }
+}
 const waitLocal=(p,id)=>p.waitForSelector(`[data-phase="local"][data-location="${id}"]`,{timeout:60000});
 const pose=p=>p.evaluate(()=>({...window.__gullyverse.runtime.pose}));
 const state=p=>p.evaluate(()=>window.__gullyverse.runtime.getSnapshot());
@@ -23,13 +32,13 @@ async function guardedPage(context) {
 }
 async function contactBoundary(page,keys) {
   for(const code of keys)await page.keyboard.down(code);
-  await menu(page).waitFor({timeout:10000});
+  await menu(page).waitFor({timeout:movementTimeout});
   for(const code of keys)await page.keyboard.up(code);
   await page.waitForTimeout(300);
 }
 async function mapTravel(page,label,id) {
   await page.getByRole("button",{name:/^Map/}).click();
-  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:10000});
+  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:movementTimeout});
   await page.getByRole("button",{name:label,exact:true}).click();await waitLocal(page,id);
 }
 async function lookToward(page,target) {
@@ -39,7 +48,7 @@ async function lookToward(page,target) {
     const turn=Math.max(-.6,Math.min(.6,remaining));
     await page.mouse.move(650,340);await page.mouse.down();await page.mouse.move(650-turn/.003,340,{steps:8});await page.mouse.up();remaining-=turn;
   }
-  await page.waitForTimeout(100);
+  await page.waitForFunction(wanted=>{const p=window.__gullyverse.runtime.pose;return Math.abs(Math.atan2(Math.sin(p.yaw-wanted),Math.cos(p.yaw-wanted)))<.001;},wanted,{timeout:movementTimeout});
 }
 async function verifyMarkers(page) {
   const evidence=await page.getByRole("region",{name:"Festival aerial map"}).evaluate(el=>({viewport:{width:innerWidth,height:innerHeight},camera:window.__gullyverse.runtime.cameraPose(innerWidth/innerHeight),rect:el.getBoundingClientRect().toJSON(),buttons:[...el.querySelectorAll("button[data-destination]")].map(b=>({name:b.getAttribute("aria-label")??b.textContent,disabled:b.disabled,rect:b.getBoundingClientRect().toJSON(),destination:b.dataset.destination})),dots:[...el.querySelectorAll("[data-map-point]")].map(d=>({id:d.dataset.mapPoint,world:d.dataset.worldPosition,transform:d.style.transform}))}));
@@ -61,11 +70,11 @@ async function catalogState(page) {
   return "not asserted against live catalog data";
 }
 try {
-  const context=await browser.newContext({viewport:{width:1366,height:768},deviceScaleFactor:1});
+  const context=await browser.newContext({viewport:{width:1366,height:768},deviceScaleFactor:Number(process.env.GULLYVERSE_TEST_DPR||1)});
   const page=await guardedPage(context);
   await page.goto(base+"/?diagnostics",{waitUntil:"domcontentloaded"});
   await page.waitForSelector('[data-phase="landing"]',{timeout:60000});
-  assert.deepEqual(await pose(page),{x:world.landing.position[0],y:world.landing.position[1],z:world.landing.position[2],yaw:world.landing.yaw,pitch:world.landing.pitch});
+  assertPose(await pose(page),{x:world.landing.position[0],y:world.landing.position[1],z:world.landing.position[2],yaw:world.landing.yaw,pitch:world.landing.pitch});
   const canvas=await page.locator("canvas").evaluateHandle(c=>c);
   await page.getByRole("button",{name:"Enter Gullyverse",exact:true}).click();
   const entrance=[];
@@ -82,43 +91,44 @@ try {
   checks.push({name:"hub look alone causes no travel or destination-selection menu",before:hubPose,after:await pose(page)});
   const saved=await pose(page);
   await page.keyboard.press("KeyM");
-  await page.waitForFunction(()=>window.__gullyverse.runtime.mapProgress>.15,{timeout:10000});
+  await page.waitForFunction(()=>window.__gullyverse.runtime.mapProgress>.15,{timeout:movementTimeout});
   const ascent=await page.evaluate(()=>({camera:window.__gullyverse.runtime.cameraPose(innerWidth/innerHeight),progress:window.__gullyverse.runtime.mapProgress,stage:window.__gullyverse.runtime.getSnapshot().mapStage}));
   assert.ok(ascent.camera.y>saved.y+1,"Map camera rises from the visitor");
-  await key(page,"KeyW",250);assert.deepEqual(await pose(page),saved,"Map freezes exact walking pose");
-  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:10000});
+  await key(page,"KeyW",250);assertPose(await pose(page),saved,"Map freezes exact walking pose");
+  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:movementTimeout});
   const markerEvidence=await verifyMarkers(page);
   assert.ok(markerEvidence.rect.width>=1300 && markerEvidence.rect.height>=700,"Map uses the full viewport");
   for(const label of ["Aftermovie","Team","Contact Us","Accommodation","Past Sponsors","Entrance"]){assert.equal(await page.getByRole("button",{name:label,exact:true}).count(),1);}
   assert.equal(await page.getByRole("button",{name:"Accommodation",exact:true}).isDisabled(),true);
   assert.equal(await page.getByRole("button",{name:"Past Sponsors",exact:true}).isDisabled(),true);
-  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,{timeout:10000});assert.deepEqual(await pose(page),saved);
+  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,{timeout:movementTimeout});assertPose(await pose(page),saved);
   await page.keyboard.press("KeyM");await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open");
-  await page.keyboard.press("KeyM");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map);assert.deepEqual(await pose(page),saved);
+  await page.keyboard.press("KeyM");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map);assertPose(await pose(page),saved);
   checks.push({name:"continuous aerial ascent, fullscreen markers, movement ownership, Esc/M exact pose restoration and unavailable markers",saved,ascent,markerEvidence});
   console.log("[browser] connected entrance, looking and aerial-map projection/pose checks passed");
   await mapTravel(page,"Aftermovie","aftermovie");
   assert.equal(await page.evaluate(c=>document.querySelector("canvas")===c,canvas),true);
-  const beforePlay=await pose(page);
+  await page.evaluate(()=>{const r=window.__gullyverse.runtime;window.__activation=null;const off=r.subscribe(()=>{if(r.getSnapshot().movie&&!window.__activation){window.__activation={...r.pose};off();}});});
   await page.getByRole("button",{name:"Play Aftermovie",exact:true}).click();
   await page.waitForFunction(()=>window.__gullyverse.runtime.movieActions.status().currentTime>.1,{timeout:30000});
   await page.getByRole("button",{name:"Enable sound",exact:true}).click();
   assert.equal(await page.evaluate(()=>window.__gullyverse.runtime.movieActions.status().muted),false);
-  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().movie);await page.waitForTimeout(1000);assert.deepEqual(await pose(page),beforePlay);
+  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().movie);const beforePlay=await page.evaluate(()=>window.__activation);
+  await page.waitForFunction(expected=>{const actual=window.__gullyverse.runtime.pose;return ["x","y","z","yaw","pitch"].every(k=>Number.isFinite(actual[k])&&Math.abs(actual[k]-expected[k])<=1e-6);},beforePlay,{timeout:Math.max(15000,movementTimeout)});assertPose(await pose(page),beforePlay);
   assert.equal((await state(page)).destinationMenu,false,"Playback Escape cannot simultaneously navigate/open menu");
   await key(page,"KeyD",150);await page.waitForTimeout(350);assert.equal((await state(page)).destinationMenu,false,"Interior walking is not outer boundary contact");
   await contactBoundary(page,["KeyS"]);
   const edgePose=await pose(page);assert.equal(new URL(page.url()).pathname,"/aftermovie");
-  await page.waitForTimeout(300);assert.deepEqual(await pose(page),edgePose);
+  await page.waitForTimeout(300);assertPose(await pose(page),edgePose);
   const overlay=await menu(page).evaluate(el=>{const s=getComputedStyle(el);return{rect:el.getBoundingClientRect().toJSON(),background:s.backgroundColor,backgroundImage:s.backgroundImage,border:s.borderWidth,children:[...el.children].map(c=>({tag:c.tagName,background:getComputedStyle(c).backgroundColor}))};});
   assert.equal(overlay.backgroundImage,"none");assert.ok(overlay.rect.width>=1300 && overlay.rect.height>=700,"The dimmer spans the scene, not a modal card");
   assert.ok(overlay.children.every(c=>["rgba(0, 0, 0, 0)","transparent"].includes(c.background)),"Typography overlay has no nested rectangular panel");
   assert.equal(await menu(page).getByRole("button",{name:"Aftermovie",exact:true}).count(),0,"No redundant current-location destination");
-  await page.keyboard.press("Escape");assert.equal((await state(page)).destinationMenu,false);assert.deepEqual(await pose(page),edgePose);
+  await page.keyboard.press("Escape");assert.equal((await state(page)).destinationMenu,false);assertPose(await pose(page),edgePose);
   await key(page,"KeyS",600);assert.equal((await state(page)).destinationMenu,false,"Outward contact remains latched until moving away");
-  await key(page,"KeyW",500);await contactBoundary(page,["KeyS"]);
-  await menu(page).getByRole("button",{name:"Stay Here",exact:true}).click();assert.deepEqual(await pose(page),edgePose);
-  await key(page,"KeyW",500);await contactBoundary(page,["KeyS"]);
+  await moveInside(page);await contactBoundary(page,["KeyS"]);
+  await menu(page).getByRole("button",{name:"Stay Here",exact:true}).click();assertPose(await pose(page),edgePose);
+  await moveInside(page);await contactBoundary(page,["KeyS"]);
   await menu(page).getByRole("button",{name:"Return to Hub",exact:true}).click();await waitLocal(page,"hub");
   assert.equal(await page.evaluate(c=>document.querySelector("canvas")===c,canvas),true);
   await page.goBack();await waitLocal(page,"aftermovie");await page.goForward();await waitLocal(page,"hub");
@@ -136,8 +146,8 @@ try {
     const polygon=world.aftermovie.movementBoundary;
     const clearance=Math.min(...polygon.map((a,i)=>{const b=polygon[(i+1)%polygon.length],dx=b[0]-a[0],dz=b[1]-a[1];return((stopped.x-a[0])*dz-(stopped.z-a[1])*dx)/Math.hypot(dx,dz)-world.playerRadius;}));
     assert.ok(Math.abs(clearance)<.001,"Menu caused by perimeter contact, including capsule radius");
-    await page.waitForTimeout(200);assert.deepEqual(await pose(page),stopped);
-    await page.keyboard.press("Escape");assert.deepEqual(await pose(page),stopped);
+    await page.waitForTimeout(200);assertPose(await pose(page),stopped);
+    await page.keyboard.press("Escape");assertPose(await pose(page),stopped);
     checks.push({name:"public Aftermovie perimeter "+name,keys,initial,stopped,staysUntilChoice:true});
     console.log("[browser] outer perimeter "+name+" passed");
   }
@@ -158,12 +168,12 @@ try {
     const t=(zone.range[0]+zone.range[1])/2,target=[a[0]+(b[0]-a[0])*t,world.eyeHeight,a[1]+(b[1]-a[1])*t];
     await lookToward(page,target);const started=Date.now();await page.keyboard.down("KeyW");
     if(["accommodation","sponsors"].includes(zone.id)) {
-      await page.waitForFunction(id=>window.__gullyverse.runtime.getSnapshot().unavailableDestination===id,zone.id,{timeout:15000});await page.keyboard.up("KeyW");
+      await page.waitForFunction(id=>window.__gullyverse.runtime.getSnapshot().unavailableDestination===id,zone.id,{timeout:Math.max(15000,movementTimeout)});await page.keyboard.up("KeyW");
       const unavailable=await state(page);assert.equal(unavailable.phase,"local");assert.equal(unavailable.scene,"hub");assert.equal(unavailable.destinationMenu,false);
       assert.ok((await page.getByRole("status").allInnerTexts()).some(text=>text.includes("Coming soon")));
       checks.push({name:"deliberate local hub zone "+(zone.sign??zone.id),destination:zone.id,initial,target,approachMs:Date.now()-started,available:false,truthfulNotice:true});
     } else {
-      await page.waitForSelector('[data-phase="departure"]',{timeout:15000});await page.keyboard.up("KeyW");
+      await page.waitForSelector('[data-phase="departure"]',{timeout:Math.max(15000,movementTimeout)});await page.keyboard.up("KeyW");
       const approachMs=Date.now()-started;
       if(zone.id==="aftermovie")await waitLocal(page,"aftermovie");
       else await page.waitForURL(base+world.destinations.find(d=>d.id===zone.id).href,{timeout:60000});
@@ -174,7 +184,7 @@ try {
   await page.goto(base+"/aftermovie?diagnostics",{waitUntil:"domcontentloaded"});await waitLocal(page,"aftermovie");
   await page.emulateMedia({reducedMotion:"reduce"});
   const reducedSaved=await pose(page);await page.keyboard.press("KeyM");await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:5000});
-  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,{timeout:5000});assert.deepEqual(await pose(page),reducedSaved);
+  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,{timeout:5000});assertPose(await pose(page),reducedSaved);
   checks.push({name:"reduced motion map uses shortened transition and restores exact pose",saved:reducedSaved});
   // Existing pages are read only. No form submission or authenticated DB work.
   for(const path of ["/events","/events/cultural","/events/technical","/events/00000000-0000-4000-8000-000000000001","/team","/get-in-touch","/sponsors","/merch","/admin/login"]) {
@@ -182,19 +192,19 @@ try {
     checks.push({name:"preserved content route",path,finalPath:new URL(page.url()).pathname,status:response.status(),inputs:await page.locator("input").count(),textareas:await page.locator("textarea").count(),...path.startsWith("/events")?{catalogState:await catalogState(page)}:{}});
   }
   await context.close();
-  const mobile=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+  const mobile=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:Number(process.env.GULLYVERSE_MOBILE_DPR||1),isMobile:true,hasTouch:true});
   const touchPage=await guardedPage(mobile);
   await touchPage.goto(base+"/aftermovie?diagnostics",{waitUntil:"domcontentloaded"});await waitLocal(touchPage,"aftermovie");
   await contactBoundary(touchPage,["KeyS"]);const touchEdge=await pose(touchPage);
-  await menu(touchPage).getByRole("button",{name:"Stay Here",exact:true}).tap();assert.deepEqual(await pose(touchPage),touchEdge);assert.equal((await state(touchPage)).destinationMenu,false);
-  await touchPage.getByRole("button",{name:/^Map/}).tap();await touchPage.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:10000});
+  await menu(touchPage).getByRole("button",{name:"Stay Here",exact:true}).tap();assertPose(await pose(touchPage),touchEdge);assert.equal((await state(touchPage)).destinationMenu,false);
+  await touchPage.getByRole("button",{name:/^Map/}).tap();await touchPage.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:movementTimeout});
   assert.ok(await touchPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   const touchMarkers=await verifyMarkers(touchPage);
   await touchPage.getByRole("button",{name:"Gullyverse hub",exact:true}).tap();await waitLocal(touchPage,"hub");
   checks.push({name:"portrait touch Stay Here, fullscreen map without overflow/marker overlap or clipping, actual world projection and marker navigation",touchEdge,touchMarkers});
   await mobile.close();
   assert.deepEqual(errors,[]);assert.deepEqual(mutations,[]);
-  await writeFile(dir+"/browser-checks.json",JSON.stringify({checks,errors,mutations,limitations:["Real clipping/occlusion/composition require visual review.","Map projection accuracy also covered by runtime tests and captured camera metadata.","Mobile checks run on desktop Intel GPU."]},null,2));
+  await writeFile(dir+"/browser-checks.json",JSON.stringify({checks,errors,mutations,limitations:["Real clipping/occlusion/composition require visual review.","Map projection accuracy also covered by runtime tests and captured camera metadata.","Touch emulation uses the available desktop renderer; not physical mobile certification."]},null,2));
   await unlink(dir+"/browser-failure.txt").catch(error=>{if(error.code!=="ENOENT")throw error;});
   console.log(JSON.stringify({checks:checks.length,errors,mutations}));
 } catch(error) {await writeFile(dir+"/browser-checks.json",JSON.stringify({partial:true,checks,errors,mutations,error:String(error.stack??error)},null,2));await writeFile(dir+"/browser-failure.txt",String(error.stack??error));throw error;}

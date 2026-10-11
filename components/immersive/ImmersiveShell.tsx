@@ -6,9 +6,10 @@ import { Canvas } from "@react-three/fiber";
 import { point3, world } from "./world";
 import { FrameController, SceneRenderer, QUALITY_DPR } from "./rendering";
 import { ImmersiveRuntime } from "./runtime";
-import { locationFromPath, locations } from "./navigation";
+import { enteredGullyverse, initialNavigation, immersiveHref, rememberGullyverseEntry, locationFromPath, locations } from "./navigation";
 import { useImmersiveInput } from "./input";
 import WorldOverlays, { MapMarkerProjection, type MapDOM } from "./WorldOverlays";
+import { activeDeadline } from "./activeDeadline";
 import styles from "./immersive.module.css";
 
 const AftermovieScene = lazy(() => import("./AftermovieScene"));
@@ -35,14 +36,19 @@ class SceneBoundary extends Component<{ children: React.ReactNode; onError: (mes
 export default function ImmersiveShell() {
   const pathname = usePathname();
   const router = useRouter();
-  const [runtime] = useState(() => new ImmersiveRuntime(locationFromPath(pathname) ?? "hub", (id, source) => {
-    // Next's supported native history integration updates usePathname without
-    // fetching/remounting a second renderer. Popstate enters the same request path.
-    if (source !== "url" && locationFromPath(window.location.pathname) !== id) {
-      const query = new URLSearchParams(window.location.search);
-      window.history.pushState(null, "", locations[id].href + (query.has("diagnostics") ? "?diagnostics" : ""));
-    }
-  }));
+  const [runtime] = useState(() => {
+    const entry = initialNavigation(pathname, window.location.search, window.history.state, enteredGullyverse());
+    return new ImmersiveRuntime(entry.location, (id, source, entrance) => {
+      if (!entrance) rememberGullyverseEntry();
+      if (source !== "url" && (locationFromPath(window.location.pathname) !== id || entrance)) {
+        const href = immersiveHref(id, entrance);
+        const diagnostic = new URLSearchParams(window.location.search).has("diagnostics");
+        window.history.pushState({ ...window.history.state, breezeArrival: entrance ? "entrance" : id }, "", href + (diagnostic ? (href.includes("?") ? "&" : "?") + "diagnostics" : ""));
+      } else if (id === "hub" && !entrance) {
+        window.history.replaceState({ ...window.history.state, breezeArrival: "hub" }, "", window.location.href);
+      }
+    }, entry.intro, () => performance.now() / 1000);
+  });
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   const curtain = useRef<HTMLDivElement>(null);
   const [mapElements] = useState<MapDOM>(() => ({ container: null, nodes: new Map(), dots: new Map(), lines: new Map() }));
@@ -65,8 +71,17 @@ export default function ImmersiveShell() {
   useEffect(() => {
     if (!["boot", "covered", "context-lost", "recovering"].includes(state.phase)) return;
     // A timeout never reveals unfinished content; it offers the 2D fallback.
-    const timer = setTimeout(() => runtime.fail("Critical scene preparation exceeded 45 seconds."), 45000);
-    return () => clearTimeout(timer);
+    const deadline = activeDeadline(45000, () => runtime.fail("Critical scene preparation exceeded 45 seconds."));
+    const suspend = () => deadline.pause();
+    const resume = () => { if (!document.hidden) deadline.resume(); };
+    const visibility = () => document.hidden ? suspend() : resume();
+    if (!runtime.suspended && !document.hidden) deadline.resume();
+    window.addEventListener("blur", suspend); window.addEventListener("focus", resume);
+    document.addEventListener("visibilitychange", visibility); document.addEventListener("freeze", suspend); document.addEventListener("resume", resume);
+    return () => {
+      deadline.cancel(); window.removeEventListener("blur", suspend); window.removeEventListener("focus", resume);
+      document.removeEventListener("visibilitychange", visibility); document.removeEventListener("freeze", suspend); document.removeEventListener("resume", resume);
+    };
   }, [state.phase, state.serial, runtime]);
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) runtime.setQuality(1);
@@ -80,7 +95,7 @@ export default function ImmersiveShell() {
         <MapMarkerProjection runtime={runtime} elements={mapElements} />
         <SceneRenderer runtime={runtime} />
         <Suspense fallback={null}>
-          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.inspection === "overview"} />
+          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.map || state.inspection === "overview"} />
         </Suspense>
       </Canvas>
     </SceneBoundary>

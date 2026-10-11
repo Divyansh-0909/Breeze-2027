@@ -1,0 +1,2322 @@
+--- approved-baseline/components/Navbar.tsx
++++ current/components/Navbar.tsx
+@@ -5,6 +5,7 @@
+ import { usePathname } from "next/navigation";
+ import { Home as HomeIcon, ShoppingCart } from "lucide-react";
+ 
++import { immersiveHref } from "@/components/immersive/navigation";
+ import { cn } from "@/lib/utils";
+ 
+ interface NavbarProps {
+@@ -80,7 +81,7 @@
+     >
+       <div className="pointer-events-auto flex items-center gap-3 rounded-2xl border border-neutral-500/40 bg-black/80 px-3 py-2 shadow-lg shadow-black/25 sm:gap-5 sm:px-4">
+         <Link
+-          href="/"
++          href={immersiveHref("hub")}
+           onClick={handleHomeClick}
+           aria-label="Home"
+           aria-current={isActive("/") ? "page" : undefined}
+--- approved-baseline/components/immersive/AftermovieScene.tsx
++++ current/components/immersive/AftermovieScene.tsx
+@@ -20,11 +20,12 @@
+ export default function AftermovieScene({ runtime, serial, quality, nearStage, overview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean }) {
+   requireWorldFonts();
+   const stageView=nearStage&&!overview;
+-  const video = useStageVideo();
++  const playbackOwnership = useCallback((active: boolean) => runtime.setMovie(active), [runtime]);
++  const video = useStageVideo(playbackOwnership);
+   const [crowdReadySerial, setCrowdReadySerial] = useState<number | null>(null);
+   const ready = useCallback(() => setCrowdReadySerial(serial), [serial]);
+   const baked = useCallback((ms: number) => recordPreparation(runtime, "crowd-pose-bake", performance.now() - ms, ms), [runtime]);
+-  useEffect(() => { runtime.setMovie(video.phase !== "idle"); }, [runtime, video.phase]);
++
+   useEffect(() => {
+     runtime.movieActions = { play: video.startMovie, stop: video.stopMovie, sound: video.enableSound, status: video.getStatus };
+     return () => { runtime.movieActions = null; };
+--- approved-baseline/components/immersive/ImmersiveShell.tsx
++++ current/components/immersive/ImmersiveShell.tsx
+@@ -6,9 +6,10 @@
+ import { point3, world } from "./world";
+ import { FrameController, SceneRenderer, QUALITY_DPR } from "./rendering";
+ import { ImmersiveRuntime } from "./runtime";
+-import { locationFromPath, locations } from "./navigation";
++import { enteredGullyverse, initialNavigation, immersiveHref, rememberGullyverseEntry, locationFromPath, locations } from "./navigation";
+ import { useImmersiveInput } from "./input";
+ import WorldOverlays, { MapMarkerProjection, type MapDOM } from "./WorldOverlays";
++import { activeDeadline } from "./activeDeadline";
+ import styles from "./immersive.module.css";
+ 
+ const AftermovieScene = lazy(() => import("./AftermovieScene"));
+@@ -35,14 +36,19 @@
+ export default function ImmersiveShell() {
+   const pathname = usePathname();
+   const router = useRouter();
+-  const [runtime] = useState(() => new ImmersiveRuntime(locationFromPath(pathname) ?? "hub", (id, source) => {
+-    // Next's supported native history integration updates usePathname without
+-    // fetching/remounting a second renderer. Popstate enters the same request path.
+-    if (source !== "url" && locationFromPath(window.location.pathname) !== id) {
+-      const query = new URLSearchParams(window.location.search);
+-      window.history.pushState(null, "", locations[id].href + (query.has("diagnostics") ? "?diagnostics" : ""));
+-    }
+-  }));
++  const [runtime] = useState(() => {
++    const entry = initialNavigation(pathname, window.location.search, window.history.state, enteredGullyverse());
++    return new ImmersiveRuntime(entry.location, (id, source, entrance) => {
++      if (!entrance) rememberGullyverseEntry();
++      if (source !== "url" && (locationFromPath(window.location.pathname) !== id || entrance)) {
++        const href = immersiveHref(id, entrance);
++        const diagnostic = new URLSearchParams(window.location.search).has("diagnostics");
++        window.history.pushState({ ...window.history.state, breezeArrival: entrance ? "entrance" : id }, "", href + (diagnostic ? (href.includes("?") ? "&" : "?") + "diagnostics" : ""));
++      } else if (id === "hub" && !entrance) {
++        window.history.replaceState({ ...window.history.state, breezeArrival: "hub" }, "", window.location.href);
++      }
++    }, entry.intro, () => performance.now() / 1000);
++  });
+   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
+   const curtain = useRef<HTMLDivElement>(null);
+   const [mapElements] = useState<MapDOM>(() => ({ container: null, nodes: new Map(), dots: new Map(), lines: new Map() }));
+@@ -65,8 +71,17 @@
+   useEffect(() => {
+     if (!["boot", "covered", "context-lost", "recovering"].includes(state.phase)) return;
+     // A timeout never reveals unfinished content; it offers the 2D fallback.
+-    const timer = setTimeout(() => runtime.fail("Critical scene preparation exceeded 45 seconds."), 45000);
+-    return () => clearTimeout(timer);
++    const deadline = activeDeadline(45000, () => runtime.fail("Critical scene preparation exceeded 45 seconds."));
++    const suspend = () => deadline.pause();
++    const resume = () => { if (!document.hidden) deadline.resume(); };
++    const visibility = () => document.hidden ? suspend() : resume();
++    if (!runtime.suspended && !document.hidden) deadline.resume();
++    window.addEventListener("blur", suspend); window.addEventListener("focus", resume);
++    document.addEventListener("visibilitychange", visibility); document.addEventListener("freeze", suspend); document.addEventListener("resume", resume);
++    return () => {
++      deadline.cancel(); window.removeEventListener("blur", suspend); window.removeEventListener("focus", resume);
++      document.removeEventListener("visibilitychange", visibility); document.removeEventListener("freeze", suspend); document.removeEventListener("resume", resume);
++    };
+   }, [state.phase, state.serial, runtime]);
+   useEffect(() => {
+     if (window.matchMedia("(pointer: coarse)").matches) runtime.setQuality(1);
+--- approved-baseline/components/immersive/WorldOverlays.tsx
++++ current/components/immersive/WorldOverlays.tsx
+@@ -5,6 +5,7 @@
+ import { destinationOptions, type TravelId } from "./navigation";
+ import type { ImmersiveRuntime, Snapshot } from "./runtime";
+ import { world } from "./world";
++import { projectMapPoint } from "./mapProjection";
+ import styles from "./immersive.module.css";
+ 
+ type MapPoint = { id: string; label: string; position: readonly number[]; destination?: TravelId };
+@@ -26,21 +27,19 @@
+ 
+ /** Project DOM labels through the same R3F camera, without a React update per frame. */
+ export function MapMarkerProjection({ runtime, elements }: { runtime: ImmersiveRuntime; elements: MapDOM }) {
+-  const vector = useRef(new THREE.Vector3());
+-  const previousFrame = useRef("");
++  const clip = useRef(new THREE.Vector4());
+   const points = mapPoints();
+   useFrame(({ camera, size }) => {
+-    if (!runtime.getSnapshot().map || !elements.container) { previousFrame.current = ""; return; }
+-    const signature = `${size.width}:${size.height}:${runtime.mapProgress}:${camera.position.x}:${camera.position.y}:${camera.position.z}:${elements.nodes.size}`;
+-    if (signature === previousFrame.current) return;
+-    previousFrame.current = signature;
++    if (!runtime.getSnapshot().map || !elements.container) return;
+     camera.updateMatrixWorld();
+     elements.container.style.opacity = String(Math.max(0, Math.min(1, (runtime.mapProgress - 0.78) / 0.22)));
+     const placed: { x: number; y: number; w: number; h: number }[] = [];
+     const overlaps = (x: number, y: number, w: number, h: number) => placed.filter(p => Math.abs(x - p.x) < (w + p.w) / 2 + 5 && Math.abs(y - p.y) < (h + p.h) / 2 + 5).length;
+-    const projected = points.map(point => {
+-      vector.current.set(point.position[0], point.position[1] ?? 0, point.position[2]).project(camera);
+-      return { point, x: (vector.current.x + 1) * size.width / 2, y: (1 - vector.current.y) * size.height / 2 };
++    const projected = points.flatMap(point => {
++      const projection = projectMapPoint(point.position, camera, size.width, size.height, clip.current);
++      const node = elements.nodes.get(point.id), dot = elements.dots.get(point.id), line = elements.lines.get(point.id);
++      for (const element of [node, dot, line]) if (element) element.style.visibility = projection ? "visible" : "hidden";
++      return projection ? [{ point, ...projection }] : [];
+     }).sort((a, b) => a.y - b.y);
+     for (const { point, x, y } of projected) {
+       const node = elements.nodes.get(point.id), dot = elements.dots.get(point.id), line = elements.lines.get(point.id);
+@@ -70,7 +69,7 @@
+     node?.querySelector<HTMLElement>("button:not(:disabled)")?.focus({ preventScroll: true });
+     const trap = (event: KeyboardEvent) => {
+       if (event.key !== "Tab" || !node) return;
+-      const controls = [...node.querySelectorAll<HTMLButtonElement>("button:not(:disabled)")];
++      const controls = [...node.querySelectorAll<HTMLButtonElement>("button:not(:disabled)")].filter(control => getComputedStyle(control).visibility !== "hidden");
+       const first = controls[0], last = controls[controls.length - 1];
+       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+--- approved-baseline/components/immersive/diagnostics.ts
++++ current/components/immersive/diagnostics.ts
+@@ -12,6 +12,7 @@
+   phases: { at: number; phase: string; scene: string; serial: number }[]; memory: MemorySample[];
+   gpuTimer: "available" | "unavailable"; discardedGpuQueries: number;
+   currentFrame: FrameSample | null;
++  videoResources: { at: number; event: string; uuid: string; samplers: number; uploaded: boolean }[];
+   stats: { calls: number; triangles: number; textures: number; geometries: number; dpr: number };
+ };
+ declare global { interface Window { __gullyverse?: Diagnostics } }
+@@ -64,7 +65,7 @@
+   let timer = context.getExtension("EXT_disjoint_timer_query_webgl2") as TimerExtension | null;
+   const d: Diagnostics = window.__gullyverse = {
+     runtime, renderer: String(context.getParameter(debug ? debug.UNMASKED_RENDERER_WEBGL : context.RENDERER)),
+-    frames: [], timeline: [], preparations: [], gpu: [], phases: [], memory: [], currentFrame: null,
++    frames: [], timeline: [], preparations: [], gpu: [], phases: [], memory: [], currentFrame: null, videoResources: [],
+     gpuTimer: timer ? "available" : "unavailable", discardedGpuQueries: 0,
+     stats: { calls: 0, triangles: 0, textures: 0, geometries: 0, dpr: gl.getPixelRatio() },
+   };
+@@ -74,6 +75,41 @@
+     if (signature !== lastPhase) { lastPhase = signature; append(d.phases, { at: performance.now(), phase: s.phase, scene: s.scene, serial: s.serial }, 1000); }
+   };
+   phase(); const unsubscribe = runtime.subscribe(phase);
++  // Opt-in lifetime evidence. Weak metadata never keeps retired movies alive.
++  const traceVideo = new URLSearchParams(window.location.search).has("resourceTrace");
++  const watched = new WeakMap<THREE.Texture, { disposed: boolean; reported: boolean }>();
++  const bound = new Set<THREE.Texture>();
++  const traceSamplers = (scene: THREE.Object3D) => {
++    const samplers = new Map<THREE.Texture, number>();
++    scene.traverse(object => {
++      if (!(object instanceof THREE.Mesh)) return;
++      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
++        if (!(material instanceof THREE.ShaderMaterial)) continue;
++        for (const uniform of Object.values(material.uniforms)) {
++          const texture = uniform.value;
++          if (texture instanceof THREE.VideoTexture) samplers.set(texture, (samplers.get(texture) ?? 0) + 1);
++        }
++      }
++    });
++    for (const texture of bound) if (!samplers.has(texture)) bound.delete(texture);
++    for (const [texture, count] of samplers) {
++      bound.add(texture);
++      let state = watched.get(texture);
++      if (!state) {
++        state = { disposed: false, reported: false }; watched.set(texture, state);
++        const metadata = state;
++        texture.addEventListener("dispose", () => {
++          metadata.disposed = true;
++          append(d.videoResources, { at: performance.now(), event: "dispose", uuid: texture.uuid, samplers: bound.has(texture) ? count : 0, uploaded: false }, 1000);
++        });
++      }
++      if (state.disposed && !state.reported) {
++        state.reported = true;
++        const properties = gl.properties.get(texture) as { __webglTexture?: WebGLTexture };
++        append(d.videoResources, { at: performance.now(), event: "disposed-still-sampled-after-render", uuid: texture.uuid, samplers: count, uploaded: !!properties.__webglTexture }, 1000);
++      }
++    }
++  };
+   const pending: { query: WebGLQuery; sample: TimedSample }[] = [];
+   const clearQueries = () => { pending.forEach(({ query }) => context.deleteQuery(query)); pending.length = 0; };
+   const lost = () => { d.discardedGpuQueries += pending.length; pending.length = 0; timer = null; };
+@@ -101,6 +137,7 @@
+     if (query) context.beginQuery(timer!.TIME_ELAPSED_EXT, query);
+     try { originalRender.call(gl, scene, camera); }
+     finally {
++      if (traceVideo) traceSamplers(scene);
+       if (query) {
+         context.endQuery(timer!.TIME_ELAPSED_EXT);
+         pending.push({ query, sample: { name: "gpu-render", at: start, ms: 0, phase: s.phase, scene: s.scene, serial: s.serial, poseZ: runtime.pose.z } });
+@@ -117,7 +154,7 @@
+   };
+   GLTFLoader.prototype.parse = measuredParse;
+   return () => {
+-    unsubscribe(); clearQueries(); gl.render = originalRender;
++    unsubscribe(); clearQueries(); bound.clear(); gl.render = originalRender;
+     gl.domElement.removeEventListener("webglcontextlost", lost); gl.domElement.removeEventListener("webglcontextrestored", restored);
+     if (GLTFLoader.prototype.parse === measuredParse) GLTFLoader.prototype.parse = originalParse;
+     if (window.__gullyverse === d) delete window.__gullyverse;
+--- approved-baseline/components/immersive/input.ts
++++ current/components/immersive/input.ts
+@@ -2,6 +2,7 @@
+ import { useEffect, useRef } from "react";
+ import type { ImmersiveRuntime } from "./runtime";
+ 
++const editableSelector = "form, input, textarea, select, [contenteditable]:not([contenteditable=false])";
+ const movementCodes = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]);
+ export function useImmersiveInput(runtime: ImmersiveRuntime) {
+   const keys = useRef(new Set<string>());
+@@ -15,14 +16,17 @@
+       runtime.input.forward = Math.max(-1, Math.min(1, forward)); runtime.input.strafe = Math.max(-1, Math.min(1, strafe));
+     };
+     const clear = () => { keys.current.clear(); virtual.current.clear(); drag.current = null; runtime.clearInput(); };
++    runtime.suspended = document.hidden;
++    const editable = (target: EventTarget | null) => target instanceof Element && !!target.closest(editableSelector);
++    const focusIn = (e: FocusEvent) => { if (editable(e.target)) clear(); };
+     const down = (e: KeyboardEvent) => {
+-      if ((e.target as HTMLElement)?.closest("input, textarea, select, [contenteditable=true]")) return;
++      if (runtime.suspended || editable(document.activeElement) || e.composedPath().some(editable)) { clear(); return; }
+       const s = runtime.getSnapshot();
+       if (e.code === "Escape" && runtime.handleEscape()) { e.preventDefault(); e.stopImmediatePropagation(); return; }
+       if (s.inspection) return;
+       if (s.phase === "landing" && ["Enter", "Space"].includes(e.code) && !(e.target as HTMLElement)?.closest("button, a")) { e.preventDefault(); runtime.enter(); return; }
+       if (e.code === "KeyM" && s.phase === "local" && !s.movie && !s.destinationMenu && !e.repeat) { e.preventDefault(); runtime.setMap(!s.map || s.mapStage === "descent"); return; }
+-      if (movementCodes.has(e.code) && s.phase === "local" && !s.map && !s.movie && !s.destinationMenu) { e.preventDefault(); keys.current.add(e.code); update(); }
++      if (movementCodes.has(e.code) && s.phase === "local" && !s.map && !s.movie && !s.destinationMenu) { if (e.repeat && !keys.current.has(e.code)) return; e.preventDefault(); keys.current.add(e.code); update(); }
+     };
+     const up = (e: KeyboardEvent) => { keys.current.delete(e.code); update(); };
+     const visibility = () => { runtime.suspended = document.hidden; clear(); };
+@@ -40,7 +44,7 @@
+     });
+     // Pointer drags operate on the rendering surface only; no pointer-lock requirement.
+     const pointerDown = (e: PointerEvent) => {
+-      if (!(e.target as HTMLElement)?.closest("canvas")) return;
++      if (runtime.suspended || !(e.target as HTMLElement)?.closest("canvas")) return;
+       const s = runtime.getSnapshot();
+       if (s.phase === "landing") { runtime.enter(); return; }
+       if (s.phase !== "local" || s.map || s.movie || s.inspection || s.destinationMenu) return;
+@@ -57,11 +61,12 @@
+     // Touch pad events are converted to the same axes as the keyboard.
+     const padDown = (e: PointerEvent) => {
+       const pad = (e.target as HTMLElement)?.closest<HTMLElement>("[data-move]"); if (!pad) return;
+-      const s = runtime.getSnapshot(); if (s.phase !== "local" || s.map || s.movie || s.inspection || s.destinationMenu) return;
++      const s = runtime.getSnapshot(); if (runtime.suspended || s.phase !== "local" || s.map || s.movie || s.inspection || s.destinationMenu) return;
+       e.preventDefault(); pad.setPointerCapture(e.pointerId);
+       const direction = pad.dataset.move;
+       virtual.current.set(e.pointerId, { forward: direction === "forward" ? 1 : direction === "back" ? -1 : 0, strafe: direction === "right" ? 1 : direction === "left" ? -1 : 0 }); update();
+     };
++    document.addEventListener("focusin", focusIn);
+     window.addEventListener("keydown", down, true); window.addEventListener("keyup", up);
+     window.addEventListener("blur", blur); window.addEventListener("focus", focus); document.addEventListener("visibilitychange", visibility);
+     document.addEventListener("freeze", blur); document.addEventListener("resume", focus);
+@@ -70,6 +75,7 @@
+     window.addEventListener("lostpointercapture", pointerUp);
+     return () => {
+       clear(); unsubscribe(); media.removeEventListener("change", reduced);
++      document.removeEventListener("focusin", focusIn);
+       window.removeEventListener("keydown", down, true); window.removeEventListener("keyup", up);
+       window.removeEventListener("blur", blur); window.removeEventListener("focus", focus); document.removeEventListener("visibilitychange", visibility);
+       document.removeEventListener("freeze", blur); document.removeEventListener("resume", focus);
+--- approved-baseline/components/immersive/navigation.ts
++++ current/components/immersive/navigation.ts
+@@ -116,3 +116,20 @@
+     if(correction<0.000001) break;
+   }
+ }
++
++/** Fresh entry and deliberate Home arrival share the existing coordinator. */
++export function initialNavigation(path: string, search: string, history: unknown, entered = false) {
++  const location = locationFromPath(path) ?? "hub";
++  const intent = new URLSearchParams(search).get("arrival");
++  const marked = !!history && typeof history === "object" && "breezeArrival" in history && history.breezeArrival === "hub";
++  return { location, intro: location === "hub" && (intent === "entrance" || !(intent === "hub" || marked || entered)) };
++}
++export function immersiveHref(id: LocationId, entrance = false) {
++  return id === "hub" ? `/?arrival=${entrance ? "entrance" : "hub"}` : locations[id].href;
++}
++export function enteredGullyverse(): boolean {
++  try { return window.sessionStorage.getItem("breeze:entered") === "1"; } catch { return false; }
++}
++export function rememberGullyverseEntry() {
++  try { window.sessionStorage.setItem("breeze:entered", "1"); } catch { /* Explicit URLs/history still work without storage. */ }
++}
+--- approved-baseline/components/immersive/rendering.tsx
++++ current/components/immersive/rendering.tsx
+@@ -45,7 +45,7 @@
+     return () => { alive = false; };
+   }, [gl, scene, camera, runtime, serial]);
+   useFrame((_, dt) => {
+-    if (!prepared.current || warm.current.done || gl.getContext().isContextLost() || runtime.suspended) return;
++    if (!prepared.current || warm.current.done || gl.getContext().isContextLost() || runtime.suspended || runtime.activeFrameDelta <= 0) return;
+     // Warm the final viewing composition under the curtain. The approach pose
+     // culls more crowd and previously underestimated the cost of the reveal.
+     // Recovery warms the exact saved pose; it never relocates the visitor.
+@@ -56,7 +56,7 @@
+     // First flush upload frames, then measure a short real-render window. If
+     // the crowd exceeds the budget, lower its cost BEFORE giving input back.
+     if (++rendered.current <= 2) return;
+-    warm.current.seconds += dt; warm.current.count++;
++    warm.current.seconds += runtime.activeFrameDelta; warm.current.count++;
+     // Twelve frames resist isolated initialization spikes while still measuring
+     // the real scene. Four frames incorrectly selected the lowest tier under CPU throttling.
+     if (warm.current.count < 12) return;
+@@ -120,7 +120,7 @@
+     if (camera instanceof THREE.PerspectiveCamera && camera.fov !== p.fov) { camera.fov = p.fov; camera.updateProjectionMatrix(); }
+     poseEuler.current.set(p.pitch, p.yaw, 0, "YXZ");
+     camera.quaternion.setFromEuler(poseEuler.current);
+-    if (curtain.current) curtain.current.style.opacity = String(runtime.opacity);
++    if (curtain.current) curtain.current.style.opacity = String(runtime.revealOpacity);
+     const state = runtime.getSnapshot();
+     const diagnostics = window.__gullyverse;
+     if (diagnostics && !runtime.suspended) {
+--- approved-baseline/components/immersive/runtime.ts
++++ current/components/immersive/runtime.ts
+@@ -22,9 +22,18 @@
+   input: Input = { forward: 0, strafe: 0, lookX: 0, lookY: 0 };
+   get reduced() { return this.state.reduced; }
+   set reduced(value: boolean) { if (this.state.reduced !== value) this.publish({ reduced: value }); }
+-  suspended = false;
++  private paused = false;
++  private resumed = false;
++  activeFrameDelta = 0;
++  private activatedAt: number | null = null;
++  private departureOpacity = 0;
++  get suspended() { return this.paused; }
++  set suspended(value: boolean) { if (this.paused && !value) this.resumed = true; this.paused = value; }
+   inspectionEnabled = false;
+   opacity = 1;
++  private frameGapCover = 0;
++  /** Hide exceptional foreground camera jumps without slowing the authored clock. */
++  get revealOpacity() { return Math.max(this.opacity, this.frameGapCover); }
+   mapProgress = 0;
+   /** Existing content routes leave the immersive shell only after coverage. */
+   onCoveredRoute: ((href: string) => void) | null = null;
+@@ -47,19 +56,21 @@
+   private boundaryArmed = true;
+   private targetEntrance = false;
+   private externalRoute: string | null = null;
+-  private onArrival?: (id: LocationId, source: RequestSource) => void;
++  private onArrival?: (id: LocationId, source: RequestSource, entrance?: boolean) => void;
+   private recovery: { phase: Phase; elapsed: number; opacity: number } | null = null;
+   private pendingNavigation: { id: TravelId; source: RequestSource } | null = null;
+ 
+-  constructor(initial: LocationId, onArrival?: (id: LocationId, source: RequestSource) => void) {
++  constructor(initial: LocationId, onArrival?: (id: LocationId, source: RequestSource, entrance?: boolean) => void, private intro = true, private clock?: () => number) {
+     this.state = { phase: "boot", scene: initial, destination: initial, serial: 0, map: false, mapStage: null, destinationMenu: false, unavailableDestination: null, error: null, quality: 0, movie: false, reduced: false, inspection: null };
+-    this.pose = initial === "hub" ? landingPose() : spawnPose(initial, true);
++    this.pose = initial === "hub" && intro ? landingPose() : spawnPose(initial, true);
+     this.from = { ...this.pose }; this.to = spawnPose(initial);
+     this.onArrival = onArrival;
+   }
+   getSnapshot = () => this.state;
+   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
+-  private publish(update: Partial<Snapshot>) { this.state = { ...this.state, ...update }; this.listeners.forEach((fn) => fn()); }
++  private publish(update: Partial<Snapshot>) {
++    if (this.clock && (update.phase !== undefined || update.movie !== undefined || update.mapStage !== undefined)) this.activatedAt = this.clock();
++    this.state = { ...this.state, ...update }; this.listeners.forEach((fn) => fn()); }
+   clearInput() { this.input.forward = this.input.strafe = this.input.lookX = this.input.lookY = 0; this.vx = this.vz = 0; }
+   setMap(map: boolean) {
+     if (map) {
+@@ -114,9 +125,10 @@
+   setMovie(movie: boolean) {
+     if (movie === this.state.movie) return;
+     if (movie && (this.state.map || this.state.destinationMenu || this.state.phase !== "local")) return;
++    const restoring = !this.state.movie && this.focusFrom !== null;
+     this.clearInput(); this.focusFrom = { ...this.pose }; this.focusTime = 0;
+     // Return to exactly the visitor's bounded viewing pose when playback exits.
+-    if (movie) this.from = { ...this.pose };
++    if (movie && !restoring) this.from = { ...this.pose };
+     this.to = movie ? filmPose() : { ...this.from };
+     this.publish({ movie });
+   }
+@@ -143,6 +155,7 @@
+     this.targetEntrance = id === "entrance";
+     this.externalRoute = external ? option.href : null;
+     this.source = source; this.elapsed = 0; this.ready = false;
++    this.departureOpacity = this.opacity;
+     this.departureVx = source === "physical" ? this.vx : 0;
+     this.departureVz = source === "physical" ? this.vz : 0;
+     this.from = { ...this.pose };
+@@ -166,7 +179,7 @@
+       if (pending) this.requestDestination(pending.id, pending.source);
+     }
+     if (this.state.phase === "boot") {
+-      if (this.state.scene === "hub") { this.opacity = 0; this.publish({ phase: "landing" }); }
++      if (this.state.scene === "hub" && this.intro) { this.opacity = 0; this.publish({ phase: "landing" }); }
+       else this.beginArrival();
+     }
+   }
+@@ -191,10 +204,22 @@
+     this.publish({ phase: "arrival" });
+   }
+   tick(delta: number) {
+-    if (this.suspended || ["error", "context-lost", "recovering"].includes(this.state.phase)) return;
+-    const dt = Math.min(delta, 0.05); // restoring a background tab cannot teleport the player
++    this.activeFrameDelta = 0;
++    if (this.suspended || !Number.isFinite(delta) || delta < 0) return;
++    if (this.resumed) { this.resumed = false; this.activatedAt = null; return; }
++    this.activeFrameDelta = delta;
++    if (["error", "context-lost", "recovering"].includes(this.state.phase)) return;
++    let cinematicDelta = delta;
++    if (this.activatedAt !== null && this.clock) {
++      cinematicDelta = Math.min(delta, Math.max(0, this.clock() - this.activatedAt));
++      this.activatedAt = null;
++    }
++    const dt = Math.min(delta, 0.05); // locomotion never catches up across a long frame
+     const phase = this.state.phase;
+-    this.elapsed += dt;
++    const cameraTravel = ["entrance", "departure", "arrival"].includes(phase) ||
++      (phase === "local" && (!!this.focusFrom || this.state.mapStage === "ascent" || this.state.mapStage === "descent"));
++    this.frameGapCover = cameraTravel && cinematicDelta > 0.5 ? 1 : Math.max(0, this.frameGapCover - dt / 0.4);
++    this.elapsed += cinematicDelta;
+     if (phase === "entrance") {
+       if (this.reduced) { this.opacity = 1; Object.assign(this.pose, spawnPose("hub")); }
+       else {
+@@ -211,11 +236,11 @@
+         this.pose.x = this.pose.z > world.tunnel.startZ ? mix(points[i][0],points[i+1][0],t) : tunnelCenter(this.pose.z);
+         const dx = tunnelCenter(Math.min(world.tunnel.startZ,this.pose.z - 0.5)) - this.pose.x;
+         const heading = Math.atan2(-dx,0.5);
+-        this.pose.yaw += Math.atan2(Math.sin(heading-this.pose.yaw),Math.cos(heading-this.pose.yaw)) * (1-Math.exp(-8*dt));
++        this.pose.yaw += Math.atan2(Math.sin(heading-this.pose.yaw),Math.cos(heading-this.pose.yaw)) * (1-Math.exp(-8*cinematicDelta));
+         const exit = smooth(Math.max(0, (u - points.length + 3) / 2));
+         this.pose.pitch = mix(world.landing.pitch, world.hub.pitch, exit);
+       }
+-      if (this.elapsed >= (this.reduced ? 0.25 : 7.2)) { this.opacity = 0; Object.assign(this.pose, spawnPose("hub")); this.elapsed = 0; this.publish({ phase: "local" }); }
++      if (this.elapsed >= (this.reduced ? 0.25 : 7.2)) { this.opacity = 0; Object.assign(this.pose, spawnPose("hub")); this.elapsed = 0; this.publish({ phase: "local" }); this.onArrival?.("hub", "url"); }
+     } else if (phase === "departure") {
+       const duration = this.reduced ? 0.18 : this.source === "physical" ? connections[this.state.scene].departure : 0.3;
+       const u = Math.min(1, this.elapsed / duration);
+@@ -227,7 +252,7 @@
+         this.pose.x += this.departureVx * tangent;
+         this.pose.z += this.departureVz * tangent;
+       }
+-      this.opacity = smooth(Math.max(0, (u - 0.35) / 0.65));
++      this.opacity = mix(this.departureOpacity, 1, smooth(Math.max(0, (u - 0.35) / 0.65)));
+       if (u === 1) {
+         this.opacity = 1; this.elapsed = 0; this.ready = false;
+         this.departureMap = null;
+@@ -243,12 +268,12 @@
+       if (!this.reduced) blendPose(this.pose, this.from, this.to, smooth(u));
+       else Object.assign(this.pose, this.to);
+       this.opacity = 1 - smooth(Math.min(1, u * 1.5));
+-      if (u === 1) { this.opacity = 0; this.elapsed = 0; this.publish({ phase: this.targetEntrance ? "landing" : "local" }); this.onArrival?.(this.state.scene, this.source); }
++      if (u === 1) { this.opacity = 0; this.elapsed = 0; this.publish({ phase: this.targetEntrance ? "landing" : "local" }); this.onArrival?.(this.state.scene, this.source, this.targetEntrance); }
+     } else if (phase === "local") {
+       if (this.state.inspection) return;
+       if (this.state.map) {
+         const direction = this.state.mapStage === "descent" ? -1 : this.state.mapStage === "ascent" ? 1 : 0;
+-        this.mapProgress = Math.max(0, Math.min(1, this.mapProgress + direction * dt / (this.reduced ? 0.18 : direction > 0 ? 1.4 : 1.1)));
++        this.mapProgress = Math.max(0, Math.min(1, this.mapProgress + direction * cinematicDelta / (this.reduced ? 0.18 : direction > 0 ? 1.4 : 1.1)));
+         if (direction > 0 && this.mapProgress === 1) this.publish({ mapStage: "open" });
+         if (direction < 0 && this.mapProgress === 0) {
+           if (this.mapSaved) Object.assign(this.pose,this.mapSaved);
+@@ -257,7 +282,7 @@
+         return;
+       }
+       if (this.focusFrom) {
+-        this.focusTime += dt;
++        this.focusTime += cinematicDelta;
+         const u = Math.min(1, this.focusTime / (this.reduced ? 0.01 : 0.9));
+         blendPose(this.pose, this.focusFrom, this.to, smooth(u));
+         if (u === 1) { Object.assign(this.pose, this.to); this.focusFrom = null; }
+--- approved-baseline/components/landing-page/stage3d/Crowd.tsx
++++ current/components/landing-page/stage3d/Crowd.tsx
+@@ -3,6 +3,7 @@
+ import { useLoader } from "@react-three/fiber";
+ import * as THREE from "three";
+ import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
++import { disposeUnpublishedPoses } from "./poseResources";
+ import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
+ 
+ /**
+@@ -47,35 +48,33 @@
+   root.updateMatrixWorld(true);
+ 
+   const geoms: THREE.BufferGeometry[] = [];
+-  const v = new THREE.Vector3();
+-  root.traverse((o) => {
+-    const sm = o as THREE.SkinnedMesh;
+-    if (!sm.isSkinnedMesh) return;
+-    sm.skeleton.update();
+-    const src = sm.geometry;
+-    const pos = src.attributes.position as THREE.BufferAttribute;
+-    const baked = new Float32Array(pos.count * 3);
+-    for (let i = 0; i < pos.count; i++) {
+-      v.fromBufferAttribute(pos, i);
+-      sm.applyBoneTransform(i, v); // CPU skinning at this animation frame
+-      v.applyMatrix4(sm.matrixWorld);
+-      baked.set([v.x, v.y, v.z], i * 3);
+-    }
+-    const g = new THREE.BufferGeometry();
+-    g.setAttribute("position", new THREE.BufferAttribute(baked, 3));
+-    if (src.index) g.setIndex(src.index.clone());
+-    geoms.push(g);
+-  });
+-  mixer.stopAllAction();
+-
+-  const merged = mergeGeometries(geoms, false)!;
+-  merged.computeVertexNormals();
+-  merged.computeBoundingBox();
+-  const bb = merged.boundingBox!;
+-  const height = bb.max.y - bb.min.y;
+-  merged.translate(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2);
+-  merged.scale(1 / height, 1 / height, 1 / height);
+-  return merged;
++  let merged: THREE.BufferGeometry | null = null;
++  try {
++    const v = new THREE.Vector3();
++    root.traverse((o) => {
++      const sm = o as THREE.SkinnedMesh;
++      if (!sm.isSkinnedMesh) return;
++      sm.skeleton.update();
++      const src = sm.geometry, pos = src.attributes.position as THREE.BufferAttribute;
++      const baked = new Float32Array(pos.count * 3);
++      for (let i = 0; i < pos.count; i++) {
++        v.fromBufferAttribute(pos, i); sm.applyBoneTransform(i, v); v.applyMatrix4(sm.matrixWorld);
++        baked.set([v.x, v.y, v.z], i * 3);
++      }
++      const geometry = new THREE.BufferGeometry(); geoms.push(geometry);
++      geometry.setAttribute("position", new THREE.BufferAttribute(baked, 3));
++      if (src.index) geometry.setIndex(src.index.clone());
++    });
++    merged = mergeGeometries(geoms, false);
++    if (!merged) throw new Error("Crowd pose could not be merged");
++    merged.computeVertexNormals(); merged.computeBoundingBox();
++    const bb = merged.boundingBox!, height = bb.max.y - bb.min.y;
++    if (!Number.isFinite(height) || height <= 0) throw new Error("Invalid crowd pose height");
++    merged.translate(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2);
++    merged.scale(1 / height, 1 / height, 1 / height);
++    return merged;
++  } catch (error) { merged?.dispose(); throw error; }
++  finally { geoms.forEach(geometry => geometry.dispose()); mixer.stopAllAction(); mixer.uncacheRoot(root); }
+ }
+ 
+ type Person = { x: number; z: number; h: number; yaw: number; variant: number };
+@@ -88,6 +87,16 @@
+  * client-side navigation precisely because it lives at module scope.
+  */
+ let warmBaked: THREE.BufferGeometry[] | null = null;
++function publishPoses(out: THREE.BufferGeometry[]) {
++  if (!warmBaked) warmBaked = out;
++  else if (warmBaked !== out) disposeUnpublishedPoses(out, warmBaked);
++  return warmBaked;
++}
++function bakeAll(man: GLTF, woman: GLTF) {
++  const out: THREE.BufferGeometry[] = [];
++  try { for (const gltf of [man, woman]) for (const time of POSE_TIMES) out.push(bakePose(gltf.scene, gltf.animations, time)); return publishPoses(out); }
++  catch (error) { disposeUnpublishedPoses(out, warmBaked); throw error; }
++}
+ 
+ /** Pre-bake the crowd off the critical path. Safe to call repeatedly. */
+ let warming: Promise<void> | null = null;
+@@ -107,12 +116,13 @@
+       [woman, POSE_TIMES[1]],
+     ];
+     const out: THREE.BufferGeometry[] = [];
+-    for (const [gltf, t] of jobs) {
+-      // spaced out so the page hosting the warm-up never feels it
+-      await new Promise((r) => setTimeout(r, 150));
+-      out.push(bakePose(gltf.scene, gltf.animations, t));
+-    }
+-    warmBaked = out;
++    try {
++      for (const [gltf, t] of jobs) {
++        await new Promise((r) => setTimeout(r, 150));
++        out.push(bakePose(gltf.scene, gltf.animations, t));
++      }
++      publishPoses(out);
++    } finally { disposeUnpublishedPoses(out, warmBaked); }
+   })().catch(() => {
+     warming = null; // a failed warm-up must not poison later attempts
+   }) as Promise<void>;
+@@ -153,15 +163,13 @@
+     () =>
+       warmBaked ??
+       (immediate
+-        ? [
+-            ...POSE_TIMES.map((t) => bakePose(manGltf.scene, manGltf.animations, t)),
+-            ...POSE_TIMES.map((t) => bakePose(womanGltf.scene, womanGltf.animations, t)),
+-          ]
++        ? bakeAll(manGltf, womanGltf)
+         : null),
+     [immediate, manGltf, womanGltf]
+   );
+ 
+   const [chunked, setChunked] = useState<THREE.BufferGeometry[]>([]);
++  const [bakeError, setBakeError] = useState<Error | null>(null);
+   useEffect(() => {
+     if (immediate || syncVariants) return;
+     let alive = true;
+@@ -173,21 +181,19 @@
+     ];
+     const out: THREE.BufferGeometry[] = [];
+     void (async () => {
+-      for (const [gltf, t] of jobs) {
+-        // a real gap, not just a yield: each bake ends with a GPU buffer
+-        // upload when its mesh mounts, and those need room to drain too
+-        await new Promise((r) => setTimeout(r, bakeDelayMs));
+-        if (!alive) return;
+-        const start = performance.now();
+-        out.push(bakePose(gltf.scene, gltf.animations, t));
+-        onBake?.(performance.now() - start);
+-        setChunked([...out]);
+-      }
+-      warmBaked = out; // whoever baked it, everyone after gets it for free
++      try {
++        for (const [gltf, t] of jobs) {
++          await new Promise((resolve) => setTimeout(resolve, bakeDelayMs));
++          if (!alive) return;
++          const start = performance.now();
++          out.push(bakePose(gltf.scene, gltf.animations, t));
++          onBake?.(performance.now() - start);
++        }
++        if (alive) setChunked(publishPoses(out));
++      } catch (error) { if (alive) setBakeError(error instanceof Error ? error : new Error(String(error))); }
++      finally { disposeUnpublishedPoses(out, warmBaked); }
+     })();
+-    return () => {
+-      alive = false;
+-    };
++    return () => { alive = false; disposeUnpublishedPoses(out, warmBaked); };
+   }, [immediate, syncVariants, manGltf, womanGltf, bakeDelayMs, onBake]);
+ 
+   // instanced meshes mount per-variant as bakes land, spreading the GPU
+@@ -195,7 +201,7 @@
+   const variants = syncVariants ?? chunked;
+   useEffect(() => {
+     if (variants.length === 4) {
+-      warmBaked = variants;
++      publishPoses(variants);
+       onReady?.();
+     }
+   }, [variants, onReady]);
+@@ -258,6 +264,7 @@
+   const silhouette = useMemo(() => new THREE.MeshLambertMaterial({ color: "#05060a" }), []);
+   useEffect(() => () => silhouette.dispose(), [silhouette]);
+ 
++  if (bakeError) throw bakeError;
+   return (
+     <group>
+       {variants.map((geo, vi) => (
+--- approved-baseline/components/landing-page/stage3d/LEDScreens.tsx
++++ current/components/landing-page/stage3d/LEDScreens.tsx
+@@ -1,7 +1,8 @@
+ "use client";
+-import React, { useEffect, useMemo, useRef } from "react";
++import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from "react";
+ import { useFrame, useThree } from "@react-three/fiber";
+ import * as THREE from "three";
++import { retainVideoTexture } from "./videoTextureOwnership";
+ import { PALETTE, STAGE } from "./palette";
+ 
+ /**
+@@ -306,12 +307,20 @@
+ 
+   // bind the shared video texture; the idle↔video blend animates in useFrame
+   const blankVideo = useMemo(() => materials[0].uniforms.uVideo.value as THREE.Texture, [materials]);
+-  useEffect(() => {
+-    if (videoTexture) { for (const m of materials) m.uniforms.uVideo.value = videoTexture; return; }
+-    // Stop sampling the released media texture after the existing exit fade.
+-    const timer = window.setTimeout(() => { for (const m of materials) m.uniforms.uVideo.value = blankVideo; }, 400);
+-    return () => window.clearTimeout(timer);
+-  }, [videoTexture, materials, blankVideo]);
++  const binding = useRef<{ texture: THREE.VideoTexture; release: () => void } | null>(null);
++  const detachVideo = useCallback(() => {
++    for (const material of materials) material.uniforms.uVideo.value = blankVideo;
++    const old = binding.current; binding.current = null;
++    old?.release(); // detach ALL sampler references before disposal is permitted
++  }, [materials, blankVideo]);
++  useLayoutEffect(() => {
++    if (!videoTexture) return; // retain during the existing render-driven exit fade
++    detachVideo();
++    binding.current = { texture: videoTexture, release: retainVideoTexture(videoTexture) };
++    for (const material of materials) material.uniforms.uVideo.value = videoTexture;
++    // Materials/binding stay stable until replacement or unmount, not a null prop.
++  }, [videoTexture, materials, blankVideo, detachVideo]);
++  useLayoutEffect(() => () => detachVideo(), [detachVideo]);
+ 
+   // fade timing: the texture prop now arrives with the first real playback
+   // frame, so the wall breathes up almost immediately; exit is quick
+@@ -349,6 +358,7 @@
+     } else {
+       fadeStartAt.current = null;
+       fade.current = Math.max(0, fade.current - delta / FADE_OUT);
++      if (fade.current === 0 && binding.current) detachVideo();
+     }
+     // loading UI (spinner + label) eases in/out; the spin itself runs on uTime
+     loadFade.current += ((loadingRef.current ? 1 : 0) - loadFade.current) * Math.min(1, delta * 6);
+--- approved-baseline/components/landing-page/stage3d/useStageVideo.ts
++++ current/components/landing-page/stage3d/useStageVideo.ts
+@@ -1,43 +1,51 @@
+ "use client";
+ import { useCallback, useEffect, useRef, useState } from "react";
+ import * as THREE from "three";
++import { ownVideoTexture, retireVideoTexture } from "./videoTextureOwnership";
+ 
+ /** Extracted from ConcertStageHero: one video and texture for all LED panels. */
+-export function useStageVideo() {
++export function useStageVideo(onActiveChange?: (active: boolean) => void) {
++  const activeCallback = useRef(onActiveChange);
++  activeCallback.current = onActiveChange;
++  const listeners = useRef<(() => void) | null>(null);
+   const videoRef = useRef<HTMLVideoElement | null>(null);
+   const textureRef = useRef<THREE.VideoTexture | null>(null);
+   const [phase, setPhase] = useState<"idle" | "loading" | "playing">("idle");
+   const [pyroKey, setPyroKey] = useState(0);
+   const playTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+-  const disposalTimers = useRef(new Map<THREE.VideoTexture, ReturnType<typeof setTimeout>>());
++
+   const stopMovie = useCallback(() => {
+     if (playTimer.current !== null) clearTimeout(playTimer.current);
+     playTimer.current = null;
++    listeners.current?.(); listeners.current = null;
+     const video = videoRef.current;
+     if (video) { video.pause(); video.removeAttribute("src"); video.load(); }
+     const tex = textureRef.current;
+-    if (tex) disposalTimers.current.set(tex, setTimeout(() => { tex.dispose(); disposalTimers.current.delete(tex); }, 600));
+-    videoRef.current = null; textureRef.current = null; setPhase("idle");
++    if (tex) retireVideoTexture(tex);
++    videoRef.current = null; textureRef.current = null; activeCallback.current?.(false); setPhase("idle");
+   }, []);
+   useEffect(() => () => {
+     stopMovie();
+-    // Unmount owns every outstanding texture; do not leave timers/resources behind.
+-    disposalTimers.current.forEach((timer, tex) => { clearTimeout(timer); tex.dispose(); });
+-    disposalTimers.current.clear();
+   }, [stopMovie]);
+   const startMovie = useCallback(() => {
+     if (videoRef.current) return;
+     const video = document.createElement("video");
+     video.playsInline = true; video.preload = "none";
+     const tex = new THREE.VideoTexture(video);
++    ownVideoTexture(tex);
+     tex.colorSpace = THREE.SRGBColorSpace; tex.minFilter = THREE.LinearFilter;
+     videoRef.current = video; textureRef.current = tex;
+-    video.addEventListener("playing", () => {
++    const playing = () => {
+       if (videoRef.current !== video) return;
+       setPhase("playing"); setPyroKey((key) => key + 1);
+-    }, { once: true });
+-    video.addEventListener("ended", () => { if (videoRef.current === video) stopMovie(); });
+-    video.addEventListener("error", () => { if (videoRef.current === video) stopMovie(); });
++    };
++    const ended = () => { if (videoRef.current === video) stopMovie(); };
++    video.addEventListener("playing", playing, { once: true });
++    video.addEventListener("ended", ended); video.addEventListener("error", ended);
++    listeners.current = () => {
++      video.removeEventListener("playing", playing); video.removeEventListener("ended", ended); video.removeEventListener("error", ended);
++    };
++    activeCallback.current?.(true);
+     setPhase("loading");
+     // Preserve the original 900ms focus move and HTTP-range/progressive loading.
+     playTimer.current = setTimeout(() => {
+@@ -46,7 +54,7 @@
+       video.play().catch(() => {
+         if (videoRef.current !== video) return;
+         video.muted = true;
+-        void video.play().catch(stopMovie);
++        void video.play().catch(() => { if (videoRef.current === video) stopMovie(); });
+       });
+     }, 900);
+   }, [stopMovie]);
+@@ -54,7 +62,7 @@
+   const getStatus = useCallback(() => ({ phase, currentTime: videoRef.current?.currentTime ?? 0, paused: videoRef.current?.paused ?? true, muted: videoRef.current?.muted ?? false }), [phase]);
+   useEffect(() => {
+     if (phase === "idle") return;
+-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") stopMovie(); };
++    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" && !(e.target instanceof Element && e.target.closest("form, input, textarea, select, [contenteditable]:not([contenteditable=false])"))) stopMovie(); };
+     window.addEventListener("keydown", onKey);
+     return () => window.removeEventListener("keydown", onKey);
+   }, [phase, stopMovie]);
+--- approved-baseline/components/notFound.tsx
++++ current/components/notFound.tsx
+@@ -29,7 +29,7 @@
+           alt="404 Illustration"
+           fill
+           className="object-contain object-center"
+-          priority
++          loading="lazy"
+           quality={100}
+           unoptimized
+         />
+--- approved-baseline/package.json
++++ current/package.json
+@@ -9,7 +9,8 @@
+     "prestart": "node scripts/dev/stop-stale-next.mjs",
+     "start": "next start",
+     "lint": "next lint",
+-    "test:immersive": "tsx --test tests/immersive/runtime.test.ts",
++    "test:immersive": "tsx --test tests/immersive/*.test.ts",
++    "test:immersive:browser": "node tests/immersive/stabilization.browser.mjs",
+     "perf:immersive": "node scripts/perf-gullyverse.mjs",
+     "test:payments": "tsx --test tests/payments/core.test.ts tests/payments/statements.test.ts tests/payments/jev.test.ts",
+     "test:payments:integration": "tsx tests/payments/integration.ts",
+--- approved-baseline/scripts/check-gullyverse-stage-1-revision-2.mjs
++++ current/scripts/check-gullyverse-stage-1-revision-2.mjs
+@@ -4,11 +4,20 @@
+ import { chromium } from "playwright";
+ import * as THREE from "three";
+ const base=process.env.GULLYVERSE_BASE_URL ?? "http://localhost:3000";
+-const dir=".gullyverse-artifacts/stage-1-revision-2";
++const dir=process.env.GULLYVERSE_ARTIFACT_DIR ?? ".gullyverse-artifacts/stage-1-revision-2";
++const movementTimeout=Number(process.env.GULLYVERSE_MOVEMENT_TIMEOUT || 10000);
+ const world=JSON.parse(await readFile(new URL("../public/models/gullyverse/blockout.layout.json",import.meta.url),"utf8"));
+ await mkdir(dir,{recursive:true});
+ const browser=await chromium.launch({executablePath:process.env.CHROME_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe",headless:true});
+ const checks=[],errors=[],mutations=[];
++function assertPose(actual, expected, message) {
++  for (const field of ["x","y","z","yaw","pitch"]) assert.ok(Number.isFinite(actual[field]) && Number.isFinite(expected[field]) && Math.abs(actual[field]-expected[field]) <= 1e-6, (message||"Pose invariant")+": "+field);
++}
++async function moveInside(page) {
++  await page.keyboard.down("KeyW");
++  try { await page.waitForFunction(world => { const p=window.__gullyverse.runtime.pose,poly=world.aftermovie.movementBoundary; return Math.min(...poly.map((a,i)=>{const b=poly[(i+1)%poly.length],dx=b[0]-a[0],dz=b[1]-a[1];return ((p.x-a[0])*dz-(p.z-a[1])*dx)/Math.hypot(dx,dz)-world.playerRadius;}))>.8;},world,{timeout:movementTimeout}); }
++  finally { await page.keyboard.up("KeyW"); }
++}
+ const waitLocal=(p,id)=>p.waitForSelector(`[data-phase="local"][data-location="${id}"]`,{timeout:60000});
+ const pose=p=>p.evaluate(()=>({...window.__gullyverse.runtime.pose}));
+ const state=p=>p.evaluate(()=>window.__gullyverse.runtime.getSnapshot());
+@@ -23,13 +32,13 @@
+ }
+ async function contactBoundary(page,keys) {
+   for(const code of keys)await page.keyboard.down(code);
+-  await menu(page).waitFor({timeout:10000});
++  await menu(page).waitFor({timeout:movementTimeout});
+   for(const code of keys)await page.keyboard.up(code);
+   await page.waitForTimeout(300);
+ }
+ async function mapTravel(page,label,id) {
+   await page.getByRole("button",{name:/^Map/}).click();
+-  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:10000});
++  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:movementTimeout});
+   await page.getByRole("button",{name:label,exact:true}).click();await waitLocal(page,id);
+ }
+ async function lookToward(page,target) {
+@@ -39,7 +48,7 @@
+     const turn=Math.max(-.6,Math.min(.6,remaining));
+     await page.mouse.move(650,340);await page.mouse.down();await page.mouse.move(650-turn/.003,340,{steps:8});await page.mouse.up();remaining-=turn;
+   }
+-  await page.waitForTimeout(100);
++  await page.waitForFunction(wanted=>{const p=window.__gullyverse.runtime.pose;return Math.abs(Math.atan2(Math.sin(p.yaw-wanted),Math.cos(p.yaw-wanted)))<.001;},wanted,{timeout:movementTimeout});
+ }
+ async function verifyMarkers(page) {
+   const evidence=await page.getByRole("region",{name:"Festival aerial map"}).evaluate(el=>({viewport:{width:innerWidth,height:innerHeight},camera:window.__gullyverse.runtime.cameraPose(innerWidth/innerHeight),rect:el.getBoundingClientRect().toJSON(),buttons:[...el.querySelectorAll("button[data-destination]")].map(b=>({name:b.getAttribute("aria-label")??b.textContent,disabled:b.disabled,rect:b.getBoundingClientRect().toJSON(),destination:b.dataset.destination})),dots:[...el.querySelectorAll("[data-map-point]")].map(d=>({id:d.dataset.mapPoint,world:d.dataset.worldPosition,transform:d.style.transform}))}));
+@@ -61,11 +70,11 @@
+   return "not asserted against live catalog data";
+ }
+ try {
+-  const context=await browser.newContext({viewport:{width:1366,height:768},deviceScaleFactor:1});
++  const context=await browser.newContext({viewport:{width:1366,height:768},deviceScaleFactor:Number(process.env.GULLYVERSE_TEST_DPR||1)});
+   const page=await guardedPage(context);
+   await page.goto(base+"/?diagnostics",{waitUntil:"domcontentloaded"});
+   await page.waitForSelector('[data-phase="landing"]',{timeout:60000});
+-  assert.deepEqual(await pose(page),{x:world.landing.position[0],y:world.landing.position[1],z:world.landing.position[2],yaw:world.landing.yaw,pitch:world.landing.pitch});
++  assertPose(await pose(page),{x:world.landing.position[0],y:world.landing.position[1],z:world.landing.position[2],yaw:world.landing.yaw,pitch:world.landing.pitch});
+   const canvas=await page.locator("canvas").evaluateHandle(c=>c);
+   await page.getByRole("button",{name:"Enter Gullyverse",exact:true}).click();
+   const entrance=[];
+@@ -82,43 +91,44 @@
+   checks.push({name:"hub look alone causes no travel or destination-selection menu",before:hubPose,after:await pose(page)});
+   const saved=await pose(page);
+   await page.keyboard.press("KeyM");
+-  await page.waitForFunction(()=>window.__gullyverse.runtime.mapProgress>.15,{timeout:10000});
++  await page.waitForFunction(()=>window.__gullyverse.runtime.mapProgress>.15,{timeout:movementTimeout});
+   const ascent=await page.evaluate(()=>({camera:window.__gullyverse.runtime.cameraPose(innerWidth/innerHeight),progress:window.__gullyverse.runtime.mapProgress,stage:window.__gullyverse.runtime.getSnapshot().mapStage}));
+   assert.ok(ascent.camera.y>saved.y+1,"Map camera rises from the visitor");
+-  await key(page,"KeyW",250);assert.deepEqual(await pose(page),saved,"Map freezes exact walking pose");
+-  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:10000});
++  await key(page,"KeyW",250);assertPose(await pose(page),saved,"Map freezes exact walking pose");
++  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:movementTimeout});
+   const markerEvidence=await verifyMarkers(page);
+   assert.ok(markerEvidence.rect.width>=1300 && markerEvidence.rect.height>=700,"Map uses the full viewport");
+   for(const label of ["Aftermovie","Team","Contact Us","Accommodation","Past Sponsors","Entrance"]){assert.equal(await page.getByRole("button",{name:label,exact:true}).count(),1);}
+   assert.equal(await page.getByRole("button",{name:"Accommodation",exact:true}).isDisabled(),true);
+   assert.equal(await page.getByRole("button",{name:"Past Sponsors",exact:true}).isDisabled(),true);
+-  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,{timeout:10000});assert.deepEqual(await pose(page),saved);
++  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,{timeout:movementTimeout});assertPose(await pose(page),saved);
+   await page.keyboard.press("KeyM");await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open");
+-  await page.keyboard.press("KeyM");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map);assert.deepEqual(await pose(page),saved);
++  await page.keyboard.press("KeyM");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map);assertPose(await pose(page),saved);
+   checks.push({name:"continuous aerial ascent, fullscreen markers, movement ownership, Esc/M exact pose restoration and unavailable markers",saved,ascent,markerEvidence});
+   console.log("[browser] connected entrance, looking and aerial-map projection/pose checks passed");
+   await mapTravel(page,"Aftermovie","aftermovie");
+   assert.equal(await page.evaluate(c=>document.querySelector("canvas")===c,canvas),true);
+-  const beforePlay=await pose(page);
++  await page.evaluate(()=>{const r=window.__gullyverse.runtime;window.__activation=null;const off=r.subscribe(()=>{if(r.getSnapshot().movie&&!window.__activation){window.__activation={...r.pose};off();}});});
+   await page.getByRole("button",{name:"Play Aftermovie",exact:true}).click();
+   await page.waitForFunction(()=>window.__gullyverse.runtime.movieActions.status().currentTime>.1,{timeout:30000});
+   await page.getByRole("button",{name:"Enable sound",exact:true}).click();
+   assert.equal(await page.evaluate(()=>window.__gullyverse.runtime.movieActions.status().muted),false);
+-  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().movie);await page.waitForTimeout(1000);assert.deepEqual(await pose(page),beforePlay);
++  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().movie);const beforePlay=await page.evaluate(()=>window.__activation);
++  await page.waitForFunction(expected=>{const actual=window.__gullyverse.runtime.pose;return ["x","y","z","yaw","pitch"].every(k=>Number.isFinite(actual[k])&&Math.abs(actual[k]-expected[k])<=1e-6);},beforePlay,{timeout:Math.max(15000,movementTimeout)});assertPose(await pose(page),beforePlay);
+   assert.equal((await state(page)).destinationMenu,false,"Playback Escape cannot simultaneously navigate/open menu");
+   await key(page,"KeyD",150);await page.waitForTimeout(350);assert.equal((await state(page)).destinationMenu,false,"Interior walking is not outer boundary contact");
+   await contactBoundary(page,["KeyS"]);
+   const edgePose=await pose(page);assert.equal(new URL(page.url()).pathname,"/aftermovie");
+-  await page.waitForTimeout(300);assert.deepEqual(await pose(page),edgePose);
++  await page.waitForTimeout(300);assertPose(await pose(page),edgePose);
+   const overlay=await menu(page).evaluate(el=>{const s=getComputedStyle(el);return{rect:el.getBoundingClientRect().toJSON(),background:s.backgroundColor,backgroundImage:s.backgroundImage,border:s.borderWidth,children:[...el.children].map(c=>({tag:c.tagName,background:getComputedStyle(c).backgroundColor}))};});
+   assert.equal(overlay.backgroundImage,"none");assert.ok(overlay.rect.width>=1300 && overlay.rect.height>=700,"The dimmer spans the scene, not a modal card");
+   assert.ok(overlay.children.every(c=>["rgba(0, 0, 0, 0)","transparent"].includes(c.background)),"Typography overlay has no nested rectangular panel");
+   assert.equal(await menu(page).getByRole("button",{name:"Aftermovie",exact:true}).count(),0,"No redundant current-location destination");
+-  await page.keyboard.press("Escape");assert.equal((await state(page)).destinationMenu,false);assert.deepEqual(await pose(page),edgePose);
++  await page.keyboard.press("Escape");assert.equal((await state(page)).destinationMenu,false);assertPose(await pose(page),edgePose);
+   await key(page,"KeyS",600);assert.equal((await state(page)).destinationMenu,false,"Outward contact remains latched until moving away");
+-  await key(page,"KeyW",500);await contactBoundary(page,["KeyS"]);
+-  await menu(page).getByRole("button",{name:"Stay Here",exact:true}).click();assert.deepEqual(await pose(page),edgePose);
+-  await key(page,"KeyW",500);await contactBoundary(page,["KeyS"]);
++  await moveInside(page);await contactBoundary(page,["KeyS"]);
++  await menu(page).getByRole("button",{name:"Stay Here",exact:true}).click();assertPose(await pose(page),edgePose);
++  await moveInside(page);await contactBoundary(page,["KeyS"]);
+   await menu(page).getByRole("button",{name:"Return to Hub",exact:true}).click();await waitLocal(page,"hub");
+   assert.equal(await page.evaluate(c=>document.querySelector("canvas")===c,canvas),true);
+   await page.goBack();await waitLocal(page,"aftermovie");await page.goForward();await waitLocal(page,"hub");
+@@ -136,8 +146,8 @@
+     const polygon=world.aftermovie.movementBoundary;
+     const clearance=Math.min(...polygon.map((a,i)=>{const b=polygon[(i+1)%polygon.length],dx=b[0]-a[0],dz=b[1]-a[1];return((stopped.x-a[0])*dz-(stopped.z-a[1])*dx)/Math.hypot(dx,dz)-world.playerRadius;}));
+     assert.ok(Math.abs(clearance)<.001,"Menu caused by perimeter contact, including capsule radius");
+-    await page.waitForTimeout(200);assert.deepEqual(await pose(page),stopped);
+-    await page.keyboard.press("Escape");assert.deepEqual(await pose(page),stopped);
++    await page.waitForTimeout(200);assertPose(await pose(page),stopped);
++    await page.keyboard.press("Escape");assertPose(await pose(page),stopped);
+     checks.push({name:"public Aftermovie perimeter "+name,keys,initial,stopped,staysUntilChoice:true});
+     console.log("[browser] outer perimeter "+name+" passed");
+   }
+@@ -158,12 +168,12 @@
+     const t=(zone.range[0]+zone.range[1])/2,target=[a[0]+(b[0]-a[0])*t,world.eyeHeight,a[1]+(b[1]-a[1])*t];
+     await lookToward(page,target);const started=Date.now();await page.keyboard.down("KeyW");
+     if(["accommodation","sponsors"].includes(zone.id)) {
+-      await page.waitForFunction(id=>window.__gullyverse.runtime.getSnapshot().unavailableDestination===id,zone.id,{timeout:15000});await page.keyboard.up("KeyW");
++      await page.waitForFunction(id=>window.__gullyverse.runtime.getSnapshot().unavailableDestination===id,zone.id,{timeout:Math.max(15000,movementTimeout)});await page.keyboard.up("KeyW");
+       const unavailable=await state(page);assert.equal(unavailable.phase,"local");assert.equal(unavailable.scene,"hub");assert.equal(unavailable.destinationMenu,false);
+       assert.ok((await page.getByRole("status").allInnerTexts()).some(text=>text.includes("Coming soon")));
+       checks.push({name:"deliberate local hub zone "+(zone.sign??zone.id),destination:zone.id,initial,target,approachMs:Date.now()-started,available:false,truthfulNotice:true});
+     } else {
+-      await page.waitForSelector('[data-phase="departure"]',{timeout:15000});await page.keyboard.up("KeyW");
++      await page.waitForSelector('[data-phase="departure"]',{timeout:Math.max(15000,movementTimeout)});await page.keyboard.up("KeyW");
+       const approachMs=Date.now()-started;
+       if(zone.id==="aftermovie")await waitLocal(page,"aftermovie");
+       else await page.waitForURL(base+world.destinations.find(d=>d.id===zone.id).href,{timeout:60000});
+@@ -174,7 +184,7 @@
+   await page.goto(base+"/aftermovie?diagnostics",{waitUntil:"domcontentloaded"});await waitLocal(page,"aftermovie");
+   await page.emulateMedia({reducedMotion:"reduce"});
+   const reducedSaved=await pose(page);await page.keyboard.press("KeyM");await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:5000});
+-  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,{timeout:5000});assert.deepEqual(await pose(page),reducedSaved);
++  await page.keyboard.press("Escape");await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,{timeout:5000});assertPose(await pose(page),reducedSaved);
+   checks.push({name:"reduced motion map uses shortened transition and restores exact pose",saved:reducedSaved});
+   // Existing pages are read only. No form submission or authenticated DB work.
+   for(const path of ["/events","/events/cultural","/events/technical","/events/00000000-0000-4000-8000-000000000001","/team","/get-in-touch","/sponsors","/merch","/admin/login"]) {
+@@ -182,19 +192,19 @@
+     checks.push({name:"preserved content route",path,finalPath:new URL(page.url()).pathname,status:response.status(),inputs:await page.locator("input").count(),textareas:await page.locator("textarea").count(),...path.startsWith("/events")?{catalogState:await catalogState(page)}:{}});
+   }
+   await context.close();
+-  const mobile=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
++  const mobile=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:Number(process.env.GULLYVERSE_MOBILE_DPR||1),isMobile:true,hasTouch:true});
+   const touchPage=await guardedPage(mobile);
+   await touchPage.goto(base+"/aftermovie?diagnostics",{waitUntil:"domcontentloaded"});await waitLocal(touchPage,"aftermovie");
+   await contactBoundary(touchPage,["KeyS"]);const touchEdge=await pose(touchPage);
+-  await menu(touchPage).getByRole("button",{name:"Stay Here",exact:true}).tap();assert.deepEqual(await pose(touchPage),touchEdge);assert.equal((await state(touchPage)).destinationMenu,false);
+-  await touchPage.getByRole("button",{name:/^Map/}).tap();await touchPage.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:10000});
++  await menu(touchPage).getByRole("button",{name:"Stay Here",exact:true}).tap();assertPose(await pose(touchPage),touchEdge);assert.equal((await state(touchPage)).destinationMenu,false);
++  await touchPage.getByRole("button",{name:/^Map/}).tap();await touchPage.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==="open",{timeout:movementTimeout});
+   assert.ok(await touchPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   const touchMarkers=await verifyMarkers(touchPage);
+   await touchPage.getByRole("button",{name:"Gullyverse hub",exact:true}).tap();await waitLocal(touchPage,"hub");
+   checks.push({name:"portrait touch Stay Here, fullscreen map without overflow/marker overlap or clipping, actual world projection and marker navigation",touchEdge,touchMarkers});
+   await mobile.close();
+   assert.deepEqual(errors,[]);assert.deepEqual(mutations,[]);
+-  await writeFile(dir+"/browser-checks.json",JSON.stringify({checks,errors,mutations,limitations:["Real clipping/occlusion/composition require visual review.","Map projection accuracy also covered by runtime tests and captured camera metadata.","Mobile checks run on desktop Intel GPU."]},null,2));
++  await writeFile(dir+"/browser-checks.json",JSON.stringify({checks,errors,mutations,limitations:["Real clipping/occlusion/composition require visual review.","Map projection accuracy also covered by runtime tests and captured camera metadata.","Touch emulation uses the available desktop renderer; not physical mobile certification."]},null,2));
+   await unlink(dir+"/browser-failure.txt").catch(error=>{if(error.code!=="ENOENT")throw error;});
+   console.log(JSON.stringify({checks:checks.length,errors,mutations}));
+ } catch(error) {await writeFile(dir+"/browser-checks.json",JSON.stringify({partial:true,checks,errors,mutations,error:String(error.stack??error)},null,2));await writeFile(dir+"/browser-failure.txt",String(error.stack??error));throw error;}
+--- /dev/null
++++ current/components/immersive/activeDeadline.ts
+@@ -0,0 +1,10 @@
++/** An active-tab budget, independent of render FPS and cancellable on stale serials. */
++export function activeDeadline(budgetMs: number, expire: () => void, now = () => performance.now(),
++  schedule = (fn: () => void, ms: number) => setTimeout(fn, ms), cancelTimer = (id: ReturnType<typeof setTimeout>) => clearTimeout(id)) {
++  let remaining = budgetMs, started = 0, timer: ReturnType<typeof setTimeout> | null = null, finished = false;
++  return {
++    resume() { if (finished || timer !== null) return; started = now(); timer = schedule(() => { timer = null; finished = true; expire(); }, remaining); },
++    pause() { if (timer === null || finished) return; cancelTimer(timer); timer = null; remaining = Math.max(0, remaining - (now() - started)); },
++    cancel() { if (timer !== null) cancelTimer(timer); timer = null; finished = true; },
++  };
++}
+--- /dev/null
++++ current/components/immersive/mapProjection.ts
+@@ -0,0 +1,9 @@
++import { Camera, Vector4 } from 'three';
++/** Clip-space validity must be checked before dividing by W. */
++export function projectMapPoint(position: readonly number[], camera: Camera, width: number, height: number, clip = new Vector4()) {
++  if (![...position, width, height].every(Number.isFinite) || width <= 0 || height <= 0) return null;
++  clip.set(position[0], position[1], position[2], 1).applyMatrix4(camera.matrixWorldInverse).applyMatrix4(camera.projectionMatrix);
++  const { x, y, z, w } = clip;
++  if (![x, y, z, w].every(Number.isFinite) || w <= 1e-8 || Math.abs(x) > w || Math.abs(y) > w || Math.abs(z) > w) return null;
++  return { x: (x / w + 1) * width / 2, y: (1 - y / w) * height / 2 };
++}
+--- /dev/null
++++ current/components/landing-page/stage3d/poseResources.ts
+@@ -0,0 +1,9 @@
++import type { BufferGeometry } from 'three';
++const released = new WeakSet<BufferGeometry>();
++/** Only unpublished operation-owned poses may be freed; the shared cache is protected. */
++export function disposeUnpublishedPoses(poses: readonly BufferGeometry[], cached: readonly BufferGeometry[] | null) {
++  for (const pose of poses) {
++    if (cached?.includes(pose) || released.has(pose)) continue;
++    released.add(pose); pose.dispose();
++  }
++}
+--- /dev/null
++++ current/components/landing-page/stage3d/videoTextureOwnership.ts
+@@ -0,0 +1,20 @@
++import type { VideoTexture } from 'three';
++type Owner = { stopped: boolean; disposed: boolean; consumers: number };
++const owners = new WeakMap<VideoTexture, Owner>();
++function collect(texture: VideoTexture, owner: Owner) {
++  if (owner.stopped && owner.consumers === 0 && !owner.disposed) { owner.disposed = true; texture.dispose(); }
++}
++export function ownVideoTexture(texture: VideoTexture) { owners.set(texture, { stopped: false, disposed: false, consumers: 0 }); }
++/** LED samplers hold a lease until their rendered fade reaches zero and they detach. */
++export function retainVideoTexture(texture: VideoTexture): () => void {
++  const owner = owners.get(texture);
++  if (!owner) return () => {}; // non-owned external textures retain their caller's policy
++  if (owner.stopped || owner.disposed) throw new Error('Cannot bind a retired video texture');
++  owner.consumers++; let released = false;
++  return () => { if (released) return; released = true; owner.consumers--; collect(texture, owner); };
++}
++export function retireVideoTexture(texture: VideoTexture) {
++  const owner = owners.get(texture);
++  if (!owner) return;
++  owner.stopped = true; collect(texture, owner);
++}
+--- /dev/null
++++ current/tests/immersive/stabilization.browser.mjs
+@@ -0,0 +1,23 @@
++import {chromium} from 'playwright';import {writeFile,mkdir} from 'node:fs/promises';import assert from 'node:assert/strict';
++const out=process.env.GULLYVERSE_ARTIFACT_DIR||'reports/stage-1-final-2026-10-11/raw/regressions';await mkdir(out,{recursive:true});
++const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/usr/bin/chromium',headless:true}),checks=[],errors=[];
++const ctx=await browser.newContext({viewport:{width:1366,height:900},deviceScaleFactor:.25});await ctx.route('**/api/**',r=>['GET','HEAD'].includes(r.request().method())?r.continue():r.abort());
++const p=await ctx.newPage();p.on('pageerror',e=>errors.push(e.message));let runtime;
++const pose=()=>p.evaluate(()=>({...window.__gullyverse.runtime.pose}));
++const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z,a.yaw-b.yaw,a.pitch-b.pitch);
++const state=()=>p.evaluate(()=>window.__gullyverse.runtime.getSnapshot());
++const local=async id=>{await p.waitForSelector(`[data-phase="local"][data-location="${id}"], [data-phase="error"]`,{timeout:100000});assert.notEqual(await p.locator('[data-phase]').getAttribute('data-phase'),'error');};
++const go=async id=>{await p.getByRole('button',{name:/^Map/}).click();await p.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==='open',null,{timeout:20000});await p.getByRole('button',{name:id==='hub'?'Gullyverse hub':'Aftermovie',exact:true}).click();await local(id);};
++async function check(name,fn){if(process.env.GULLYVERSE_CAMERA_ONLY==='1'&&!['Fresh click','Map invalid','Playback restores','Fresh-session'].some(prefix=>name.startsWith(prefix)))return;if(process.env.GULLYVERSE_FRESH_ONLY==='1'&&!name.startsWith('Fresh click'))return;try{const evidence=await fn();checks.push({name,status:'PASS',evidence});}catch(e){checks.push({name,status:'FAIL',error:String(e.stack)});process.exitCode=1;}await writeFile(out+'/results.json',JSON.stringify({checks,errors,browser:browser.version(),physicalHardware:false},null,2));console.log(name,checks.at(-1).status);}
++try{
++await check('Fresh click entry, authored pacing and initial persistent Canvas',async()=>{await p.goto('http://127.0.0.1:3000/?diagnostics');await p.waitForSelector('[data-phase="landing"]',{timeout:90000});runtime=await p.locator('canvas').evaluateHandle(c=>c);let start=Date.now();await p.getByRole('button',{name:'Enter Gullyverse',exact:true}).click();await local('hub');let entranceMs=Date.now()-start;const timing=await p.evaluate(()=>{const d=window.__gullyverse,a=d.phases.find(x=>x.phase==='entrance'),b=d.phases.find(x=>x.phase==='local');return {activationToLocalMs:b.at-a.at,largestFrameMs:Math.max(...d.timeline.filter(x=>x.at>=a.at&&x.at<=b.at).map(x=>x.ms)),phases:d.phases};});assert.ok(timing.activationToLocalMs>=7190&&timing.activationToLocalMs<=7250+timing.largestFrameMs,JSON.stringify({entranceMs,timing}));return {entranceMs,timing,pose:await pose()};});
++await check('Held-key focus release, all editables/forms, native typing, lost keyup and stale repeat',async()=>{const cases=['input','textarea','select','contenteditable','empty-contenteditable','plaintext','form-button','form-container'],results=[];for(const type of cases){await p.evaluate(()=>document.activeElement?.blur());await p.keyboard.down('KeyD');await p.waitForTimeout(250);await p.evaluate(type=>{const host=document.createElement(type.startsWith('form')?'form':type==='input'||type==='textarea'||type==='select'?type:'div');host.id='focus-probe';host.style.cssText='position:fixed;z-index:10000;top:150px;left:20px';if(type.startsWith('form')){if(type==='form-button'){const b=document.createElement('button');b.textContent='Form fixture';b.type='button';host.append(b);}else host.tabIndex=0;}if(type.includes('contenteditable')||type==='plaintext')host.contentEditable=type==='plaintext'?'plaintext-only':'true';if(type==='empty-contenteditable')host.setAttribute('contenteditable','');document.body.append(host);(host.querySelector('button')||host).focus();},type);let a=await pose();await p.waitForTimeout(650);let b=await pose();assert.ok(distance(a,b)<1e-6);if(type==='input'){await p.keyboard.press('w');assert.equal(await p.locator('#focus-probe').inputValue(),'w');}await p.evaluate(()=>{document.querySelector('#focus-probe').remove();window.dispatchEvent(new KeyboardEvent('keydown',{code:'KeyD',repeat:true,bubbles:true}));});await p.waitForTimeout(500);assert.ok(distance(b,await pose())<1e-6);await p.keyboard.up('KeyD');results.push({type,before:a,after:b});}return results;});
++await check('Blur, visibility/freeze, focus restoration and interrupted input',async()=>{const results=[];for(const events of [['blur','focus'],['freeze','resume']]){await p.keyboard.down('KeyA');await p.waitForTimeout(200);await p.evaluate(event=>{(event==='blur'?window:document).dispatchEvent(new Event(event));},events[0]);const before=await pose();await p.waitForTimeout(300);await p.evaluate(event=>{(event==='focus'?window:document).dispatchEvent(new Event(event));},events[1]);await p.waitForTimeout(300);assert.ok(distance(before,await pose())<1e-6);await p.keyboard.up('KeyA');results.push({events,before});}return {results,nativeBackground:'Headless hidden-tab suspension not proven by synthetic events.'};});
++await check('Map invalid SVG guard, open/close, resize and same Canvas destination',async()=>{await p.evaluate(()=>{window.__invalid=[];const old=Element.prototype.setAttribute;Element.prototype.setAttribute=function(n,v){if(['x1','x2','y1','y2'].includes(n)&&!Number.isFinite(Number(v)))window.__invalid.push({n,v});return old.call(this,n,v);};});let saved=await pose();for(const viewport of [{width:900,height:650},{width:1366,height:900}]){await p.keyboard.press('KeyM');await p.waitForTimeout(250);await p.setViewportSize(viewport);await p.keyboard.press('Escape');await p.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map);assert.ok(distance(saved,await pose())<1e-6);}await go('aftermovie');assert.equal(await p.evaluate(c=>document.querySelector('canvas')===c,runtime),true);assert.deepEqual(await p.evaluate(()=>window.__invalid),[]);return {saved,arrival:await pose()};});
++await check('Playback restores actual activation pose; rapid restart cannot change walking anchor',async()=>{await p.evaluate(()=>{const r=window.__gullyverse.runtime;window.__activation=null;const off=r.subscribe(()=>{if(r.getSnapshot().movie&&!window.__activation){window.__activation={...r.pose};off();}});});await p.keyboard.down('KeyD');await p.getByRole('button',{name:'Play Aftermovie',exact:true}).click();await p.keyboard.up('KeyD');await p.waitForFunction(()=>window.__gullyverse.runtime.movieActions.status().currentTime>.2,null,{timeout:30000});const anchor=await p.evaluate(()=>window.__activation);await p.getByRole('button',{name:'Exit Aftermovie',exact:true}).click();await p.waitForFunction(anchor=>{const p=window.__gullyverse.runtime.pose;return Math.hypot(p.x-anchor.x,p.y-anchor.y,p.z-anchor.z)<1e-6;},anchor,{timeout:15000});
++await p.getByRole('button',{name:'Play Aftermovie',exact:true}).click();await p.waitForFunction(()=>window.__gullyverse.runtime.movieActions.status().currentTime>.2,null,{timeout:30000});await p.evaluate(()=>{window.__rapidPose=null;const observer=new MutationObserver(()=>{const b=[...document.querySelectorAll('button')].find(b=>b.textContent==='Play Aftermovie');if(b){window.__rapidPose={...window.__gullyverse.runtime.pose};b.click();observer.disconnect();}});observer.observe(document.body,{subtree:true,childList:true,characterData:true});});await p.getByRole('button',{name:'Exit Aftermovie',exact:true}).click();await p.waitForFunction(()=>window.__rapidPose!==null);assert.ok(distance(anchor,await p.evaluate(()=>window.__rapidPose))>.1);await p.waitForFunction(()=>window.__gullyverse.runtime.movieActions.status().currentTime>.2,null,{timeout:30000});await p.getByRole('button',{name:'Exit Aftermovie',exact:true}).click();await p.waitForFunction(anchor=>{const p=window.__gullyverse.runtime.pose;return Math.hypot(p.x-anchor.x,p.y-anchor.y,p.z-anchor.z)<1e-6;},anchor,{timeout:15000});await p.screenshot({path:out+'/rapid-replay-restored.png'});return {anchor,rapidPose:await p.evaluate(()=>window.__rapidPose),restored:await pose()};});
++await check('Boundary Stay/Escape, hysteresis, return and immersive Back/Forward',async()=>{await p.keyboard.down('KeyS');await p.getByRole('dialog',{name:'Where to next?'}).waitFor({timeout:50000});await p.keyboard.up('KeyS');const edge=await pose();await p.getByRole('button',{name:'Stay Here',exact:true}).click();assert.ok(distance(edge,await pose())<1e-6);await p.keyboard.down('KeyS');await p.waitForTimeout(500);await p.keyboard.up('KeyS');assert.equal((await state()).destinationMenu,false);await p.keyboard.down('KeyW');await p.waitForFunction(()=>{const r=window.__gullyverse.runtime;return r.pose.z<-107.5;},null,{timeout:30000});await p.keyboard.up('KeyW');await p.keyboard.down('KeyS');await p.getByRole('dialog',{name:'Where to next?'}).waitFor({timeout:40000});await p.keyboard.up('KeyS');await p.getByRole('button',{name:'Return to Hub',exact:true}).click();await local('hub');await p.goBack();await local('aftermovie');await p.goForward();await local('hub');assert.equal(await p.evaluate(c=>document.querySelector('canvas')===c,runtime),true);return {edge,returned:await pose()};});
++await check('Navbar Home, reload session, direct URL, history and explicit Entrance policy',async()=>{await p.goto('http://127.0.0.1:3000/get-in-touch');await p.getByRole('link',{name:'Home',exact:true}).click();await local('hub');const navbarURL=p.url();assert.equal(await p.getByRole('button',{name:'Enter Gullyverse',exact:true}).count(),0);await p.reload();await local('hub');await p.goto('http://127.0.0.1:3000/?diagnostics');await local('hub');await p.goto('http://127.0.0.1:3000/aftermovie?diagnostics');await local('aftermovie');assert.ok(!(await p.evaluate(()=>window.__gullyverse.phases)).some(s=>s.phase==='entrance'||s.phase==='landing'));return {navbarURL,session:await p.evaluate(()=>sessionStorage.getItem('breeze:entered'))};});
++await check('Fresh-session Enter and touch entry/movement/map; reduced motion',async()=>{const c=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:.25,isMobile:true,hasTouch:true});await c.route('**/api/**',r=>['GET','HEAD'].includes(r.request().method())?r.continue():r.abort());let q=await c.newPage();try{await q.goto('http://127.0.0.1:3000/?diagnostics');await q.waitForSelector('[data-phase="landing"]',{timeout:90000});await q.getByRole('button',{name:'Enter Gullyverse',exact:true}).tap();await q.waitForSelector('[data-phase="local"]',{timeout:20000});const saved=await q.evaluate(()=>({...window.__gullyverse.runtime.pose}));const pad=await q.getByRole('button',{name:'Walk right',exact:true}).boundingBox();const cdp=await c.newCDPSession(q);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:pad.x+pad.width/2,y:pad.y+pad.height/2}]});await q.waitForTimeout(800);await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});let moved=await q.evaluate(()=>({...window.__gullyverse.runtime.pose}));assert.ok(distance(saved,moved)>.1);await q.getByRole('button',{name:/^Map/}).tap();await q.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().mapStage==='open');await q.getByRole('button',{name:'Close map',exact:true}).tap();await q.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map);const profile=await q.evaluate(()=>({viewport:[innerWidth,innerHeight],dpr:devicePixelRatio,stats:window.__gullyverse.stats,quality:window.__gullyverse.runtime.getSnapshot().quality}));await c.close();const fresh=await browser.newContext({viewport:{width:1366,height:900},deviceScaleFactor:.25,reducedMotion:'reduce'});try{const entry=await fresh.newPage();await fresh.route('**/api/**',r=>['GET','HEAD'].includes(r.request().method())?r.continue():r.abort());await entry.goto('http://127.0.0.1:3000/?diagnostics');await entry.waitForSelector('[data-phase="landing"]',{timeout:90000});await entry.keyboard.press('Enter');await entry.waitForSelector('[data-phase="local"]',{timeout:5000});}finally{await fresh.close();}return {saved,moved,profile,physicalMobile:false};}finally{await c.close();}});
++assert.deepEqual(errors,[]);
++}finally{await ctx.close();await browser.close();await writeFile(out+'/results.json',JSON.stringify({checks,errors},null,2));}
+--- /dev/null
++++ current/tests/immersive/stabilization.test.ts
+@@ -0,0 +1,26 @@
++import {test} from 'node:test';
++import assert from 'node:assert/strict';
++import {PerspectiveCamera,Vector3,VideoTexture,BoxGeometry} from 'three';
++import {ImmersiveRuntime} from '../../components/immersive/runtime';
++import {initialNavigation,immersiveHref} from '../../components/immersive/navigation';
++import {projectMapPoint} from '../../components/immersive/mapProjection';
++import {activeDeadline} from '../../components/immersive/activeDeadline';
++import {ownVideoTexture,retainVideoTexture,retireVideoTexture} from '../../components/landing-page/stage3d/videoTextureOwnership';
++import {disposeUnpublishedPoses} from '../../components/landing-page/stage3d/poseResources';
++const ready=(id:'hub'|'aftermovie'='hub')=>{const r=new ImmersiveRuntime(id,undefined,false);r.markReady(0);for(let i=0;i<20;i++)r.tick(.1);return r;};
++test('fresh entry, session return, explicit Entrance and direct Aftermovie resolve through coordinator',()=>{assert.equal(initialNavigation('/','',null).intro,true);assert.equal(initialNavigation('/','',null,true).intro,false);assert.equal(initialNavigation('/','?arrival=entrance',null,true).intro,true);assert.equal(initialNavigation('/','?arrival=hub',null).intro,false);assert.equal(initialNavigation('/','',{breezeArrival:'hub'}).intro,false);assert.equal(initialNavigation('/aftermovie','',null).intro,false);assert.equal(immersiveHref('hub'),'/?arrival=hub');});
++test('7.2s cinematic uses active elapsed time at 5 FPS; walking remains bounded',()=>{const r=new ImmersiveRuntime('hub');r.markReady(0);r.enter();for(let i=0;i<35;i++)r.tick(.2);assert.equal(r.getSnapshot().phase,'entrance');r.tick(.21);assert.equal(r.getSnapshot().phase,'local');r.input.strafe=1;const x=r.pose.x;r.tick(5);assert.ok(Math.abs(r.pose.x-x)<.22);});
++test('long suspended/resume frame cannot advance cinematic or locomotion',()=>{const r=new ImmersiveRuntime('hub');r.markReady(0);r.enter();r.tick(1);const p={...r.pose};r.suspended=true;r.tick(60);r.suspended=false;r.tick(60);assert.deepEqual(r.pose,p);r.tick(.1);assert.notDeepEqual(r.pose,p);});
++test('exceptional foreground cinematic gaps are covered while normal authored timing continues',()=>{const r=new ImmersiveRuntime('hub');r.markReady(0);r.enter();r.tick(.2);assert.equal(r.revealOpacity,0);r.tick(5);assert.equal(r.revealOpacity,1);for(let i=0;i<9;i++)r.tick(.05);assert.equal(r.revealOpacity,0);assert.equal(r.getSnapshot().phase,'entrance');r.tick(1.6);assert.equal(r.getSnapshot().phase,'local');assert.equal(r.revealOpacity,1);});
++test('cinematic event does not credit time before actual activation',()=>{let now=0;const r=new ImmersiveRuntime('hub',undefined,true,()=>now);r.markReady(0);now=10;r.enter();now=10.02;r.tick(.5);for(let i=0;i<35;i++){now+=.2;r.tick(.2);}assert.equal(r.getSnapshot().phase,'entrance');now+=.2;r.tick(.2);assert.equal(r.getSnapshot().phase,'local');});
++test('map and movie restoration preserve pose with large frame intervals',()=>{const r=ready('aftermovie'),p={...r.pose};r.setMap(true);for(let i=0;i<8;i++)r.tick(.2);assert.equal(r.getSnapshot().mapStage,'open');r.setMap(false);for(let i=0;i<6;i++)r.tick(.2);assert.deepEqual(r.pose,p);r.setMovie(true);for(let i=0;i<5;i++)r.tick(.2);r.setMovie(false);for(let i=0;i<5;i++)r.tick(.2);assert.deepEqual(r.pose,p);});
++test('rapid replay during restoration retains original walking anchor',()=>{const r=ready('aftermovie'),p={...r.pose};r.setMovie(true);r.tick(1);r.setMovie(false);r.tick(.2);assert.notDeepEqual(r.pose,p);r.setMovie(true);r.tick(1);r.setMovie(false);r.tick(1);assert.deepEqual(r.pose,p);});
++test('interrupted covered preparation keeps camera covered',()=>{const r=ready();r.request('aftermovie','map');r.tick(1);assert.equal(r.opacity,1);r.request('hub','map');r.tick(.05);assert.equal(r.opacity,1);});
++test('invalid deltas do not poison pose or clocks',()=>{const r=ready(),p={...r.pose};for(const delta of [NaN,Infinity,-1])r.tick(delta);assert.deepEqual(r.pose,p);});
++test('projection rejects eye-plane, behind camera, invalid viewport and frustum points',()=>{const c=new PerspectiveCamera(58,16/9,.1,700);c.position.set(0,1.72,-51);c.updateMatrixWorld();for(const p of [[0,1.72,-51],[0,1.72,-50],[NaN,0,0],[10000,0,-55]])assert.equal(projectMapPoint(p,c,1366,900),null);assert.equal(projectMapPoint([0,1.72,-55],c,0,900),null);assert.deepEqual(projectMapPoint([0,1.72,-55],c,1366,900),{x:683,y:450});const old=new Vector3(0,1.72,-51).project(c);assert.ok(!Number.isFinite(old.y));});
++test('projection follows orientation and resize rather than stale camera cache',()=>{const c=new PerspectiveCamera(58,16/9,.1,700);c.updateMatrixWorld();assert.ok(projectMapPoint([0,0,-10],c,100,100));c.rotation.y=Math.PI;c.updateMatrixWorld();assert.equal(projectMapPoint([0,0,-10],c,100,100),null);c.rotation.y=0;c.aspect=.5;c.updateProjectionMatrix();c.updateMatrixWorld();assert.deepEqual(projectMapPoint([0,0,-10],c,390,844),{x:195,y:422});});
++function texture(){const v={} as unknown as HTMLVideoElement;return new VideoTexture(v);}
++test('retired video remains alive while LED sampler lease exists, disposes exactly once',()=>{const t=texture();let disposed=0;t.addEventListener('dispose',()=>disposed++);ownVideoTexture(t);const release=retainVideoTexture(t);retireVideoTexture(t);assert.equal(disposed,0);release();release();retireVideoTexture(t);assert.equal(disposed,1);assert.throws(()=>retainVideoTexture(t));});
++test('producer with no published sampler disposes on early exit',()=>{const t=texture();let n=0;t.addEventListener('dispose',()=>n++);ownVideoTexture(t);retireVideoTexture(t);assert.equal(n,1);});
++test('unpublished cancelled poses dispose once while shared cache remains protected',()=>{const a=new BoxGeometry(),b=new BoxGeometry();let na=0,nb=0;a.addEventListener('dispose',()=>na++);b.addEventListener('dispose',()=>nb++);disposeUnpublishedPoses([a,b],[a]);disposeUnpublishedPoses([a,b],[a]);assert.equal(na,0);assert.equal(nb,1);a.dispose();});
++test('loading deadline counts foreground budget and cancels stale callbacks',()=>{let now=0,scheduled:(()=>void)|null=null,calls=0,ms=0;const schedule=(fn:()=>void,delay:number)=>{scheduled=fn;ms=delay;return 1 as unknown as ReturnType<typeof setTimeout>;};const d=activeDeadline(45000,()=>calls++,()=>now,schedule,()=>{scheduled=null;});d.resume();assert.equal(ms,45000);now=5000;d.pause();now=90000;d.resume();assert.equal(ms,40000);d.cancel();assert.equal(scheduled,null);assert.equal(calls,0);});
+--- /dev/null
++++ current/docs/gullyverse-current-user-approved-baseline.md
+@@ -0,0 +1,954 @@
++# Current user-approved Gullyverse baseline
++
++Captured 11 October 2026 before source changes. Current implementation overrides historic visual requirements. Later authoring requires user review; no composition redesign authorized here.
++
++Branch `codex/navigation-board`; HEAD `8919589d47385efd674ca91b52376f1ad310b797`; no staged changes. Starting status:
++
++```
++ M components/immersive/AftermovieScene.tsx
++ M components/immersive/HubScene.tsx
++ M components/immersive/ImmersiveShell.tsx
++ M components/immersive/aerial.ts
++ M components/immersive/blockoutGeometry.ts
++ M public/models/gullyverse/blockout.layout.json
++ M tests/immersive/runtime.test.ts
++?? components/immersive/AftermovieEnvironment.tsx
++?? reports/
++```
++
++Recoverable source/config/assets snapshot: [archive](../reports/stage-1-final-2026-10-11/raw/current-approved-baseline.tar.gz), [hashes](../reports/stage-1-final-2026-10-11/raw/baseline-hashes.json), [binary diff](../reports/stage-1-final-2026-10-11/raw/baseline.patch). Excludes environment/credential files; includes important untracked AftermovieEnvironment and prior audit. No automatic commit.
++
++## Navigation and geometry
++
++One persistent ImmersiveShell/R3F Canvas on `/` and `/aftermovie`. Shared runtime, navigation.ts and metre-based blockout.layout.json own directions, bounds, arrivals and markers. Ordinary pages leave this Canvas. Only Hub/Aftermovie immersive destinations implemented; Events/Team/Contact use existing pages, Sponsors/Accommodation disabled.
++
++Actual polygon footprint 97.8 × 123.5 m, X [-49.8,48.0], Z [-165.5,-42]. This is collision footprint, not a tight rock-mesh bounding box. Current 25 procedural rock masses, 42 m bent tunnel, dry generated ground and stall anchors retained. Scaffold origin [0, 0, -70], dimensions 24 × 14.5 × 3.4 m. Existing reused stage front beam/logo, Gullyverse-only 10×2.4 header at y11.4; Events/Past Sponsors at y8.8, Team/Contact y7.25, Aftermovie y5.65, navigation text .58 m. Arrows derived from shared travel-zone centers; Main Stage/Accommodation hanging signs absent intentionally.
++
++## Locked lighting/material configuration
++
++Hub/map background/fog #737d87, fog205–520; hemisphere sky#a9bfd4/ground#8a8274 intensity1.35; directional[-70,37,-145], #efd0a4 intensity1.35. Stage mode background/fog#b2bbb9, fog55–130; hemisphere#d8e0dd/#686b59 .65, hub directional omitted. Scaffold practical #ffc681 intensity42 distance21 decay2. No new shadows/postprocessing. Hub rock roughness.98 flat vertex color, ground Lambert tint#c8c2b4. Current stage-local49×39 floor#07080b roughness.9 metalness.1 at local[0,.012,7.5] and cream Gullyverse return placard remain locked. Mode switch and rectangle edge are recorded design-review concerns, not authorization to remove restored elements.
++
++## Stage, camera and assets
++
++Stage world origin[-12, 0, -134.3] yaw0. Original /models/breeze/aftermovie-stage.glb, /models/Man.glb, /models/Animated-Woman.glb and /after-movie.mp4 retained (actual paths also see manifest/source). Stage/Trusses/Speakers/Barricades/Lights/Fireworks/palette and LED shader visuals retained. Stage crowd seeded original model4poses,900/600/300 tiercounts; hub capsules are temporary, no replacement approved. Shared movie source/VideoTexture across threeLEDs, progressive HTTP Range. Current AftermovieEnvironment preserves open rear quarry sightline.
++
++Eyeheight1.72, FOV58, near.1, far700; current portrait composition and aerial fitting unchanged. Landing[0, 1.72, 11.5]; Hub spawn[0, 1.72, -51], arrival[0, 1.72, -46]; Aftermovie spawn[-10.5, 1.72, -110.8], arrival[-10.5, 1.72, -106.8]. Filmfocuslocal[0, 5.9, 17]. Complete registry below includes inspection camera poses, artists, bounds, stall placement, direction zones.
++
++## Existing interaction and performance policy
++
++Visitor clicks/taps/Enter to start landing (intentional). Bent entrance authored7.2s, local WASD/arrows/drag/touch controls; automatic directional hub thresholds; stage bounded walking with text destination menu and hysteresis; Map/M/Esc same-world aerial; browser history/directAftermovie and native fallback. Source inspection is not runtime PASS: fresh evidence recorded in [captures](../reports/stage-1-final-2026-10-11/baseline/captures.json), final runtime checks in separate acceptance report.
++
++Quality0/1/2/3 DPRcaps1.25/1/.75/.6; stage counts900/600/300; twelve covered warmframes, textureinit/compileAsync,45s failure fallback; static world/stage resident from landing, nearcrowd later, video onPlay. Antialiasoff, no realtime shadows. Cloud has SwiftShader, no physical GPU/mobile available; emulation nothardware certification.
++
++## Historical differences
++
++[Actual hash comparison to audit](../reports/stage-1-final-2026-10-11/raw/audit-source-comparison.json). No individual edit authorship inferred. Current values win even where unchanged from audit. Earlier163×190 footprint, smaller scaffold/old hierarchy and daylight recommendations are historical. Reverted Phase2 additions absent at start; its fixes are not assumed present. Restored dark stage floor and placard are preserved, despite older integration recommendations. Aerial map is explicitly approved.
++
++## Exact spatial configuration
++
++```json
++{
++  "status": "Stage 1 Revision 2 composition study, awaiting human visual approval",
++  "units": "metres",
++  "eyeHeight": 1.72,
++  "playerRadius": 0.38,
++  "camera": {
++    "fov": 58,
++    "near": 0.1,
++    "far": 700,
++    "minimumHorizontalFov": 42
++  },
++  "landing": {
++    "walkBounds": [
++      -15,
++      15
++    ],
++    "position": [
++      0,
++      1.72,
++      11.5
++    ],
++    "yaw": 0,
++    "pitch": 0.15
++  },
++  "portal": {
++    "position": [
++      0,
++      0,
++      0
++    ],
++    "width": 58,
++    "height": 18
++  },
++  "tunnel": {
++    "walkHalfWidth": 2,
++    "startZ": 0,
++    "endZ": -42,
++    "centerline": [
++      [
++        0,
++        0
++      ],
++      [
++        -2.2,
++        -8
++      ],
++      [
++        -6,
++        -16
++      ],
++      [
++        -6,
++        -24
++      ],
++      [
++        -2.6,
++        -34
++      ],
++      [
++        0,
++        -42
++      ]
++    ],
++    "profile": [
++      [
++        -2.95,
++        0
++      ],
++      [
++        -2.85,
++        1.35
++      ],
++      [
++        -2.65,
++        2.9
++      ],
++      [
++        -2.15,
++        4.15
++      ],
++      [
++        -1.1,
++        5.15
++      ],
++      [
++        0.3,
++        5.6
++      ],
++      [
++        1.55,
++        5.05
++      ],
++      [
++        2.55,
++        3.85
++      ],
++      [
++        2.9,
++        2.6
++      ],
++      [
++        2.85,
++        1.15
++      ],
++      [
++        2.95,
++        0
++      ]
++    ],
++    "artists": [
++      {
++        "label": "NEHA KAKKAR",
++        "position": [
++          -4.7,
++          2.2,
++          -7
++        ],
++        "yaw": 1.5707963267948966
++      },
++      {
++        "label": "CHAAR DIWAARI",
++        "position": [
++          -2.25,
++          2.7,
++          -14
++        ],
++        "yaw": -1.5707963267948966
++      },
++      {
++        "label": "RITVIZ",
++        "position": [
++          -8.7,
++          2.4,
++          -22
++        ],
++        "yaw": 1.5707963267948966
++      },
++      {
++        "label": "KHULLAR G",
++        "position": [
++          -1.65,
++          2.65,
++          -29
++        ],
++        "yaw": -1.5707963267948966
++      },
++      {
++        "label": "TWIN STRINGS",
++        "position": [
++          -4.5,
++          2.4,
++          -36
++        ],
++        "yaw": 1.5707963267948966
++      }
++    ]
++  },
++  "quarry": {
++    "boundary": [
++      [
++        -5,
++        -42
++      ],
++      [
++        5,
++        -42
++      ],
++      [
++        10.8,
++        -43.3
++      ],
++      [
++        22.8,
++        -47.85
++      ],
++      [
++        36.0,
++        -58.9
++      ],
++      [
++        45.6,
++        -74.5
++      ],
++      [
++        48.0,
++        -99.2
++      ],
++      [
++        44.4,
++        -124.55
++      ],
++      [
++        35.4,
++        -146.65
++      ],
++      [
++        24.0,
++        -157.7
++      ],
++      [
++        4.2,
++        -165.5
++      ],
++      [
++        -13.2,
++        -164.2
++      ],
++      [
++        -30.0,
++        -158.35
++      ],
++      [
++        -42.6,
++        -142.1
++      ],
++      [
++        -49.2,
++        -118.7
++      ],
++      [
++        -49.8,
++        -94.0
++      ],
++      [
++        -44.4,
++        -72.55
++      ],
++      [
++        -33.6,
++        -56.95
++      ],
++      [
++        -18.6,
++        -47.2
++      ],
++      [
++        -14,
++        -42
++      ]
++    ],
++    "wallHeights": [
++      31.85,
++      33.15,
++      35.75,
++      37.7,
++      35.1,
++      40.3,
++      37.05,
++      41.6,
++      38.35,
++      36.4,
++      39.65,
++      35.75,
++      39.0,
++      37.7,
++      41.6,
++      36.4,
++      38.35,
++      34.45,
++      35.75,
++      32.5
++    ],
++    "benchHeights": [
++      0,
++      14,
++      28,
++      43
++    ],
++    "benchSetbacks": [
++      0,
++      1.2,
++      3.5,
++      6
++    ],
++    "ground": {
++      "position": [
++        0,
++        -0.06,
++        -104
++      ],
++      "size": [
++        600,
++        600
++      ]
++    }
++  },
++  "stage": {
++    "origin": [
++      -12,
++      0,
++      -134.3
++    ],
++    "yaw": 0,
++    "filmFocusLocal": [
++      0,
++      5.9,
++      17
++    ],
++    "asset": "/models/breeze/aftermovie-stage.glb"
++  },
++  "scaffold": {
++    "position": [
++      0,
++      0,
++      -70
++    ],
++    "width": 24,
++    "height": 14.5,
++    "depth": 3.4
++  },
++  "stalls": [
++    {
++      "id": "left-1",
++      "position": [
++        -27.6,
++        0,
++        -77.1
++      ],
++      "size": [
++        7,
++        3.5,
++        4
++      ],
++      "yaw": 1.5707963267948966
++    },
++    {
++      "id": "left-2",
++      "position": [
++        -30.6,
++        0,
++        -91.4
++      ],
++      "size": [
++        7,
++        3.5,
++        4
++      ],
++      "yaw": 1.5707963267948966
++    },
++    {
++      "id": "left-3",
++      "position": [
++        -29.4,
++        0,
++        -100
++      ],
++      "size": [
++        7,
++        3.5,
++        4
++      ],
++      "yaw": 1.5707963267948966
++    },
++    {
++      "id": "right-1",
++      "position": [
++        27.0,
++        0,
++        -77.1
++      ],
++      "size": [
++        7,
++        3.5,
++        4
++      ],
++      "yaw": -1.5707963267948966
++    },
++    {
++      "id": "right-2",
++      "position": [
++        30.6,
++        0,
++        -91.4
++      ],
++      "size": [
++        7,
++        3.5,
++        4
++      ],
++      "yaw": -1.5707963267948966
++    },
++    {
++      "id": "right-3",
++      "position": [
++        28.8,
++        0,
++        -109.6
++      ],
++      "size": [
++        7,
++        3.5,
++        4
++      ],
++      "yaw": -1.5707963267948966
++    }
++  ],
++  "destinations": [
++    {
++      "id": "stage",
++      "label": "Main Stage / Aftermovie",
++      "position": [
++        -12,
++        0,
++        -134.3
++      ],
++      "anchor": [
++        -10.5,
++        1.72,
++        -110.8
++      ],
++      "size": [
++        34,
++        12,
++        30
++      ],
++      "yaw": 0,
++      "href": "/aftermovie",
++      "status": "active"
++    },
++    {
++      "id": "team",
++      "interactionRadius": 3,
++      "label": "Team",
++      "position": [
++        -21.0,
++        0,
++        -65.4
++      ],
++      "anchor": [
++        -17.4,
++        1.72,
++        -65.4
++      ],
++      "size": [
++        8,
++        3.8,
++        1.2
++      ],
++      "yaw": 1.5707963267948966,
++      "href": "/team",
++      "status": "spatial-reservation"
++    },
++    {
++      "id": "contact",
++      "interactionRadius": 3,
++      "label": "Contact Us",
++      "position": [
++        21.6,
++        0,
++        -65.4
++      ],
++      "anchor": [
++        18.0,
++        1.72,
++        -65.4
++      ],
++      "size": [
++        7,
++        3.5,
++        4
++      ],
++      "yaw": -1.5707963267948966,
++      "href": "/get-in-touch",
++      "status": "spatial-reservation"
++    },
++    {
++      "id": "events",
++      "label": "Events",
++      "position": [
++        -41,
++        0,
++        -99.85
++      ],
++      "anchor": [
++        -36,
++        1.72,
++        -99.85
++      ],
++      "size": [
++        12,
++        0.15,
++        10
++      ],
++      "yaw": 0,
++      "href": "/events",
++      "status": "reserved"
++    },
++    {
++      "id": "sponsors",
++      "label": "Past Sponsors",
++      "position": [
++        34.8,
++        0,
++        -100.5
++      ],
++      "anchor": [
++        29.4,
++        1.72,
++        -100.5
++      ],
++      "size": [
++        12,
++        0.15,
++        10
++      ],
++      "yaw": 0,
++      "href": "/sponsors",
++      "status": "reserved"
++    },
++    {
++      "id": "accommodation",
++      "label": "Accommodation",
++      "position": [
++        26.4,
++        0,
++        -128.45
++      ],
++      "anchor": [
++        21.0,
++        1.72,
++        -128.45
++      ],
++      "size": [
++        14,
++        0.15,
++        12
++      ],
++      "yaw": 0,
++      "href": null,
++      "status": "reserved"
++    }
++  ],
++  "population": {
++    "exit": {
++      "center": [
++        -10,
++        -55
++      ],
++      "size": [
++        8,
++        8
++      ],
++      "count": 8
++    },
++    "circulation": {
++      "center": [
++        7.8,
++        -90.1
++      ],
++      "size": [
++        10.8,
++        27.95
++      ],
++      "count": 32
++    },
++    "stallGroupCount": 5,
++    "stageFarCount": 260
++  },
++  "hub": {
++    "movementBoundary": [
++      [
++        -8,
++        -44
++      ],
++      [
++        8,
++        -44
++      ],
++      [
++        18,
++        -49
++      ],
++      [
++        18,
++        -59
++      ],
++      [
++        8,
++        -64
++      ],
++      [
++        -8,
++        -64
++      ],
++      [
++        -18,
++        -59
++      ],
++      [
++        -18,
++        -49
++      ]
++    ],
++    "travelZones": [
++      {
++        "id": "aftermovie",
++        "sign": null,
++        "edge": 0,
++        "range": [
++          0.2,
++          0.8
++        ]
++      },
++      {
++        "id": "events",
++        "edge": 5,
++        "range": [
++          0.1,
++          0.6
++        ]
++      },
++      {
++        "id": "team",
++        "edge": 0,
++        "range": [
++          0.015,
++          0.165
++        ]
++      },
++      {
++        "id": "contact",
++        "edge": 0,
++        "range": [
++          0.835,
++          0.985
++        ]
++      },
++      {
++        "id": "sponsors",
++        "edge": 3,
++        "range": [
++          0.4,
++          0.9
++        ]
++      }
++    ],
++    "spawn": [
++      0,
++      1.72,
++      -51
++    ],
++    "arrivalStart": [
++      0,
++      1.72,
++      -46
++    ],
++    "yaw": 0,
++    "pitch": 0.2,
++    "bounds": [
++      -18,
++      18,
++      -64,
++      -44
++    ]
++  },
++  "aftermovie": {
++    "movementBoundary": [
++      [
++        -19.2,
++        -106.3
++      ],
++      [
++        -4.8,
++        -106.3
++      ],
++      [
++        -4.0,
++        -107.1
++      ],
++      [
++        -4.0,
++        -117.7
++      ],
++      [
++        -4.8,
++        -118.5
++      ],
++      [
++        -19.2,
++        -118.5
++      ],
++      [
++        -20.0,
++        -117.7
++      ],
++      [
++        -20.0,
++        -107.1
++      ]
++    ],
++    "returnSignLocal": [
++      6,
++      2.8,
++      27.8
++    ],
++    "spawn": [
++      -10.5,
++      1.72,
++      -110.8
++    ],
++    "arrivalStart": [
++      -10.5,
++      1.72,
++      -106.8
++    ],
++    "yaw": 0,
++    "pitch": 0.16,
++    "bounds": [
++      -20.0,
++      -4.0,
++      -118.5,
++      -106.3
++    ]
++  },
++  "cameras": [
++    {
++      "id": "landing",
++      "position": [
++        0,
++        1.72,
++        11.5
++      ],
++      "target": [
++        0,
++        3.5,
++        0
++      ],
++      "fov": 58
++    },
++    {
++      "id": "tunnel-near",
++      "position": [
++        -0.825,
++        1.72,
++        -3
++      ],
++      "target": [
++        -4,
++        2.3,
++        -12
++      ],
++      "fov": 58
++    },
++    {
++      "id": "tunnel-mid",
++      "position": [
++        -6,
++        1.72,
++        -22
++      ],
++      "target": [
++        -2.6,
++        2.4,
++        -34
++      ],
++      "fov": 58
++    },
++    {
++      "id": "tunnel-first-exit-reveal",
++      "position": [
++        -4.64,
++        1.72,
++        -28
++      ],
++      "target": [
++        0,
++        3.1,
++        -42
++      ],
++      "fov": 58
++    },
++    {
++      "id": "exit",
++      "position": [
++        -1.3,
++        1.72,
++        -38
++      ],
++      "target": [
++        0,
++        7.4,
++        -70
++      ],
++      "fov": 58
++    },
++    {
++      "id": "scaffold-front",
++      "position": [
++        0,
++        1.72,
++        -46
++      ],
++      "target": [
++        0,
++        8,
++        -70
++      ],
++      "fov": 58
++    },
++    {
++      "id": "scaffold-diagonal",
++      "position": [
++        -10,
++        1.72,
++        -52
++      ],
++      "target": [
++        0,
++        8,
++        -70
++      ],
++      "fov": 58
++    },
++    {
++      "id": "quarry",
++      "position": [
++        0,
++        1.72,
++        -51
++      ],
++      "target": [
++        0.0,
++        6.6,
++        -92.7
++      ],
++      "fov": 58
++    },
++    {
++      "id": "left-stalls",
++      "position": [
++        -18.0,
++        1.72,
++        -72.55
++      ],
++      "target": [
++        -27.0,
++        2.2,
++        -87.5
++      ],
++      "fov": 58
++    },
++    {
++      "id": "right-stalls",
++      "position": [
++        17.4,
++        1.72,
++        -72.55
++      ],
++      "target": [
++        26.4,
++        2.2,
++        -87.5
++      ],
++      "fov": 58
++    },
++    {
++      "id": "overview",
++      "position": [
++        0,
++        145,
++        -77
++      ],
++      "target": [
++        0,
++        0,
++        -77
++      ],
++      "fov": 65
++    },
++    {
++      "id": "stage-front",
++      "position": [
++        -10.5,
++        1.72,
++        -110.8
++      ],
++      "target": [
++        -12.0,
++        5.9,
++        -128.3
++      ],
++      "fov": 58
++    },
++    {
++      "id": "stage-return",
++      "position": [
++        -10.5,
++        1.72,
++        -108.3
++      ],
++      "target": [
++        0,
++        5,
++        -42
++      ],
++      "fov": 58
++    }
++  ],
++  "inspection": {
++    "overheadPadding": 1.08
++  }
++}
++```
++
++Relevant sources: [HubScene](../components/immersive/HubScene.tsx), [geometry](../components/immersive/blockoutGeometry.ts), [paint](../components/immersive/worldPaint.ts), [layout](../public/models/gullyverse/blockout.layout.json), [world](../components/immersive/world.ts), [navigation](../components/immersive/navigation.ts), [runtime](../components/immersive/runtime.ts), [aerial](../components/immersive/aerial.ts), [stage scene](../components/immersive/AftermovieScene.tsx), [stage environment](../components/immersive/AftermovieEnvironment.tsx). Asset SHA256s in snapshot manifest. Baseline captures are actual running website images, separate from new acceptance images. Matched camera views are review probes, not visitor-route proof.
+--- /dev/null
++++ current/docs/gullyverse-stage-1-final-acceptance.md
+@@ -0,0 +1,249 @@
++# Gullyverse Stage 1 final acceptance — 2026-10-11
++
++The current user-approved worktree is the visual and spatial authority. This delivery applies bounded runtime fixes and preserves the current environment. It does **not** grant visual approval or certify production art or physical-device performance. No commit, push, deployment, database mutation or Stage 2 environment production was performed.
++
++## Exact starting baseline and preservation
++
++Branch `codex/navigation-board`, HEAD `8919589d47385efd674ca91b52376f1ad310b797`; no staged changes. Starting modifications were `AftermovieScene.tsx`, `HubScene.tsx`, `ImmersiveShell.tsx`, `aerial.ts`, `blockoutGeometry.ts`, the layout JSON and `runtime.test.ts`; untracked `AftermovieEnvironment.tsx` and `reports/` existed already. They were preserved. See the exact [starting status](../reports/stage-1-final-2026-10-11/raw/baseline-state.json), [original working-tree patch](../reports/stage-1-final-2026-10-11/raw/baseline.patch) and [current baseline document](gullyverse-current-user-approved-baseline.md).
++
++A non-destructive [baseline archive](../reports/stage-1-final-2026-10-11/raw/current-approved-baseline.tar.gz) contains 871 selected non-secret source/configuration/asset/evidence files, including important untracked files. All current `public`/`Assets` files are covered: [raw/asset-backup-coverage.json](../reports/stage-1-final-2026-10-11/raw/asset-backup-coverage.json). No environment credentials were copied. Changes in this delivery are measured against this snapshot, **not** against Git HEAD: [raw/source-diff.json](../reports/stage-1-final-2026-10-11/raw/source-diff.json) and [raw/changes-against-approved-baseline.patch](../reports/stage-1-final-2026-10-11/raw/changes-against-approved-baseline.patch). The snapshot comparison with the October 10 source manifest found no differences for overlapping files; this is evidence of the present content, not proof of who edited it or when. Historical audit files remain unchanged.
++
++## Preserved composition and visual review
++
++The shared manifest still defines the 97.8 × 123.5 m quarry, stage origin `[-12,0,-134.3]`, scaffold `[0,0,-70]`, current movement polygons, 25 rock masses, dry ground and left/right stalls. The 24 × 14.5 × 3.4 m scaffold and current GULLYVERSE/signboard hierarchy remain unchanged. No Main Stage/Accommodation signs were restored. Current tunnel bend, exterior, graffiti placements, lighting, fog, exposure and current aerial camera configuration remain the baseline. Exact configuration is reproduced in the baseline document.
++
++All 362 current public/Assets files and locked HubScene, AftermovieEnvironment, aerial camera, blockout geometry, layout manifest, LED shader sources/dimensions, lockfiles, historical audit and payment/admin files pass snapshot preservation checks: [raw/locked-preservation.json](../reports/stage-1-final-2026-10-11/raw/locked-preservation.json). The original stage GLB, male/female crowd GLBs, video, principal stage placement, trusses, effects, LED dimensions/UVs/shader source and crowd pose times are preserved. Playback code changes concern ownership and camera restoration, not stage art. The current dark 49 × 39 m stage-local floor, cream return placard and mode-specific environment lighting/fog remain intentionally preserved. Their visible rectangular floor/atmosphere discontinuity is documented for explicit review rather than silently redesigned under historical instructions.
++
++There are 23 matched fixed-view desktop/portrait pairs: [before/after gallery](../reports/stage-1-final-2026-10-11/gallery.html), [baseline poses](../reports/stage-1-final-2026-10-11/baseline/captures.json) and [acceptance poses](../reports/stage-1-final-2026-10-11/acceptance/captures.json). These are actual production-browser captures at desktop 1366 × 900 and portrait 390 × 844, DPR .25, with recorded camera/FOV/tier. The opt-in review-camera diagnostic positions are not claims about visitor navigation. Public journey evidence is separate. Pixel differences are quantified in [raw/visual-comparison.json](../reports/stage-1-final-2026-10-11/raw/visual-comparison.json); animated LED content/practical lights and capture timing can change pixels. No claim of universal pixel identity is made. Original references and old audit frames are labelled historical context in the gallery.
++
++Entrance and tunnel are still procedural blockouts: faceted rock silhouette, flat graffiti surfaces and limited roughness detail. Tunnel bend/delayed reveal remain functional; final irregular rock/PBR/graffiti art is unfinished. Quarry/stalls/hub capsule population remain temporary, with original stage crowd identity preserved. Higher-density reused crowd models were not introduced: no physical-GPU performance evidence justified that visual/resource change. No new paths, shadow system, postprocessing, lighting redesign or destination was added.
++
++## Root causes and narrowly scoped fixes
++
++| Problem | Evidence / root cause | Fix and affected code | Visible consequence |
++| --- | --- | --- | --- |
++| Held movement survives editable focus | Fresh baseline held D → actual textarea focus moved 1.88859 m; keyup could be lost and held ownership persisted. | `input.ts`: clear keys/touch/drag/velocity on focus into inputs, textarea, select, contenteditable or forms; guard composed path/active element; blur/freeze/suspension clears ownership; stale repeats cannot reacquire an unheld key. | Movement stops on focus; environment unchanged. |
++| Navbar Home replays landing | Fresh baseline ordinary Home from Contact ended in `landing`. No explicit completed-entry routing policy existed across remounts. | `navigation.ts` owns URL/session entry policy; Navbar uses that coordinator href; `ImmersiveShell` records completed entry/history preserving Next fields. `/?arrival=hub` is explicit; fresh bare entry remains user-activated. | Requested Home behavior changes; layout/camera spawn preserved. |
++| Video texture reallocation | Initial four untraced cycles plateaued; traced old-runtime cycles reproduced Three 26→29 / tracked GL 30→33. Disposed texture UUIDs remained sampled by three LED materials and were re-uploaded. Thus the race is timing-dependent, not inevitable every run. | `videoTextureOwnership.ts` producer/consumer leases; `useStageVideo.ts` retires producer, cancels pending activation/listeners/promises and releases source. `LEDScreens.tsx` retains through the existing fade, detaches all samplers to blank before final disposal; no arbitrary disposal timer. | Original segmented shared-video wall and fade retained. |
++| Cinematics slow under low FPS | Entrance and travel accumulated the same ≤50 ms delta used by safe locomotion; baseline entrance action window 16.423 s. | `runtime.ts`: safe movement delta separate from active cinematic time; event-clock clips first frame to actual activation, smoothstep/yaw paths preserved. Suspension excludes hidden time; first resumed frame discarded. Exceptional foreground camera gaps >500 ms are covered and the existing cover fades back over bounded updates, so skipped path segments are not shown. The authored clock keeps progressing. `activeDeadline.ts` measures foreground readiness budget. | Authored pacing restored; very low FPS still looks discontinuous. No asset reveal before readiness. |
++| Invalid map projection | October audit observed NaN/Infinity writes. Fresh browser sampling caught none; deterministic actual spawn/projection state produced clip W=0 and invalid old coordinates. Old projection reused cached results based on position/viewport while rotation/FOV could change. | `mapProjection.ts`: homogeneous finite/W/depth/frustum checks before division; `WorldOverlays.tsx` refreshes actual camera state, omits invalid SVG nodes/lines and non-visible focus targets. | Same actual-world aerial map; invisible/invalid markers safely omitted. |
++| Irrelevant 404-image preload | Successful root DOM did not contain image. Missing local Vercel telemetry script responses were 404 pages with HTTP Link preload for the 4,586,644-byte image. | `notFound.tsx`: remove `priority`, use lazy loading. Real 404 page and image preserved; telemetry packages untouched. | No appearance change to successful landing. |
++| Cancelled crowd preparation ownership | Interrupted/stale preparations could abandon private pose buffers; disposing shared GLTF/cache resources would be unsafe. | `Crowd.tsx` + `poseResources.ts`: finally clean CPU intermediate geometry/mixer; publish complete shared pose batch atomically; dispose only unpublished or losing owned batches, once; errors propagate to existing fallback. | Pose selection, model identity, density and materials preserved. |
++| Playback/transition interruption | Rapid playback restart during camera restore could replace original walking anchor; interruption could reset covered opacity. | `runtime.ts` preserves original walking anchor through restart and current cover on interrupted departure; late play rejection guarded by current source identity. | Camera restoration becomes consistent; authored composition unchanged. |
++
++Evidence: [raw/baseline-defects.json](../reports/stage-1-final-2026-10-11/raw/baseline-defects.json), [raw/map-projection-reproduction.json](../reports/stage-1-final-2026-10-11/raw/map-projection-reproduction.json), [raw/baseline-preload-headers.json](../reports/stage-1-final-2026-10-11/raw/baseline-preload-headers.json), [raw/baseline-video-trace.json](../reports/stage-1-final-2026-10-11/raw/baseline-video-trace.json), [raw/regressions/results.json](../reports/stage-1-final-2026-10-11/raw/regressions/results.json) and [raw/resource-results.json](../reports/stage-1-final-2026-10-11/raw/resource-results.json).
++
++## Architecture and loading policy
++
++```mermaid
++flowchart TD
++  URL[URL / history / session entry] --> NAV[Existing shared navigation coordinator]
++  Controls[Navbar / hub thresholds / boundary options / map markers] --> NAV
++  NAV --> RT[One immersive runtime: pose / phase / cover / input ownership]
++  Manifest[Unchanged shared world registry] --> RT
++  RT --> Canvas[ImmersiveShell persistent R3F Canvas]
++  Canvas --> World[Persistent tunnel / hub / original stage]
++  Canvas --> Crowd[Near crowd prepared behind cover; owned instance buffers]
++  World --> LED[LED material sampler leases]
++  Video[One active HTMLVideoElement + VideoTexture producer] --> LED
++  RT --> Prep[Texture init / compileAsync / hidden rendered readiness]
++  Prep --> RT
++```
++
++Browser tests check identity of the same Canvas across immersive travel/map/video; ordinary information routes unmount the immersive shell as before. No disconnected destination pages or scene-manager rewrite was introduced. Camera cinematic/player/map/movie modes remain in the existing runtime, with fixed registry poses, eased path interpolation and restored ownership.
++
++Initial entry still mounts the persistent hub/tunnel shell, textures and low-detail original stage. Those distant stage assets are critical before first quarry sightline reveal, but some are not needed to draw the exterior entrance. Female/male crowd assets and four-pose preparation are destination-triggered, reused on later visits. Video is created on playback. Optional vendor/rock/hub population blockouts remain resident. Shader/texture preparation and hidden render warm-up are readiness, not network completion alone. No speculative full residency rewrite was performed; initial shell/stage deferral needs a separate measured design preserving first reveal.
++
++Unpublished crowd resources are operation-owned; shared loader/pose caches are not indiscriminately cleared. Unit cancellation ownership and browser delayed-load/interruption/failure/context recovery checks are distinguished below. No JavaScript/Three counter can prove driver VRAM leak freedom. Post-GC JS heap increased from 14.43 to 15.28 MB across ten cycles while Nodes=330/Documents=2 and GL buffers/programs/shaders/VAOs stayed constant. That increase is reported, not dismissed as proof of no JS leak; extended retained-heap profiling remains open.
++
++## Regression tests and lifecycle measurements
++
++`npm run test:immersive`: **53 passing tests** (38 existing +15 new). `npm run test:immersive:browser`: **8 groups passing**, including native held-key/focus interactions with injected editable fixtures, actual touch input in portrait emulation, fresh-session click/Enter, reduced motion, map resize/finite attributes, playback anchor, boundary Stay/rearm, navbar/reload/direct URL/history and Canvas identity. Fresh entrance runtime activation → local took **7214.1 ms**. Fixture forms are DOM input tests; no payment/contact submission was performed.
++
++Initial browser failures were harness defects: action wall time included Playwright click waiting before actual activation, and a nominal fresh-entry test retained a completed-entry history marker. The corrected invariant measures actual runtime activation and uses a genuinely fresh browser context. Initial results remain available: [raw/browser-initial/results.json](../reports/stage-1-final-2026-10-11/raw/browser-initial/results.json) / [raw/browser-initial.log](../reports/stage-1-final-2026-10-11/raw/browser-initial.log). Old boundary strict float equality is now 1e-6 m finite geometry tolerance; restoration is sampled at activation rather than before remaining inertia; movement tests wait for actual clearance/yaw, not fixed short sleeps. No actual allocation/focus assertions were removed.
++
++Ten completed public playback/return cycles include five normal Exit+return and five navigation interruptions, then early exit, actual media-ended via near-end seek, controlled stale play rejection, failed transfer, recovery playback and SPA unmount. This is ten full **playback/return cycles**, not ten full-length screenings. Seek-generated native `ended` separately verifies completion. Settled counters must plateau from the second cycle onward; leaks are judged after disposal/render settlement, not by removing a React node.
++
++| Cycle | Exit method | Start-to-playing ms | Three textures | Tracked GL textures | Three geometries | GL programs |
++| --- | --- | ---: | ---: | ---: | ---: | ---: |
++| 1 | Exit button then return | 7266 | 25 | 29 | 154 | 45 |
++| 2 | Exit button then return | 7443 | 25 | 29 | 154 | 45 |
++| 3 | Exit button then return | 6655 | 25 | 29 | 154 | 45 |
++| 4 | Exit button then return | 7781 | 25 | 29 | 154 | 45 |
++| 5 | Exit button then return | 6911 | 25 | 29 | 154 | 45 |
++| 6 | Navigation interruption during playback | 7541 | 25 | 29 | 154 | 45 |
++| 7 | Navigation interruption during playback | 6605 | 25 | 29 | 154 | 45 |
++| 8 | Navigation interruption during playback | 9196 | 25 | 29 | 154 | 45 |
++| 9 | Navigation interruption during playback | 6877 | 25 | 29 | 154 | 45 |
++| 10 | Navigation interruption during playback | 6807 | 25 | 29 | 154 | 45 |
++
++Raw allocations, program/shader/geometry statistics, media state, post-GC JS metrics and bounded UUID traces: [raw/resource-results.json](../reports/stage-1-final-2026-10-11/raw/resource-results.json). Before trace: [raw/baseline-video-trace.json](../reports/stage-1-final-2026-10-11/raw/baseline-video-trace.json). Baseline untraced plateau is retained: [raw/baseline-media-cycles.json](../reports/stage-1-final-2026-10-11/raw/baseline-media-cycles.json). Driver memory bytes are unavailable. `activeTextureBytesEstimate` is image dimensions × RGBA × nominal mip factor, not measured GPU memory; `activeGeometryBytes` is deduplicated scene CPU array-buffer bytes, not driver allocations. Dispose trace sampler counts describe the previous completed draw; detachment earlier in a frame can leave that snapshot at three. The post-render disposed-sampler reuse event and settled allocations are the relevant checks. Stable counters are bounded evidence of application ownership, not a universal VRAM certification. Context-loss runs are excluded from create-minus-delete comparisons.
++
++## Actual before/after performance
++
++Same cloud host, Chromium 151.0.7922.173, Debian 13.6/Linux 6.18.44, AMD EPYC 9V74 host, cgroup 2 CPU cores/8 GiB, **SwiftShader software rendering**, no physical GPU. JavaScript `os.cpus()` count in raw logs is not the CPU quota. Functional/performance comparison uses 1366×900 requested/effective DPR .25 and unchanged adaptive quality settings; tier varies as logged. One browser at a time, cache enabled, no recording/screenshots/CPU throttle during timed windows. Loop samples are filtered to rendered frames; average FPS is rendered frames divided by complete action window (which can include cover/waiting), with cadence FPS also in raw data. Reported percentiles are rendered-loop intervals, not GPU execution time. Tail estimates for short windows are noisy; no repeated statistical performance claim is made.
++
++Cold landing total browser ResourceTiming transfer (document + subresources): **5,477,608 → 893,138 bytes** (83.69% reduction). Document-only and entry timing, each URL/transfer/duration and long tasks remain in raw files. ResourceTiming transfer can omit opaque cross-origin bytes; later rows contain cumulative resource entries, not per-window incremental transfer totals. The 404 preload removal is the narrow loading improvement; stage/lighting/quality have not been sacrificed for benchmark results.
++
++| Revision | Window | Action ms | Avg rendered FPS | p50 ms | p95 ms | p99 ms | Max stall ms | >100 ms intervals | Draw calls | Triangles | Textures | Geometries | DPR | Quality tier |
++| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
++| Before | cold-landing-load | 5594 | 4.29 | 134.10 | 182.60 | 1409.00 | 1409.00 | 23 | 155 | 105022 | 25 | 150 | 0.25 | 0 |
++| Before | warm-same-browser-cache-landing-load | 4358 | 4.59 | 118.60 | 1347.60 | 1347.60 | 1347.60 | 17 | 155 | 105022 | 25 | 150 | 0.25 | 0 |
++| Before | tunnel-and-first-hub-arrival | 16423 | 8.95 | 108.00 | 165.80 | 178.10 | 193.60 | 113 | 138 | 100818 | 25 | 150 | 0.25 | 0 |
++| Before | first-hub-arrival-settling | 3001 | 10.33 | 99.30 | 113.90 | 154.50 | 154.50 | 15 | 138 | 100818 | 25 | 150 | 0.25 | 1 |
++| Before | hub-local-movement | 6165 | 10.38 | 99.00 | 115.40 | 160.80 | 160.80 | 28 | 138 | 93258 | 25 | 150 | 0.25 | 2 |
++| Before | hub-to-aftermovie-physical-route | 14614 | 5.27 | 91.30 | 375.40 | 972.20 | 972.20 | 31 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| Before | aftermovie-local-movement | 6794 | 3.24 | 321.80 | 367.60 | 368.10 | 368.10 | 22 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| Before | aftermovie-boundary-return-to-hub | 6907 | 6.08 | 105.50 | 335.80 | 378.10 | 378.10 | 30 | 138 | 93258 | 25 | 154 | 0.25 | 3 |
++| Before | map-to-aftermovie | 13365 | 5.91 | 98.80 | 353.80 | 380.10 | 380.10 | 36 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| Before | repeat-1-aftermovie-hub | 15837 | 4.99 | 227.10 | 346.20 | 408.10 | 408.10 | 54 | 138 | 93258 | 25 | 154 | 0.25 | 3 |
++| Before | repeat-1-hub-aftermovie | 13126 | 6.02 | 87.70 | 382.80 | 401.80 | 401.80 | 27 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| Before | repeat-2-aftermovie-hub | 15759 | 5.01 | 208.40 | 335.30 | 358.50 | 358.50 | 65 | 138 | 93258 | 25 | 154 | 0.25 | 3 |
++| Before | repeat-2-hub-aftermovie | 12223 | 6.55 | 90.90 | 360.60 | 402.80 | 402.80 | 31 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| Before | repeat-3-aftermovie-hub | 15300 | 5.16 | 202.50 | 324.20 | 374.60 | 374.60 | 59 | 138 | 93258 | 25 | 154 | 0.25 | 3 |
++| Before | repeat-3-hub-aftermovie | 12118 | 6.60 | 101.70 | 314.80 | 355.70 | 355.70 | 40 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| Before | tunnel-interior | 7010.899999999441 | 8.56 | 108.70 | 161.40 | 193.60 | 193.60 | 55 | — | — | — | — | — | — |
++| Before | quarry-reveal | 4101.4000000003725 | 10.73 | 94.90 | 116.40 | 145.60 | 145.60 | 16 | — | — | — | — | — | — |
++| After | cold-landing-load | 5861 | 3.92 | 127.90 | 165.80 | 1439.00 | 1439.00 | 22 | 155 | 105022 | 25 | 150 | 0.25 | 0 |
++| After | warm-same-browser-cache-landing-load | 5337 | 4.31 | 132.90 | 190.10 | 1505.70 | 1505.70 | 22 | 155 | 105022 | 25 | 150 | 0.25 | 0 |
++| After | tunnel-and-first-hub-arrival | 7495 | 8.41 | 116.20 | 171.50 | 182.70 | 182.70 | 48 | 138 | 100818 | 25 | 150 | 0.25 | 0 |
++| After | first-hub-arrival-settling | 3004 | 9.32 | 105.30 | 152.60 | 168.80 | 168.80 | 19 | 138 | 100818 | 25 | 150 | 0.25 | 1 |
++| After | hub-local-movement | 6146 | 10.25 | 99.60 | 138.80 | 153.70 | 153.70 | 31 | 138 | 93258 | 25 | 150 | 0.25 | 2 |
++| After | hub-to-aftermovie-physical-route | 11288 | 5.40 | 107.60 | 380.10 | 1131.80 | 1131.80 | 39 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| After | aftermovie-local-movement | 7019 | 3.13 | 322.10 | 370.90 | 389.30 | 389.30 | 22 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| After | aftermovie-boundary-return-to-hub | 5773 | 5.89 | 103.80 | 368.90 | 384.20 | 384.20 | 19 | 138 | 93258 | 25 | 154 | 0.25 | 3 |
++| After | map-to-aftermovie | 9173 | 6.21 | 101.20 | 374.20 | 393.30 | 393.30 | 31 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| After | repeat-1-aftermovie-hub | 9490 | 5.27 | 222.30 | 302.00 | 346.00 | 346.00 | 38 | 138 | 93258 | 25 | 154 | 0.25 | 3 |
++| After | repeat-1-hub-aftermovie | 9395 | 5.85 | 99.40 | 371.20 | 409.30 | 409.30 | 27 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| After | repeat-2-aftermovie-hub | 9174 | 5.34 | 203.60 | 311.80 | 319.20 | 319.20 | 40 | 138 | 93258 | 25 | 154 | 0.25 | 3 |
++| After | repeat-2-hub-aftermovie | 9054 | 6.19 | 98.00 | 370.70 | 387.30 | 387.30 | 23 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| After | repeat-3-aftermovie-hub | 9173 | 5.12 | 234.20 | 344.50 | 389.40 | 389.40 | 31 | 138 | 93258 | 25 | 154 | 0.25 | 3 |
++| After | repeat-3-hub-aftermovie | 9400 | 5.85 | 104.90 | 375.60 | 406.70 | 406.70 | 32 | 115 | 1020152 | 25 | 154 | 0.25 | 3 |
++| After | tunnel-interior | 3087.60000000149 | 7.77 | 120.20 | 173.80 | 180.30 | 180.30 | 21 | — | — | — | — | — | — |
++| After | quarry-reveal | 2083.199999999255 | 10.08 | 97.60 | 131.80 | 140.10 | 140.10 | 9 | — | — | — | — | — | — |
++
++Raw samples / readiness prep / phases / memory / long tasks: [raw/baseline-performance.json](../reports/stage-1-final-2026-10-11/raw/baseline-performance.json) and [raw/after-performance.json](../reports/stage-1-final-2026-10-11/raw/after-performance.json). Separate native-DPR1 adaptive-quality diagnostic: [raw/native-dpr1-profile.json](../reports/stage-1-final-2026-10-11/raw/native-dpr1-profile.json); it is **not** comparable to the .25 DPR run. No 60 FPS physical-device or Bruno-Simon-level smoothness claim is made. Software-frame stalls remain visible even when cinematic time is correct. The user’s Intel UHD 620 laptop, modern iPhone and mainstream Android are unavailable; their acceptance is **UNVERIFIED**. See [PHYSICAL-DEVICE-PROCEDURE.md](../reports/stage-1-final-2026-10-11/PHYSICAL-DEVICE-PROCEDURE.md) for reproducible hardware validation.
++
++## Builds, commands, failures and remaining acceptance
++
++Production build and TypeScript checks pass: [raw/build-final.log](../reports/stage-1-final-2026-10-11/raw/build-final.log) / [raw/typecheck-final.log](../reports/stage-1-final-2026-10-11/raw/typecheck-final.log). Build emits existing repository lint warnings; unrelated warning cleanup was intentionally avoided. Pure payment tests (13) and event catalog tests (4) pass without live service mutations; standalone lint passes with existing warnings. Unit results: [raw/runtime-tests-final.log](../reports/stage-1-final-2026-10-11/raw/runtime-tests-final.log). Full command/test ledger and browser suites: [raw/commands.json](../reports/stage-1-final-2026-10-11/raw/commands.json), [raw/remaining-commands.json](../reports/stage-1-final-2026-10-11/raw/remaining-commands.json), [raw/extra-checks.json](../reports/stage-1-final-2026-10-11/raw/extra-checks.json), [raw/browser.log](../reports/stage-1-final-2026-10-11/raw/browser.log), [raw/navigation.log](../reports/stage-1-final-2026-10-11/raw/navigation.log), [raw/resources.log](../reports/stage-1-final-2026-10-11/raw/resources.log), [raw/edges-and-media.json](../reports/stage-1-final-2026-10-11/raw/edges-and-media.json), [raw/interruption.json](../reports/stage-1-final-2026-10-11/raw/interruption.json). One added gap test initially hit exact 7.2-second floating-point accumulation; it now advances past the endpoint by one valid frame, with the original failing log retained. Initial diagnostic type error (`Object3D` supplied where `Scene` required) and initial fake-video fixture failures were corrected; their initial logs remain. This is not a claim every historical failed assertion was an application regression.
++
++Synthetic blur/freeze/focus and runtime background suspension tests pass, but a headless context that never becomes `document.hidden` cannot certify actual mobile/browser background recovery. Controlled delayed/aborted downloads, stale navigation, playback failure and WebGL loss/restoration are scoped tests, not exhaustive device/network failure certification. Real payments/admin integrations and external production services were not exercised or altered. All browser API mutations are blocked by the harness; pure existing payment tests may be run separately without live data.
++
++## Blender pipeline and production-art readiness
++
++Current environment has Blender **4.3.2**, unlike historical environment-specific statements in the pipeline document. A separate, non-final one-metre cube was authored/exported with metric units, glTF Y-up, UVs and PBR material: [blender/blender-smoke/one-metre-cube.blend](../reports/stage-1-final-2026-10-11/blender/blender-smoke/one-metre-cube.blend), [blender/blender-smoke/one-metre-cube.glb](../reports/stage-1-final-2026-10-11/blender/blender-smoke/one-metre-cube.glb) and [blender/blender-smoke/manifest.json](../reports/stage-1-final-2026-10-11/blender/blender-smoke/manifest.json). No original stage generator was run. The browser probe imports the existing `BlenderAsset` loader, measures scale/Y ground placement/UV/material/raycast and tests repeated mount/cache ownership: [raw/blender-browser.log](../reports/stage-1-final-2026-10-11/raw/blender-browser.log) and [blender/loader-smoke.png](../reports/stage-1-final-2026-10-11/blender/loader-smoke.png). Actual results and any limitations are recorded in the final result supplement below. Smoke asset is not inserted into the approved quarry.
++
++Existing [environment pipeline contract](gullyverse-environment-pipeline.md) remains: metre-based master scene, separate critical shell/destination anchors/optional dressing, registry-compatible empties, offline transform extraction, owned scene instances/shared cache, texture initialization, compileAsync and hidden rendered readiness. Use segmentable rocks, shared atlases/instancing and explicitly selected LODs. PBR base color sRGB, normal/roughness/AO linear; authored UVs and graffiti/decal atlas. KTX2/Basis/Meshopt/Draco require local decoders and real-device tradeoff tests: none are newly installed or falsely claimed ready. Blender logs a missing optional Draco library, but the uncompressed GLB exports successfully. Khronos glTF Validator reports zero errors/warnings and one informational unused-UV notice: [raw/gltf-validator.json](../reports/stage-1-final-2026-10-11/raw/gltf-validator.json). Raycast smoke verifies basic collision geometry; imported GLBs still need explicit collision polygon/anchor export, not automatic runtime collision registration.
++
++**Provisional budgets for the next approved pilot, not measured final-art limits:** one ≤2 MB compressed GLB, ≤50k visible triangles and ≤2 materials; no new lights/postprocessing. Incremental shell budgets to test: medium ≤150k visible triangles/low ≤75k, ≤20 extra draw calls, shared 1k–2k atlases with low 512–1k variants; optional dressing separately loaded. Inventory actual decoded texture bytes and benchmark alongside the existing ~1M-triangle stage crowd before approving aggregate budgets. Export LOD0/1/2 per rock segment with shared materials, remove hidden faces and preserve silhouette; compression/LOD policy must be validated on physical integrated GPU/mobile before full production.
++
++Remaining production art: authored irregular shell/tunnel/exterior, UV/PBR rock/ground, authentic graffiti atlas, plausible scaffold joints/cables/weathering, stalls/dressing and consistent population. These are not runtime stabilization work. Preserve the user-approved positions and atmosphere during each pilot. No final asset pass has begun.
++
++## Exact phase-only source changes
++
++The following existed at baseline and changed in this delivery; earlier uncommitted visual edits in other files are **not** attributed to this task:
++
++- [components/Navbar.tsx](../components/Navbar.tsx)
++- [components/immersive/AftermovieScene.tsx](../components/immersive/AftermovieScene.tsx)
++- [components/immersive/ImmersiveShell.tsx](../components/immersive/ImmersiveShell.tsx)
++- [components/immersive/WorldOverlays.tsx](../components/immersive/WorldOverlays.tsx)
++- [components/immersive/diagnostics.ts](../components/immersive/diagnostics.ts)
++- [components/immersive/input.ts](../components/immersive/input.ts)
++- [components/immersive/navigation.ts](../components/immersive/navigation.ts)
++- [components/immersive/rendering.tsx](../components/immersive/rendering.tsx)
++- [components/immersive/runtime.ts](../components/immersive/runtime.ts)
++- [components/landing-page/stage3d/Crowd.tsx](../components/landing-page/stage3d/Crowd.tsx)
++- [components/landing-page/stage3d/LEDScreens.tsx](../components/landing-page/stage3d/LEDScreens.tsx)
++- [components/landing-page/stage3d/useStageVideo.ts](../components/landing-page/stage3d/useStageVideo.ts)
++- [components/notFound.tsx](../components/notFound.tsx)
++- [package.json](../package.json)
++- [scripts/check-gullyverse-stage-1-revision-2.mjs](../scripts/check-gullyverse-stage-1-revision-2.mjs)
++
++New source/test files (report scripts and evidence live separately under the output directory):
++
++- [components/immersive/activeDeadline.ts](../components/immersive/activeDeadline.ts)
++- [components/immersive/mapProjection.ts](../components/immersive/mapProjection.ts)
++- [components/landing-page/stage3d/poseResources.ts](../components/landing-page/stage3d/poseResources.ts)
++- [components/landing-page/stage3d/videoTextureOwnership.ts](../components/landing-page/stage3d/videoTextureOwnership.ts)
++- [tests/immersive/stabilization.browser.mjs](../tests/immersive/stabilization.browser.mjs)
++- [tests/immersive/stabilization.test.ts](../tests/immersive/stabilization.test.ts)
++- [docs/gullyverse-current-user-approved-baseline.md](../docs/gullyverse-current-user-approved-baseline.md)
++- [docs/gullyverse-stage-1-final-acceptance.md](../docs/gullyverse-stage-1-final-acceptance.md)
++
++`package.json` changes only test command discovery/browser runner. No dependency or lockfile upgrade. Payment/admin code, assets and current spatial/lighting configurations are checked in the hash inventory. Final user review is required for world composition and any authorization to begin production Blender work.
++
++## Final verification results and required classifications
++
++Full public navigation suite: **32 checks**, browser errors `[]`, attempted API mutations `[]`: [raw/navigation/browser-checks.json](../reports/stage-1-final-2026-10-11/raw/navigation/browser-checks.json). It covers eight boundary approaches, four chamfer segments, all five hub directions (Aftermovie/Events/Team/Contact/Sponsors), direct URLs, history, original playback/unmute/Escape, read-only ordinary pages, portrait marker projection and touch menu navigation. Accommodation remains unavailable on the map; no hanging Accommodation sign was restored. The interrupted earlier run is retained separately in [raw/navigation-interrupted.log](../reports/stage-1-final-2026-10-11/raw/navigation-interrupted.log) / [raw/verification-interruption.json](../reports/stage-1-final-2026-10-11/raw/verification-interruption.json); its incomplete log was not counted as a passing run.
++
++After the foreground-gap guard was added, the final production bundle passed four relevant browser groups: fresh click/timing, map/resize/coordinates, playback/rapid restoration, touch entry/movement/map plus fresh reduced-motion Enter. Final activation→hub **7249.2 ms**: [raw/camera-final/results.json](../reports/stage-1-final-2026-10-11/raw/camera-final/results.json). A controlled real 750 ms main-thread stall remains hidden under the actual DOM curtain and completes entrance in **7276.7 ms**: [raw/gap-browser.json](../reports/stage-1-final-2026-10-11/raw/gap-browser.json). The first gap test forgot to install its own diagnostic context and failed in the test helper; this fixture error remains in [raw/gap-browser-initial.json](../reports/stage-1-final-2026-10-11/raw/gap-browser-initial.json), and was corrected without an application change.
++
++Separate public M/Esc timing runs: **PASS**, same Canvas and restored walking poses: [raw/map-timing.json](../reports/stage-1-final-2026-10-11/raw/map-timing.json). These windows are additional measurements, not a before/after hardware benchmark. A long first shader/frame interval can still make the software animation appear coarse or covered; endpoint accuracy does not imply perceptual smoothness.
++
++| Location | Map mode | Event duration ms | Drawn FPS | p50 ms | p95 ms | p99 ms | Max ms | Calls | Triangles | Tier | DPR |
++| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
++| hub | ascent | 1456.8 | 12.36 | 87.6 | 144.8 | 144.8 | 144.8 | 155 | 105022 | 0 | 0.25 |
++| hub | descent | 1128.0 | 12.41 | 97.9 | 108.3 | 108.3 | 108.3 | 138 | 100818 | 0 | 0.25 |
++| aftermovie | ascent | 1522.5 | 5.25 | 262.8 | 311.0 | 311.0 | 311.0 | 159 | 1028208 | 3 | 0.25 |
++| aftermovie | descent | 1207.5 | 5.80 | 232.7 | 295.7 | 295.7 | 295.7 | 115 | 1020152 | 3 | 0.25 |
++
++Controlled delayed asset, aborted stage asset and actual context-loss recovery pass: [raw/edges-and-media.json](../reports/stage-1-final-2026-10-11/raw/edges-and-media.json). Actual hidden-tab behavior is **NOT TESTED**: Chromium headless kept `document.hidden=false` after another tab was activated; synthetic lifecycle and runtime-clock suspension are tested separately. Public return while crowd asset preparation is delayed and actual WebGL loss during playback both pass: [raw/interruption.json](../reports/stage-1-final-2026-10-11/raw/interruption.json). Mid-synchronous-pose-bake cancellation was not separately browser-injected; ownership cleanup is unit-tested and inspected, not claimed as exhaustive hardware failure certification.
++
++| Category | Classification | Evidence / scope |
++| --- | --- | --- |
++| Entrance composition | **PARTIAL** | Current approved entrance preserved; facade/rock/graffiti remain blockout art. |
++| Tunnel reveal | **PASS** | Bent occlusion and actual public journey retained; seven-second authored entrance verified. |
++| Navigation scaffold | **PASS** | Current geometry/sign arrangement/placement unchanged, approved directional zones verified; final art remains temporary. |
++| Quarry layout | **PASS** | Actual registry/geometry/stalls/ground anchors hash-identical; no resizing or stage repositioning. |
++| Quarry lighting direction | **PASS** | Current user-approved atmosphere preserved; historical dusk redesign deliberately not applied. |
++| Stage integration | **PARTIAL** | Original/restored stage environment preserved, including visible dark floor edge and mode-specific fog; visual blending requires review. |
++| Hub movement | **PASS** | Public WASD/arrows/drag/touch and five approved directional zones, including truthful unavailable Sponsors. |
++| Boundary menu | **PASS** | Eight public approaches, four chamfer segments, clamp, Stay/Esc, rearm, chosen return and history. |
++| Aerial map | **PASS** | Approved same-world aerial view, shared markers, finite projection, resize/portrait and saved-pose return. |
++| Input ownership | **PASS** | Real held-key/focus fixtures stop immediately; stale repeats/lost keyup/blur/freeze/map/movie/menu covered. |
++| Video-resource lifecycle | **PASS** | Ten completed playback/return cycles plateau at Three25 / tracked GL29; seven media/lifecycle groups pass. Driver VRAM not certified. |
++| Cinematic timing | **PASS** | Final event-to-hub timing and exceptional-gap cover verified; poor software FPS remains visibly coarse. |
++| Loading/resource preparation | **PARTIAL** | Delay/failure/interruption/context recovery safe in functional profile; native SwiftShader stage readiness fails45s budget. |
++| Desktop hardware performance | **UNVERIFIED** | No physical GPU/laptop available; cloud software results are not representative. |
++| Physical mobile performance | **UNVERIFIED** | Touch emulation only; no iPhone/Android hardware. |
++| Blender pipeline readiness | **PARTIAL** | 4.3.2 editable source→validated GLB→existing loader/cache/raycast smoke passes; final collision/anchor extraction, LOD/decoders/budgets remain to validate. |
++
++## Actual recording and final gallery evidence
++
++[Uninterrupted actual visitor recording](../reports/stage-1-final-2026-10-11/acceptance/journey/recordings/full-journey.webm) — 173.88 s, 16,682,056 bytes. It shows user-activated landing, tunnel, hub, local walk, physical directional Aftermovie travel, real video, Escape, boundary return and actual-world map selection. This is a browser screen recording, not a generated cinematic. Recording/screenshots are separate from timed profiling. Extra Stay/rearm/ordinary-route/history combinations are exercised in the browser suites. [Playwright trace](../reports/stage-1-final-2026-10-11/acceptance/journey/traces/full-journey.zip) and [journey results/poses](../reports/stage-1-final-2026-10-11/acceptance/journey/raw/browser-audit.json) retain the raw evidence. Its two console errors are the existing local Vercel telemetry script404s; no page runtime exception or API write occurred.
++
++[Matched visual gallery](../reports/stage-1-final-2026-10-11/gallery.html) contains 23 before/after pairs, all matching camera pose, viewport, quality and DPR. Actual image inspection reviewed entrance/scaffold/stage front/rear and portrait exit/aerial pairs; all23 were compared numerically. Larger stage-front/menu differences track existing animated light beams and capture time. No unexpected mesh, sign, terrain or exposure replacement was found within the captured views; low DPR limits fine material review. This is assistant verification, not final user visual approval.
++
++Additional actual acceptance-only captures: [Preserved dark floor edge](../reports/stage-1-final-2026-10-11/acceptance/stage-ground-detail.png) and [Original segmented LED video playback](../reports/stage-1-final-2026-10-11/acceptance/shared-led-playback.png), with [camera/quality metadata](../reports/stage-1-final-2026-10-11/acceptance/additional-captures.json). They have **no** matched before capture; the ground-detail pose deliberately looks down at the visible seam, rather than presenting the repeated stage-return view as proof that the seam is absent. All captures are actual browser images.
++
++## Confirmed failures, open risks and production-art work
++
++| Severity | Issue | Evidence / files | Recommended direction |
++| --- | --- | --- | --- |
++| High / available environment | Native DPR1 SwiftShader cannot finish stage preparation within45s; stage-local FPS window could not be obtained. The existing `npm run perf:immersive` desktop run also times out awaiting local Aftermovie after60s. | [raw/native-dpr1-profile.json](../reports/stage-1-final-2026-10-11/raw/native-dpr1-profile.json); [raw/project-performance/failure.txt](../reports/stage-1-final-2026-10-11/raw/project-performance/failure.txt); [raw/project-perf.log](../reports/stage-1-final-2026-10-11/raw/project-perf.log); `rendering.tsx`, `ImmersiveShell.tsx`. | Retain graceful fallback; profile real integrated GPU/mobile before tuning budgets. No scene/lighting downgrade was used to hide this failure. |
++| High / unverified acceptance | Physical laptop/mobile smoothness, thermal behavior, audible sound and actual mobile background recovery are not certified. | [raw/host.json](../reports/stage-1-final-2026-10-11/raw/host.json); [PHYSICAL-DEVICE-PROCEDURE.md](../reports/stage-1-final-2026-10-11/PHYSICAL-DEVICE-PROCEDURE.md). | Execute the recorded hardware procedure before full environment production budgets are approved. |
++| Medium | Post-GC JS heap increased14.43→15.28 MB despite stable GPU counters and DOM counts. | [raw/resource-results.json](../reports/stage-1-final-2026-10-11/raw/resource-results.json); opt-in diagnostics and shared caches. | Longer retained-heap profiling; distinguish bounded caches/JIT/diagnostics from true retained-resource growth. Do not infer no JS leak from stable textures. |
++| Medium / locked visual decision | Dark stage-local floor has a visible boundary; hub/stage fog/lighting differ. These current restored elements are intentionally retained. | [acceptance/stage-ground-detail.png](../reports/stage-1-final-2026-10-11/acceptance/stage-ground-detail.png); `AftermovieEnvironment.tsx`, `HubScene.tsx`. | Explicit user review before any ground/lighting integration work. No silent historical-reference restoration. |
++| Medium / asset pipeline | Compression/LOD/registry-export/collision extraction have not been validated with production assets or physical-device budgets. | [pipeline contract](gullyverse-environment-pipeline.md); smoke evidence above. | One separately approved small asset pilot; locally pinned decoders only after measurement. |
++| Medium / temporary art | Procedural faceted rock, simple graffiti surfaces, placeholder hub capsules and stall blocks remain. | [gallery.html](../reports/stage-1-final-2026-10-11/gallery.html); `HubScene.tsx`, `blockoutGeometry.ts`, world registry. | Subsequent authorized Blender/material/population pass preserving current positions/atmosphere. |
++| Low / pre-existing environment | Local Vercel telemetry JS404s and existing lint warnings remain. | [raw/after-loading-check.json](../reports/stage-1-final-2026-10-11/raw/after-loading-check.json); [raw/lint.log](../reports/stage-1-final-2026-10-11/raw/lint.log). | Verify deployment-specific telemetry routing separately; unrelated cleanup not included. |
++
++Cold landing readiness did **not** improve in the single-run sample (5.594→5.861s), despite the measured83.69% transfer reduction. There is no claimed FPS gain: software frame tails remain poor. The benchmark log's word “draws” refers to rendered-frame count; actual WebGL draw calls are `stats.calls` in the tables/raw data. Native-resolution failure and successful low-DPR functional checks are both retained.
++
++Blender smoke has12 successful mount/cache checks, one-metre bounds `[-.5,0,-.5]`→`[.5,1,.5]`, UVs, `Smoke_PBR`, visible raycast hit `[0,.5,.5]`, stable geometry UUID and one resident geometry. Khronos validation has0 errors/0 warnings/one unused-UV informational notice. The optional Draco-library warning did not prevent this **uncompressed** GLB export; no compressed-asset or automatic collision-registry readiness claim is made.
++
++## Readiness answers and stop condition
++
++1. **Persistent rendering stable?** Yes across tested immersive trips/map/video; ordinary pages intentionally unmount it. Physical-device stress acceptance remains open.
++2. **Additional destinations without major redesign?** The registry/coordinator supports existing destination types; new destinations still need anchors, collision, readiness and budget validation. None were added.
++3. **Camera transitions consistent?** Tested state/pose restoration and active-clock durations pass, including covered exceptional gaps. Smoothness on physical hardware is unverified.
++4. **Scene loading reliable?** Controlled delay/failure/interruption/recovery paths pass at the functional profile; native software rendering hits fallback. No blanket readiness certification.
++5. **Resource disposal correct?** Video and published/unpublished ownership paths are repaired and bounded in ten measured cycles. Driver VRAM and all long-session JS retention are unverified.
++6. **Performance measured and acceptable?** Measured honestly on the available VM; software FPS is poor and native stage readiness fails. Representative physical hardware acceptance is open.
++7. **Existing Aftermovie preserved?** All current source assets, layout/environment locks and LED shader/dimensions pass preservation hashes; actual stage and playback captures support this conclusion.
++8. **Ready for photorealistic Blender pass?** A small isolated asset pilot is technically feasible. Full quarry production should wait for user composition approval, physical-device measurements and an approved aggregate budget/import contract.
++9. **Fixes required before visual refinement?** Review this bounded runtime delivery, run the physical-device gate, validate anchor/collision export and compressed-material/LOD readiness with a small pilot; investigate retained heap/native fallback if real hardware reproduces them. No architectural rewrite is justified by the cloud FPS alone.
++10. **Smallest next scope?** After explicit approval, one small authored rock/material segment in an isolated pilot, with metre/UV/PBR/LOD/export/loader/collision/ownership checks and real-device profiling. Preserve all approved world coordinates and stage assets.
++
++**Stopped after Stage1 stabilization and verification.** No Stage2 production art, new destinations, quarry redesign, commit, push or deployment. Current approved configuration remains authoritative for future work. Full Stage2 authorization and final world-composition approval remain with the user.

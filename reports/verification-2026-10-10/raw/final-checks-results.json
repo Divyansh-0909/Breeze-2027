@@ -1,0 +1,94 @@
+[
+  {
+    "name": "playback-restoration-observed-activation",
+    "args": [
+      "node",
+      "reports/verification-2026-10-10/scripts/playback-restoration.mjs"
+    ],
+    "exitCode": 0,
+    "log": "raw/playback-restoration.log",
+    "cwd": "/workspace/Breeze-2027-navigation",
+    "envOverrides": {}
+  },
+  {
+    "name": "repeated-movie-resources",
+    "args": [
+      "node",
+      "reports/verification-2026-10-10/scripts/edges-and-media.mjs"
+    ],
+    "exitCode": 0,
+    "log": "raw/media-cycles.log",
+    "cwd": "/workspace/Breeze-2027-navigation",
+    "envOverrides": {
+      "AUDIT_MEDIA_ONLY": "1"
+    }
+  },
+  {
+    "name": "native-DPR1-profile",
+    "args": [
+      "node",
+      "reports/verification-2026-10-10/scripts/native-profile.mjs"
+    ],
+    "exitCode": 1,
+    "log": "raw/native-profile.log",
+    "cwd": "/workspace/Breeze-2027-navigation",
+    "envOverrides": {}
+  },
+  {
+    "name": "existing-revision2-navigation-assertions",
+    "args": [
+      "node",
+      "reports/verification-2026-10-10/scripts/run-existing.mjs",
+      "reports/verification-2026-10-10/scripts/existing-navigation-relocated.mjs"
+    ],
+    "exitCode": 1,
+    "log": "raw/existing-navigation.log",
+    "cwd": "/workspace/Breeze-2027-navigation",
+    "envOverrides": {
+      "AUDIT_DPR": ".25",
+      "AUDIT_MOBILE_DPR": ".5"
+    }
+  },
+  {
+    "name": "payment-browser-portable",
+    "args": [
+      "node",
+      "--import",
+      "tsx",
+      "reports/verification-2026-10-10/scripts/run-existing.mjs",
+      "tests/payments/browser.ts"
+    ],
+    "exitCode": 0,
+    "log": "raw/payment-browser-portable.log",
+    "cwd": "/workspace/Breeze-2027-navigation",
+    "envOverrides": {
+      "PAYMENT_TEST_ARTIFACT_DIR": "reports/verification-2026-10-10/raw/payment-browser-portable"
+    }
+  },
+  {
+    "name": "historical-reference-build",
+    "args": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exitCode": 0,
+    "log": "raw/reference-build.log",
+    "cwd": "/tmp/breeze-verification-2026-10-10-reference",
+    "envOverrides": {
+      "NEXT_PUBLIC_SUPABASE_URL": "http://127.0.0.1:9",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY": "audit-placeholder"
+    }
+  },
+  {
+    "name": "matched-reference-comparison",
+    "args": [
+      "node",
+      "reports/verification-2026-10-10/scripts/reference-compare.mjs"
+    ],
+    "exitCode": 0,
+    "log": "raw/reference-comparison.log",
+    "cwd": "/workspace/Breeze-2027-navigation",
+    "envOverrides": {}
+  }
+]

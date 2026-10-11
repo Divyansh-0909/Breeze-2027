@@ -1,0 +1,106 @@
+[
+  {
+    "name": "navigation",
+    "command": [
+      "node",
+      "scripts/check-gullyverse-stage-1-revision-2.mjs"
+    ],
+    "environmentOverrides": {
+      "CHROME_PATH": "/usr/bin/chromium",
+      "GULLYVERSE_BASE_URL": "http://127.0.0.1:3000",
+      "GULLYVERSE_ARTIFACT_DIR": "reports/stage-1-final-2026-10-11/raw/navigation",
+      "GULLYVERSE_TEST_DPR": ".25",
+      "GULLYVERSE_MOBILE_DPR": ".25",
+      "GULLYVERSE_MOVEMENT_TIMEOUT": "60000",
+      "GULLYVERSE_EXPECT_CATALOG_UNAVAILABLE": "1"
+    },
+    "exitCode": 0,
+    "elapsedSeconds": 1180.5953183174133
+  },
+  {
+    "name": "captures",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/captures.mjs"
+    ],
+    "environmentOverrides": {
+      "CAPTURE_MODE": "acceptance"
+    },
+    "exitCode": 0,
+    "elapsedSeconds": 128.84523463249207
+  },
+  {
+    "name": "blender-browser",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/blender-browser.mjs"
+    ],
+    "environmentOverrides": {},
+    "exitCode": 0,
+    "elapsedSeconds": 4.997749090194702
+  },
+  {
+    "name": "performance",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/performance.mjs"
+    ],
+    "environmentOverrides": {
+      "PERF_LABEL": "after"
+    },
+    "exitCode": 0,
+    "elapsedSeconds": 130.89981365203857
+  },
+  {
+    "name": "native-profile",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/native-profile.mjs"
+    ],
+    "environmentOverrides": {},
+    "exitCode": 1,
+    "elapsedSeconds": 112.83697438240051
+  },
+  {
+    "name": "edges-and-media",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/edges-and-media.mjs"
+    ],
+    "environmentOverrides": {
+      "AUDIT_EDGES_ONLY": "1"
+    },
+    "exitCode": 0,
+    "elapsedSeconds": 108.6615059375763
+  },
+  {
+    "name": "interruption",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/interruption.mjs"
+    ],
+    "environmentOverrides": {},
+    "exitCode": 0,
+    "elapsedSeconds": 65.7948579788208
+  },
+  {
+    "name": "journey",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/journey.mjs"
+    ],
+    "environmentOverrides": {},
+    "exitCode": 0,
+    "elapsedSeconds": 173.9934983253479
+  },
+  {
+    "name": "loading-check",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/loading-check.mjs"
+    ],
+    "environmentOverrides": {},
+    "exitCode": 0,
+    "elapsedSeconds": 1.5580248832702637
+  }
+]

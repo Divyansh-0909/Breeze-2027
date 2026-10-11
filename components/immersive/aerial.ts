@@ -13,8 +13,9 @@ export function mapCamera(aspect: number): CameraView {
   const samples: [number, number, number][] = [];
   rim.forEach(([x, z], i) => {
     const distance = Math.hypot(x - middleX, z - middleZ);
-    const outerX = x + (x - middleX) / distance * 6;
-    const outerZ = z + (z - middleZ) / distance * 6;
+    // The restored rock masses extend farther outside the walking perimeter.
+    const outerX = x + (x - middleX) / distance * 24;
+    const outerZ = z + (z - middleZ) / distance * 24;
     samples.push([x, 0, z], [outerX, world.quarry.wallHeights[i % world.quarry.wallHeights.length], outerZ]);
   });
   samples.push([-world.portal.width / 2, world.portal.height, 0], [world.portal.width / 2, world.portal.height, 0], [0, 0, world.landing.position[2]]);

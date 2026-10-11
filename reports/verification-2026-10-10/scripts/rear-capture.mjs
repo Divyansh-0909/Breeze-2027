@@ -1,0 +1,3 @@
+import {launch,instrument,local,look,pose,snapshot,save,root,base} from './audit-common.mjs';
+const b=await launch(),c=await b.newContext({viewport:{width:1366,height:900},deviceScaleFactor:.25});await instrument(c);const p=await c.newPage();
+try{await p.goto(base+'/aftermovie?diagnostics');await local(p,'aftermovie');const front=await pose(p);await look(p,[front.x,1.72,front.z+20]);await p.screenshot({path:root+'/screenshots/18-desktop-constrained-stage-rear-quarry.png',scale:'css'});await save('rear-view.json',{front,rear:await snapshot(p),method:'Public pointer drag from actual bounded stage walking pose; no authoring teleport.'});}finally{await b.close();}

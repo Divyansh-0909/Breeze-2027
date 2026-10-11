@@ -1,0 +1,154 @@
+[
+  {
+    "command": "npm run test:immersive",
+    "result": "PASS \u201438/38; exit 0",
+    "log": "raw/runtime-tests.log",
+    "note": "Current uncommitted spatial/runtime test set; unit results are not browser acceptance"
+  },
+  {
+    "command": "npm run test:payments",
+    "result": "PASS \u201413/13; exit 0",
+    "log": "raw/payment-unit-tests.log",
+    "note": "Pure payment/statement/JEV checks"
+  },
+  {
+    "command": "npx tsx --test tests/events/catalog.test.ts",
+    "result": "PASS \u20144/4; exit 0",
+    "log": "raw/event-unit-tests.log",
+    "note": "Catalog behavior with unavailable/live-data boundaries"
+  },
+  {
+    "command": "npm run test:payments:integration",
+    "result": "PASS \u2014all eight groups; exit 0",
+    "log": "raw/payment-integration.log",
+    "note": "Isolated embedded PostgreSQL; no live account/keys"
+  },
+  {
+    "command": "npm run lint",
+    "result": "PASS with 20 warnings; exit 0",
+    "log": "raw/lint.log",
+    "note": "Warning lines identical to 9 October audit; existing img/hook warnings"
+  },
+  {
+    "command": "NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:9 NEXT_PUBLIC_SUPABASE_ANON_KEY=audit-placeholder npm run build",
+    "result": "PASS; exit 0 after audit-only filename correction",
+    "log": "raw/build.log",
+    "note": "Next production build and Prisma generate; inert command-scoped backend configuration"
+  },
+  {
+    "command": "npx tsc --noEmit --incremental false",
+    "result": "PASS; exit 0",
+    "log": "raw/typecheck.log",
+    "note": "Empty log is expected for success"
+  },
+  {
+    "command": "npm run test:payments:ocr",
+    "result": "FAIL \u2014worker fetch/hang; manually terminated",
+    "log": "raw/payment-ocr.log",
+    "note": "Tesseract createWorker TypeError fetch failed; previously observed failure"
+  },
+  {
+    "command": "timeout 60 npx tsx --test --test-reporter=tap tests/payments/ocr.test.ts",
+    "result": "FAIL \u2014assertion/error then timeout exit 124",
+    "log": "raw/payment-ocr-tap.log",
+    "note": "Diagnostic bounded rerun; prior occurrence copied under comparison/previous-audit-ocr.log"
+  },
+  {
+    "command": "CHROME_PATH=/usr/bin/chromium GULLYVERSE_PROFILES=desktop GULLYVERSE_MODE=production GULLYVERSE_ARTIFACT_DIR=reports/verification-2026-10-10/raw/existing-perf npm run perf:immersive",
+    "result": "FAIL; exit 1",
+    "log": "raw/existing-perf.log",
+    "note": "Original native 1366\u00d7768/DPR1 profile waits 60 s for hub; no complete result"
+  },
+  {
+    "command": "AUDIT_DPR=.25 AUDIT_MOBILE_DPR=.5 node reports/verification-2026-10-10/scripts/browser-audit.mjs",
+    "result": "PARTIAL \u2014process 0;9 PASS / 3 FAIL",
+    "log": "raw/browser-audit.log",
+    "note": "Complete journey/video/screens; held-input, navbar and automatic-entry failures recorded in JSON"
+  },
+  {
+    "command": "node reports/verification-2026-10-10/scripts/performance.mjs",
+    "result": "PASS measurement completion; exit 0 (poor FPS)",
+    "log": "raw/performance.log",
+    "note": "True cache-aware recording-free frame profiler; three repeat round trips"
+  },
+  {
+    "command": "node reports/verification-2026-10-10/scripts/edges-and-media.mjs (initial)",
+    "result": "PARTIAL \u2014process 0;3 PASS/1 NOT TESTED/1 FAIL",
+    "log": "raw/edges-and-media-initial.log",
+    "note": "Delayed/aborted model and context recovery pass; real visibility not observed; initial all-video assertion overbroad"
+  },
+  {
+    "command": "node reports/verification-2026-10-10/scripts/navigation-details.mjs",
+    "result": "PARTIAL \u2014process 0;9 PASS / 3 FAIL",
+    "log": "raw/navigation-details.log",
+    "note": "All eight edges/menu/clamps observed; strict floating equality failure, stale pre-click movie target, native stage 45 s fallback retained"
+  },
+  {
+    "command": "PAYMENT_TEST_ARTIFACT_DIR=reports/verification-2026-10-10/raw/payment-browser-original npm run test:payments:browser",
+    "result": "FAIL launch; exit 1",
+    "log": "raw/payment-browser-original.log",
+    "note": "Original requires unavailable msedge; assertions not run in that launch"
+  },
+  {
+    "command": "node reports/verification-2026-10-10/scripts/playback-restoration.mjs",
+    "result": "PASS; exit 0",
+    "note": "Stable and moving activation-event targets restore after 6.00/6.53 s; fresh input works",
+    "log": "raw/playback-restoration.log",
+    "exitCode": 0,
+    "cwd": "/workspace/Breeze-2027-navigation"
+  },
+  {
+    "command": "AUDIT_MEDIA_ONLY=1 node reports/verification-2026-10-10/scripts/edges-and-media.mjs",
+    "result": "FAIL resource assertion; process 0",
+    "note": "All four travel/play cycles completed; texture counters25\u219228; no production fix",
+    "log": "raw/media-cycles.log",
+    "exitCode": 0,
+    "cwd": "/workspace/Breeze-2027-navigation"
+  },
+  {
+    "command": "node reports/verification-2026-10-10/scripts/native-profile.mjs",
+    "result": "PARTIAL/FAIL; exit 1",
+    "note": "Actual native frame windows retained; Aftermovie reaches 45 s preparation fallback",
+    "log": "raw/native-profile.log",
+    "exitCode": 1,
+    "cwd": "/workspace/Breeze-2027-navigation"
+  },
+  {
+    "command": "AUDIT_DPR=.25 AUDIT_MOBILE_DPR=.5 node reports/verification-2026-10-10/scripts/run-existing.mjs reports/verification-2026-10-10/scripts/existing-navigation-relocated.mjs",
+    "result": "PARTIAL/FAIL; exit 1",
+    "note": "Original assertions unchanged; module relocated only for output/resource paths; Chromium/DPR adapter. Three completed check groups; 1 s playback pose assertion fails, later groups not reached",
+    "log": "raw/existing-navigation.log",
+    "exitCode": 1,
+    "cwd": "/workspace/Breeze-2027-navigation"
+  },
+  {
+    "command": "PAYMENT_TEST_ARTIFACT_DIR=reports/verification-2026-10-10/raw/payment-browser-portable node --import tsx reports/verification-2026-10-10/scripts/run-existing.mjs tests/payments/browser.ts",
+    "result": "PASS; exit 0",
+    "note": "Same preview assertions on Chromium; mobile/desktop captures, zero preview API writes",
+    "log": "raw/payment-browser-portable.log",
+    "exitCode": 0,
+    "cwd": "/workspace/Breeze-2027-navigation"
+  },
+  {
+    "command": "NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:9 NEXT_PUBLIC_SUPABASE_ANON_KEY=audit-placeholder npm run build",
+    "result": "PASS; exit 0",
+    "note": "Historical fe51c10 isolated archive, shared installed dependencies, inert Supabase placeholders",
+    "log": "raw/reference-build.log",
+    "exitCode": 0,
+    "cwd": "/tmp/breeze-verification-2026-10-10-reference"
+  },
+  {
+    "command": "node reports/verification-2026-10-10/scripts/reference-compare.mjs",
+    "result": "PASS measurements; exit 0",
+    "note": "Fresh stage idle/strafe comparison; not whole-journey/pre-slice 60 FPS certification",
+    "log": "raw/reference-comparison.log",
+    "exitCode": 0,
+    "cwd": "/workspace/Breeze-2027-navigation"
+  },
+  {
+    "command": "blender --version",
+    "result": "PASS \u2014Blender 4.3.2; exit 0",
+    "note": "Version read only; no authoring/export or smoke assets generated",
+    "log": "raw/blender-version.txt"
+  }
+]

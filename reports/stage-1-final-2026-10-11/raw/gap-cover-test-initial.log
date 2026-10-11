@@ -1,0 +1,90 @@
+
+> my-landing@0.1.0 test:immersive
+> tsx --test tests/immersive/*.test.ts
+
+✔ landing owns controls, entrance reaches hub, and frames don't publish React state (10.897135ms)
+✔ physical threshold uses guided departure and never reveals before critical readiness (15.123076ms)
+✔ local movement is delta-aware, diagonal speed is bounded, and stage/backstage are inaccessible (12.273102ms)
+✔ route commitment preserves the current walking velocity without a stop or jump (5.567345ms)
+✔ direct URL skips introduction and an outer boundary waits for explicit covered return (0.972902ms)
+✔ superseding navigation invalidates old readiness; background restore cannot leap across routes (1.877501ms)
+✔ reduced motion preserves readiness gating and playback restores the visitor's pose (0.61198ms)
+✔ changing motion preferences publishes immediately without taking away local controls (2.008759ms)
+✔ context restoration keeps the visitor's pose and rejects readiness from before loss (31.998695ms)
+✔ context loss pauses entrance choreography and recovers initial preparation (1.834818ms)
+✔ URL navigation during recovery supersedes the interrupted destination after preparation (2.293136ms)
+✔ context loss exits film focus and returns to the saved walking pose (0.391418ms)
+✔ all signed destinations cross deliberately while unavailable sectors stay truthful (13.320167ms)
+✔ five signed directions match diagonal movement and removed Main Stage has no hidden sector (12.67067ms)
+✔ collision stops capsules before every solid footprint and quarry wall (1.701176ms)
+✔ nearby hub commitment relocates to the distant stage only after black coverage (2.364984ms)
+✔ stage, destination marker and film focus stay in the same authored coordinates (0.170656ms)
+✔ inspection cannot move a visitor and portrait framing preserves the original stage camera (3.454592ms)
+✔ entrance choreography physically follows the bent tunnel without crossing rock (1.626224ms)
+✔ portal rock shoulders stop a visitor while the arch remains clear (0.136576ms)
+✔ side stepping into a tunnel wall slides locally instead of projecting into the quarry (0.163456ms)
+✔ navigation away from playback stops media without snapping the visible film camera (0.798089ms)
+✔ every outer Aftermovie segment and chamfer opens a stationary menu without returning (0.892691ms)
+✔ front/rear/side/corner and diagonal public movement open the boundary menu (1.162748ms)
+✔ crossing the exact join of irregular perimeter segments clamps inside both faces (0.33297ms)
+✔ Stay Here preserves pose and requires moving away before another deliberate boundary crossing (1.600344ms)
+✔ looking at hub signs and sliding along a sector do not navigate (2.624443ms)
+✔ internal movement does not open a perimeter menu and playback owns movement (0.30607ms)
+✔ Escape handles overlay first, map second, and playback exactly once (1.334295ms)
+✔ boundary overlay selections use readiness and external content routing under black (3.465968ms)
+✔ map ascent/descent preserves exact player pose and does not publish on every frame (1.748397ms)
+✔ map close/open interruptions reverse continuously and reduced motion remains covered (1.735417ms)
+✔ map marker travel fades the overhead view before changing the destination pose (0.77187ms)
+✔ context loss during aerial transition restores the saved walking pose and input ownership (3.031836ms)
+✔ desktop and portrait map cameras fit the actual generated quarry rim and entrance (52.286281ms)
+✔ compact quarry contains the unscaled stage and stalls and leaves the Aftermovie rear sightline open (15.896968ms)
+✔ actual cave geometry physically occludes the exit, scaffold and stage from landing and tunnel entry (31.890898ms)
+✔ actual bent-tunnel rock releases a clear exit sightline at the authored mid and first-reveal cameras (58.968222ms)
+✔ fresh entry, session return, explicit Entrance and direct Aftermovie resolve through coordinator (1.056267ms)
+✔ 7.2s cinematic uses active elapsed time at 5 FPS; walking remains bounded (1.3971ms)
+✔ long suspended/resume frame cannot advance cinematic or locomotion (0.75198ms)
+✖ exceptional foreground cinematic gaps are covered while normal authored timing continues (1.092202ms)
+✔ cinematic event does not credit time before actual activation (0.428384ms)
+✔ map and movie restoration preserve pose with large frame intervals (0.646462ms)
+✔ rapid replay during restoration retains original walking anchor (0.286781ms)
+✔ interrupted covered preparation keeps camera covered (0.560712ms)
+✔ invalid deltas do not poison pose or clocks (0.649115ms)
+✔ projection rejects eye-plane, behind camera, invalid viewport and frustum points (0.821014ms)
+✔ projection follows orientation and resize rather than stale camera cache (28.496502ms)
+✔ retired video remains alive while LED sampler lease exists, disposes exactly once (0.900393ms)
+✔ producer with no published sampler disposes on early exit (0.221243ms)
+✔ unpublished cancelled poses dispose once while shared cache remains protected (0.759351ms)
+✔ loading deadline counts foreground budget and cancels stale callbacks (0.265429ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 52
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1224.814642
+
+✖ failing tests:
+
+test at tests/immersive/stabilization.test.ts:14:1
+✖ exceptional foreground cinematic gaps are covered while normal authored timing continues (1.092202ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'entrance'
+  - 'local'
+  
+      at TestContext.<anonymous> (/workspace/Breeze-2027-navigation/tests/immersive/stabilization.test.ts:14:379)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'entrance',
+    expected: 'local',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

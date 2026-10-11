@@ -1,0 +1,62 @@
+{
+  "method": "Source inspection and default-parameter substitution, not a runtime geometry assertion",
+  "STAGE_frontZ": 4,
+  "stageDefaults": {
+    "frontOnly": false,
+    "width": 26,
+    "height": 12.15,
+    "frontZ": 6.5
+  },
+  "original": {
+    "frontTowerX": [
+      -13,
+      13
+    ],
+    "towerHeight": 12.15,
+    "frontBeamX": [
+      -17,
+      17
+    ],
+    "frontBeamY": 11.65,
+    "frontBeamZ": 6.5,
+    "signageBoxPosition": [
+      0,
+      11.65,
+      7.05
+    ],
+    "logoPlanePosition": [
+      0,
+      11.65,
+      7.22
+    ]
+  },
+  "currentDefault": {
+    "frontTowerX": [
+      -13,
+      13
+    ],
+    "towerHeight": 12.15,
+    "frontBeamX": [
+      -17,
+      17
+    ],
+    "frontBeamY": 11.65,
+    "frontBeamZ": 6.5,
+    "signageBoxPosition": [
+      0,
+      11.65,
+      7.05
+    ],
+    "logoPlanePosition": [
+      0,
+      11.65,
+      7.22
+    ]
+  },
+  "anchorChangeMetres": 0,
+  "conclusion": "Parametrization for hub reuse preserves the default full-stage beam and logo anchors; apparent differences in screenshots do not prove an anchor regression.",
+  "beforeCameraFovSource": [
+    "      <Canvas dpr={Math.min(window.devicePixelRatio, QUALITY_DPR[state.quality])} camera={{ fov: 58, near: 0.1, far: 250, position: [0, 1.72, 8] }} gl={{ antialias: false, powerPreference: \"high-performance\" }} fallback={<Fallback error=\"WebGL2 unavailable\" />}>"
+  ],
+  "currentCameraFov": 58
+}

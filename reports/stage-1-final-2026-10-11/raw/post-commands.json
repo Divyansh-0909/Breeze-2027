@@ -1,0 +1,29 @@
+[
+  {
+    "name": "gap-browser",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/gap-browser.mjs"
+    ],
+    "environmentOverrides": {},
+    "exitCode": 1,
+    "elapsedSeconds": 14.196184873580933
+  },
+  {
+    "name": "project-perf",
+    "command": [
+      "npm",
+      "run",
+      "perf:immersive"
+    ],
+    "environmentOverrides": {
+      "CHROME_PATH": "/usr/bin/chromium",
+      "GULLYVERSE_BASE_URL": "http://127.0.0.1:3000",
+      "GULLYVERSE_MODE": "production",
+      "GULLYVERSE_PROFILES": "desktop",
+      "GULLYVERSE_ARTIFACT_DIR": "reports/stage-1-final-2026-10-11/raw/project-performance"
+    },
+    "exitCode": 1,
+    "elapsedSeconds": 342.13312792778015
+  }
+]

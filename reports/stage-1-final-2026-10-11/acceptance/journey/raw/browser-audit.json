@@ -1,0 +1,2891 @@
+{
+  "at": "2026-10-11T15:05:19.900Z",
+  "browser": "151.0.7922.173",
+  "os": "linux 6.18.44",
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "checks": [
+    {
+      "name": "complete uninterrupted physical journey, return, map and playback",
+      "status": "PASS",
+      "evidence": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 3,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 115,
+          "triangles": 1020152,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 31,
+                "deleted": 2,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 620,
+                "deleted": 48,
+                "active": 572
+              },
+              "Program": {
+                "created": 48,
+                "deleted": 3,
+                "active": 45
+              },
+              "Shader": {
+                "created": 96,
+                "deleted": 84,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 294,
+                "deleted": 24,
+                "active": 270
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 164900.70000000298,
+          "scene": "aftermovie",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 26019571
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          },
+          {
+            "src": null,
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "sameCanvas": true
+    }
+  ],
+  "captures": [
+    {
+      "file": "screenshots/01-desktop-entrance.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "landing",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": 11.5,
+          "yaw": 0,
+          "pitch": 0.15
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": 11.5,
+          "yaw": 0,
+          "pitch": 0.15,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 155,
+          "triangles": 105022,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 7505.10000000149,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 27557393
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "landing",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": 11.5,
+          "yaw": 0,
+          "pitch": 0.15
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": 11.5,
+          "yaw": 0,
+          "pitch": 0.15,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 155,
+          "triangles": 105022,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 9611.800000000745,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 29202221
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/02-desktop-tunnel-interior.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "entrance",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -4.224602427943896,
+          "y": 1.72,
+          "z": -12.262320900934519,
+          "yaw": 0.4409539177144119,
+          "pitch": 0.15
+        },
+        "camera": {
+          "x": -4.224602427943896,
+          "y": 1.72,
+          "z": -12.262320900934519,
+          "yaw": 0.4409539177144119,
+          "pitch": 0.15,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 147,
+          "triangles": 103770,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 16002,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 34309170
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "entrance",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -0.4675803265953782,
+          "y": 1.72,
+          "z": -40.56129130278345,
+          "yaw": -0.31427165907569504,
+          "pitch": 0.16848425259179767
+        },
+        "camera": {
+          "x": -0.4675803265953782,
+          "y": 1.72,
+          "z": -40.56129130278345,
+          "yaw": -0.31427165907569504,
+          "pitch": 0.16848425259179767,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 138,
+          "triangles": 100826,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 19295.70000000298,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 16457320
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/03-desktop-tunnel-before-reveal.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "entrance",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -49.10017614103506,
+          "yaw": -0.00010048546067675747,
+          "pitch": 0.19732440015875471
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -49.10017614103506,
+          "yaw": -0.00010048546067675747,
+          "pitch": 0.19732440015875471,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 138,
+          "triangles": 100818,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 20302.70000000298,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 16442196
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 138,
+          "triangles": 100818,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 21326.70000000298,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 16924000
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/04-desktop-quarry-reveal.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 1,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 138,
+          "triangles": 100818,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 22483.60000000149,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 16893352
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 1,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 138,
+          "triangles": 100818,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 24502.5,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 17242148
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/05-desktop-hub-arrival-board.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 1,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 138,
+          "triangles": 100818,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 556,
+                "deleted": 0,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 25586.20000000298,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 17336249
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 2,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 138,
+          "triangles": 93258,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 558,
+                "deleted": 2,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 26683.5,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1775396,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 17354517
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/06-desktop-hub-stage-stalls.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0.14307330322265624,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0.14307330322265624,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 135,
+          "triangles": 93234,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 558,
+                "deleted": 2,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 32102.300000000745,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1769012,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 18033242
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0.14307330322265624,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0.14307330322265624,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 135,
+          "triangles": 93234,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 558,
+                "deleted": 2,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 34291.70000000298,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1769012,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 18000442
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/07-desktop-hub-movement.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 1.8704072603375326,
+          "y": 1.72,
+          "z": -51.269446378744114,
+          "yaw": 0.14307330322265624,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 1.8704072603375326,
+          "y": 1.72,
+          "z": -51.269446378744114,
+          "yaw": 0.14307330322265624,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 137,
+          "triangles": 93246,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 558,
+                "deleted": 2,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 37386.20000000298,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1769012,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 17504730
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 1.8706888344804558,
+          "y": 1.72,
+          "z": -51.269486941639045,
+          "yaw": 0.14307330322265624,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 1.8706888344804558,
+          "y": 1.72,
+          "z": -51.269486941639045,
+          "yaw": 0.14307330322265624,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 137,
+          "triangles": 93246,
+          "textures": 25,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 558,
+                "deleted": 2,
+                "active": 556
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 155,
+                "deleted": 0,
+                "active": 155
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 39419.800000000745,
+          "scene": "hub",
+          "geometries": 150,
+          "textures": 25,
+          "activeGeometryBytes": 1769012,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 18183426
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/08-desktop-aftermovie-arrival.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 115,
+          "triangles": 1020152,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 576,
+                "deleted": 4,
+                "active": 572
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 0,
+                "active": 45
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 78,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 270,
+                "deleted": 0,
+                "active": 270
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 92602.80000000075,
+          "scene": "aftermovie",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 23694144
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 115,
+          "triangles": 1020152,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 576,
+                "deleted": 4,
+                "active": 572
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 0,
+                "active": 45
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 78,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 270,
+                "deleted": 0,
+                "active": 270
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 97115,
+          "scene": "aftermovie",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 25105061
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/09-desktop-aftermovie-viewing-area.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -112.0586014144401,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -112.0586014144401,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 115,
+          "triangles": 1020152,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 576,
+                "deleted": 4,
+                "active": 572
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 0,
+                "active": 45
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 78,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 270,
+                "deleted": 0,
+                "active": 270
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 101821.30000000075,
+          "scene": "aftermovie",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 23142977
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -112.05999978918688,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -112.05999978918688,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 115,
+          "triangles": 1020152,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 29,
+                "deleted": 0,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 576,
+                "deleted": 4,
+                "active": 572
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 0,
+                "active": 45
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 78,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 270,
+                "deleted": 0,
+                "active": 270
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 106480.40000000224,
+          "scene": "aftermovie",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 23027069
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/11-desktop-aftermovie-playback.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": true,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -12,
+          "y": 5.9,
+          "z": -117.30000000000001,
+          "yaw": 0,
+          "pitch": 0
+        },
+        "camera": {
+          "x": -12,
+          "y": 5.9,
+          "z": -117.30000000000001,
+          "yaw": 0,
+          "pitch": 0,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 100,
+          "triangles": 1018788,
+          "textures": 26,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 31,
+                "deleted": 1,
+                "active": 30
+              },
+              "Buffer": {
+                "created": 596,
+                "deleted": 40,
+                "active": 556
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 2,
+                "active": 43
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 78,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 276,
+                "deleted": 20,
+                "active": 256
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 114587.40000000224,
+          "scene": "aftermovie",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 23957199
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          },
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 1.384379,
+            "paused": false,
+            "readyState": 4
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": true,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -12,
+          "y": 5.9,
+          "z": -117.30000000000001,
+          "yaw": 0,
+          "pitch": 0
+        },
+        "camera": {
+          "x": -12,
+          "y": 5.9,
+          "z": -117.30000000000001,
+          "yaw": 0,
+          "pitch": 0,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 99,
+          "triangles": 1018608,
+          "textures": 26,
+          "geometries": 150,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 31,
+                "deleted": 1,
+                "active": 30
+              },
+              "Buffer": {
+                "created": 596,
+                "deleted": 40,
+                "active": 556
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 2,
+                "active": 43
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 78,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 276,
+                "deleted": 20,
+                "active": 256
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 119227.60000000149,
+          "scene": "aftermovie",
+          "geometries": 150,
+          "textures": 26,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 53321732,
+          "jsHeapBytes": 24209844
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          },
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 5.251938,
+            "paused": false,
+            "readyState": 4
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/12-desktop-boundary-menu.png",
+      "note": "Actual public controls; no authoring teleport",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": true,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -106.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -106.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 115,
+          "triangles": 1020152,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 31,
+                "deleted": 2,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 612,
+                "deleted": 40,
+                "active": 572
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 2,
+                "active": 43
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 78,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 280,
+                "deleted": 20,
+                "active": 260
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 137994.70000000298,
+          "scene": "aftermovie",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 23564892
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          },
+          {
+            "src": null,
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": true,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -106.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -106.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 115,
+          "triangles": 1020152,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 31,
+                "deleted": 2,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 612,
+                "deleted": 40,
+                "active": 572
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 2,
+                "active": 43
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 78,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 280,
+                "deleted": 20,
+                "active": 260
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 142471.30000000075,
+          "scene": "aftermovie",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 2711696,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 24194604
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          },
+          {
+            "src": null,
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    },
+    {
+      "file": "screenshots/10-desktop-aerial-map.png",
+      "note": "Actual same-world aerial map, replacing requested 2D map",
+      "before": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 2,
+          "map": true,
+          "mapStage": "open",
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": -0.8999999999999986,
+          "y": 165.93367317635833,
+          "z": -77,
+          "yaw": -1.570760033104047,
+          "pitch": -1.5707963267948966,
+          "fov": 64.00036968449932
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 155,
+          "triangles": 97462,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 31,
+                "deleted": 2,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 614,
+                "deleted": 46,
+                "active": 568
+              },
+              "Program": {
+                "created": 47,
+                "deleted": 3,
+                "active": 44
+              },
+              "Shader": {
+                "created": 94,
+                "deleted": 82,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 290,
+                "deleted": 24,
+                "active": 266
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 153486.20000000298,
+          "scene": "hub",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 1769012,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 25715319
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          },
+          {
+            "src": null,
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      },
+      "after": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 2,
+          "map": true,
+          "mapStage": "open",
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": -0.8999999999999986,
+          "y": 165.93367317635833,
+          "z": -77,
+          "yaw": -1.570760033104047,
+          "pitch": -1.5707963267948966,
+          "fov": 64.00036968449932
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 155,
+          "triangles": 97462,
+          "textures": 25,
+          "geometries": 154,
+          "dpr": 0.25
+        },
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "stats": {
+              "Texture": {
+                "created": 31,
+                "deleted": 2,
+                "active": 29
+              },
+              "Buffer": {
+                "created": 614,
+                "deleted": 46,
+                "active": 568
+              },
+              "Program": {
+                "created": 47,
+                "deleted": 3,
+                "active": 44
+              },
+              "Shader": {
+                "created": 94,
+                "deleted": 82,
+                "active": 12
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 290,
+                "deleted": 24,
+                "active": 266
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            }
+          }
+        ],
+        "memory": {
+          "at": 154567.30000000075,
+          "scene": "hub",
+          "geometries": 154,
+          "textures": 25,
+          "activeGeometryBytes": 1769012,
+          "activeTextureBytesEstimate": 45027332,
+          "jsHeapBytes": 25173791
+        },
+        "media": [
+          {
+            "src": "/after-movie.mp4",
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          },
+          {
+            "src": null,
+            "currentTime": 0,
+            "paused": true,
+            "readyState": 0
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "dpr": 0.25
+        },
+        "canvasCount": 1
+      }
+    }
+  ],
+  "errors": [
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "writes": [],
+  "segments": [],
+  "network": [
+    {
+      "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+      "status": 404
+    },
+    {
+      "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+      "status": 404
+    }
+  ]
+}

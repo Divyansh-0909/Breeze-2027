@@ -1,0 +1,537 @@
+diff --git a/components/immersive/AftermovieScene.tsx b/components/immersive/AftermovieScene.tsx
+index 9419395..2d3bcd4 100644
+--- a/components/immersive/AftermovieScene.tsx
++++ b/components/immersive/AftermovieScene.tsx
+@@ -12,10 +12,14 @@ import { useStageVideo } from "@/components/landing-page/stage3d/useStageVideo";
+ import { ReadinessGate } from "./rendering";
+ import { recordPreparation } from "./diagnostics";
+ import HubScene from "./HubScene";
++import AftermovieEnvironment from "./AftermovieEnvironment";
++import { requireWorldFonts } from "./worldPaint";
+ import { point3, world } from "./world";
+ import type { ImmersiveRuntime } from "./runtime";
+ 
+ export default function AftermovieScene({ runtime, serial, quality, nearStage, overview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean }) {
++  requireWorldFonts();
++  const stageView=nearStage&&!overview;
+   const video = useStageVideo();
+   const [crowdReadySerial, setCrowdReadySerial] = useState<number | null>(null);
+   const ready = useCallback(() => setCrowdReadySerial(serial), [serial]);
+@@ -26,15 +30,16 @@ export default function AftermovieScene({ runtime, serial, quality, nearStage, o
+     return () => { runtime.movieActions = null; };
+   }, [runtime, video.startMovie, video.stopMovie, video.enableSound, video.getStatus]);
+   return <>
+-    <HubScene nearStage={nearStage} quality={quality} overview={overview} />
+-    {/* One original stage in the shared world. Navigation changes interaction/crowd detail. */}
++    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} />
++    <AftermovieEnvironment />
++    {/* Keep one stage and current travel coordinates; restore its original local presentation. */}
+     <group position={point3(world.stage.origin)} rotation-y={world.stage.yaw}>
+     <Stage ground={false} />
+     <Trusses /><Speakers /><Barricades />
+     <LEDScreens videoTexture={video.phase === "playing" ? video.texture : null} loading={video.phase === "loading"} onPlay={() => { const state = runtime.getSnapshot(); if (nearStage && state.phase === "local" && !state.map && !state.destinationMenu) video.startMovie(); }} />
+     <Lights motion={nearStage && !runtime.reduced} dimmed={video.phase !== "idle"} />
+     {/* Already fully covered: yield between poses, without the standalone scene's 150ms pacing gaps. */}
+-    {nearStage && <Crowd clearApproach count={quality >= 2 ? 300 : quality === 1 ? 600 : 900} onReady={ready} bakeDelayMs={0} onBake={baked} />}
++    {nearStage && <Crowd count={quality >= 2 ? 300 : quality === 1 ? 600 : 900} onReady={ready} bakeDelayMs={0} onBake={baked} />}
+     <Fireworks key={video.pyroKey} active={!runtime.reduced && quality === 0 && video.pyroKey > 0 && video.phase === "playing"} />
+     </group>
+     {(!nearStage || crowdReadySerial === serial) && ["boot", "covered", "recovering"].includes(runtime.getSnapshot().phase) && <ReadinessGate key={serial} runtime={runtime} serial={serial} />}
+diff --git a/components/immersive/HubScene.tsx b/components/immersive/HubScene.tsx
+index b4cee58..0f75482 100644
+--- a/components/immersive/HubScene.tsx
++++ b/components/immersive/HubScene.tsx
+@@ -21,9 +21,11 @@ export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], c
+     <mesh position-z={.081}><planeGeometry args={[width,height]} /><meshBasicMaterial map={texture} /></mesh>
+   </group>;
+ }
+-function Rock({ geometry,map }: { geometry:THREE.BufferGeometry;map:THREE.Texture }) {
++function Rock({ geometry,map,quarry=false }: { geometry:THREE.BufferGeometry;map:THREE.Texture;quarry?:boolean }) {
+   useEffect(()=>()=>geometry.dispose(),[geometry]);
+-  return <mesh><primitive object={geometry} attach="geometry" dispose={null} /><meshLambertMaterial map={map} vertexColors side={THREE.DoubleSide} /></mesh>;
++  return <mesh><primitive object={geometry} attach="geometry" dispose={null} />{quarry
++    ? <meshStandardMaterial roughness={.98} flatShading vertexColors side={THREE.DoubleSide} />
++    : <meshLambertMaterial map={map} vertexColors side={THREE.DoubleSide} />}</mesh>;
+ }
+ type Box={p:[number,number,number];size:[number,number,number];color:string;rotation?:THREE.Quaternion};
+ function Boxes({entries}:{entries:Box[]}) {
+@@ -176,15 +178,16 @@ function GroundDetail() {
+     <instancedMesh ref={grass} args={[undefined,undefined,180]}><primitive object={tufts} attach="geometry" dispose={null} /><meshLambertMaterial color="#626849" side={THREE.DoubleSide} /></instancedMesh>
+   </>;
+ }
+-export default function HubScene({nearStage,quality}:{nearStage:boolean;quality:number;overview:boolean}) {
++export default function HubScene({nearStage,quality,stageView=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean}) {
+   requireWorldFonts();
+   const quarry=useMemo(quarryGeometry,[]),tunnel=useMemo(tunnelGeometry,[]),portal=useMemo(portalGeometry,[]),exit=useMemo(exitGeometry,[]),ground=useMemo(groundGeometry,[]);
+   const rockTexture=useMemo(makeRockTexture,[]),groundTexture=useMemo(makeGroundTexture,[]);
+   useEffect(()=>()=>{ground.dispose();rockTexture.dispose();groundTexture.dispose();},[ground,rockTexture,groundTexture]);
+   return <>
+-    <color attach="background" args={["#737d87"]} /><fog attach="fog" args={["#737d87",205,520]} />
+-    <hemisphereLight args={["#a9bfd4","#8a8274",1.35]} /><directionalLight position={[-70,37,-145]} intensity={1.35} color="#efd0a4" />
+-    <Rock geometry={quarry} map={rockTexture} /><Rock geometry={tunnel} map={rockTexture} /><Rock geometry={portal} map={rockTexture} /><Rock geometry={exit} map={rockTexture} />
++    <color attach="background" args={[stageView?"#b2bbb9":"#737d87"]} /><fog attach="fog" args={stageView?["#b2bbb9",55,130]:["#737d87",205,520]} />
++    <hemisphereLight args={stageView?["#d8e0dd","#686b59",.65]:["#a9bfd4","#8a8274",1.35]} />
++    {!stageView && <directionalLight position={[-70,37,-145]} intensity={1.35} color="#efd0a4" />}
++    <Rock geometry={quarry} map={rockTexture} quarry /><Rock geometry={tunnel} map={rockTexture} /><Rock geometry={portal} map={rockTexture} /><Rock geometry={exit} map={rockTexture} />
+     <mesh><primitive object={ground} attach="geometry" dispose={null} /><meshLambertMaterial map={groundTexture} color="#c8c2b4" /></mesh>
+     <EntrancePaint portal={portal} /><TunnelPaint /><Scaffold /><StallBlocks /><Population nearStage={nearStage} quality={quality} /><GroundDetail />
+   </>;
+diff --git a/components/immersive/ImmersiveShell.tsx b/components/immersive/ImmersiveShell.tsx
+index 2438c79..343568b 100644
+--- a/components/immersive/ImmersiveShell.tsx
++++ b/components/immersive/ImmersiveShell.tsx
+@@ -80,7 +80,7 @@ export default function ImmersiveShell() {
+         <MapMarkerProjection runtime={runtime} elements={mapElements} />
+         <SceneRenderer runtime={runtime} />
+         <Suspense fallback={null}>
+-          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.inspection === "overview"} />
++          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.map || state.inspection === "overview"} />
+         </Suspense>
+       </Canvas>
+     </SceneBoundary>
+diff --git a/components/immersive/aerial.ts b/components/immersive/aerial.ts
+index b5989d8..6498fc6 100644
+--- a/components/immersive/aerial.ts
++++ b/components/immersive/aerial.ts
+@@ -13,8 +13,9 @@ export function mapCamera(aspect: number): CameraView {
+   const samples: [number, number, number][] = [];
+   rim.forEach(([x, z], i) => {
+     const distance = Math.hypot(x - middleX, z - middleZ);
+-    const outerX = x + (x - middleX) / distance * 6;
+-    const outerZ = z + (z - middleZ) / distance * 6;
++    // The restored rock masses extend farther outside the walking perimeter.
++    const outerX = x + (x - middleX) / distance * 24;
++    const outerZ = z + (z - middleZ) / distance * 24;
+     samples.push([x, 0, z], [outerX, world.quarry.wallHeights[i % world.quarry.wallHeights.length], outerZ]);
+   });
+   samples.push([-world.portal.width / 2, world.portal.height, 0], [world.portal.width / 2, world.portal.height, 0], [0, 0, world.landing.position[2]]);
+diff --git a/components/immersive/blockoutGeometry.ts b/components/immersive/blockoutGeometry.ts
+index 93cf3d6..ed420fe 100644
+--- a/components/immersive/blockoutGeometry.ts
++++ b/components/immersive/blockoutGeometry.ts
+@@ -42,27 +42,48 @@ function tubeVertex(z:number,p:readonly number[]):Vertex {
+   const n=tubeNoise(z,p[1]);
+   return [tunnelCenterX(z)+p[0]+n,p[1]+(p[1]>1?n*.5:0),z];
+ }
++/** Work-in-progress-2027's original faceted rock ring, fitted to the current layout. */
+ export function quarryGeometry() {
+-  const rock=new RockMesh(),q=world.quarry;
+-  const centerZ=(Math.min(...q.boundary.map(p=>p[1]))+Math.max(...q.boundary.map(p=>p[1])))/2;
+-  for(let i=0;i<q.boundary.length;i++) {
+-    const a=q.boundary[i],b=q.boundary[(i+1)%q.boundary.length];
+-    const vertex=(u:number,v:number):Vertex=>{
+-      const x=lerp(a[0],b[0],u),z=lerp(a[1],b[1],u),radius=Math.hypot(x,z-centerZ);
+-      const angle=(i+u)/q.boundary.length*Math.PI*2;
+-      const height=lerp(q.wallHeights[i],q.wallHeights[(i+1)%q.boundary.length],u);
+-      const fractured=Math.sin(angle*53+v*21)*.8+Math.sin(angle*91-v*9)*.34;
+-      const bench=Math.floor(v*4),setback=v*7.5+Math.sin(v*Math.PI*8)*.55+fractured*Math.sin(v*Math.PI);
+-      const base=i===0?Math.max(...world.tunnel.profile.map(p=>p[1]))+.2:0;
+-      return [x+x/radius*setback,lerp(base,height,v)+Math.sin(angle*17+v*4)*Math.sin(v*Math.PI)*1.2,z+(z-centerZ)/radius*setback+(bench%2?.12:0)];
+-    };
+-    for(let s=0;s<10;s++) for(let l=0;l<12;l++) {
+-      const u=s/10,v=(s+1)/10,y=l/12,ny=(l+1)/12;
+-      const shade=.77+Math.sin((i+u)*1.4+y*.7)*.035+(l/12)*.12;
+-      rock.quad(vertex(u,y),vertex(v,y),vertex(v,ny),vertex(u,ny),shade);
++  const rock=new RockMesh(),boundary=world.quarry.boundary;
++  const minX=Math.min(...boundary.map(p=>p[0])),maxX=Math.max(...boundary.map(p=>p[0]));
++  const minZ=Math.min(...boundary.map(p=>p[1])),maxZ=Math.max(...boundary.map(p=>p[1]));
++  const centerX=(minX+maxX)/2,centerZ=(minZ+maxZ)/2;
++  // Uniform scaling keeps the original rock proportions around the larger world.
++  const scale=((maxX-minX)/94+(maxZ-minZ)/126)/2;
++  const source=new THREE.DodecahedronGeometry(1,0),vertices=source.getAttribute("position");
++  try {
++    for(let i=0;i<28;i++) {
++      // Preserve the original three-rock gap around the current tunnel opening.
++      if(i===0 || i===1 || i===27) continue;
++      const angle=i/28*Math.PI*2,dx=Math.sin(angle),dz=Math.cos(angle);
++      let distance=Infinity,edge=0;
++      for(let j=0;j<boundary.length;j++) {
++        const a=boundary[j],b=boundary[(j+1)%boundary.length];
++        const ex=b[0]-a[0],ez=b[1]-a[1],denominator=dx*ez-dz*ex;
++        if(Math.abs(denominator)<.00001) continue;
++        const ax=a[0]-centerX,az=a[1]-centerZ;
++        const t=(ax*ez-az*ex)/denominator,u=(ax*dz-az*dx)/denominator;
++        if(t>0 && u>=0 && u<=1 && t<distance) {distance=t;edge=j;}
++      }
++      const a=boundary[edge],b=boundary[(edge+1)%boundary.length];
++      const ex=b[0]-a[0],ez=b[1]-a[1],length=Math.hypot(ex,ez),nx=-ez/length,nz=ex/length;
++      const h=21+Math.sin(i*4.1)*6;
++      const matrix=new THREE.Matrix4().compose(new THREE.Vector3(),
++        new THREE.Quaternion().setFromEuler(new THREE.Euler(.08*Math.sin(i),angle,.1*Math.cos(i))),
++        new THREE.Vector3(14*scale,h*scale,12*scale));
++      const points:Vertex[]=[];
++      let minimum=Infinity;
++      for(let j=0;j<vertices.count;j++) {
++        const p=new THREE.Vector3().fromBufferAttribute(vertices,j).applyMatrix4(matrix);
++        minimum=Math.min(minimum,p.x*nx+p.z*nz);points.push([p.x,p.y,p.z]);
++      }
++      // Keep the complete rock outside the existing walkable collision perimeter.
++      const offset=.25-minimum,x=centerX+dx*distance+nx*offset,z=centerZ+dz*distance+nz*offset;
++      for(const p of points) {p[0]+=x;p[1]+=(h*.47-2)*scale;p[2]+=z;}
++      for(let j=0;j<points.length;j+=3) rock.triangle(points[j],points[j+1],points[j+2],1,i%3===0?"#74776d":"#838479");
+     }
+-  }
+-  return rock.finish();
++    return rock.finish();
++  } finally {source.dispose();}
+ }
+ export function tunnelGeometry() {
+   const rock=new RockMesh(),profile=world.tunnel.profile;
+diff --git a/public/models/gullyverse/blockout.layout.json b/public/models/gullyverse/blockout.layout.json
+index d95b851..64c6ee9 100644
+--- a/public/models/gullyverse/blockout.layout.json
++++ b/public/models/gullyverse/blockout.layout.json
+@@ -24,7 +24,14 @@
+     "walkHalfWidth": 2,
+     "startZ": 0,
+     "endZ": -42,
+-    "centerline": [[0,0],[-2.2,-8],[-6,-16],[-6,-24],[-2.6,-34],[0,-42]],
++    "centerline": [
++      [0,0],
++      [-2.2,-8],
++      [-6,-16],
++      [-6,-24],
++      [-2.6,-34],
++      [0,-42]
++    ],
+     "profile": [
+       [-2.95,0],
+       [-2.85,1.35],
+@@ -70,26 +77,26 @@
+     "boundary": [
+       [-5,-42],
+       [5,-42],
+-      [18,-44],
+-      [38,-51],
+-      [60,-68],
+-      [76,-92],
+-      [80,-130],
+-      [74,-169],
+-      [59,-203],
+-      [40,-220],
+-      [7,-232],
+-      [-22,-230],
+-      [-50,-221],
+-      [-71,-196],
+-      [-82,-160],
+-      [-83,-122],
+-      [-74,-89],
+-      [-56,-65],
+-      [-31,-50],
++      [10.8,-43.3],
++      [22.8,-47.85],
++      [36.0,-58.9],
++      [45.6,-74.5],
++      [48.0,-99.2],
++      [44.4,-124.55],
++      [35.4,-146.65],
++      [24.0,-157.7],
++      [4.2,-165.5],
++      [-13.2,-164.2],
++      [-30.0,-158.35],
++      [-42.6,-142.1],
++      [-49.2,-118.7],
++      [-49.8,-94.0],
++      [-44.4,-72.55],
++      [-33.6,-56.95],
++      [-18.6,-47.2],
+       [-14,-42]
+     ],
+-    "wallHeights": [49,51,55,58,54,62,57,64,59,56,61,55,60,58,64,56,59,53,55,50],
++    "wallHeights": [31.85,33.15,35.75,37.7,35.1,40.3,37.05,41.6,38.35,36.4,39.65,35.75,39.0,37.7,41.6,36.4,38.35,34.45,35.75,32.5],
+     "benchHeights": [0,14,28,43],
+     "benchSetbacks": [0,1.2,3.5,6],
+     "ground": {
+@@ -98,7 +105,7 @@
+     }
+   },
+   "stage": {
+-    "origin": [-34,0,-184],
++    "origin": [-12,0,-134.3],
+     "yaw": 0,
+     "filmFocusLocal": [0,5.9,17],
+     "asset": "/models/breeze/aftermovie-stage.glb"
+@@ -112,37 +119,37 @@
+   "stalls": [
+     {
+       "id": "left-1",
+-      "position": [-46,0,-96],
++      "position": [-27.6,0,-77.1],
+       "size": [7,3.5,4],
+       "yaw": 1.5707963267948966
+     },
+     {
+       "id": "left-2",
+-      "position": [-51,0,-118],
++      "position": [-30.6,0,-91.4],
+       "size": [7,3.5,4],
+       "yaw": 1.5707963267948966
+     },
+     {
+       "id": "left-3",
+-      "position": [-49,0,-146],
++      "position": [-29.4,0,-100],
+       "size": [7,3.5,4],
+       "yaw": 1.5707963267948966
+     },
+     {
+       "id": "right-1",
+-      "position": [45,0,-96],
++      "position": [27.0,0,-77.1],
+       "size": [7,3.5,4],
+       "yaw": -1.5707963267948966
+     },
+     {
+       "id": "right-2",
+-      "position": [51,0,-118],
++      "position": [30.6,0,-91.4],
+       "size": [7,3.5,4],
+       "yaw": -1.5707963267948966
+     },
+     {
+       "id": "right-3",
+-      "position": [48,0,-146],
++      "position": [28.8,0,-109.6],
+       "size": [7,3.5,4],
+       "yaw": -1.5707963267948966
+     }
+@@ -151,8 +158,8 @@
+     {
+       "id": "stage",
+       "label": "Main Stage / Aftermovie",
+-      "position": [-34,0,-184],
+-      "anchor": [-32.5,1.72,-160.5],
++      "position": [-12,0,-134.3],
++      "anchor": [-10.5,1.72,-110.8],
+       "size": [34,12,30],
+       "yaw": 0,
+       "href": "/aftermovie",
+@@ -162,8 +169,8 @@
+       "id": "team",
+       "interactionRadius": 3,
+       "label": "Team",
+-      "position": [-35,0,-78],
+-      "anchor": [-29,1.72,-78],
++      "position": [-21.0,0,-65.4],
++      "anchor": [-17.4,1.72,-65.4],
+       "size": [8,3.8,1.2],
+       "yaw": 1.5707963267948966,
+       "href": "/team",
+@@ -173,8 +180,8 @@
+       "id": "contact",
+       "interactionRadius": 3,
+       "label": "Contact Us",
+-      "position": [36,0,-78],
+-      "anchor": [30,1.72,-78],
++      "position": [21.6,0,-65.4],
++      "anchor": [18.0,1.72,-65.4],
+       "size": [7,3.5,4],
+       "yaw": -1.5707963267948966,
+       "href": "/get-in-touch",
+@@ -183,8 +190,8 @@
+     {
+       "id": "events",
+       "label": "Events",
+-      "position": [-58,0,-131],
+-      "anchor": [-49,1.72,-131],
++      "position": [-41,0,-99.85],
++      "anchor": [-36,1.72,-99.85],
+       "size": [12,0.15,10],
+       "yaw": 0,
+       "href": "/events",
+@@ -193,8 +200,8 @@
+     {
+       "id": "sponsors",
+       "label": "Past Sponsors",
+-      "position": [58,0,-132],
+-      "anchor": [49,1.72,-132],
++      "position": [34.8,0,-100.5],
++      "anchor": [29.4,1.72,-100.5],
+       "size": [12,0.15,10],
+       "yaw": 0,
+       "href": "/sponsors",
+@@ -203,8 +210,8 @@
+     {
+       "id": "accommodation",
+       "label": "Accommodation",
+-      "position": [44,0,-175],
+-      "anchor": [35,1.72,-175],
++      "position": [26.4,0,-128.45],
++      "anchor": [21.0,1.72,-128.45],
+       "size": [14,0.15,12],
+       "yaw": 0,
+       "href": null,
+@@ -218,21 +225,51 @@
+       "count": 8
+     },
+     "circulation": {
+-      "center": [13,-116],
+-      "size": [18,43],
++      "center": [7.8,-90.1],
++      "size": [10.8,27.95],
+       "count": 32
+     },
+     "stallGroupCount": 5,
+     "stageFarCount": 260
+   },
+   "hub": {
+-    "movementBoundary": [[-8,-44],[8,-44],[18,-49],[18,-59],[8,-64],[-8,-64],[-18,-59],[-18,-49]],
++    "movementBoundary": [
++      [-8,-44],
++      [8,-44],
++      [18,-49],
++      [18,-59],
++      [8,-64],
++      [-8,-64],
++      [-18,-59],
++      [-18,-49]
++    ],
+     "travelZones": [
+-      {"id":"aftermovie","sign":null,"edge":0,"range":[0.2,0.8]},
+-      {"id":"events","edge":5,"range":[0.1,0.6]},
+-      {"id":"team","edge":0,"range":[0.015,0.165]},
+-      {"id":"contact","edge":0,"range":[0.835,0.985]},
+-      {"id":"sponsors","edge":3,"range":[0.4,0.9]}
++      {
++        "id": "aftermovie",
++        "sign": null,
++        "edge": 0,
++        "range": [0.2,0.8]
++      },
++      {
++        "id": "events",
++        "edge": 5,
++        "range": [0.1,0.6]
++      },
++      {
++        "id": "team",
++        "edge": 0,
++        "range": [0.015,0.165]
++      },
++      {
++        "id": "contact",
++        "edge": 0,
++        "range": [0.835,0.985]
++      },
++      {
++        "id": "sponsors",
++        "edge": 3,
++        "range": [0.4,0.9]
++      }
+     ],
+     "spawn": [0,1.72,-51],
+     "arrivalStart": [0,1.72,-46],
+@@ -241,13 +278,22 @@
+     "bounds": [-18,18,-64,-44]
+   },
+   "aftermovie": {
+-    "movementBoundary": [[-41.2,-156],[-26.8,-156],[-26,-156.8],[-26,-167.4],[-26.8,-168.2],[-41.2,-168.2],[-42,-167.4],[-42,-156.8]],
++    "movementBoundary": [
++      [-19.2,-106.3],
++      [-4.8,-106.3],
++      [-4.0,-107.1],
++      [-4.0,-117.7],
++      [-4.8,-118.5],
++      [-19.2,-118.5],
++      [-20.0,-117.7],
++      [-20.0,-107.1]
++    ],
+     "returnSignLocal": [6,2.8,27.8],
+-    "spawn": [-32.5,1.72,-160.5],
+-    "arrivalStart": [-32.5,1.72,-156.5],
++    "spawn": [-10.5,1.72,-110.8],
++    "arrivalStart": [-10.5,1.72,-106.8],
+     "yaw": 0,
+     "pitch": 0.16,
+-    "bounds": [-42,-26,-168.2,-156]
++    "bounds": [-20.0,-4.0,-118.5,-106.3]
+   },
+   "cameras": [
+     {
+@@ -295,36 +341,36 @@
+     {
+       "id": "quarry",
+       "position": [0,1.72,-51],
+-      "target": [0,6.6,-120],
++      "target": [0.0,6.6,-92.7],
+       "fov": 58
+     },
+     {
+       "id": "left-stalls",
+-      "position": [-30,1.72,-89],
+-      "target": [-45,2.2,-112],
++      "position": [-18.0,1.72,-72.55],
++      "target": [-27.0,2.2,-87.5],
+       "fov": 58
+     },
+     {
+       "id": "right-stalls",
+-      "position": [29,1.72,-89],
+-      "target": [44,2.2,-112],
++      "position": [17.4,1.72,-72.55],
++      "target": [26.4,2.2,-87.5],
+       "fov": 58
+     },
+     {
+       "id": "overview",
+-      "position": [0,215,-104],
+-      "target": [0,0,-104],
++      "position": [0,145,-77],
++      "target": [0,0,-77],
+       "fov": 65
+     },
+     {
+       "id": "stage-front",
+-      "position": [-32.5,1.72,-160.5],
+-      "target": [-34,5.9,-178],
++      "position": [-10.5,1.72,-110.8],
++      "target": [-12.0,5.9,-128.3],
+       "fov": 58
+     },
+     {
+       "id": "stage-return",
+-      "position": [-32.5,1.72,-158],
++      "position": [-10.5,1.72,-108.3],
+       "target": [0,5,-42],
+       "fov": 58
+     }
+diff --git a/tests/immersive/runtime.test.ts b/tests/immersive/runtime.test.ts
+index 7b0de51..6d5232f 100644
+--- a/tests/immersive/runtime.test.ts
++++ b/tests/immersive/runtime.test.ts
+@@ -223,7 +223,7 @@ test("inspection cannot move a visitor and portrait framing preserves the origin
+   runtime.inspectionEnabled=true;assert.equal(runtime.inspect("overview"),true);
+   const overview=runtime.cameraPose(390/844);
+   assert.ok(Math.abs(overview.yaw)<.00001);assert.equal(overview.pitch,-Math.PI/2);
+-  assert.ok(overview.y<320,"Revised overview removes excessive empty space");
++  assert.ok(overview.y<360,"Overview fits the restored outer rock masses without excessive empty space");
+   assert.ok(runtime.cameraPose(390/844).fov<=82);
+   runtime.input.forward=1;advance(runtime,2);assert.deepEqual(runtime.pose,saved);
+   runtime.inspect(null);assert.deepEqual(runtime.pose,saved);
+@@ -395,6 +395,26 @@ test("desktop and portrait map cameras fit the actual generated quarry rim and e
+     }
+   } finally {geometry.dispose();}
+ });
++test("compact quarry contains the unscaled stage and stalls and leaves the Aftermovie rear sightline open", () => {
++  for(const footprint of obstacles.filter(o=>o.id==="stage-enclosure" || world.stalls.some(s=>s.id===o.id))) {
++    for(const x of [footprint.x-footprint.halfX,footprint.x+footprint.halfX]) for(const z of [footprint.z-footprint.halfZ,footprint.z+footprint.halfZ]) {
++      for(let i=0;i<world.quarry.boundary.length;i++) {
++        const a=world.quarry.boundary[i],b=world.quarry.boundary[(i+1)%world.quarry.boundary.length],dx=b[0]-a[0],dz=b[1]-a[1];
++        assert.ok(((x-a[0])*dz-(z-a[1])*dx)/Math.hypot(dx,dz)>.1,footprint.id+" fits inside the quarry");
++      }
++    }
++  }
++  const geometry=quarryGeometry(),material=new MeshBasicMaterial({side:DoubleSide}),mesh=new Mesh(geometry,material);
++  mesh.updateMatrixWorld();
++  try {
++    const spawn=world.aftermovie.spawn;
++    for(const target of [[0,11.4,world.scaffold.position[2]+1.8],world.hub.spawn,...world.stalls.map(s=>[s.position[0],2,s.position[2]])]) {
++      const origin=new Vector3(...spawn as [number,number,number]),end=new Vector3(...target as [number,number,number]),distance=origin.distanceTo(end);
++      const ray=new Raycaster(origin,end.sub(origin).normalize(),.01,distance-.05);
++      assert.equal(ray.intersectObject(mesh,false).length,0,"Shared quarry rocks leave hub/stall sightlines open from Aftermovie");
++    }
++  } finally {geometry.dispose();material.dispose();}
++});
+ test("actual cave geometry physically occludes the exit, scaffold and stage from landing and tunnel entry", () => {
+   const geometries=[portalGeometry(),tunnelGeometry()],material=new MeshBasicMaterial({side:DoubleSide});
+   const meshes=geometries.map((geometry)=>{const mesh=new Mesh(geometry,material);mesh.updateMatrixWorld();return mesh;});

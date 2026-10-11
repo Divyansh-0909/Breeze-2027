@@ -42,27 +42,48 @@ function tubeVertex(z:number,p:readonly number[]):Vertex {
   const n=tubeNoise(z,p[1]);
   return [tunnelCenterX(z)+p[0]+n,p[1]+(p[1]>1?n*.5:0),z];
 }
+/** Work-in-progress-2027's original faceted rock ring, fitted to the current layout. */
 export function quarryGeometry() {
-  const rock=new RockMesh(),q=world.quarry;
-  const centerZ=(Math.min(...q.boundary.map(p=>p[1]))+Math.max(...q.boundary.map(p=>p[1])))/2;
-  for(let i=0;i<q.boundary.length;i++) {
-    const a=q.boundary[i],b=q.boundary[(i+1)%q.boundary.length];
-    const vertex=(u:number,v:number):Vertex=>{
-      const x=lerp(a[0],b[0],u),z=lerp(a[1],b[1],u),radius=Math.hypot(x,z-centerZ);
-      const angle=(i+u)/q.boundary.length*Math.PI*2;
-      const height=lerp(q.wallHeights[i],q.wallHeights[(i+1)%q.boundary.length],u);
-      const fractured=Math.sin(angle*53+v*21)*.8+Math.sin(angle*91-v*9)*.34;
-      const bench=Math.floor(v*4),setback=v*7.5+Math.sin(v*Math.PI*8)*.55+fractured*Math.sin(v*Math.PI);
-      const base=i===0?Math.max(...world.tunnel.profile.map(p=>p[1]))+.2:0;
-      return [x+x/radius*setback,lerp(base,height,v)+Math.sin(angle*17+v*4)*Math.sin(v*Math.PI)*1.2,z+(z-centerZ)/radius*setback+(bench%2?.12:0)];
-    };
-    for(let s=0;s<10;s++) for(let l=0;l<12;l++) {
-      const u=s/10,v=(s+1)/10,y=l/12,ny=(l+1)/12;
-      const shade=.77+Math.sin((i+u)*1.4+y*.7)*.035+(l/12)*.12;
-      rock.quad(vertex(u,y),vertex(v,y),vertex(v,ny),vertex(u,ny),shade);
+  const rock=new RockMesh(),boundary=world.quarry.boundary;
+  const minX=Math.min(...boundary.map(p=>p[0])),maxX=Math.max(...boundary.map(p=>p[0]));
+  const minZ=Math.min(...boundary.map(p=>p[1])),maxZ=Math.max(...boundary.map(p=>p[1]));
+  const centerX=(minX+maxX)/2,centerZ=(minZ+maxZ)/2;
+  // Uniform scaling keeps the original rock proportions around the larger world.
+  const scale=((maxX-minX)/94+(maxZ-minZ)/126)/2;
+  const source=new THREE.DodecahedronGeometry(1,0),vertices=source.getAttribute("position");
+  try {
+    for(let i=0;i<28;i++) {
+      // Preserve the original three-rock gap around the current tunnel opening.
+      if(i===0 || i===1 || i===27) continue;
+      const angle=i/28*Math.PI*2,dx=Math.sin(angle),dz=Math.cos(angle);
+      let distance=Infinity,edge=0;
+      for(let j=0;j<boundary.length;j++) {
+        const a=boundary[j],b=boundary[(j+1)%boundary.length];
+        const ex=b[0]-a[0],ez=b[1]-a[1],denominator=dx*ez-dz*ex;
+        if(Math.abs(denominator)<.00001) continue;
+        const ax=a[0]-centerX,az=a[1]-centerZ;
+        const t=(ax*ez-az*ex)/denominator,u=(ax*dz-az*dx)/denominator;
+        if(t>0 && u>=0 && u<=1 && t<distance) {distance=t;edge=j;}
+      }
+      const a=boundary[edge],b=boundary[(edge+1)%boundary.length];
+      const ex=b[0]-a[0],ez=b[1]-a[1],length=Math.hypot(ex,ez),nx=-ez/length,nz=ex/length;
+      const h=21+Math.sin(i*4.1)*6;
+      const matrix=new THREE.Matrix4().compose(new THREE.Vector3(),
+        new THREE.Quaternion().setFromEuler(new THREE.Euler(.08*Math.sin(i),angle,.1*Math.cos(i))),
+        new THREE.Vector3(14*scale,h*scale,12*scale));
+      const points:Vertex[]=[];
+      let minimum=Infinity;
+      for(let j=0;j<vertices.count;j++) {
+        const p=new THREE.Vector3().fromBufferAttribute(vertices,j).applyMatrix4(matrix);
+        minimum=Math.min(minimum,p.x*nx+p.z*nz);points.push([p.x,p.y,p.z]);
+      }
+      // Keep the complete rock outside the existing walkable collision perimeter.
+      const offset=.25-minimum,x=centerX+dx*distance+nx*offset,z=centerZ+dz*distance+nz*offset;
+      for(const p of points) {p[0]+=x;p[1]+=(h*.47-2)*scale;p[2]+=z;}
+      for(let j=0;j<points.length;j+=3) rock.triangle(points[j],points[j+1],points[j+2],1,i%3===0?"#74776d":"#838479");
     }
-  }
-  return rock.finish();
+    return rock.finish();
+  } finally {source.dispose();}
 }
 export function tunnelGeometry() {
   const rock=new RockMesh(),profile=world.tunnel.profile;

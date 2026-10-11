@@ -1,0 +1,36 @@
+[
+  {
+    "name": "gap-browser-final",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/gap-browser.mjs"
+    ],
+    "environmentOverrides": {},
+    "exitCode": 0,
+    "elapsedSeconds": 14.183154582977295
+  },
+  {
+    "name": "camera-final",
+    "command": [
+      "npm",
+      "run",
+      "test:immersive:browser"
+    ],
+    "environmentOverrides": {
+      "GULLYVERSE_CAMERA_ONLY": "1",
+      "GULLYVERSE_ARTIFACT_DIR": "reports/stage-1-final-2026-10-11/raw/camera-final"
+    },
+    "exitCode": 0,
+    "elapsedSeconds": 175.73516464233398
+  },
+  {
+    "name": "additional-captures",
+    "command": [
+      "node",
+      "reports/stage-1-final-2026-10-11/scripts/additional-captures.mjs"
+    ],
+    "environmentOverrides": {},
+    "exitCode": 0,
+    "elapsedSeconds": 45.672605752944946
+  }
+]

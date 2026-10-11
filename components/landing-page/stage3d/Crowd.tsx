@@ -3,6 +3,7 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "re
 import { useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { disposeUnpublishedPoses } from "./poseResources";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
 /**
@@ -47,35 +48,33 @@ function bakePose(root: THREE.Object3D, clips: THREE.AnimationClip[], time: numb
   root.updateMatrixWorld(true);
 
   const geoms: THREE.BufferGeometry[] = [];
-  const v = new THREE.Vector3();
-  root.traverse((o) => {
-    const sm = o as THREE.SkinnedMesh;
-    if (!sm.isSkinnedMesh) return;
-    sm.skeleton.update();
-    const src = sm.geometry;
-    const pos = src.attributes.position as THREE.BufferAttribute;
-    const baked = new Float32Array(pos.count * 3);
-    for (let i = 0; i < pos.count; i++) {
-      v.fromBufferAttribute(pos, i);
-      sm.applyBoneTransform(i, v); // CPU skinning at this animation frame
-      v.applyMatrix4(sm.matrixWorld);
-      baked.set([v.x, v.y, v.z], i * 3);
-    }
-    const g = new THREE.BufferGeometry();
-    g.setAttribute("position", new THREE.BufferAttribute(baked, 3));
-    if (src.index) g.setIndex(src.index.clone());
-    geoms.push(g);
-  });
-  mixer.stopAllAction();
-
-  const merged = mergeGeometries(geoms, false)!;
-  merged.computeVertexNormals();
-  merged.computeBoundingBox();
-  const bb = merged.boundingBox!;
-  const height = bb.max.y - bb.min.y;
-  merged.translate(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2);
-  merged.scale(1 / height, 1 / height, 1 / height);
-  return merged;
+  let merged: THREE.BufferGeometry | null = null;
+  try {
+    const v = new THREE.Vector3();
+    root.traverse((o) => {
+      const sm = o as THREE.SkinnedMesh;
+      if (!sm.isSkinnedMesh) return;
+      sm.skeleton.update();
+      const src = sm.geometry, pos = src.attributes.position as THREE.BufferAttribute;
+      const baked = new Float32Array(pos.count * 3);
+      for (let i = 0; i < pos.count; i++) {
+        v.fromBufferAttribute(pos, i); sm.applyBoneTransform(i, v); v.applyMatrix4(sm.matrixWorld);
+        baked.set([v.x, v.y, v.z], i * 3);
+      }
+      const geometry = new THREE.BufferGeometry(); geoms.push(geometry);
+      geometry.setAttribute("position", new THREE.BufferAttribute(baked, 3));
+      if (src.index) geometry.setIndex(src.index.clone());
+    });
+    merged = mergeGeometries(geoms, false);
+    if (!merged) throw new Error("Crowd pose could not be merged");
+    merged.computeVertexNormals(); merged.computeBoundingBox();
+    const bb = merged.boundingBox!, height = bb.max.y - bb.min.y;
+    if (!Number.isFinite(height) || height <= 0) throw new Error("Invalid crowd pose height");
+    merged.translate(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2);
+    merged.scale(1 / height, 1 / height, 1 / height);
+    return merged;
+  } catch (error) { merged?.dispose(); throw error; }
+  finally { geoms.forEach(geometry => geometry.dispose()); mixer.stopAllAction(); mixer.uncacheRoot(root); }
 }
 
 type Person = { x: number; z: number; h: number; yaw: number; variant: number };
@@ -88,6 +87,16 @@ type Person = { x: number; z: number; h: number; yaw: number; variant: number };
  * client-side navigation precisely because it lives at module scope.
  */
 let warmBaked: THREE.BufferGeometry[] | null = null;
+function publishPoses(out: THREE.BufferGeometry[]) {
+  if (!warmBaked) warmBaked = out;
+  else if (warmBaked !== out) disposeUnpublishedPoses(out, warmBaked);
+  return warmBaked;
+}
+function bakeAll(man: GLTF, woman: GLTF) {
+  const out: THREE.BufferGeometry[] = [];
+  try { for (const gltf of [man, woman]) for (const time of POSE_TIMES) out.push(bakePose(gltf.scene, gltf.animations, time)); return publishPoses(out); }
+  catch (error) { disposeUnpublishedPoses(out, warmBaked); throw error; }
+}
 
 /** Pre-bake the crowd off the critical path. Safe to call repeatedly. */
 let warming: Promise<void> | null = null;
@@ -107,12 +116,13 @@ export function warmCrowd(): Promise<void> {
       [woman, POSE_TIMES[1]],
     ];
     const out: THREE.BufferGeometry[] = [];
-    for (const [gltf, t] of jobs) {
-      // spaced out so the page hosting the warm-up never feels it
-      await new Promise((r) => setTimeout(r, 150));
-      out.push(bakePose(gltf.scene, gltf.animations, t));
-    }
-    warmBaked = out;
+    try {
+      for (const [gltf, t] of jobs) {
+        await new Promise((r) => setTimeout(r, 150));
+        out.push(bakePose(gltf.scene, gltf.animations, t));
+      }
+      publishPoses(out);
+    } finally { disposeUnpublishedPoses(out, warmBaked); }
   })().catch(() => {
     warming = null; // a failed warm-up must not poison later attempts
   }) as Promise<void>;
@@ -153,15 +163,13 @@ export default function Crowd({
     () =>
       warmBaked ??
       (immediate
-        ? [
-            ...POSE_TIMES.map((t) => bakePose(manGltf.scene, manGltf.animations, t)),
-            ...POSE_TIMES.map((t) => bakePose(womanGltf.scene, womanGltf.animations, t)),
-          ]
+        ? bakeAll(manGltf, womanGltf)
         : null),
     [immediate, manGltf, womanGltf]
   );
 
   const [chunked, setChunked] = useState<THREE.BufferGeometry[]>([]);
+  const [bakeError, setBakeError] = useState<Error | null>(null);
   useEffect(() => {
     if (immediate || syncVariants) return;
     let alive = true;
@@ -173,21 +181,19 @@ export default function Crowd({
     ];
     const out: THREE.BufferGeometry[] = [];
     void (async () => {
-      for (const [gltf, t] of jobs) {
-        // a real gap, not just a yield: each bake ends with a GPU buffer
-        // upload when its mesh mounts, and those need room to drain too
-        await new Promise((r) => setTimeout(r, bakeDelayMs));
-        if (!alive) return;
-        const start = performance.now();
-        out.push(bakePose(gltf.scene, gltf.animations, t));
-        onBake?.(performance.now() - start);
-        setChunked([...out]);
-      }
-      warmBaked = out; // whoever baked it, everyone after gets it for free
+      try {
+        for (const [gltf, t] of jobs) {
+          await new Promise((resolve) => setTimeout(resolve, bakeDelayMs));
+          if (!alive) return;
+          const start = performance.now();
+          out.push(bakePose(gltf.scene, gltf.animations, t));
+          onBake?.(performance.now() - start);
+        }
+        if (alive) setChunked(publishPoses(out));
+      } catch (error) { if (alive) setBakeError(error instanceof Error ? error : new Error(String(error))); }
+      finally { disposeUnpublishedPoses(out, warmBaked); }
     })();
-    return () => {
-      alive = false;
-    };
+    return () => { alive = false; disposeUnpublishedPoses(out, warmBaked); };
   }, [immediate, syncVariants, manGltf, womanGltf, bakeDelayMs, onBake]);
 
   // instanced meshes mount per-variant as bakes land, spreading the GPU
@@ -195,7 +201,7 @@ export default function Crowd({
   const variants = syncVariants ?? chunked;
   useEffect(() => {
     if (variants.length === 4) {
-      warmBaked = variants;
+      publishPoses(variants);
       onReady?.();
     }
   }, [variants, onReady]);
@@ -258,6 +264,7 @@ export default function Crowd({
   const silhouette = useMemo(() => new THREE.MeshLambertMaterial({ color: "#05060a" }), []);
   useEffect(() => () => silhouette.dispose(), [silhouette]);
 
+  if (bakeError) throw bakeError;
   return (
     <group>
       {variants.map((geo, vi) => (

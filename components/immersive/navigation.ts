@@ -116,3 +116,20 @@ export function constrain(id: LocationId, p: Pose): void {
     if(correction<0.000001) break;
   }
 }
+
+/** Fresh entry and deliberate Home arrival share the existing coordinator. */
+export function initialNavigation(path: string, search: string, history: unknown, entered = false) {
+  const location = locationFromPath(path) ?? "hub";
+  const intent = new URLSearchParams(search).get("arrival");
+  const marked = !!history && typeof history === "object" && "breezeArrival" in history && history.breezeArrival === "hub";
+  return { location, intro: location === "hub" && (intent === "entrance" || !(intent === "hub" || marked || entered)) };
+}
+export function immersiveHref(id: LocationId, entrance = false) {
+  return id === "hub" ? `/?arrival=${entrance ? "entrance" : "hub"}` : locations[id].href;
+}
+export function enteredGullyverse(): boolean {
+  try { return window.sessionStorage.getItem("breeze:entered") === "1"; } catch { return false; }
+}
+export function rememberGullyverseEntry() {
+  try { window.sessionStorage.setItem("breeze:entered", "1"); } catch { /* Explicit URLs/history still work without storage. */ }
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "traceEntry": "trace.network",
+    "startedDateTime": "2026-10-10T22:31:38.443Z",
+    "request": {
+      "method": "GET",
+      "url": "http://127.0.0.1:3000/after-movie.mp4",
+      "httpVersion": "HTTP/1.1",
+      "cookies": [],
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "Accept-Encoding",
+          "value": "identity;q=1, *;q=0"
+        },
+        {
+          "name": "Range",
+          "value": "bytes=0-"
+        },
+        {
+          "name": "Referer",
+          "value": "http://127.0.0.1:3000/aftermovie?diagnostics"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36"
+        },
+        {
+          "name": "sec-ch-ua",
+          "value": "\"Chromium\";v=\"151\", \"Not=A?Brand\";v=\"99\""
+        },
+        {
+          "name": "sec-ch-ua-mobile",
+          "value": "?0"
+        },
+        {
+          "name": "sec-ch-ua-platform",
+          "value": "\"Linux\""
+        }
+      ],
+      "queryString": [],
+      "headersSize": -1,
+      "bodySize": 0
+    },
+    "response": {
+      "status": 206,
+      "statusText": "Partial Content",
+      "httpVersion": "HTTP/1.1",
+      "cookies": [],
+      "headers": [
+        {
+          "name": "Accept-Ranges",
+          "value": "bytes"
+        },
+        {
+          "name": "Cache-Control",
+          "value": "public, max-age=0"
+        },
+        {
+          "name": "Connection",
+          "value": "keep-alive"
+        },
+        {
+          "name": "Content-Length",
+          "value": "52291090"
+        },
+        {
+          "name": "Content-Range",
+          "value": "bytes 0-52291089/52291090"
+        },
+        {
+          "name": "Content-Type",
+          "value": "video/mp4"
+        },
+        {
+          "name": "Date",
+          "value": "Sat, 10 Oct 2026 22:31:38 GMT"
+        },
+        {
+          "name": "ETag",
+          "value": "W/\"31de612-1a12122857b\""
+        },
+        {
+          "name": "Keep-Alive",
+          "value": "timeout=5"
+        },
+        {
+          "name": "Last-Modified",
+          "value": "Fri, 09 Oct 2026 14:47:52 GMT"
+        }
+      ],
+      "content": {
+        "size": -1,
+        "mimeType": "video/mp4"
+      },
+      "headersSize": -1,
+      "bodySize": -1,
+      "redirectURL": "",
+      "_transferSize": -1,
+      "_failureText": "net::ERR_ABORTED"
+    },
+    "timings": {
+      "dns": 0.039,
+      "connect": 4.515,
+      "ssl": 6.204,
+      "send": 0,
+      "wait": 8.55,
+      "receive": -1
+    },
+    "time": 19.308,
+    "resourceType": "media"
+  }
+]

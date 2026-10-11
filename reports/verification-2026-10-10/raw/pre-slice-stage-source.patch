@@ -1,0 +1,334 @@
+diff --git a/components/landing-page/stage3d/Barricades.tsx b/components/landing-page/stage3d/Barricades.tsx
+index f4b9141..5055401 100644
+--- a/components/landing-page/stage3d/Barricades.tsx
++++ b/components/landing-page/stage3d/Barricades.tsx
+@@ -1,5 +1,5 @@
+ "use client";
+-import React, { useLayoutEffect, useMemo, useRef } from "react";
++import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+ import * as THREE from "three";
+ import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
+ import { STAGE } from "./palette";
+@@ -46,6 +46,7 @@ export default function Barricades(): React.ReactElement {
+     []
+   );
+ 
++  useEffect(() => () => { geometry.dispose(); material.dispose(); }, [geometry, material]);
+   const segments = useMemo<Seg[]>(() => {
+     const { halfW, frontZ } = STAGE;
+     const runwayHalfW = 3.55; // crowd keeps |x| > 3.7
+diff --git a/components/landing-page/stage3d/Crowd.tsx b/components/landing-page/stage3d/Crowd.tsx
+index e91d5a4..0b3396d 100644
+--- a/components/landing-page/stage3d/Crowd.tsx
++++ b/components/landing-page/stage3d/Crowd.tsx
+@@ -121,7 +121,19 @@ export function warmCrowd(): Promise<void> {
+ 
+ export default function Crowd({
+   immediate = false,
++  count = COUNT,
++  onReady,
++  clearApproach = false,
++  bakeDelayMs = 150,
++  onBake,
+ }: {
++  count?: number;
++  onReady?: () => void;
++  /** Shared quarry needs a continuous walking lane through the viewing enclosure. */
++  clearApproach?: boolean;
++  /** Covered preparation can yield without pacing delays; standalone behavior stays unchanged. */
++  bakeDelayMs?: number;
++  onBake?: (ms: number) => void;
+   /**
+    * Bake all four pose variants synchronously on mount. Right for contexts
+    * that must have the full crowd on their first frame (the flythrough
+@@ -164,9 +176,11 @@ export default function Crowd({
+       for (const [gltf, t] of jobs) {
+         // a real gap, not just a yield: each bake ends with a GPU buffer
+         // upload when its mesh mounts, and those need room to drain too
+-        await new Promise((r) => setTimeout(r, 150));
++        await new Promise((r) => setTimeout(r, bakeDelayMs));
+         if (!alive) return;
++        const start = performance.now();
+         out.push(bakePose(gltf.scene, gltf.animations, t));
++        onBake?.(performance.now() - start);
+         setChunked([...out]);
+       }
+       warmBaked = out; // whoever baked it, everyone after gets it for free
+@@ -174,19 +188,25 @@ export default function Crowd({
+     return () => {
+       alive = false;
+     };
+-  }, [immediate, syncVariants, manGltf, womanGltf]);
++  }, [immediate, syncVariants, manGltf, womanGltf, bakeDelayMs, onBake]);
+ 
+   // instanced meshes mount per-variant as bakes land, spreading the GPU
+   // uploads the same way the CPU work is spread
+   const variants = syncVariants ?? chunked;
++  useEffect(() => {
++    if (variants.length === 4) {
++      warmBaked = variants;
++      onReady?.();
++    }
++  }, [variants, onReady]);
+ 
+   const people = useMemo<Person[]>(() => {
+     const rand = mulberry32(2027);
+     const out: Person[] = [];
+-    while (out.length < COUNT) {
++    while (out.length < count) {
+       const x = (rand() * 2 - 1) * 22;
+       const z = 4.5 + rand() * 18;
+-      if (Math.abs(x) < 3.7 && z < 15.2) continue; // keep the runway clear
++      if (Math.abs(x) < 3.7 && (clearApproach || z < 15.2)) continue;
+       // far rows (near the stage) read as pure silhouette — lean harder on
+       // the 3x-cheaper man mesh there; near rows keep the full mix
+       const isMan = rand() < (z < 14 ? 0.8 : MAN_SHARE);
+@@ -199,7 +219,7 @@ export default function Crowd({
+       });
+     }
+     return out;
+-  }, []);
++  }, [count,clearApproach]);
+ 
+   const refs = useRef<(THREE.InstancedMesh | null)[]>([]);
+ 
+@@ -226,10 +246,17 @@ export default function Crowd({
+       mesh.instanceMatrix.needsUpdate = true;
+     });
+   }, [people, variants]);
++  useLayoutEffect(() => {
++    const instances = refs.current.filter((mesh): mesh is THREE.InstancedMesh => mesh !== null);
++    // dispose=null protects shared baked geometry, but each mesh still owns
++    // its instance buffers and must release those on density change/unmount.
++    return () => instances.forEach((mesh) => mesh.dispose());
++  }, [variants, count]);
+ 
+   // Lambert, not Standard: near-black silhouettes show no specular anyway,
+   // and PBR × ~3M crowd triangles × every dynamic light is the frame budget
+   const silhouette = useMemo(() => new THREE.MeshLambertMaterial({ color: "#05060a" }), []);
++  useEffect(() => () => silhouette.dispose(), [silhouette]);
+ 
+   return (
+     <group>
+@@ -239,7 +266,8 @@ export default function Crowd({
+           ref={(el) => {
+             refs.current[vi] = el;
+           }}
+-          args={[geo, silhouette, COUNT]}
++          args={[geo, silhouette, count]}
++          dispose={null}
+           frustumCulled={false}
+         />
+       ))}
+diff --git a/components/landing-page/stage3d/Fireworks.tsx b/components/landing-page/stage3d/Fireworks.tsx
+index 851b763..7c7ed19 100644
+--- a/components/landing-page/stage3d/Fireworks.tsx
++++ b/components/landing-page/stage3d/Fireworks.tsx
+@@ -82,6 +82,7 @@ export default function Fireworks({ active }: { active: boolean }): React.ReactE
+   );
+   const sparkGeo = useMemo(() => makeGeometry(s.sparks), [s]);
+   const flameGeo = useMemo(() => makeGeometry(s.flames), [s]);
++  useEffect(() => () => { sparkGeo.dispose(); flameGeo.dispose(); }, [sparkGeo, flameGeo]);
+   const lightRefs = useRef<(THREE.PointLight | null)[]>([]);
+   // mount the firelights only while the show runs — even zero-intensity
+   // lights cost every lit material a slot in its light loop
+@@ -101,6 +102,7 @@ export default function Fireworks({ active }: { active: boolean }): React.ReactE
+     return m;
+   }, []);
+ 
++  useEffect(() => () => { sparkMat.map?.dispose(); sparkMat.dispose(); }, [sparkMat]);
+   const flameMat = useMemo(() => {
+     const m = new THREE.PointsMaterial({
+       size: 0.65,
+@@ -115,6 +117,7 @@ export default function Fireworks({ active }: { active: boolean }): React.ReactE
+     return m;
+   }, []);
+ 
++  useEffect(() => () => { flameMat.map?.dispose(); flameMat.dispose(); }, [flameMat]);
+   useFrame((_, rawDt) => {
+     if (s.done) return; // pods stay visible; fire only when triggered
+     const dt = Math.min(rawDt, 0.05);
+diff --git a/components/landing-page/stage3d/LEDScreens.tsx b/components/landing-page/stage3d/LEDScreens.tsx
+index d485336..056ecc1 100644
+--- a/components/landing-page/stage3d/LEDScreens.tsx
++++ b/components/landing-page/stage3d/LEDScreens.tsx
+@@ -305,16 +305,32 @@ export default function LEDScreens({
+   }, []);
+ 
+   // bind the shared video texture; the idle↔video blend animates in useFrame
++  const blankVideo = useMemo(() => materials[0].uniforms.uVideo.value as THREE.Texture, [materials]);
+   useEffect(() => {
+-    if (!videoTexture) return;
+-    for (const m of materials) m.uniforms.uVideo.value = videoTexture;
+-  }, [videoTexture, materials]);
++    if (videoTexture) { for (const m of materials) m.uniforms.uVideo.value = videoTexture; return; }
++    // Stop sampling the released media texture after the existing exit fade.
++    const timer = window.setTimeout(() => { for (const m of materials) m.uniforms.uVideo.value = blankVideo; }, 400);
++    return () => window.clearTimeout(timer);
++  }, [videoTexture, materials, blankVideo]);
+ 
+   // fade timing: the texture prop now arrives with the first real playback
+   // frame, so the wall breathes up almost immediately; exit is quick
+   const FADE_DELAY = 0.15;
+   const FADE_IN = 1.0;
+   const FADE_OUT = 0.35;
++  // Generated textures belong to this scene. The externally owned video and
++  // useLoader assets are excluded so return travel cannot poison shared caches.
++  const ownedTextures = useMemo(() => {
++    const textures = new Set<THREE.Texture>();
++    materials.forEach((m) => ["uLogo", "uLoadLabel", "uVideo"].forEach((name) => textures.add(m.uniforms[name].value)));
++    if (glowMat.map) textures.add(glowMat.map);
++    return textures;
++  }, [materials, glowMat]);
++  useEffect(() => () => {
++    ownedTextures.forEach((texture) => texture.dispose());
++    materials.forEach((material) => material.dispose());
++    glowMat.dispose();
++  }, [ownedTextures, materials, glowMat]);
+   const fade = useRef(0);
+   const fadeStartAt = useRef<number | null>(null);
+ 
+diff --git a/components/landing-page/stage3d/Lights.tsx b/components/landing-page/stage3d/Lights.tsx
+index f47396e..10ff26d 100644
+--- a/components/landing-page/stage3d/Lights.tsx
++++ b/components/landing-page/stage3d/Lights.tsx
+@@ -1,5 +1,5 @@
+ "use client";
+-import React, { useMemo, useRef } from "react";
++import React, { useEffect, useMemo, useRef } from "react";
+ import { useFrame } from "@react-three/fiber";
+ import * as THREE from "three";
+ 
+@@ -77,6 +77,7 @@ function MovingHead({
+     return m;
+   }, [color]);
+   const lensBase = useMemo(() => new THREE.Color(color), [color]);
++  useEffect(() => () => { beamMat.dispose(); lensMat.dispose(); }, [beamMat, lensMat]);
+   // real spotlight target riding inside the rig, 10 units down the beam axis —
+   // the light pool on the deck follows the visible cone exactly
+   const spotTarget = useMemo(() => {
+diff --git a/components/landing-page/stage3d/Trusses.tsx b/components/landing-page/stage3d/Trusses.tsx
+index 3579bff..a42ad5b 100644
+--- a/components/landing-page/stage3d/Trusses.tsx
++++ b/components/landing-page/stage3d/Trusses.tsx
+@@ -1,5 +1,5 @@
+ "use client";
+-import React, { useLayoutEffect, useMemo, useRef } from "react";
++import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+ import { useLoader } from "@react-three/fiber";
+ import * as THREE from "three";
+ import { PALETTE, STAGE } from "./palette";
+@@ -63,28 +63,41 @@ function boxTruss(out: Member[], a: THREE.Vector3, b: THREE.Vector3, w = 0.5) {
+ 
+ const v = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
+ 
+-export default function Trusses(): React.ReactElement {
++type TrussesProps = {
++  /** Reuse only the stage's front portal and logo for hub wayfinding. */
++  frontOnly?: boolean;
++  width?: number;
++  height?: number;
++  frontZ?: number;
++};
++
++export default function Trusses({ frontOnly = false, width = 26, height = 12.15, frontZ = STAGE.frontZ + 2.5 }: TrussesProps = {}): React.ReactElement {
++  const topY = height - 0.5;
+   const members = useMemo<Member[]>(() => {
+     const m: Member[] = [];
+-    const { frontZ, backZ } = STAGE;
+-    const rigFrontZ = frontZ + 2.5; // front plane of the rig pushed out past the deck edge
++    const { backZ } = STAGE;
++    const rigFrontZ = frontZ;
++    const halfWidth = width / 2;
++    const overhang = width * 4 / 26;
+     // Roof support towers (4 corners of the canopy) — slightly wider than the
+     // deck so the rig visually clears the LED wall
+-    for (const x of [-13, 13]) {
+-      boxTruss(m, v(x, 0, rigFrontZ), v(x, 12.15, rigFrontZ), 0.75);
+-      boxTruss(m, v(x, 0, backZ), v(x, 12.15, backZ), 0.75);
++    for (const x of [-halfWidth, halfWidth]) {
++      boxTruss(m, v(x, 0, rigFrontZ), v(x, height, rigFrontZ), 0.75);
++      if (!frontOnly) boxTruss(m, v(x, 0, backZ), v(x, height, backZ), 0.75);
+     }
+     // Roof beams: front (carries moving heads, overhangs the towers) + back
+-    boxTruss(m, v(-17, 11.65, rigFrontZ), v(17, 11.65, rigFrontZ), 0.75);
+-    boxTruss(m, v(-13, 11.65, backZ), v(13, 11.65, backZ), 0.75);
+-    // Side beams — connect the front and back corners so the rig reads as one box
+-    boxTruss(m, v(-13, 11.65, rigFrontZ), v(-13, 11.65, backZ), 0.75);
+-    boxTruss(m, v(13, 11.65, rigFrontZ), v(13, 11.65, backZ), 0.75);
+-    // Mid cross beam — spans the middle of the roof, parallel to the front beam
+-    const midZ = (rigFrontZ + backZ) / 2;
+-    boxTruss(m, v(-13, 11.65, midZ), v(13, 11.65, midZ), 0.75);
++    boxTruss(m, v(-halfWidth - overhang, topY, rigFrontZ), v(halfWidth + overhang, topY, rigFrontZ), 0.75);
++    if (!frontOnly) {
++      boxTruss(m, v(-halfWidth, topY, backZ), v(halfWidth, topY, backZ), 0.75);
++      // Side beams — connect the front and back corners so the rig reads as one box
++      boxTruss(m, v(-halfWidth, topY, rigFrontZ), v(-halfWidth, topY, backZ), 0.75);
++      boxTruss(m, v(halfWidth, topY, rigFrontZ), v(halfWidth, topY, backZ), 0.75);
++      // Mid cross beam — spans the middle of the roof, parallel to the front beam
++      const midZ = (rigFrontZ + backZ) / 2;
++      boxTruss(m, v(-halfWidth, topY, midZ), v(halfWidth, topY, midZ), 0.75);
++    }
+     return m;
+-  }, []);
++  }, [frontOnly, width, height, frontZ, topY]);
+ 
+   const ref = useRef<THREE.InstancedMesh>(null!);
+   useLayoutEffect(() => {
+@@ -98,6 +111,11 @@ export default function Trusses(): React.ReactElement {
+       scale.set(mem.r, mem.len, mem.r);
+       mat.compose(mem.pos, mem.quat, scale);
+       ref.current.setMatrixAt(i, mat);
++      if (frontOnly) {
++        // Hub daylight shades the reused steel; stage-only LED occlusion does not.
++        ref.current.setColorAt(i, lit);
++        return;
++      }
+       // shade per member by how much LED-wall light can actually reach it:
+       // - depth: fully shadowed behind the wall, ramping up toward the front
+       // - height: the wall tops out ~y 10.5, so high members dim with altitude
+@@ -124,27 +142,27 @@ export default function Trusses(): React.ReactElement {
+     });
+     ref.current.instanceMatrix.needsUpdate = true;
+     if (ref.current.instanceColor) ref.current.instanceColor.needsUpdate = true;
+-  }, [members]);
++  }, [members, frontOnly]);
+ 
+   return (
+-    <group>
++    <group name={frontOnly ? "navigation-front-truss" : "stage-trusses"}>
+       <instancedMesh ref={ref} args={[undefined, undefined, members.length]} frustumCulled={false}>
+         <cylinderGeometry args={[1, 1, 1, 6, 1]} />
+         <meshStandardMaterial color={PALETTE.steel} metalness={0.85} roughness={0.35} />
+       </instancedMesh>
+       {/* black signage board mounted on the front face of the front top beam */}
+-      <mesh position={[0, 11.65, 7.05]}>
++      <mesh position={[0, topY, frontZ + 0.55]}>
+         <boxGeometry args={[4.6, 2.2, 0.3]} />
+         <meshStandardMaterial color="#050608" roughness={0.8} metalness={0.2} />
+       </mesh>
+-      <LogoBoard />
++      <LogoBoard position={[0, topY, frontZ + 0.72]} />
+     </group>
+   );
+ }
+ 
+ /** Glowing Breeze logo on the signage board (image has generous transparent
+     padding, so the plane oversizes the board while the glyphs fit inside). */
+-function LogoBoard(): React.ReactElement {
++function LogoBoard({ position }: { position: [number, number, number] }): React.ReactElement {
+   const tex = useLoader(THREE.TextureLoader, breezeLogo.src);
+   const material = useMemo(() => {
+     tex.colorSpace = THREE.SRGBColorSpace;
+@@ -157,9 +175,10 @@ function LogoBoard(): React.ReactElement {
+     m.toneMapped = false;
+     return m;
+   }, [tex]);
++  useEffect(() => () => material.dispose(), [material]);
+ 
+   return (
+-    <mesh position={[0, 11.65, 7.22]} material={material}>
++    <mesh position={position} material={material}>
+       <planeGeometry args={[4.4, 4.4 / 1.5]} />
+     </mesh>
+   );

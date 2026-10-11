@@ -1,0 +1,10 @@
+components/immersive/ImmersiveShell.tsx:78:      <Canvas dpr={Math.min(window.devicePixelRatio, QUALITY_DPR[state.quality])} camera={{ ...world.camera, position: point3(world.landing.position) }} gl={{ antialias: false, powerPreference: "high-performance" }} fallback={<Fallback error="WebGL2 unavailable" />}>
+components/landing-page/stage3d/ConcertStageHero.tsx:169:    useLoader.preload(GLTFLoader, ["/models/Man.glb", "/models/Animated-Woman.glb"]);
+components/landing-page/stage3d/ConcertStageHero.tsx:176:      <Canvas
+components/landing-page/stage3d/Crowd.tsx:94:export function warmCrowd(): Promise<void> {
+components/landing-page/stage3d/warmup.ts:23:export function warmStage(): void {
+components/landing-page/stage3d/warmup.ts:31:  void warmCrowd();
+components/landing-page/gate3d/GateHero.tsx:763:      if (href.startsWith("/aftermovie")) warmStage();
+components/landing-page/gate3d/GateHero.tsx:801:      <Canvas
+app/(user)/flythrough-rec/page.tsx:180:        <Canvas
+app/(user)/team/BackstageCorridor.tsx:59:  return <Canvas shadows dpr={[1, 1.5]} camera={{ fov: 43, near: .1, far: 90, position: [12.5, 4.6, 17.5] }} gl={{ antialias: true, powerPreference: "high-performance" }} onCreated={({ gl }) => { gl.toneMapping = THREE.ACESFilmicToneMapping; gl.toneMappingExposure = 1.05; gl.shadowMap.type = THREE.PCFSoftShadowMap; }}><Scene onFinish={onFinish} instant={instant} /><EffectComposer multisampling={0}><Bloom intensity={.38} luminanceThreshold={1.05} mipmapBlur /><Vignette eskil={false} offset={.13} darkness={.62} /><Noise opacity={.012} /></EffectComposer></Canvas>;

@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "name": "Fresh click entry, authored pacing and initial persistent Canvas",
+      "status": "PASS",
+      "evidence": {
+        "entranceMs": 9544,
+        "timing": {
+          "activationToLocalMs": 7290.5,
+          "largestFrameMs": 190.7000000011176,
+          "phases": [
+            {
+              "at": 702,
+              "phase": "boot",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 4306.799999998882,
+              "phase": "landing",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 7343.9000000003725,
+              "phase": "entrance",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 14634.400000000373,
+              "phase": "local",
+              "scene": "hub",
+              "serial": 0
+            }
+          ]
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        }
+      }
+    }
+  ],
+  "errors": []
+}

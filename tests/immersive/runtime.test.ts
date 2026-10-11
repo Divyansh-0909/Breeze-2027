@@ -223,7 +223,7 @@ test("inspection cannot move a visitor and portrait framing preserves the origin
   runtime.inspectionEnabled=true;assert.equal(runtime.inspect("overview"),true);
   const overview=runtime.cameraPose(390/844);
   assert.ok(Math.abs(overview.yaw)<.00001);assert.equal(overview.pitch,-Math.PI/2);
-  assert.ok(overview.y<320,"Revised overview removes excessive empty space");
+  assert.ok(overview.y<360,"Overview fits the restored outer rock masses without excessive empty space");
   assert.ok(runtime.cameraPose(390/844).fov<=82);
   runtime.input.forward=1;advance(runtime,2);assert.deepEqual(runtime.pose,saved);
   runtime.inspect(null);assert.deepEqual(runtime.pose,saved);
@@ -394,6 +394,26 @@ test("desktop and portrait map cameras fit the actual generated quarry rim and e
       assert.ok(Math.abs(point.x)<1 && Math.abs(point.y)<1,"Entrance and tunnel stay in the same full-screen map");
     }
   } finally {geometry.dispose();}
+});
+test("compact quarry contains the unscaled stage and stalls and leaves the Aftermovie rear sightline open", () => {
+  for(const footprint of obstacles.filter(o=>o.id==="stage-enclosure" || world.stalls.some(s=>s.id===o.id))) {
+    for(const x of [footprint.x-footprint.halfX,footprint.x+footprint.halfX]) for(const z of [footprint.z-footprint.halfZ,footprint.z+footprint.halfZ]) {
+      for(let i=0;i<world.quarry.boundary.length;i++) {
+        const a=world.quarry.boundary[i],b=world.quarry.boundary[(i+1)%world.quarry.boundary.length],dx=b[0]-a[0],dz=b[1]-a[1];
+        assert.ok(((x-a[0])*dz-(z-a[1])*dx)/Math.hypot(dx,dz)>.1,footprint.id+" fits inside the quarry");
+      }
+    }
+  }
+  const geometry=quarryGeometry(),material=new MeshBasicMaterial({side:DoubleSide}),mesh=new Mesh(geometry,material);
+  mesh.updateMatrixWorld();
+  try {
+    const spawn=world.aftermovie.spawn;
+    for(const target of [[0,11.4,world.scaffold.position[2]+1.8],world.hub.spawn,...world.stalls.map(s=>[s.position[0],2,s.position[2]])]) {
+      const origin=new Vector3(...spawn as [number,number,number]),end=new Vector3(...target as [number,number,number]),distance=origin.distanceTo(end);
+      const ray=new Raycaster(origin,end.sub(origin).normalize(),.01,distance-.05);
+      assert.equal(ray.intersectObject(mesh,false).length,0,"Shared quarry rocks leave hub/stall sightlines open from Aftermovie");
+    }
+  } finally {geometry.dispose();material.dispose();}
 });
 test("actual cave geometry physically occludes the exit, scaffold and stage from landing and tunnel entry", () => {
   const geometries=[portalGeometry(),tunnelGeometry()],material=new MeshBasicMaterial({side:DoubleSide});

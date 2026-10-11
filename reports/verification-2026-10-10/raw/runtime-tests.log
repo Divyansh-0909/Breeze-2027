@@ -1,0 +1,50 @@
+
+> my-landing@0.1.0 test:immersive
+> tsx --test tests/immersive/runtime.test.ts
+
+✔ landing owns controls, entrance reaches hub, and frames don't publish React state (41.629236ms)
+✔ physical threshold uses guided departure and never reveals before critical readiness (5.209106ms)
+✔ local movement is delta-aware, diagonal speed is bounded, and stage/backstage are inaccessible (5.668944ms)
+✔ route commitment preserves the current walking velocity without a stop or jump (3.790446ms)
+✔ direct URL skips introduction and an outer boundary waits for explicit covered return (1.545917ms)
+✔ superseding navigation invalidates old readiness; background restore cannot leap across routes (2.820226ms)
+✔ reduced motion preserves readiness gating and playback restores the visitor's pose (1.025794ms)
+✔ changing motion preferences publishes immediately without taking away local controls (3.926862ms)
+✔ context restoration keeps the visitor's pose and rejects readiness from before loss (5.803266ms)
+✔ context loss pauses entrance choreography and recovers initial preparation (0.99013ms)
+✔ URL navigation during recovery supersedes the interrupted destination after preparation (0.86353ms)
+✔ context loss exits film focus and returns to the saved walking pose (0.369115ms)
+✔ all signed destinations cross deliberately while unavailable sectors stay truthful (9.079147ms)
+✔ five signed directions match diagonal movement and removed Main Stage has no hidden sector (7.835395ms)
+✔ collision stops capsules before every solid footprint and quarry wall (1.173076ms)
+✔ nearby hub commitment relocates to the distant stage only after black coverage (1.193907ms)
+✔ stage, destination marker and film focus stay in the same authored coordinates (2.189817ms)
+✔ inspection cannot move a visitor and portrait framing preserves the original stage camera (1.413238ms)
+✔ entrance choreography physically follows the bent tunnel without crossing rock (1.728492ms)
+✔ portal rock shoulders stop a visitor while the arch remains clear (0.138688ms)
+✔ side stepping into a tunnel wall slides locally instead of projecting into the quarry (0.21286ms)
+✔ navigation away from playback stops media without snapping the visible film camera (0.2592ms)
+✔ every outer Aftermovie segment and chamfer opens a stationary menu without returning (0.476297ms)
+✔ front/rear/side/corner and diagonal public movement open the boundary menu (0.647515ms)
+✔ crossing the exact join of irregular perimeter segments clamps inside both faces (0.260222ms)
+✔ Stay Here preserves pose and requires moving away before another deliberate boundary crossing (0.650259ms)
+✔ looking at hub signs and sliding along a sector do not navigate (1.627761ms)
+✔ internal movement does not open a perimeter menu and playback owns movement (0.269767ms)
+✔ Escape handles overlay first, map second, and playback exactly once (0.696168ms)
+✔ boundary overlay selections use readiness and external content routing under black (30.927224ms)
+✔ map ascent/descent preserves exact player pose and does not publish on every frame (1.038854ms)
+✔ map close/open interruptions reverse continuously and reduced motion remains covered (1.256251ms)
+✔ map marker travel fades the overhead view before changing the destination pose (1.569703ms)
+✔ context loss during aerial transition restores the saved walking pose and input ownership (1.117832ms)
+✔ desktop and portrait map cameras fit the actual generated quarry rim and entrance (19.166163ms)
+✔ compact quarry contains the unscaled stage and stalls and leaves the Aftermovie rear sightline open (16.143542ms)
+✔ actual cave geometry physically occludes the exit, scaffold and stage from landing and tunnel entry (32.22553ms)
+✔ actual bent-tunnel rock releases a clear exit sightline at the authored mid and first-reveal cameras (48.099105ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 988.951487

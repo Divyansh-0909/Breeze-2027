@@ -29,7 +29,7 @@ const NotFound: React.FC = () => {
           alt="404 Illustration"
           fill
           className="object-contain object-center"
-          priority
+          loading="lazy"
           quality={100}
           unoptimized
         />

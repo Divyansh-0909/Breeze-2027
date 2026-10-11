@@ -1,7 +1,8 @@
 "use client";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { retainVideoTexture } from "./videoTextureOwnership";
 import { PALETTE, STAGE } from "./palette";
 
 /**
@@ -306,12 +307,20 @@ export default function LEDScreens({
 
   // bind the shared video texture; the idle↔video blend animates in useFrame
   const blankVideo = useMemo(() => materials[0].uniforms.uVideo.value as THREE.Texture, [materials]);
-  useEffect(() => {
-    if (videoTexture) { for (const m of materials) m.uniforms.uVideo.value = videoTexture; return; }
-    // Stop sampling the released media texture after the existing exit fade.
-    const timer = window.setTimeout(() => { for (const m of materials) m.uniforms.uVideo.value = blankVideo; }, 400);
-    return () => window.clearTimeout(timer);
-  }, [videoTexture, materials, blankVideo]);
+  const binding = useRef<{ texture: THREE.VideoTexture; release: () => void } | null>(null);
+  const detachVideo = useCallback(() => {
+    for (const material of materials) material.uniforms.uVideo.value = blankVideo;
+    const old = binding.current; binding.current = null;
+    old?.release(); // detach ALL sampler references before disposal is permitted
+  }, [materials, blankVideo]);
+  useLayoutEffect(() => {
+    if (!videoTexture) return; // retain during the existing render-driven exit fade
+    detachVideo();
+    binding.current = { texture: videoTexture, release: retainVideoTexture(videoTexture) };
+    for (const material of materials) material.uniforms.uVideo.value = videoTexture;
+    // Materials/binding stay stable until replacement or unmount, not a null prop.
+  }, [videoTexture, materials, blankVideo, detachVideo]);
+  useLayoutEffect(() => () => detachVideo(), [detachVideo]);
 
   // fade timing: the texture prop now arrives with the first real playback
   // frame, so the wall breathes up almost immediately; exit is quick
@@ -349,6 +358,7 @@ export default function LEDScreens({
     } else {
       fadeStartAt.current = null;
       fade.current = Math.max(0, fade.current - delta / FADE_OUT);
+      if (fade.current === 0 && binding.current) detachVideo();
     }
     // loading UI (spinner + label) eases in/out; the spin itself runs on uTime
     loadFade.current += ((loadingRef.current ? 1 : 0) - loadFade.current) * Math.min(1, delta * 6);

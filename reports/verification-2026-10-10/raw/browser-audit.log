@@ -1,0 +1,246 @@
+{
+  "checks": [
+    {
+      "name": "automatic tunnel entry without visitor interaction",
+      "status": "FAIL"
+    },
+    {
+      "name": "complete uninterrupted physical journey, return, map and playback",
+      "status": "PASS"
+    },
+    {
+      "name": "direct Aftermovie skips tunnel",
+      "status": "PASS"
+    },
+    {
+      "name": "history Back/Forward and Canvas identity",
+      "status": "PASS"
+    },
+    {
+      "name": "movement ignored when text input already focused",
+      "status": "PASS"
+    },
+    {
+      "name": "held movement stops when input receives focus",
+      "status": "FAIL",
+      "error": "Error: {\"before\":{\"x\":0.8817855315636383,\"y\":1.72,\"z\":-51,\"yaw\":0,\"pitch\":0.2},\"after\":{\"x\":2.3486586991234644,\"y\":1.72,\"z\":-51,\"yaw\":0,\"pitch\":0.2}}\n    at file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/browser-audit.mjs:122:386\n    at async check (file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/browser-audit.mjs:53:50)\n    at async file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/browser-audit.mjs:120:3"
+    },
+    {
+      "name": "map keyboard focus remains contained",
+      "status": "PASS"
+    },
+    {
+      "name": "blur/focus clears held movement",
+      "status": "PASS"
+    },
+    {
+      "name": "resize keeps renderer and movement functional",
+      "status": "PASS"
+    },
+    {
+      "name": "reduced-motion entry skips cinematic tunnel",
+      "status": "PASS"
+    },
+    {
+      "name": "navbar Home bypasses intro",
+      "status": "FAIL",
+      "error": "Error: Navbar Home returns to landing with Enter Gullyverse, rather than bypassing introduction.\n    at file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/browser-audit.mjs:128:229\n    at async check (file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/browser-audit.mjs:53:50)\n    at async file:///workspace/Breeze-2027-navigation/reports/verification-2026-10-10/scripts/browser-audit.mjs:128:3"
+    },
+    {
+      "name": "emulated touch movement and drag",
+      "status": "PASS"
+    }
+  ],
+  "captures": 19,
+  "segments": 7,
+  "errors": [
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/aftermovie?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/aftermovie?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Error: <line> attribute x1: Expected length, \"-Infinity\".",
+      "location": {
+        "url": "http://127.0.0.1:3000/_next/static/chunks/4474.b4744b85cde81fe4.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Error: <line> attribute y1: Expected length, \"NaN\".",
+      "location": {
+        "url": "http://127.0.0.1:3000/_next/static/chunks/4474.b4744b85cde81fe4.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Error: <line> attribute y2: Expected length, \"NaN\".",
+      "location": {
+        "url": "http://127.0.0.1:3000/_next/static/chunks/4474.b4744b85cde81fe4.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/get-in-touch",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/get-in-touch",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "url": "http://127.0.0.1:3000/?diagnostics",
+      "console": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "location": {
+        "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "writes": []
+}

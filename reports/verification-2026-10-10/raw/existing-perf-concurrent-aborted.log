@@ -1,0 +1,19 @@
+
+> my-landing@0.1.0 perf:immersive
+> node scripts/perf-gullyverse.mjs
+
+[desktop] cold load and entrance
+page.screenshot: Target page, context or browser has been closed
+Call log:
+[2m  - taking page screenshot[22m
+[2m  - waiting for fonts to load...[22m
+[2m  - fonts loaded[22m
+
+    at run (/workspace/Breeze-2027-navigation/scripts/perf-gullyverse.mjs:130:14)
+    at async file:///workspace/Breeze-2027-navigation/scripts/perf-gullyverse.mjs:393:20 {
+  log: [
+    '  - taking page screenshot',
+    '  - waiting for fonts to load...',
+    '  - fonts loaded'
+  ]
+}

@@ -1,0 +1,114 @@
+components/immersive/AftermovieScene.tsx:20:export default function AftermovieScene({ runtime, serial, quality, nearStage, overview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean }) {
+components/immersive/ImmersiveShell.tsx:14:const AftermovieScene = lazy(() => import("./AftermovieScene"));
+components/immersive/ImmersiveShell.tsx:15:const infoLinks = [["Events", "/events"], ["Team", "/team"], ["Contact us", "/get-in-touch"], ["Past sponsors", "/sponsors"], ["Merch", "/merch"]];
+components/immersive/ImmersiveShell.tsx:17:function InformationLinks() {
+components/immersive/ImmersiveShell.tsx:20:function Fallback({ error }: { error?: string }) {
+components/immersive/ImmersiveShell.tsx:28:class SceneBoundary extends Component<{ children: React.ReactNode; onError: (message: string) => void }, { failed: boolean }> {
+components/immersive/ImmersiveShell.tsx:35:export default function ImmersiveShell() {
+components/immersive/aerial.ts:4:export type CameraView = Pose & { fov: number };
+components/immersive/aerial.ts:5:const radians = Math.PI / 180;
+components/immersive/aerial.ts:6:const ease = (value: number) => { const t = Math.max(0, Math.min(1, value)); return t * t * (3 - 2 * t); };
+components/immersive/aerial.ts:9:export function mapCamera(aspect: number): CameraView {
+components/immersive/aerial.ts:41:export function composeCamera(base: CameraView, aspect: number, scene: LocationId, inspection: string | null, phase: string): CameraView {
+components/immersive/diagnostics.ts:5:export type FrameSample = { at: number; ms: number; phase: string; scene: string; poseZ: number; cpuRenderMs?: number; cpuUpdateMs?: number };
+components/immersive/diagnostics.ts:9:export type Diagnostics = {
+components/immersive/diagnostics.ts:18:function append<T>(items: T[], item: T, limit = 12000) {
+components/immersive/diagnostics.ts:21:export function recordPreparation(runtime: ImmersiveRuntime, name: string, at: number, ms: number) {
+components/immersive/diagnostics.ts:29:export function sampleMemory(scene: THREE.Scene, gl: THREE.WebGLRenderer, runtime: ImmersiveRuntime) {
+components/immersive/diagnostics.ts:60:export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRuntime) {
+components/immersive/navigation.ts:4:export type LocationId = "hub" | "aftermovie";
+components/immersive/navigation.ts:5:export type TravelId = LocationId | "entrance" | "events" | "team" | "contact" | "accommodation" | "sponsors";
+components/immersive/navigation.ts:6:export type RequestSource = "physical" | "map" | "url";
+components/immersive/navigation.ts:7:export type Pose = { x: number; y: number; z: number; yaw: number; pitch: number };
+components/immersive/navigation.ts:8:export const locations = {
+components/immersive/navigation.ts:13:export const connections = {
+components/immersive/navigation.ts:17:export type NavigationDestination = { id: TravelId; label: string; href: string | null; available: boolean; worldPosition: readonly number[] };
+components/immersive/navigation.ts:18:const spatialDestination = (id: string) => layout.destinations.find((d) => d.id === id)!;
+components/immersive/navigation.ts:19:export const destinationOptions: NavigationDestination[] = [
+components/immersive/navigation.ts:30:export const navigationDestination = (id: TravelId) => destinationOptions.find((destination) => destination.id === id)!;
+components/immersive/navigation.ts:31:export const mapLabels = destinationOptions.filter((d) => !["hub", "entrance"].includes(d.id)).map((d) => d.label);
+components/immersive/navigation.ts:32:export const travelZones = layout.hub.travelZones.map((zone) => {
+components/immersive/navigation.ts:39:export function locationFromPath(path: string): LocationId | null {
+components/immersive/navigation.ts:42:export function spawnPose(id: LocationId, approaching = false): Pose {
+components/immersive/navigation.ts:47:export function movementBoundary(id: LocationId): readonly (readonly number[])[] { return locations[id].spatial.movementBoundary; }
+components/immersive/navigation.ts:48:export function localObstacles(id: LocationId) {
+components/immersive/navigation.ts:56:const localFootprints={hub:localObstacles("hub"),aftermovie:localObstacles("aftermovie")};
+components/immersive/navigation.ts:57:export function constrainInterior(id: LocationId,p:Pose):void {
+components/immersive/navigation.ts:65:export function boundaryClearance(id: LocationId, p: Pick<Pose, "x" | "z">): number {
+components/immersive/navigation.ts:76:export function boundaryCrossings(id: LocationId, before: Pick<Pose, "x" | "z">, attempted: Pick<Pose, "x" | "z">) {
+components/immersive/navigation.ts:96:export function crossedHubDestination(crossings: ReturnType<typeof boundaryCrossings>): TravelId | null {
+components/immersive/navigation.ts:105:export function constrain(id: LocationId, p: Pose): void {
+components/immersive/runtime.ts:5:export type Phase = "boot" | "landing" | "entrance" | "local" | "departure" | "covered" | "arrival" | "context-lost" | "recovering" | "error";
+components/immersive/runtime.ts:6:export type Snapshot = { phase: Phase; scene: LocationId; destination: LocationId; serial: number; map: boolean; mapStage: "ascent" | "open" | "descent" | null; destinationMenu: boolean; unavailableDestination: TravelId | null; error: string | null; quality: number; movie: boolean; reduced: boolean; inspection: string | null };
+components/immersive/runtime.ts:7:export type Input = { forward: number; strafe: number; lookX: number; lookY: number };
+components/immersive/runtime.ts:8:const smooth = (t: number) => t * t * (3 - 2 * t);
+components/immersive/runtime.ts:9:const mix = (a: number, b: number, t: number) => a + (b - a) * t;
+components/immersive/runtime.ts:10:function blendPose(out: Pose, a: Pose, b: Pose, t: number) {
+components/immersive/runtime.ts:18:export class ImmersiveRuntime {
+components/immersive/worldPaint.ts:5:export function requireWorldFonts() {
+components/immersive/worldPaint.ts:16:function random(seed:number) {let n=seed;return ()=>{n=(n*1664525+1013904223)>>>0;return n/4294967296;};}
+components/immersive/worldPaint.ts:17:function texture(canvas:HTMLCanvasElement) {const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;return t;}
+components/immersive/worldPaint.ts:18:function surfaceCanvas(kind:"rock"|"ground") {
+components/immersive/worldPaint.ts:44:export const makeRockTexture=()=>surfaceCanvas("rock");
+components/immersive/worldPaint.ts:45:export const makeGroundTexture=()=>surfaceCanvas("ground");
+components/immersive/worldPaint.ts:46:export function makeBoardTexture(label:string,color:string,arrow?:readonly number[],aspect=4,fontScale?:number) {
+components/immersive/worldPaint.ts:89:export function makeGraffitiTexture(label:string,color:string,seed:number) {
+components/three/BlenderAsset.tsx:17:export default function BlenderAsset({
+components/immersive/AftermovieEnvironment.tsx:7:function ReturnSign() {
+components/immersive/AftermovieEnvironment.tsx:23:export default function AftermovieEnvironment() {
+components/immersive/input.ts:5:const movementCodes = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]);
+components/immersive/input.ts:6:export function useImmersiveInput(runtime: ImmersiveRuntime) {
+components/immersive/rendering.tsx:10:export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; serial: number }) {
+components/immersive/rendering.tsx:78:export const QUALITY_DPR = [1.25, 1, 0.75, 0.6];
+components/immersive/rendering.tsx:79:export function SceneRenderer({ runtime }: { runtime: ImmersiveRuntime }) {
+components/immersive/rendering.tsx:89:export function FrameController({ runtime, curtain }: { runtime: ImmersiveRuntime; curtain: React.RefObject<HTMLDivElement | null> }) {
+components/immersive/HubScene.tsx:10:export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], color="#e4ded0", arrow, textSize }: { label:string;position:[number,number,number];rotation?:[number,number,number];size?:[number,number];color?:string;arrow?:[number,number];textSize?:number }) {
+components/immersive/HubScene.tsx:24:function Rock({ geometry,map,quarry=false }: { geometry:THREE.BufferGeometry;map:THREE.Texture;quarry?:boolean }) {
+components/immersive/HubScene.tsx:31:function Boxes({entries}:{entries:Box[]}) {
+components/immersive/HubScene.tsx:40:function Cables({segments}:{segments:number[]}) {
+components/immersive/HubScene.tsx:45:function Bulbs({positions,scale=.075}:{positions:number[][];scale?:number}) {
+components/immersive/HubScene.tsx:50:function HangingLamps() {
+components/immersive/HubScene.tsx:59:function Scaffold() {
+components/immersive/HubScene.tsx:100:function StallBlocks() {
+components/immersive/HubScene.tsx:125:function TunnelPaint() {
+components/immersive/HubScene.tsx:130:function EntrancePaint({portal}:{portal:THREE.BufferGeometry}) {
+components/immersive/HubScene.tsx:146:function Population({nearStage,quality}:{nearStage:boolean;quality:number}) {
+components/immersive/HubScene.tsx:159:function GroundDetail() {
+components/immersive/HubScene.tsx:181:export default function HubScene({nearStage,quality,stageView=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean}) {
+components/immersive/world.ts:5:export const world = layout;
+components/immersive/world.ts:6:export type Destination = typeof world.destinations[number];
+components/immersive/world.ts:7:export const point3 = (p: readonly number[]): [number, number, number] => [p[0], p[1], p[2]];
+components/immersive/world.ts:8:export function lookAtPose(position: readonly number[], target: readonly number[]): Pose {
+components/immersive/world.ts:13:export function inspectionCamera(id: string) {
+components/immersive/world.ts:17:export function landingPose(): Pose {
+components/immersive/world.ts:21:export function filmPose(): Pose {
+components/immersive/world.ts:26:export function tunnelCenter(z: number): number {
+components/immersive/world.ts:34:export type Obstacle = { id: string; x: number; z: number; halfX: number; halfZ: number };
+components/immersive/world.ts:35:function footprint(id: string, position: readonly number[], size: readonly number[], yaw = 0): Obstacle {
+components/immersive/world.ts:39:export const obstacles: Obstacle[] = [
+components/immersive/world.ts:48:export function constrainQuarry(p: Pose) {
+components/landing-page/stage3d/Crowd.tsx:16:const COUNT = 900;
+components/landing-page/stage3d/Crowd.tsx:17:const MAN_SHARE = 0.6; // men are ~3x cheaper (1.8k vs 6.1k tris)
+components/landing-page/stage3d/Crowd.tsx:18:const POSE_TIMES = [0.35, 1.35]; // two different idle frames per model
+components/landing-page/stage3d/Crowd.tsx:21:function mulberry32(seed: number) {
+components/landing-page/stage3d/Crowd.tsx:37:function bakePose(root: THREE.Object3D, clips: THREE.AnimationClip[], time: number): THREE.BufferGeometry {
+components/landing-page/stage3d/Crowd.tsx:94:export function warmCrowd(): Promise<void> {
+components/landing-page/stage3d/Crowd.tsx:122:export default function Crowd({
+components/immersive/blockoutGeometry.ts:6:class RockMesh {
+components/immersive/blockoutGeometry.ts:35:const lerp=(a:number,b:number,t:number)=>a+(b-a)*t;
+components/immersive/blockoutGeometry.ts:36:export const tunnelCenterX=tunnelCenter;
+components/immersive/blockoutGeometry.ts:37:function tubeNoise(z:number,y:number) {
+components/immersive/blockoutGeometry.ts:41:function tubeVertex(z:number,p:readonly number[]):Vertex {
+components/immersive/blockoutGeometry.ts:46:export function quarryGeometry() {
+components/immersive/blockoutGeometry.ts:88:export function tunnelGeometry() {
+components/immersive/blockoutGeometry.ts:110:export function portalGeometry() {
+components/immersive/blockoutGeometry.ts:123:export function exitGeometry() {
+components/immersive/blockoutGeometry.ts:132:export function wallPaintGeometry(position:readonly number[],side:number,width:number,height:number) {
+components/immersive/blockoutGeometry.ts:145:export function groundGeometry() {
+components/immersive/WorldOverlays.tsx:11:export function mapPoints(): MapPoint[] {
+components/immersive/WorldOverlays.tsx:20:export type MapDOM = {
+components/immersive/WorldOverlays.tsx:28:export function MapMarkerProjection({ runtime, elements }: { runtime: ImmersiveRuntime; elements: MapDOM }) {
+components/immersive/WorldOverlays.tsx:66:function useOverlayFocus(ref: React.RefObject<HTMLElement | null>) {
+components/immersive/WorldOverlays.tsx:83:function AerialMap({ runtime, state, elements }: { runtime: ImmersiveRuntime; state: Snapshot; elements: MapDOM }) {
+components/immersive/WorldOverlays.tsx:105:function DestinationMenu({ runtime }: { runtime: ImmersiveRuntime }) {
+components/immersive/WorldOverlays.tsx:117:export default function WorldOverlays({ runtime, state, elements }: { runtime: ImmersiveRuntime; state: Snapshot; elements: MapDOM }) {

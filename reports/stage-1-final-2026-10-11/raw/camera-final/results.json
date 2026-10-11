@@ -1,0 +1,132 @@
+{
+  "checks": [
+    {
+      "name": "Fresh click entry, authored pacing and initial persistent Canvas",
+      "status": "PASS",
+      "evidence": {
+        "entranceMs": 9403,
+        "timing": {
+          "activationToLocalMs": 7249.199999999255,
+          "largestFrameMs": 160.30000000074506,
+          "phases": [
+            {
+              "at": 638.6999999992549,
+              "phase": "boot",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 4560.099999997765,
+              "phase": "landing",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 7765.199999999255,
+              "phase": "entrance",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 15014.39999999851,
+              "phase": "local",
+              "scene": "hub",
+              "serial": 0
+            }
+          ]
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        }
+      }
+    },
+    {
+      "name": "Map invalid SVG guard, open/close, resize and same Canvas destination",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "arrival": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        }
+      }
+    },
+    {
+      "name": "Playback restores actual activation pose; rapid restart cannot change walking anchor",
+      "status": "PASS",
+      "evidence": {
+        "anchor": {
+          "x": -8.781224976744241,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "rapidPose": {
+          "x": -12,
+          "y": 5.9,
+          "z": -117.30000000000001,
+          "yaw": 0,
+          "pitch": 0
+        },
+        "restored": {
+          "x": -8.781224976744241,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        }
+      }
+    },
+    {
+      "name": "Fresh-session Enter and touch entry/movement/map; reduced motion",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "moved": {
+          "x": 1.0160380845463768,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "profile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "dpr": 0.25,
+          "stats": {
+            "calls": 132,
+            "triangles": 100770,
+            "textures": 25,
+            "geometries": 150,
+            "dpr": 0.25
+          },
+          "quality": 1
+        },
+        "physicalMobile": false
+      }
+    }
+  ],
+  "errors": []
+}

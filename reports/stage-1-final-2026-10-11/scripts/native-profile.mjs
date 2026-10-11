@@ -1,0 +1,12 @@
+import {launch,root,base,local,map,key,instrument} from './audit-common.mjs';
+import {writeFile} from 'node:fs/promises';
+const browser=await launch(),context=await browser.newContext({viewport:{width:1366,height:900},deviceScaleFactor:1}),page=await context.newPage(),windows=[],errors=[];
+await instrument(context);page.on('pageerror',e=>errors.push(e.message));
+const result={browser:browser.version(),viewport:{width:1366,height:900,dpr:1},method:'Native CSS viewport and DPR1; adaptive runtime quality unchanged; SwiftShader; no screenshot readback in timed windows',windows,errors};
+async function save(){await writeFile(root+'/raw/native-dpr1-profile.json',JSON.stringify(result,null,2));}
+async function sample(name,action){await page.evaluate(()=>window.__gullyverse.frames.length=0);const at=Date.now();await action();const elapsed=Date.now()-at,raw=await page.evaluate(()=>({snapshot:window.__gullyverse.runtime.getSnapshot(),pose:window.__gullyverse.runtime.pose,renderer:window.__gullyverse.renderer,stats:window.__gullyverse.stats,frames:window.__gullyverse.frames,preparations:window.__gullyverse.preparations,memory:window.__gullyverse.memory.at(-1),resources:performance.getEntriesByType('resource').map(r=>r.toJSON())})),times=raw.frames.filter(f=>Number.isFinite(f.cpuRenderMs)).map(f=>f.ms).sort((a,b)=>a-b),mean=times.reduce((a,b)=>a+b,0)/times.length,q=x=>times[Math.min(times.length-1,Math.floor(times.length*x))];windows.push({name,elapsedMs:elapsed,renderedFrames:times.length,renderedFPS:times.length*1000/elapsed,renderCadenceFPS:1000/mean,medianMs:q(.5),p95Ms:q(.95),p99Ms:q(.99),maxMs:times.at(-1),stallsOver50ms:times.filter(x=>x>50).length,...raw});await save();console.log(name,windows.at(-1).renderedFPS);}
+try{
+const at=Date.now();await page.goto(base+'/?diagnostics');await page.waitForSelector('[data-phase="landing"]',{timeout:65000});result.landingMs=Date.now()-at;await sample('native-landing-idle',()=>page.waitForTimeout(10000));await page.keyboard.press('Enter');await sample('native-entrance-first-20s',()=>page.waitForTimeout(20000));
+result.partial=true;result.note='Native entrance is deliberately sampled for20s; full constrained journey measured separately.';
+await page.goto(base+'/aftermovie?diagnostics');await local(page,'aftermovie');await sample('native-aftermovie-local-idle',()=>page.waitForTimeout(7000));await sample('native-aftermovie-movement',()=>key(page,'KeyD',1800));
+}catch(e){result.error=String(e.stack||e);process.exitCode=1;}finally{await save();await browser.close();}
