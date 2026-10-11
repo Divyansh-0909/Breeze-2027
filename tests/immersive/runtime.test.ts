@@ -5,7 +5,7 @@ import { ImmersiveRuntime } from "../../components/immersive/runtime";
 import { boundaryClearance, boundaryCrossings, constrain, crossedHubDestination, destinationOptions, locationFromPath, movementBoundary, spawnPose, travelZones } from "../../components/immersive/navigation";
 import { constrainQuarry, landingPose, lookAtPose, obstacles, tunnelCenter, world } from "../../components/immersive/world";
 import { mapCamera } from "../../components/immersive/aerial";
-import { portalGeometry, quarryGeometry, tunnelGeometry } from "../../components/immersive/blockoutGeometry";
+import { exitGeometry, portalGeometry, quarryGeometry, tunnelGeometry } from "../../components/immersive/blockoutGeometry";
 
 function advance(runtime: ImmersiveRuntime, seconds: number, hz = 60) {
   for (let i = 0; i < Math.ceil(seconds * hz); i++) runtime.tick(1 / hz);
@@ -497,4 +497,22 @@ test("actual bent-tunnel rock releases a clear exit sightline at the authored mi
       assert.equal(ray.intersectObjects(meshes,false).length,0,"Exit sightline remains clear from "+id);
     }
   } finally {for(const geometry of geometries) geometry.dispose();material.dispose();}
+});
+test("quarry-side tunnel face encloses the outer shell while leaving the carved passage open", () => {
+  const geometry=exitGeometry(),material=new MeshBasicMaterial({side:DoubleSide}),mesh=new Mesh(geometry,material);
+  mesh.updateMatrixWorld();
+  try {
+    // These are the exposed shoulders and upper mass seen looking back from the stage.
+    for(const [x,y] of [[-25,2],[-15,4],[-6,2],[6,2],[15,4],[25,2],[0,8],[0,18],[0,30]]) {
+      const ray=new Raycaster(new Vector3(x,y,world.tunnel.endZ-40),new Vector3(0,0,1),0,45);
+      assert.ok(ray.intersectObject(mesh,false).length>0,`Solid quarry rock around the mouth at ${x}/${y}`);
+    }
+    // Keep the actual human-height opening clear in both directions; no fake black cover.
+    for(const x of [-1.5,0,1.5]) {
+      const ray=new Raycaster(new Vector3(x,world.eyeHeight,world.tunnel.endZ-4),new Vector3(0,0,1),0,8);
+      assert.equal(ray.intersectObject(mesh,false).length,0,`Open passage at x=${x}`);
+    }
+    const positions=geometry.getAttribute("position");
+    for(let i=0;i<positions.count;i++) assert.ok([positions.getX(i),positions.getY(i),positions.getZ(i)].every(Number.isFinite));
+  } finally {geometry.dispose();material.dispose();}
 });

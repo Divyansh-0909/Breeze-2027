@@ -187,7 +187,7 @@ export default function HubScene({nearStage,quality,stageView=false}:{nearStage:
     <color attach="background" args={[stageView?"#b2bbb9":"#737d87"]} /><fog attach="fog" args={stageView?["#b2bbb9",55,130]:["#737d87",205,520]} />
     <hemisphereLight args={stageView?["#d8e0dd","#686b59",.65]:["#a9bfd4","#8a8274",1.35]} />
     {!stageView && <directionalLight position={[-70,37,-145]} intensity={1.35} color="#efd0a4" />}
-    <Rock geometry={quarry} map={rockTexture} quarry /><Rock geometry={tunnel} map={rockTexture} /><Rock geometry={portal} map={rockTexture} /><Rock geometry={exit} map={rockTexture} />
+    <Rock geometry={quarry} map={rockTexture} quarry /><Rock geometry={tunnel} map={rockTexture} /><Rock geometry={portal} map={rockTexture} /><Rock geometry={exit} map={rockTexture} quarry />
     <mesh><primitive object={ground} attach="geometry" dispose={null} /><meshLambertMaterial map={groundTexture} color="#c8c2b4" /></mesh>
     <EntrancePaint portal={portal} /><TunnelPaint /><Scaffold /><StallBlocks /><Population nearStage={nearStage} quality={quality} /><GroundDetail />
   </>;

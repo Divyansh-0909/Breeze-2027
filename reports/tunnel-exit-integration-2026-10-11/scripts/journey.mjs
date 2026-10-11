@@ -1,0 +1,42 @@
+import { chromium } from 'playwright';
+import { writeFile } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const root='reports/tunnel-exit-integration-2026-10-11';
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--enable-unsafe-swiftshader','--use-gl=angle','--use-angle=swiftshader']});
+const errors=[],checks=[];
+try {
+  const context=await browser.newContext({viewport:{width:1366,height:900},deviceScaleFactor:.25});
+  const page=await context.newPage();
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.route('**/api/**',route=>['GET','HEAD'].includes(route.request().method())?route.continue():route.abort());
+  await page.goto('http://127.0.0.1:3000/?diagnostics',{waitUntil:'domcontentloaded'});
+  await page.waitForSelector('[data-phase="landing"]',{timeout:90000});
+  await page.getByRole('button',{name:'Enter Gullyverse',exact:true}).click();
+  await page.waitForSelector('[data-phase="entrance"]');
+  await page.waitForSelector('[data-phase="local"][data-location="hub"]',{timeout:90000});
+  checks.push({name:'Fresh user-activated tunnel entrance reaches hub',status:'PASS'});
+  await page.evaluate(()=>{window.__journeyCanvas=document.querySelector('canvas');});
+  await page.keyboard.down('KeyW');
+  await page.waitForFunction(()=>window.__gullyverse.runtime.getSnapshot().serial>0,null,{timeout:90000});
+  await page.keyboard.up('KeyW');
+  await page.waitForSelector('[data-phase="local"][data-location="aftermovie"]',{timeout:90000});
+  assert.equal(await page.evaluate(()=>document.querySelector('canvas')===window.__journeyCanvas),true);
+  checks.push({name:'Public forward walking under scaffold reaches Aftermovie on same Canvas',status:'PASS'});
+  // Look back using the visitor drag controls, without injecting a camera pose.
+  await page.mouse.move(180,420);await page.mouse.down();
+  await page.mouse.move(1227,420,{steps:14});await page.mouse.up();
+  await page.waitForTimeout(1200);
+  await page.screenshot({path:`${root}/acceptance/public-stage-looking-back.png`,scale:'css'});
+  const pose=await page.evaluate(()=>({...window.__gullyverse.runtime.pose}));
+  assert.ok(Math.abs(Math.abs(pose.yaw)-Math.PI)<.02);
+  checks.push({name:'Public drag looks back toward integrated tunnel opening',status:'PASS',pose});
+  await page.getByRole('button',{name:/^Map/}).click();
+  await page.waitForSelector('[data-map-stage="open"]',{timeout:30000});
+  await page.screenshot({path:`${root}/acceptance/public-map.png`,scale:'css'});
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>!window.__gullyverse.runtime.getSnapshot().map,null,{timeout:30000});
+  checks.push({name:'Existing aerial map opens and returns',status:'PASS'});
+  assert.deepEqual(errors,[]);
+  await writeFile(`${root}/acceptance/journey.json`,JSON.stringify({browser:browser.version(),physicalHardware:false,checks,pageErrors:errors},null,2));
+  console.log(JSON.stringify({checks,pageErrors:errors}));
+} finally {await browser.close();}

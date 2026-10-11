@@ -42,6 +42,15 @@ function tubeVertex(z:number,p:readonly number[]):Vertex {
   const n=tubeNoise(z,p[1]);
   return [tunnelCenterX(z)+p[0]+n,p[1]+(p[1]>1?n*.5:0),z];
 }
+const tunnelOuterProfile=[[-26,-.08],[-28,7],[-20,16],[-8,18],[3,15],[18,16],[27,8],[30,-.08]];
+function outerTunnelVertex(section:number,u:number,v:number):Vertex {
+  const a=tunnelOuterProfile[section],b=tunnelOuterProfile[section+1];
+  const x=lerp(a[0],b[0],u),y=lerp(a[1],b[1],u);
+  // Weld the last two exterior rings: the old section-local noise left seams
+  // at the quarry-facing rim. The entrance and enclosed passage stay unchanged.
+  const phase=lerp(u,section+u,Math.max(0,(v-.8)/.2));
+  return [x*(1+v*.13)+Math.sin(phase*6+v*13)*v*.5,y>0?lerp(y,49,v)+Math.sin(v*18+phase*9)*v*.8:y,lerp(-3,world.tunnel.endZ,v)];
+}
 /** Work-in-progress-2027's original faceted rock ring, fitted to the current layout. */
 export function quarryGeometry() {
   const rock=new RockMesh(),boundary=world.quarry.boundary;
@@ -96,14 +105,8 @@ export function tunnelGeometry() {
     }
   }
   // Broad geological mass, continuous with the portal and the quarry front rim.
-  const outer=[[-26,-.08],[-28,7],[-20,16],[-8,18],[3,15],[18,16],[27,8],[30,-.08]];
-  for(let j=0;j<outer.length-1;j++) for(let segment=0;segment<10;segment++) {
-    const a=outer[j],b=outer[j+1];
-    const vertex=(u:number,v:number):Vertex=>{
-      const x=lerp(a[0],b[0],u),y=lerp(a[1],b[1],u);
-      return [x*(1+v*.13)+Math.sin(u*6+v*13)*v*.5,y>0?lerp(y,49,v)+Math.sin(v*18+u*9)*v*.8:y,-3-v*39];
-    };
-    rock.quad(vertex(0,segment/10),vertex(1,segment/10),vertex(1,(segment+1)/10),vertex(0,(segment+1)/10),.72+(j%3)*.06);
+  for(let j=0;j<tunnelOuterProfile.length-1;j++) for(let segment=0;segment<10;segment++) {
+    rock.quad(outerTunnelVertex(j,0,segment/10),outerTunnelVertex(j,1,segment/10),outerTunnelVertex(j,1,(segment+1)/10),outerTunnelVertex(j,0,(segment+1)/10),.72+(j%3)*.06);
   }
   return rock.finish();
 }
@@ -122,9 +125,31 @@ export function portalGeometry() {
 }
 export function exitGeometry() {
   const rock=new RockMesh(),p=world.tunnel.profile;
-  for(let j=0;j<p.length-1;j++) {
-    const a=p[j],b=p[j+1],out=(v:readonly number[]):Vertex=>[v[0]<0?-5:5,Math.max(v[1],5.8),world.tunnel.endZ];
-    rock.quad([a[0],a[1],world.tunnel.endZ],[b[0],b[1],world.tunnel.endZ],out(b),out(a),.8);
+  // Close the full exterior mass around the actual tunnel opening, rather
+  // than leaving a detached 10m collar inside the much wider quarry-rock gap.
+  // Retain every authored corner of both profiles, with broad facets matching
+  // the surrounding blockout rocks instead of another thin rectangular panel.
+  const sections=[...new Set([
+    ...p.map((_,i)=>i/(p.length-1)),
+    ...tunnelOuterProfile.map((_,i)=>i/(tunnelOuterProfile.length-1)),
+  ])].sort((a,b)=>a-b),rings=5;
+  const vertex=(section:number,ring:number):Vertex=>{
+    const t=sections[section],inner=t*(p.length-1),j=Math.min(p.length-2,Math.floor(inner)),u=inner-j;
+    const a=p[j],b=p[j+1],outer=t*(tunnelOuterProfile.length-1),k=Math.min(tunnelOuterProfile.length-2,Math.floor(outer));
+    // The shell edges are straight between its corners; match those edges
+    // exactly rather than resampling their original noise into a new curve.
+    const rimA=outerTunnelVertex(k,0,1),rimB=outerTunnelVertex(k,1,1);
+    const rim=rimA.map((v,i)=>lerp(v,rimB[i],outer-k)),progress=ring/rings;
+    const envelope=Math.sin(progress*Math.PI),relief=envelope*(3.8+1.7*Math.sin(section*1.71+ring*1.93));
+    const x=lerp(lerp(a[0],b[0],u)+tunnelCenterX(world.tunnel.endZ),rim[0],progress)+envelope*Math.sin(t*Math.PI)*Math.sin(section*2.17+ring)*.7;
+    const y=lerp(lerp(a[1],b[1],u),rim[1],progress)+envelope*Math.sin(t*Math.PI)*Math.sin(section+ring*2.3)*1.1;
+    // Relief stays outside the playable quarry; inner and outer edges match
+    // the passage and shell exactly, with no surface stretched over the hole.
+    return [x,y,world.tunnel.endZ+relief];
+  };
+  for(let section=0;section<sections.length-1;section++) for(let ring=0;ring<rings;ring++) {
+    const shade=.91+Math.sin(section*.37+ring*1.73)*.045;
+    rock.quad(vertex(section,ring),vertex(section+1,ring),vertex(section+1,ring+1),vertex(section,ring+1),shade,"#838479");
   }
   return rock.finish();
 }

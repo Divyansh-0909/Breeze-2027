@@ -1,0 +1,89 @@
+
+> my-landing@0.1.0 test:immersive
+> tsx --test tests/immersive/*.test.ts
+
+✔ landing owns controls, entrance reaches hub, and frames don't publish React state (6.112048ms)
+✔ physical threshold uses guided departure and never reveals before critical readiness (5.052335ms)
+✔ local movement is delta-aware, diagonal speed is bounded, and stage/backstage are inaccessible (7.686204ms)
+✔ route commitment preserves the current walking velocity without a stop or jump (4.101655ms)
+✔ direct URL skips introduction and an outer boundary waits for explicit covered return (0.95824ms)
+✔ superseding navigation invalidates old readiness; background restore cannot leap across routes (1.431372ms)
+✔ reduced motion preserves readiness gating and playback restores the visitor's pose (0.802026ms)
+✔ changing motion preferences publishes immediately without taking away local controls (1.455699ms)
+✔ context restoration keeps the visitor's pose and rejects readiness from before loss (1.825194ms)
+✔ context loss pauses entrance choreography and recovers initial preparation (2.052125ms)
+✔ URL navigation during recovery supersedes the interrupted destination after preparation (0.787924ms)
+✔ context loss exits film focus and returns to the saved walking pose (0.700202ms)
+✔ all signed destinations cross deliberately while unavailable sectors stay truthful (14.520658ms)
+✔ five signs keep their directions with a second Aftermovie approach through the scaffold (7.574176ms)
+✔ forward walking beneath the navigation scaffold commits covered Aftermovie travel (3.062544ms)
+✔ walking limits give additional clearance in every direction without removing the boundary (0.280692ms)
+✔ Team and Contact Us are the second stalls approached from the tunnel (0.212901ms)
+✔ collision stops capsules before every solid footprint and quarry wall (1.085702ms)
+✔ nearby hub commitment relocates to the distant stage only after black coverage (0.846502ms)
+✔ stage, destination marker and film focus stay in the same authored coordinates (0.155544ms)
+✔ inspection cannot move a visitor and portrait framing preserves the original stage camera (1.382608ms)
+✔ entrance choreography physically follows the bent tunnel without crossing rock (1.455518ms)
+✔ portal rock shoulders stop a visitor while the arch remains clear (0.171858ms)
+✔ side stepping into a tunnel wall slides locally instead of projecting into the quarry (0.194412ms)
+✔ navigation away from playback stops media without snapping the visible film camera (0.336265ms)
+✔ every outer Aftermovie segment and chamfer opens a stationary menu without returning (0.413732ms)
+✔ front/rear/side/corner and diagonal public movement open the boundary menu (0.880734ms)
+✔ crossing the exact join of irregular perimeter segments clamps inside both faces (0.40573ms)
+✔ Stay Here preserves pose and requires moving away before another deliberate boundary crossing (0.692801ms)
+✔ looking at hub signs and sliding along a sector do not navigate (1.834558ms)
+✔ internal movement does not open a perimeter menu and playback owns movement (0.41229ms)
+✔ Escape handles overlay first, map second, and playback exactly once (1.284692ms)
+✔ boundary overlay selections use readiness and external content routing under black (1.966336ms)
+✔ map ascent/descent preserves exact player pose and does not publish on every frame (1.180945ms)
+✔ map close/open interruptions reverse continuously and reduced motion remains covered (1.501637ms)
+✔ map marker travel fades the overhead view before changing the destination pose (1.617662ms)
+✔ context loss during aerial transition restores the saved walking pose and input ownership (1.172683ms)
+✔ desktop and portrait map cameras fit the actual generated quarry rim and entrance (15.170506ms)
+✔ compact quarry contains the unscaled stage and stalls and leaves the Aftermovie rear sightline open (9.340292ms)
+✔ actual cave geometry physically occludes the exit, scaffold and stage from landing and tunnel entry (22.600064ms)
+✔ actual bent-tunnel rock releases a clear exit sightline at the authored mid and first-reveal cameras (16.544231ms)
+✖ quarry-side tunnel face encloses the outer shell while leaving the carved passage open (1.359023ms)
+✔ fresh entry, session return, explicit Entrance and direct Aftermovie resolve through coordinator (1.052562ms)
+✔ 7.2s cinematic uses active elapsed time at 5 FPS; walking remains bounded (1.614408ms)
+✔ long suspended/resume frame cannot advance cinematic or locomotion (0.782657ms)
+✔ exceptional foreground cinematic gaps are covered while normal authored timing continues (0.250237ms)
+✔ cinematic event does not credit time before actual activation (0.417367ms)
+✔ map and movie restoration preserve pose with large frame intervals (0.642035ms)
+✔ rapid replay during restoration retains original walking anchor (0.300912ms)
+✔ interrupted covered preparation keeps camera covered (0.389585ms)
+✔ invalid deltas do not poison pose or clocks (0.307503ms)
+✔ projection rejects eye-plane, behind camera, invalid viewport and frustum points (0.701374ms)
+✔ projection follows orientation and resize rather than stale camera cache (0.407742ms)
+✔ retired video remains alive while LED sampler lease exists, disposes exactly once (0.437447ms)
+✔ producer with no published sampler disposes on early exit (0.149295ms)
+✔ unpublished cancelled poses dispose once while shared cache remains protected (0.638951ms)
+✔ loading deadline counts foreground budget and cancels stale callbacks (0.231208ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 56
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 634.226305
+
+✖ failing tests:
+
+test at tests/immersive/runtime.test.ts:501:1
+✖ quarry-side tunnel face encloses the outer shell while leaving the carved passage open (1.359023ms)
+  AssertionError [ERR_ASSERTION]: Solid quarry rock around the mouth at -25/2
+      at TestContext.<anonymous> (/workspace/Breeze-2027-navigation/tests/immersive/runtime.test.ts:508:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
