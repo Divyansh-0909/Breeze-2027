@@ -1,0 +1,87 @@
+[
+  {
+    "name": "default-regressions",
+    "command": [
+      "npm",
+      "run",
+      "test:immersive:browser"
+    ],
+    "exitCode": 0,
+    "seconds": 306.3416182649962
+  },
+  {
+    "name": "connected-regressions",
+    "command": [
+      "node",
+      "reports/stage-2c4-rock-look-restore-2026-10-13/scripts/candidate-regressions.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 317.9906952799938
+  },
+  {
+    "name": "directional-travel",
+    "command": [
+      "node",
+      "reports/stage-2c4-rock-look-restore-2026-10-13/scripts/directional-travel.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 59.414790707000066
+  },
+  {
+    "name": "ten-toggle-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c4-rock-look-restore-2026-10-13/scripts/lifecycle.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 46.288086824002676
+  },
+  {
+    "name": "context-and-fallback",
+    "command": [
+      "node",
+      "reports/stage-2c4-rock-look-restore-2026-10-13/scripts/recovery.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 57.95342442300171
+  },
+  {
+    "name": "ten-video-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c4-rock-look-restore-2026-10-13/scripts/video-cycles.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 169.8489196849987
+  },
+  {
+    "name": "before-performance",
+    "command": [
+      "node",
+      "reports/stage-2c4-rock-look-restore-2026-10-13/scripts/measure.mjs",
+      "before"
+    ],
+    "exitCode": 0,
+    "seconds": 86.7433407530043
+  },
+  {
+    "name": "after-performance",
+    "command": [
+      "node",
+      "reports/stage-2c4-rock-look-restore-2026-10-13/scripts/measure.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 88.55519312300021
+  },
+  {
+    "name": "material-and-network",
+    "command": [
+      "node",
+      "reports/stage-2c4-rock-look-restore-2026-10-13/scripts/material-verification.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": null,
+    "notes": "Executed after the serial runner; total CLI duration not recorded. Both navigation/preparation durations are measured in the raw JSON."
+  }
+]

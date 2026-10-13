@@ -1,0 +1,17 @@
+file:///workspace/Breeze-2027-navigation/reports/stage-2a-asset-pilot-2026-10-11/scripts/home-profile-spa.mjs:9
+ });const p=await c.newPage();const network=[],errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('request',req=>{if(/_rsc|\.glb|\/fonts\//.test(req.url()))network.push({type:'request',wall:Date.now(),url:req.url()});});p.on('response',res=>{if(/_rsc|\.glb|\/fonts\//.test(res.url()))network.push({type:'response',wall:Date.now(),url:res.url(),status:res.status()});});
+  ^
+
+SyntaxError: Unexpected token ')'
+    at compileSourceTextModule (node:internal/modules/esm/utils:318:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:89:18)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)
+    at node:internal/modules/esm/loader:632:32
+    at TracingChannel.tracePromise (node:diagnostics_channel:362:14)
+
+Node.js v24.19.0

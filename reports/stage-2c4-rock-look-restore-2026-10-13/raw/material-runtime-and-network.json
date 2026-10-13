@@ -1,0 +1,1684 @@
+{
+  "status": "PASS",
+  "browser": "151.0.7922.173",
+  "method": "Actual cold browser contexts, CDP disk cache disabled, localhost, DPR0.25/Q3, no CPU/network throttle. Both families use identical connected geometry; encoded network bytes include response overhead. Runtime materials are inspected after covered preparation.",
+  "runs": [
+    {
+      "look": "rock",
+      "preparationMs": 7292,
+      "material": {
+        "look": "rock",
+        "style": "detailed",
+        "materials": [
+          {
+            "name": "Quarry_Pilot_Original_Stone_PBR",
+            "metalness": 0,
+            "roughnessFactor": 1,
+            "normalScale": [
+              0.699999988079071,
+              0.699999988079071
+            ],
+            "side": 2,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "rock-basecolor-1024",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "colorSpace": "srgb"
+              },
+              {
+                "slot": "normalMap",
+                "name": "rock-normal-1024",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "colorSpace": ""
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "rock-ao-1024-rock-roughness-1024",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "colorSpace": ""
+              },
+              {
+                "slot": "aoMap",
+                "name": "rock-ao-1024-rock-roughness-1024",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "colorSpace": ""
+              }
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "at": 1093.4000000059605,
+            "event": "approved-material-parse",
+            "ms": 114.8999999910593,
+            "bytes": 2505852
+          },
+          {
+            "at": 1093.5,
+            "event": "approved-material-ready",
+            "ms": 320.5,
+            "exactPilotFamily": true,
+            "holderMeshRendered": false,
+            "look": "rock",
+            "materialName": "Quarry_Pilot_Original_Stone_PBR",
+            "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+          },
+          {
+            "at": 1720.2000000029802,
+            "event": "excavation-detailed-parse",
+            "ms": 13,
+            "bytes": 7898472
+          },
+          {
+            "at": 1721.2000000029802,
+            "event": "excavation-asset-ready",
+            "style": "detailed",
+            "ms": 948.2999999970198,
+            "geometryOnly": true,
+            "baselineRequested": false
+          },
+          {
+            "at": 1721.2000000029802,
+            "event": "load-ready",
+            "style": "detailed",
+            "optIn": true
+          },
+          {
+            "at": 2219,
+            "event": "texture-init",
+            "count": 3,
+            "ms": 14.099999994039536
+          },
+          {
+            "at": 2257.6000000089407,
+            "event": "shader-compile",
+            "ms": 38.6000000089407
+          },
+          {
+            "at": 4191.100000008941,
+            "event": "covered-ready",
+            "revision": 1,
+            "ms": 1986.7000000029802,
+            "lighting": "hub"
+          },
+          {
+            "at": 4313.4000000059605,
+            "event": "part-lod-change",
+            "part": "Excavation_00",
+            "from": 2,
+            "to": 0,
+            "pixels": 90027.83922776984,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4313.5,
+            "event": "part-lod-change",
+            "part": "Excavation_01",
+            "from": 2,
+            "to": 0,
+            "pixels": 66055.2759633159,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4313.5,
+            "event": "part-lod-change",
+            "part": "Excavation_02",
+            "from": 2,
+            "to": 1,
+            "pixels": 957.4495535901259,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4313.600000008941,
+            "event": "part-lod-change",
+            "part": "Excavation_15",
+            "from": 2,
+            "to": 1,
+            "pixels": 367.69524600840435,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4313.600000008941,
+            "event": "part-lod-change",
+            "part": "Excavation_16",
+            "from": 2,
+            "to": 1,
+            "pixels": 711.4476609175792,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4313.600000008941,
+            "event": "part-lod-change",
+            "part": "Excavation_17",
+            "from": 2,
+            "to": 0,
+            "pixels": 86785.43762716655,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 6019.70000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_02",
+            "from": 1,
+            "to": 0,
+            "pixels": 1148.0097251947943,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 6019.70000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_03",
+            "from": 2,
+            "to": 1,
+            "pixels": 333.77982702339176,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 6168.70000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_16",
+            "from": 1,
+            "to": 0,
+            "pixels": 1103.6201168195291,
+            "quality": 3,
+            "dpr": 0.25
+          }
+        ]
+      },
+      "details": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 151,
+          "triangles": 110168,
+          "textures": 28,
+          "geometries": 195,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 7092.9000000059605,
+          "scene": "hub",
+          "geometries": 195,
+          "textures": 28,
+          "activeGeometryBytes": 9471086,
+          "activeTextureBytesEstimate": 61804548.00000001,
+          "jsHeapBytes": 69698610
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 790,
+                "deleted": 0,
+                "active": 790
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 195,
+                "deleted": 0,
+                "active": 195
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 18,
+          "variant": "quarry",
+          "lodSelections": {
+            "Excavation_00": 0,
+            "Excavation_01": 0,
+            "Excavation_02": 0,
+            "Excavation_03": 1,
+            "Excavation_04": 2,
+            "Excavation_05": 2,
+            "Excavation_06": 2,
+            "Excavation_07": 2,
+            "Excavation_08": 2,
+            "Excavation_09": 2,
+            "Excavation_10": 2,
+            "Excavation_11": 2,
+            "Excavation_12": 2,
+            "Excavation_13": 2,
+            "Excavation_14": 2,
+            "Excavation_15": 1,
+            "Excavation_16": 0,
+            "Excavation_17": 0
+          },
+          "lodPixels": {
+            "Excavation_00": 90027.83922776984,
+            "Excavation_01": 66055.2759633159,
+            "Excavation_02": 2200.2011087160217,
+            "Excavation_03": 400.4788024862694,
+            "Excavation_04": 275.4941425505077,
+            "Excavation_05": 145.85538953636365,
+            "Excavation_06": 98.44190883534048,
+            "Excavation_07": 80.63655628850245,
+            "Excavation_08": 75.01111334734868,
+            "Excavation_09": 66.75514400349817,
+            "Excavation_10": 80.6609965061989,
+            "Excavation_11": 85.15114465498223,
+            "Excavation_12": 125.10690882173898,
+            "Excavation_13": 194.52311938561917,
+            "Excavation_14": 231.87287233277235,
+            "Excavation_15": 474.2083678127203,
+            "Excavation_16": 1534.979470234475,
+            "Excavation_17": 86785.43762716655
+          },
+          "selectedNodes": [
+            "Excavation_Detailed_Sector_00_LOD0",
+            "Excavation_Detailed_Sector_01_LOD0",
+            "Excavation_Detailed_Sector_02_LOD0",
+            "Excavation_Detailed_Sector_16_LOD0",
+            "Excavation_Detailed_Sector_17_LOD0",
+            "Excavation_Detailed_Sector_03_LOD1",
+            "Excavation_Detailed_Sector_15_LOD1",
+            "Excavation_Detailed_Sector_04_LOD2",
+            "Excavation_Detailed_Sector_05_LOD2",
+            "Excavation_Detailed_Sector_06_LOD2",
+            "Excavation_Detailed_Sector_07_LOD2",
+            "Excavation_Detailed_Sector_08_LOD2",
+            "Excavation_Detailed_Sector_09_LOD2",
+            "Excavation_Detailed_Sector_10_LOD2",
+            "Excavation_Detailed_Sector_11_LOD2",
+            "Excavation_Detailed_Sector_12_LOD2",
+            "Excavation_Detailed_Sector_13_LOD2",
+            "Excavation_Detailed_Sector_14_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1093.4000000059605,
+              "event": "approved-material-parse",
+              "ms": 114.8999999910593,
+              "bytes": 2505852
+            },
+            {
+              "at": 1093.5,
+              "event": "approved-material-ready",
+              "ms": 320.5,
+              "exactPilotFamily": true,
+              "holderMeshRendered": false,
+              "look": "rock",
+              "materialName": "Quarry_Pilot_Original_Stone_PBR",
+              "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+            },
+            {
+              "at": 1720.2000000029802,
+              "event": "excavation-detailed-parse",
+              "ms": 13,
+              "bytes": 7898472
+            },
+            {
+              "at": 1721.2000000029802,
+              "event": "excavation-asset-ready",
+              "style": "detailed",
+              "ms": 948.2999999970198,
+              "geometryOnly": true,
+              "baselineRequested": false
+            },
+            {
+              "at": 1721.2000000029802,
+              "event": "load-ready",
+              "style": "detailed",
+              "optIn": true
+            },
+            {
+              "at": 2219,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 14.099999994039536
+            },
+            {
+              "at": 2257.6000000089407,
+              "event": "shader-compile",
+              "ms": 38.6000000089407
+            },
+            {
+              "at": 4191.100000008941,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 1986.7000000029802,
+              "lighting": "hub"
+            },
+            {
+              "at": 4313.4000000059605,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 90027.83922776984,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4313.5,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 66055.2759633159,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4313.5,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 1,
+              "pixels": 957.4495535901259,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4313.600000008941,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 367.69524600840435,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4313.600000008941,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 2,
+              "to": 1,
+              "pixels": 711.4476609175792,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4313.600000008941,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 86785.43762716655,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 6019.70000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 1,
+              "to": 0,
+              "pixels": 1148.0097251947943,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 6019.70000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 333.77982702339176,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 6168.70000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 1,
+              "to": 0,
+              "pixels": 1103.6201168195291,
+              "quality": 3,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 1,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 16777216
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      },
+      "requests": [
+        {
+          "url": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=excavation",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 3044
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 48732
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 1031
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 18703
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/webpack-1c32c991dcb94b71.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2886
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 881
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 53764
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 47164
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 3757
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 5726
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 719
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 1575
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 7198
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 1058
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2466
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 24927
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-dec4638142ce04e7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 8438
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 550
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 5590
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 14539
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7170.ce0a1d4fe1a6b2aa.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 56988
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 46742
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2911
+        },
+        {
+          "url": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 181228
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 170244
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/rock-look-restore/rock-pilot-material.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2495370
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 8697
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 11436
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/ad9d4853-fd8a-4a44-a2fb-e9de1b22f2ae",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/a3280505-dc57-4a51-85af-0f9d88050cdd",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/33ca310a-0e2d-4472-bcd6-08c1acce6844",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 24873
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 152610
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/limestone-excavation/excavation-detailed.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 4961546
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 30980
+        }
+      ],
+      "assetRequests": [
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/rock-look-restore/rock-pilot-material.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2495370
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/limestone-excavation/excavation-detailed.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 4961546
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 30980
+        }
+      ],
+      "totalEncodedTransfer": 8396373
+    },
+    {
+      "look": "limestone",
+      "preparationMs": 7474,
+      "material": {
+        "look": "limestone",
+        "style": "detailed",
+        "materials": [
+          {
+            "name": "Quarry_Pilot_Grey_Limestone_PBR",
+            "metalness": 0,
+            "roughnessFactor": 1,
+            "normalScale": [
+              0.5799999833106995,
+              0.5799999833106995
+            ],
+            "side": 2,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "limestone-basecolor-1024",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "colorSpace": "srgb"
+              },
+              {
+                "slot": "normalMap",
+                "name": "limestone-normal-1024",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "colorSpace": ""
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "limestone-ao-1024-limestone-roughness-1024",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "colorSpace": ""
+              },
+              {
+                "slot": "aoMap",
+                "name": "limestone-ao-1024-limestone-roughness-1024",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "colorSpace": ""
+              }
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "at": 1042.2000000029802,
+            "event": "approved-material-parse",
+            "ms": 189.79999999701977,
+            "bytes": 2117836
+          },
+          {
+            "at": 1042.4000000059605,
+            "event": "approved-material-ready",
+            "ms": 327.5,
+            "exactPilotFamily": true,
+            "holderMeshRendered": false,
+            "look": "limestone",
+            "materialName": "Quarry_Pilot_Grey_Limestone_PBR",
+            "sourceGLB": "public/models/gullyverse/pilot-limestone-grey/quarry-grey-limestone-pilot.glb"
+          },
+          {
+            "at": 1682.1000000089407,
+            "event": "excavation-detailed-parse",
+            "ms": 11.700000002980232,
+            "bytes": 7898472
+          },
+          {
+            "at": 1682.7000000029802,
+            "event": "excavation-asset-ready",
+            "style": "detailed",
+            "ms": 967.8999999910593,
+            "geometryOnly": true,
+            "baselineRequested": false
+          },
+          {
+            "at": 1682.7000000029802,
+            "event": "load-ready",
+            "style": "detailed",
+            "optIn": true
+          },
+          {
+            "at": 2084.4000000059605,
+            "event": "texture-init",
+            "count": 3,
+            "ms": 12.5
+          },
+          {
+            "at": 2131.6000000089407,
+            "event": "shader-compile",
+            "ms": 47.20000000298023
+          },
+          {
+            "at": 4170.4000000059605,
+            "event": "covered-ready",
+            "revision": 1,
+            "ms": 2099,
+            "lighting": "hub"
+          },
+          {
+            "at": 4292.5,
+            "event": "part-lod-change",
+            "part": "Excavation_00",
+            "from": 2,
+            "to": 0,
+            "pixels": 90027.83922776984,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4292.5,
+            "event": "part-lod-change",
+            "part": "Excavation_01",
+            "from": 2,
+            "to": 0,
+            "pixels": 66055.2759633159,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4292.5,
+            "event": "part-lod-change",
+            "part": "Excavation_02",
+            "from": 2,
+            "to": 1,
+            "pixels": 957.4495535901259,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4292.70000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_15",
+            "from": 2,
+            "to": 1,
+            "pixels": 367.69524600840435,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4292.70000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_16",
+            "from": 2,
+            "to": 1,
+            "pixels": 711.4476609175792,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 4292.70000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_17",
+            "from": 2,
+            "to": 0,
+            "pixels": 86785.43762716655,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 6096.70000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_02",
+            "from": 1,
+            "to": 0,
+            "pixels": 1130.0717910465266,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 6096.70000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_03",
+            "from": 2,
+            "to": 1,
+            "pixels": 331.9448123366679,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 6262.20000000298,
+            "event": "part-lod-change",
+            "part": "Excavation_16",
+            "from": 1,
+            "to": 0,
+            "pixels": 1113.7267668496506,
+            "quality": 3,
+            "dpr": 0.25
+          }
+        ]
+      },
+      "details": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 151,
+          "triangles": 110168,
+          "textures": 28,
+          "geometries": 195,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 7061.600000008941,
+          "scene": "hub",
+          "geometries": 195,
+          "textures": 28,
+          "activeGeometryBytes": 9471086,
+          "activeTextureBytesEstimate": 61804548.00000001,
+          "jsHeapBytes": 67300384
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 790,
+                "deleted": 0,
+                "active": 790
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 195,
+                "deleted": 0,
+                "active": 195
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 18,
+          "variant": "quarry",
+          "lodSelections": {
+            "Excavation_00": 0,
+            "Excavation_01": 0,
+            "Excavation_02": 0,
+            "Excavation_03": 1,
+            "Excavation_04": 2,
+            "Excavation_05": 2,
+            "Excavation_06": 2,
+            "Excavation_07": 2,
+            "Excavation_08": 2,
+            "Excavation_09": 2,
+            "Excavation_10": 2,
+            "Excavation_11": 2,
+            "Excavation_12": 2,
+            "Excavation_13": 2,
+            "Excavation_14": 2,
+            "Excavation_15": 1,
+            "Excavation_16": 0,
+            "Excavation_17": 0
+          },
+          "lodPixels": {
+            "Excavation_00": 90027.83922776984,
+            "Excavation_01": 66055.2759633159,
+            "Excavation_02": 2200.2011087160217,
+            "Excavation_03": 400.4788024862694,
+            "Excavation_04": 275.4941425505077,
+            "Excavation_05": 145.85538953636365,
+            "Excavation_06": 98.44190883534048,
+            "Excavation_07": 80.63655628850245,
+            "Excavation_08": 75.01111334734868,
+            "Excavation_09": 66.75514400349817,
+            "Excavation_10": 80.6609965061989,
+            "Excavation_11": 85.15114465498223,
+            "Excavation_12": 125.10690882173898,
+            "Excavation_13": 194.52311938561917,
+            "Excavation_14": 231.87287233277235,
+            "Excavation_15": 474.2083678127203,
+            "Excavation_16": 1534.979470234475,
+            "Excavation_17": 86785.43762716655
+          },
+          "selectedNodes": [
+            "Excavation_Detailed_Sector_00_LOD0",
+            "Excavation_Detailed_Sector_01_LOD0",
+            "Excavation_Detailed_Sector_02_LOD0",
+            "Excavation_Detailed_Sector_16_LOD0",
+            "Excavation_Detailed_Sector_17_LOD0",
+            "Excavation_Detailed_Sector_03_LOD1",
+            "Excavation_Detailed_Sector_15_LOD1",
+            "Excavation_Detailed_Sector_04_LOD2",
+            "Excavation_Detailed_Sector_05_LOD2",
+            "Excavation_Detailed_Sector_06_LOD2",
+            "Excavation_Detailed_Sector_07_LOD2",
+            "Excavation_Detailed_Sector_08_LOD2",
+            "Excavation_Detailed_Sector_09_LOD2",
+            "Excavation_Detailed_Sector_10_LOD2",
+            "Excavation_Detailed_Sector_11_LOD2",
+            "Excavation_Detailed_Sector_12_LOD2",
+            "Excavation_Detailed_Sector_13_LOD2",
+            "Excavation_Detailed_Sector_14_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1042.2000000029802,
+              "event": "approved-material-parse",
+              "ms": 189.79999999701977,
+              "bytes": 2117836
+            },
+            {
+              "at": 1042.4000000059605,
+              "event": "approved-material-ready",
+              "ms": 327.5,
+              "exactPilotFamily": true,
+              "holderMeshRendered": false,
+              "look": "limestone",
+              "materialName": "Quarry_Pilot_Grey_Limestone_PBR",
+              "sourceGLB": "public/models/gullyverse/pilot-limestone-grey/quarry-grey-limestone-pilot.glb"
+            },
+            {
+              "at": 1682.1000000089407,
+              "event": "excavation-detailed-parse",
+              "ms": 11.700000002980232,
+              "bytes": 7898472
+            },
+            {
+              "at": 1682.7000000029802,
+              "event": "excavation-asset-ready",
+              "style": "detailed",
+              "ms": 967.8999999910593,
+              "geometryOnly": true,
+              "baselineRequested": false
+            },
+            {
+              "at": 1682.7000000029802,
+              "event": "load-ready",
+              "style": "detailed",
+              "optIn": true
+            },
+            {
+              "at": 2084.4000000059605,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 12.5
+            },
+            {
+              "at": 2131.6000000089407,
+              "event": "shader-compile",
+              "ms": 47.20000000298023
+            },
+            {
+              "at": 4170.4000000059605,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2099,
+              "lighting": "hub"
+            },
+            {
+              "at": 4292.5,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 90027.83922776984,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4292.5,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 66055.2759633159,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4292.5,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 1,
+              "pixels": 957.4495535901259,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4292.70000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 367.69524600840435,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4292.70000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 2,
+              "to": 1,
+              "pixels": 711.4476609175792,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4292.70000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 86785.43762716655,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 6096.70000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 1,
+              "to": 0,
+              "pixels": 1130.0717910465266,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 6096.70000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 331.9448123366679,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 6262.20000000298,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 1,
+              "to": 0,
+              "pixels": 1113.7267668496506,
+              "quality": 3,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 1,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 16777216
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      },
+      "requests": [
+        {
+          "url": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=excavation&quarryMaterial=limestone",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 3044
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 48732
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 1031
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 18703
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/webpack-1c32c991dcb94b71.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2886
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 53764
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 881
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 3757
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 5726
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 1575
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 47164
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2466
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 1058
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 550
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 719
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-dec4638142ce04e7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 8438
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 7198
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 24927
+        },
+        {
+          "url": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 181228
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 5590
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 14539
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2911
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7170.ce0a1d4fe1a6b2aa.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 56988
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 46742
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 170244
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/limestone-excavation/grey-limestone-material.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2104248
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 8697
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 11436
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/0dc0683e-216e-4b92-915d-541710d750ac",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/938f2018-2cd8-491b-b8cb-d1f389582834",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/5fc4c2e6-e38f-4897-b5f3-8f4b91df9fbb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 0
+        },
+        {
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 24873
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 152610
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/limestone-excavation/excavation-detailed.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 4961546
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 30980
+        }
+      ],
+      "assetRequests": [
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/limestone-excavation/grey-limestone-material.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 2104248
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/limestone-excavation/excavation-detailed.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 4961546
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "encodedBytes": 30980
+        }
+      ],
+      "totalEncodedTransfer": 8005251
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,337 @@
+{
+  "checks": [
+    {
+      "name": "Fresh click entry, authored pacing and initial persistent Canvas",
+      "status": "PASS",
+      "evidence": {
+        "entranceMs": 9334,
+        "timing": {
+          "activationToLocalMs": 7226,
+          "largestFrameMs": 215.5,
+          "phases": [
+            {
+              "at": 712.5999999996275,
+              "phase": "boot",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 4810.199999999255,
+              "phase": "landing",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 8393.699999999255,
+              "phase": "entrance",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 15619.699999999255,
+              "phase": "local",
+              "scene": "hub",
+              "serial": 0
+            }
+          ]
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        }
+      }
+    },
+    {
+      "name": "Held-key focus release, all editables/forms, native typing, lost keyup and stale repeat",
+      "status": "PASS",
+      "evidence": [
+        {
+          "type": "input",
+          "before": {
+            "x": 0.4741918785657293,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 0.4741918785657293,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "textarea",
+          "before": {
+            "x": 0.9483837571314586,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 0.9483837571314586,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "select",
+          "before": {
+            "x": 1.422575635697188,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 1.422575635697188,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "contenteditable",
+          "before": {
+            "x": 1.8967675142629172,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 1.8967675142629172,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "empty-contenteditable",
+          "before": {
+            "x": 2.3709593928286465,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 2.3709593928286465,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "plaintext",
+          "before": {
+            "x": 2.845151271394376,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 2.845151271394376,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "form-button",
+          "before": {
+            "x": 3.319343149960105,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 3.319343149960105,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "form-container",
+          "before": {
+            "x": 3.7935350285258345,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 3.7935350285258345,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blur, visibility/freeze, focus restoration and interrupted input",
+      "status": "PASS",
+      "evidence": {
+        "results": [
+          {
+            "events": [
+              "blur",
+              "focus"
+            ],
+            "before": {
+              "x": 3.319343149960105,
+              "y": 1.72,
+              "z": -51,
+              "yaw": 0,
+              "pitch": 0.2
+            }
+          },
+          {
+            "events": [
+              "freeze",
+              "resume"
+            ],
+            "before": {
+              "x": 2.845151271394376,
+              "y": 1.72,
+              "z": -51,
+              "yaw": 0,
+              "pitch": 0.2
+            }
+          }
+        ],
+        "nativeBackground": "Headless hidden-tab suspension not proven by synthetic events."
+      }
+    },
+    {
+      "name": "Map invalid SVG guard, open/close, resize and same Canvas destination",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "x": 2.845151271394376,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "arrival": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        }
+      }
+    },
+    {
+      "name": "Playback restores actual activation pose; rapid restart cannot change walking anchor",
+      "status": "PASS",
+      "evidence": {
+        "anchor": {
+          "x": -8.781224976744241,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "rapidPose": {
+          "x": -12,
+          "y": 5.9,
+          "z": -117.30000000000001,
+          "yaw": 0,
+          "pitch": 0
+        },
+        "restored": {
+          "x": -8.781224976744241,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        }
+      }
+    },
+    {
+      "name": "Boundary Stay/Escape, hysteresis, return and immersive Back/Forward",
+      "status": "PASS",
+      "evidence": {
+        "edge": {
+          "x": -8.781224976744241,
+          "y": 1.72,
+          "z": -105.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "returned": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        }
+      }
+    },
+    {
+      "name": "Navbar Home, reload session, direct URL, history and explicit Entrance policy",
+      "status": "PASS",
+      "evidence": {
+        "navbarURL": "http://127.0.0.1:3000/?arrival=hub",
+        "session": "1"
+      }
+    },
+    {
+      "name": "Fresh-session Enter and touch entry/movement/map; reduced motion",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "moved": {
+          "x": 1.0160380845463768,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "profile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "dpr": 0.25,
+          "stats": {
+            "calls": 133,
+            "triangles": 100930,
+            "textures": 25,
+            "geometries": 150,
+            "dpr": 0.25
+          },
+          "quality": 1
+        },
+        "physicalMobile": false
+      }
+    }
+  ],
+  "errors": []
+}

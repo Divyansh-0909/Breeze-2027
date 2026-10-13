@@ -1,0 +1,149 @@
+--- baseline/components/immersive/AftermovieScene.tsx
++++ current/components/immersive/AftermovieScene.tsx
+@@ -17,6 +17,7 @@
+ import { point3, world } from "./world";
+ import type { ImmersiveRuntime } from "./runtime";
+ import QuarryWallSection from "./QuarryWallSection";
++import QuarryPerimeter from "./QuarryPerimeter";
+ import type { WallPreviewSession } from "./wallSection";
+ const noSubscribe=()=>()=>{};
+ const offWall={mode:"off",busy:false,assetReady:false,revision:0,error:null} as const;
+@@ -36,8 +37,8 @@
+     return () => { runtime.movieActions = null; };
+   }, [runtime, video.startMovie, video.stopMovie, video.enableSound, video.getStatus]);
+   return <>
+-    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} wallReplacement={wall.mode!=="off"&&wall.assetReady?(wall.mode==="reference"||wallPreview?.variant==="previous"?"face":"volume"):null} />
+-    {wallPreview&&<QuarryWallSection session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>}
++    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} authoredQuarry={wallPreview?.variant==="quarry"&&wall.mode!=="off"&&wall.assetReady} wallReplacement={wallPreview?.variant!=="quarry"&&wall.mode!=="off"&&wall.assetReady?(wall.mode==="reference"||wallPreview?.variant==="previous"?"face":"volume"):null} />
++    {wallPreview&&(wallPreview.variant==="quarry"?<QuarryPerimeter session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>:<QuarryWallSection session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>)}
+     <AftermovieEnvironment />
+     {/* Keep one stage and current travel coordinates; restore its original local presentation. */}
+     <group position={point3(world.stage.origin)} rotation-y={world.stage.yaw}>
+--- baseline/components/immersive/HubScene.tsx
++++ current/components/immersive/HubScene.tsx
+@@ -7,6 +7,7 @@
+ import { travelZones } from "./navigation";
+ import { makeBoardTexture, makeGraffitiTexture, makeGroundTexture, makeRockTexture, requireWorldFonts } from "./worldPaint";
+ import { quarryWithoutWallFace, type WallReplacement } from "./wallSection";
++import {tunnelOutsideQuarryRear} from "./quarryRollout";
+ 
+ export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], color="#e4ded0", arrow, textSize }: { label:string;position:[number,number,number];rotation?:[number,number,number];size?:[number,number];color?:string;arrow?:[number,number];textSize?:number }) {
+   requireWorldFonts();
+@@ -179,16 +180,18 @@
+     <instancedMesh ref={grass} args={[undefined,undefined,180]}><primitive object={tufts} attach="geometry" dispose={null} /><meshLambertMaterial color="#626849" side={THREE.DoubleSide} /></instancedMesh>
+   </>;
+ }
+-export default function HubScene({nearStage,quality,stageView=false,wallReplacement=null}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean;wallReplacement?:WallReplacement}) {
++export default function HubScene({nearStage,quality,stageView=false,wallReplacement=null,authoredQuarry=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean;wallReplacement?:WallReplacement;authoredQuarry?:boolean}) {
+   requireWorldFonts();
+-  const quarry=useMemo(()=>wallReplacement?quarryWithoutWallFace(wallReplacement):quarryGeometry(),[wallReplacement]),tunnel=useMemo(tunnelGeometry,[]),portal=useMemo(portalGeometry,[]),exit=useMemo(exitGeometry,[]),ground=useMemo(groundGeometry,[]);
++  const quarry=useMemo(()=>authoredQuarry?null:wallReplacement?quarryWithoutWallFace(wallReplacement):quarryGeometry(),[wallReplacement,authoredQuarry]),tunnel=useMemo(()=>authoredQuarry?tunnelOutsideQuarryRear():tunnelGeometry(),[authoredQuarry]),portal=useMemo(portalGeometry,[]),exit=useMemo(()=>authoredQuarry?null:exitGeometry(),[authoredQuarry]),ground=useMemo(groundGeometry,[]);
+   const rockTexture=useMemo(makeRockTexture,[]),groundTexture=useMemo(makeGroundTexture,[]);
+   useEffect(()=>()=>{ground.dispose();rockTexture.dispose();groundTexture.dispose();},[ground,rockTexture,groundTexture]);
+   return <>
+     <color attach="background" args={[stageView?"#b2bbb9":"#737d87"]} /><fog attach="fog" args={stageView?["#b2bbb9",55,130]:["#737d87",205,520]} />
+     <hemisphereLight args={stageView?["#d8e0dd","#686b59",.65]:["#a9bfd4","#8a8274",1.35]} />
+     {!stageView && <directionalLight position={[-70,37,-145]} intensity={1.35} color="#efd0a4" />}
+-    <Rock geometry={quarry} map={rockTexture} quarry /><Rock geometry={tunnel} map={rockTexture} /><Rock geometry={portal} map={rockTexture} /><Rock geometry={exit} map={rockTexture} quarry />
++    {quarry&&<Rock geometry={quarry} map={rockTexture} quarry />}
++    <Rock geometry={tunnel} map={rockTexture} />
++    <Rock geometry={portal} map={rockTexture} />{exit&&<Rock geometry={exit} map={rockTexture} quarry />}
+     <mesh><primitive object={ground} attach="geometry" dispose={null} /><meshLambertMaterial map={groundTexture} color="#c8c2b4" /></mesh>
+     <EntrancePaint portal={portal} /><TunnelPaint /><Scaffold /><StallBlocks /><Population nearStage={nearStage} quality={quality} /><GroundDetail />
+   </>;
+--- baseline/components/immersive/ImmersiveShell.tsx
++++ current/components/immersive/ImmersiveShell.tsx
+@@ -57,9 +57,10 @@
+   const [mapElements] = useState<MapDOM>(() => ({ container: null, nodes: new Map(), dots: new Map(), lines: new Map() }));
+   const [flat, setFlat] = useState(false);
+   const [wallPreview]=useState(()=>{
+-    const mode=new URLSearchParams(window.location.search).get("wallPreview");
++    const query=new URLSearchParams(window.location.search),mode=query.get("wallPreview");
+     const allowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1";
+-    return allowed&&mode&&["limestone","authored","reference","off"].includes(mode)?new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored",new URLSearchParams(window.location.search).get("wallCandidate")==="previous"?"previous":"corrected"):null;
++    if(allowed&&mode&&["limestone","authored","reference","off"].includes(mode))return new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored",query.get("wallCandidate")==="previous"?"previous":"corrected");
++    return process.env.NEXT_PUBLIC_GULLYVERSE_QUARRY_ROLLOUT!=="0"&&query.get("quarry")!=="original"?new WallPreviewSession(runtime,"authored","quarry"):null;
+   });
+   const wallState=useSyncExternalStore(wallPreview?.subscribe??noWallSubscribe,wallPreview?.snapshot??(()=>noWallState),()=>noWallState);
+   const rendererActive=!flat&&state.phase!=="error";
+@@ -118,10 +119,10 @@
+       </Canvas>
+     </SceneBoundary>
+     {wallPreview&&<>
+-      {wallState.busy&&<div data-wall-cover style={{position:"absolute",inset:0,zIndex:30,background:"#090d0b"}} aria-label="Preparing optional wall preview"/>}
+-      <aside data-wall-preview style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>WALL SECTION PREVIEW · {wallState.mode} · <span data-wall-lod>LOD {wallPreview.activeLOD}</span>{wallState.error&&<span> · Asset unavailable; original restored</span>}<br/>
++      {wallState.busy&&<div data-wall-cover style={{position:"absolute",inset:0,zIndex:30,background:"#090d0b",pointerEvents:wallPreview.variant==="quarry"?"none":"auto"}} aria-label={wallPreview.variant==="quarry"?"Preparing quarry":"Preparing optional wall preview"}/>}
++      {wallPreview.variant!=="quarry"&&<aside data-wall-preview style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>WALL SECTION PREVIEW · {wallState.mode} · <span data-wall-lod>LOD {wallPreview.activeLOD}</span>{wallState.error&&<span> · Asset unavailable; original restored</span>}<br/>
+         <button onClick={()=>wallPreview.setMode("authored")}>Authored wall</button>{" "}<button onClick={()=>wallPreview.setMode("reference")}>Material baseline</button>{" "}<button onClick={()=>wallPreview.setMode("off")}>Original quarry</button>
+-      </aside>
++      </aside>}
+     </>}
+     <div ref={curtain} className={styles.curtain} style={{ opacity: 1 }} aria-hidden="true"><div className={styles.occluder} /></div>
+     {state.inspection && <aside className={styles.inspection}>STAGE 1 / {state.inspection.toUpperCase()} · 1 unit = 1 m <button onClick={() => runtime.inspect(null)}>Resume view</button></aside>}
+@@ -139,7 +140,7 @@
+       </div>
+       {!state.movie && <div className={styles.touchPad} aria-label="Movement controls"><button data-move="forward" aria-label="Walk forward">↑</button><div><button data-move="left" aria-label="Walk left">←</button><button data-move="back" aria-label="Walk backward">↓</button><button data-move="right" aria-label="Walk right">→</button></div><small>Drag the scene to look</small></div>}
+     </div>}
+-    <div className={styles.access}><button onClick={() => { runtime.movieActions?.stop(); runtime.clearInput(); setFlat(true); }}>Use without 3D</button><details onToggle={(e) => { if (e.currentTarget.open) runtime.clearInput(); }}><summary>Festival information</summary><InformationLinks /></details></div>
++    <div className={styles.access} style={wallPreview?.variant==="quarry"&&wallState.busy?{zIndex:40}:undefined}><button onClick={() => { runtime.movieActions?.stop(); runtime.clearInput(); setFlat(true); }}>Use without 3D</button><details onToggle={(e) => { if (e.currentTarget.open) runtime.clearInput(); }}><summary>Festival information</summary><InformationLinks /></details></div>
+     <WorldOverlays runtime={runtime} state={state} elements={mapElements} />
+   </section>;
+ }
+--- baseline/components/immersive/wallSection.ts
++++ current/components/immersive/wallSection.ts
+@@ -2,13 +2,17 @@
+ import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
+ import manifest from "@/public/models/gullyverse/first-wall-section/manifest.json";
+ import correctedManifest from "@/public/models/gullyverse/first-wall-corrected/manifest.json";
++import quarryManifest from "@/public/models/gullyverse/quarry-rollout/manifest.json";
+ import { quarryGeometry } from "./blockoutGeometry";
++import {currentQuarryConnectionFits} from "./quarryRollout";
+ import type { ImmersiveRuntime } from "./runtime";
+ 
+ export const WALL_URL = "/models/gullyverse/first-wall-corrected/first-wall-corrected.glb";
+ export const PREVIOUS_WALL_URL = "/models/gullyverse/first-wall-section/first-wall-section.glb";
++export const QUARRY_URL = "/models/gullyverse/quarry-rollout/quarry-limestone.glb";
++export const QUARRY = quarryManifest;
+ export const CORRECTED_WALL = correctedManifest;
+-export type WallVariant = "corrected" | "previous";
++export type WallVariant = "corrected" | "previous" | "quarry";
+ export type WallReplacement = "face" | "volume" | null;
+ export const WALL = manifest;
+ export type WallMode = "off" | "reference" | "authored";
+@@ -29,6 +33,14 @@
+ }
+ export function currentWallAnchorFits(variant:WallVariant="corrected") {
+   const geometry=quarryGeometry(),positions=geometry.getAttribute("position");
++  if(variant==="quarry") {
++    const fits=positions.count===QUARRY.parts.filter(p=>typeof p.id==="number").length*108&&QUARRY.parts.every(part=>{
++      if(typeof part.id!=="number"||!("sourceCorners" in part))return true;
++      const start=(part.id-2)*108;
++      return part.sourceCorners.every(p=>Array.from({length:108},(_,i)=>new THREE.Vector3().fromBufferAttribute(positions,start+i)).some(q=>q.distanceTo(new THREE.Vector3().fromArray(p))<2e-5));
++    });
++    geometry.dispose();return fits&&currentQuarryConnectionFits();
++  }
+   const points=Array.from({length:WALL.vertexCount},(_,i)=>new THREE.Vector3().fromBufferAttribute(positions,WALL.vertexStart+i));
+   const wholePoints=Array.from({length:CORRECTED_WALL.hostRange.count},(_,i)=>new THREE.Vector3().fromBufferAttribute(positions,CORRECTED_WALL.hostRange.start+i));
+   const joinFits=CORRECTED_WALL.joiningContacts.every(join=>{const points=join.sourceRanges.flatMap(({start,count})=>Array.from({length:count},(_,i)=>new THREE.Vector3().fromBufferAttribute(positions,start+i)));const ids=new Set(join.selectedFaces.flatMap(face=>join.faces[face]));return [...ids].every(i=>points.some(p=>p.distanceTo(new THREE.Vector3().fromArray(join.vertices[i]))<2e-5));});
+@@ -75,6 +87,8 @@
+   private ownerLeases=0;
+   private cacheGeneration=0;
+   activeLOD=2; projectedPixels=0;
++  lodSelections:Record<string,number>={};
++  lodPixels:Record<string,number>={};
+   preparedLighting=new Set<string>();
+   private listeners=new Set<()=>void>();
+   state:WallState;
+@@ -91,9 +105,10 @@
+     const at=performance.now(),generation=this.cacheGeneration;this.record("load-start");
+     const loader=new GLTFLoader(),parse=loader.parse.bind(loader);
+     loader.parse=(data,path,onLoad,onError)=>{const start=performance.now();parse(data,path,gltf=>{this.record("parse-ready",{ms:performance.now()-start,decodedBytes:typeof data==="string"?data.length:data.byteLength});onLoad(gltf);},onError);};
+-    this.pending=loader.loadAsync(this.variant==="previous"?PREVIOUS_WALL_URL:WALL_URL).then(gltf=>{
++    this.pending=loader.loadAsync(this.variant==="quarry"?QUARRY_URL:this.variant==="previous"?PREVIOUS_WALL_URL:WALL_URL).then(gltf=>{
+       if(this.disposed||generation!==this.cacheGeneration){this.record("abandoned-load-disposal",disposeAsset(gltf));return;}
+-      if(!["Wall_LOD0","Wall_LOD1","Wall_LOD2","Wall_Collision"].every(name=>gltf.scene.getObjectByName(name))){disposeAsset(gltf);throw new Error("Wall asset has invalid named nodes");}
++      const required=[...(this.variant==="quarry"?["Quarry_LOD0","Quarry_LOD1","Quarry_LOD2",...QUARRY.parts.flatMap(p=>p.nodes)]:["Wall_LOD0","Wall_LOD1","Wall_LOD2"]),"Wall_Collision"];
++      if(!required.every(name=>gltf.scene.getObjectByName(name))){disposeAsset(gltf);throw new Error("Wall asset has invalid named nodes");}
+       this.asset=gltf;this.record("load-ready",{ms:performance.now()-at});this.publish({assetReady:true});
+     }).catch(error=>{if(!this.disposed){this.record("load-failed",{message:String(error)});this.publish({mode:"off",busy:true,error:String(error),revision:this.state.revision+1});}}).finally(()=>{this.pending=null;if(!this.disposed&&generation!==this.cacheGeneration&&this.state.mode!=="off")void this.load();});
+     await this.pending;

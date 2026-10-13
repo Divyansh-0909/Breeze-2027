@@ -1,0 +1,55 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+15:11:46 | INFO: Starting glTF 2.0 export
+15:11:46 | INFO: Extracting primitive: Wall_LOD0_Mesh
+15:11:46 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+15:11:46 | INFO: Primitives created: 2
+15:11:46 | INFO: Extracting primitive: Wall_LOD1_Mesh
+15:11:46 | INFO: Primitives created: 2
+15:11:46 | INFO: Extracting primitive: Wall_LOD2_Mesh
+15:11:46 | INFO: Primitives created: 2
+15:11:46 | INFO: Extracting primitive: Wall_Collision_Mesh
+15:11:46 | INFO: Primitives created: 1
+15:11:46 | INFO: Finished glTF 2.0 export in 0.13457751274108887 s
+
+15:11:46 | INFO: Starting glTF 2.0 export
+15:11:46 | INFO: Extracting primitive: Wall_LOD0_Mesh
+15:11:46 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+15:11:46 | INFO: Primitives created: 2
+15:11:46 | INFO: Finished glTF 2.0 export in 0.0651853084564209 s
+
+15:11:46 | INFO: Starting glTF 2.0 export
+15:11:46 | INFO: Extracting primitive: Wall_LOD1_Mesh
+15:11:46 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+15:11:46 | INFO: Primitives created: 2
+15:11:46 | INFO: Finished glTF 2.0 export in 0.039746761322021484 s
+
+15:11:46 | INFO: Starting glTF 2.0 export
+15:11:46 | INFO: Extracting primitive: Wall_LOD2_Mesh
+15:11:46 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+15:11:46 | INFO: Primitives created: 2
+15:11:46 | INFO: Finished glTF 2.0 export in 0.030310392379760742 s
+
+15:11:46 | INFO: Starting glTF 2.0 export
+15:11:46 | INFO: Extracting primitive: Wall_Collision_Mesh
+15:11:46 | INFO: Primitives created: 1
+15:11:46 | INFO: Finished glTF 2.0 export in 0.0038385391235351562 s
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_corrected_wall_section.py", line 105, in <module>
+    mastercol.hide_render=True;bpy.ops.wm.save_as_mainfile(filepath=str(src/'first-wall-corrected.blend'));(src/'manifest.json').write_text(json.dumps(manifest,indent=2));(out/'manifest.json').write_text(json.dumps(manifest,indent=2));print('CORRECTED_MANIFEST',json.dumps(manifest))
+                                                                                                                                            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/usr/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type int64 is not JSON serializable
+
+Info: Saved "first-wall-corrected.blend"
+Blender 4.3.2
+
+Blender quit

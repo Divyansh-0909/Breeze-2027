@@ -1,0 +1,760 @@
+{
+  "GLBs": [
+    {
+      "file": "public/models/gullyverse/pilot-limestone/rock-lod2.glb",
+      "bytes": 2248432,
+      "sha256": "a2219e015290d797f0b45930fcae490faa356ad24017b5925964526c61661cae",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "Quarry_Pilot_Original_Limestone_PBR",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.5799999833106995
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 2,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 0,
+          "name": "Rock_LOD2"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_LOD2_Mesh",
+          "vertices": 2171,
+          "triangles": 2820,
+          "glTFBounds": [
+            [
+              -6.034095287322998,
+              0.0,
+              -1.4499852657318115
+            ],
+            [
+              6.030569076538086,
+              10.004802703857422,
+              2.644806385040283
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894534349441528,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.00011548399925231934
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1142447,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 819136,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 163302,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/pilot-limestone/rock-collision.glb",
+      "bytes": 1824,
+      "sha256": "c5f977ff85966cfcdac4e82890ed015e8f26451e675200793b84a3ab2b9e8173",
+      "extensionsUsed": [],
+      "materials": [],
+      "nodes": [
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        },
+        {
+          "extras": {
+            "collision_proxy": true,
+            "proxy_kind": "Conservative axis-aligned hull of all runtime LOD vertices, not production walk polygon",
+            "production_default_enabled": false
+          },
+          "mesh": 0,
+          "name": "Rock_Collision"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_Collision_Mesh",
+          "vertices": 24,
+          "triangles": 12,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.449992299079895
+            ],
+            [
+              6.0343828201293945,
+              10.015950202941895,
+              2.6555120944976807
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            1.0,
+            1.0
+          ],
+          "UVRange": null,
+          "tangents": false,
+          "maxNormalTangentDot": null
+        }
+      ],
+      "images": []
+    },
+    {
+      "file": "public/models/gullyverse/pilot-limestone/rock-lod0.glb",
+      "bytes": 3236932,
+      "sha256": "52a3d74076258456840520d95a02f10aa6fdb91a1d7b2fdb4e937c80b450d4ba",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "Quarry_Pilot_Original_Limestone_PBR",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.5799999833106995
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 0,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 0,
+          "name": "Rock_LOD0"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_LOD0_Mesh",
+          "vertices": 19040,
+          "triangles": 32616,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.449992299079895
+            ],
+            [
+              6.0343828201293945,
+              10.015950202941895,
+              2.654045820236206
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894657731056213,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.0001296401023864746
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1142447,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 819136,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 163302,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/pilot-limestone/rock-lod1.glb",
+      "bytes": 2513372,
+      "sha256": "d4a7fd74d5c3c0f546e81a4222bfcafbf815e479f36656014c3126ff42befdb3",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "Quarry_Pilot_Original_Limestone_PBR",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.5799999833106995
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 1,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 0,
+          "name": "Rock_LOD1"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_LOD1_Mesh",
+          "vertices": 6738,
+          "triangles": 10440,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.4499852657318115
+            ],
+            [
+              6.034262657165527,
+              10.006356239318848,
+              2.6555120944976807
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894653558731079,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.0001232624053955078
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1142447,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 819136,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 163302,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/pilot-limestone/quarry-limestone-pilot.glb",
+      "bytes": 3748024,
+      "sha256": "4a2b77266ec426a26d81b8c6a5e6a72f937ecd85d3bd1bb117480ff0536b41af",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "Quarry_Pilot_Original_Limestone_PBR",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.5799999833106995
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 0,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 0,
+          "name": "Rock_LOD0"
+        },
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 1,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 1,
+          "name": "Rock_LOD1"
+        },
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 2,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 2,
+          "name": "Rock_LOD2"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        },
+        {
+          "extras": {
+            "collision_proxy": true,
+            "proxy_kind": "Conservative axis-aligned hull of all runtime LOD vertices, not production walk polygon",
+            "production_default_enabled": false
+          },
+          "mesh": 3,
+          "name": "Rock_Collision"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_LOD0_Mesh",
+          "vertices": 19040,
+          "triangles": 32616,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.449992299079895
+            ],
+            [
+              6.0343828201293945,
+              10.015950202941895,
+              2.654045820236206
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894657731056213,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.0001296401023864746
+        },
+        {
+          "name": "Rock_LOD1_Mesh",
+          "vertices": 6738,
+          "triangles": 10440,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.4499852657318115
+            ],
+            [
+              6.034262657165527,
+              10.006356239318848,
+              2.6555120944976807
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894653558731079,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.0001232624053955078
+        },
+        {
+          "name": "Rock_LOD2_Mesh",
+          "vertices": 2171,
+          "triangles": 2820,
+          "glTFBounds": [
+            [
+              -6.034095287322998,
+              0.0,
+              -1.4499852657318115
+            ],
+            [
+              6.030569076538086,
+              10.004802703857422,
+              2.644806385040283
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894534349441528,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.00011548399925231934
+        },
+        {
+          "name": "Rock_Collision_Mesh",
+          "vertices": 24,
+          "triangles": 12,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.449992299079895
+            ],
+            [
+              6.0343828201293945,
+              10.015950202941895,
+              2.6555120944976807
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            1.0,
+            1.0
+          ],
+          "UVRange": null,
+          "tangents": false,
+          "maxNormalTangentDot": null
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1142447,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 819136,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 163302,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "file": "assets-source/gullyverse/limestone-pilot/textures/limestone-normal-2048.png",
+      "bytes": 4171577,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "a8700acdd8c2bb4b46977be85e1dc1d0a04d6360ee97c16998497847affe874b"
+    },
+    {
+      "file": "assets-source/gullyverse/limestone-pilot/textures/limestone-roughness-2048.png",
+      "bytes": 1241394,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "a0e739dc5ec010b7928a2e78d34ca35567d95a1e1e08657ec49f8427b9affcb7"
+    },
+    {
+      "file": "assets-source/gullyverse/limestone-pilot/textures/limestone-ao-1024.png",
+      "bytes": 38513,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "PNG",
+      "sha256": "5e0f1778308ddf562f90786682700d550632aacb4ef4bde4d6324bc108ac62f9"
+    },
+    {
+      "file": "assets-source/gullyverse/limestone-pilot/textures/limestone-basecolor-1024.jpg",
+      "bytes": 163302,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "JPEG",
+      "sha256": "7ea03ace5b47f8bd9c06019a566a701829c9b7cd5659a205fe595558f5d3a9e5"
+    },
+    {
+      "file": "assets-source/gullyverse/limestone-pilot/textures/limestone-roughness-1024.png",
+      "bytes": 420848,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "PNG",
+      "sha256": "d4fd00422a359772c9dbb292a2ea227d8e32e69fded8313130571a6ea53333e7"
+    },
+    {
+      "file": "assets-source/gullyverse/limestone-pilot/textures/limestone-ao-2048.png",
+      "bytes": 87021,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "d389cfaf09f05379c66ebb82e93a9dbbc57f346d15f3e53fe5ea45beb828ae41"
+    },
+    {
+      "file": "assets-source/gullyverse/limestone-pilot/textures/limestone-basecolor-2048.png",
+      "bytes": 2526984,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "3c3e5886cc104dfbc064215c8bf06a9ecfe8166ce446dd38826fe7cb9ad2a892"
+    },
+    {
+      "file": "assets-source/gullyverse/limestone-pilot/textures/limestone-normal-1024.png",
+      "bytes": 1142447,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "PNG",
+      "sha256": "ffe1091fd1cd91be078917e3946dc0539807ce1af20f8568b5d35468e92f3c9d"
+    }
+  ],
+  "master": {
+    "file": "assets-source/gullyverse/limestone-pilot/quarry-limestone-pilot.blend",
+    "bytes": 9760728
+  },
+  "provenance": "All pilot surfaces/materials original, no reference-photo texels."
+}

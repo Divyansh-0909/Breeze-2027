@@ -1,0 +1,103 @@
+[
+  {
+    "name": "after-captures",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/after-evidence.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 168.2136378288269
+  },
+  {
+    "name": "extra-captures",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/extra-evidence.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 66.09827733039856
+  },
+  {
+    "name": "after-performance",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/measure.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 50.90563893318176
+  },
+  {
+    "name": "ten-preview-cycles",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/lifecycle.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 26.16274666786194
+  },
+  {
+    "name": "default-browser",
+    "command": [
+      "npm",
+      "run",
+      "test:immersive:browser"
+    ],
+    "exitCode": 0,
+    "seconds": 277.03715467453003
+  },
+  {
+    "name": "opt-in-browser",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/opt-in-regressions.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 137.51576042175293
+  },
+  {
+    "name": "touch-opt-in",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/touch-optin.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 41.49202060699463
+  },
+  {
+    "name": "video-with-wall",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/video-with-wall.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 158.85583209991455
+  },
+  {
+    "name": "walkthrough",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/walkthrough.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 92.08515572547913
+  },
+  {
+    "name": "critical-fallback",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/production-smoke.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 66.20944881439209
+  },
+  {
+    "name": "loading-interruption",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/interruption.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 71.84890031814575
+  }
+]

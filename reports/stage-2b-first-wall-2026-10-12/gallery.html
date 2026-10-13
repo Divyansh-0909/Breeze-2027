@@ -1,0 +1,919 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gullyverse Stage2B first wall review</title><style>body{background:#111818;color:#e5ebed;font:16px system-ui;max-width:1450px;margin:auto;padding:22px}a{color:#9dd1ed}img,video{max-width:100%;height:auto}figure{margin:20px 0}figcaption{padding:14px;background:#223035}.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,450px),1fr));gap:16px}details{margin:12px}pre{overflow:auto;font-size:12px}</style><h1>Stage2B — one opt-in limestone wall</h1><p>Actual browser captures. Approved production default retained. Geometry/material is for human review; physical-device performance pending. Some joins and sculpted detail remain provisional.</p><nav><a href="../../docs/gullyverse-stage-2b-first-wall-integration.md">Main report</a> · <a href="raw/test-summary.json">Tests</a> · <a href="raw/performance-lifecycle.json">Frames/resources</a> · <a href="raw/asset-inventory.json">Asset inventory</a> · <a href="raw/capture-metadata.json">Capture metadata</a> · <a href="raw/high-resolution-capture-metadata.json">DPR1 metadata</a> · <a href="PHYSICAL-DEVICE-PROCEDURE.md">Physical procedure</a></nav>
+<h2>Matched/DPR0.5 and world context captures</h2><div class="pair">
+<figure><a href="acceptance/01-actual-default-wall.png"><img loading="lazy" src="acceptance/01-actual-default-wall.png" alt="01-actual-default-wall.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)"></a><figcaption>01-actual-default-wall.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.10912685723640471,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.04342740628483554,
+      -0.6039991716876418,
+      0.0329890101283685,
+      0.7951168380777537
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/02-approved-grey-material-on-procedural-face.png"><img loading="lazy" src="acceptance/02-approved-grey-material-on-procedural-face.png" alt="02-approved-grey-material-on-procedural-face.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (reference)"></a><figcaption>02-approved-grey-material-on-procedural-face.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (reference)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.10912685723640471,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.04342740628483554,
+      -0.6039991716876418,
+      0.0329890101283685,
+      0.7951168380777537
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/03-refined-wall-same-camera.png"><img loading="lazy" src="acceptance/03-refined-wall-same-camera.png" alt="03-refined-wall-same-camera.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD1"></a><figcaption>03-refined-wall-same-camera.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD1<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.10912685723640471,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.04342740628483554,
+      -0.6039991716876418,
+      0.0329890101283685,
+      0.7951168380777537
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD1&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/04-fractures-close-lod0.png"><img loading="lazy" src="acceptance/04-fractures-close-lod0.png" alt="04-fractures-close-lod0.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD0"></a><figcaption>04-fractures-close-lod0.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD0<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 38.7,
+    &quot;y&quot;: 4.8,
+    &quot;z&quot;: -62.6,
+    &quot;yaw&quot;: -1.2727767690050353,
+    &quot;pitch&quot;: 0.18946995541021416,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.07607644260166067,
+      -0.5916298722120858,
+      0.056216318626152,
+      0.8006411147995774
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD0&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/05-medium-geology-auto-lod2.png"><img loading="lazy" src="acceptance/05-medium-geology-auto-lod2.png" alt="05-medium-geology-auto-lod2.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD2"></a><figcaption>05-medium-geology-auto-lod2.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD2<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 3,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -58,
+    &quot;yaw&quot;: -1.427066039662169,
+    &quot;pitch&quot;: 0.03786297227181875,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.0143123747568368,
+      -0.654391719936897,
+      0.012390088016143705,
+      0.7559187248149114
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD2&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/06-long-silhouette-lod2.png"><img loading="lazy" src="acceptance/06-long-silhouette-lod2.png" alt="06-long-silhouette-lod2.png · 1366×900 · effectiveDPR 0.5 · quality3 · LOD2"></a><figcaption>06-long-silhouette-lod2.png · 1366×900 · effectiveDPR 0.5 · quality3 · LOD2<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -18,
+    &quot;y&quot;: 7,
+    &quot;z&quot;: -52,
+    &quot;yaw&quot;: -1.3792554436782982,
+    &quot;pitch&quot;: -0.008155023377336628,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      -0.003145721949608463,
+      -0.6362447309000012,
+      -0.002594309704866537,
+      0.7714765170713598
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD2&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/07-seam-and-adjacent-rocks.png"><img loading="lazy" src="acceptance/07-seam-and-adjacent-rocks.png" alt="07-seam-and-adjacent-rocks.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD1"></a><figcaption>07-seam-and-adjacent-rocks.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD1<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 31,
+    &quot;y&quot;: 8,
+    &quot;z&quot;: -57,
+    &quot;yaw&quot;: -1.3090828243936916,
+    &quot;pitch&quot;: 0.08603247250789288,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.03411542671307355,
+      -0.6082323274763284,
+      0.0261800152919495,
+      0.7925933259069412
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD1&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/08-hub-eye-off.png"><img loading="lazy" src="acceptance/08-hub-eye-off.png" alt="08-hub-eye-off.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)"></a><figcaption>08-hub-eye-off.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 18,
+    &quot;y&quot;: 1.72,
+    &quot;z&quot;: -52,
+    &quot;yaw&quot;: -1.1212309569769108,
+    &quot;pitch&quot;: 0.1761287845613755,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.07448783421608107,
+      -0.5296471109909724,
+      0.046764003707463656,
+      0.8436460326048848
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/09-tunnel-exit-off.png"><img loading="lazy" src="acceptance/09-tunnel-exit-off.png" alt="09-tunnel-exit-off.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)"></a><figcaption>09-tunnel-exit-off.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 0,
+    &quot;y&quot;: 1.72,
+    &quot;z&quot;: -42,
+    &quot;yaw&quot;: -0.4411794804149806,
+    &quot;pitch&quot;: 0.057206594500861976,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.027906393139612858,
+      -0.21871560961558525,
+      0.006257694262861662,
+      0.9753694462074014
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/08-hub-eye-authored.png"><img loading="lazy" src="acceptance/08-hub-eye-authored.png" alt="08-hub-eye-authored.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD1"></a><figcaption>08-hub-eye-authored.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD1<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 18,
+    &quot;y&quot;: 1.72,
+    &quot;z&quot;: -52,
+    &quot;yaw&quot;: -1.1212309569769108,
+    &quot;pitch&quot;: 0.1761287845613755,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.07448783421608107,
+      -0.5296471109909724,
+      0.046764003707463656,
+      0.8436460326048848
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD1&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/09-tunnel-exit-authored.png"><img loading="lazy" src="acceptance/09-tunnel-exit-authored.png" alt="09-tunnel-exit-authored.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD1"></a><figcaption>09-tunnel-exit-authored.png · 1366×900 · effectiveDPR 0.5 · quality0 · LOD1<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 0,
+    &quot;y&quot;: 1.72,
+    &quot;z&quot;: -42,
+    &quot;yaw&quot;: -0.4411794804149806,
+    &quot;pitch&quot;: 0.057206594500861976,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.027906393139612858,
+      -0.21871560961558525,
+      0.006257694262861662,
+      0.9753694462074014
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD1&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/10-aerial-map-authored.png"><img loading="lazy" src="acceptance/10-aerial-map-authored.png" alt="10-aerial-map-authored.png · 1366×900 · effectiveDPR 0.5 · quality3 · LOD2"></a><figcaption>10-aerial-map-authored.png · 1366×900 · effectiveDPR 0.5 · quality3 · LOD2<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -0.8999999999999986,
+    &quot;y&quot;: 165.93367317635833,
+    &quot;z&quot;: -77,
+    &quot;yaw&quot;: -1.570760033104047,
+    &quot;pitch&quot;: -1.5707963267948966,
+    &quot;fov&quot;: 64.00036968449932,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      -0.5000090733403848,
+      -0.49999092649496113,
+      -0.499990926494961,
+      0.5000090733403849
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD2&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Public control capture&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/11-portrait-wall.png"><img loading="lazy" src="acceptance/11-portrait-wall.png" alt="11-portrait-wall.png · 390×844 · effectiveDPR 0.5 · quality3 · LOD1"></a><figcaption>11-portrait-wall.png · 390×844 · effectiveDPR 0.5 · quality3 · LOD1<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 3,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.2502844481586808,
+    &quot;fov&quot;: 100.36920599534565,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.09939109651017618,
+      -0.6001690334486695,
+      0.07550102964792502,
+      0.7900747659214904
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD1&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/12-portrait-close.png"><img loading="lazy" src="acceptance/12-portrait-close.png" alt="12-portrait-close.png · 390×844 · effectiveDPR 0.5 · quality3 · LOD1"></a><figcaption>12-portrait-close.png · 390×844 · effectiveDPR 0.5 · quality3 · LOD1<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 39,
+    &quot;y&quot;: 4,
+    &quot;z&quot;: -62.6,
+    &quot;yaw&quot;: -1.2465927006342776,
+    &quot;pitch&quot;: 0.2888989055715162,
+    &quot;fov&quot;: 100.36920599534565,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.11687954329546917,
+      -0.5776356160272799,
+      0.0840243707468194,
+      0.8035024409274862
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD1&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/13-portrait-map.png"><img loading="lazy" src="acceptance/13-portrait-map.png" alt="13-portrait-map.png · 390×844 · effectiveDPR 0.5 · quality3 · LOD2"></a><figcaption>13-portrait-map.png · 390×844 · effectiveDPR 0.5 · quality3 · LOD2<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -0.8999999999999986,
+    &quot;y&quot;: 233.84848243444554,
+    &quot;z&quot;: -77,
+    &quot;yaw&quot;: 0,
+    &quot;pitch&quot;: -1.5707963267948966,
+    &quot;fov&quot;: 80,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      -0.7071067811865475,
+      0,
+      0,
+      0.7071067811865476
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD2&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Public control capture&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/14-stage-looking-back-off.png"><img loading="lazy" src="acceptance/14-stage-looking-back-off.png" alt="14-stage-looking-back-off.png · 1366×900 · effectiveDPR 0.25 · quality3 · No visual LOD (off)"></a><figcaption>14-stage-looking-back-off.png · 1366×900 · effectiveDPR 0.25 · quality3 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -10.5,
+    &quot;y&quot;: 1.72,
+    &quot;z&quot;: -110.8,
+    &quot;yaw&quot;: -2.3005393496798723,
+    &quot;pitch&quot;: 0.0675153709442791,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.01377866327845639,
+      -0.912353968127885,
+      0.030810662936641024,
+      0.4080086865851823
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.25
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/14-stage-looking-back-authored.png"><img loading="lazy" src="acceptance/14-stage-looking-back-authored.png" alt="14-stage-looking-back-authored.png · 1366×900 · effectiveDPR 0.25 · quality3 · LOD2"></a><figcaption>14-stage-looking-back-authored.png · 1366×900 · effectiveDPR 0.25 · quality3 · LOD2<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -10.5,
+    &quot;y&quot;: 1.72,
+    &quot;z&quot;: -110.8,
+    &quot;yaw&quot;: -2.3005393496798723,
+    &quot;pitch&quot;: 0.0675153709442791,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.01377866327845639,
+      -0.912353968127885,
+      0.030810662936641024,
+      0.4080086865851823
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD2&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.25
+  },
+  &quot;method&quot;: &quot;Matched diagnostic inspection fixture using inherited camera lens; no production pose/config edit&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/22-optin-touch-boundary.png"><img loading="lazy" src="acceptance/22-optin-touch-boundary.png" alt="22-optin-touch-boundary.png · 390×844 · effectiveDPR 0.25 · quality3 · LOD2"></a><figcaption>22-optin-touch-boundary.png · 390×844 · effectiveDPR 0.25 · quality3 · LOD2<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -10.5,
+    &quot;y&quot;: 1.72,
+    &quot;z&quot;: -105.67999999999999,
+    &quot;yaw&quot;: 0,
+    &quot;pitch&quot;: 0.16,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.0799146939691727,
+      0,
+      0,
+      0.9968017063026194
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD2&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.25
+  },
+  &quot;method&quot;: &quot;Public touch-emulated portrait movement/map/Aftermovie boundary capture; no inspection pose&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/23-before-close.png"><img loading="lazy" src="acceptance/23-before-close.png" alt="23-before-close.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)"></a><figcaption>23-before-close.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 38.7,
+    &quot;y&quot;: 4.8,
+    &quot;z&quot;: -62.6,
+    &quot;yaw&quot;: -1.2727767690050353,
+    &quot;pitch&quot;: 0.18946995541021416,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.07607644260166067,
+      -0.5916298722120858,
+      0.056216318626152,
+      0.8006411147995774
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Original face: matched diagnostic fixture from authored screenshot metadata&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/24-before-medium.png"><img loading="lazy" src="acceptance/24-before-medium.png" alt="24-before-medium.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)"></a><figcaption>24-before-medium.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 3,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -58,
+    &quot;yaw&quot;: -1.427066039662169,
+    &quot;pitch&quot;: 0.03786297227181875,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.0143123747568368,
+      -0.654391719936897,
+      0.012390088016143705,
+      0.7559187248149114
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Original face: matched diagnostic fixture from authored screenshot metadata&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/25-before-long.png"><img loading="lazy" src="acceptance/25-before-long.png" alt="25-before-long.png · 1366×900 · effectiveDPR 0.5 · quality3 · No visual LOD (off)"></a><figcaption>25-before-long.png · 1366×900 · effectiveDPR 0.5 · quality3 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -18,
+    &quot;y&quot;: 7,
+    &quot;z&quot;: -52,
+    &quot;yaw&quot;: -1.3792554436782982,
+    &quot;pitch&quot;: -0.008155023377336628,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      -0.003145721949608463,
+      -0.6362447309000012,
+      -0.002594309704866537,
+      0.7714765170713598
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Original face: matched diagnostic fixture from authored screenshot metadata&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/26-before-seam.png"><img loading="lazy" src="acceptance/26-before-seam.png" alt="26-before-seam.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)"></a><figcaption>26-before-seam.png · 1366×900 · effectiveDPR 0.5 · quality0 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 31,
+    &quot;y&quot;: 8,
+    &quot;z&quot;: -57,
+    &quot;yaw&quot;: -1.3090828243936916,
+    &quot;pitch&quot;: 0.08603247250789288,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.03411542671307355,
+      -0.6082323274763284,
+      0.0261800152919495,
+      0.7925933259069412
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Original face: matched diagnostic fixture from authored screenshot metadata&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/27-before-map.png"><img loading="lazy" src="acceptance/27-before-map.png" alt="27-before-map.png · 1366×900 · effectiveDPR 0.5 · quality3 · No visual LOD (off)"></a><figcaption>27-before-map.png · 1366×900 · effectiveDPR 0.5 · quality3 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -0.8999999999999986,
+    &quot;y&quot;: 165.93367317635833,
+    &quot;z&quot;: -77,
+    &quot;yaw&quot;: -1.570760033104047,
+    &quot;pitch&quot;: -1.5707963267948966,
+    &quot;fov&quot;: 64.00036968449932,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      -0.5000090733403848,
+      -0.49999092649496113,
+      -0.499990926494961,
+      0.5000090733403849
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Original face: public Map opened then fixed to corresponding actual map capture camera&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/28-before-portrait-wall.png"><img loading="lazy" src="acceptance/28-before-portrait-wall.png" alt="28-before-portrait-wall.png · 390×844 · effectiveDPR 0.5 · quality3 · No visual LOD (off)"></a><figcaption>28-before-portrait-wall.png · 390×844 · effectiveDPR 0.5 · quality3 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 3,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.2502844481586808,
+    &quot;fov&quot;: 100.36920599534565,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.09939109651017618,
+      -0.6001690334486695,
+      0.07550102964792502,
+      0.7900747659214904
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Original face: matched diagnostic fixture from authored screenshot metadata&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/29-before-portrait-close.png"><img loading="lazy" src="acceptance/29-before-portrait-close.png" alt="29-before-portrait-close.png · 390×844 · effectiveDPR 0.5 · quality3 · No visual LOD (off)"></a><figcaption>29-before-portrait-close.png · 390×844 · effectiveDPR 0.5 · quality3 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 39,
+    &quot;y&quot;: 4,
+    &quot;z&quot;: -62.6,
+    &quot;yaw&quot;: -1.2465927006342776,
+    &quot;pitch&quot;: 0.2888989055715162,
+    &quot;fov&quot;: 100.36920599534565,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.11687954329546917,
+      -0.5776356160272799,
+      0.0840243707468194,
+      0.8035024409274862
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Original face: matched diagnostic fixture from authored screenshot metadata&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/30-before-portrait-map.png"><img loading="lazy" src="acceptance/30-before-portrait-map.png" alt="30-before-portrait-map.png · 390×844 · effectiveDPR 0.5 · quality3 · No visual LOD (off)"></a><figcaption>30-before-portrait-map.png · 390×844 · effectiveDPR 0.5 · quality3 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: -0.8999999999999986,
+    &quot;y&quot;: 233.84848243444554,
+    &quot;z&quot;: -77,
+    &quot;yaw&quot;: 0,
+    &quot;pitch&quot;: -1.5707963267948966,
+    &quot;fov&quot;: 80,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      -0.7071067811865475,
+      0,
+      0,
+      0.7071067811865476
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5
+  },
+  &quot;method&quot;: &quot;Original face: public Map opened then fixed to corresponding actual map capture camera&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/31-native-dpr1-before-close.png"><img loading="lazy" src="acceptance/31-native-dpr1-before-close.png" alt="31-native-dpr1-before-close.png · 1366×900 · effectiveDPR 1 · quality0 · No visual LOD (off)"></a><figcaption>31-native-dpr1-before-close.png · 1366×900 · effectiveDPR 1 · quality0 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 38.7,
+    &quot;y&quot;: 4.8,
+    &quot;z&quot;: -62.6,
+    &quot;yaw&quot;: -1.2727767690050353,
+    &quot;pitch&quot;: 0.18946995541021416,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.07607644260166067,
+      -0.5916298722120858,
+      0.056216318626152,
+      0.8006411147995774
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1
+  },
+  &quot;method&quot;: &quot;Original face: matched diagnostic fixture from authored screenshot metadata&quot;
+}</pre></details></figcaption></figure>
+</div>
+<h2>Checked DPR1 detail / portrait aspect</h2><div class="pair">
+<figure><a href="acceptance/15-native-dpr1-current-wall.png"><img loading="lazy" src="acceptance/15-native-dpr1-current-wall.png" alt="15-native-dpr1-current-wall.png · 1366×900 · effectiveDPR 1 · quality0 · No visual LOD (off)"></a><figcaption>15-native-dpr1-current-wall.png · 1366×900 · effectiveDPR 1 · quality0 · No visual LOD (off)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.10912685723640471,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.04342740628483554,
+      -0.6039991716876418,
+      0.0329890101283685,
+      0.7951168380777537
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1
+  },
+  &quot;method&quot;: &quot;Checked DPR1 detail / portrait aspect&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/16-native-dpr1-material-reference.png"><img loading="lazy" src="acceptance/16-native-dpr1-material-reference.png" alt="16-native-dpr1-material-reference.png · 1366×900 · effectiveDPR 1 · quality0 · No visual LOD (reference)"></a><figcaption>16-native-dpr1-material-reference.png · 1366×900 · effectiveDPR 1 · quality0 · No visual LOD (reference)<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.10912685723640471,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.04342740628483554,
+      -0.6039991716876418,
+      0.0329890101283685,
+      0.7951168380777537
+    ]
+  },
+  &quot;visibleLOD&quot;: [],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1
+  },
+  &quot;method&quot;: &quot;Checked DPR1 detail / portrait aspect&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/17-native-dpr1-authored-wall.png"><img loading="lazy" src="acceptance/17-native-dpr1-authored-wall.png" alt="17-native-dpr1-authored-wall.png · 1366×900 · effectiveDPR 1 · quality0 · LOD0"></a><figcaption>17-native-dpr1-authored-wall.png · 1366×900 · effectiveDPR 1 · quality0 · LOD0<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.10912685723640471,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.04342740628483554,
+      -0.6039991716876418,
+      0.0329890101283685,
+      0.7951168380777537
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD0&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1
+  },
+  &quot;method&quot;: &quot;Checked DPR1 detail / portrait aspect&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/18-native-dpr1-close.png"><img loading="lazy" src="acceptance/18-native-dpr1-close.png" alt="18-native-dpr1-close.png · 1366×900 · effectiveDPR 1 · quality0 · LOD0"></a><figcaption>18-native-dpr1-close.png · 1366×900 · effectiveDPR 1 · quality0 · LOD0<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 38.7,
+    &quot;y&quot;: 4.8,
+    &quot;z&quot;: -62.6,
+    &quot;yaw&quot;: -1.2727767690050353,
+    &quot;pitch&quot;: 0.18946995541021416,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.07607644260166067,
+      -0.5916298722120858,
+      0.056216318626152,
+      0.8006411147995774
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD0&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1
+  },
+  &quot;method&quot;: &quot;Checked DPR1 detail / portrait aspect&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/19-angle-material-response.png"><img loading="lazy" src="acceptance/19-angle-material-response.png" alt="19-angle-material-response.png · 1366×900 · effectiveDPR 1 · quality0 · LOD0"></a><figcaption>19-angle-material-response.png · 1366×900 · effectiveDPR 1 · quality0 · LOD0<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 36,
+    &quot;y&quot;: 6,
+    &quot;z&quot;: -67,
+    &quot;yaw&quot;: -2.0641738854573584,
+    &quot;pitch&quot;: 0,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0,
+      -0.8583715189445026,
+      0,
+      0.5130285912743143
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD0&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1
+  },
+  &quot;method&quot;: &quot;Checked DPR1 detail / portrait aspect&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/20-medium-auto-lod.png"><img loading="lazy" src="acceptance/20-medium-auto-lod.png" alt="20-medium-auto-lod.png · 1366×900 · effectiveDPR 1 · quality0 · LOD0"></a><figcaption>20-medium-auto-lod.png · 1366×900 · effectiveDPR 1 · quality0 · LOD0<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 15,
+    &quot;y&quot;: 5,
+    &quot;z&quot;: -58,
+    &quot;yaw&quot;: -1.3651414289766752,
+    &quot;pitch&quot;: 0.05395380082023189,
+    &quot;fov&quot;: 58,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.020930286896282648,
+      -0.6305603458230442,
+      0.017014691350545168,
+      0.7756713696174482
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD0&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1
+  },
+  &quot;method&quot;: &quot;Checked DPR1 detail / portrait aspect&quot;
+}</pre></details></figcaption></figure>
+<figure><a href="acceptance/21-native-portrait-detail.png"><img loading="lazy" src="acceptance/21-native-portrait-detail.png" alt="21-native-portrait-detail.png · 390×844 · effectiveDPR 1 · quality0 · LOD1"></a><figcaption>21-native-portrait-detail.png · 390×844 · effectiveDPR 1 · quality0 · LOD1<details><summary>Camera/capture details</summary><pre>{
+  &quot;camera&quot;: {
+    &quot;x&quot;: 29,
+    &quot;y&quot;: 3,
+    &quot;z&quot;: -60,
+    &quot;yaw&quot;: -1.2992790341146578,
+    &quot;pitch&quot;: 0.2502844481586808,
+    &quot;fov&quot;: 100.36920599534565,
+    &quot;near&quot;: 0.1,
+    &quot;far&quot;: 700,
+    &quot;quaternion&quot;: [
+      0.09939109651017618,
+      -0.6001690334486695,
+      0.07550102964792502,
+      0.7900747659214904
+    ]
+  },
+  &quot;visibleLOD&quot;: [
+    &quot;Wall_LOD1&quot;
+  ],
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 1
+  },
+  &quot;method&quot;: &quot;Checked DPR1 detail / portrait aspect&quot;
+}</pre></details></figcaption></figure>
+</div>
+<h2>Actual browser approach / pass / retreat</h2><p>Controlled valid Hub start, then actual W/A/S. AutomaticLOD2→1→2. SwiftShader stutters. Near diagnostic images do not imply enlarged walking space.</p><video controls preload="metadata" src="recordings/page@6bfb1481f3bf104690a65517851b16ca.webm"></video><p><a href="recordings/page@6bfb1481f3bf104690a65517851b16ca.webm">Download recording</a> · <a href="raw/walkthrough.json">Pose/LOD trace</a></p><h2>Untouched starting baseline</h2><div class="pair">
+<figure><a href="baseline/01-current-quarry-face.png"><img loading="lazy" src="baseline/01-current-quarry-face.png"></a><figcaption>01-current-quarry-face.png; captured before production edits. Camera/quality may differ from later matched fixtures; see baseline metadata.</figcaption></figure>
+<figure><a href="baseline/02-current-hub-view.png"><img loading="lazy" src="baseline/02-current-hub-view.png"></a><figcaption>02-current-hub-view.png; captured before production edits. Camera/quality may differ from later matched fixtures; see baseline metadata.</figcaption></figure>
+<figure><a href="baseline/03-current-tunnel-exit.png"><img loading="lazy" src="baseline/03-current-tunnel-exit.png"></a><figcaption>03-current-tunnel-exit.png; captured before production edits. Camera/quality may differ from later matched fixtures; see baseline metadata.</figcaption></figure>
+<figure><a href="baseline/04-current-map.png"><img loading="lazy" src="baseline/04-current-map.png"></a><figcaption>04-current-map.png; captured before production edits. Camera/quality may differ from later matched fixtures; see baseline metadata.</figcaption></figure>
+</div><h2>References, not matched captures</h2><p>Historical user-approved grey pilot and supplied morphology inspiration. No reference pixels are used in production maps.</p><div class="pair">
+<figure><a href="references/previous-user-approved-grey-pilot.png"><img loading="lazy" src="references/previous-user-approved-grey-pilot.png"></a><figcaption>previous-user-approved-grey-pilot.png</figcaption></figure>
+<figure><a href="references/quarry-morphology-reference.jpeg"><img loading="lazy" src="references/quarry-morphology-reference.jpeg"></a><figcaption>quarry-morphology-reference.jpeg</figcaption></figure>
+<h2>Direct counterpart comparisons</h2><div class="pair">
+<figure><a href="acceptance/23-before-close.png"><img loading="lazy" src="acceptance/23-before-close.png"></a><figcaption>acceptance/23-before-close.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/04-fractures-close-lod0.png"><img loading="lazy" src="acceptance/04-fractures-close-lod0.png"></a><figcaption>acceptance/04-fractures-close-lod0.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/24-before-medium.png"><img loading="lazy" src="acceptance/24-before-medium.png"></a><figcaption>acceptance/24-before-medium.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/05-medium-geology-auto-lod2.png"><img loading="lazy" src="acceptance/05-medium-geology-auto-lod2.png"></a><figcaption>acceptance/05-medium-geology-auto-lod2.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/25-before-long.png"><img loading="lazy" src="acceptance/25-before-long.png"></a><figcaption>acceptance/25-before-long.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/06-long-silhouette-lod2.png"><img loading="lazy" src="acceptance/06-long-silhouette-lod2.png"></a><figcaption>acceptance/06-long-silhouette-lod2.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/26-before-seam.png"><img loading="lazy" src="acceptance/26-before-seam.png"></a><figcaption>acceptance/26-before-seam.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/07-seam-and-adjacent-rocks.png"><img loading="lazy" src="acceptance/07-seam-and-adjacent-rocks.png"></a><figcaption>acceptance/07-seam-and-adjacent-rocks.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/27-before-map.png"><img loading="lazy" src="acceptance/27-before-map.png"></a><figcaption>acceptance/27-before-map.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/10-aerial-map-authored.png"><img loading="lazy" src="acceptance/10-aerial-map-authored.png"></a><figcaption>acceptance/10-aerial-map-authored.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/28-before-portrait-wall.png"><img loading="lazy" src="acceptance/28-before-portrait-wall.png"></a><figcaption>acceptance/28-before-portrait-wall.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/11-portrait-wall.png"><img loading="lazy" src="acceptance/11-portrait-wall.png"></a><figcaption>acceptance/11-portrait-wall.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/29-before-portrait-close.png"><img loading="lazy" src="acceptance/29-before-portrait-close.png"></a><figcaption>acceptance/29-before-portrait-close.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/12-portrait-close.png"><img loading="lazy" src="acceptance/12-portrait-close.png"></a><figcaption>acceptance/12-portrait-close.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/30-before-portrait-map.png"><img loading="lazy" src="acceptance/30-before-portrait-map.png"></a><figcaption>acceptance/30-before-portrait-map.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/13-portrait-map.png"><img loading="lazy" src="acceptance/13-portrait-map.png"></a><figcaption>acceptance/13-portrait-map.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/31-native-dpr1-before-close.png"><img loading="lazy" src="acceptance/31-native-dpr1-before-close.png"></a><figcaption>acceptance/31-native-dpr1-before-close.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+<figure><a href="acceptance/18-native-dpr1-close.png"><img loading="lazy" src="acceptance/18-native-dpr1-close.png"></a><figcaption>acceptance/18-native-dpr1-close.png; same recorded camera/FOV/DPR as paired frame.</figcaption></figure>
+</div><p>Rejected soft/sharp/DPR trials remain under exploratory/ and raw trial metadata. They are not current acceptance captures.</p></html>

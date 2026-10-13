@@ -1,0 +1,63 @@
+Failed to load resource: the server responded with a status of 404 (Not Found)
+baseline {
+  at: 1118.3000000044703,
+  mode: 'baseline',
+  lod: 0,
+  context: false,
+  ready: true,
+  viewport: { width: 1366, height: 900, requestedDpr: 0.5, effectiveDpr: 0.5 },
+  camera: {
+    position: [ 31, 5.6, -98 ],
+    quaternion: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    fov: 58
+  },
+  stats: {
+    calls: 2,
+    triangles: 11300,
+    geometries: 2,
+    textures: 1,
+    programs: 2
+  },
+  payload: {
+    visibleGeometryCount: 2,
+    visibleMaterials: 2,
+    visibleTextureObjects: 1,
+    geometryBytes: 257456,
+    texturePayloadEstimate: 1398101.3333333333
+  }
+}
+pilot {
+  current: {
+    at: 3683.89999999851,
+    mode: 'pilot',
+    lod: 0,
+    context: false,
+    ready: true,
+    viewport: { width: 1366, height: 900, requestedDpr: 0.5, effectiveDpr: 0.5 },
+    camera: { position: [Array], quaternion: [Array], fov: 58 },
+    stats: {
+      calls: 2,
+      triangles: 43880,
+      geometries: 2,
+      textures: 4,
+      programs: 3
+    },
+    payload: {
+      visibleGeometryCount: 2,
+      visibleMaterials: 2,
+      visibleTextureObjects: 4,
+      geometryBytes: 1362320,
+      texturePayloadEstimate: 18175317.333333332
+    }
+  },
+  collision: { hit: [ 44.74448790550232, 5, -104 ], triangles: 12 },
+  bounds: [
+    [ 44.74448790550232, 0, -110.0403151512146 ],
+    [ 48.849992299079894, 10.015950202941895, -97.9656171798706 ]
+  ]
+}

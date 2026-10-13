@@ -1,0 +1,162 @@
+{
+  "blender": "4.3.2",
+  "metreScale": 1.0,
+  "objects": [
+    {
+      "name": "Wall_Collision",
+      "nonManifoldEdges": 0,
+      "volume": 434.6315070897427,
+      "UVLayers": [],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Wall_LOD0",
+      "nonManifoldEdges": 0,
+      "volume": 308.7581151104364,
+      "UVLayers": [
+        "Metre_Scale_Unique_Face",
+        "Fine_Mineral_Metre"
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Wall_LOD1",
+      "nonManifoldEdges": 0,
+      "volume": 308.7256163140762,
+      "UVLayers": [
+        "Metre_Scale_Unique_Face",
+        "Fine_Mineral_Metre"
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Wall_LOD2",
+      "nonManifoldEdges": 0,
+      "volume": 308.6436688585437,
+      "UVLayers": [
+        "Metre_Scale_Unique_Face",
+        "Fine_Mineral_Metre"
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Wall_Master",
+      "nonManifoldEdges": 0,
+      "volume": 308.72086147282346,
+      "UVLayers": [
+        "Metre_Scale_Unique_Face",
+        "Fine_Mineral_Metre"
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "LODerrors": [
+    {
+      "LOD": "Wall_LOD0",
+      "samples": 2209,
+      "rmsM": 0.001842738055252641,
+      "p95M": 0.0036330223083496094,
+      "maxM": 0.024872303009033203,
+      "method": "50x65 front-plane ray samples versus editable master; not Hausdorff distance"
+    },
+    {
+      "LOD": "Wall_LOD1",
+      "samples": 2209,
+      "rmsM": 0.019324827351120667,
+      "p95M": 0.043709754943847656,
+      "maxM": 0.10972261428833008,
+      "method": "50x65 front-plane ray samples versus editable master; not Hausdorff distance"
+    },
+    {
+      "LOD": "Wall_LOD2",
+      "samples": 2209,
+      "rmsM": 0.0393260917277408,
+      "p95M": 0.08389091491699219,
+      "maxM": 0.19349145889282227,
+      "method": "50x65 front-plane ray samples versus editable master; not Hausdorff distance"
+    }
+  ],
+  "images": [
+    {
+      "name": "wall-ao-512.png",
+      "packed": true,
+      "size": [
+        512,
+        512
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "wall-basecolor-1024.jpg",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "name": "wall-normal-1024.png",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "name": "wall-roughness-512.png",
+      "packed": true,
+      "size": [
+        512,
+        512
+      ],
+      "colorspace": "Non-Color"
+    }
+  ]
+}

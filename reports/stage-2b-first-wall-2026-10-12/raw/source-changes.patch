@@ -1,0 +1,151 @@
+diff --git a/components/immersive/AftermovieScene.tsx b/components/immersive/AftermovieScene.tsx
+index bd0954f..97b8e9a 100644
+--- a/components/immersive/AftermovieScene.tsx
++++ b/components/immersive/AftermovieScene.tsx
+@@ -1,5 +1,5 @@
+ "use client";
+-import { useCallback, useEffect, useState } from "react";
++import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+ import Stage from "@/components/landing-page/stage3d/Stage";
+ import Trusses from "@/components/landing-page/stage3d/Trusses";
+ import Speakers from "@/components/landing-page/stage3d/Speakers";
+@@ -16,10 +16,15 @@ import AftermovieEnvironment from "./AftermovieEnvironment";
+ import { requireWorldFonts } from "./worldPaint";
+ import { point3, world } from "./world";
+ import type { ImmersiveRuntime } from "./runtime";
++import QuarryWallSection from "./QuarryWallSection";
++import type { WallPreviewSession } from "./wallSection";
++const noSubscribe=()=>()=>{};
++const offWall={mode:"off",busy:false,assetReady:false,revision:0,error:null} as const;
+ 
+-export default function AftermovieScene({ runtime, serial, quality, nearStage, overview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean }) {
++export default function AftermovieScene({ runtime, serial, quality, nearStage, overview, wallPreview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean; wallPreview?:WallPreviewSession|null }) {
+   requireWorldFonts();
+   const stageView=nearStage&&!overview;
++  const wall=useSyncExternalStore(wallPreview?.subscribe??noSubscribe,wallPreview?.snapshot??(()=>offWall),()=>offWall);
+   const playbackOwnership = useCallback((active: boolean) => runtime.setMovie(active), [runtime]);
+   const video = useStageVideo(playbackOwnership);
+   const [crowdReadySerial, setCrowdReadySerial] = useState<number | null>(null);
+@@ -31,7 +36,8 @@ export default function AftermovieScene({ runtime, serial, quality, nearStage, o
+     return () => { runtime.movieActions = null; };
+   }, [runtime, video.startMovie, video.stopMovie, video.enableSound, video.getStatus]);
+   return <>
+-    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} />
++    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} replaceWallFace={wall.mode!=="off"&&wall.assetReady} />
++    {wallPreview&&<QuarryWallSection session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>}
+     <AftermovieEnvironment />
+     {/* Keep one stage and current travel coordinates; restore its original local presentation. */}
+     <group position={point3(world.stage.origin)} rotation-y={world.stage.yaw}>
+@@ -43,6 +49,6 @@ export default function AftermovieScene({ runtime, serial, quality, nearStage, o
+     {nearStage && <Crowd count={quality >= 2 ? 300 : quality === 1 ? 600 : 900} onReady={ready} bakeDelayMs={0} onBake={baked} />}
+     <Fireworks key={video.pyroKey} active={!runtime.reduced && quality === 0 && video.pyroKey > 0 && video.phase === "playing"} />
+     </group>
+-    {(!nearStage || crowdReadySerial === serial) && ["boot", "covered", "recovering"].includes(runtime.getSnapshot().phase) && <ReadinessGate key={serial} runtime={runtime} serial={serial} />}
++    {!wall.busy&&(!nearStage || crowdReadySerial === serial) && ["boot", "covered", "recovering"].includes(runtime.getSnapshot().phase) && <ReadinessGate key={serial} runtime={runtime} serial={serial} />}
+   </>;
+ }
+diff --git a/components/immersive/HubScene.tsx b/components/immersive/HubScene.tsx
+index edb53e1..b990ce2 100644
+--- a/components/immersive/HubScene.tsx
++++ b/components/immersive/HubScene.tsx
+@@ -6,6 +6,7 @@ import { exitGeometry, groundGeometry, portalGeometry, quarryGeometry, tunnelGeo
+ import { point3, world } from "./world";
+ import { travelZones } from "./navigation";
+ import { makeBoardTexture, makeGraffitiTexture, makeGroundTexture, makeRockTexture, requireWorldFonts } from "./worldPaint";
++import { quarryWithoutWallFace } from "./wallSection";
+ 
+ export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], color="#e4ded0", arrow, textSize }: { label:string;position:[number,number,number];rotation?:[number,number,number];size?:[number,number];color?:string;arrow?:[number,number];textSize?:number }) {
+   requireWorldFonts();
+@@ -178,9 +179,9 @@ function GroundDetail() {
+     <instancedMesh ref={grass} args={[undefined,undefined,180]}><primitive object={tufts} attach="geometry" dispose={null} /><meshLambertMaterial color="#626849" side={THREE.DoubleSide} /></instancedMesh>
+   </>;
+ }
+-export default function HubScene({nearStage,quality,stageView=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean}) {
++export default function HubScene({nearStage,quality,stageView=false,replaceWallFace=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean;replaceWallFace?:boolean}) {
+   requireWorldFonts();
+-  const quarry=useMemo(quarryGeometry,[]),tunnel=useMemo(tunnelGeometry,[]),portal=useMemo(portalGeometry,[]),exit=useMemo(exitGeometry,[]),ground=useMemo(groundGeometry,[]);
++  const quarry=useMemo(()=>replaceWallFace?quarryWithoutWallFace():quarryGeometry(),[replaceWallFace]),tunnel=useMemo(tunnelGeometry,[]),portal=useMemo(portalGeometry,[]),exit=useMemo(exitGeometry,[]),ground=useMemo(groundGeometry,[]);
+   const rockTexture=useMemo(makeRockTexture,[]),groundTexture=useMemo(makeGroundTexture,[]);
+   useEffect(()=>()=>{ground.dispose();rockTexture.dispose();groundTexture.dispose();},[ground,rockTexture,groundTexture]);
+   return <>
+diff --git a/components/immersive/ImmersiveShell.tsx b/components/immersive/ImmersiveShell.tsx
+index 627c31a..c6ceb07 100644
+--- a/components/immersive/ImmersiveShell.tsx
++++ b/components/immersive/ImmersiveShell.tsx
+@@ -11,6 +11,9 @@ import { useImmersiveInput } from "./input";
+ import WorldOverlays, { MapMarkerProjection, type MapDOM } from "./WorldOverlays";
+ import { activeDeadline } from "./activeDeadline";
+ import styles from "./immersive.module.css";
++import {WallPreviewSession} from "./wallSection";
++const noWallSubscribe=()=>()=>{};
++const noWallState={mode:"off",busy:false,assetReady:false,error:null,revision:0} as const;
+ 
+ const AftermovieScene = lazy(() => import("./AftermovieScene"));
+ const infoLinks = [["Events", "/events"], ["Team", "/team"], ["Contact us", "/get-in-touch"], ["Past sponsors", "/sponsors"], ["Merch", "/merch"]];
+@@ -53,6 +56,21 @@ export default function ImmersiveShell() {
+   const curtain = useRef<HTMLDivElement>(null);
+   const [mapElements] = useState<MapDOM>(() => ({ container: null, nodes: new Map(), dots: new Map(), lines: new Map() }));
+   const [flat, setFlat] = useState(false);
++  const [wallPreview]=useState(()=>{
++    const mode=new URLSearchParams(window.location.search).get("wallPreview");
++    const allowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1";
++    return allowed&&mode&&["limestone","authored","reference","off"].includes(mode)?new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored"):null;
++  });
++  const wallState=useSyncExternalStore(wallPreview?.subscribe??noWallSubscribe,wallPreview?.snapshot??(()=>noWallState),()=>noWallState);
++  const rendererActive=!flat&&state.phase!=="error";
++  useEffect(()=>{
++    if(!wallPreview||!rendererActive)return;
++    wallPreview.retainOwner();window.__wallPreview=wallPreview;
++    if(wallPreview.state.mode!=="off")void wallPreview.load();
++    const block=(event:KeyboardEvent)=>{if(wallPreview.state.busy&&["KeyW","KeyA","KeyS","KeyD","ArrowUp","ArrowDown","ArrowLeft","ArrowRight","KeyM"].includes(event.code)){runtime.clearInput();event.preventDefault();event.stopImmediatePropagation();}};
++    window.addEventListener("keydown",block,true);
++    return()=>{window.removeEventListener("keydown",block,true);if(window.__wallPreview===wallPreview)delete window.__wallPreview;wallPreview.releaseOwner();};
++  },[wallPreview,rendererActive,runtime]);
+   useImmersiveInput(runtime);
+   useEffect(() => {
+     runtime.onCoveredRoute = href => router.push(href);
+@@ -93,12 +111,18 @@ export default function ImmersiveShell() {
+       <Canvas dpr={Math.min(window.devicePixelRatio, QUALITY_DPR[state.quality])} camera={{ ...world.camera, position: point3(world.landing.position) }} gl={{ antialias: false, powerPreference: "high-performance" }} fallback={<Fallback error="WebGL2 unavailable" />}>
+         <FrameController runtime={runtime} curtain={curtain} />
+         <MapMarkerProjection runtime={runtime} elements={mapElements} />
+-        <SceneRenderer runtime={runtime} />
++        <SceneRenderer runtime={runtime} wallPreview={wallPreview}/>
+         <Suspense fallback={null}>
+-          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.map || state.inspection === "overview"} />
++          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.map || state.inspection === "overview"} wallPreview={wallPreview}/>
+         </Suspense>
+       </Canvas>
+     </SceneBoundary>
++    {wallPreview&&<>
++      {wallState.busy&&<div data-wall-cover style={{position:"absolute",inset:0,zIndex:30,background:"#090d0b"}} aria-label="Preparing optional wall preview"/>}
++      <aside data-wall-preview style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>WALL SECTION PREVIEW · {wallState.mode} · <span data-wall-lod>LOD {wallPreview.activeLOD}</span>{wallState.error&&<span> · Asset unavailable; original restored</span>}<br/>
++        <button onClick={()=>wallPreview.setMode("authored")}>Authored wall</button>{" "}<button onClick={()=>wallPreview.setMode("reference")}>Material baseline</button>{" "}<button onClick={()=>wallPreview.setMode("off")}>Original quarry</button>
++      </aside>
++    </>}
+     <div ref={curtain} className={styles.curtain} style={{ opacity: 1 }} aria-hidden="true"><div className={styles.occluder} /></div>
+     {state.inspection && <aside className={styles.inspection}>STAGE 1 / {state.inspection.toUpperCase()} · 1 unit = 1 m <button onClick={() => runtime.inspect(null)}>Resume view</button></aside>}
+     <header className={styles.header}><Link href="/" onClick={(e) => { if (!e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) { e.preventDefault(); if (state.phase === "landing") return; runtime.request("hub", "map"); } }}>BREEZE <span>2027</span></Link><span>GULLYVERSE</span></header>
+diff --git a/components/immersive/rendering.tsx b/components/immersive/rendering.tsx
+index 816bb9a..95473f0 100644
+--- a/components/immersive/rendering.tsx
++++ b/components/immersive/rendering.tsx
+@@ -5,6 +5,7 @@ import * as THREE from "three";
+ import type { ImmersiveRuntime } from "./runtime";
+ import { installDiagnostics, recordPreparation, sampleMemory, type FrameSample } from "./diagnostics";
+ import { world } from "./world";
++import type { WallPreviewSession } from "./wallSection";
+ 
+ /** The whole critical scene must instantiate before this gate mounts. */
+ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; serial: number }) {
+@@ -76,9 +77,10 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime;
+ }
+ 
+ export const QUALITY_DPR = [1.25, 1, 0.75, 0.6];
+-export function SceneRenderer({ runtime }: { runtime: ImmersiveRuntime }) {
++export function SceneRenderer({ runtime,wallPreview }: { runtime: ImmersiveRuntime;wallPreview?:WallPreviewSession|null }) {
+   useFrame(({ gl, scene, camera }) => {
+     const state = runtime.getSnapshot();
++    if(wallPreview?.state.busy)return;
+     // Avoid triggering synchronous shader creation by drawing a partially mounted
+     // scene before its gate. This does not stop R3F's animation loop or camera ticks.
+     if (["context-lost", "recovering", "boot", "covered"].includes(state.phase) && runtime.preparedSerial !== state.serial) return;

@@ -1,0 +1,37 @@
+{
+  "material": "Quarry_Pilot_Original_Stone_PBR",
+  "runtime": "/models/gullyverse/rock-look-restore/rock-pilot-material.glb",
+  "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb",
+  "sourceBlend": "assets-source/gullyverse/rock-pilot-2a/quarry-rock-pilot.blend",
+  "sourceAuthoring": [
+    "scripts/blender/rock_pilot_materials.py",
+    "scripts/blender/author_rock_pilot_2a.py"
+  ],
+  "sourceSHA256": "82a48f71b714f48952e10e99aa2f1393fa3a6d2b6126d383318972c0478d2a6d",
+  "runtimeSHA256": "38da10744b9a3c595e8e05ba09e56e0a69b69ff325403ec8ba9bdef29a7297c0",
+  "runtimeBytes": 2505852,
+  "images": [
+    {
+      "name": "rock-normal-1024",
+      "bytes": 1388991,
+      "sha256": "03858b7ea58f91a21d113ac1017a49493f9283e8a30791dae0e289528277ca5d"
+    },
+    {
+      "name": "rock-ao-1024-rock-roughness-1024",
+      "bytes": 893824,
+      "sha256": "e7fe6f9f55893423dc5935688f616407ed951a4c6bd61df53b9c215272e292de"
+    },
+    {
+      "name": "rock-basecolor-1024",
+      "bytes": 221162,
+      "sha256": "d46b7ff37f5bc7945eb3fa33da77e101ea93034860454aff03248da2a92de154"
+    }
+  ],
+  "materialJSONUnchanged": true,
+  "imagePayloadBytesUnchanged": true,
+  "geometry": "Unchanged Stage2C2 connected excavation GLBs; only borrowed material assignment changes.",
+  "UV": "Existing metre-scaled painted-atlas UVs are compatible: both pilots use U .02-.88 / V .03-.97.",
+  "holderMeshRendered": false,
+  "normalScale": 0.699999988079071,
+  "photorealism": "Deferred; original approved darker Stage2A look reused without new authoring."
+}

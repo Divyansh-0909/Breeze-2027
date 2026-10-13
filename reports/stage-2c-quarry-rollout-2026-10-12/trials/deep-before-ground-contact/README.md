@@ -1,0 +1,1 @@
+Superseded depth-scaled candidate: visitor-height ray test found one ground-level gap. Ground-contact preservation was added; upward skyline differences are separately reviewed against the unchanged macro anchors.

@@ -5,6 +5,7 @@ import * as THREE from "three";
 import type { ImmersiveRuntime } from "./runtime";
 import { installDiagnostics, recordPreparation, sampleMemory, type FrameSample } from "./diagnostics";
 import { world } from "./world";
+import type { WallPreviewSession } from "./wallSection";
 
 /** The whole critical scene must instantiate before this gate mounts. */
 export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; serial: number }) {
@@ -76,9 +77,10 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
 }
 
 export const QUALITY_DPR = [1.25, 1, 0.75, 0.6];
-export function SceneRenderer({ runtime }: { runtime: ImmersiveRuntime }) {
+export function SceneRenderer({ runtime,wallPreview }: { runtime: ImmersiveRuntime;wallPreview?:WallPreviewSession|null }) {
   useFrame(({ gl, scene, camera }) => {
     const state = runtime.getSnapshot();
+    if(wallPreview?.state.busy)return;
     // Avoid triggering synchronous shader creation by drawing a partially mounted
     // scene before its gate. This does not stop R3F's animation loop or camera ticks.
     if (["context-lost", "recovering", "boot", "covered"].includes(state.phase) && runtime.preparedSerial !== state.serial) return;

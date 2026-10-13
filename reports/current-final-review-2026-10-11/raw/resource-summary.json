@@ -1,0 +1,110 @@
+{
+  "cycles": 10,
+  "settledThreeTextures": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+  ],
+  "settledGLTextures": [
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29
+  ],
+  "geometries": [
+    154,
+    154,
+    154,
+    154,
+    154,
+    154,
+    154,
+    154,
+    154,
+    154
+  ],
+  "programs": [
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45
+  ],
+  "heapBytes": [
+    14444996,
+    14675040,
+    14713968,
+    14991208,
+    15097520,
+    15175060,
+    15241620,
+    15138432,
+    15270180,
+    15298084
+  ],
+  "nodes": [
+    327,
+    327,
+    327,
+    327,
+    327,
+    327,
+    327,
+    327,
+    327,
+    327
+  ],
+  "traceEvents": {
+    "dispose": 55
+  },
+  "errors": [],
+  "checks": [
+    {
+      "name": "Ten completed playback/return cycles plateau after warm-up without disposed sampler reuse",
+      "status": "PASS"
+    },
+    {
+      "name": "Early exit before focus delay releases unpublished movie source",
+      "status": "PASS"
+    },
+    {
+      "name": "Real media ended event after seeking near completion restores ownership and resources",
+      "status": "PASS"
+    },
+    {
+      "name": "Late rejected play promise cannot stop a newer movie",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed movie transfer returns to idle without poisoning the original stage",
+      "status": "PASS"
+    },
+    {
+      "name": "Playback can start again after transfer failure",
+      "status": "PASS"
+    },
+    {
+      "name": "SPA unmount stops runtime media while leaving native fallback semantics intact",
+      "status": "PASS"
+    }
+  ],
+  "note": "Per-cycle traces are cumulative and their event totals above therefore double-count earlier events; inspect last trace for unique event sequence. No driver VRAM measurement."
+}

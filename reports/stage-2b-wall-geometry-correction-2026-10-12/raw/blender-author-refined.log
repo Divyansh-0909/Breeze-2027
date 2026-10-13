@@ -1,0 +1,41 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+15:29:16 | INFO: Starting glTF 2.0 export
+15:29:16 | INFO: Extracting primitive: Wall_LOD0_Mesh
+15:29:16 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+15:29:16 | INFO: Primitives created: 2
+15:29:16 | INFO: Extracting primitive: Wall_LOD1_Mesh
+15:29:16 | INFO: Primitives created: 2
+15:29:16 | INFO: Extracting primitive: Wall_LOD2_Mesh
+15:29:16 | INFO: Primitives created: 2
+15:29:16 | INFO: Extracting primitive: Wall_Collision_Mesh
+15:29:16 | INFO: Primitives created: 1
+15:29:16 | INFO: Finished glTF 2.0 export in 0.12499141693115234 s
+
+15:29:16 | INFO: Starting glTF 2.0 export
+15:29:16 | INFO: Extracting primitive: Wall_LOD0_Mesh
+15:29:16 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+15:29:16 | INFO: Primitives created: 2
+15:29:16 | INFO: Finished glTF 2.0 export in 0.06853771209716797 s
+
+15:29:16 | INFO: Starting glTF 2.0 export
+15:29:16 | INFO: Extracting primitive: Wall_LOD1_Mesh
+15:29:16 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+15:29:16 | INFO: Primitives created: 2
+15:29:16 | INFO: Finished glTF 2.0 export in 0.04314613342285156 s
+
+15:29:16 | INFO: Starting glTF 2.0 export
+15:29:16 | INFO: Extracting primitive: Wall_LOD2_Mesh
+15:29:16 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+15:29:16 | INFO: Primitives created: 2
+15:29:16 | INFO: Finished glTF 2.0 export in 0.030809879302978516 s
+
+15:29:16 | INFO: Starting glTF 2.0 export
+15:29:16 | INFO: Extracting primitive: Wall_Collision_Mesh
+15:29:16 | INFO: Primitives created: 1
+15:29:16 | INFO: Finished glTF 2.0 export in 0.003768444061279297 s
+
+Info: Saved "first-wall-corrected.blend"
+CORRECTED_MANIFEST {"rockIndex": 4, "faceIndex": 3, "vertexStart": 243, "vertexCount": 9, "anchor": [42.189334869384766, 6.488047420978546, -63.67184219360352], "normal": [-0.9821210928009811, 0.019280977215449337, -0.18726025470725013], "uAxis": [-0.18729507198453987, 0.0, 0.9823036984610749], "vAxis": [0.018939775228679602, 0.9998141046802738, 0.003611232015499857], "boundaryWorld": [[43.16625213623047, -0.4407593607902527, -69.50888061523438], [41.31199645996094, -3.158418893814087, -60.06371307373047], [40.67019271850586, 7.455009460449219, -55.6048583984375], [42.12779235839844, 16.73213005065918, -62.2943000793457], [43.670440673828125, 11.852275848388672, -70.88745880126953]], "boundaryLocal": [[-5.916716219444193, -6.930095055589603], [3.708599739524236, -9.648259882733049], [8.208755855920751, 0.9671418250247448], [1.3646913226466328, 10.245987325525505], [-7.365330698647419, 5.365225787772402]], "oldVertexColor": [0.22696587443351746, 0.23074005544185638, 0.19120168685913086], "sourceHash": "recorded in source-hashes-before.json", "strategy": "replace only existing host rock4; sculpt its inward surface and adjoining return faces as one closed volume; original outer edges and corners retained", "correction": "one complete existing host rock; irregular authored collar across its five adjoining faces; no neighboring rock replacement", "hostRange": {"start": 216, "count": 108}, "hostVerticesWorld": [[61.37961959838867, 12.706795692443848, -56.79073715209961], [63.2338752746582, 15.424454689025879, -66.23590087890625], [53.07266616821289, 17.260251998901367, -53.58204650878906], [56.072914123535156, 21.657516479492188, -68.8646469116211], [49.79294204711914, 22.79210090637207, -61.044132232666016], [63.875675201416016, 4.811026096343994, -70.69475555419922], [57.11137390136719, 4.484629154205322, -76.0792236328125], [52.28900146484375, 14.896332740783691, -74.94815826416016], [51.473201751708984, -4.99421501159668, -72.71756744384766], [43.16625213623047, -0.4407593607902527, -69.50888061523438], [43.670440673828125, 11.852275848388672, -70.88745880126953], [41.31199645996094, -3.158418893814087, -60.06371307373047], [40.67019271850586, 7.455009460449219, -55.6048583984375], [42.12779235839844, 16.73213005065918, -62.2943000793457], [48.47295379638672, -9.391481399536133, -57.43497085571289], [52.25687026977539, -2.6302971839904785, -51.35145950317383], [47.43449783325195, 7.781406879425049, -50.22039031982422], [60.87542724609375, 0.413759708404541, -55.41215896606445], [54.752925872802734, -10.526065826416016, -65.25548553466797], [62.41807556152344, -4.46609354019165, -64.00531768798828]], "hostFaces": [[0, 1, 3, 4, 2], [5, 6, 7, 3, 1], [8, 9, 10, 7, 6], [11, 12, 13, 10, 9], [14, 15, 16, 12, 11], [10, 13, 4, 3, 7], [12, 16, 2, 4, 13], [15, 17, 0, 2, 16], [18, 14, 11, 9, 8], [17, 19, 5, 1, 0], [19, 18, 8, 6, 5], [14, 18, 19, 17, 15]], "protectedOuterEdges": [[0, 1], [0, 2], [0, 17], [1, 3], [1, 5], [2, 4], [2, 16], [3, 4], [3, 7], [4, 13], [5, 6], [5, 19], [6, 7], [6, 8], [7, 10], [8, 9], [8, 18], [11, 14], [12, 16], [14, 15], [14, 18], [15, 16], [15, 17], [17, 19], [18, 19]], "reworkedInternalEdges": [[9, 10], [9, 11], [10, 13], [11, 12], [12, 13]], "detailSphere": {"center": [-0.04517221450805664, -0.016493797302246094, -2.0859106459283225], "radius": 11.59368062714826}, "materialPolicy": "exact approved packed material/maps imported from existing master; only UV edge unfolding/reflection repair; central body and fine normal metre scale retained", "lockedTextures": {"assets-source/gullyverse/first-wall-section/textures/wall-basecolor-2048.png": "ca2ae88d999c206606119281da68944dd0dd41b7255ff364a8262d359ac12dbc", "assets-source/gullyverse/first-wall-section/textures/wall-roughness-2048.png": "ad203ec4ddfb20e712324e1784e9f33f312590b9387613ae502c10f01c0939fb", "assets-source/gullyverse/first-wall-section/textures/wall-roughness-512.png": "60ea3fde1e6d2296e98152dcc5aab416aeb93f28a9ba27b9f4ec7147bda922fc", "assets-source/gullyverse/first-wall-section/textures/wall-ao-2048.png": "c88acfc4e8c89d66ae9509a598f5e911ded73caadc61f320d96ed554fe2c5bf6", "assets-source/gullyverse/first-wall-section/textures/wall-normal-2048.png": "24217fd6a03b011b427ca13974f88e22c453009cbe0403d7c498590d89140c63", "assets-source/gullyverse/first-wall-section/textures/wall-ao-512.png": "1678879e07a6e493e8d6660b0df6761fbe26bbac5c14f47b3e7fa16cd425f6c2", "assets-source/gullyverse/first-wall-section/textures/wall-normal-1024.png": "4f2ee2cae7000246c1995f7bb365bb08fa544ad25e5b10c20e783456d29c17d4", "assets-source/gullyverse/first-wall-section/textures/wall-basecolor-1024.jpg": "a4800fdf06c2a4fd5882df4c19b70449ed0e6983721b7a8ffee1b60527c7b9fd"}, "blender": "4.3.2", "units": "metres", "normalStrength": 0.58, "blenderUp": "Z", "glTFUp": "Y", "lodMethod": "quadric decimation of common volumetric master; original20corners pinned; hull constrained", "nodes": [{"name": "Wall_Master", "vertices": 122852, "triangles": 245700, "nonManifoldEdges": 0, "signedVolumeM3": 8058.06183381683}, {"name": "Wall_LOD0", "vertices": 14002, "triangles": 28000, "nonManifoldEdges": 0, "signedVolumeM3": 8058.017717433895}, {"name": "Wall_LOD1", "vertices": 4252, "triangles": 8500, "nonManifoldEdges": 0, "signedVolumeM3": 8057.93106092062}, {"name": "Wall_LOD2", "vertices": 1502, "triangles": 3000, "nonManifoldEdges": 0, "signedVolumeM3": 8057.869226051074}, {"name": "Wall_Collision", "vertices": 20, "triangles": 36, "nonManifoldEdges": 0, "signedVolumeM3": 8285.249945594296}], "sharedBoundaryProposalErrorM": 4.326398957968471e-15, "defaultEnabled": false, "collisionPolicy": "original complete host proxy; no change to player movement polygons"}
+Blender 4.3.2
+
+Blender quit

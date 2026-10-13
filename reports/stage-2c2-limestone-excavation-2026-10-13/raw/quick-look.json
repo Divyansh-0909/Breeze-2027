@@ -1,0 +1,2792 @@
+{
+  "rows": [
+    {
+      "name": "hub",
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": "quarry"
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.13942839269922802
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 150,
+          "triangles": 120392,
+          "textures": 28,
+          "geometries": 195,
+          "dpr": 1
+        },
+        "memory": {
+          "at": 21197.39999999106,
+          "scene": "hub",
+          "geometries": 195,
+          "textures": 28,
+          "activeGeometryBytes": 5208026,
+          "activeTextureBytesEstimate": 61804548.00000001,
+          "jsHeapBytes": 29457415
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 792,
+                "deleted": 2,
+                "active": 790
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 195,
+                "deleted": 0,
+                "active": 195
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 1
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 18,
+          "variant": "quarry",
+          "lodSelections": {
+            "Excavation_00": 0,
+            "Excavation_01": 0,
+            "Excavation_02": 0,
+            "Excavation_03": 0,
+            "Excavation_04": 0,
+            "Excavation_05": 1,
+            "Excavation_06": 1,
+            "Excavation_07": 1,
+            "Excavation_08": 1,
+            "Excavation_09": 1,
+            "Excavation_10": 1,
+            "Excavation_11": 1,
+            "Excavation_12": 1,
+            "Excavation_13": 0,
+            "Excavation_14": 0,
+            "Excavation_15": 0,
+            "Excavation_16": 0,
+            "Excavation_17": 0
+          },
+          "lodPixels": {
+            "Excavation_00": 360111.3569110794,
+            "Excavation_01": 264221.1038532636,
+            "Excavation_02": 10592.826543780482,
+            "Excavation_03": 1659.6213813586332,
+            "Excavation_04": 1116.0623306881753,
+            "Excavation_05": 584.5392146792161,
+            "Excavation_06": 392.84623858844736,
+            "Excavation_07": 321.33419646749866,
+            "Excavation_08": 298.66864652342485,
+            "Excavation_09": 266.1613397682968,
+            "Excavation_10": 321.794224561337,
+            "Excavation_11": 340.20110921042493,
+            "Excavation_12": 501.4050856846204,
+            "Excavation_13": 782.8786727018619,
+            "Excavation_14": 942.0816771612317,
+            "Excavation_15": 1963.7911180797855,
+            "Excavation_16": 7246.928328572258,
+            "Excavation_17": 347141.7505086662
+          },
+          "selectedNodes": [
+            "Excavation_Macro_Sector_00_LOD0",
+            "Excavation_Macro_Sector_01_LOD0",
+            "Excavation_Macro_Sector_02_LOD0",
+            "Excavation_Macro_Sector_03_LOD0",
+            "Excavation_Macro_Sector_04_LOD0",
+            "Excavation_Macro_Sector_13_LOD0",
+            "Excavation_Macro_Sector_14_LOD0",
+            "Excavation_Macro_Sector_15_LOD0",
+            "Excavation_Macro_Sector_16_LOD0",
+            "Excavation_Macro_Sector_17_LOD0",
+            "Excavation_Macro_Sector_05_LOD1",
+            "Excavation_Macro_Sector_06_LOD1",
+            "Excavation_Macro_Sector_07_LOD1",
+            "Excavation_Macro_Sector_08_LOD1",
+            "Excavation_Macro_Sector_09_LOD1",
+            "Excavation_Macro_Sector_10_LOD1",
+            "Excavation_Macro_Sector_11_LOD1",
+            "Excavation_Macro_Sector_12_LOD1"
+          ],
+          "trace": [
+            {
+              "at": 1222.5,
+              "event": "approved-material-parse",
+              "ms": 250.70000000298023,
+              "bytes": 2117836
+            },
+            {
+              "at": 1222.5,
+              "event": "approved-material-ready",
+              "ms": 387,
+              "exactPilotFamily": true,
+              "holderMeshRendered": false
+            },
+            {
+              "at": 1502.699999988079,
+              "event": "excavation-macro-parse",
+              "ms": 9.599999994039536,
+              "bytes": 3628580
+            },
+            {
+              "at": 1503.5999999940395,
+              "event": "excavation-asset-ready",
+              "style": "macro",
+              "ms": 668.2999999970198,
+              "geometryOnly": true,
+              "baselineRequested": false
+            },
+            {
+              "at": 1503.5999999940395,
+              "event": "load-ready",
+              "style": "macro",
+              "optIn": true
+            },
+            {
+              "at": 2073.3999999910593,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 15.200000002980232
+            },
+            {
+              "at": 2122.7999999970198,
+              "event": "shader-compile",
+              "ms": 49.400000005960464
+            },
+            {
+              "at": 4833.29999999702,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2775.300000011921,
+              "lighting": "hub"
+            },
+            {
+              "at": 5196,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 216066.81414664764,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 158532.66231195818,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 2297.8789283186225,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 749.1450417697586,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 578.4925116985485,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 419.97273101913447,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 475.175000537757,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 882.4687672634744,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1707.47438620219,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 208285.05030519975,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10539,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 341.70590267166875,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10948.5,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 1,
+              "to": 0,
+              "pixels": 1138.1003768884661,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 1,
+              "to": 0,
+              "pixels": 1659.6213813586332,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 1,
+              "to": 0,
+              "pixels": 1116.0623306881753,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 2,
+              "to": 1,
+              "pixels": 392.84623858844736,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_11",
+              "from": 2,
+              "to": 1,
+              "pixels": 340.20110921042493,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 501.4050856846204,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 2,
+              "to": 1,
+              "pixels": 321.33419646749866,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_08",
+              "from": 2,
+              "to": 1,
+              "pixels": 298.66864652342485,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_09",
+              "from": 2,
+              "to": 1,
+              "pixels": 266.1613397682968,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_10",
+              "from": 2,
+              "to": 1,
+              "pixels": 321.794224561337,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 1,
+              "to": 0,
+              "pixels": 782.8786727018619,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 1,
+              "to": 0,
+              "pixels": 942.0816771612317,
+              "quality": 0,
+              "dpr": 1
+            }
+          ],
+          "assetMaterials": 1,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 16777216
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.13942839269922802,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.06965774076749938,
+            0,
+            0,
+            0.9975709494322536
+          ]
+        }
+      }
+    },
+    {
+      "name": "left",
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": "quarry"
+        },
+        "pose": {
+          "x": -16,
+          "y": 1.72,
+          "z": -62,
+          "yaw": 1.047518004662921,
+          "pitch": 0.3299566701440303
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 30,
+          "triangles": 104391,
+          "textures": 28,
+          "geometries": 195,
+          "dpr": 1
+        },
+        "memory": {
+          "at": 31881.69999998808,
+          "scene": "hub",
+          "geometries": 195,
+          "textures": 28,
+          "activeGeometryBytes": 5208026,
+          "activeTextureBytesEstimate": 61804548.00000001,
+          "jsHeapBytes": 31587002
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 792,
+                "deleted": 2,
+                "active": 790
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 195,
+                "deleted": 0,
+                "active": 195
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 1
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 18,
+          "variant": "quarry",
+          "lodSelections": {
+            "Excavation_00": 2,
+            "Excavation_01": 2,
+            "Excavation_02": 2,
+            "Excavation_03": 2,
+            "Excavation_04": 2,
+            "Excavation_05": 2,
+            "Excavation_06": 0,
+            "Excavation_07": 0,
+            "Excavation_08": 1,
+            "Excavation_09": 1,
+            "Excavation_10": 1,
+            "Excavation_11": 1,
+            "Excavation_12": 1,
+            "Excavation_13": 0,
+            "Excavation_14": 0,
+            "Excavation_15": 0,
+            "Excavation_16": 0,
+            "Excavation_17": 0
+          },
+          "lodPixels": {
+            "Excavation_00": 0,
+            "Excavation_01": 0,
+            "Excavation_02": 0,
+            "Excavation_03": 0,
+            "Excavation_04": 0,
+            "Excavation_05": 0,
+            "Excavation_06": 372096.54683736636,
+            "Excavation_07": 1437.9281511933934,
+            "Excavation_08": 666.9293665463802,
+            "Excavation_09": 441.1568628835358,
+            "Excavation_10": 464.3617631910059,
+            "Excavation_11": 426.89648537875445,
+            "Excavation_12": 543.4117622747611,
+            "Excavation_13": 688.9890116253316,
+            "Excavation_14": 666.4097746296525,
+            "Excavation_15": 1080.0818346763608,
+            "Excavation_16": 1685.338369367346,
+            "Excavation_17": 347141.7505086662
+          },
+          "selectedNodes": [
+            "Excavation_Macro_Sector_06_LOD0",
+            "Excavation_Macro_Sector_07_LOD0",
+            "Excavation_Macro_Sector_13_LOD0",
+            "Excavation_Macro_Sector_14_LOD0",
+            "Excavation_Macro_Sector_15_LOD0",
+            "Excavation_Macro_Sector_16_LOD0",
+            "Excavation_Macro_Sector_17_LOD0",
+            "Excavation_Macro_Sector_08_LOD1",
+            "Excavation_Macro_Sector_09_LOD1",
+            "Excavation_Macro_Sector_10_LOD1",
+            "Excavation_Macro_Sector_11_LOD1",
+            "Excavation_Macro_Sector_12_LOD1",
+            "Excavation_Macro_Sector_00_LOD2",
+            "Excavation_Macro_Sector_01_LOD2",
+            "Excavation_Macro_Sector_02_LOD2",
+            "Excavation_Macro_Sector_03_LOD2",
+            "Excavation_Macro_Sector_04_LOD2",
+            "Excavation_Macro_Sector_05_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1222.5,
+              "event": "approved-material-parse",
+              "ms": 250.70000000298023,
+              "bytes": 2117836
+            },
+            {
+              "at": 1222.5,
+              "event": "approved-material-ready",
+              "ms": 387,
+              "exactPilotFamily": true,
+              "holderMeshRendered": false
+            },
+            {
+              "at": 1502.699999988079,
+              "event": "excavation-macro-parse",
+              "ms": 9.599999994039536,
+              "bytes": 3628580
+            },
+            {
+              "at": 1503.5999999940395,
+              "event": "excavation-asset-ready",
+              "style": "macro",
+              "ms": 668.2999999970198,
+              "geometryOnly": true,
+              "baselineRequested": false
+            },
+            {
+              "at": 1503.5999999940395,
+              "event": "load-ready",
+              "style": "macro",
+              "optIn": true
+            },
+            {
+              "at": 2073.3999999910593,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 15.200000002980232
+            },
+            {
+              "at": 2122.7999999970198,
+              "event": "shader-compile",
+              "ms": 49.400000005960464
+            },
+            {
+              "at": 4833.29999999702,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2775.300000011921,
+              "lighting": "hub"
+            },
+            {
+              "at": 5196,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 216066.81414664764,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 158532.66231195818,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 2297.8789283186225,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 749.1450417697586,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 578.4925116985485,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 419.97273101913447,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 475.175000537757,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 882.4687672634744,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1707.47438620219,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 208285.05030519975,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10539,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 341.70590267166875,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10948.5,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 1,
+              "to": 0,
+              "pixels": 1138.1003768884661,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 1,
+              "to": 0,
+              "pixels": 1659.6213813586332,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 1,
+              "to": 0,
+              "pixels": 1116.0623306881753,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 2,
+              "to": 1,
+              "pixels": 392.84623858844736,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_11",
+              "from": 2,
+              "to": 1,
+              "pixels": 340.20110921042493,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 501.4050856846204,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 2,
+              "to": 1,
+              "pixels": 321.33419646749866,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_08",
+              "from": 2,
+              "to": 1,
+              "pixels": 298.66864652342485,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_09",
+              "from": 2,
+              "to": 1,
+              "pixels": 266.1613397682968,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_10",
+              "from": 2,
+              "to": 1,
+              "pixels": 321.794224561337,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 1,
+              "to": 0,
+              "pixels": 782.8786727018619,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 1,
+              "to": 0,
+              "pixels": 942.0816771612317,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 1,
+              "to": 0,
+              "pixels": 372096.54683736636,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 1,
+              "to": 0,
+              "pixels": 1437.9281511933934,
+              "quality": 0,
+              "dpr": 1
+            }
+          ],
+          "assetMaterials": 1,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 16777216
+        },
+        "camera": {
+          "x": -16,
+          "y": 1.72,
+          "z": -62,
+          "yaw": 1.047518004662921,
+          "pitch": 0.3299566701440303,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.14221502476037806,
+            0.49334782680359374,
+            -0.08213826783772987,
+            0.8541873995073878
+          ]
+        }
+      }
+    },
+    {
+      "name": "exit",
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": "quarry"
+        },
+        "pose": {
+          "x": -1.3,
+          "y": 1.72,
+          "z": -38,
+          "yaw": -0.040602673065018385,
+          "pitch": 0.17552851859732682
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 156,
+          "triangles": 128072,
+          "textures": 28,
+          "geometries": 195,
+          "dpr": 1
+        },
+        "memory": {
+          "at": 42062.09999999404,
+          "scene": "hub",
+          "geometries": 195,
+          "textures": 28,
+          "activeGeometryBytes": 5208026,
+          "activeTextureBytesEstimate": 61804548.00000001,
+          "jsHeapBytes": 34008494
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 792,
+                "deleted": 2,
+                "active": 790
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 195,
+                "deleted": 0,
+                "active": 195
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 1
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 18,
+          "variant": "quarry",
+          "lodSelections": {
+            "Excavation_00": 0,
+            "Excavation_01": 0,
+            "Excavation_02": 0,
+            "Excavation_03": 0,
+            "Excavation_04": 0,
+            "Excavation_05": 1,
+            "Excavation_06": 1,
+            "Excavation_07": 1,
+            "Excavation_08": 1,
+            "Excavation_09": 1,
+            "Excavation_10": 1,
+            "Excavation_11": 1,
+            "Excavation_12": 1,
+            "Excavation_13": 0,
+            "Excavation_14": 0,
+            "Excavation_15": 0,
+            "Excavation_16": 0,
+            "Excavation_17": 0
+          },
+          "lodPixels": {
+            "Excavation_00": 28913.99869480627,
+            "Excavation_01": 3202.336938624352,
+            "Excavation_02": 1861.2610328133042,
+            "Excavation_03": 873.3390283239129,
+            "Excavation_04": 771.7900403201712,
+            "Excavation_05": 475.568319296539,
+            "Excavation_06": 341.32484131049983,
+            "Excavation_07": 288.49133436048277,
+            "Excavation_08": 271.63598490946686,
+            "Excavation_09": 241.79567914741762,
+            "Excavation_10": 289.39297454634146,
+            "Excavation_11": 301.64082935586737,
+            "Excavation_12": 433.7340258363547,
+            "Excavation_13": 627.0840152854857,
+            "Excavation_14": 676.495543611046,
+            "Excavation_15": 1157.8980970662656,
+            "Excavation_16": 1688.6487886605194,
+            "Excavation_17": 7745.807650301955
+          },
+          "selectedNodes": [
+            "Excavation_Macro_Sector_00_LOD0",
+            "Excavation_Macro_Sector_01_LOD0",
+            "Excavation_Macro_Sector_02_LOD0",
+            "Excavation_Macro_Sector_03_LOD0",
+            "Excavation_Macro_Sector_04_LOD0",
+            "Excavation_Macro_Sector_13_LOD0",
+            "Excavation_Macro_Sector_14_LOD0",
+            "Excavation_Macro_Sector_15_LOD0",
+            "Excavation_Macro_Sector_16_LOD0",
+            "Excavation_Macro_Sector_17_LOD0",
+            "Excavation_Macro_Sector_05_LOD1",
+            "Excavation_Macro_Sector_06_LOD1",
+            "Excavation_Macro_Sector_07_LOD1",
+            "Excavation_Macro_Sector_08_LOD1",
+            "Excavation_Macro_Sector_09_LOD1",
+            "Excavation_Macro_Sector_10_LOD1",
+            "Excavation_Macro_Sector_11_LOD1",
+            "Excavation_Macro_Sector_12_LOD1"
+          ],
+          "trace": [
+            {
+              "at": 1222.5,
+              "event": "approved-material-parse",
+              "ms": 250.70000000298023,
+              "bytes": 2117836
+            },
+            {
+              "at": 1222.5,
+              "event": "approved-material-ready",
+              "ms": 387,
+              "exactPilotFamily": true,
+              "holderMeshRendered": false
+            },
+            {
+              "at": 1502.699999988079,
+              "event": "excavation-macro-parse",
+              "ms": 9.599999994039536,
+              "bytes": 3628580
+            },
+            {
+              "at": 1503.5999999940395,
+              "event": "excavation-asset-ready",
+              "style": "macro",
+              "ms": 668.2999999970198,
+              "geometryOnly": true,
+              "baselineRequested": false
+            },
+            {
+              "at": 1503.5999999940395,
+              "event": "load-ready",
+              "style": "macro",
+              "optIn": true
+            },
+            {
+              "at": 2073.3999999910593,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 15.200000002980232
+            },
+            {
+              "at": 2122.7999999970198,
+              "event": "shader-compile",
+              "ms": 49.400000005960464
+            },
+            {
+              "at": 4833.29999999702,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2775.300000011921,
+              "lighting": "hub"
+            },
+            {
+              "at": 5196,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 216066.81414664764,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 158532.66231195818,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 2297.8789283186225,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 749.1450417697586,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 578.4925116985485,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 419.97273101913447,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 475.175000537757,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 882.4687672634744,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1707.47438620219,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 208285.05030519975,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10539,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 341.70590267166875,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10948.5,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 1,
+              "to": 0,
+              "pixels": 1138.1003768884661,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 1,
+              "to": 0,
+              "pixels": 1659.6213813586332,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 1,
+              "to": 0,
+              "pixels": 1116.0623306881753,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 2,
+              "to": 1,
+              "pixels": 392.84623858844736,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_11",
+              "from": 2,
+              "to": 1,
+              "pixels": 340.20110921042493,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 501.4050856846204,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 2,
+              "to": 1,
+              "pixels": 321.33419646749866,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_08",
+              "from": 2,
+              "to": 1,
+              "pixels": 298.66864652342485,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_09",
+              "from": 2,
+              "to": 1,
+              "pixels": 266.1613397682968,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_10",
+              "from": 2,
+              "to": 1,
+              "pixels": 321.794224561337,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 1,
+              "to": 0,
+              "pixels": 782.8786727018619,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 1,
+              "to": 0,
+              "pixels": 942.0816771612317,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 1,
+              "to": 0,
+              "pixels": 372096.54683736636,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 1,
+              "to": 0,
+              "pixels": 1437.9281511933934,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 28913.99869480627,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 3202.336938624352,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 1861.2610328133042,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 0,
+              "pixels": 873.3390283239129,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 771.7900403201712,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 475.568319296539,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 0,
+              "to": 1,
+              "pixels": 341.32484131049983,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 0,
+              "to": 1,
+              "pixels": 288.49133436048277,
+              "quality": 0,
+              "dpr": 1
+            }
+          ],
+          "assetMaterials": 1,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 16777216
+        },
+        "camera": {
+          "x": -1.3,
+          "y": 1.72,
+          "z": -38,
+          "yaw": -0.040602673065018385,
+          "pitch": 0.17552851859732682,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.08763357242187818,
+            -0.02022181140416605,
+            0.0017793230979360978,
+            0.995945916873716
+          ]
+        }
+      }
+    },
+    {
+      "name": "map",
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": true,
+          "mapStage": "open",
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.1
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 171,
+          "triangles": 111266,
+          "textures": 28,
+          "geometries": 202,
+          "dpr": 0.6
+        },
+        "memory": {
+          "at": 52463.5,
+          "scene": "hub",
+          "geometries": 202,
+          "textures": 28,
+          "activeGeometryBytes": 5201642,
+          "activeTextureBytesEstimate": 61804548.00000001,
+          "jsHeapBytes": 29555981
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 822,
+                "deleted": 4,
+                "active": 818
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 44,
+                "active": 0
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 207,
+                "deleted": 0,
+                "active": 207
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 1
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 18,
+          "variant": "quarry",
+          "lodSelections": {
+            "Excavation_00": 2,
+            "Excavation_01": 2,
+            "Excavation_02": 2,
+            "Excavation_03": 2,
+            "Excavation_04": 2,
+            "Excavation_05": 2,
+            "Excavation_06": 2,
+            "Excavation_07": 2,
+            "Excavation_08": 2,
+            "Excavation_09": 2,
+            "Excavation_10": 2,
+            "Excavation_11": 2,
+            "Excavation_12": 2,
+            "Excavation_13": 2,
+            "Excavation_14": 2,
+            "Excavation_15": 2,
+            "Excavation_16": 2,
+            "Excavation_17": 2
+          },
+          "lodPixels": {
+            "Excavation_00": 125.57897303015253,
+            "Excavation_01": 92.42319277769823,
+            "Excavation_02": 115.40689715365642,
+            "Excavation_03": 97.42517653881733,
+            "Excavation_04": 132.78939239531468,
+            "Excavation_05": 134.38614360229226,
+            "Excavation_06": 130.43586782417378,
+            "Excavation_07": 131.14378923981107,
+            "Excavation_08": 124.16047592386774,
+            "Excavation_09": 103.83733301769196,
+            "Excavation_10": 109.635906630536,
+            "Excavation_11": 100.02589617857028,
+            "Excavation_12": 121.52710156514456,
+            "Excavation_13": 119.24631178283646,
+            "Excavation_14": 92.87558711338882,
+            "Excavation_15": 112.3462547622363,
+            "Excavation_16": 90.40432102732345,
+            "Excavation_17": 120.17197809930623
+          },
+          "selectedNodes": [
+            "Excavation_Macro_Sector_00_LOD2",
+            "Excavation_Macro_Sector_01_LOD2",
+            "Excavation_Macro_Sector_02_LOD2",
+            "Excavation_Macro_Sector_03_LOD2",
+            "Excavation_Macro_Sector_04_LOD2",
+            "Excavation_Macro_Sector_05_LOD2",
+            "Excavation_Macro_Sector_06_LOD2",
+            "Excavation_Macro_Sector_07_LOD2",
+            "Excavation_Macro_Sector_08_LOD2",
+            "Excavation_Macro_Sector_09_LOD2",
+            "Excavation_Macro_Sector_10_LOD2",
+            "Excavation_Macro_Sector_11_LOD2",
+            "Excavation_Macro_Sector_12_LOD2",
+            "Excavation_Macro_Sector_13_LOD2",
+            "Excavation_Macro_Sector_14_LOD2",
+            "Excavation_Macro_Sector_15_LOD2",
+            "Excavation_Macro_Sector_16_LOD2",
+            "Excavation_Macro_Sector_17_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1222.5,
+              "event": "approved-material-parse",
+              "ms": 250.70000000298023,
+              "bytes": 2117836
+            },
+            {
+              "at": 1222.5,
+              "event": "approved-material-ready",
+              "ms": 387,
+              "exactPilotFamily": true,
+              "holderMeshRendered": false
+            },
+            {
+              "at": 1502.699999988079,
+              "event": "excavation-macro-parse",
+              "ms": 9.599999994039536,
+              "bytes": 3628580
+            },
+            {
+              "at": 1503.5999999940395,
+              "event": "excavation-asset-ready",
+              "style": "macro",
+              "ms": 668.2999999970198,
+              "geometryOnly": true,
+              "baselineRequested": false
+            },
+            {
+              "at": 1503.5999999940395,
+              "event": "load-ready",
+              "style": "macro",
+              "optIn": true
+            },
+            {
+              "at": 2073.3999999910593,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 15.200000002980232
+            },
+            {
+              "at": 2122.7999999970198,
+              "event": "shader-compile",
+              "ms": 49.400000005960464
+            },
+            {
+              "at": 4833.29999999702,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2775.300000011921,
+              "lighting": "hub"
+            },
+            {
+              "at": 5196,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 216066.81414664764,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 158532.66231195818,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 2297.8789283186225,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 749.1450417697586,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.0999999940395,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 578.4925116985485,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 419.97273101913447,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 475.175000537757,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 882.4687672634744,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1707.47438620219,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 5196.199999988079,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 208285.05030519975,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10539,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 341.70590267166875,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10948.5,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 1,
+              "to": 0,
+              "pixels": 1138.1003768884661,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 1,
+              "to": 0,
+              "pixels": 1659.6213813586332,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 1,
+              "to": 0,
+              "pixels": 1116.0623306881753,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 2,
+              "to": 1,
+              "pixels": 392.84623858844736,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_11",
+              "from": 2,
+              "to": 1,
+              "pixels": 340.20110921042493,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 15471.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 501.4050856846204,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 2,
+              "to": 1,
+              "pixels": 321.33419646749866,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_08",
+              "from": 2,
+              "to": 1,
+              "pixels": 298.66864652342485,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_09",
+              "from": 2,
+              "to": 1,
+              "pixels": 266.1613397682968,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_10",
+              "from": 2,
+              "to": 1,
+              "pixels": 321.794224561337,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 1,
+              "to": 0,
+              "pixels": 782.8786727018619,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 16468.89999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 1,
+              "to": 0,
+              "pixels": 942.0816771612317,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 1,
+              "to": 0,
+              "pixels": 372096.54683736636,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 24080.5,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 1,
+              "to": 0,
+              "pixels": 1437.9281511933934,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 28913.99869480627,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 3202.336938624352,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 1861.2610328133042,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 0,
+              "pixels": 873.3390283239129,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 771.7900403201712,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 475.568319296539,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 0,
+              "to": 1,
+              "pixels": 341.32484131049983,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 35754.39999999106,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 0,
+              "to": 1,
+              "pixels": 288.49133436048277,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 45439.19999998808,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 0,
+              "to": 1,
+              "pixels": 472.5515654718749,
+              "quality": 0,
+              "dpr": 0.6
+            },
+            {
+              "at": 45734.09999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 0,
+              "to": 1,
+              "pixels": 676.6028753542909,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 45734.09999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_06",
+              "from": 1,
+              "to": 2,
+              "pixels": 235.8133106132461,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 45734.09999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_07",
+              "from": 1,
+              "to": 2,
+              "pixels": 192.70888236831098,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 45734.09999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_08",
+              "from": 1,
+              "to": 2,
+              "pixels": 179.01958075629668,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 45734.09999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_09",
+              "from": 1,
+              "to": 2,
+              "pixels": 159.6770045243468,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 45734.09999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_10",
+              "from": 1,
+              "to": 2,
+              "pixels": 193.12604557839495,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 45734.09999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_11",
+              "from": 1,
+              "to": 2,
+              "pixels": 204.36621054555312,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 45734.09999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 0,
+              "to": 1,
+              "pixels": 572.238775405068,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 48860.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 0,
+              "to": 1,
+              "pixels": 573.4362009815077,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 48860.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 1,
+              "to": 0,
+              "pixels": 1102.4086047967905,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 0,
+              "to": 1,
+              "pixels": 342.4330138635522,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 211.50559786922426,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 0,
+              "to": 2,
+              "pixels": 228.35316946350054,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 1,
+              "to": 2,
+              "pixels": 168.07145122144766,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 1,
+              "to": 2,
+              "pixels": 203.7068218778759,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_05",
+              "from": 1,
+              "to": 2,
+              "pixels": 175.55043877447002,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 0,
+              "to": 2,
+              "pixels": 303.73840439897066,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 0,
+              "to": 1,
+              "pixels": 397.96760859044525,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 0,
+              "to": 1,
+              "pixels": 331.9594626227958,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49173.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 0,
+              "to": 1,
+              "pixels": 418.7777264495159,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49575.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 1,
+              "to": 2,
+              "pixels": 129.79837014332392,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49575.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_12",
+              "from": 1,
+              "to": 2,
+              "pixels": 135.2061409673223,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49575.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_13",
+              "from": 1,
+              "to": 2,
+              "pixels": 133.28741929011855,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49575.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 1,
+              "to": 2,
+              "pixels": 125.0768818690261,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49575.59999999404,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 1,
+              "to": 2,
+              "pixels": 99.53887629028229,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 49575.69999998808,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 1,
+              "to": 2,
+              "pixels": 129.57832182114902,
+              "quality": 3,
+              "dpr": 0.6
+            }
+          ],
+          "assetMaterials": 1,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 16777216
+        },
+        "camera": {
+          "x": -0.8999999999999986,
+          "y": 165.93367317635833,
+          "z": -77,
+          "yaw": -1.570760033104047,
+          "pitch": -1.5707963267948966,
+          "fov": 64.00036968449932,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            -0.5000090733403848,
+            -0.49999092649496113,
+            -0.499990926494961,
+            0.5000090733403849
+          ]
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

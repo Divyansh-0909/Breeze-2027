@@ -1,0 +1,57 @@
+[
+  {
+    "name": "matched-performance-lifecycle",
+    "command": [
+      "node",
+      "reports/stage-2b-first-wall-2026-10-12/scripts/benchmark-and-lifecycle.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 155.6172947883606
+  },
+  {
+    "name": "browser-walkthrough",
+    "command": [
+      "node",
+      "reports/stage-2b-first-wall-2026-10-12/scripts/walkthrough.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 74.6915717124939
+  },
+  {
+    "name": "default-runtime-browser",
+    "command": [
+      "npm",
+      "run",
+      "test:immersive:browser"
+    ],
+    "exitCode": 0,
+    "seconds": 280.012234210968
+  },
+  {
+    "name": "opt-in-runtime-regressions",
+    "command": [
+      "node",
+      "reports/stage-2b-first-wall-2026-10-12/scripts/opt-in-regressions.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 136.1677441596985
+  },
+  {
+    "name": "default-smoke-failure",
+    "command": [
+      "node",
+      "reports/stage-2b-first-wall-2026-10-12/scripts/production-smoke.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 64.14133167266846
+  },
+  {
+    "name": "loading-playback-interruption",
+    "command": [
+      "node",
+      "reports/stage-2b-first-wall-2026-10-12/scripts/interruption.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 70.43061876296997
+  }
+]

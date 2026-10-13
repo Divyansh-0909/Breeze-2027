@@ -1,0 +1,2752 @@
+{
+  "checks": [
+    {
+      "name": "Actual WebGL loss/recovery preserves excavation, pose and Canvas",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 151,
+            "triangles": 110168,
+            "textures": 28,
+            "geometries": 195,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 8064.5,
+            "scene": "hub",
+            "geometries": 195,
+            "textures": 28,
+            "activeGeometryBytes": 9471086,
+            "activeTextureBytesEstimate": 61804548.00000001,
+            "jsHeapBytes": 55979165
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 32,
+                  "deleted": 0,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 790,
+                  "deleted": 0,
+                  "active": 790
+                },
+                "Program": {
+                  "created": 22,
+                  "deleted": 0,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 44,
+                  "deleted": 40,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 195,
+                  "deleted": 0,
+                  "active": 195
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 1,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 18,
+            "variant": "quarry",
+            "lodSelections": {
+              "Excavation_00": 0,
+              "Excavation_01": 0,
+              "Excavation_02": 0,
+              "Excavation_03": 1,
+              "Excavation_04": 2,
+              "Excavation_05": 2,
+              "Excavation_06": 2,
+              "Excavation_07": 2,
+              "Excavation_08": 2,
+              "Excavation_09": 2,
+              "Excavation_10": 2,
+              "Excavation_11": 2,
+              "Excavation_12": 2,
+              "Excavation_13": 2,
+              "Excavation_14": 2,
+              "Excavation_15": 1,
+              "Excavation_16": 0,
+              "Excavation_17": 0
+            },
+            "lodPixels": {
+              "Excavation_00": 90027.83922776984,
+              "Excavation_01": 66055.2759633159,
+              "Excavation_02": 2200.2011087160217,
+              "Excavation_03": 400.4788024862694,
+              "Excavation_04": 275.4941425505077,
+              "Excavation_05": 145.85538953636365,
+              "Excavation_06": 98.44190883534048,
+              "Excavation_07": 80.63655628850245,
+              "Excavation_08": 75.01111334734868,
+              "Excavation_09": 66.75514400349817,
+              "Excavation_10": 80.6609965061989,
+              "Excavation_11": 85.15114465498223,
+              "Excavation_12": 125.10690882173898,
+              "Excavation_13": 194.52311938561917,
+              "Excavation_14": 231.87287233277235,
+              "Excavation_15": 474.2083678127203,
+              "Excavation_16": 1534.979470234475,
+              "Excavation_17": 86785.43762716655
+            },
+            "selectedNodes": [
+              "Excavation_Detailed_Sector_00_LOD0",
+              "Excavation_Detailed_Sector_01_LOD0",
+              "Excavation_Detailed_Sector_02_LOD0",
+              "Excavation_Detailed_Sector_16_LOD0",
+              "Excavation_Detailed_Sector_17_LOD0",
+              "Excavation_Detailed_Sector_03_LOD1",
+              "Excavation_Detailed_Sector_15_LOD1",
+              "Excavation_Detailed_Sector_04_LOD2",
+              "Excavation_Detailed_Sector_05_LOD2",
+              "Excavation_Detailed_Sector_06_LOD2",
+              "Excavation_Detailed_Sector_07_LOD2",
+              "Excavation_Detailed_Sector_08_LOD2",
+              "Excavation_Detailed_Sector_09_LOD2",
+              "Excavation_Detailed_Sector_10_LOD2",
+              "Excavation_Detailed_Sector_11_LOD2",
+              "Excavation_Detailed_Sector_12_LOD2",
+              "Excavation_Detailed_Sector_13_LOD2",
+              "Excavation_Detailed_Sector_14_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 1256.2999999970198,
+                "event": "approved-material-parse",
+                "ms": 371.29999999701977,
+                "bytes": 2505852
+              },
+              {
+                "at": 1256.5,
+                "event": "approved-material-ready",
+                "ms": 578.7999999970198,
+                "exactPilotFamily": true,
+                "holderMeshRendered": false,
+                "look": "rock",
+                "materialName": "Quarry_Pilot_Original_Stone_PBR",
+                "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+              },
+              {
+                "at": 1774,
+                "event": "excavation-detailed-parse",
+                "ms": 8.399999991059303,
+                "bytes": 7898472
+              },
+              {
+                "at": 1774.7999999970198,
+                "event": "excavation-asset-ready",
+                "style": "detailed",
+                "ms": 1097.2000000029802,
+                "geometryOnly": true,
+                "baselineRequested": false
+              },
+              {
+                "at": 1774.7999999970198,
+                "event": "load-ready",
+                "style": "detailed",
+                "optIn": true
+              },
+              {
+                "at": 1837.5999999940395,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 20.80000001192093
+              },
+              {
+                "at": 1888,
+                "event": "shader-compile",
+                "ms": 50.400000005960464
+              },
+              {
+                "at": 3992.5999999940395,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 2176.2000000029802,
+                "lighting": "hub"
+              },
+              {
+                "at": 4147,
+                "event": "part-lod-change",
+                "part": "Excavation_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147,
+                "event": "part-lod-change",
+                "part": "Excavation_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 2,
+                "to": 1,
+                "pixels": 957.4495535901259,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147.399999991059,
+                "event": "part-lod-change",
+                "part": "Excavation_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 367.69524600840435,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147.399999991059,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 2,
+                "to": 1,
+                "pixels": 711.4476609175792,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147.399999991059,
+                "event": "part-lod-change",
+                "part": "Excavation_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5989.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 1,
+                "to": 0,
+                "pixels": 1166.9272059316768,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5989.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 335.6749865937898,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 6146.399999991059,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 1,
+                "to": 0,
+                "pixels": 1137.644904132752,
+                "quality": 3,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 1,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 16777216
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "after": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 151,
+            "triangles": 110168,
+            "textures": 28,
+            "geometries": 193,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 12997.79999999702,
+            "scene": "hub",
+            "geometries": 193,
+            "textures": 28,
+            "activeGeometryBytes": 9471086,
+            "activeTextureBytesEstimate": 61804548.00000001,
+            "jsHeapBytes": 43266391
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 64,
+                  "deleted": 0,
+                  "active": 64
+                },
+                "Buffer": {
+                  "created": 1572,
+                  "deleted": 0,
+                  "active": 1572
+                },
+                "Program": {
+                  "created": 44,
+                  "deleted": 0,
+                  "active": 44
+                },
+                "Shader": {
+                  "created": 88,
+                  "deleted": 80,
+                  "active": 8
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 388,
+                  "deleted": 0,
+                  "active": 388
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 2,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 18,
+            "variant": "quarry",
+            "lodSelections": {
+              "Excavation_00": 0,
+              "Excavation_01": 0,
+              "Excavation_02": 0,
+              "Excavation_03": 1,
+              "Excavation_04": 2,
+              "Excavation_05": 2,
+              "Excavation_06": 2,
+              "Excavation_07": 2,
+              "Excavation_08": 2,
+              "Excavation_09": 2,
+              "Excavation_10": 2,
+              "Excavation_11": 2,
+              "Excavation_12": 2,
+              "Excavation_13": 2,
+              "Excavation_14": 2,
+              "Excavation_15": 1,
+              "Excavation_16": 0,
+              "Excavation_17": 0
+            },
+            "lodPixels": {
+              "Excavation_00": 90027.83922776984,
+              "Excavation_01": 66055.2759633159,
+              "Excavation_02": 2200.2011087160217,
+              "Excavation_03": 400.4788024862694,
+              "Excavation_04": 275.4941425505077,
+              "Excavation_05": 145.85538953636365,
+              "Excavation_06": 98.44190883534048,
+              "Excavation_07": 80.63655628850245,
+              "Excavation_08": 75.01111334734868,
+              "Excavation_09": 66.75514400349817,
+              "Excavation_10": 80.6609965061989,
+              "Excavation_11": 85.15114465498223,
+              "Excavation_12": 125.10690882173898,
+              "Excavation_13": 194.52311938561917,
+              "Excavation_14": 231.87287233277235,
+              "Excavation_15": 474.2083678127203,
+              "Excavation_16": 1534.979470234475,
+              "Excavation_17": 86785.43762716655
+            },
+            "selectedNodes": [
+              "Excavation_Detailed_Sector_00_LOD0",
+              "Excavation_Detailed_Sector_01_LOD0",
+              "Excavation_Detailed_Sector_02_LOD0",
+              "Excavation_Detailed_Sector_16_LOD0",
+              "Excavation_Detailed_Sector_17_LOD0",
+              "Excavation_Detailed_Sector_03_LOD1",
+              "Excavation_Detailed_Sector_15_LOD1",
+              "Excavation_Detailed_Sector_04_LOD2",
+              "Excavation_Detailed_Sector_05_LOD2",
+              "Excavation_Detailed_Sector_06_LOD2",
+              "Excavation_Detailed_Sector_07_LOD2",
+              "Excavation_Detailed_Sector_08_LOD2",
+              "Excavation_Detailed_Sector_09_LOD2",
+              "Excavation_Detailed_Sector_10_LOD2",
+              "Excavation_Detailed_Sector_11_LOD2",
+              "Excavation_Detailed_Sector_12_LOD2",
+              "Excavation_Detailed_Sector_13_LOD2",
+              "Excavation_Detailed_Sector_14_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 1256.2999999970198,
+                "event": "approved-material-parse",
+                "ms": 371.29999999701977,
+                "bytes": 2505852
+              },
+              {
+                "at": 1256.5,
+                "event": "approved-material-ready",
+                "ms": 578.7999999970198,
+                "exactPilotFamily": true,
+                "holderMeshRendered": false,
+                "look": "rock",
+                "materialName": "Quarry_Pilot_Original_Stone_PBR",
+                "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+              },
+              {
+                "at": 1774,
+                "event": "excavation-detailed-parse",
+                "ms": 8.399999991059303,
+                "bytes": 7898472
+              },
+              {
+                "at": 1774.7999999970198,
+                "event": "excavation-asset-ready",
+                "style": "detailed",
+                "ms": 1097.2000000029802,
+                "geometryOnly": true,
+                "baselineRequested": false
+              },
+              {
+                "at": 1774.7999999970198,
+                "event": "load-ready",
+                "style": "detailed",
+                "optIn": true
+              },
+              {
+                "at": 1837.5999999940395,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 20.80000001192093
+              },
+              {
+                "at": 1888,
+                "event": "shader-compile",
+                "ms": 50.400000005960464
+              },
+              {
+                "at": 3992.5999999940395,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 2176.2000000029802,
+                "lighting": "hub"
+              },
+              {
+                "at": 4147,
+                "event": "part-lod-change",
+                "part": "Excavation_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147,
+                "event": "part-lod-change",
+                "part": "Excavation_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 2,
+                "to": 1,
+                "pixels": 957.4495535901259,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147.399999991059,
+                "event": "part-lod-change",
+                "part": "Excavation_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 367.69524600840435,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147.399999991059,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 2,
+                "to": 1,
+                "pixels": 711.4476609175792,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 4147.399999991059,
+                "event": "part-lod-change",
+                "part": "Excavation_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5989.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 1,
+                "to": 0,
+                "pixels": 1166.9272059316768,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5989.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 335.6749865937898,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 6146.399999991059,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 1,
+                "to": 0,
+                "pixels": 1137.644904132752,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 8978,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 8999.199999988079,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 13.5
+              },
+              {
+                "at": 9038.59999999404,
+                "event": "shader-compile",
+                "ms": 39.400000005960464
+              },
+              {
+                "at": 11135.39999999106,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 2150.5,
+                "lighting": "hub"
+              },
+              {
+                "at": 11257.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 11257.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 11257.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 2200.2011087160217,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 11257.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 400.4788024862694,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 11257.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 474.2083678127203,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 11257.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 2,
+                "to": 0,
+                "pixels": 1534.979470234475,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 11257.79999999702,
+                "event": "part-lod-change",
+                "part": "Excavation_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 3,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 1,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 16777216
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Failed optional excavation restores Stage2C; explicit retry succeeds",
+      "status": "PASS",
+      "evidence": {
+        "failed": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 161,
+            "triangles": 150826,
+            "textures": 28,
+            "geometries": 222,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 7880.199999988079,
+            "scene": "hub",
+            "geometries": 222,
+            "textures": 28,
+            "activeGeometryBytes": 18425004,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 88172499
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 32,
+                  "deleted": 0,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 1006,
+                  "deleted": 0,
+                  "active": 1006
+                },
+                "Program": {
+                  "created": 22,
+                  "deleted": 0,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 44,
+                  "deleted": 40,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 222,
+                  "deleted": 0,
+                  "active": 222
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 2,
+              "error": "Excavation unavailable; Stage 2C retained"
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 27,
+            "variant": "quarry",
+            "lodSelections": {
+              "2": 0,
+              "3": 0,
+              "4": 1,
+              "5": 2,
+              "6": 2,
+              "7": 2,
+              "8": 2,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 2,
+              "13": 2,
+              "14": 2,
+              "15": 2,
+              "16": 2,
+              "17": 2,
+              "18": 2,
+              "19": 2,
+              "20": 2,
+              "21": 2,
+              "22": 2,
+              "23": 2,
+              "24": 1,
+              "25": 0,
+              "26": 0,
+              "Quarry_Exit": 0,
+              "Quarry_Crown": 0
+            },
+            "lodPixels": {
+              "2": 101403.96785460635,
+              "3": 13272.489587343378,
+              "4": 609.7929676976114,
+              "5": 321.01807017628875,
+              "6": 207.47909249135293,
+              "7": 155.95043256052602,
+              "8": 153.74315696853054,
+              "9": 105.07709932848141,
+              "10": 99.1674036637573,
+              "11": 95.22646265257164,
+              "12": 71.46514359849317,
+              "13": 76.69873598877231,
+              "14": 79.07447939942398,
+              "15": 67.60920806980867,
+              "16": 78.87770373463069,
+              "17": 91.22461716686416,
+              "18": 90.42095380078995,
+              "19": 122.48965414420368,
+              "20": 145.18823072424027,
+              "21": 151.66656156499394,
+              "22": 245.44098498603054,
+              "23": 303.88920833096677,
+              "24": 584.6336392723908,
+              "25": 1754.964355190943,
+              "26": 87835.47874938289,
+              "Quarry_Exit": 151386.13266914143,
+              "Quarry_Crown": 155666.40222423943
+            },
+            "selectedNodes": [
+              "Quarry_Crown_LOD0",
+              "Quarry_Exit_LOD0",
+              "Quarry_Rock_02_LOD0",
+              "Quarry_Rock_03_LOD0",
+              "Quarry_Rock_25_LOD0",
+              "Quarry_Rock_26_LOD0",
+              "Quarry_Rock_04_LOD1",
+              "Quarry_Rock_24_LOD1",
+              "Quarry_Rock_05_LOD2",
+              "Quarry_Rock_06_LOD2",
+              "Quarry_Rock_07_LOD2",
+              "Quarry_Rock_08_LOD2",
+              "Quarry_Rock_09_LOD2",
+              "Quarry_Rock_10_LOD2",
+              "Quarry_Rock_11_LOD2",
+              "Quarry_Rock_12_LOD2",
+              "Quarry_Rock_13_LOD2",
+              "Quarry_Rock_14_LOD2",
+              "Quarry_Rock_15_LOD2",
+              "Quarry_Rock_16_LOD2",
+              "Quarry_Rock_17_LOD2",
+              "Quarry_Rock_18_LOD2",
+              "Quarry_Rock_19_LOD2",
+              "Quarry_Rock_20_LOD2",
+              "Quarry_Rock_21_LOD2",
+              "Quarry_Rock_22_LOD2",
+              "Quarry_Rock_23_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 1366.0999999940395,
+                "event": "approved-material-parse",
+                "ms": 383,
+                "bytes": 2505852
+              },
+              {
+                "at": 1366.0999999940395,
+                "event": "approved-material-ready",
+                "ms": 570.5999999940395,
+                "exactPilotFamily": true,
+                "holderMeshRendered": false,
+                "look": "rock",
+                "materialName": "Quarry_Pilot_Original_Stone_PBR",
+                "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+              },
+              {
+                "at": 1375.7999999970198,
+                "event": "excavation-load-failed",
+                "style": "detailed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 1375.8999999910593,
+                "event": "excavation-request",
+                "style": "baseline"
+              },
+              {
+                "at": 1376,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 2409.5999999940395,
+                "event": "excavation-baseline-parse",
+                "ms": 76,
+                "bytes": 18594988
+              },
+              {
+                "at": 2411.0999999940395,
+                "event": "excavation-asset-ready",
+                "style": "baseline",
+                "ms": 1014,
+                "geometryOnly": false,
+                "baselineRequested": true
+              },
+              {
+                "at": 2411.0999999940395,
+                "event": "load-ready",
+                "style": "baseline",
+                "optIn": true
+              },
+              {
+                "at": 2457.5999999940395,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 10.799999997019768
+              },
+              {
+                "at": 2506.0999999940395,
+                "event": "shader-compile",
+                "ms": 48.400000005960464
+              },
+              {
+                "at": 4900.399999991059,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 2454.2000000029802,
+                "lighting": "hub"
+              },
+              {
+                "at": 5061.0999999940395,
+                "event": "part-lod-change",
+                "part": "2",
+                "from": 2,
+                "to": 0,
+                "pixels": 101403.96785460635,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.199999988079,
+                "event": "part-lod-change",
+                "part": "3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1582.8377563488796,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.199999988079,
+                "event": "part-lod-change",
+                "part": "4",
+                "from": 2,
+                "to": 1,
+                "pixels": 450.25518170897215,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "24",
+                "from": 2,
+                "to": 1,
+                "pixels": 433.83863511745284,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 2,
+                "to": 1,
+                "pixels": 951.0452832644221,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "26",
+                "from": 2,
+                "to": 0,
+                "pixels": 87835.47874938289,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "Quarry_Exit",
+                "from": 2,
+                "to": 0,
+                "pixels": 151386.13266914143,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "Quarry_Crown",
+                "from": 2,
+                "to": 0,
+                "pixels": 155666.40222423943,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7185.699999988079,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 1,
+                "to": 0,
+                "pixels": 1195.816331537684,
+                "quality": 3,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 2,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "retry": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 151,
+            "triangles": 104868,
+            "textures": 31,
+            "geometries": 276,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 10297.699999988079,
+            "scene": "hub",
+            "geometries": 240,
+            "textures": 31,
+            "activeGeometryBytes": 9471086,
+            "activeTextureBytesEstimate": 61804548.00000001,
+            "jsHeapBytes": 94303254
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 35,
+                  "deleted": 0,
+                  "active": 35
+                },
+                "Buffer": {
+                  "created": 1280,
+                  "deleted": 4,
+                  "active": 1276
+                },
+                "Program": {
+                  "created": 23,
+                  "deleted": 0,
+                  "active": 23
+                },
+                "Shader": {
+                  "created": 46,
+                  "deleted": 42,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 277,
+                  "deleted": 1,
+                  "active": 276
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 4,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 18,
+            "variant": "quarry",
+            "lodSelections": {
+              "Excavation_00": 0,
+              "Excavation_01": 0,
+              "Excavation_02": 0,
+              "Excavation_03": 1,
+              "Excavation_04": 2,
+              "Excavation_05": 2,
+              "Excavation_06": 2,
+              "Excavation_07": 2,
+              "Excavation_08": 2,
+              "Excavation_09": 2,
+              "Excavation_10": 2,
+              "Excavation_11": 2,
+              "Excavation_12": 2,
+              "Excavation_13": 2,
+              "Excavation_14": 2,
+              "Excavation_15": 1,
+              "Excavation_16": 0,
+              "Excavation_17": 0
+            },
+            "lodPixels": {
+              "Excavation_00": 90027.83922776984,
+              "Excavation_01": 66055.2759633159,
+              "Excavation_02": 2200.2011087160217,
+              "Excavation_03": 400.4788024862694,
+              "Excavation_04": 275.4941425505077,
+              "Excavation_05": 145.85538953636365,
+              "Excavation_06": 98.44190883534048,
+              "Excavation_07": 80.63655628850245,
+              "Excavation_08": 75.01111334734868,
+              "Excavation_09": 66.75514400349817,
+              "Excavation_10": 80.6609965061989,
+              "Excavation_11": 85.15114465498223,
+              "Excavation_12": 125.10690882173898,
+              "Excavation_13": 194.52311938561917,
+              "Excavation_14": 231.87287233277235,
+              "Excavation_15": 474.2083678127203,
+              "Excavation_16": 1534.979470234475,
+              "Excavation_17": 86785.43762716655
+            },
+            "selectedNodes": [
+              "Excavation_Detailed_Sector_00_LOD0",
+              "Excavation_Detailed_Sector_01_LOD0",
+              "Excavation_Detailed_Sector_02_LOD0",
+              "Excavation_Detailed_Sector_16_LOD0",
+              "Excavation_Detailed_Sector_17_LOD0",
+              "Excavation_Detailed_Sector_03_LOD1",
+              "Excavation_Detailed_Sector_15_LOD1",
+              "Excavation_Detailed_Sector_04_LOD2",
+              "Excavation_Detailed_Sector_05_LOD2",
+              "Excavation_Detailed_Sector_06_LOD2",
+              "Excavation_Detailed_Sector_07_LOD2",
+              "Excavation_Detailed_Sector_08_LOD2",
+              "Excavation_Detailed_Sector_09_LOD2",
+              "Excavation_Detailed_Sector_10_LOD2",
+              "Excavation_Detailed_Sector_11_LOD2",
+              "Excavation_Detailed_Sector_12_LOD2",
+              "Excavation_Detailed_Sector_13_LOD2",
+              "Excavation_Detailed_Sector_14_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 1366.0999999940395,
+                "event": "approved-material-parse",
+                "ms": 383,
+                "bytes": 2505852
+              },
+              {
+                "at": 1366.0999999940395,
+                "event": "approved-material-ready",
+                "ms": 570.5999999940395,
+                "exactPilotFamily": true,
+                "holderMeshRendered": false,
+                "look": "rock",
+                "materialName": "Quarry_Pilot_Original_Stone_PBR",
+                "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+              },
+              {
+                "at": 1375.7999999970198,
+                "event": "excavation-load-failed",
+                "style": "detailed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 1375.8999999910593,
+                "event": "excavation-request",
+                "style": "baseline"
+              },
+              {
+                "at": 1376,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 2409.5999999940395,
+                "event": "excavation-baseline-parse",
+                "ms": 76,
+                "bytes": 18594988
+              },
+              {
+                "at": 2411.0999999940395,
+                "event": "excavation-asset-ready",
+                "style": "baseline",
+                "ms": 1014,
+                "geometryOnly": false,
+                "baselineRequested": true
+              },
+              {
+                "at": 2411.0999999940395,
+                "event": "load-ready",
+                "style": "baseline",
+                "optIn": true
+              },
+              {
+                "at": 2457.5999999940395,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 10.799999997019768
+              },
+              {
+                "at": 2506.0999999940395,
+                "event": "shader-compile",
+                "ms": 48.400000005960464
+              },
+              {
+                "at": 4900.399999991059,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 2454.2000000029802,
+                "lighting": "hub"
+              },
+              {
+                "at": 5061.0999999940395,
+                "event": "part-lod-change",
+                "part": "2",
+                "from": 2,
+                "to": 0,
+                "pixels": 101403.96785460635,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.199999988079,
+                "event": "part-lod-change",
+                "part": "3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1582.8377563488796,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.199999988079,
+                "event": "part-lod-change",
+                "part": "4",
+                "from": 2,
+                "to": 1,
+                "pixels": 450.25518170897215,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "24",
+                "from": 2,
+                "to": 1,
+                "pixels": 433.83863511745284,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 2,
+                "to": 1,
+                "pixels": 951.0452832644221,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "26",
+                "from": 2,
+                "to": 0,
+                "pixels": 87835.47874938289,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "Quarry_Exit",
+                "from": 2,
+                "to": 0,
+                "pixels": 151386.13266914143,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5061.29999999702,
+                "event": "part-lod-change",
+                "part": "Quarry_Crown",
+                "from": 2,
+                "to": 0,
+                "pixels": 155666.40222423943,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7185.699999988079,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 1,
+                "to": 0,
+                "pixels": 1195.816331537684,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 9400.39999999106,
+                "event": "excavation-request",
+                "style": "detailed"
+              },
+              {
+                "at": 9400.39999999106,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 9870,
+                "event": "excavation-detailed-parse",
+                "ms": 10.300000011920929,
+                "bytes": 7898472
+              },
+              {
+                "at": 9870.79999999702,
+                "event": "excavation-asset-ready",
+                "style": "detailed",
+                "ms": 442.90000000596046,
+                "geometryOnly": true,
+                "baselineRequested": false
+              },
+              {
+                "at": 9870.79999999702,
+                "event": "load-ready",
+                "style": "detailed",
+                "optIn": true
+              },
+              {
+                "at": 9905.39999999106,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 4.5999999940395355
+              },
+              {
+                "at": 9918.699999988079,
+                "event": "shader-compile",
+                "ms": 13.299999997019768
+              },
+              {
+                "at": 10509.79999999702,
+                "event": "covered-ready",
+                "revision": 4,
+                "ms": 609.2999999970198,
+                "lighting": "hub"
+              },
+              {
+                "at": 10772,
+                "event": "part-lod-change",
+                "part": "Excavation_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 10772,
+                "event": "part-lod-change",
+                "part": "Excavation_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 10772,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 2200.2011087160217,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 10772,
+                "event": "part-lod-change",
+                "part": "Excavation_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 400.4788024862694,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 10772,
+                "event": "part-lod-change",
+                "part": "Excavation_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 474.2083678127203,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 10772,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 2,
+                "to": 0,
+                "pixels": 1534.979470234475,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 10772,
+                "event": "part-lod-change",
+                "part": "Excavation_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 3,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 1,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 16777216
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Delayed geometry remains covered and unmount disposes abandoned load",
+      "status": "PASS",
+      "evidence": {
+        "disposed": true,
+        "asset": false,
+        "caches": 0,
+        "consumers": 0,
+        "trace": [
+          {
+            "at": 946.1999999880791,
+            "event": "approved-material-parse",
+            "ms": 64.59999999403954,
+            "bytes": 2505852
+          },
+          {
+            "at": 946.1999999880791,
+            "event": "approved-material-ready",
+            "ms": 204.09999999403954,
+            "exactPilotFamily": true,
+            "holderMeshRendered": false,
+            "look": "rock",
+            "materialName": "Quarry_Pilot_Original_Stone_PBR",
+            "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+          },
+          {
+            "at": 1410.7999999970198,
+            "event": "approved-material-owner-disposal",
+            "geometries": 1,
+            "materials": 1,
+            "textures": 3
+          },
+          {
+            "at": 6797.399999991059,
+            "event": "excavation-detailed-parse",
+            "ms": 9.799999997019768,
+            "bytes": 7898472
+          }
+        ]
+      }
+    },
+    {
+      "name": "Failed approved-material load keeps safe Stage2C fallback",
+      "status": "PASS",
+      "evidence": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 161,
+          "triangles": 150826,
+          "textures": 28,
+          "geometries": 222,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 7435.600000008941,
+          "scene": "hub",
+          "geometries": 222,
+          "textures": 28,
+          "activeGeometryBytes": 18425004,
+          "activeTextureBytesEstimate": 57610244.00000001,
+          "jsHeapBytes": 76281493
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 1006,
+                "deleted": 0,
+                "active": 1006
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 222,
+                "deleted": 0,
+                "active": 222
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 2,
+            "error": "Excavation unavailable; Stage 2C retained"
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 27,
+          "variant": "quarry",
+          "lodSelections": {
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 2,
+            "6": 2,
+            "7": 2,
+            "8": 2,
+            "9": 2,
+            "10": 2,
+            "11": 2,
+            "12": 2,
+            "13": 2,
+            "14": 2,
+            "15": 2,
+            "16": 2,
+            "17": 2,
+            "18": 2,
+            "19": 2,
+            "20": 2,
+            "21": 2,
+            "22": 2,
+            "23": 2,
+            "24": 1,
+            "25": 0,
+            "26": 0,
+            "Quarry_Exit": 0,
+            "Quarry_Crown": 0
+          },
+          "lodPixels": {
+            "2": 101403.96785460635,
+            "3": 13272.489587343378,
+            "4": 609.7929676976114,
+            "5": 321.01807017628875,
+            "6": 207.47909249135293,
+            "7": 155.95043256052602,
+            "8": 153.74315696853054,
+            "9": 105.07709932848141,
+            "10": 99.1674036637573,
+            "11": 95.22646265257164,
+            "12": 71.46514359849317,
+            "13": 76.69873598877231,
+            "14": 79.07447939942398,
+            "15": 67.60920806980867,
+            "16": 78.87770373463069,
+            "17": 91.22461716686416,
+            "18": 90.42095380078995,
+            "19": 122.48965414420368,
+            "20": 145.18823072424027,
+            "21": 151.66656156499394,
+            "22": 245.44098498603054,
+            "23": 303.88920833096677,
+            "24": 584.6336392723908,
+            "25": 1754.964355190943,
+            "26": 87835.47874938289,
+            "Quarry_Exit": 151386.13266914143,
+            "Quarry_Crown": 155666.40222423943
+          },
+          "selectedNodes": [
+            "Quarry_Crown_LOD0",
+            "Quarry_Exit_LOD0",
+            "Quarry_Rock_02_LOD0",
+            "Quarry_Rock_03_LOD0",
+            "Quarry_Rock_25_LOD0",
+            "Quarry_Rock_26_LOD0",
+            "Quarry_Rock_04_LOD1",
+            "Quarry_Rock_24_LOD1",
+            "Quarry_Rock_05_LOD2",
+            "Quarry_Rock_06_LOD2",
+            "Quarry_Rock_07_LOD2",
+            "Quarry_Rock_08_LOD2",
+            "Quarry_Rock_09_LOD2",
+            "Quarry_Rock_10_LOD2",
+            "Quarry_Rock_11_LOD2",
+            "Quarry_Rock_12_LOD2",
+            "Quarry_Rock_13_LOD2",
+            "Quarry_Rock_14_LOD2",
+            "Quarry_Rock_15_LOD2",
+            "Quarry_Rock_16_LOD2",
+            "Quarry_Rock_17_LOD2",
+            "Quarry_Rock_18_LOD2",
+            "Quarry_Rock_19_LOD2",
+            "Quarry_Rock_20_LOD2",
+            "Quarry_Rock_21_LOD2",
+            "Quarry_Rock_22_LOD2",
+            "Quarry_Rock_23_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 752.4000000059605,
+              "event": "excavation-load-failed",
+              "style": "detailed",
+              "message": "TypeError: Failed to fetch"
+            },
+            {
+              "at": 752.6000000089407,
+              "event": "excavation-request",
+              "style": "baseline"
+            },
+            {
+              "at": 752.7000000029802,
+              "event": "mode-request",
+              "mode": "authored"
+            },
+            {
+              "at": 1961.9000000059605,
+              "event": "excavation-baseline-parse",
+              "ms": 125.90000000596046,
+              "bytes": 18594988
+            },
+            {
+              "at": 1962.6000000089407,
+              "event": "excavation-asset-ready",
+              "style": "baseline",
+              "ms": 1156.9000000059605,
+              "geometryOnly": false,
+              "baselineRequested": true
+            },
+            {
+              "at": 1962.6000000089407,
+              "event": "load-ready",
+              "style": "baseline",
+              "optIn": true
+            },
+            {
+              "at": 2018.7000000029802,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 11.899999991059303
+            },
+            {
+              "at": 2064.2000000029802,
+              "event": "shader-compile",
+              "ms": 45.5
+            },
+            {
+              "at": 4540.5,
+              "event": "covered-ready",
+              "revision": 2,
+              "ms": 2534.3999999910593,
+              "lighting": "hub"
+            },
+            {
+              "at": 4699.70000000298,
+              "event": "part-lod-change",
+              "part": "2",
+              "from": 2,
+              "to": 0,
+              "pixels": 101403.96785460635,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4699.800000011921,
+              "event": "part-lod-change",
+              "part": "3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1582.8377563488796,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4699.800000011921,
+              "event": "part-lod-change",
+              "part": "4",
+              "from": 2,
+              "to": 1,
+              "pixels": 450.25518170897215,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4699.800000011921,
+              "event": "part-lod-change",
+              "part": "24",
+              "from": 2,
+              "to": 1,
+              "pixels": 433.83863511745284,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4699.800000011921,
+              "event": "part-lod-change",
+              "part": "25",
+              "from": 2,
+              "to": 1,
+              "pixels": 951.0452832644221,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4699.800000011921,
+              "event": "part-lod-change",
+              "part": "26",
+              "from": 2,
+              "to": 0,
+              "pixels": 87835.47874938289,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4699.800000011921,
+              "event": "part-lod-change",
+              "part": "Quarry_Exit",
+              "from": 2,
+              "to": 0,
+              "pixels": 151386.13266914143,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 4699.800000011921,
+              "event": "part-lod-change",
+              "part": "Quarry_Crown",
+              "from": 2,
+              "to": 0,
+              "pixels": 155666.40222423943,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 6714.5,
+              "event": "part-lod-change",
+              "part": "25",
+              "from": 1,
+              "to": 0,
+              "pixels": 1197.5324270955298,
+              "quality": 3,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 12582912
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      }
+    },
+    {
+      "name": "Accidental unpacked geometry payload is rejected and its duplicate maps are disposed",
+      "status": "PASS",
+      "evidence": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 161,
+          "triangles": 150826,
+          "textures": 28,
+          "geometries": 222,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 9271.29999999702,
+          "scene": "hub",
+          "geometries": 222,
+          "textures": 28,
+          "activeGeometryBytes": 18425004,
+          "activeTextureBytesEstimate": 57610244.00000001,
+          "jsHeapBytes": 96934360
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 1006,
+                "deleted": 0,
+                "active": 1006
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 222,
+                "deleted": 0,
+                "active": 222
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 2,
+            "error": "Excavation unavailable; Stage 2C retained"
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 27,
+          "variant": "quarry",
+          "lodSelections": {
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 2,
+            "6": 2,
+            "7": 2,
+            "8": 2,
+            "9": 2,
+            "10": 2,
+            "11": 2,
+            "12": 2,
+            "13": 2,
+            "14": 2,
+            "15": 2,
+            "16": 2,
+            "17": 2,
+            "18": 2,
+            "19": 2,
+            "20": 2,
+            "21": 2,
+            "22": 2,
+            "23": 2,
+            "24": 1,
+            "25": 0,
+            "26": 0,
+            "Quarry_Exit": 0,
+            "Quarry_Crown": 0
+          },
+          "lodPixels": {
+            "2": 101403.96785460635,
+            "3": 13272.489587343378,
+            "4": 609.7929676976114,
+            "5": 321.01807017628875,
+            "6": 207.47909249135293,
+            "7": 155.95043256052602,
+            "8": 153.74315696853054,
+            "9": 105.07709932848141,
+            "10": 99.1674036637573,
+            "11": 95.22646265257164,
+            "12": 71.46514359849317,
+            "13": 76.69873598877231,
+            "14": 79.07447939942398,
+            "15": 67.60920806980867,
+            "16": 78.87770373463069,
+            "17": 91.22461716686416,
+            "18": 90.42095380078995,
+            "19": 122.48965414420368,
+            "20": 145.18823072424027,
+            "21": 151.66656156499394,
+            "22": 245.44098498603054,
+            "23": 303.88920833096677,
+            "24": 584.6336392723908,
+            "25": 1754.964355190943,
+            "26": 87835.47874938289,
+            "Quarry_Exit": 151386.13266914143,
+            "Quarry_Crown": 155666.40222423943
+          },
+          "selectedNodes": [
+            "Quarry_Crown_LOD0",
+            "Quarry_Exit_LOD0",
+            "Quarry_Rock_02_LOD0",
+            "Quarry_Rock_03_LOD0",
+            "Quarry_Rock_25_LOD0",
+            "Quarry_Rock_26_LOD0",
+            "Quarry_Rock_04_LOD1",
+            "Quarry_Rock_24_LOD1",
+            "Quarry_Rock_05_LOD2",
+            "Quarry_Rock_06_LOD2",
+            "Quarry_Rock_07_LOD2",
+            "Quarry_Rock_08_LOD2",
+            "Quarry_Rock_09_LOD2",
+            "Quarry_Rock_10_LOD2",
+            "Quarry_Rock_11_LOD2",
+            "Quarry_Rock_12_LOD2",
+            "Quarry_Rock_13_LOD2",
+            "Quarry_Rock_14_LOD2",
+            "Quarry_Rock_15_LOD2",
+            "Quarry_Rock_16_LOD2",
+            "Quarry_Rock_17_LOD2",
+            "Quarry_Rock_18_LOD2",
+            "Quarry_Rock_19_LOD2",
+            "Quarry_Rock_20_LOD2",
+            "Quarry_Rock_21_LOD2",
+            "Quarry_Rock_22_LOD2",
+            "Quarry_Rock_23_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1164.5999999940395,
+              "event": "approved-material-parse",
+              "ms": 243.29999999701977,
+              "bytes": 2505852
+            },
+            {
+              "at": 1164.7000000029802,
+              "event": "approved-material-ready",
+              "ms": 404.70000000298023,
+              "exactPilotFamily": true,
+              "holderMeshRendered": false,
+              "look": "rock",
+              "materialName": "Quarry_Pilot_Original_Stone_PBR",
+              "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+            },
+            {
+              "at": 1731.5,
+              "event": "excavation-detailed-parse",
+              "ms": 232,
+              "bytes": 10015140
+            },
+            {
+              "at": 1733.0999999940395,
+              "event": "excavation-load-failed",
+              "style": "detailed",
+              "message": "Error: Excavation geometry contains duplicate maps; run the geometry/material pack step"
+            },
+            {
+              "at": 1733.2999999970198,
+              "event": "excavation-request",
+              "style": "baseline"
+            },
+            {
+              "at": 1733.3999999910593,
+              "event": "mode-request",
+              "mode": "authored"
+            },
+            {
+              "at": 2736.3999999910593,
+              "event": "excavation-baseline-parse",
+              "ms": 57.29999999701977,
+              "bytes": 18594988
+            },
+            {
+              "at": 2736.8999999910593,
+              "event": "excavation-asset-ready",
+              "style": "baseline",
+              "ms": 977.0999999940395,
+              "geometryOnly": false,
+              "baselineRequested": true
+            },
+            {
+              "at": 2737,
+              "event": "load-ready",
+              "style": "baseline",
+              "optIn": true
+            },
+            {
+              "at": 2794.8999999910593,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 13.099999994039536
+            },
+            {
+              "at": 2855,
+              "event": "shader-compile",
+              "ms": 60.1000000089407
+            },
+            {
+              "at": 5374.5999999940395,
+              "event": "covered-ready",
+              "revision": 2,
+              "ms": 2593.2999999970198,
+              "lighting": "hub"
+            },
+            {
+              "at": 5514,
+              "event": "part-lod-change",
+              "part": "2",
+              "from": 2,
+              "to": 0,
+              "pixels": 101403.96785460635,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5514,
+              "event": "part-lod-change",
+              "part": "3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1582.8377563488796,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5514,
+              "event": "part-lod-change",
+              "part": "4",
+              "from": 2,
+              "to": 1,
+              "pixels": 450.25518170897215,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5514.0999999940395,
+              "event": "part-lod-change",
+              "part": "24",
+              "from": 2,
+              "to": 1,
+              "pixels": 433.83863511745284,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5514.0999999940395,
+              "event": "part-lod-change",
+              "part": "25",
+              "from": 2,
+              "to": 1,
+              "pixels": 951.0452832644221,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5514.0999999940395,
+              "event": "part-lod-change",
+              "part": "26",
+              "from": 2,
+              "to": 0,
+              "pixels": 87835.47874938289,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5514.0999999940395,
+              "event": "part-lod-change",
+              "part": "Quarry_Exit",
+              "from": 2,
+              "to": 0,
+              "pixels": 151386.13266914143,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5514.0999999940395,
+              "event": "part-lod-change",
+              "part": "Quarry_Crown",
+              "from": 2,
+              "to": 0,
+              "pixels": 155666.40222423943,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 7686.0999999940395,
+              "event": "part-lod-change",
+              "part": "25",
+              "from": 1,
+              "to": 0,
+              "pixels": 1216.072137057085,
+              "quality": 3,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 12582912
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      }
+    },
+    {
+      "name": "Failed critical original stage reaches native video fallback",
+      "status": "PASS",
+      "evidence": {
+        "videoCount": 1
+      }
+    }
+  ]
+}

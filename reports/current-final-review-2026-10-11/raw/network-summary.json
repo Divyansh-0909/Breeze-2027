@@ -1,0 +1,70 @@
+[
+  {
+    "revisionContext": "October audit",
+    "window": "cold-landing-load",
+    "readyMs": 5541,
+    "transferBytes": 5477609,
+    "encodedPayloadBytes": 5467709,
+    "404image": [
+      {
+        "name": "http://127.0.0.1:3000/404-image.png",
+        "transferSize": 4586644,
+        "encodedBodySize": 4586344,
+        "duration": 40.199999999953434
+      }
+    ],
+    "method": "Resource Timing transferSize including estimated headers; cache-aware browser, no network/CPU throttle. Different revision and VM scheduler conditions, not strict experimental isolation."
+  },
+  {
+    "revisionContext": "October audit",
+    "window": "warm-same-browser-cache-landing-load",
+    "readyMs": 5028,
+    "transferBytes": 1800,
+    "encodedPayloadBytes": 5443196,
+    "404image": [
+      {
+        "name": "http://127.0.0.1:3000/404-image.png",
+        "transferSize": 300,
+        "encodedBodySize": 4586344,
+        "duration": 13.5
+      }
+    ],
+    "method": "Resource Timing transferSize including estimated headers; cache-aware browser, no network/CPU throttle. Different revision and VM scheduler conditions, not strict experimental isolation."
+  },
+  {
+    "revisionContext": "Stabilized",
+    "window": "cold-landing-load",
+    "readyMs": 5861,
+    "transferBytes": 893138,
+    "encodedPayloadBytes": 883538,
+    "404image": [],
+    "method": "Resource Timing transferSize including estimated headers; cache-aware browser, no network/CPU throttle. Different revision and VM scheduler conditions, not strict experimental isolation."
+  },
+  {
+    "revisionContext": "Stabilized",
+    "window": "warm-same-browser-cache-landing-load",
+    "readyMs": 5337,
+    "transferBytes": 1500,
+    "encodedPayloadBytes": 859025,
+    "404image": [],
+    "method": "Resource Timing transferSize including estimated headers; cache-aware browser, no network/CPU throttle. Different revision and VM scheduler conditions, not strict experimental isolation."
+  },
+  {
+    "revisionContext": "Current",
+    "window": "cold-landing-load",
+    "readyMs": 5855,
+    "transferBytes": 893403,
+    "encodedPayloadBytes": 883803,
+    "404image": [],
+    "method": "Resource Timing transferSize including estimated headers; cache-aware browser, no network/CPU throttle. Different revision and VM scheduler conditions, not strict experimental isolation."
+  },
+  {
+    "revisionContext": "Current",
+    "window": "warm-same-browser-cache-landing-load",
+    "readyMs": 5197,
+    "transferBytes": 1500,
+    "encodedPayloadBytes": 859290,
+    "404image": [],
+    "method": "Resource Timing transferSize including estimated headers; cache-aware browser, no network/CPU throttle. Different revision and VM scheduler conditions, not strict experimental isolation."
+  }
+]

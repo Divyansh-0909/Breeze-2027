@@ -1,0 +1,114 @@
+[
+  {
+    "name": "macro-captures",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/capture.mjs",
+      "macro"
+    ],
+    "exitCode": 0,
+    "seconds": 202.02874875068665
+  },
+  {
+    "name": "default-regressions",
+    "command": [
+      "npm",
+      "run",
+      "test:immersive:browser"
+    ],
+    "exitCode": 0,
+    "seconds": 302.3961834907532
+  },
+  {
+    "name": "preview-regressions",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/candidate-regressions.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 302.8449738025665
+  },
+  {
+    "name": "ten-toggle-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/lifecycle.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 46.997467279434204
+  },
+  {
+    "name": "recovery-fallback",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/recovery.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 54.96147298812866
+  },
+  {
+    "name": "directional-travel",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/directional-travel.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 57.78665328025818
+  },
+  {
+    "name": "ten-navigation-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/navigation-cycles.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 215.153254032135
+  },
+  {
+    "name": "ten-video-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/video-cycles.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 159.7013063430786
+  },
+  {
+    "name": "actual-walkthrough",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/walkthrough.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 58.45151138305664
+  },
+  {
+    "name": "before-performance",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/measure.mjs",
+      "before"
+    ],
+    "exitCode": 0,
+    "seconds": 83.99426054954529
+  },
+  {
+    "name": "after-performance",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/measure.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 81.80512833595276
+  },
+  {
+    "name": "cold-network",
+    "command": [
+      "node",
+      "reports/stage-2c2-limestone-excavation-2026-10-13/scripts/network.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 25.541375637054443
+  }
+]

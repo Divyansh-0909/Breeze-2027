@@ -1,0 +1,68 @@
+[
+  {
+    "name": "after-captures",
+    "command": [
+      "node",
+      "reports/stage-2c-quarry-rollout-2026-10-12/scripts/capture.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 147.4656331539154
+  },
+  {
+    "name": "after-performance",
+    "command": [
+      "node",
+      "reports/stage-2c-quarry-rollout-2026-10-12/scripts/measure.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 47.05288648605347
+  },
+  {
+    "name": "ten-toggle-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c-quarry-rollout-2026-10-12/scripts/lifecycle.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 26.244696617126465
+  },
+  {
+    "name": "default-browser",
+    "command": [
+      "npm",
+      "run",
+      "test:immersive:browser"
+    ],
+    "exitCode": 0,
+    "seconds": 296.05763149261475
+  },
+  {
+    "name": "ten-navigation-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c-quarry-rollout-2026-10-12/scripts/navigation-cycles.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 212.38533663749695
+  },
+  {
+    "name": "ten-video-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c-quarry-rollout-2026-10-12/scripts/video-cycles.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 156.34937644004822
+  },
+  {
+    "name": "recovery-failure",
+    "command": [
+      "node",
+      "reports/stage-2c-quarry-rollout-2026-10-12/scripts/recovery.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 36.066813707351685
+  }
+]

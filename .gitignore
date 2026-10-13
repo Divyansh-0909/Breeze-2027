@@ -68,3 +68,12 @@ Assets/after-movie-original.mp4
 /reports/stage-1-final-2026-10-11/raw/server*
 /reports/stage-1-final-2026-10-11/acceptance/journey/recordings/page@*.webm
 /reports/navigation-adjustments-2026-10-11/raw/server*
+
+# Gullyverse authoring caches and recoverable local backups
+__pycache__/
+*.py[cod]
+*.blend[0-9]*
+/reports/**/backup/
+
+# Current implementation reviews and Stage 2 handoff reports
+!docs/gullyverse-*.md

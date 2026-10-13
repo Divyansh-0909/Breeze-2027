@@ -1,0 +1,759 @@
+{
+  "GLBs": [
+    {
+      "file": "public/models/gullyverse/first-wall-section/wall-lod0.glb",
+      "bytes": 2545848,
+      "sha256": "a879067ac133ab3de450d679e559f464dd5e55f8a39bc0e48bfab536b7dad20b",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "name": "Approved_Cool_Grey_Limestone_Family",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.5799999833106995,
+            "texCoord": 1
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "units": "metres",
+            "surface_role": "replaces existing rock4 face3 only",
+            "fixed_boundary": true,
+            "relief_direction": "recessed into original solid",
+            "material_family": "latest user-approved cool grey limestone",
+            "production_default_enabled": false
+          },
+          "mesh": 0,
+          "name": "Wall_LOD0"
+        },
+        {
+          "extras": {
+            "world_position": [
+              42.189334869384766,
+              6.488047420978546,
+              -63.67184219360352
+            ],
+            "original_rock": 4,
+            "original_face": 3
+          },
+          "name": "wall_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Wall_LOD0_Mesh",
+          "vertices": 12751,
+          "triangles": 21500,
+          "glTFBounds": [
+            [
+              -7.365330696105957,
+              -9.648260116577148,
+              -2.0
+            ],
+            [
+              8.208755493164062,
+              10.245986938476562,
+              -0.0
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              1.6318531248504797e-10,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.9931547045707703
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1382459,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            512,
+            512
+          ],
+          "embeddedBytes": 203420,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 114397,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/first-wall-section/first-wall-section.glb",
+      "bytes": 2812828,
+      "sha256": "cc11402799c1bf26c82a89123256e2932e625df3a54aae54ba625c81196a167d",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "name": "Approved_Cool_Grey_Limestone_Family",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.5799999833106995,
+            "texCoord": 1
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "units": "metres",
+            "surface_role": "replaces existing rock4 face3 only",
+            "fixed_boundary": true,
+            "relief_direction": "recessed into original solid",
+            "material_family": "latest user-approved cool grey limestone",
+            "production_default_enabled": false
+          },
+          "mesh": 0,
+          "name": "Wall_LOD0"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "surface_role": "replaces existing rock4 face3 only",
+            "fixed_boundary": true,
+            "relief_direction": "recessed into original solid",
+            "material_family": "latest user-approved cool grey limestone",
+            "production_default_enabled": false
+          },
+          "mesh": 1,
+          "name": "Wall_LOD1"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "surface_role": "replaces existing rock4 face3 only",
+            "fixed_boundary": true,
+            "relief_direction": "recessed into original solid",
+            "material_family": "latest user-approved cool grey limestone",
+            "production_default_enabled": false
+          },
+          "mesh": 2,
+          "name": "Wall_LOD2"
+        },
+        {
+          "extras": {
+            "world_position": [
+              42.189334869384766,
+              6.488047420978546,
+              -63.67184219360352
+            ],
+            "original_rock": 4,
+            "original_face": 3
+          },
+          "name": "wall_anchor"
+        },
+        {
+          "extras": {
+            "active_walk_collision": false
+          },
+          "mesh": 3,
+          "name": "Wall_Collision"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Wall_LOD0_Mesh",
+          "vertices": 12751,
+          "triangles": 21500,
+          "glTFBounds": [
+            [
+              -7.365330696105957,
+              -9.648260116577148,
+              -2.0
+            ],
+            [
+              8.208755493164062,
+              10.245986938476562,
+              -0.0
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              1.6318531248504797e-10,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.9931547045707703
+        },
+        {
+          "name": "Wall_LOD1_Mesh",
+          "vertices": 2920,
+          "triangles": 5290,
+          "glTFBounds": [
+            [
+              -7.365330696105957,
+              -9.648260116577148,
+              -2.0
+            ],
+            [
+              8.208755493164062,
+              10.245986938476562,
+              -0.0
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              1.6318531248504797e-10,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.9931314587593079
+        },
+        {
+          "name": "Wall_LOD2_Mesh",
+          "vertices": 1022,
+          "triangles": 1720,
+          "glTFBounds": [
+            [
+              -7.365330696105957,
+              -9.648260116577148,
+              -2.0
+            ],
+            [
+              8.208755493164062,
+              10.245986938476562,
+              -0.0
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              1.6318531248504797e-10,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.9931314587593079
+        },
+        {
+          "name": "Wall_Collision_Mesh",
+          "vertices": 30,
+          "triangles": 16,
+          "glTFBounds": [
+            [
+              -7.365330696105957,
+              -9.648260116577148,
+              -2.0999999046325684
+            ],
+            [
+              8.208755493164062,
+              10.245986938476562,
+              -0.0
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999999403953552,
+            1.0
+          ],
+          "UVRange": null,
+          "tangents": false,
+          "maxNormalTangentDot": null
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1382459,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            512,
+            512
+          ],
+          "embeddedBytes": 203420,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 114397,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/first-wall-section/wall-lod1.glb",
+      "bytes": 1898036,
+      "sha256": "957b99a0821c0a46677b67c66c3e8c38795607d76e449501b4901fc0595cb9f5",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "name": "Approved_Cool_Grey_Limestone_Family",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.5799999833106995,
+            "texCoord": 1
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "units": "metres",
+            "surface_role": "replaces existing rock4 face3 only",
+            "fixed_boundary": true,
+            "relief_direction": "recessed into original solid",
+            "material_family": "latest user-approved cool grey limestone",
+            "production_default_enabled": false
+          },
+          "mesh": 0,
+          "name": "Wall_LOD1"
+        },
+        {
+          "extras": {
+            "world_position": [
+              42.189334869384766,
+              6.488047420978546,
+              -63.67184219360352
+            ],
+            "original_rock": 4,
+            "original_face": 3
+          },
+          "name": "wall_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Wall_LOD1_Mesh",
+          "vertices": 2920,
+          "triangles": 5290,
+          "glTFBounds": [
+            [
+              -7.365330696105957,
+              -9.648260116577148,
+              -2.0
+            ],
+            [
+              8.208755493164062,
+              10.245986938476562,
+              -0.0
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              1.6318531248504797e-10,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.9931314587593079
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1382459,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            512,
+            512
+          ],
+          "embeddedBytes": 203420,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 114397,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/first-wall-section/wall-collision.glb",
+      "bytes": 1860,
+      "sha256": "2bbc2b631d45702d64ee2e2cf0484ffa536a6cd00637990efee4f896d77b8fe9",
+      "extensionsUsed": [],
+      "materials": [],
+      "nodes": [
+        {
+          "extras": {
+            "world_position": [
+              42.189334869384766,
+              6.488047420978546,
+              -63.67184219360352
+            ],
+            "original_rock": 4,
+            "original_face": 3
+          },
+          "name": "wall_anchor"
+        },
+        {
+          "extras": {
+            "active_walk_collision": false
+          },
+          "mesh": 0,
+          "name": "Wall_Collision"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Wall_Collision_Mesh",
+          "vertices": 30,
+          "triangles": 16,
+          "glTFBounds": [
+            [
+              -7.365330696105957,
+              -9.648260116577148,
+              -2.0999999046325684
+            ],
+            [
+              8.208755493164062,
+              10.245986938476562,
+              -0.0
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999999403953552,
+            1.0
+          ],
+          "UVRange": null,
+          "tangents": false,
+          "maxNormalTangentDot": null
+        }
+      ],
+      "images": []
+    },
+    {
+      "file": "public/models/gullyverse/first-wall-section/wall-lod2.glb",
+      "bytes": 1770324,
+      "sha256": "763f27280dabcfdbef88c0dc4de0a09f09eb1829db7c4bea384de564b11bc30e",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "name": "Approved_Cool_Grey_Limestone_Family",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.5799999833106995,
+            "texCoord": 1
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "units": "metres",
+            "surface_role": "replaces existing rock4 face3 only",
+            "fixed_boundary": true,
+            "relief_direction": "recessed into original solid",
+            "material_family": "latest user-approved cool grey limestone",
+            "production_default_enabled": false
+          },
+          "mesh": 0,
+          "name": "Wall_LOD2"
+        },
+        {
+          "extras": {
+            "world_position": [
+              42.189334869384766,
+              6.488047420978546,
+              -63.67184219360352
+            ],
+            "original_rock": 4,
+            "original_face": 3
+          },
+          "name": "wall_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Wall_LOD2_Mesh",
+          "vertices": 1022,
+          "triangles": 1720,
+          "glTFBounds": [
+            [
+              -7.365330696105957,
+              -9.648260116577148,
+              -2.0
+            ],
+            [
+              8.208755493164062,
+              10.245986938476562,
+              -0.0
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              1.6318531248504797e-10,
+              0.0
+            ],
+            [
+              1.0,
+              1.0
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.9931314587593079
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1382459,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            512,
+            512
+          ],
+          "embeddedBytes": 203420,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 114397,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "file": "assets-source/gullyverse/first-wall-section/textures/wall-basecolor-2048.png",
+      "bytes": 1803075,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "ca2ae88d999c206606119281da68944dd0dd41b7255ff364a8262d359ac12dbc"
+    },
+    {
+      "file": "assets-source/gullyverse/first-wall-section/textures/wall-roughness-2048.png",
+      "bytes": 1131900,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "ad203ec4ddfb20e712324e1784e9f33f312590b9387613ae502c10f01c0939fb"
+    },
+    {
+      "file": "assets-source/gullyverse/first-wall-section/textures/wall-roughness-512.png",
+      "bytes": 90687,
+      "resolution": [
+        512,
+        512
+      ],
+      "format": "PNG",
+      "sha256": "60ea3fde1e6d2296e98152dcc5aab416aeb93f28a9ba27b9f4ec7147bda922fc"
+    },
+    {
+      "file": "assets-source/gullyverse/first-wall-section/textures/wall-ao-2048.png",
+      "bytes": 178024,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "c88acfc4e8c89d66ae9509a598f5e911ded73caadc61f320d96ed554fe2c5bf6"
+    },
+    {
+      "file": "assets-source/gullyverse/first-wall-section/textures/wall-normal-2048.png",
+      "bytes": 4997454,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "24217fd6a03b011b427ca13974f88e22c453009cbe0403d7c498590d89140c63"
+    },
+    {
+      "file": "assets-source/gullyverse/first-wall-section/textures/wall-ao-512.png",
+      "bytes": 28662,
+      "resolution": [
+        512,
+        512
+      ],
+      "format": "PNG",
+      "sha256": "1678879e07a6e493e8d6660b0df6761fbe26bbac5c14f47b3e7fa16cd425f6c2"
+    },
+    {
+      "file": "assets-source/gullyverse/first-wall-section/textures/wall-normal-1024.png",
+      "bytes": 1382459,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "PNG",
+      "sha256": "4f2ee2cae7000246c1995f7bb365bb08fa544ad25e5b10c20e783456d29c17d4"
+    },
+    {
+      "file": "assets-source/gullyverse/first-wall-section/textures/wall-basecolor-1024.jpg",
+      "bytes": 114397,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "JPEG",
+      "sha256": "a4800fdf06c2a4fd5882df4c19b70449ed0e6983721b7a8ffee1b60527c7b9fd"
+    }
+  ],
+  "master": {
+    "file": "assets-source/gullyverse/first-wall-section/first-wall-section.blend",
+    "bytes": 35207604
+  },
+  "provenance": "All pilot surfaces/materials original, no reference-photo texels."
+}

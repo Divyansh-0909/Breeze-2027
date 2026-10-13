@@ -1,0 +1,795 @@
+--- baseline/components/immersive/ImmersiveShell.tsx
++++ current/components/immersive/ImmersiveShell.tsx
+@@ -13,6 +13,7 @@
+ import styles from "./immersive.module.css";
+ import {WallPreviewSession} from "./wallSection";
+ import {RefinedQuarrySession} from "./RefinedQuarrySession";
++import {LimestoneExcavationSession} from "./LimestoneExcavationSession";
+ const noWallSubscribe=()=>()=>{};
+ const noWallState={mode:"off",busy:false,assetReady:false,error:null,revision:0} as const;
+ 
+@@ -60,6 +61,7 @@
+   const [wallPreview]=useState(()=>{
+     const query=new URLSearchParams(window.location.search),mode=query.get("wallPreview");
+     const allowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1";
++    if(allowed&&query.get("quarryReview")==="excavation")return new LimestoneExcavationSession(runtime,query.get("excavation")==="macro"?"macro":"detailed");
+     if(allowed&&query.get("quarryReview")==="geology")return new RefinedQuarrySession(runtime);
+     if(allowed&&mode&&["limestone","authored","reference","off"].includes(mode))return new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored",query.get("wallCandidate")==="previous"?"previous":"corrected");
+     return process.env.NEXT_PUBLIC_GULLYVERSE_QUARRY_ROLLOUT!=="0"&&query.get("quarry")!=="original"?new WallPreviewSession(runtime,"authored","quarry"):null;
+@@ -126,6 +128,7 @@
+         <button onClick={()=>wallPreview.setMode("authored")}>Authored wall</button>{" "}<button onClick={()=>wallPreview.setMode("reference")}>Material baseline</button>{" "}<button onClick={()=>wallPreview.setMode("off")}>Original quarry</button>
+       </aside>}
+       {wallPreview instanceof RefinedQuarrySession&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>TWO-SECTION GEOLOGY REVIEW{wallState.error&&<span> · Candidate unavailable; Stage 2C retained</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setRefinement(false)}>Stage 2C baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setRefinement(true)}>Refined pair</button></aside>}
++      {wallPreview instanceof LimestoneExcavationSession&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>CONTINUOUS LIMESTONE REVIEW · {wallPreview.style}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("baseline")}>Stage 2C baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("macro")}>Macro excavation</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("detailed")}>Detailed geology</button></aside>}
+     </>}
+     <div ref={curtain} className={styles.curtain} style={{ opacity: 1 }} aria-hidden="true"><div className={styles.occluder} /></div>
+     {state.inspection && <aside className={styles.inspection}>STAGE 1 / {state.inspection.toUpperCase()} · 1 unit = 1 m <button onClick={() => runtime.inspect(null)}>Resume view</button></aside>}
+--- baseline/components/immersive/QuarryPerimeter.tsx
++++ current/components/immersive/QuarryPerimeter.tsx
+@@ -4,14 +4,16 @@
+ import * as THREE from "three";
+ import {chooseWallLOD,projectedWallPixels,QUARRY,type WallPreviewSession} from "./wallSection";
+ import {RefinedQuarrySession,refinementParts} from "./RefinedQuarrySession";
++import {LimestoneExcavationSession} from "./LimestoneExcavationSession";
+ 
+ /** Shared approved material; one screen-space LOD per fitted quarry part. */
+ export default function QuarryPerimeter({session,quality,lighting}:{session:WallPreviewSession;quality:number;lighting:string}) {
+   const state=useSyncExternalStore(session.subscribe,session.snapshot,session.snapshot),{gl,scene,camera}=useThree();
+   const refined=session instanceof RefinedQuarrySession?session:null;
++  const excavation=session instanceof LimestoneExcavationSession?session:null;
+   const enabled=!!refined?.refinementEnabled&&!!refined.refinement;
+-  const clone=useMemo(()=>refined?refined.cloneForRendering():session.asset?.scene.clone(true)??null,[session.asset,refined,refined?.refinement,enabled]);
+-  const parts=useMemo(()=>clone?(refined?refinementParts(enabled):QUARRY.parts).map(part=>({id:String(part.id),center:new THREE.Vector3().fromArray(part.center),radius:part.radius,lods:part.nodes.map(name=>clone.getObjectByName(name) as THREE.Mesh),level:2})):[],[clone,enabled,refined]);
++  const clone=useMemo(()=>excavation?excavation.cloneForRendering():refined?refined.cloneForRendering():session.asset?.scene.clone(true)??null,[session.asset,excavation,refined,refined?.refinement,enabled]);
++  const parts=useMemo(()=>clone?(excavation?excavation.partsForRendering():refined?refinementParts(enabled):QUARRY.parts).map(part=>({id:String(part.id),center:new THREE.Vector3().fromArray(part.center),radius:part.radius,lods:part.nodes.map(name=>clone.getObjectByName(name) as THREE.Mesh),level:2})):[],[clone,enabled,refined,excavation]);
+   const size=useRef(new THREE.Vector2()),warm=useRef({compiled:false,frames:0,revision:0,start:0});
+   useLayoutEffect(()=>{
+     if(clone)clone.traverse(o=>{if(o instanceof THREE.Mesh){o.visible=o.name!=="Wall_Collision";o.castShadow=false;o.receiveShadow=false;o.frustumCulled=true;}});
+--- /dev/null
++++ current/components/immersive/LimestoneExcavationSession.ts
+@@ -0,0 +1,215 @@
++import * as THREE from "three";
++import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
++import manifest from "@/public/models/gullyverse/limestone-excavation/manifest.json";
++import { WallPreviewSession, QUARRY, QUARRY_URL, currentWallAnchorFits } from "./wallSection";
++import type { ImmersiveRuntime } from "./runtime";
++
++export const LIMESTONE_EXCAVATION = manifest;
++export type ExcavationStyle = "baseline" | "macro" | "detailed";
++const directory = "/models/gullyverse/limestone-excavation/";
++
++/** These caches belong only to this opt-in shell. No original-stage resource
++ * is read, rewritten or evicted. Geometry exports borrow one exact pilot PBR
++ * family; Stage2C is loaded only when explicitly requested for comparison. */
++export class LimestoneExcavationSession extends WallPreviewSession {
++  style: ExcavationStyle;
++  readonly assets = new Map<ExcavationStyle, GLTF>();
++  private loads = new Map<ExcavationStyle, Promise<GLTF>>();
++  private materialAsset: GLTF | null = null;
++  private materialPending: Promise<THREE.Material> | null = null;
++  private generation = 0;
++
++  constructor(runtime: ImmersiveRuntime, style: ExcavationStyle = "detailed") {
++    super(runtime, "authored", "quarry");
++    this.style = style;
++  }
++
++  partsForRendering() {
++    return this.style === "baseline" ? QUARRY.parts : manifest.variants[this.style].parts;
++  }
++
++  setExcavation = (style: ExcavationStyle) => {
++    this.style = style;
++    this.asset = null;
++    this.preparedLighting.clear();
++    this.lodSelections = {};
++    this.lodPixels = {};
++    this.publish({ assetReady: false });
++    this.record("excavation-request", { style });
++    this.setMode("authored");
++  };
++
++  private loader(event: string) {
++    const loader = new GLTFLoader(), parse = loader.parse.bind(loader);
++    loader.parse = (data, path, onLoad, onError) => {
++      const at = performance.now();
++      parse(data, path, gltf => {
++        this.record(event + "-parse", { ms: performance.now() - at,
++          bytes: typeof data === "string" ? data.length : data.byteLength });
++        onLoad(gltf);
++      }, onError);
++    };
++    return loader;
++  }
++
++  private async approvedMaterial() {
++    const find = (gltf: GLTF) => {
++      let result: THREE.Material | undefined;
++      gltf.scene.traverse(o => {
++        if (o instanceof THREE.Mesh) {
++          const material = Array.isArray(o.material) ? o.material[0] : o.material;
++          if (material.name === manifest.material) result = material;
++        }
++      });
++      if (!result) throw new Error("Approved Grey limestone material is missing");
++      return result;
++    };
++    if (this.materialAsset) return find(this.materialAsset);
++    if (this.materialPending) return this.materialPending;
++    const generation = this.generation, start = performance.now();
++    this.materialPending = this.loader("approved-material").loadAsync(directory + "grey-limestone-material.glb")
++      .then(gltf => {
++        if (this.disposed || generation !== this.generation) {
++          disposeOwned(gltf, true);
++          throw new Error("Material load abandoned by its owner");
++        }
++        let material: THREE.Material;
++        try { material = find(gltf); } catch (error) { disposeOwned(gltf, true); throw error; }
++        this.materialAsset = gltf;
++        this.record("approved-material-ready", { ms: performance.now() - start,
++          exactPilotFamily: true, holderMeshRendered: false });
++        return material;
++      }).finally(() => { this.materialPending = null; });
++    return this.materialPending;
++  }
++
++  private async getAsset(style: ExcavationStyle): Promise<GLTF> {
++    const cached = this.assets.get(style);
++    if (cached) return cached;
++    const pending = this.loads.get(style);
++    if (pending) return pending;
++    const generation = this.generation, start = performance.now();
++    const promise = (async () => {
++      const material = style === "baseline" ? null : await this.approvedMaterial();
++      const url = style === "baseline" ? QUARRY_URL : directory + manifest.variants[style].runtime;
++      const gltf = await this.loader("excavation-" + style).loadAsync(url);
++      if (this.disposed || generation !== this.generation) {
++        disposeOwned(gltf, true);
++        throw new Error("Excavation load abandoned by its owner");
++      }
++      const parts = style === "baseline" ? QUARRY.parts : manifest.variants[style].parts;
++      if (!parts.flatMap(p => p.nodes).every(name => gltf.scene.getObjectByName(name))) {
++        disposeOwned(gltf, true);
++        throw new Error("Excavation export has invalid section/LOD nodes");
++      }
++      if (material) {
++        let embeddedTextures = false;
++        gltf.scene.traverse(o => {
++          if (o instanceof THREE.Mesh) for (const m of Array.isArray(o.material) ? o.material : [o.material])
++            if (Object.values(m).some(v => v instanceof THREE.Texture)) embeddedTextures = true;
++        });
++        if (embeddedTextures) {
++          disposeOwned(gltf, true);
++          throw new Error("Excavation geometry contains duplicate maps; run the geometry/material pack step");
++        }
++        const placeholders = new Set<THREE.Material>();
++        gltf.scene.traverse(o => {
++          if (o instanceof THREE.Mesh) {
++            for (const m of Array.isArray(o.material) ? o.material : [o.material]) placeholders.add(m);
++            o.material = material;
++          }
++        });
++        placeholders.forEach(m => m.dispose());
++      }
++      this.assets.set(style, gltf);
++      this.record("excavation-asset-ready", { style, ms: performance.now() - start,
++        geometryOnly: !!material, baselineRequested: style === "baseline" });
++      return gltf;
++    })().finally(() => { this.loads.delete(style); });
++    this.loads.set(style, promise);
++    return promise;
++  }
++
++  override async load() {
++    if (this.disposed || this.state.mode === "off") return;
++    const style = this.style;
++    if (this.asset && this.assets.get(style) === this.asset) return;
++    if (!currentWallAnchorFits("quarry")) {
++      this.publish({ mode: "off", busy: true, error: "Current quarry/tunnel anchors differ; original retained",
++        revision: this.state.revision + 1 });
++      return;
++    }
++    try {
++      const asset = await this.getAsset(style);
++      if (this.disposed || this.snapshot().mode === "off") return;
++      if (style !== this.style) { void this.load(); return; }
++      this.asset = asset;
++      this.record("load-ready", { style, optIn: true });
++      this.publish({ assetReady: true, revision: this.state.revision + 1 });
++    } catch (error) {
++      if (this.disposed || style !== this.style) return;
++      this.record("excavation-load-failed", { style, message: String(error) });
++      if (style !== "baseline") {
++        this.setExcavation("baseline");
++        this.publish({ error: "Excavation unavailable; Stage 2C retained" });
++      } else {
++        this.publish({ mode: "off", assetReady: false, busy: true, error: String(error),
++          revision: this.state.revision + 1 });
++      }
++    }
++  }
++
++  cloneForRendering() { return this.asset?.scene.clone(true) ?? null; }
++
++  /** Explicit inactive-cache release; active consumers keep the shared maps. */
++  retireExcavation() {
++    if (this.style !== "baseline" || this.state.busy || this.loads.size)
++      throw new Error("Finish the covered Stage2C restore before retiring the excavation cache");
++    for (const style of ["macro", "detailed"] as const) {
++      const asset = this.assets.get(style);
++      if (asset) { this.record("excavation-cache-disposal", { style, ...disposeOwned(asset, false) }); this.assets.delete(style); }
++    }
++  }
++
++  override retire() {
++    if (this.state.mode !== "off" || this.state.busy || this.consumers)
++      throw new Error("Unmount all consumers and finish covered restore before cache retirement");
++    this.releaseCaches();
++    this.publish({ assetReady: false });
++  }
++
++  private releaseCaches() {
++    this.generation++;
++    for (const [style, asset] of this.assets)
++      this.record("excavation-owner-disposal", { style, ...disposeOwned(asset, style === "baseline") });
++    this.assets.clear();
++    if (this.materialAsset) {
++      this.record("approved-material-owner-disposal", disposeOwned(this.materialAsset, true));
++      this.materialAsset = null;
++    }
++    this.asset = null;
++    this.preparedLighting.clear();
++  }
++
++  override dispose() {
++    this.releaseCaches();
++    super.dispose();
++  }
++}
++
++function disposeOwned(gltf: GLTF, materials: boolean) {
++  const geometry = new Set<THREE.BufferGeometry>(), mats = new Set<THREE.Material>(),
++    textures = new Set<THREE.Texture>(), bitmaps = new Set<ImageBitmap>();
++  gltf.scene.traverse(o => {
++    if (!(o instanceof THREE.Mesh)) return;
++    geometry.add(o.geometry);
++    if (materials) for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
++      mats.add(m);
++      for (const v of Object.values(m)) if (v instanceof THREE.Texture) textures.add(v);
++    }
++  });
++  geometry.forEach(g => g.dispose());
++  textures.forEach(t => { if (t.image?.close) bitmaps.add(t.image); t.dispose(); });
++  bitmaps.forEach(b => b.close());mats.forEach(m => m.dispose());
++  return { geometries: geometry.size, materials: mats.size, textures: textures.size };
++}
+--- /dev/null
++++ current/scripts/blender/limestone_excavation_geometry.py
+@@ -0,0 +1,277 @@
++"""Stage 2C.2: one continuous metre-scale excavation field, never per-rock slabs.
++
++The approved Grey limestone pilot supplies the material. This module defines
++the larger geological surface, common rim, terrain and three detailed zones.
++Runtime partitions sample the SAME field and share fixed cross-LOD borders.
++"""
++from pathlib import Path
++import json
++import numpy as np
++
++ROOT = Path(__file__).resolve().parents[2]
++WORLD = json.loads((ROOT/'public/models/gullyverse/blockout.layout.json').read_text())
++BOUNDARY = np.array(WORLD['quarry']['boundary'], dtype=float)
++HEIGHTS = np.array(WORLD['quarry']['wallHeights'], dtype=float)
++TAU = 2*np.pi
++
++def smooth(x):
++    t=np.clip(x,0,1)
++    return t*t*(3-2*t)
++
++def periodic_delta(x):
++    return (x+LENGTH/2)%LENGTH-LENGTH/2
++
++# A restrained periodic Hermite curve follows the existing usable footprint.
++samples=[];heights=[]
++for j in range(len(BOUNDARY)):
++    a,b=BOUNDARY[j],BOUNDARY[(j+1)%len(BOUNDARY)]
++    ma=.38*(b-BOUNDARY[(j-1)%len(BOUNDARY)])
++    mb=.38*(BOUNDARY[(j+2)%len(BOUNDARY)]-a)
++    t=np.arange(256)/256
++    p=(2*t**3-3*t**2+1)[:,None]*a+(-2*t**3+3*t**2)[:,None]*b
++    p+=(t**3-2*t**2+t)[:,None]*ma+(t**3-t**2)[:,None]*mb
++    samples.extend(p)
++    heights.extend(HEIGHTS[j]*(1-smooth(t))+HEIGHTS[(j+1)%len(HEIGHTS)]*smooth(t))
++PATH=np.array(samples);HS=np.array(heights)
++direction=np.roll(PATH,-1,axis=0)-np.roll(PATH,1,axis=0)
++direction/=np.linalg.norm(direction,axis=1)[:,None]
++OUTWARD=np.stack([-direction[:,1],direction[:,0]],axis=1)
++FOOT=PATH+OUTWARD*3.2
++# Preserve the actual tunnel mouth at z=-42. No invented tunnel route.
++mouth=smooth((12-np.abs(FOOT[:,0]))/6)*smooth((FOOT[:,1]+48)/3)
++FOOT[:,1]=FOOT[:,1]*(1-mouth)+WORLD['tunnel']['endZ']*mouth
++distance=np.linalg.norm(np.roll(FOOT,-1,axis=0)-FOOT,axis=1)
++ARC=np.r_[0,np.cumsum(distance)]
++LENGTH=float(ARC[-1]);FOOT=np.vstack([FOOT,FOOT[0]]);HS=np.r_[HS,HS[0]]
++OUTWARD=np.vstack([OUTWARD,OUTWARD[0]])
++TILE_CYCLES=2*.86*round(LENGTH/24)
++
++def painted_uv(uv):
++    # The isolated pilot paints u=.02..88 and v=.03..97. Sampling its padded
++    # end-cap strip on a continuous wall produces rectangular horizontal
++    # smear bands. Reflect within the painted front region, retaining the
++    # original metre-scale derivative and exact colour/normal/roughness maps.
++    uv=np.asarray(uv,dtype=float).copy()
++    for axis,offset,width in[(0,.02,.86),(1,.03,.94)]:
++        q=((uv[:,axis]-offset)/width)%2
++        uv[:,axis]=offset+width*np.where(q<=1,q,2-q)
++    return uv
++
++def frame(s):
++    s=np.asarray(s,dtype=float)%LENGTH
++    x=np.interp(s,ARC,FOOT[:,0]);z=np.interp(s,ARC,FOOT[:,1])
++    nx=np.interp(s,ARC,OUTWARD[:,0]);nz=np.interp(s,ARC,OUTWARD[:,1])
++    n=np.stack([nx,nz],axis=-1);n/=np.linalg.norm(n,axis=-1)[...,None]
++    return np.stack([x,z],axis=-1),n,np.interp(s,ARC,HS)
++
++DETAIL_TARGETS=[('navigation-wall',[-42,-70],13.),
++                ('curved-corner',[-42,-141],15.),
++                ('stage-return-wall',[33,-57],14.)]
++DETAIL=[]
++for name,target,width in DETAIL_TARGETS:
++    i=np.argmin(np.linalg.norm(FOOT[:-1]-target,axis=1))
++    DETAIL.append({'id':name,'arcCenter':float(ARC[i]),'halfWidth':width,
++                   'targetXZ':target,'footXZ':FOOT[i].tolist()})
++
++def detail_weight(s):
++    weights=[smooth((d['halfWidth']-np.abs(periodic_delta(s-d['arcCenter'])))/4)
++             for d in DETAIL]
++    return np.maximum.reduce(weights)
++
++BEDS=np.array([.78,1.73,2.85,4.26,5.13,6.82,8.27,9.61,11.98,13.38,
++               15.75,18.23,20.46,23.81,25.74,28.66,31.92,35.47,39.6,43.8])
++rng=np.random.default_rng(2026101322)
++FAULTS=[tuple(rng.uniform([0,3,-.27,.095,.13,3.5],
++                        [LENGTH,36,.27,.25,.38,9.0])) for _ in range(33)]
++CHIPS=[tuple(rng.uniform([0,.8,.18,.12,.025],
++                       [LENGTH,35,.8,.55,.15])) for _ in range(145)]
++
++def relief(s,y,detailed=True):
++    p=TAU*s/LENGTH
++    # Broad natural exposed faces; no independent pentagonal envelopes.
++    r=.22*np.sin(p*7+y*.075)+.12*np.sin(p*19-y*.11)
++    r+=.08*np.sin(p*31+y*.19)
++    weight=detail_weight(s) if detailed else np.zeros_like(s)
++    for j,bed in enumerate(BEDS):
++        line=bed+.13*np.sin(p*3+j*.71)+.08*np.sin(p*13+j*1.67)
++        delta=y-line
++        coverage=.38+.62*smooth((np.sin(p*(4+j%3)+j*1.4)+.68)/1.5)
++        # Unequal offset beds, not continuous evenly spaced shelves.
++        width=.09+.035*(j%3)
++        r+=(.065+.07*weight)*np.exp(-(delta/width)**2)*coverage
++        r+=.065*np.tanh(delta/.065)*np.sin(j*2.73+.5)*coverage
++    for center,cy,slope,width,depth,extent in FAULTS:
++        signed=periodic_delta(s-center-slope*(y-cy)-.07*np.sin(y*1.8+center))
++        interrupted=np.exp(-((y-cy)/extent)**4)
++        r+=weight*depth*np.exp(-(signed/width)**2)*interrupted
++        r+=weight*.055*np.tanh(signed/(width*.6))*interrupted*np.exp(-(signed/1.7)**2)
++    for center,cy,rx,ry,depth in CHIPS:
++        dx=periodic_delta(s-center)/rx;dy=(y-cy)/ry
++        r+=weight*depth*np.maximum(0,1-np.maximum.reduce([dx+.25*dy,-.8*dx+.6*dy,-.2*dx-.9*dy]))**2
++    return r*smooth((y+.4)/1.8)
++
++def rim_height(s):
++    _,_,h=frame(s);p=TAU*s/LENGTH
++    return h*.91+.65*np.sin(p*7)+.24*np.sin(p*23)+.13*np.sin(p*49)
++
++def arch_floor(s):
++    foot,_,_=frame(s);x,z=foot[...,0],foot[...,1]
++    xs=np.array([-3.15,-2.95,-2.85,-2.65,-2.15,-1.1,.3,1.55,2.55,2.9,3.03,3.18])
++    ys=np.array([-.8,.08,1.43,2.98,4.23,5.23,5.68,5.13,3.93,2.68,1.0,-.8])
++    opening=np.interp(x,xs,ys,left=-.8,right=-.8)
++    return np.where((np.abs(x)<3.18)&(z>-42.25)&(z<-41.75),opening,-.8)
++
++def wall_point(s,v,detailed=True):
++    s,v=np.broadcast_arrays(np.asarray(s,dtype=float),np.asarray(v,dtype=float))
++    foot,n,_=frame(s);p=TAU*s/LENGTH;low=arch_floor(s);top=rim_height(s)
++    y=low+(top-low)*v
++    slope=4.7+2.7*np.sin(p*2+.8)+1.4*np.sin(p*5-1.1)
++    retreat=slope*(v*.65+v*v*.35)
++    retreat+=(.85*np.sin(p*4+v*1.9)+.46*np.sin(p*9-v*.8))*np.sin(np.pi*v)
++    # Restrained localized excavation bench; no perfectly terraced arena.
++    bench=smooth((np.cos(p*3-.8)-.40)/.55)*.95
++    retreat+=bench*(smooth((y-13.3)/1.4)-smooth((y-17.4)/1.8))
++    retreat+=relief(s,y,detailed)
++    # Geological toe buried into existing terrain, not a flat exposed panel edge.
++    retreat-=.55*np.exp(-((y+.1)/1.3)**2)
++    xz=foot+n*retreat[...,None]
++    return np.stack([xz[...,0],y,xz[...,1]],axis=-1)
++
++def wall_normal(s,v,detailed=True):
++    ds=wall_point(s+.015,v,detailed)-wall_point(s-.015,v,detailed)
++    dv=wall_point(s,v+.0007,detailed)-wall_point(s,v-.0007,detailed)
++    normal=-np.cross(ds,dv)
++    normal/=np.maximum(1e-10,np.linalg.norm(normal,axis=-1))[...,None]
++    return normal
++
++def terrain_point(s,t,detailed=True):
++    s,t=np.broadcast_arrays(np.asarray(s,dtype=float),np.asarray(t,dtype=float))
++    foot,n,_=frame(s);rim=wall_point(s,np.ones_like(s),detailed);p=TAU*s/LENGTH
++    center=np.array([-.9,-104.])
++    radial=foot-center;radial/=np.linalg.norm(radial,axis=-1)[...,None]
++    # Surrounding land continues to a large terrain patch, not back down to
++    # the quarry floor in a concentric hill/ring. Its far edge is outside the
++    # ordinary map frame. The floor itself remains completely untouched.
++    far=center+radial*(280/np.max(np.abs(radial),axis=-1))[...,None]
++    xz=rim[...,::2]*(1-t[...,None])+far*t[...,None]
++    plateau=29+2.1*np.sin(xz[...,0]/51)+1.4*np.sin(xz[...,1]/37)+.8*np.cos((xz[...,0]+xz[...,1])/79)
++    blend=smooth(t/.28)
++    shoulder=1.5*np.sin(np.pi*np.minimum(t/.16,1))
++    y=rim[...,1]*(1-blend)+plateau*blend+shoulder
++    # Leave the existing entrance/forecourt open; no new terrain placed over
++    # its camera or portal. The original enclosed passage stays below rock.
++    forecourt_width=31+70*smooth(np.maximum(0,xz[...,1])/140)
++    forecourt=smooth((xz[...,1]+20)/15)*smooth((forecourt_width-np.abs(xz[...,0]))/18)
++    y=y*(1-forecourt)-.9*forecourt
++    # Outer geology stays above the unchanged enclosed passage.
++    path=WORLD['tunnel']['centerline'];tx=np.interp(-xz[...,1],[-q[1]for q in path],[q[0]for q in path])
++    tube=(xz[...,1]>-42)&(xz[...,1]<0)&(np.abs(xz[...,0]-tx)<5)
++    y=np.where(tube,np.maximum(y,7.0),y)
++    return np.stack([xz[...,0],y,xz[...,1]],axis=-1)
++
++def terrain_normal(s,t,detailed=True):
++    ds=terrain_point(s+.02,t,detailed)-terrain_point(s-.02,t,detailed)
++    dt=terrain_point(s,t+.001,detailed)-terrain_point(s,t-.001,detailed)
++    normal=-np.cross(ds,dt);normal/=np.maximum(1e-10,np.linalg.norm(normal,axis=-1))[...,None]
++    return normal
++
++def stitch(a,b,va,vb,faces):
++    i=j=0
++    while i<len(a)-1 or j<len(b)-1:
++        na=va[i+1] if i<len(a)-1 else np.inf
++        nb=vb[j+1] if j<len(b)-1 else np.inf
++        if abs(na-nb)<1e-9:
++            faces.extend([[a[i],b[j+1],b[j]],[a[i],a[i+1],b[j+1]]]);i+=1;j+=1
++        elif na<nb:faces.append([a[i],a[i+1],b[j]]);i+=1
++        else:faces.append([a[i],b[j+1],b[j]]);j+=1
++
++# Broad culling partitions, not individually sculpted rock masses. Detail-zone
++# borders are inside partitions; geological fields continue across all joins.
++BREAKS=np.unique(np.r_[np.linspace(0,LENGTH,13),
++                      [d['arcCenter']-d['halfWidth'] for d in DETAIL],
++                      [d['arcCenter']+d['halfWidth'] for d in DETAIL]])
++BREAKS=BREAKS[(BREAKS>=0)&(BREAKS<=LENGTH)]
++RIM_CUT=.90
++COMMON_V=np.r_[np.linspace(0,RIM_CUT,145),1.]
++
++def surface_sector(index,level,detailed=True):
++    start,end=BREAKS[index:index+2];mid=(start+end)/2
++    dense=bool(detailed and detail_weight(np.array(mid))>.25)
++    step=([.20,.52,1.3]if dense else[1.15,2.0,3.6])[level]
++    ns=max(2,int(np.ceil((end-start)/step)))
++    ss=np.linspace(start,end,ns+1)
++    # Exact samples at the original tunnel-profile x positions.
++    foot,_,_=frame(ss)
++    if np.max(foot[:,1])>-42.25 and np.min(np.abs(foot[:,0]))<5:
++        fine=np.linspace(start,end,max(16,int(np.ceil((end-start)/.14)))+1)
++        keep=np.abs(frame(fine)[0][:,0])<3.5
++        ss=np.unique(np.round(np.r_[ss,fine[keep]],7))
++    nv=([160,74,30]if dense else[43,28,20])[level]
++    points=[];normals=[];uv=[];faces=[];cols=[];params=[]
++    for i,s in enumerate(ss):
++        vv=COMMON_V if i in[0,len(ss)-1]else np.linspace(0,1,nv+1)
++        vv=np.unique(np.r_[vv[vv<RIM_CUT],RIM_CUT])
++        p=wall_point(np.full_like(vv,s),vv,detailed)
++        n=wall_normal(np.full_like(vv,s),vv,detailed)
++        cols.append(np.arange(len(points),len(points)+len(vv)).tolist());params.append(vv)
++        points.extend(p);normals.extend(n)
++        uv.extend(np.stack([np.full_like(vv,s/LENGTH*TILE_CYCLES+.02),p[:,1]*.094+.03],axis=1))
++    for a,b,va,vb in zip(cols,cols[1:],params,params[1:]):stitch(a,b,va,vb,faces)
++    # A modest common upper band/rim is identical in every LOD. Its lower
++    # edge uses each body's actual vertices, so it introduces neither an
++    # overlapping cover mesh nor a T-junction gap. This prevents rare upward
++    # rays changing hit/miss when a coarser LOD samples the skyline differently.
++    common_s=np.linspace(start,end,max(2,int(np.ceil((end-start)/2)))+1)
++    rim=wall_point(common_s,np.ones_like(common_s),detailed)
++    rim_ids=list(range(len(points),len(points)+len(common_s)))
++    points.extend(rim);normals.extend(wall_normal(common_s,np.ones_like(common_s),detailed))
++    uv.extend(np.stack([common_s/LENGTH*TILE_CYCLES+.02,rim[:,1]*.094+.03],axis=1))
++    bridge=[];stitch([c[-1]for c in cols],rim_ids,ss,common_s,bridge)
++    faces.extend(f[::-1]for f in bridge)
++    # Terrain is part of the same excavation section, attached at the exact rim.
++    cols=[];params=[]
++    tt=np.array([0,.008,.02,.04,.065,.10,.16,.25,.40,.65,1.])
++    for s in common_s:
++        p=terrain_point(np.full_like(tt,s),tt,detailed)
++        n=terrain_normal(np.full_like(tt,s),tt,detailed)
++        cols.append(np.arange(len(points),len(points)+len(tt)).tolist());params.append(tt)
++        points.extend(p);normals.extend(n)
++        rim=wall_point(np.full_like(tt,s),np.ones_like(tt),detailed)
++        # Keep the wall UV exactly at the rim and use metre-scale X/Z
++        # displacement thereafter; no texture stretched over 200m of land.
++        uv.extend(np.stack([np.full_like(tt,s/LENGTH*TILE_CYCLES+.02)+(p[:,0]-rim[:,0])*.071667,
++                            (p[:,1]+p[:,2]-rim[:,2])*.094+.03],axis=1))
++    for a,b,va,vb in zip(cols,cols[1:],params,params[1:]):stitch(a,b,va,vb,faces)
++    if index==0:
++        # Actual original passage end -> new continuous opening. This short
++        # geological return closes the lip without remodelling the tunnel.
++        source=json.loads((ROOT/'assets-source/gullyverse/quarry-rollout/source-topology.json').read_text())
++        body=np.array(source['tunnelAttributes']['position']).reshape(-1,3)[:56*10*3*6]
++        end=body[np.abs(body[:,2]-WORLD['tunnel']['endZ'])<1e-5]
++        inner=np.unique(np.round(end,6),axis=0)
++        inner=inner[np.argsort(np.arctan2(inner[:,0],inner[:,1]-2.4))]
++        mouth_ids=np.flatnonzero((np.abs(FOOT[:-1,0])<5)&(FOOT[:-1,1]>-42.25))
++        mx=FOOT[mouth_ids,0];order=np.argsort(mx);mx=mx[order];ms=ARC[mouth_ids][order]
++        outer_s=np.interp(inner[:,0]*1.075,mx,ms)
++        outer=wall_point(outer_s,np.zeros_like(outer_s),detailed)
++        outer_uv=np.stack([outer_s/LENGTH*TILE_CYCLES+.02,outer[:,1]*.094+.03],axis=1)
++        inner_uv=outer_uv+np.stack([(inner[:,0]-outer[:,0])*.071667,(inner[:,1]-outer[:,1])*.094],axis=1)
++        offset=len(points);points.extend(inner);points.extend(outer)
++        normals.extend(np.tile([0,0,-1],(len(inner)*2,1)));uv.extend(inner_uv);uv.extend(outer_uv)
++        for j in range(len(inner)-1):
++            for f in [[offset+j,offset+j+1,offset+len(inner)+j+1],
++                      [offset+j,offset+len(inner)+j+1,offset+len(inner)+j]]:
++                q=np.array(points)[f]
++                if np.cross(q[1]-q[0],q[2]-q[0])[2]>0:f=f[::-1]
++                faces.append(f)
++    return np.array(points),np.array(faces,dtype=np.int32),painted_uv(np.array(uv)),np.array(normals)
++
++def description():
++    return {'arcLengthMetres':LENGTH,'usableFootprint':BOUNDARY.tolist(),
++            'rimHeightRange': [float(rim_height(ARC).min()),float(rim_height(ARC).max())],
++            'detailAreas':DETAIL,'cullingPartitions':len(BREAKS)-1,
++            'partitionArcs':BREAKS.tolist(),'textureCyclesAroundPerimeter':TILE_CYCLES,
++            'uvScaleMetres': {'nominalPilotWidth':12,'nominalPilotHeight':10,
++                              'normalAndRoughnessMaps':'Exact Grey limestone pilot'},
++            'contact':'buried -0.8m except the actual tunnel opening',
++            'boundaryPolicy':'identical 146-point partition borders and common upper-rim/terrain geometry at every LOD'}
+--- /dev/null
++++ current/scripts/blender/author_limestone_excavation.py
+@@ -0,0 +1,110 @@
++"""Blender4.3: continuous quarry macro + three geology areas, isolated new paths.
++blender --background --python scripts/blender/author_limestone_excavation.py
++python scripts/blender/pack_limestone_excavation.py
++"""
++import bpy,bmesh,sys,json,math,hashlib
++import numpy as np
++from pathlib import Path
++sys.path.insert(0,str(Path(__file__).resolve().parent))
++import limestone_excavation_geometry as geo
++
++ROOT=Path(__file__).resolve().parents[2]
++SRC=ROOT/'assets-source/gullyverse/limestone-excavation'
++OUT=ROOT/'public/models/gullyverse/limestone-excavation'
++RAW=ROOT/'reports/stage-2c2-limestone-excavation-2026-10-13/raw'
++for p in[SRC,OUT,RAW]:p.mkdir(parents=True,exist_ok=True)
++bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
++with bpy.data.libraries.load(str(ROOT/'assets-source/gullyverse/limestone-grey-pilot/quarry-grey-limestone-pilot.blend'),link=False)as(data,to):
++    to.materials=['Quarry_Pilot_Grey_Limestone_PBR']
++mat=to.materials[0];assert mat
++scene=bpy.context.scene;scene.unit_settings.system='METRIC';scene.unit_settings.scale_length=1
++
++def B(p):return np.stack([p[:,0],-p[:,2],p[:,1]],axis=1)
++def G(p):return np.stack([p[:,0],p[:,2],-p[:,1]],axis=1)
++def make(name,points,faces,uv,normals,collection):
++    mesh=bpy.data.meshes.new(name+'_Mesh');mesh.from_pydata(B(points).tolist(),[],faces.tolist());mesh.materials.append(mat);mesh.update()
++    mesh.polygons.foreach_set('use_smooth',np.ones(len(mesh.polygons),dtype=bool))
++    layer=mesh.uv_layers.new(name='Continuous_Metre_Limestone')
++    ids=np.array([l.vertex_index for l in mesh.loops]);layer.data.foreach_set('uv',uv[ids].astype(np.float32).reshape(-1))
++    mesh.normals_split_custom_set(B(normals)[ids].tolist())
++    ob=bpy.data.objects.new(name,mesh);collection.objects.link(ob)
++    ob['units']='metres';ob['source_field']='continuous perimeter, bedding and rim'
++    ob['material_reference']='approved Grey limestone isolated LOD0 preview'
++    ob['production_default_enabled']=False
++    return ob
++
++def stats(ob):
++    mesh=ob.data;mesh.calc_loop_triangles();bm=bmesh.new();bm.from_mesh(mesh)
++    zero=sum(f.calc_area()<1e-11 for f in bm.faces)
++    non=sum(not e.is_manifold for e in bm.edges);bm.free()
++    p=G(np.array([v.co[:] for v in mesh.vertices]))
++    return {'name':ob.name,'vertices':len(mesh.vertices),'triangles':len(mesh.loop_triangles),
++            'zeroAreaFaces':zero,'boundaryOrNonManifoldEdgesBeforeWeld':non,
++            'bounds':[p.min(axis=0).tolist(),p.max(axis=0).tolist()]}
++
++def export(path,selected):
++    bpy.ops.object.select_all(action='DESELECT')
++    for ob in selected:ob.hide_set(False);ob.select_set(True)
++    bpy.context.view_layer.objects.active=selected[0]
++    bpy.ops.export_scene.gltf(filepath=str(path),export_format='GLB',use_selection=True,
++        export_texcoords=True,export_normals=True,export_tangents=True,
++        export_materials='EXPORT',export_extras=True,export_yup=True,export_animations=False)
++
++all_rows=[];variants={};master_collection=bpy.data.collections.new('EDITABLE_CONTINUOUS_MASTERS');scene.collection.children.link(master_collection)
++for detailed,key in[(False,'macro'),(True,'detailed')]:
++    levels=[];objects=[[],[],[]];parts=[];rows=[];source_arrays=[]
++    for level in range(3):
++        coll=bpy.data.collections.new(f'{key.upper()}_RUNTIME_LOD{level}');scene.collection.children.link(coll)
++        parent=bpy.data.objects.new(f'Excavation_{key}_LOD{level}',None);coll.objects.link(parent);levels.append(parent)
++        for j in range(len(geo.BREAKS)-1):
++            points,faces,uv,normals=geo.surface_sector(j,level,detailed)
++            ob=make(f'Excavation_{key.capitalize()}_Sector_{j:02d}_LOD{level}',points,faces,uv,normals,coll)
++            ob.parent=parent;ob['lod_level']=level;ob['runtime_partition']=j
++            row=stats(ob);assert row['zeroAreaFaces']==0,(key,row);rows.append(row);objects[level].append(ob)
++            if level==0:
++                lo,hi=points.min(axis=0),points.max(axis=0);center=(lo+hi)/2
++                # LOD uses the exposed face, not the large outer terrain bounding sphere.
++                s=(geo.BREAKS[j]+geo.BREAKS[j+1])/2
++                wall=geo.wall_point(np.array([s]),np.array([.42]),detailed)[0]
++                radius=float(np.hypot((geo.BREAKS[j+1]-geo.BREAKS[j])/2,geo.rim_height(np.array(s))*.48))
++                parts.append({'id':f'Excavation_{j:02d}','center':wall.tolist(),'radius':radius,
++                    'bounds':[lo.tolist(),hi.tolist()],
++                    'nodes':[f'Excavation_{key.capitalize()}_Sector_{j:02d}_LOD{i}'for i in range(3)],
++                    'arc':[float(geo.BREAKS[j]),float(geo.BREAKS[j+1])]})
++                source_arrays.append((points,faces,uv,normals))
++        print('GEOMETRY',key,level,sum(r['triangles']for r in rows if r['name'].endswith(f'LOD{level}')),flush=True)
++    # Editable joined master makes the absence of independent rock panels explicit.
++    vp=[];fp=[];up=[];np_=[];offset=0
++    for p,f,u,n in source_arrays:vp.extend(p);fp.extend(f+offset);up.extend(u);np_.extend(n);offset+=len(p)
++    master=make(f'Excavation_{key}_Master',np.array(vp),np.array(fp),np.array(up),np.array(np_),master_collection)
++    bm=bmesh.new();bm.from_mesh(master.data);bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=2e-5);bm.to_mesh(master.data);bm.free();master.data.update();master.hide_set(True)
++    # Low shell is a separate export for diagnostic raycasting. Runtime walking
++    # still uses the EXACT existing world-registry polygons, never this proxy.
++    proxy_coll=bpy.data.collections.new(f'{key.upper()}_COLLISION_REFERENCE');scene.collection.children.link(proxy_coll)
++    proxy_objects=[]
++    for ob in objects[2]:
++        proxy=ob.copy();proxy.data=ob.data;proxy.name=ob.name.replace('_LOD2','_Collision');proxy.parent=None
++        proxy_coll.objects.link(proxy);proxy['collision_proxy']=True;proxy['active_walking_registration']=False;proxy_objects.append(proxy)
++    for i in range(3):export(OUT/f'excavation-{key}-lod{i}.glb',objects[i]+[levels[i]])
++    export(OUT/f'excavation-{key}.glb',[o for level in objects for o in level]+levels)
++    export(OUT/f'excavation-{key}-collision.glb',proxy_objects)
++    for ob in [o for level in objects for o in level]+proxy_objects+levels:ob.hide_set(True)
++    variants[key]={'parts':parts,'nodes':rows,'runtime':f'excavation-{key}.glb',
++                   'trianglesByLOD':[sum(r['triangles']for r in rows if r['name'].endswith(f'LOD{i}'))for i in range(3)],
++                   'editableMaster':master.name}
++    all_rows.extend(rows)
++    bpy.ops.wm.save_as_mainfile(filepath=str(SRC/f'excavation-{key}.blend'))
++
++readme=bpy.data.texts.new('AUTHORING_CONTRACT');readme.write('Original continuous limestone excavation. Metres. Blender Z-up -> glTF Y-up. A single perimeter field determines every partition and all LOD borders. Grey limestone material is imported unchanged from the user-approved isolated pilot. Navigation/lighting/world data are read, not changed. Regenerate only this new excavation directory.\n')
++bpy.ops.wm.save_as_mainfile(filepath=str(SRC/'excavation-detailed.blend'))
++manifest={'version':1,'blender':bpy.app.version_string,'units':'metres','blenderUp':'Z','glTFUp':'Y',
++          'previewOnly':True,'approvedReference':'reports/grey-limestone-pilot-2026-10-12/screenshots/02-grey-limestone-medium.png',
++          'material':'Quarry_Pilot_Grey_Limestone_PBR','materialSource':'public/models/gullyverse/pilot-limestone-grey/quarry-grey-limestone-pilot.glb',
++          'sourceMaterialSHA256':hashlib.sha256((ROOT/'public/models/gullyverse/pilot-limestone-grey/quarry-grey-limestone-pilot.glb').read_bytes()).hexdigest(),
++          'worldRegistrySHA256':hashlib.sha256((ROOT/'public/models/gullyverse/blockout.layout.json').read_bytes()).hexdigest(),
++          **geo.description(),'variants':variants,
++          'topology':'One joined master; runtime surfaces intentionally open at the buried inner foot, distant outer terrain border beyond ordinary review framing, and original tunnel attachment. No independent exposed end caps.',
++          'collision':'Existing authoritative walking and travel polygons unchanged. Separate low-shell raycast proxy, not registered as new movement.'}
++(SRC/'manifest.json').write_text(json.dumps(manifest,indent=2));(OUT/'manifest.json').write_text(json.dumps(manifest,indent=2))
++(RAW/'blender-geometry.json').write_text(json.dumps({'variants':variants,'description':geo.description()},indent=2))
++print('DONE',json.dumps({k:v['trianglesByLOD']for k,v in variants.items()}),flush=True)
+--- /dev/null
++++ current/scripts/blender/pack_limestone_excavation.py
+@@ -0,0 +1,77 @@
++"""Losslessly split exact approved maps from geometry; no new decoder required."""
++from pathlib import Path
++import struct,json,hashlib
++
++ROOT=Path(__file__).resolve().parents[2]
++OUT=ROOT/'public/models/gullyverse/limestone-excavation'
++SOURCE=ROOT/'assets-source/gullyverse/limestone-excavation/unpacked'
++SOURCE.mkdir(parents=True,exist_ok=True)
++RAW=ROOT/'reports/stage-2c2-limestone-excavation-2026-10-13/raw'
++
++def read(path):
++    data=path.read_bytes();n=struct.unpack_from('<I',data,12)[0]
++    return json.loads(data[20:20+n]),data[28+n:]
++def write(path,doc,binary):
++    doc['buffers']=[{'byteLength':len(binary)}]
++    js=json.dumps(doc,separators=(',',':')).encode();js+=b' '*((-len(js))%4)
++    binary=bytes(binary)+b'\0'*((-len(binary))%4)
++    data=struct.pack('<III',0x46546c67,2,28+len(js)+len(binary))+struct.pack('<II',len(js),0x4e4f534a)+js+struct.pack('<II',len(binary),0x004e4942)+binary
++    path.write_bytes(data)
++
++rows=[]
++for path in OUT.glob('*.glb'):
++    if path.name=='grey-limestone-material.glb':continue
++    doc,binary=read(path)
++    if not doc.get('images'):continue
++    (SOURCE/path.name).write_bytes(path.read_bytes())
++    used={a['bufferView']for a in doc['accessors']};views=[];mapping={};payload=bytearray()
++    for i,view in enumerate(doc['bufferViews']):
++        if i not in used:continue
++        payload.extend(b'\0'*((-len(payload))%4));mapping[i]=len(views)
++        views.append({**view,'byteOffset':len(payload)})
++        payload.extend(binary[view.get('byteOffset',0):view.get('byteOffset',0)+view['byteLength']])
++    for a in doc['accessors']:a['bufferView']=mapping[a['bufferView']]
++    for key in['images','textures','samplers']:doc.pop(key,None)
++    doc['materials']=[{'name':'BORROW_APPROVED_GREY_LIMESTONE','pbrMetallicRoughness':{'metallicFactor':0,'roughnessFactor':1}}]
++    for mesh in doc['meshes']:
++        for primitive in mesh['primitives']:primitive['material']=0
++    doc.pop('extensionsUsed',None);doc.pop('extensionsRequired',None);doc['bufferViews']=views
++    write(path,doc,payload);rows.append({'file':path.name,'geometryOnlyBytes':path.stat().st_size})
++
++# Material-only GLB reuses the exact image buffer bytes, samplers and material
++# JSON from the approved pilot. Its tiny holder mesh is NEVER rendered.
++src=ROOT/'public/models/gullyverse/pilot-limestone-grey/quarry-grey-limestone-pilot.glb'
++old,binary=read(src);image_indices={i['bufferView']for i in old['images']}
++views=[];mapping={};payload=bytearray();images=[]
++for i in sorted(image_indices):
++    v=old['bufferViews'][i];payload.extend(b'\0'*((-len(payload))%4));mapping[i]=len(views)
++    views.append({'buffer':0,'byteOffset':len(payload),'byteLength':v['byteLength']})
++    payload.extend(binary[v.get('byteOffset',0):v.get('byteOffset',0)+v['byteLength']])
++for im in old['images']:images.append({**im,'bufferView':mapping[im['bufferView']]})
++payload.extend(b'\0'*((-len(payload))%4));position_offset=len(payload)
++payload.extend(struct.pack('<9f',0,0,0,.001,0,0,0,.001,0));views.append({'buffer':0,'byteOffset':position_offset,'byteLength':36,'target':34962})
++normal_offset=len(payload);payload.extend(struct.pack('<9f',0,0,1,0,0,1,0,0,1));views.append({'buffer':0,'byteOffset':normal_offset,'byteLength':36,'target':34962})
++uv_offset=len(payload);payload.extend(struct.pack('<6f',0,0,1,0,0,1));views.append({'buffer':0,'byteOffset':uv_offset,'byteLength':24,'target':34962})
++tangent_offset=len(payload);payload.extend(struct.pack('<12f',1,0,0,1,1,0,0,1,1,0,0,1));views.append({'buffer':0,'byteOffset':tangent_offset,'byteLength':48,'target':34962})
++material_doc={'asset':old['asset'],'scene':0,'scenes':[{'nodes':[0]}],
++ 'nodes':[{'name':'Approved_Material_Holder_Not_Rendered','mesh':0}],
++ 'meshes':[{'primitives':[{'attributes':{'POSITION':len(views)-3,'NORMAL':len(views)-2,'TEXCOORD_0':len(views)-1},'material':0}]}],
++ 'accessors':[{'bufferView':i,'componentType':5126,'count':3,'type':['VEC3','VEC3','VEC2','VEC4'][j],
++               **({'min':[0,0,0],'max':[.001,.001,0]}if j==0 else{})}
++              for j,i in enumerate(range(len(views)-4,len(views)))],
++ 'bufferViews':views,'materials':old['materials'],'textures':old['textures'],
++ 'samplers':old.get('samplers',[]),'images':images}
++# Holder attribute indices refer to accessors, not bufferViews.
++material_doc['meshes'][0]['primitives'][0]['attributes']={'POSITION':0,'NORMAL':1,'TEXCOORD_0':2,'TANGENT':3}
++for k in['extensionsUsed','extensionsRequired']:
++    if k in old:material_doc[k]=old[k]
++write(OUT/'grey-limestone-material.glb',material_doc,payload)
++evidence={'sourceGLBSHA256':hashlib.sha256(src.read_bytes()).hexdigest(),
++          'materialJSONUnchanged':material_doc['materials']==old['materials'],
++          'images':[{'name':im.get('name'),'bytes':old['bufferViews'][im['bufferView']]['byteLength'],
++                     'sha256':hashlib.sha256(binary[old['bufferViews'][im['bufferView']].get('byteOffset',0):old['bufferViews'][im['bufferView']].get('byteOffset',0)+old['bufferViews'][im['bufferView']]['byteLength']]).hexdigest()}
++                    for im in old['images']],
++          'materialHolderBytes':(OUT/'grey-limestone-material.glb').stat().st_size,
++          'geometry':rows,'note':'Original image payload bytes and material factors unchanged. No Stage2C or Stage2C1 files rewritten.'}
++(RAW/'material-and-pack.json').write_text(json.dumps(evidence,indent=2))
++print(json.dumps(evidence,indent=2))
+--- /dev/null
++++ current/tests/immersive/limestone-excavation.test.ts
+@@ -0,0 +1,54 @@
++import test from "node:test";
++import assert from "node:assert/strict";
++import * as THREE from "three";
++import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
++import { ImmersiveRuntime } from "../../components/immersive/runtime";
++import { QUARRY } from "../../components/immersive/wallSection";
++import { LimestoneExcavationSession, LIMESTONE_EXCAVATION } from "../../components/immersive/LimestoneExcavationSession";
++
++function fixture(names: string[], material: THREE.Material) {
++  const scene = new THREE.Group();
++  for (const name of names) { const mesh = new THREE.Mesh(new THREE.BoxGeometry(), material); mesh.name = name; scene.add(mesh); }
++  return { scene } as unknown as GLTF;
++}
++
++test("continuous-excavation review is bounded and does not eagerly load the Stage2C comparison asset", () => {
++  const session = new LimestoneExcavationSession(new ImmersiveRuntime("hub", () => {}, false));
++  assert.equal(session.style, "detailed");assert.equal(session.assets.size, 0);
++  assert.equal(session.asset, null);
++  assert.deepEqual(session.partsForRendering(), LIMESTONE_EXCAVATION.variants.detailed.parts);
++  assert.equal(LIMESTONE_EXCAVATION.material, "Quarry_Pilot_Grey_Limestone_PBR");
++  session.dispose();
++});
++
++test("inactive geometry retirement cannot evict borrowed limestone maps or the active baseline", () => {
++  const session = new LimestoneExcavationSession(new ImmersiveRuntime("hub", () => {}, false)), material = new THREE.MeshStandardMaterial();
++  const baseline = fixture(QUARRY.parts.flatMap(p => p.nodes), material);
++  const detailed = fixture(LIMESTONE_EXCAVATION.variants.detailed.parts.flatMap(p => p.nodes), material);
++  let matDisposed = 0, geometryDisposed = 0;
++  material.addEventListener("dispose", () => matDisposed++);
++  detailed.scene.traverse(o => { if (o instanceof THREE.Mesh) o.geometry.addEventListener("dispose", () => geometryDisposed++); });
++  session.assets.set("baseline", baseline);session.assets.set("detailed", detailed);session.asset = detailed;
++  assert.throws(() => session.retireExcavation());
++  session.style = "baseline";session.asset = baseline;session.state = { ...session.state, busy: false };
++  session.retireExcavation();
++  assert.equal(geometryDisposed, LIMESTONE_EXCAVATION.variants.detailed.parts.length * 3);
++  assert.equal(matDisposed, 0);assert.equal(session.asset, baseline);
++  assert.equal(session.assets.has("detailed"), false);
++  const clone = session.cloneForRendering()!;
++  for (const p of QUARRY.parts) for (const name of p.nodes) assert.ok(clone.getObjectByName(name));
++  session.dispose();assert.equal(matDisposed, 1);
++});
++
++test("switching review style clears held input and never exposes nodes from the prior candidate", () => {
++  class ProbeSession extends LimestoneExcavationSession { override async load() {} }
++  const runtime = new ImmersiveRuntime("hub", () => {}, false), session = new ProbeSession(runtime);
++  const material = new THREE.MeshStandardMaterial(), old = fixture(QUARRY.parts.flatMap(p => p.nodes), material);
++  session.assets.set("baseline", old);session.asset = old;
++  session.style = "baseline";session.state = { ...session.state, busy: false, assetReady: true };
++  runtime.input.forward = 1;session.setExcavation("macro");
++  assert.equal(runtime.input.forward, 0);assert.equal(session.state.busy, true);
++  assert.equal(session.state.assetReady, false);assert.equal(session.cloneForRendering(), null);
++  assert.deepEqual(session.partsForRendering(), LIMESTONE_EXCAVATION.variants.macro.parts);
++  session.dispose();
++});

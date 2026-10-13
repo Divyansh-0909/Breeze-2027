@@ -1,0 +1,115 @@
+[
+  {
+    "name": "after-captures",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/capture.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 140.59590649604797
+  },
+  {
+    "name": "before-diagnostic",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/diagnostic.mjs",
+      "before"
+    ],
+    "exitCode": 0,
+    "seconds": 60.09782576560974
+  },
+  {
+    "name": "after-diagnostic",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/diagnostic.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 56.65611910820007
+  },
+  {
+    "name": "matched-performance",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/measure.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 47.3393976688385
+  },
+  {
+    "name": "lod-walkthrough",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/lod-walkthrough.mjs"
+    ],
+    "exitCode": 1,
+    "seconds": 71.36181473731995
+  },
+  {
+    "name": "ten-toggle-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/lifecycle.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 43.23662757873535
+  },
+  {
+    "name": "default-regressions",
+    "command": [
+      "npm",
+      "run",
+      "test:immersive:browser"
+    ],
+    "exitCode": 0,
+    "seconds": 279.8123459815979
+  },
+  {
+    "name": "candidate-regressions",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/candidate-regressions.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 298.88579964637756
+  },
+  {
+    "name": "recovery-and-fallback",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/recovery.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 53.84952712059021
+  },
+  {
+    "name": "ten-navigation-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/navigation-cycles.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 214.4574830532074
+  },
+  {
+    "name": "ten-video-cycles",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/video-cycles.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 149.55146551132202
+  },
+  {
+    "name": "cold-network",
+    "command": [
+      "node",
+      "reports/stage-2c1-geological-refinement-2026-10-13/scripts/network.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 16.245189666748047
+  }
+]

@@ -1,0 +1,118 @@
+{
+  "actions": [
+    {
+      "type": "before",
+      "callId": "call@10",
+      "startTime": 625.224,
+      "class": "Frame",
+      "method": "goto",
+      "params": {
+        "url": "http://127.0.0.1:3000/?diagnostics",
+        "waitUntil": "load",
+        "timeout": 30000
+      }
+    },
+    {
+      "type": "after",
+      "callId": "call@729",
+      "endTime": 625948.143,
+      "error": {
+        "message": "Timeout 30000ms exceeded.",
+        "stack": "TimeoutError: Timeout 30000ms exceeded.\n    at _ProgressController.run (/workspace/Breeze-2027-navigation/node_modules/playwright-core/lib/coreBundle.js:12360:32)\n    at DispatcherConnection.dispatch (/workspace/Breeze-2027-navigation/node_modules/playwright-core/lib/coreBundle.js:19135:44)",
+        "name": "TimeoutError"
+      }
+    }
+  ],
+  "lastSnapshots": [
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 526114.616,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 531672.29,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 545730.06,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 552838.902,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 552840.244,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 557722.807,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 560050.306,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 576866.998,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 579519.974,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 585114.06,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 587808.253,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 593159.623,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 595946.212,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 615552.242,
+      "main": true,
+      "name": null
+    },
+    {
+      "url": "http://127.0.0.1:3000/team",
+      "time": 626150.427,
+      "main": true,
+      "name": null
+    }
+  ]
+}

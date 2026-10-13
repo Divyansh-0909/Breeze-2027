@@ -1,0 +1,33 @@
+[
+  {
+    "command": "npx tsc --noEmit",
+    "exitCode": 0,
+    "log": "typecheck.log"
+  },
+  {
+    "command": "npm run lint",
+    "exitCode": 0,
+    "log": "lint.log",
+    "notes": "Existing warning policy unchanged"
+  },
+  {
+    "command": "npm run test:immersive",
+    "exitCode": 0,
+    "log": "unit-tests.log",
+    "passed": 71,
+    "failed": 0
+  },
+  {
+    "command": "NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW=1 NEXT_PUBLIC_GULLYVERSE_INSPECTION=1 NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321 NEXT_PUBLIC_SUPABASE_ANON_KEY=local-review-placeholder npm run build",
+    "exitCode": 0,
+    "log": "build.log",
+    "notes": "Inert local review configuration; no production data or credentials used."
+  },
+  {
+    "command": "node reports/stage-2c4-rock-look-restore-2026-10-13/scripts/validate-material.mjs",
+    "exitCode": 0,
+    "log": "glTF-validator.log",
+    "errors": 0,
+    "warnings": 0
+  }
+]

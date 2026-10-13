@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import Stage from "@/components/landing-page/stage3d/Stage";
 import Trusses from "@/components/landing-page/stage3d/Trusses";
 import Speakers from "@/components/landing-page/stage3d/Speakers";
@@ -16,10 +16,16 @@ import AftermovieEnvironment from "./AftermovieEnvironment";
 import { requireWorldFonts } from "./worldPaint";
 import { point3, world } from "./world";
 import type { ImmersiveRuntime } from "./runtime";
+import QuarryWallSection from "./QuarryWallSection";
+import QuarryPerimeter from "./QuarryPerimeter";
+import type { WallPreviewSession } from "./wallSection";
+const noSubscribe=()=>()=>{};
+const offWall={mode:"off",busy:false,assetReady:false,revision:0,error:null} as const;
 
-export default function AftermovieScene({ runtime, serial, quality, nearStage, overview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean }) {
+export default function AftermovieScene({ runtime, serial, quality, nearStage, overview, wallPreview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean; wallPreview?:WallPreviewSession|null }) {
   requireWorldFonts();
   const stageView=nearStage&&!overview;
+  const wall=useSyncExternalStore(wallPreview?.subscribe??noSubscribe,wallPreview?.snapshot??(()=>offWall),()=>offWall);
   const playbackOwnership = useCallback((active: boolean) => runtime.setMovie(active), [runtime]);
   const video = useStageVideo(playbackOwnership);
   const [crowdReadySerial, setCrowdReadySerial] = useState<number | null>(null);
@@ -31,7 +37,8 @@ export default function AftermovieScene({ runtime, serial, quality, nearStage, o
     return () => { runtime.movieActions = null; };
   }, [runtime, video.startMovie, video.stopMovie, video.enableSound, video.getStatus]);
   return <>
-    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} />
+    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} authoredQuarry={wallPreview?.variant==="quarry"&&wall.mode!=="off"&&wall.assetReady} wallReplacement={wallPreview?.variant!=="quarry"&&wall.mode!=="off"&&wall.assetReady?(wall.mode==="reference"||wallPreview?.variant==="previous"?"face":"volume"):null} />
+    {wallPreview&&(wallPreview.variant==="quarry"?<QuarryPerimeter session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>:<QuarryWallSection session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>)}
     <AftermovieEnvironment />
     {/* Keep one stage and current travel coordinates; restore its original local presentation. */}
     <group position={point3(world.stage.origin)} rotation-y={world.stage.yaw}>
@@ -43,6 +50,6 @@ export default function AftermovieScene({ runtime, serial, quality, nearStage, o
     {nearStage && <Crowd count={quality >= 2 ? 300 : quality === 1 ? 600 : 900} onReady={ready} bakeDelayMs={0} onBake={baked} />}
     <Fireworks key={video.pyroKey} active={!runtime.reduced && quality === 0 && video.pyroKey > 0 && video.phase === "playing"} />
     </group>
-    {(!nearStage || crowdReadySerial === serial) && ["boot", "covered", "recovering"].includes(runtime.getSnapshot().phase) && <ReadinessGate key={serial} runtime={runtime} serial={serial} />}
+    {!wall.busy&&(!nearStage || crowdReadySerial === serial) && ["boot", "covered", "recovering"].includes(runtime.getSnapshot().phase) && <ReadinessGate key={serial} runtime={runtime} serial={serial} />}
   </>;
 }

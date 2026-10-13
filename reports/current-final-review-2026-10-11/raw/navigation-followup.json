@@ -1,0 +1,87 @@
+{
+  "browser": "151.0.7922.173",
+  "method": "Fresh contexts, no tracing/recording. Public controls from explicit direct-hub URL spawn. Home uses actual mouse click with noWaitAfter so app URL/local readiness are independently awaited up to90s; does not replace the retained30s recorded-route failure.",
+  "checks": [
+    {
+      "id": "team",
+      "status": "PASS",
+      "elapsedMs": 58929,
+      "start": {
+        "x": 0,
+        "y": 1.72,
+        "z": -51,
+        "yaw": 0,
+        "pitch": 0.2
+      },
+      "destinationURL": "http://127.0.0.1:3000/team",
+      "body": "EVENTS\nCONTACT\nFIELD NOTES / 27\nTHE TEAM\nIS HERE.\nSKIP APPROACH\n BREEZE ’27 / FESTIVAL TEAM BOARD\nSHARDA UNIVERSITY · GREATER NOIDA",
+      "homeMs": 30513,
+      "proof": {
+        "url": "http://127.0.0.1:3000/?arrival=hub",
+        "phase": "local",
+        "enterButton": false
+      }
+    },
+    {
+      "id": "contact",
+      "status": "PASS",
+      "elapsedMs": 48320,
+      "start": {
+        "x": 0,
+        "y": 1.72,
+        "z": -51,
+        "yaw": 0,
+        "pitch": 0.2
+      },
+      "destinationURL": "http://127.0.0.1:3000/get-in-touch",
+      "body": "EVENTS\nCONTACT\nBREEZE ’27\nHELP DESK\n\nFESTIVAL CREW · OPEN DURING EVENT HOURS",
+      "homeMs": 24415,
+      "proof": {
+        "url": "http://127.0.0.1:3000/?arrival=hub",
+        "phase": "local",
+        "enterButton": false
+      }
+    },
+    {
+      "id": "events",
+      "status": "PASS",
+      "elapsedMs": 25383,
+      "start": {
+        "x": 0,
+        "y": 1.72,
+        "z": -51,
+        "yaw": 0,
+        "pitch": 0.2
+      },
+      "destinationURL": "http://127.0.0.1:3000/events",
+      "body": "EVENTS\nCONTACT\n\n20th-22nd February\n\nevents\n\nBREEZE 2026\nBREEZE 2026\nBREEZE 2026\nBREEZE 2026\nBREEZE 2026\nBREEZE 2026\nBREEZE 2026\nBREEZE 2026\nBREEZE 2026\nBREEZE 2026\n\nEvent listings are currently unavailable. Please try again later.\n\nसंस्कारी AF\n\nCultural Events\n\nSee All\nChallenge Your Mind !\n\nTechnical Events\n\nSee All",
+      "homeMs": 4385,
+      "proof": {
+        "url": "http://127.0.0.1:3000/?arrival=hub",
+        "phase": "local",
+        "enterButton": false
+      }
+    },
+    {
+      "id": "sponsors",
+      "status": "PASS",
+      "elapsedMs": 31784,
+      "start": {
+        "x": 0,
+        "y": 1.72,
+        "z": -51,
+        "yaw": 0,
+        "pitch": 0.2
+      },
+      "destinationURL": "http://127.0.0.1:3000/?arrival=hub&diagnostics",
+      "body": "BREEZE 2027\nGULLYVERSE\n\nGullyverse\n\nWASD / arrows to walk · drag to look · follow a direction\n\nMap M\nUse without 3D\nFestival information\nPast Sponsors · Coming soon\n×",
+      "homeMs": null,
+      "proof": {
+        "sponsorDisabled": true,
+        "accommodationDisabled": true,
+        "rotationAloneNoTravel": true
+      }
+    }
+  ],
+  "errors": []
+}

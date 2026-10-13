@@ -1,0 +1,1535 @@
+diff --git a/components/Navbar.tsx b/components/Navbar.tsx
+index f7676af..7df2ebe 100644
+--- a/components/Navbar.tsx
++++ b/components/Navbar.tsx
+@@ -5,6 +5,7 @@ import React from "react";
+ import { usePathname } from "next/navigation";
+ import { Home as HomeIcon, ShoppingCart } from "lucide-react";
+ 
++import { immersiveHref } from "@/components/immersive/navigation";
+ import { cn } from "@/lib/utils";
+ 
+ interface NavbarProps {
+@@ -80,7 +81,7 @@ export default function Navbar({ className }: NavbarProps) {
+     >
+       <div className="pointer-events-auto flex items-center gap-3 rounded-2xl border border-neutral-500/40 bg-black/80 px-3 py-2 shadow-lg shadow-black/25 sm:gap-5 sm:px-4">
+         <Link
+-          href="/"
++          href={immersiveHref("hub")}
+           onClick={handleHomeClick}
+           aria-label="Home"
+           aria-current={isActive("/") ? "page" : undefined}
+diff --git a/components/immersive/AftermovieEnvironment.tsx b/components/immersive/AftermovieEnvironment.tsx
+new file mode 100644
+index 0000000..629ce7b
+--- /dev/null
++++ b/components/immersive/AftermovieEnvironment.tsx
+@@ -0,0 +1,31 @@
++"use client";
++import { useEffect, useMemo } from "react";
++import * as THREE from "three";
++import { point3, world } from "./world";
++
++/** Original cream Gullyverse placard; travel still belongs to the boundary menu. */
++function ReturnSign() {
++  const texture=useMemo(()=>{
++    const canvas=document.createElement("canvas");canvas.width=1024;canvas.height=192;
++    const ctx=canvas.getContext("2d")!;
++    ctx.fillStyle="#d9d4b5";ctx.fillRect(0,0,1024,192);
++    ctx.strokeStyle="#4b4d40";ctx.lineWidth=8;ctx.strokeRect(12,12,1000,168);
++    ctx.fillStyle="#202822";ctx.font="bold 64px sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("GULLYVERSE  →",512,100,950);
++    const result=new THREE.CanvasTexture(canvas);result.colorSpace=THREE.SRGBColorSpace;return result;
++  },[]);
++  useEffect(()=>()=>texture.dispose(),[texture]);
++  return <group position={point3(world.aftermovie.returnSignLocal)} rotation-y={Math.PI}>
++    <mesh><boxGeometry args={[4.5,.84,.12]} /><meshStandardMaterial color="#504f46" roughness={.95} /></mesh>
++    <mesh position-z={.065}><planeGeometry args={[4.4,.8]} /><meshStandardMaterial map={texture} roughness={.95} /></mesh>
++  </group>;
++}
++
++export default function AftermovieEnvironment() {
++  return <group position={point3(world.stage.origin)} rotation-y={world.stage.yaw}>
++    {/* Keep the original dark material within the stage area, leaving the quarry ground visible behind it. */}
++    <mesh rotation-x={-Math.PI/2} position={[0,.012,7.5]}>
++      <planeGeometry args={[49,39]} /><meshStandardMaterial color="#07080b" roughness={.9} metalness={.1} />
++    </mesh>
++    <ReturnSign />
++  </group>;
++}
+diff --git a/components/immersive/AftermovieScene.tsx b/components/immersive/AftermovieScene.tsx
+index 9419395..bd0954f 100644
+--- a/components/immersive/AftermovieScene.tsx
++++ b/components/immersive/AftermovieScene.tsx
+@@ -12,29 +12,35 @@ import { useStageVideo } from "@/components/landing-page/stage3d/useStageVideo";
+ import { ReadinessGate } from "./rendering";
+ import { recordPreparation } from "./diagnostics";
+ import HubScene from "./HubScene";
++import AftermovieEnvironment from "./AftermovieEnvironment";
++import { requireWorldFonts } from "./worldPaint";
+ import { point3, world } from "./world";
+ import type { ImmersiveRuntime } from "./runtime";
+ 
+ export default function AftermovieScene({ runtime, serial, quality, nearStage, overview }: { runtime: ImmersiveRuntime; serial: number; quality: number; nearStage: boolean; overview: boolean }) {
+-  const video = useStageVideo();
++  requireWorldFonts();
++  const stageView=nearStage&&!overview;
++  const playbackOwnership = useCallback((active: boolean) => runtime.setMovie(active), [runtime]);
++  const video = useStageVideo(playbackOwnership);
+   const [crowdReadySerial, setCrowdReadySerial] = useState<number | null>(null);
+   const ready = useCallback(() => setCrowdReadySerial(serial), [serial]);
+   const baked = useCallback((ms: number) => recordPreparation(runtime, "crowd-pose-bake", performance.now() - ms, ms), [runtime]);
+-  useEffect(() => { runtime.setMovie(video.phase !== "idle"); }, [runtime, video.phase]);
++
+   useEffect(() => {
+     runtime.movieActions = { play: video.startMovie, stop: video.stopMovie, sound: video.enableSound, status: video.getStatus };
+     return () => { runtime.movieActions = null; };
+   }, [runtime, video.startMovie, video.stopMovie, video.enableSound, video.getStatus]);
+   return <>
+-    <HubScene nearStage={nearStage} quality={quality} overview={overview} />
+-    {/* One original stage in the shared world. Navigation changes interaction/crowd detail. */}
++    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} />
++    <AftermovieEnvironment />
++    {/* Keep one stage and current travel coordinates; restore its original local presentation. */}
+     <group position={point3(world.stage.origin)} rotation-y={world.stage.yaw}>
+     <Stage ground={false} />
+     <Trusses /><Speakers /><Barricades />
+     <LEDScreens videoTexture={video.phase === "playing" ? video.texture : null} loading={video.phase === "loading"} onPlay={() => { const state = runtime.getSnapshot(); if (nearStage && state.phase === "local" && !state.map && !state.destinationMenu) video.startMovie(); }} />
+     <Lights motion={nearStage && !runtime.reduced} dimmed={video.phase !== "idle"} />
+     {/* Already fully covered: yield between poses, without the standalone scene's 150ms pacing gaps. */}
+-    {nearStage && <Crowd clearApproach count={quality >= 2 ? 300 : quality === 1 ? 600 : 900} onReady={ready} bakeDelayMs={0} onBake={baked} />}
++    {nearStage && <Crowd count={quality >= 2 ? 300 : quality === 1 ? 600 : 900} onReady={ready} bakeDelayMs={0} onBake={baked} />}
+     <Fireworks key={video.pyroKey} active={!runtime.reduced && quality === 0 && video.pyroKey > 0 && video.phase === "playing"} />
+     </group>
+     {(!nearStage || crowdReadySerial === serial) && ["boot", "covered", "recovering"].includes(runtime.getSnapshot().phase) && <ReadinessGate key={serial} runtime={runtime} serial={serial} />}
+diff --git a/components/immersive/HubScene.tsx b/components/immersive/HubScene.tsx
+index b4cee58..edb53e1 100644
+--- a/components/immersive/HubScene.tsx
++++ b/components/immersive/HubScene.tsx
+@@ -21,9 +21,11 @@ export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], c
+     <mesh position-z={.081}><planeGeometry args={[width,height]} /><meshBasicMaterial map={texture} /></mesh>
+   </group>;
+ }
+-function Rock({ geometry,map }: { geometry:THREE.BufferGeometry;map:THREE.Texture }) {
++function Rock({ geometry,map,quarry=false }: { geometry:THREE.BufferGeometry;map:THREE.Texture;quarry?:boolean }) {
+   useEffect(()=>()=>geometry.dispose(),[geometry]);
+-  return <mesh><primitive object={geometry} attach="geometry" dispose={null} /><meshLambertMaterial map={map} vertexColors side={THREE.DoubleSide} /></mesh>;
++  return <mesh><primitive object={geometry} attach="geometry" dispose={null} />{quarry
++    ? <meshStandardMaterial roughness={.98} flatShading vertexColors side={THREE.DoubleSide} />
++    : <meshLambertMaterial map={map} vertexColors side={THREE.DoubleSide} />}</mesh>;
+ }
+ type Box={p:[number,number,number];size:[number,number,number];color:string;rotation?:THREE.Quaternion};
+ function Boxes({entries}:{entries:Box[]}) {
+@@ -176,15 +178,16 @@ function GroundDetail() {
+     <instancedMesh ref={grass} args={[undefined,undefined,180]}><primitive object={tufts} attach="geometry" dispose={null} /><meshLambertMaterial color="#626849" side={THREE.DoubleSide} /></instancedMesh>
+   </>;
+ }
+-export default function HubScene({nearStage,quality}:{nearStage:boolean;quality:number;overview:boolean}) {
++export default function HubScene({nearStage,quality,stageView=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean}) {
+   requireWorldFonts();
+   const quarry=useMemo(quarryGeometry,[]),tunnel=useMemo(tunnelGeometry,[]),portal=useMemo(portalGeometry,[]),exit=useMemo(exitGeometry,[]),ground=useMemo(groundGeometry,[]);
+   const rockTexture=useMemo(makeRockTexture,[]),groundTexture=useMemo(makeGroundTexture,[]);
+   useEffect(()=>()=>{ground.dispose();rockTexture.dispose();groundTexture.dispose();},[ground,rockTexture,groundTexture]);
+   return <>
+-    <color attach="background" args={["#737d87"]} /><fog attach="fog" args={["#737d87",205,520]} />
+-    <hemisphereLight args={["#a9bfd4","#8a8274",1.35]} /><directionalLight position={[-70,37,-145]} intensity={1.35} color="#efd0a4" />
+-    <Rock geometry={quarry} map={rockTexture} /><Rock geometry={tunnel} map={rockTexture} /><Rock geometry={portal} map={rockTexture} /><Rock geometry={exit} map={rockTexture} />
++    <color attach="background" args={[stageView?"#b2bbb9":"#737d87"]} /><fog attach="fog" args={stageView?["#b2bbb9",55,130]:["#737d87",205,520]} />
++    <hemisphereLight args={stageView?["#d8e0dd","#686b59",.65]:["#a9bfd4","#8a8274",1.35]} />
++    {!stageView && <directionalLight position={[-70,37,-145]} intensity={1.35} color="#efd0a4" />}
++    <Rock geometry={quarry} map={rockTexture} quarry /><Rock geometry={tunnel} map={rockTexture} /><Rock geometry={portal} map={rockTexture} /><Rock geometry={exit} map={rockTexture} quarry />
+     <mesh><primitive object={ground} attach="geometry" dispose={null} /><meshLambertMaterial map={groundTexture} color="#c8c2b4" /></mesh>
+     <EntrancePaint portal={portal} /><TunnelPaint /><Scaffold /><StallBlocks /><Population nearStage={nearStage} quality={quality} /><GroundDetail />
+   </>;
+diff --git a/components/immersive/ImmersiveShell.tsx b/components/immersive/ImmersiveShell.tsx
+index 2438c79..627c31a 100644
+--- a/components/immersive/ImmersiveShell.tsx
++++ b/components/immersive/ImmersiveShell.tsx
+@@ -6,9 +6,10 @@ import { Canvas } from "@react-three/fiber";
+ import { point3, world } from "./world";
+ import { FrameController, SceneRenderer, QUALITY_DPR } from "./rendering";
+ import { ImmersiveRuntime } from "./runtime";
+-import { locationFromPath, locations } from "./navigation";
++import { enteredGullyverse, initialNavigation, immersiveHref, rememberGullyverseEntry, locationFromPath, locations } from "./navigation";
+ import { useImmersiveInput } from "./input";
+ import WorldOverlays, { MapMarkerProjection, type MapDOM } from "./WorldOverlays";
++import { activeDeadline } from "./activeDeadline";
+ import styles from "./immersive.module.css";
+ 
+ const AftermovieScene = lazy(() => import("./AftermovieScene"));
+@@ -35,14 +36,19 @@ class SceneBoundary extends Component<{ children: React.ReactNode; onError: (mes
+ export default function ImmersiveShell() {
+   const pathname = usePathname();
+   const router = useRouter();
+-  const [runtime] = useState(() => new ImmersiveRuntime(locationFromPath(pathname) ?? "hub", (id, source) => {
+-    // Next's supported native history integration updates usePathname without
+-    // fetching/remounting a second renderer. Popstate enters the same request path.
+-    if (source !== "url" && locationFromPath(window.location.pathname) !== id) {
+-      const query = new URLSearchParams(window.location.search);
+-      window.history.pushState(null, "", locations[id].href + (query.has("diagnostics") ? "?diagnostics" : ""));
+-    }
+-  }));
++  const [runtime] = useState(() => {
++    const entry = initialNavigation(pathname, window.location.search, window.history.state, enteredGullyverse());
++    return new ImmersiveRuntime(entry.location, (id, source, entrance) => {
++      if (!entrance) rememberGullyverseEntry();
++      if (source !== "url" && (locationFromPath(window.location.pathname) !== id || entrance)) {
++        const href = immersiveHref(id, entrance);
++        const diagnostic = new URLSearchParams(window.location.search).has("diagnostics");
++        window.history.pushState({ ...window.history.state, breezeArrival: entrance ? "entrance" : id }, "", href + (diagnostic ? (href.includes("?") ? "&" : "?") + "diagnostics" : ""));
++      } else if (id === "hub" && !entrance) {
++        window.history.replaceState({ ...window.history.state, breezeArrival: "hub" }, "", window.location.href);
++      }
++    }, entry.intro, () => performance.now() / 1000);
++  });
+   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
+   const curtain = useRef<HTMLDivElement>(null);
+   const [mapElements] = useState<MapDOM>(() => ({ container: null, nodes: new Map(), dots: new Map(), lines: new Map() }));
+@@ -65,8 +71,17 @@ export default function ImmersiveShell() {
+   useEffect(() => {
+     if (!["boot", "covered", "context-lost", "recovering"].includes(state.phase)) return;
+     // A timeout never reveals unfinished content; it offers the 2D fallback.
+-    const timer = setTimeout(() => runtime.fail("Critical scene preparation exceeded 45 seconds."), 45000);
+-    return () => clearTimeout(timer);
++    const deadline = activeDeadline(45000, () => runtime.fail("Critical scene preparation exceeded 45 seconds."));
++    const suspend = () => deadline.pause();
++    const resume = () => { if (!document.hidden) deadline.resume(); };
++    const visibility = () => document.hidden ? suspend() : resume();
++    if (!runtime.suspended && !document.hidden) deadline.resume();
++    window.addEventListener("blur", suspend); window.addEventListener("focus", resume);
++    document.addEventListener("visibilitychange", visibility); document.addEventListener("freeze", suspend); document.addEventListener("resume", resume);
++    return () => {
++      deadline.cancel(); window.removeEventListener("blur", suspend); window.removeEventListener("focus", resume);
++      document.removeEventListener("visibilitychange", visibility); document.removeEventListener("freeze", suspend); document.removeEventListener("resume", resume);
++    };
+   }, [state.phase, state.serial, runtime]);
+   useEffect(() => {
+     if (window.matchMedia("(pointer: coarse)").matches) runtime.setQuality(1);
+@@ -80,7 +95,7 @@ export default function ImmersiveShell() {
+         <MapMarkerProjection runtime={runtime} elements={mapElements} />
+         <SceneRenderer runtime={runtime} />
+         <Suspense fallback={null}>
+-          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.inspection === "overview"} />
++          <AftermovieScene runtime={runtime} serial={state.serial} quality={state.quality} nearStage={state.scene === "aftermovie"} overview={state.map || state.inspection === "overview"} />
+         </Suspense>
+       </Canvas>
+     </SceneBoundary>
+diff --git a/components/immersive/WorldOverlays.tsx b/components/immersive/WorldOverlays.tsx
+index 79ccc9e..a83ac77 100644
+--- a/components/immersive/WorldOverlays.tsx
++++ b/components/immersive/WorldOverlays.tsx
+@@ -5,6 +5,7 @@ import * as THREE from "three";
+ import { destinationOptions, type TravelId } from "./navigation";
+ import type { ImmersiveRuntime, Snapshot } from "./runtime";
+ import { world } from "./world";
++import { projectMapPoint } from "./mapProjection";
+ import styles from "./immersive.module.css";
+ 
+ type MapPoint = { id: string; label: string; position: readonly number[]; destination?: TravelId };
+@@ -26,21 +27,19 @@ export type MapDOM = {
+ 
+ /** Project DOM labels through the same R3F camera, without a React update per frame. */
+ export function MapMarkerProjection({ runtime, elements }: { runtime: ImmersiveRuntime; elements: MapDOM }) {
+-  const vector = useRef(new THREE.Vector3());
+-  const previousFrame = useRef("");
++  const clip = useRef(new THREE.Vector4());
+   const points = mapPoints();
+   useFrame(({ camera, size }) => {
+-    if (!runtime.getSnapshot().map || !elements.container) { previousFrame.current = ""; return; }
+-    const signature = `${size.width}:${size.height}:${runtime.mapProgress}:${camera.position.x}:${camera.position.y}:${camera.position.z}:${elements.nodes.size}`;
+-    if (signature === previousFrame.current) return;
+-    previousFrame.current = signature;
++    if (!runtime.getSnapshot().map || !elements.container) return;
+     camera.updateMatrixWorld();
+     elements.container.style.opacity = String(Math.max(0, Math.min(1, (runtime.mapProgress - 0.78) / 0.22)));
+     const placed: { x: number; y: number; w: number; h: number }[] = [];
+     const overlaps = (x: number, y: number, w: number, h: number) => placed.filter(p => Math.abs(x - p.x) < (w + p.w) / 2 + 5 && Math.abs(y - p.y) < (h + p.h) / 2 + 5).length;
+-    const projected = points.map(point => {
+-      vector.current.set(point.position[0], point.position[1] ?? 0, point.position[2]).project(camera);
+-      return { point, x: (vector.current.x + 1) * size.width / 2, y: (1 - vector.current.y) * size.height / 2 };
++    const projected = points.flatMap(point => {
++      const projection = projectMapPoint(point.position, camera, size.width, size.height, clip.current);
++      const node = elements.nodes.get(point.id), dot = elements.dots.get(point.id), line = elements.lines.get(point.id);
++      for (const element of [node, dot, line]) if (element) element.style.visibility = projection ? "visible" : "hidden";
++      return projection ? [{ point, ...projection }] : [];
+     }).sort((a, b) => a.y - b.y);
+     for (const { point, x, y } of projected) {
+       const node = elements.nodes.get(point.id), dot = elements.dots.get(point.id), line = elements.lines.get(point.id);
+@@ -70,7 +69,7 @@ function useOverlayFocus(ref: React.RefObject<HTMLElement | null>) {
+     node?.querySelector<HTMLElement>("button:not(:disabled)")?.focus({ preventScroll: true });
+     const trap = (event: KeyboardEvent) => {
+       if (event.key !== "Tab" || !node) return;
+-      const controls = [...node.querySelectorAll<HTMLButtonElement>("button:not(:disabled)")];
++      const controls = [...node.querySelectorAll<HTMLButtonElement>("button:not(:disabled)")].filter(control => getComputedStyle(control).visibility !== "hidden");
+       const first = controls[0], last = controls[controls.length - 1];
+       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+diff --git a/components/immersive/activeDeadline.ts b/components/immersive/activeDeadline.ts
+new file mode 100644
+index 0000000..82ad621
+--- /dev/null
++++ b/components/immersive/activeDeadline.ts
+@@ -0,0 +1,10 @@
++/** An active-tab budget, independent of render FPS and cancellable on stale serials. */
++export function activeDeadline(budgetMs: number, expire: () => void, now = () => performance.now(),
++  schedule = (fn: () => void, ms: number) => setTimeout(fn, ms), cancelTimer = (id: ReturnType<typeof setTimeout>) => clearTimeout(id)) {
++  let remaining = budgetMs, started = 0, timer: ReturnType<typeof setTimeout> | null = null, finished = false;
++  return {
++    resume() { if (finished || timer !== null) return; started = now(); timer = schedule(() => { timer = null; finished = true; expire(); }, remaining); },
++    pause() { if (timer === null || finished) return; cancelTimer(timer); timer = null; remaining = Math.max(0, remaining - (now() - started)); },
++    cancel() { if (timer !== null) cancelTimer(timer); timer = null; finished = true; },
++  };
++}
+diff --git a/components/immersive/aerial.ts b/components/immersive/aerial.ts
+index b5989d8..6498fc6 100644
+--- a/components/immersive/aerial.ts
++++ b/components/immersive/aerial.ts
+@@ -13,8 +13,9 @@ export function mapCamera(aspect: number): CameraView {
+   const samples: [number, number, number][] = [];
+   rim.forEach(([x, z], i) => {
+     const distance = Math.hypot(x - middleX, z - middleZ);
+-    const outerX = x + (x - middleX) / distance * 6;
+-    const outerZ = z + (z - middleZ) / distance * 6;
++    // The restored rock masses extend farther outside the walking perimeter.
++    const outerX = x + (x - middleX) / distance * 24;
++    const outerZ = z + (z - middleZ) / distance * 24;
+     samples.push([x, 0, z], [outerX, world.quarry.wallHeights[i % world.quarry.wallHeights.length], outerZ]);
+   });
+   samples.push([-world.portal.width / 2, world.portal.height, 0], [world.portal.width / 2, world.portal.height, 0], [0, 0, world.landing.position[2]]);
+diff --git a/components/immersive/blockoutGeometry.ts b/components/immersive/blockoutGeometry.ts
+index 93cf3d6..893adee 100644
+--- a/components/immersive/blockoutGeometry.ts
++++ b/components/immersive/blockoutGeometry.ts
+@@ -42,27 +42,62 @@ function tubeVertex(z:number,p:readonly number[]):Vertex {
+   const n=tubeNoise(z,p[1]);
+   return [tunnelCenterX(z)+p[0]+n,p[1]+(p[1]>1?n*.5:0),z];
+ }
++const tunnelOuterProfile=[[-26,-.08],[-28,7],[-20,16],[-8,18],[3,15],[18,16],[27,8],[30,-.08]];
++const tunnelRearHeights=[-.08,19,31,35,32,30,19,-.08];
++function outerTunnelVertex(section:number,u:number,v:number):Vertex {
++  const a=tunnelOuterProfile[section],b=tunnelOuterProfile[section+1];
++  const x=lerp(a[0],b[0],u),y=lerp(a[1],b[1],u);
++  // Weld the last two exterior rings: the old section-local noise left seams
++  // at the quarry-facing rim. The entrance and enclosed passage stay unchanged.
++  const phase=lerp(u,section+u,Math.max(0,(v-.8)/.2));
++  // The rear exterior becomes a sloping geological crown rather than the
++  // old 49m-high straight panel. Only the quarry-facing 40% of the shell changes.
++  const t=Math.max(0,(v-.6)/.4),rearBlend=t*t*(3-2*t);
++  const rearHeight=lerp(tunnelRearHeights[section],tunnelRearHeights[section+1],u);
++  return [x*(1+v*.13)+Math.sin(phase*6+v*13)*v*.5,y>0?lerp(y,49,v)+(rearHeight-49)*rearBlend+Math.sin(v*18+phase*9)*v*.8:y,lerp(-3,world.tunnel.endZ,v)];
++}
++/** Work-in-progress-2027's original faceted rock ring, fitted to the current layout. */
+ export function quarryGeometry() {
+-  const rock=new RockMesh(),q=world.quarry;
+-  const centerZ=(Math.min(...q.boundary.map(p=>p[1]))+Math.max(...q.boundary.map(p=>p[1])))/2;
+-  for(let i=0;i<q.boundary.length;i++) {
+-    const a=q.boundary[i],b=q.boundary[(i+1)%q.boundary.length];
+-    const vertex=(u:number,v:number):Vertex=>{
+-      const x=lerp(a[0],b[0],u),z=lerp(a[1],b[1],u),radius=Math.hypot(x,z-centerZ);
+-      const angle=(i+u)/q.boundary.length*Math.PI*2;
+-      const height=lerp(q.wallHeights[i],q.wallHeights[(i+1)%q.boundary.length],u);
+-      const fractured=Math.sin(angle*53+v*21)*.8+Math.sin(angle*91-v*9)*.34;
+-      const bench=Math.floor(v*4),setback=v*7.5+Math.sin(v*Math.PI*8)*.55+fractured*Math.sin(v*Math.PI);
+-      const base=i===0?Math.max(...world.tunnel.profile.map(p=>p[1]))+.2:0;
+-      return [x+x/radius*setback,lerp(base,height,v)+Math.sin(angle*17+v*4)*Math.sin(v*Math.PI)*1.2,z+(z-centerZ)/radius*setback+(bench%2?.12:0)];
+-    };
+-    for(let s=0;s<10;s++) for(let l=0;l<12;l++) {
+-      const u=s/10,v=(s+1)/10,y=l/12,ny=(l+1)/12;
+-      const shade=.77+Math.sin((i+u)*1.4+y*.7)*.035+(l/12)*.12;
+-      rock.quad(vertex(u,y),vertex(v,y),vertex(v,ny),vertex(u,ny),shade);
++  const rock=new RockMesh(),boundary=world.quarry.boundary;
++  const minX=Math.min(...boundary.map(p=>p[0])),maxX=Math.max(...boundary.map(p=>p[0]));
++  const minZ=Math.min(...boundary.map(p=>p[1])),maxZ=Math.max(...boundary.map(p=>p[1]));
++  const centerX=(minX+maxX)/2,centerZ=(minZ+maxZ)/2;
++  // Uniform scaling keeps the original rock proportions around the larger world.
++  const scale=((maxX-minX)/94+(maxZ-minZ)/126)/2;
++  const source=new THREE.DodecahedronGeometry(1,0),vertices=source.getAttribute("position");
++  try {
++    for(let i=0;i<28;i++) {
++      // Preserve the original three-rock gap around the current tunnel opening.
++      if(i===0 || i===1 || i===27) continue;
++      const angle=i/28*Math.PI*2,dx=Math.sin(angle),dz=Math.cos(angle);
++      let distance=Infinity,edge=0;
++      for(let j=0;j<boundary.length;j++) {
++        const a=boundary[j],b=boundary[(j+1)%boundary.length];
++        const ex=b[0]-a[0],ez=b[1]-a[1],denominator=dx*ez-dz*ex;
++        if(Math.abs(denominator)<.00001) continue;
++        const ax=a[0]-centerX,az=a[1]-centerZ;
++        const t=(ax*ez-az*ex)/denominator,u=(ax*dz-az*dx)/denominator;
++        if(t>0 && u>=0 && u<=1 && t<distance) {distance=t;edge=j;}
++      }
++      const a=boundary[edge],b=boundary[(edge+1)%boundary.length];
++      const ex=b[0]-a[0],ez=b[1]-a[1],length=Math.hypot(ex,ez),nx=-ez/length,nz=ex/length;
++      const h=21+Math.sin(i*4.1)*6;
++      const matrix=new THREE.Matrix4().compose(new THREE.Vector3(),
++        new THREE.Quaternion().setFromEuler(new THREE.Euler(.08*Math.sin(i),angle,.1*Math.cos(i))),
++        new THREE.Vector3(14*scale,h*scale,12*scale));
++      const points:Vertex[]=[];
++      let minimum=Infinity;
++      for(let j=0;j<vertices.count;j++) {
++        const p=new THREE.Vector3().fromBufferAttribute(vertices,j).applyMatrix4(matrix);
++        minimum=Math.min(minimum,p.x*nx+p.z*nz);points.push([p.x,p.y,p.z]);
++      }
++      // Keep the complete rock outside the existing walkable collision perimeter.
++      const offset=.25-minimum,x=centerX+dx*distance+nx*offset,z=centerZ+dz*distance+nz*offset;
++      for(const p of points) {p[0]+=x;p[1]+=(h*.47-2)*scale;p[2]+=z;}
++      for(let j=0;j<points.length;j+=3) rock.triangle(points[j],points[j+1],points[j+2],1,i%3===0?"#74776d":"#838479");
+     }
+-  }
+-  return rock.finish();
++    return rock.finish();
++  } finally {source.dispose();}
+ }
+ export function tunnelGeometry() {
+   const rock=new RockMesh(),profile=world.tunnel.profile;
+@@ -75,14 +110,8 @@ export function tunnelGeometry() {
+     }
+   }
+   // Broad geological mass, continuous with the portal and the quarry front rim.
+-  const outer=[[-26,-.08],[-28,7],[-20,16],[-8,18],[3,15],[18,16],[27,8],[30,-.08]];
+-  for(let j=0;j<outer.length-1;j++) for(let segment=0;segment<10;segment++) {
+-    const a=outer[j],b=outer[j+1];
+-    const vertex=(u:number,v:number):Vertex=>{
+-      const x=lerp(a[0],b[0],u),y=lerp(a[1],b[1],u);
+-      return [x*(1+v*.13)+Math.sin(u*6+v*13)*v*.5,y>0?lerp(y,49,v)+Math.sin(v*18+u*9)*v*.8:y,-3-v*39];
+-    };
+-    rock.quad(vertex(0,segment/10),vertex(1,segment/10),vertex(1,(segment+1)/10),vertex(0,(segment+1)/10),.72+(j%3)*.06);
++  for(let j=0;j<tunnelOuterProfile.length-1;j++) for(let segment=0;segment<10;segment++) {
++    rock.quad(outerTunnelVertex(j,0,segment/10),outerTunnelVertex(j,1,segment/10),outerTunnelVertex(j,1,(segment+1)/10),outerTunnelVertex(j,0,(segment+1)/10),.72+(j%3)*.06);
+   }
+   return rock.finish();
+ }
+@@ -101,9 +130,31 @@ export function portalGeometry() {
+ }
+ export function exitGeometry() {
+   const rock=new RockMesh(),p=world.tunnel.profile;
+-  for(let j=0;j<p.length-1;j++) {
+-    const a=p[j],b=p[j+1],out=(v:readonly number[]):Vertex=>[v[0]<0?-5:5,Math.max(v[1],5.8),world.tunnel.endZ];
+-    rock.quad([a[0],a[1],world.tunnel.endZ],[b[0],b[1],world.tunnel.endZ],out(b),out(a),.8);
++  // Close the full exterior mass around the actual tunnel opening, rather
++  // than leaving a detached 10m collar inside the much wider quarry-rock gap.
++  // Retain every authored corner of both profiles, with broad facets matching
++  // the surrounding blockout rocks instead of another thin rectangular panel.
++  const sections=[...new Set([
++    ...p.map((_,i)=>i/(p.length-1)),
++    ...tunnelOuterProfile.map((_,i)=>i/(tunnelOuterProfile.length-1)),
++  ])].sort((a,b)=>a-b),rings=5;
++  const vertex=(section:number,ring:number):Vertex=>{
++    const t=sections[section],inner=t*(p.length-1),j=Math.min(p.length-2,Math.floor(inner)),u=inner-j;
++    const a=p[j],b=p[j+1],outer=t*(tunnelOuterProfile.length-1),k=Math.min(tunnelOuterProfile.length-2,Math.floor(outer));
++    // The shell edges are straight between its corners; match those edges
++    // exactly rather than resampling their original noise into a new curve.
++    const rimA=outerTunnelVertex(k,0,1),rimB=outerTunnelVertex(k,1,1);
++    const rim=rimA.map((v,i)=>lerp(v,rimB[i],outer-k)),progress=ring/rings;
++    const envelope=Math.sin(progress*Math.PI),relief=envelope*(3.8+1.7*Math.sin(section*1.71+ring*1.93));
++    const x=lerp(lerp(a[0],b[0],u)+tunnelCenterX(world.tunnel.endZ),rim[0],progress)+envelope*Math.sin(t*Math.PI)*Math.sin(section*2.17+ring)*.7;
++    const y=lerp(lerp(a[1],b[1],u),rim[1],progress)+envelope*Math.sin(t*Math.PI)*Math.sin(section+ring*2.3)*1.1;
++    // Relief stays outside the playable quarry; inner and outer edges match
++    // the passage and shell exactly, with no surface stretched over the hole.
++    return [x,y,world.tunnel.endZ+relief];
++  };
++  for(let section=0;section<sections.length-1;section++) for(let ring=0;ring<rings;ring++) {
++    const shade=.91+Math.sin(section*.37+ring*1.73)*.045;
++    rock.quad(vertex(section,ring),vertex(section+1,ring),vertex(section+1,ring+1),vertex(section,ring+1),shade,"#838479");
+   }
+   return rock.finish();
+ }
+diff --git a/components/immersive/diagnostics.ts b/components/immersive/diagnostics.ts
+index e0b1e95..81e5bfa 100644
+--- a/components/immersive/diagnostics.ts
++++ b/components/immersive/diagnostics.ts
+@@ -12,6 +12,7 @@ export type Diagnostics = {
+   phases: { at: number; phase: string; scene: string; serial: number }[]; memory: MemorySample[];
+   gpuTimer: "available" | "unavailable"; discardedGpuQueries: number;
+   currentFrame: FrameSample | null;
++  videoResources: { at: number; event: string; uuid: string; samplers: number; uploaded: boolean }[];
+   stats: { calls: number; triangles: number; textures: number; geometries: number; dpr: number };
+ };
+ declare global { interface Window { __gullyverse?: Diagnostics } }
+@@ -64,7 +65,7 @@ export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRu
+   let timer = context.getExtension("EXT_disjoint_timer_query_webgl2") as TimerExtension | null;
+   const d: Diagnostics = window.__gullyverse = {
+     runtime, renderer: String(context.getParameter(debug ? debug.UNMASKED_RENDERER_WEBGL : context.RENDERER)),
+-    frames: [], timeline: [], preparations: [], gpu: [], phases: [], memory: [], currentFrame: null,
++    frames: [], timeline: [], preparations: [], gpu: [], phases: [], memory: [], currentFrame: null, videoResources: [],
+     gpuTimer: timer ? "available" : "unavailable", discardedGpuQueries: 0,
+     stats: { calls: 0, triangles: 0, textures: 0, geometries: 0, dpr: gl.getPixelRatio() },
+   };
+@@ -74,6 +75,41 @@ export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRu
+     if (signature !== lastPhase) { lastPhase = signature; append(d.phases, { at: performance.now(), phase: s.phase, scene: s.scene, serial: s.serial }, 1000); }
+   };
+   phase(); const unsubscribe = runtime.subscribe(phase);
++  // Opt-in lifetime evidence. Weak metadata never keeps retired movies alive.
++  const traceVideo = new URLSearchParams(window.location.search).has("resourceTrace");
++  const watched = new WeakMap<THREE.Texture, { disposed: boolean; reported: boolean }>();
++  const bound = new Set<THREE.Texture>();
++  const traceSamplers = (scene: THREE.Object3D) => {
++    const samplers = new Map<THREE.Texture, number>();
++    scene.traverse(object => {
++      if (!(object instanceof THREE.Mesh)) return;
++      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
++        if (!(material instanceof THREE.ShaderMaterial)) continue;
++        for (const uniform of Object.values(material.uniforms)) {
++          const texture = uniform.value;
++          if (texture instanceof THREE.VideoTexture) samplers.set(texture, (samplers.get(texture) ?? 0) + 1);
++        }
++      }
++    });
++    for (const texture of bound) if (!samplers.has(texture)) bound.delete(texture);
++    for (const [texture, count] of samplers) {
++      bound.add(texture);
++      let state = watched.get(texture);
++      if (!state) {
++        state = { disposed: false, reported: false }; watched.set(texture, state);
++        const metadata = state;
++        texture.addEventListener("dispose", () => {
++          metadata.disposed = true;
++          append(d.videoResources, { at: performance.now(), event: "dispose", uuid: texture.uuid, samplers: bound.has(texture) ? count : 0, uploaded: false }, 1000);
++        });
++      }
++      if (state.disposed && !state.reported) {
++        state.reported = true;
++        const properties = gl.properties.get(texture) as { __webglTexture?: WebGLTexture };
++        append(d.videoResources, { at: performance.now(), event: "disposed-still-sampled-after-render", uuid: texture.uuid, samplers: count, uploaded: !!properties.__webglTexture }, 1000);
++      }
++    }
++  };
+   const pending: { query: WebGLQuery; sample: TimedSample }[] = [];
+   const clearQueries = () => { pending.forEach(({ query }) => context.deleteQuery(query)); pending.length = 0; };
+   const lost = () => { d.discardedGpuQueries += pending.length; pending.length = 0; timer = null; };
+@@ -101,6 +137,7 @@ export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRu
+     if (query) context.beginQuery(timer!.TIME_ELAPSED_EXT, query);
+     try { originalRender.call(gl, scene, camera); }
+     finally {
++      if (traceVideo) traceSamplers(scene);
+       if (query) {
+         context.endQuery(timer!.TIME_ELAPSED_EXT);
+         pending.push({ query, sample: { name: "gpu-render", at: start, ms: 0, phase: s.phase, scene: s.scene, serial: s.serial, poseZ: runtime.pose.z } });
+@@ -117,7 +154,7 @@ export function installDiagnostics(gl: THREE.WebGLRenderer, runtime: ImmersiveRu
+   };
+   GLTFLoader.prototype.parse = measuredParse;
+   return () => {
+-    unsubscribe(); clearQueries(); gl.render = originalRender;
++    unsubscribe(); clearQueries(); bound.clear(); gl.render = originalRender;
+     gl.domElement.removeEventListener("webglcontextlost", lost); gl.domElement.removeEventListener("webglcontextrestored", restored);
+     if (GLTFLoader.prototype.parse === measuredParse) GLTFLoader.prototype.parse = originalParse;
+     if (window.__gullyverse === d) delete window.__gullyverse;
+diff --git a/components/immersive/input.ts b/components/immersive/input.ts
+index 7303f41..a86d7cc 100644
+--- a/components/immersive/input.ts
++++ b/components/immersive/input.ts
+@@ -2,6 +2,7 @@
+ import { useEffect, useRef } from "react";
+ import type { ImmersiveRuntime } from "./runtime";
+ 
++const editableSelector = "form, input, textarea, select, [contenteditable]:not([contenteditable=false])";
+ const movementCodes = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]);
+ export function useImmersiveInput(runtime: ImmersiveRuntime) {
+   const keys = useRef(new Set<string>());
+@@ -15,14 +16,17 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
+       runtime.input.forward = Math.max(-1, Math.min(1, forward)); runtime.input.strafe = Math.max(-1, Math.min(1, strafe));
+     };
+     const clear = () => { keys.current.clear(); virtual.current.clear(); drag.current = null; runtime.clearInput(); };
++    runtime.suspended = document.hidden;
++    const editable = (target: EventTarget | null) => target instanceof Element && !!target.closest(editableSelector);
++    const focusIn = (e: FocusEvent) => { if (editable(e.target)) clear(); };
+     const down = (e: KeyboardEvent) => {
+-      if ((e.target as HTMLElement)?.closest("input, textarea, select, [contenteditable=true]")) return;
++      if (runtime.suspended || editable(document.activeElement) || e.composedPath().some(editable)) { clear(); return; }
+       const s = runtime.getSnapshot();
+       if (e.code === "Escape" && runtime.handleEscape()) { e.preventDefault(); e.stopImmediatePropagation(); return; }
+       if (s.inspection) return;
+       if (s.phase === "landing" && ["Enter", "Space"].includes(e.code) && !(e.target as HTMLElement)?.closest("button, a")) { e.preventDefault(); runtime.enter(); return; }
+       if (e.code === "KeyM" && s.phase === "local" && !s.movie && !s.destinationMenu && !e.repeat) { e.preventDefault(); runtime.setMap(!s.map || s.mapStage === "descent"); return; }
+-      if (movementCodes.has(e.code) && s.phase === "local" && !s.map && !s.movie && !s.destinationMenu) { e.preventDefault(); keys.current.add(e.code); update(); }
++      if (movementCodes.has(e.code) && s.phase === "local" && !s.map && !s.movie && !s.destinationMenu) { if (e.repeat && !keys.current.has(e.code)) return; e.preventDefault(); keys.current.add(e.code); update(); }
+     };
+     const up = (e: KeyboardEvent) => { keys.current.delete(e.code); update(); };
+     const visibility = () => { runtime.suspended = document.hidden; clear(); };
+@@ -40,7 +44,7 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
+     });
+     // Pointer drags operate on the rendering surface only; no pointer-lock requirement.
+     const pointerDown = (e: PointerEvent) => {
+-      if (!(e.target as HTMLElement)?.closest("canvas")) return;
++      if (runtime.suspended || !(e.target as HTMLElement)?.closest("canvas")) return;
+       const s = runtime.getSnapshot();
+       if (s.phase === "landing") { runtime.enter(); return; }
+       if (s.phase !== "local" || s.map || s.movie || s.inspection || s.destinationMenu) return;
+@@ -57,11 +61,12 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
+     // Touch pad events are converted to the same axes as the keyboard.
+     const padDown = (e: PointerEvent) => {
+       const pad = (e.target as HTMLElement)?.closest<HTMLElement>("[data-move]"); if (!pad) return;
+-      const s = runtime.getSnapshot(); if (s.phase !== "local" || s.map || s.movie || s.inspection || s.destinationMenu) return;
++      const s = runtime.getSnapshot(); if (runtime.suspended || s.phase !== "local" || s.map || s.movie || s.inspection || s.destinationMenu) return;
+       e.preventDefault(); pad.setPointerCapture(e.pointerId);
+       const direction = pad.dataset.move;
+       virtual.current.set(e.pointerId, { forward: direction === "forward" ? 1 : direction === "back" ? -1 : 0, strafe: direction === "right" ? 1 : direction === "left" ? -1 : 0 }); update();
+     };
++    document.addEventListener("focusin", focusIn);
+     window.addEventListener("keydown", down, true); window.addEventListener("keyup", up);
+     window.addEventListener("blur", blur); window.addEventListener("focus", focus); document.addEventListener("visibilitychange", visibility);
+     document.addEventListener("freeze", blur); document.addEventListener("resume", focus);
+@@ -70,6 +75,7 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
+     window.addEventListener("lostpointercapture", pointerUp);
+     return () => {
+       clear(); unsubscribe(); media.removeEventListener("change", reduced);
++      document.removeEventListener("focusin", focusIn);
+       window.removeEventListener("keydown", down, true); window.removeEventListener("keyup", up);
+       window.removeEventListener("blur", blur); window.removeEventListener("focus", focus); document.removeEventListener("visibilitychange", visibility);
+       document.removeEventListener("freeze", blur); document.removeEventListener("resume", focus);
+diff --git a/components/immersive/mapProjection.ts b/components/immersive/mapProjection.ts
+new file mode 100644
+index 0000000..bbf4113
+--- /dev/null
++++ b/components/immersive/mapProjection.ts
+@@ -0,0 +1,9 @@
++import { Camera, Vector4 } from 'three';
++/** Clip-space validity must be checked before dividing by W. */
++export function projectMapPoint(position: readonly number[], camera: Camera, width: number, height: number, clip = new Vector4()) {
++  if (![...position, width, height].every(Number.isFinite) || width <= 0 || height <= 0) return null;
++  clip.set(position[0], position[1], position[2], 1).applyMatrix4(camera.matrixWorldInverse).applyMatrix4(camera.projectionMatrix);
++  const { x, y, z, w } = clip;
++  if (![x, y, z, w].every(Number.isFinite) || w <= 1e-8 || Math.abs(x) > w || Math.abs(y) > w || Math.abs(z) > w) return null;
++  return { x: (x / w + 1) * width / 2, y: (1 - y / w) * height / 2 };
++}
+diff --git a/components/immersive/navigation.ts b/components/immersive/navigation.ts
+index e2717b3..4379c14 100644
+--- a/components/immersive/navigation.ts
++++ b/components/immersive/navigation.ts
+@@ -29,6 +29,8 @@ export const destinationOptions: NavigationDestination[] = [
+ ];
+ export const navigationDestination = (id: TravelId) => destinationOptions.find((destination) => destination.id === id)!;
+ export const mapLabels = destinationOptions.filter((d) => !["hub", "entrance"].includes(d.id)).map((d) => d.label);
++// A destination may have multiple approach gates. Its first gate retains the
++// approved sign direction; additional gates use the same travel coordinator.
+ export const travelZones = layout.hub.travelZones.map((zone) => {
+   const destination = navigationDestination(zone.id as TravelId);
+   const a = layout.hub.movementBoundary[zone.edge], b = layout.hub.movementBoundary[(zone.edge + 1) % layout.hub.movementBoundary.length];
+@@ -116,3 +118,20 @@ export function constrain(id: LocationId, p: Pose): void {
+     if(correction<0.000001) break;
+   }
+ }
++
++/** Fresh entry and deliberate Home arrival share the existing coordinator. */
++export function initialNavigation(path: string, search: string, history: unknown, entered = false) {
++  const location = locationFromPath(path) ?? "hub";
++  const intent = new URLSearchParams(search).get("arrival");
++  const marked = !!history && typeof history === "object" && "breezeArrival" in history && history.breezeArrival === "hub";
++  return { location, intro: location === "hub" && (intent === "entrance" || !(intent === "hub" || marked || entered)) };
++}
++export function immersiveHref(id: LocationId, entrance = false) {
++  return id === "hub" ? `/?arrival=${entrance ? "entrance" : "hub"}` : locations[id].href;
++}
++export function enteredGullyverse(): boolean {
++  try { return window.sessionStorage.getItem("breeze:entered") === "1"; } catch { return false; }
++}
++export function rememberGullyverseEntry() {
++  try { window.sessionStorage.setItem("breeze:entered", "1"); } catch { /* Explicit URLs/history still work without storage. */ }
++}
+diff --git a/components/immersive/rendering.tsx b/components/immersive/rendering.tsx
+index b72fc8a..816bb9a 100644
+--- a/components/immersive/rendering.tsx
++++ b/components/immersive/rendering.tsx
+@@ -45,7 +45,7 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime;
+     return () => { alive = false; };
+   }, [gl, scene, camera, runtime, serial]);
+   useFrame((_, dt) => {
+-    if (!prepared.current || warm.current.done || gl.getContext().isContextLost() || runtime.suspended) return;
++    if (!prepared.current || warm.current.done || gl.getContext().isContextLost() || runtime.suspended || runtime.activeFrameDelta <= 0) return;
+     // Warm the final viewing composition under the curtain. The approach pose
+     // culls more crowd and previously underestimated the cost of the reveal.
+     // Recovery warms the exact saved pose; it never relocates the visitor.
+@@ -56,7 +56,7 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime;
+     // First flush upload frames, then measure a short real-render window. If
+     // the crowd exceeds the budget, lower its cost BEFORE giving input back.
+     if (++rendered.current <= 2) return;
+-    warm.current.seconds += dt; warm.current.count++;
++    warm.current.seconds += runtime.activeFrameDelta; warm.current.count++;
+     // Twelve frames resist isolated initialization spikes while still measuring
+     // the real scene. Four frames incorrectly selected the lowest tier under CPU throttling.
+     if (warm.current.count < 12) return;
+@@ -120,7 +120,7 @@ export function FrameController({ runtime, curtain }: { runtime: ImmersiveRuntim
+     if (camera instanceof THREE.PerspectiveCamera && camera.fov !== p.fov) { camera.fov = p.fov; camera.updateProjectionMatrix(); }
+     poseEuler.current.set(p.pitch, p.yaw, 0, "YXZ");
+     camera.quaternion.setFromEuler(poseEuler.current);
+-    if (curtain.current) curtain.current.style.opacity = String(runtime.opacity);
++    if (curtain.current) curtain.current.style.opacity = String(runtime.revealOpacity);
+     const state = runtime.getSnapshot();
+     const diagnostics = window.__gullyverse;
+     if (diagnostics && !runtime.suspended) {
+diff --git a/components/immersive/runtime.ts b/components/immersive/runtime.ts
+index fef07dd..ec7219d 100644
+--- a/components/immersive/runtime.ts
++++ b/components/immersive/runtime.ts
+@@ -22,9 +22,18 @@ export class ImmersiveRuntime {
+   input: Input = { forward: 0, strafe: 0, lookX: 0, lookY: 0 };
+   get reduced() { return this.state.reduced; }
+   set reduced(value: boolean) { if (this.state.reduced !== value) this.publish({ reduced: value }); }
+-  suspended = false;
++  private paused = false;
++  private resumed = false;
++  activeFrameDelta = 0;
++  private activatedAt: number | null = null;
++  private departureOpacity = 0;
++  get suspended() { return this.paused; }
++  set suspended(value: boolean) { if (this.paused && !value) this.resumed = true; this.paused = value; }
+   inspectionEnabled = false;
+   opacity = 1;
++  private frameGapCover = 0;
++  /** Hide exceptional foreground camera jumps without slowing the authored clock. */
++  get revealOpacity() { return Math.max(this.opacity, this.frameGapCover); }
+   mapProgress = 0;
+   /** Existing content routes leave the immersive shell only after coverage. */
+   onCoveredRoute: ((href: string) => void) | null = null;
+@@ -47,19 +56,21 @@ export class ImmersiveRuntime {
+   private boundaryArmed = true;
+   private targetEntrance = false;
+   private externalRoute: string | null = null;
+-  private onArrival?: (id: LocationId, source: RequestSource) => void;
++  private onArrival?: (id: LocationId, source: RequestSource, entrance?: boolean) => void;
+   private recovery: { phase: Phase; elapsed: number; opacity: number } | null = null;
+   private pendingNavigation: { id: TravelId; source: RequestSource } | null = null;
+ 
+-  constructor(initial: LocationId, onArrival?: (id: LocationId, source: RequestSource) => void) {
++  constructor(initial: LocationId, onArrival?: (id: LocationId, source: RequestSource, entrance?: boolean) => void, private intro = true, private clock?: () => number) {
+     this.state = { phase: "boot", scene: initial, destination: initial, serial: 0, map: false, mapStage: null, destinationMenu: false, unavailableDestination: null, error: null, quality: 0, movie: false, reduced: false, inspection: null };
+-    this.pose = initial === "hub" ? landingPose() : spawnPose(initial, true);
++    this.pose = initial === "hub" && intro ? landingPose() : spawnPose(initial, true);
+     this.from = { ...this.pose }; this.to = spawnPose(initial);
+     this.onArrival = onArrival;
+   }
+   getSnapshot = () => this.state;
+   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
+-  private publish(update: Partial<Snapshot>) { this.state = { ...this.state, ...update }; this.listeners.forEach((fn) => fn()); }
++  private publish(update: Partial<Snapshot>) {
++    if (this.clock && (update.phase !== undefined || update.movie !== undefined || update.mapStage !== undefined)) this.activatedAt = this.clock();
++    this.state = { ...this.state, ...update }; this.listeners.forEach((fn) => fn()); }
+   clearInput() { this.input.forward = this.input.strafe = this.input.lookX = this.input.lookY = 0; this.vx = this.vz = 0; }
+   setMap(map: boolean) {
+     if (map) {
+@@ -114,9 +125,10 @@ export class ImmersiveRuntime {
+   setMovie(movie: boolean) {
+     if (movie === this.state.movie) return;
+     if (movie && (this.state.map || this.state.destinationMenu || this.state.phase !== "local")) return;
++    const restoring = !this.state.movie && this.focusFrom !== null;
+     this.clearInput(); this.focusFrom = { ...this.pose }; this.focusTime = 0;
+     // Return to exactly the visitor's bounded viewing pose when playback exits.
+-    if (movie) this.from = { ...this.pose };
++    if (movie && !restoring) this.from = { ...this.pose };
+     this.to = movie ? filmPose() : { ...this.from };
+     this.publish({ movie });
+   }
+@@ -143,6 +155,7 @@ export class ImmersiveRuntime {
+     this.targetEntrance = id === "entrance";
+     this.externalRoute = external ? option.href : null;
+     this.source = source; this.elapsed = 0; this.ready = false;
++    this.departureOpacity = this.opacity;
+     this.departureVx = source === "physical" ? this.vx : 0;
+     this.departureVz = source === "physical" ? this.vz : 0;
+     this.from = { ...this.pose };
+@@ -166,7 +179,7 @@ export class ImmersiveRuntime {
+       if (pending) this.requestDestination(pending.id, pending.source);
+     }
+     if (this.state.phase === "boot") {
+-      if (this.state.scene === "hub") { this.opacity = 0; this.publish({ phase: "landing" }); }
++      if (this.state.scene === "hub" && this.intro) { this.opacity = 0; this.publish({ phase: "landing" }); }
+       else this.beginArrival();
+     }
+   }
+@@ -191,10 +204,22 @@ export class ImmersiveRuntime {
+     this.publish({ phase: "arrival" });
+   }
+   tick(delta: number) {
+-    if (this.suspended || ["error", "context-lost", "recovering"].includes(this.state.phase)) return;
+-    const dt = Math.min(delta, 0.05); // restoring a background tab cannot teleport the player
++    this.activeFrameDelta = 0;
++    if (this.suspended || !Number.isFinite(delta) || delta < 0) return;
++    if (this.resumed) { this.resumed = false; this.activatedAt = null; return; }
++    this.activeFrameDelta = delta;
++    if (["error", "context-lost", "recovering"].includes(this.state.phase)) return;
++    let cinematicDelta = delta;
++    if (this.activatedAt !== null && this.clock) {
++      cinematicDelta = Math.min(delta, Math.max(0, this.clock() - this.activatedAt));
++      this.activatedAt = null;
++    }
++    const dt = Math.min(delta, 0.05); // locomotion never catches up across a long frame
+     const phase = this.state.phase;
+-    this.elapsed += dt;
++    const cameraTravel = ["entrance", "departure", "arrival"].includes(phase) ||
++      (phase === "local" && (!!this.focusFrom || this.state.mapStage === "ascent" || this.state.mapStage === "descent"));
++    this.frameGapCover = cameraTravel && cinematicDelta > 0.5 ? 1 : Math.max(0, this.frameGapCover - dt / 0.4);
++    this.elapsed += cinematicDelta;
+     if (phase === "entrance") {
+       if (this.reduced) { this.opacity = 1; Object.assign(this.pose, spawnPose("hub")); }
+       else {
+@@ -211,11 +236,11 @@ export class ImmersiveRuntime {
+         this.pose.x = this.pose.z > world.tunnel.startZ ? mix(points[i][0],points[i+1][0],t) : tunnelCenter(this.pose.z);
+         const dx = tunnelCenter(Math.min(world.tunnel.startZ,this.pose.z - 0.5)) - this.pose.x;
+         const heading = Math.atan2(-dx,0.5);
+-        this.pose.yaw += Math.atan2(Math.sin(heading-this.pose.yaw),Math.cos(heading-this.pose.yaw)) * (1-Math.exp(-8*dt));
++        this.pose.yaw += Math.atan2(Math.sin(heading-this.pose.yaw),Math.cos(heading-this.pose.yaw)) * (1-Math.exp(-8*cinematicDelta));
+         const exit = smooth(Math.max(0, (u - points.length + 3) / 2));
+         this.pose.pitch = mix(world.landing.pitch, world.hub.pitch, exit);
+       }
+-      if (this.elapsed >= (this.reduced ? 0.25 : 7.2)) { this.opacity = 0; Object.assign(this.pose, spawnPose("hub")); this.elapsed = 0; this.publish({ phase: "local" }); }
++      if (this.elapsed >= (this.reduced ? 0.25 : 7.2)) { this.opacity = 0; Object.assign(this.pose, spawnPose("hub")); this.elapsed = 0; this.publish({ phase: "local" }); this.onArrival?.("hub", "url"); }
+     } else if (phase === "departure") {
+       const duration = this.reduced ? 0.18 : this.source === "physical" ? connections[this.state.scene].departure : 0.3;
+       const u = Math.min(1, this.elapsed / duration);
+@@ -227,7 +252,7 @@ export class ImmersiveRuntime {
+         this.pose.x += this.departureVx * tangent;
+         this.pose.z += this.departureVz * tangent;
+       }
+-      this.opacity = smooth(Math.max(0, (u - 0.35) / 0.65));
++      this.opacity = mix(this.departureOpacity, 1, smooth(Math.max(0, (u - 0.35) / 0.65)));
+       if (u === 1) {
+         this.opacity = 1; this.elapsed = 0; this.ready = false;
+         this.departureMap = null;
+@@ -243,12 +268,12 @@ export class ImmersiveRuntime {
+       if (!this.reduced) blendPose(this.pose, this.from, this.to, smooth(u));
+       else Object.assign(this.pose, this.to);
+       this.opacity = 1 - smooth(Math.min(1, u * 1.5));
+-      if (u === 1) { this.opacity = 0; this.elapsed = 0; this.publish({ phase: this.targetEntrance ? "landing" : "local" }); this.onArrival?.(this.state.scene, this.source); }
++      if (u === 1) { this.opacity = 0; this.elapsed = 0; this.publish({ phase: this.targetEntrance ? "landing" : "local" }); this.onArrival?.(this.state.scene, this.source, this.targetEntrance); }
+     } else if (phase === "local") {
+       if (this.state.inspection) return;
+       if (this.state.map) {
+         const direction = this.state.mapStage === "descent" ? -1 : this.state.mapStage === "ascent" ? 1 : 0;
+-        this.mapProgress = Math.max(0, Math.min(1, this.mapProgress + direction * dt / (this.reduced ? 0.18 : direction > 0 ? 1.4 : 1.1)));
++        this.mapProgress = Math.max(0, Math.min(1, this.mapProgress + direction * cinematicDelta / (this.reduced ? 0.18 : direction > 0 ? 1.4 : 1.1)));
+         if (direction > 0 && this.mapProgress === 1) this.publish({ mapStage: "open" });
+         if (direction < 0 && this.mapProgress === 0) {
+           if (this.mapSaved) Object.assign(this.pose,this.mapSaved);
+@@ -257,7 +282,7 @@ export class ImmersiveRuntime {
+         return;
+       }
+       if (this.focusFrom) {
+-        this.focusTime += dt;
++        this.focusTime += cinematicDelta;
+         const u = Math.min(1, this.focusTime / (this.reduced ? 0.01 : 0.9));
+         blendPose(this.pose, this.focusFrom, this.to, smooth(u));
+         if (u === 1) { Object.assign(this.pose, this.to); this.focusFrom = null; }
+diff --git a/components/landing-page/stage3d/Crowd.tsx b/components/landing-page/stage3d/Crowd.tsx
+index 0b3396d..550172c 100644
+--- a/components/landing-page/stage3d/Crowd.tsx
++++ b/components/landing-page/stage3d/Crowd.tsx
+@@ -3,6 +3,7 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "re
+ import { useLoader } from "@react-three/fiber";
+ import * as THREE from "three";
+ import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
++import { disposeUnpublishedPoses } from "./poseResources";
+ import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
+ 
+ /**
+@@ -47,35 +48,33 @@ function bakePose(root: THREE.Object3D, clips: THREE.AnimationClip[], time: numb
+   root.updateMatrixWorld(true);
+ 
+   const geoms: THREE.BufferGeometry[] = [];
+-  const v = new THREE.Vector3();
+-  root.traverse((o) => {
+-    const sm = o as THREE.SkinnedMesh;
+-    if (!sm.isSkinnedMesh) return;
+-    sm.skeleton.update();
+-    const src = sm.geometry;
+-    const pos = src.attributes.position as THREE.BufferAttribute;
+-    const baked = new Float32Array(pos.count * 3);
+-    for (let i = 0; i < pos.count; i++) {
+-      v.fromBufferAttribute(pos, i);
+-      sm.applyBoneTransform(i, v); // CPU skinning at this animation frame
+-      v.applyMatrix4(sm.matrixWorld);
+-      baked.set([v.x, v.y, v.z], i * 3);
+-    }
+-    const g = new THREE.BufferGeometry();
+-    g.setAttribute("position", new THREE.BufferAttribute(baked, 3));
+-    if (src.index) g.setIndex(src.index.clone());
+-    geoms.push(g);
+-  });
+-  mixer.stopAllAction();
+-
+-  const merged = mergeGeometries(geoms, false)!;
+-  merged.computeVertexNormals();
+-  merged.computeBoundingBox();
+-  const bb = merged.boundingBox!;
+-  const height = bb.max.y - bb.min.y;
+-  merged.translate(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2);
+-  merged.scale(1 / height, 1 / height, 1 / height);
+-  return merged;
++  let merged: THREE.BufferGeometry | null = null;
++  try {
++    const v = new THREE.Vector3();
++    root.traverse((o) => {
++      const sm = o as THREE.SkinnedMesh;
++      if (!sm.isSkinnedMesh) return;
++      sm.skeleton.update();
++      const src = sm.geometry, pos = src.attributes.position as THREE.BufferAttribute;
++      const baked = new Float32Array(pos.count * 3);
++      for (let i = 0; i < pos.count; i++) {
++        v.fromBufferAttribute(pos, i); sm.applyBoneTransform(i, v); v.applyMatrix4(sm.matrixWorld);
++        baked.set([v.x, v.y, v.z], i * 3);
++      }
++      const geometry = new THREE.BufferGeometry(); geoms.push(geometry);
++      geometry.setAttribute("position", new THREE.BufferAttribute(baked, 3));
++      if (src.index) geometry.setIndex(src.index.clone());
++    });
++    merged = mergeGeometries(geoms, false);
++    if (!merged) throw new Error("Crowd pose could not be merged");
++    merged.computeVertexNormals(); merged.computeBoundingBox();
++    const bb = merged.boundingBox!, height = bb.max.y - bb.min.y;
++    if (!Number.isFinite(height) || height <= 0) throw new Error("Invalid crowd pose height");
++    merged.translate(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2);
++    merged.scale(1 / height, 1 / height, 1 / height);
++    return merged;
++  } catch (error) { merged?.dispose(); throw error; }
++  finally { geoms.forEach(geometry => geometry.dispose()); mixer.stopAllAction(); mixer.uncacheRoot(root); }
+ }
+ 
+ type Person = { x: number; z: number; h: number; yaw: number; variant: number };
+@@ -88,6 +87,16 @@ type Person = { x: number; z: number; h: number; yaw: number; variant: number };
+  * client-side navigation precisely because it lives at module scope.
+  */
+ let warmBaked: THREE.BufferGeometry[] | null = null;
++function publishPoses(out: THREE.BufferGeometry[]) {
++  if (!warmBaked) warmBaked = out;
++  else if (warmBaked !== out) disposeUnpublishedPoses(out, warmBaked);
++  return warmBaked;
++}
++function bakeAll(man: GLTF, woman: GLTF) {
++  const out: THREE.BufferGeometry[] = [];
++  try { for (const gltf of [man, woman]) for (const time of POSE_TIMES) out.push(bakePose(gltf.scene, gltf.animations, time)); return publishPoses(out); }
++  catch (error) { disposeUnpublishedPoses(out, warmBaked); throw error; }
++}
+ 
+ /** Pre-bake the crowd off the critical path. Safe to call repeatedly. */
+ let warming: Promise<void> | null = null;
+@@ -107,12 +116,13 @@ export function warmCrowd(): Promise<void> {
+       [woman, POSE_TIMES[1]],
+     ];
+     const out: THREE.BufferGeometry[] = [];
+-    for (const [gltf, t] of jobs) {
+-      // spaced out so the page hosting the warm-up never feels it
+-      await new Promise((r) => setTimeout(r, 150));
+-      out.push(bakePose(gltf.scene, gltf.animations, t));
+-    }
+-    warmBaked = out;
++    try {
++      for (const [gltf, t] of jobs) {
++        await new Promise((r) => setTimeout(r, 150));
++        out.push(bakePose(gltf.scene, gltf.animations, t));
++      }
++      publishPoses(out);
++    } finally { disposeUnpublishedPoses(out, warmBaked); }
+   })().catch(() => {
+     warming = null; // a failed warm-up must not poison later attempts
+   }) as Promise<void>;
+@@ -153,15 +163,13 @@ export default function Crowd({
+     () =>
+       warmBaked ??
+       (immediate
+-        ? [
+-            ...POSE_TIMES.map((t) => bakePose(manGltf.scene, manGltf.animations, t)),
+-            ...POSE_TIMES.map((t) => bakePose(womanGltf.scene, womanGltf.animations, t)),
+-          ]
++        ? bakeAll(manGltf, womanGltf)
+         : null),
+     [immediate, manGltf, womanGltf]
+   );
+ 
+   const [chunked, setChunked] = useState<THREE.BufferGeometry[]>([]);
++  const [bakeError, setBakeError] = useState<Error | null>(null);
+   useEffect(() => {
+     if (immediate || syncVariants) return;
+     let alive = true;
+@@ -173,21 +181,19 @@ export default function Crowd({
+     ];
+     const out: THREE.BufferGeometry[] = [];
+     void (async () => {
+-      for (const [gltf, t] of jobs) {
+-        // a real gap, not just a yield: each bake ends with a GPU buffer
+-        // upload when its mesh mounts, and those need room to drain too
+-        await new Promise((r) => setTimeout(r, bakeDelayMs));
+-        if (!alive) return;
+-        const start = performance.now();
+-        out.push(bakePose(gltf.scene, gltf.animations, t));
+-        onBake?.(performance.now() - start);
+-        setChunked([...out]);
+-      }
+-      warmBaked = out; // whoever baked it, everyone after gets it for free
++      try {
++        for (const [gltf, t] of jobs) {
++          await new Promise((resolve) => setTimeout(resolve, bakeDelayMs));
++          if (!alive) return;
++          const start = performance.now();
++          out.push(bakePose(gltf.scene, gltf.animations, t));
++          onBake?.(performance.now() - start);
++        }
++        if (alive) setChunked(publishPoses(out));
++      } catch (error) { if (alive) setBakeError(error instanceof Error ? error : new Error(String(error))); }
++      finally { disposeUnpublishedPoses(out, warmBaked); }
+     })();
+-    return () => {
+-      alive = false;
+-    };
++    return () => { alive = false; disposeUnpublishedPoses(out, warmBaked); };
+   }, [immediate, syncVariants, manGltf, womanGltf, bakeDelayMs, onBake]);
+ 
+   // instanced meshes mount per-variant as bakes land, spreading the GPU
+@@ -195,7 +201,7 @@ export default function Crowd({
+   const variants = syncVariants ?? chunked;
+   useEffect(() => {
+     if (variants.length === 4) {
+-      warmBaked = variants;
++      publishPoses(variants);
+       onReady?.();
+     }
+   }, [variants, onReady]);
+@@ -258,6 +264,7 @@ export default function Crowd({
+   const silhouette = useMemo(() => new THREE.MeshLambertMaterial({ color: "#05060a" }), []);
+   useEffect(() => () => silhouette.dispose(), [silhouette]);
+ 
++  if (bakeError) throw bakeError;
+   return (
+     <group>
+       {variants.map((geo, vi) => (
+diff --git a/components/landing-page/stage3d/LEDScreens.tsx b/components/landing-page/stage3d/LEDScreens.tsx
+index 056ecc1..6ac764a 100644
+--- a/components/landing-page/stage3d/LEDScreens.tsx
++++ b/components/landing-page/stage3d/LEDScreens.tsx
+@@ -1,7 +1,8 @@
+ "use client";
+-import React, { useEffect, useMemo, useRef } from "react";
++import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from "react";
+ import { useFrame, useThree } from "@react-three/fiber";
+ import * as THREE from "three";
++import { retainVideoTexture } from "./videoTextureOwnership";
+ import { PALETTE, STAGE } from "./palette";
+ 
+ /**
+@@ -306,12 +307,20 @@ export default function LEDScreens({
+ 
+   // bind the shared video texture; the idle↔video blend animates in useFrame
+   const blankVideo = useMemo(() => materials[0].uniforms.uVideo.value as THREE.Texture, [materials]);
+-  useEffect(() => {
+-    if (videoTexture) { for (const m of materials) m.uniforms.uVideo.value = videoTexture; return; }
+-    // Stop sampling the released media texture after the existing exit fade.
+-    const timer = window.setTimeout(() => { for (const m of materials) m.uniforms.uVideo.value = blankVideo; }, 400);
+-    return () => window.clearTimeout(timer);
+-  }, [videoTexture, materials, blankVideo]);
++  const binding = useRef<{ texture: THREE.VideoTexture; release: () => void } | null>(null);
++  const detachVideo = useCallback(() => {
++    for (const material of materials) material.uniforms.uVideo.value = blankVideo;
++    const old = binding.current; binding.current = null;
++    old?.release(); // detach ALL sampler references before disposal is permitted
++  }, [materials, blankVideo]);
++  useLayoutEffect(() => {
++    if (!videoTexture) return; // retain during the existing render-driven exit fade
++    detachVideo();
++    binding.current = { texture: videoTexture, release: retainVideoTexture(videoTexture) };
++    for (const material of materials) material.uniforms.uVideo.value = videoTexture;
++    // Materials/binding stay stable until replacement or unmount, not a null prop.
++  }, [videoTexture, materials, blankVideo, detachVideo]);
++  useLayoutEffect(() => () => detachVideo(), [detachVideo]);
+ 
+   // fade timing: the texture prop now arrives with the first real playback
+   // frame, so the wall breathes up almost immediately; exit is quick
+@@ -349,6 +358,7 @@ export default function LEDScreens({
+     } else {
+       fadeStartAt.current = null;
+       fade.current = Math.max(0, fade.current - delta / FADE_OUT);
++      if (fade.current === 0 && binding.current) detachVideo();
+     }
+     // loading UI (spinner + label) eases in/out; the spin itself runs on uTime
+     loadFade.current += ((loadingRef.current ? 1 : 0) - loadFade.current) * Math.min(1, delta * 6);
+diff --git a/components/landing-page/stage3d/poseResources.ts b/components/landing-page/stage3d/poseResources.ts
+new file mode 100644
+index 0000000..37f69db
+--- /dev/null
++++ b/components/landing-page/stage3d/poseResources.ts
+@@ -0,0 +1,9 @@
++import type { BufferGeometry } from 'three';
++const released = new WeakSet<BufferGeometry>();
++/** Only unpublished operation-owned poses may be freed; the shared cache is protected. */
++export function disposeUnpublishedPoses(poses: readonly BufferGeometry[], cached: readonly BufferGeometry[] | null) {
++  for (const pose of poses) {
++    if (cached?.includes(pose) || released.has(pose)) continue;
++    released.add(pose); pose.dispose();
++  }
++}
+diff --git a/components/landing-page/stage3d/useStageVideo.ts b/components/landing-page/stage3d/useStageVideo.ts
+index 7a62289..f001220 100644
+--- a/components/landing-page/stage3d/useStageVideo.ts
++++ b/components/landing-page/stage3d/useStageVideo.ts
+@@ -1,43 +1,51 @@
+ "use client";
+ import { useCallback, useEffect, useRef, useState } from "react";
+ import * as THREE from "three";
++import { ownVideoTexture, retireVideoTexture } from "./videoTextureOwnership";
+ 
+ /** Extracted from ConcertStageHero: one video and texture for all LED panels. */
+-export function useStageVideo() {
++export function useStageVideo(onActiveChange?: (active: boolean) => void) {
++  const activeCallback = useRef(onActiveChange);
++  activeCallback.current = onActiveChange;
++  const listeners = useRef<(() => void) | null>(null);
+   const videoRef = useRef<HTMLVideoElement | null>(null);
+   const textureRef = useRef<THREE.VideoTexture | null>(null);
+   const [phase, setPhase] = useState<"idle" | "loading" | "playing">("idle");
+   const [pyroKey, setPyroKey] = useState(0);
+   const playTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+-  const disposalTimers = useRef(new Map<THREE.VideoTexture, ReturnType<typeof setTimeout>>());
++
+   const stopMovie = useCallback(() => {
+     if (playTimer.current !== null) clearTimeout(playTimer.current);
+     playTimer.current = null;
++    listeners.current?.(); listeners.current = null;
+     const video = videoRef.current;
+     if (video) { video.pause(); video.removeAttribute("src"); video.load(); }
+     const tex = textureRef.current;
+-    if (tex) disposalTimers.current.set(tex, setTimeout(() => { tex.dispose(); disposalTimers.current.delete(tex); }, 600));
+-    videoRef.current = null; textureRef.current = null; setPhase("idle");
++    if (tex) retireVideoTexture(tex);
++    videoRef.current = null; textureRef.current = null; activeCallback.current?.(false); setPhase("idle");
+   }, []);
+   useEffect(() => () => {
+     stopMovie();
+-    // Unmount owns every outstanding texture; do not leave timers/resources behind.
+-    disposalTimers.current.forEach((timer, tex) => { clearTimeout(timer); tex.dispose(); });
+-    disposalTimers.current.clear();
+   }, [stopMovie]);
+   const startMovie = useCallback(() => {
+     if (videoRef.current) return;
+     const video = document.createElement("video");
+     video.playsInline = true; video.preload = "none";
+     const tex = new THREE.VideoTexture(video);
++    ownVideoTexture(tex);
+     tex.colorSpace = THREE.SRGBColorSpace; tex.minFilter = THREE.LinearFilter;
+     videoRef.current = video; textureRef.current = tex;
+-    video.addEventListener("playing", () => {
++    const playing = () => {
+       if (videoRef.current !== video) return;
+       setPhase("playing"); setPyroKey((key) => key + 1);
+-    }, { once: true });
+-    video.addEventListener("ended", () => { if (videoRef.current === video) stopMovie(); });
+-    video.addEventListener("error", () => { if (videoRef.current === video) stopMovie(); });
++    };
++    const ended = () => { if (videoRef.current === video) stopMovie(); };
++    video.addEventListener("playing", playing, { once: true });
++    video.addEventListener("ended", ended); video.addEventListener("error", ended);
++    listeners.current = () => {
++      video.removeEventListener("playing", playing); video.removeEventListener("ended", ended); video.removeEventListener("error", ended);
++    };
++    activeCallback.current?.(true);
+     setPhase("loading");
+     // Preserve the original 900ms focus move and HTTP-range/progressive loading.
+     playTimer.current = setTimeout(() => {
+@@ -46,7 +54,7 @@ export function useStageVideo() {
+       video.play().catch(() => {
+         if (videoRef.current !== video) return;
+         video.muted = true;
+-        void video.play().catch(stopMovie);
++        void video.play().catch(() => { if (videoRef.current === video) stopMovie(); });
+       });
+     }, 900);
+   }, [stopMovie]);
+@@ -54,7 +62,7 @@ export function useStageVideo() {
+   const getStatus = useCallback(() => ({ phase, currentTime: videoRef.current?.currentTime ?? 0, paused: videoRef.current?.paused ?? true, muted: videoRef.current?.muted ?? false }), [phase]);
+   useEffect(() => {
+     if (phase === "idle") return;
+-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") stopMovie(); };
++    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" && !(e.target instanceof Element && e.target.closest("form, input, textarea, select, [contenteditable]:not([contenteditable=false])"))) stopMovie(); };
+     window.addEventListener("keydown", onKey);
+     return () => window.removeEventListener("keydown", onKey);
+   }, [phase, stopMovie]);
+diff --git a/components/landing-page/stage3d/videoTextureOwnership.ts b/components/landing-page/stage3d/videoTextureOwnership.ts
+new file mode 100644
+index 0000000..69e7c28
+--- /dev/null
++++ b/components/landing-page/stage3d/videoTextureOwnership.ts
+@@ -0,0 +1,20 @@
++import type { VideoTexture } from 'three';
++type Owner = { stopped: boolean; disposed: boolean; consumers: number };
++const owners = new WeakMap<VideoTexture, Owner>();
++function collect(texture: VideoTexture, owner: Owner) {
++  if (owner.stopped && owner.consumers === 0 && !owner.disposed) { owner.disposed = true; texture.dispose(); }
++}
++export function ownVideoTexture(texture: VideoTexture) { owners.set(texture, { stopped: false, disposed: false, consumers: 0 }); }
++/** LED samplers hold a lease until their rendered fade reaches zero and they detach. */
++export function retainVideoTexture(texture: VideoTexture): () => void {
++  const owner = owners.get(texture);
++  if (!owner) return () => {}; // non-owned external textures retain their caller's policy
++  if (owner.stopped || owner.disposed) throw new Error('Cannot bind a retired video texture');
++  owner.consumers++; let released = false;
++  return () => { if (released) return; released = true; owner.consumers--; collect(texture, owner); };
++}
++export function retireVideoTexture(texture: VideoTexture) {
++  const owner = owners.get(texture);
++  if (!owner) return;
++  owner.stopped = true; collect(texture, owner);
++}
+diff --git a/components/notFound.tsx b/components/notFound.tsx
+index acd313e..31b7bef 100644
+--- a/components/notFound.tsx
++++ b/components/notFound.tsx
+@@ -29,7 +29,7 @@ const NotFound: React.FC = () => {
+           alt="404 Illustration"
+           fill
+           className="object-contain object-center"
+-          priority
++          loading="lazy"
+           quality={100}
+           unoptimized
+         />
+diff --git a/package.json b/package.json
+index 4aba180..b9487ba 100644
+--- a/package.json
++++ b/package.json
+@@ -9,7 +9,8 @@
+     "prestart": "node scripts/dev/stop-stale-next.mjs",
+     "start": "next start",
+     "lint": "next lint",
+-    "test:immersive": "tsx --test tests/immersive/runtime.test.ts",
++    "test:immersive": "tsx --test tests/immersive/*.test.ts",
++    "test:immersive:browser": "node tests/immersive/stabilization.browser.mjs",
+     "perf:immersive": "node scripts/perf-gullyverse.mjs",
+     "test:payments": "tsx --test tests/payments/core.test.ts tests/payments/statements.test.ts tests/payments/jev.test.ts",
+     "test:payments:integration": "tsx tests/payments/integration.ts",
+@@ -25,6 +26,7 @@
+     "@fortawesome/react-fontawesome": "^0.2.2",
+     "@hookform/resolvers": "^3.9.1",
+     "@napi-rs/canvas": "^1.0.10",
++    "@next/env": "15.3.8",
+     "@next/third-parties": "15.3.8",
+     "@prisma/client": "^5.22.0",
+     "@radix-ui/react-accordion": "^1.2.1",
+@@ -68,6 +70,7 @@
+     "react-dom": "19.0.8",
+     "react-hook-form": "^7.53.2",
+     "react-icons": "^5.3.0",
++    "sharp": "0.34.5",
+     "sonner": "^2.0.7",
+     "tailwind-merge": "^2.4.0",
+     "tailwindcss-animate": "^1.0.7",
+diff --git a/public/models/gullyverse/blockout.layout.json b/public/models/gullyverse/blockout.layout.json
+index d95b851..594f892 100644
+--- a/public/models/gullyverse/blockout.layout.json
++++ b/public/models/gullyverse/blockout.layout.json
+@@ -24,7 +24,14 @@
+     "walkHalfWidth": 2,
+     "startZ": 0,
+     "endZ": -42,
+-    "centerline": [[0,0],[-2.2,-8],[-6,-16],[-6,-24],[-2.6,-34],[0,-42]],
++    "centerline": [
++      [0,0],
++      [-2.2,-8],
++      [-6,-16],
++      [-6,-24],
++      [-2.6,-34],
++      [0,-42]
++    ],
+     "profile": [
+       [-2.95,0],
+       [-2.85,1.35],
+@@ -70,26 +77,26 @@
+     "boundary": [
+       [-5,-42],
+       [5,-42],
+-      [18,-44],
+-      [38,-51],
+-      [60,-68],
+-      [76,-92],
+-      [80,-130],
+-      [74,-169],
+-      [59,-203],
+-      [40,-220],
+-      [7,-232],
+-      [-22,-230],
+-      [-50,-221],
+-      [-71,-196],
+-      [-82,-160],
+-      [-83,-122],
+-      [-74,-89],
+-      [-56,-65],
+-      [-31,-50],
++      [10.8,-43.3],
++      [22.8,-47.85],
++      [36.0,-58.9],
++      [45.6,-74.5],
++      [48.0,-99.2],
++      [44.4,-124.55],
++      [35.4,-146.65],
++      [24.0,-157.7],
++      [4.2,-165.5],
++      [-13.2,-164.2],
++      [-30.0,-158.35],
++      [-42.6,-142.1],
++      [-49.2,-118.7],
++      [-49.8,-94.0],
++      [-44.4,-72.55],
++      [-33.6,-56.95],
++      [-18.6,-47.2],
+       [-14,-42]
+     ],
+-    "wallHeights": [49,51,55,58,54,62,57,64,59,56,61,55,60,58,64,56,59,53,55,50],
++    "wallHeights": [31.85,33.15,35.75,37.7,35.1,40.3,37.05,41.6,38.35,36.4,39.65,35.75,39.0,37.7,41.6,36.4,38.35,34.45,35.75,32.5],
+     "benchHeights": [0,14,28,43],
+     "benchSetbacks": [0,1.2,3.5,6],
+     "ground": {
+@@ -98,7 +105,7 @@
+     }
+   },
+   "stage": {
+-    "origin": [-34,0,-184],
++    "origin": [-12,0,-134.3],
+     "yaw": 0,
+     "filmFocusLocal": [0,5.9,17],
+     "asset": "/models/breeze/aftermovie-stage.glb"
+@@ -112,37 +119,37 @@
+   "stalls": [
+     {
+       "id": "left-1",
+-      "position": [-46,0,-96],
++      "position": [-21.0,0,-65.4],
+       "size": [7,3.5,4],
+       "yaw": 1.5707963267948966
+     },
+     {
+       "id": "left-2",
+-      "position": [-51,0,-118],
++      "position": [-30.6,0,-91.4],
+       "size": [7,3.5,4],
+       "yaw": 1.5707963267948966
+     },
+     {
+       "id": "left-3",
+-      "position": [-49,0,-146],
++      "position": [-29.4,0,-100],
+       "size": [7,3.5,4],
+       "yaw": 1.5707963267948966
+     },
+     {
+       "id": "right-1",
+-      "position": [45,0,-96],
++      "position": [21.6,0,-65.4],
+       "size": [7,3.5,4],
+       "yaw": -1.5707963267948966
+     },
+     {
+       "id": "right-2",
+-      "position": [51,0,-118],
++      "position": [30.6,0,-91.4],
+       "size": [7,3.5,4],
+       "yaw": -1.5707963267948966
+     },
+     {
+       "id": "right-3",
+-      "position": [48,0,-146],
++      "position": [28.8,0,-109.6],
+       "size": [7,3.5,4],
+       "yaw": -1.5707963267948966
+     }
+@@ -151,8 +158,8 @@
+     {
+       "id": "stage",
+       "label": "Main Stage / Aftermovie",
+-      "position": [-34,0,-184],
+-      "anchor": [-32.5,1.72,-160.5],
++      "position": [-12,0,-134.3],
++      "anchor": [-10.5,1.72,-110.8],
+       "size": [34,12,30],
+       "yaw": 0,
+       "href": "/aftermovie",
+@@ -162,8 +169,8 @@
+       "id": "team",
+       "interactionRadius": 3,
+       "label": "Team",
+-      "position": [-35,0,-78],
+-      "anchor": [-29,1.72,-78],
++      "position": [-27.6,0,-77.1],
++      "anchor": [-24.0,1.72,-77.1],
+       "size": [8,3.8,1.2],
+       "yaw": 1.5707963267948966,
+       "href": "/team",
+@@ -173,8 +180,8 @@
+       "id": "contact",
+       "interactionRadius": 3,
+       "label": "Contact Us",
+-      "position": [36,0,-78],
+-      "anchor": [30,1.72,-78],
++      "position": [27.0,0,-77.1],
++      "anchor": [23.4,1.72,-77.1],
+       "size": [7,3.5,4],
+       "yaw": -1.5707963267948966,
+       "href": "/get-in-touch",
+@@ -183,8 +190,8 @@
+     {
+       "id": "events",
+       "label": "Events",
+-      "position": [-58,0,-131],
+-      "anchor": [-49,1.72,-131],
++      "position": [-41,0,-99.85],
++      "anchor": [-36,1.72,-99.85],
+       "size": [12,0.15,10],
+       "yaw": 0,
+       "href": "/events",
+@@ -193,8 +200,8 @@
+     {
+       "id": "sponsors",
+       "label": "Past Sponsors",
+-      "position": [58,0,-132],
+-      "anchor": [49,1.72,-132],
++      "position": [34.8,0,-100.5],
++      "anchor": [29.4,1.72,-100.5],
+       "size": [12,0.15,10],
+       "yaw": 0,
+       "href": "/sponsors",
+@@ -203,8 +210,8 @@
+     {
+       "id": "accommodation",
+       "label": "Accommodation",
+-      "position": [44,0,-175],
+-      "anchor": [35,1.72,-175],
++      "position": [26.4,0,-128.45],
++      "anchor": [21.0,1.72,-128.45],
+       "size": [14,0.15,12],
+       "yaw": 0,
+       "href": null,
+@@ -218,36 +225,81 @@
+       "count": 8
+     },
+     "circulation": {
+-      "center": [13,-116],
+-      "size": [18,43],
++      "center": [7.8,-90.1],
++      "size": [10.8,27.95],
+       "count": 32
+     },
+     "stallGroupCount": 5,
+     "stageFarCount": 260
+   },
+   "hub": {
+-    "movementBoundary": [[-8,-44],[8,-44],[18,-49],[18,-59],[8,-64],[-8,-64],[-18,-59],[-18,-49]],
++    "movementBoundary": [
++      [-9,-42],
++      [9,-42],
++      [20,-47.5],
++      [20,-67],
++      [16,-73],
++      [-16,-73],
++      [-20,-67],
++      [-20,-47.5]
++    ],
+     "travelZones": [
+-      {"id":"aftermovie","sign":null,"edge":0,"range":[0.2,0.8]},
+-      {"id":"events","edge":5,"range":[0.1,0.6]},
+-      {"id":"team","edge":0,"range":[0.015,0.165]},
+-      {"id":"contact","edge":0,"range":[0.835,0.985]},
+-      {"id":"sponsors","edge":3,"range":[0.4,0.9]}
++      {
++        "id": "aftermovie",
++        "sign": null,
++        "edge": 0,
++        "range": [0.2,0.8]
++      },
++      {
++        "id": "events",
++        "edge": 5,
++        "range": [0.15,0.85]
++      },
++      {
++        "id": "team",
++        "edge": 0,
++        "range": [0.015,0.165]
++      },
++      {
++        "id": "contact",
++        "edge": 0,
++        "range": [0.835,0.985]
++      },
++      {
++        "id": "sponsors",
++        "edge": 3,
++        "range": [0.15,0.85]
++      },
++      {
++        "id": "aftermovie",
++        "sign": null,
++        "edge": 4,
++        "range": [0.2,0.8]
++      }
+     ],
+     "spawn": [0,1.72,-51],
+     "arrivalStart": [0,1.72,-46],
+     "yaw": 0,
+     "pitch": 0.2,
+-    "bounds": [-18,18,-64,-44]
++    "bounds": [-20,20,-73,-42]
+   },
+   "aftermovie": {
+-    "movementBoundary": [[-41.2,-156],[-26.8,-156],[-26,-156.8],[-26,-167.4],[-26.8,-168.2],[-41.2,-168.2],[-42,-167.4],[-42,-156.8]],
++    "movementBoundary": [
++      [-20.2,-105.3],
++      [-3.8,-105.3],
++      [-3.0,-106.1],
++      [-3.0,-118.7],
++      [-3.8,-119.5],
++      [-20.2,-119.5],
++      [-21.0,-118.7],
++      [-21.0,-106.1]
++    ],
+     "returnSignLocal": [6,2.8,27.8],
+-    "spawn": [-32.5,1.72,-160.5],
+-    "arrivalStart": [-32.5,1.72,-156.5],
++    "spawn": [-10.5,1.72,-110.8],
++    "arrivalStart": [-10.5,1.72,-106.8],
+     "yaw": 0,
+     "pitch": 0.16,
+-    "bounds": [-42,-26,-168.2,-156]
++    "bounds": [-21.0,-3.0,-119.5,-105.3]
+   },
+   "cameras": [
+     {
+@@ -295,36 +347,36 @@
+     {
+       "id": "quarry",
+       "position": [0,1.72,-51],
+-      "target": [0,6.6,-120],
++      "target": [0.0,6.6,-92.7],
+       "fov": 58
+     },
+     {
+       "id": "left-stalls",
+-      "position": [-30,1.72,-89],
+-      "target": [-45,2.2,-112],
++      "position": [-18.0,1.72,-72.55],
++      "target": [-27.0,2.2,-87.5],
+       "fov": 58
+     },
+     {
+       "id": "right-stalls",
+-      "position": [29,1.72,-89],
+-      "target": [44,2.2,-112],
++      "position": [17.4,1.72,-72.55],
++      "target": [26.4,2.2,-87.5],
+       "fov": 58
+     },
+     {
+       "id": "overview",
+-      "position": [0,215,-104],
+-      "target": [0,0,-104],
++      "position": [0,145,-77],
++      "target": [0,0,-77],
+       "fov": 65
+     },
+     {
+       "id": "stage-front",
+-      "position": [-32.5,1.72,-160.5],
+-      "target": [-34,5.9,-178],
++      "position": [-10.5,1.72,-110.8],
++      "target": [-12.0,5.9,-128.3],
+       "fov": 58
+     },
+     {
+       "id": "stage-return",
+-      "position": [-32.5,1.72,-158],
++      "position": [-10.5,1.72,-108.3],
+       "target": [0,5,-42],
+       "fov": 58
+     }

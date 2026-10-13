@@ -1,0 +1,1579 @@
+{
+  "checks": [
+    {
+      "name": "Actual context loss/recovery preserves authored quarry, pose and Canvas",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 161,
+            "triangles": 150826,
+            "textures": 28,
+            "geometries": 222,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 6699.70000000298,
+            "scene": "hub",
+            "geometries": 222,
+            "textures": 28,
+            "activeGeometryBytes": 18066984,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 80685106
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 32,
+                  "deleted": 0,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 1006,
+                  "deleted": 0,
+                  "active": 1006
+                },
+                "Program": {
+                  "created": 22,
+                  "deleted": 0,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 44,
+                  "deleted": 40,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 222,
+                  "deleted": 0,
+                  "active": 222
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 0,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 27,
+            "variant": "quarry",
+            "lodSelections": {
+              "2": 0,
+              "3": 0,
+              "4": 1,
+              "5": 2,
+              "6": 2,
+              "7": 2,
+              "8": 2,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 2,
+              "13": 2,
+              "14": 2,
+              "15": 2,
+              "16": 2,
+              "17": 2,
+              "18": 2,
+              "19": 2,
+              "20": 2,
+              "21": 2,
+              "22": 2,
+              "23": 2,
+              "24": 1,
+              "25": 0,
+              "26": 0,
+              "Quarry_Exit": 0,
+              "Quarry_Crown": 0
+            },
+            "lodPixels": {
+              "2": 101403.96785460635,
+              "3": 13272.489587343378,
+              "4": 609.7929676976114,
+              "5": 321.01807017628875,
+              "6": 207.47909249135293,
+              "7": 155.95043256052602,
+              "8": 153.74315696853054,
+              "9": 105.07709932848141,
+              "10": 99.1674036637573,
+              "11": 95.22646265257164,
+              "12": 71.46514359849317,
+              "13": 76.69873598877231,
+              "14": 79.07447939942398,
+              "15": 67.60920806980867,
+              "16": 78.87770373463069,
+              "17": 91.22461716686416,
+              "18": 90.42095380078995,
+              "19": 122.48965414420368,
+              "20": 145.18823072424027,
+              "21": 151.66656156499394,
+              "22": 245.44098498603054,
+              "23": 303.88920833096677,
+              "24": 584.6336392723908,
+              "25": 1754.964355190943,
+              "26": 87835.47874938289,
+              "Quarry_Exit": 151386.13266914143,
+              "Quarry_Crown": 155666.40222423943
+            },
+            "selectedNodes": [
+              "Quarry_Crown_LOD0",
+              "Quarry_Exit_LOD0",
+              "Quarry_Rock_02_LOD0",
+              "Quarry_Rock_03_LOD0",
+              "Quarry_Rock_25_LOD0",
+              "Quarry_Rock_26_LOD0",
+              "Quarry_Rock_04_LOD1",
+              "Quarry_Rock_24_LOD1",
+              "Quarry_Rock_05_LOD2",
+              "Quarry_Rock_06_LOD2",
+              "Quarry_Rock_07_LOD2",
+              "Quarry_Rock_08_LOD2",
+              "Quarry_Rock_09_LOD2",
+              "Quarry_Rock_10_LOD2",
+              "Quarry_Rock_11_LOD2",
+              "Quarry_Rock_12_LOD2",
+              "Quarry_Rock_13_LOD2",
+              "Quarry_Rock_14_LOD2",
+              "Quarry_Rock_15_LOD2",
+              "Quarry_Rock_16_LOD2",
+              "Quarry_Rock_17_LOD2",
+              "Quarry_Rock_18_LOD2",
+              "Quarry_Rock_19_LOD2",
+              "Quarry_Rock_20_LOD2",
+              "Quarry_Rock_21_LOD2",
+              "Quarry_Rock_22_LOD2",
+              "Quarry_Rock_23_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 623.7000000029802,
+                "event": "load-start"
+              },
+              {
+                "at": 1807.5,
+                "event": "parse-ready",
+                "ms": 49,
+                "decodedBytes": 18236508
+              },
+              {
+                "at": 1808.1000000014901,
+                "event": "load-ready",
+                "ms": 1184.6000000014901
+              },
+              {
+                "at": 1850.7000000029802,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 9.400000005960464
+              },
+              {
+                "at": 1890.7000000029802,
+                "event": "shader-compile",
+                "ms": 40
+              },
+              {
+                "at": 3845.60000000149,
+                "event": "covered-ready",
+                "revision": 0,
+                "ms": 2004.7999999970198,
+                "lighting": "hub"
+              },
+              {
+                "at": 3959.60000000149,
+                "event": "part-lod-change",
+                "part": "2",
+                "from": 2,
+                "to": 0,
+                "pixels": 101403.96785460635,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3959.7000000029802,
+                "event": "part-lod-change",
+                "part": "3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1582.8377563488796,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3959.7999999970198,
+                "event": "part-lod-change",
+                "part": "4",
+                "from": 2,
+                "to": 1,
+                "pixels": 450.25518170897215,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960,
+                "event": "part-lod-change",
+                "part": "24",
+                "from": 2,
+                "to": 1,
+                "pixels": 433.83863511745284,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 2,
+                "to": 1,
+                "pixels": 951.0452832644221,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960,
+                "event": "part-lod-change",
+                "part": "26",
+                "from": 2,
+                "to": 0,
+                "pixels": 87835.47874938289,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960,
+                "event": "part-lod-change",
+                "part": "Quarry_Exit",
+                "from": 2,
+                "to": 0,
+                "pixels": 151386.13266914143,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960.39999999851,
+                "event": "part-lod-change",
+                "part": "Quarry_Crown",
+                "from": 2,
+                "to": 0,
+                "pixels": 155666.40222423943,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5841.20000000298,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 1,
+                "to": 0,
+                "pixels": 1104.665447512671,
+                "quality": 3,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 2,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "after": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 161,
+            "triangles": 150826,
+            "textures": 28,
+            "geometries": 220,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 11604.39999999851,
+            "scene": "hub",
+            "geometries": 220,
+            "textures": 28,
+            "activeGeometryBytes": 18066984,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 59044467
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 64,
+                  "deleted": 0,
+                  "active": 64
+                },
+                "Buffer": {
+                  "created": 2004,
+                  "deleted": 0,
+                  "active": 2004
+                },
+                "Program": {
+                  "created": 44,
+                  "deleted": 0,
+                  "active": 44
+                },
+                "Shader": {
+                  "created": 88,
+                  "deleted": 80,
+                  "active": 8
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 442,
+                  "deleted": 0,
+                  "active": 442
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 1,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 27,
+            "variant": "quarry",
+            "lodSelections": {
+              "2": 0,
+              "3": 0,
+              "4": 1,
+              "5": 2,
+              "6": 2,
+              "7": 2,
+              "8": 2,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 2,
+              "13": 2,
+              "14": 2,
+              "15": 2,
+              "16": 2,
+              "17": 2,
+              "18": 2,
+              "19": 2,
+              "20": 2,
+              "21": 2,
+              "22": 2,
+              "23": 2,
+              "24": 1,
+              "25": 0,
+              "26": 0,
+              "Quarry_Exit": 0,
+              "Quarry_Crown": 0
+            },
+            "lodPixels": {
+              "2": 101403.96785460635,
+              "3": 13272.489587343378,
+              "4": 609.7929676976114,
+              "5": 321.01807017628875,
+              "6": 207.47909249135293,
+              "7": 155.95043256052602,
+              "8": 153.74315696853054,
+              "9": 105.07709932848141,
+              "10": 99.1674036637573,
+              "11": 95.22646265257164,
+              "12": 71.46514359849317,
+              "13": 76.69873598877231,
+              "14": 79.07447939942398,
+              "15": 67.60920806980867,
+              "16": 78.87770373463069,
+              "17": 91.22461716686416,
+              "18": 90.42095380078995,
+              "19": 122.48965414420368,
+              "20": 145.18823072424027,
+              "21": 151.66656156499394,
+              "22": 245.44098498603054,
+              "23": 303.88920833096677,
+              "24": 584.6336392723908,
+              "25": 1754.964355190943,
+              "26": 87835.47874938289,
+              "Quarry_Exit": 151386.13266914143,
+              "Quarry_Crown": 155666.40222423943
+            },
+            "selectedNodes": [
+              "Quarry_Crown_LOD0",
+              "Quarry_Exit_LOD0",
+              "Quarry_Rock_02_LOD0",
+              "Quarry_Rock_03_LOD0",
+              "Quarry_Rock_25_LOD0",
+              "Quarry_Rock_26_LOD0",
+              "Quarry_Rock_04_LOD1",
+              "Quarry_Rock_24_LOD1",
+              "Quarry_Rock_05_LOD2",
+              "Quarry_Rock_06_LOD2",
+              "Quarry_Rock_07_LOD2",
+              "Quarry_Rock_08_LOD2",
+              "Quarry_Rock_09_LOD2",
+              "Quarry_Rock_10_LOD2",
+              "Quarry_Rock_11_LOD2",
+              "Quarry_Rock_12_LOD2",
+              "Quarry_Rock_13_LOD2",
+              "Quarry_Rock_14_LOD2",
+              "Quarry_Rock_15_LOD2",
+              "Quarry_Rock_16_LOD2",
+              "Quarry_Rock_17_LOD2",
+              "Quarry_Rock_18_LOD2",
+              "Quarry_Rock_19_LOD2",
+              "Quarry_Rock_20_LOD2",
+              "Quarry_Rock_21_LOD2",
+              "Quarry_Rock_22_LOD2",
+              "Quarry_Rock_23_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 623.7000000029802,
+                "event": "load-start"
+              },
+              {
+                "at": 1807.5,
+                "event": "parse-ready",
+                "ms": 49,
+                "decodedBytes": 18236508
+              },
+              {
+                "at": 1808.1000000014901,
+                "event": "load-ready",
+                "ms": 1184.6000000014901
+              },
+              {
+                "at": 1850.7000000029802,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 9.400000005960464
+              },
+              {
+                "at": 1890.7000000029802,
+                "event": "shader-compile",
+                "ms": 40
+              },
+              {
+                "at": 3845.60000000149,
+                "event": "covered-ready",
+                "revision": 0,
+                "ms": 2004.7999999970198,
+                "lighting": "hub"
+              },
+              {
+                "at": 3959.60000000149,
+                "event": "part-lod-change",
+                "part": "2",
+                "from": 2,
+                "to": 0,
+                "pixels": 101403.96785460635,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3959.7000000029802,
+                "event": "part-lod-change",
+                "part": "3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1582.8377563488796,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3959.7999999970198,
+                "event": "part-lod-change",
+                "part": "4",
+                "from": 2,
+                "to": 1,
+                "pixels": 450.25518170897215,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960,
+                "event": "part-lod-change",
+                "part": "24",
+                "from": 2,
+                "to": 1,
+                "pixels": 433.83863511745284,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 2,
+                "to": 1,
+                "pixels": 951.0452832644221,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960,
+                "event": "part-lod-change",
+                "part": "26",
+                "from": 2,
+                "to": 0,
+                "pixels": 87835.47874938289,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960,
+                "event": "part-lod-change",
+                "part": "Quarry_Exit",
+                "from": 2,
+                "to": 0,
+                "pixels": 151386.13266914143,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 3960.39999999851,
+                "event": "part-lod-change",
+                "part": "Quarry_Crown",
+                "from": 2,
+                "to": 0,
+                "pixels": 155666.40222423943,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 5841.20000000298,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 1,
+                "to": 0,
+                "pixels": 1104.665447512671,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7879.29999999702,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 7893,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 8.200000002980232
+              },
+              {
+                "at": 7921.89999999851,
+                "event": "shader-compile",
+                "ms": 28.899999998509884
+              },
+              {
+                "at": 9757.79999999702,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 1873.2000000029802,
+                "lighting": "hub"
+              },
+              {
+                "at": 9900.89999999851,
+                "event": "part-lod-change",
+                "part": "2",
+                "from": 2,
+                "to": 0,
+                "pixels": 101403.96785460635,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 9900.89999999851,
+                "event": "part-lod-change",
+                "part": "3",
+                "from": 2,
+                "to": 0,
+                "pixels": 13272.489587343378,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 9900.89999999851,
+                "event": "part-lod-change",
+                "part": "4",
+                "from": 2,
+                "to": 1,
+                "pixels": 609.7929676976114,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 9900.89999999851,
+                "event": "part-lod-change",
+                "part": "24",
+                "from": 2,
+                "to": 1,
+                "pixels": 584.6336392723908,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 9900.89999999851,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 2,
+                "to": 0,
+                "pixels": 1754.964355190943,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 9900.89999999851,
+                "event": "part-lod-change",
+                "part": "26",
+                "from": 2,
+                "to": 0,
+                "pixels": 87835.47874938289,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 9900.89999999851,
+                "event": "part-lod-change",
+                "part": "Quarry_Exit",
+                "from": 2,
+                "to": 0,
+                "pixels": 151386.13266914143,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 9900.89999999851,
+                "event": "part-lod-change",
+                "part": "Quarry_Crown",
+                "from": 2,
+                "to": 0,
+                "pixels": 155666.40222423943,
+                "quality": 3,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 2,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "countersExcludedFromLeakChecks": true
+      }
+    },
+    {
+      "name": "Failed quarry load safely restores original geometry; retry succeeds",
+      "status": "PASS",
+      "evidence": {
+        "failed": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 141,
+            "triangles": 93430,
+            "textures": 25,
+            "geometries": 143,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 4951.5999999940395,
+            "scene": "hub",
+            "geometries": 143,
+            "textures": 25,
+            "activeGeometryBytes": 1787492,
+            "activeTextureBytesEstimate": 45027332,
+            "jsHeapBytes": 37296702
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 29,
+                  "deleted": 0,
+                  "active": 29
+                },
+                "Buffer": {
+                  "created": 528,
+                  "deleted": 0,
+                  "active": 528
+                },
+                "Program": {
+                  "created": 22,
+                  "deleted": 0,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 44,
+                  "deleted": 40,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 143,
+                  "deleted": 0,
+                  "active": 143
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "off",
+              "busy": false,
+              "assetReady": false,
+              "revision": 1,
+              "error": "TypeError: Failed to fetch"
+            },
+            "consumers": 0,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 0,
+            "variant": "quarry",
+            "lodSelections": {},
+            "lodPixels": {},
+            "selectedNodes": [],
+            "trace": [
+              {
+                "at": 704.0999999940395,
+                "event": "load-start"
+              },
+              {
+                "at": 750.5999999940395,
+                "event": "load-failed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 1391.2999999970198,
+                "event": "texture-init",
+                "count": 0,
+                "ms": 0
+              },
+              {
+                "at": 1432,
+                "event": "shader-compile",
+                "ms": 40.600000001490116
+              },
+              {
+                "at": 1922,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 530.6000000014901,
+                "lighting": "hub"
+              }
+            ],
+            "assetMaterials": 0,
+            "assetTextures": 0,
+            "decodedTextureEstimate": 0
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "retried": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 161,
+            "triangles": 150826,
+            "textures": 28,
+            "geometries": 222,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 7310.39999999851,
+            "scene": "hub",
+            "geometries": 168,
+            "textures": 28,
+            "activeGeometryBytes": 18066984,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 90962618
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 32,
+                  "deleted": 0,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 1018,
+                  "deleted": 12,
+                  "active": 1006
+                },
+                "Program": {
+                  "created": 23,
+                  "deleted": 1,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 46,
+                  "deleted": 42,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 225,
+                  "deleted": 3,
+                  "active": 222
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 2,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 27,
+            "variant": "quarry",
+            "lodSelections": {
+              "2": 0,
+              "3": 0,
+              "4": 1,
+              "5": 2,
+              "6": 2,
+              "7": 2,
+              "8": 2,
+              "9": 2,
+              "10": 2,
+              "11": 2,
+              "12": 2,
+              "13": 2,
+              "14": 2,
+              "15": 2,
+              "16": 2,
+              "17": 2,
+              "18": 2,
+              "19": 2,
+              "20": 2,
+              "21": 2,
+              "22": 2,
+              "23": 2,
+              "24": 1,
+              "25": 0,
+              "26": 0,
+              "Quarry_Exit": 0,
+              "Quarry_Crown": 0
+            },
+            "lodPixels": {
+              "2": 101403.96785460635,
+              "3": 13272.489587343378,
+              "4": 609.7929676976114,
+              "5": 321.01807017628875,
+              "6": 207.47909249135293,
+              "7": 155.95043256052602,
+              "8": 153.74315696853054,
+              "9": 105.07709932848141,
+              "10": 99.1674036637573,
+              "11": 95.22646265257164,
+              "12": 71.46514359849317,
+              "13": 76.69873598877231,
+              "14": 79.07447939942398,
+              "15": 67.60920806980867,
+              "16": 78.87770373463069,
+              "17": 91.22461716686416,
+              "18": 90.42095380078995,
+              "19": 122.48965414420368,
+              "20": 145.18823072424027,
+              "21": 151.66656156499394,
+              "22": 245.44098498603054,
+              "23": 303.88920833096677,
+              "24": 584.6336392723908,
+              "25": 1754.964355190943,
+              "26": 87835.47874938289,
+              "Quarry_Exit": 151386.13266914143,
+              "Quarry_Crown": 155666.40222423943
+            },
+            "selectedNodes": [
+              "Quarry_Crown_LOD0",
+              "Quarry_Exit_LOD0",
+              "Quarry_Rock_02_LOD0",
+              "Quarry_Rock_03_LOD0",
+              "Quarry_Rock_25_LOD0",
+              "Quarry_Rock_26_LOD0",
+              "Quarry_Rock_04_LOD1",
+              "Quarry_Rock_24_LOD1",
+              "Quarry_Rock_05_LOD2",
+              "Quarry_Rock_06_LOD2",
+              "Quarry_Rock_07_LOD2",
+              "Quarry_Rock_08_LOD2",
+              "Quarry_Rock_09_LOD2",
+              "Quarry_Rock_10_LOD2",
+              "Quarry_Rock_11_LOD2",
+              "Quarry_Rock_12_LOD2",
+              "Quarry_Rock_13_LOD2",
+              "Quarry_Rock_14_LOD2",
+              "Quarry_Rock_15_LOD2",
+              "Quarry_Rock_16_LOD2",
+              "Quarry_Rock_17_LOD2",
+              "Quarry_Rock_18_LOD2",
+              "Quarry_Rock_19_LOD2",
+              "Quarry_Rock_20_LOD2",
+              "Quarry_Rock_21_LOD2",
+              "Quarry_Rock_22_LOD2",
+              "Quarry_Rock_23_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 704.0999999940395,
+                "event": "load-start"
+              },
+              {
+                "at": 750.5999999940395,
+                "event": "load-failed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 1391.2999999970198,
+                "event": "texture-init",
+                "count": 0,
+                "ms": 0
+              },
+              {
+                "at": 1432,
+                "event": "shader-compile",
+                "ms": 40.600000001490116
+              },
+              {
+                "at": 1922,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 530.6000000014901,
+                "lighting": "hub"
+              },
+              {
+                "at": 5859.69999999553,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 5887.5,
+                "event": "load-start"
+              },
+              {
+                "at": 6764.39999999851,
+                "event": "parse-ready",
+                "ms": 60.30000000447035,
+                "decodedBytes": 18236508
+              },
+              {
+                "at": 6765,
+                "event": "load-ready",
+                "ms": 877.5
+              },
+              {
+                "at": 6825.29999999702,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 4.5
+              },
+              {
+                "at": 6839,
+                "event": "shader-compile",
+                "ms": 13.700000002980232
+              },
+              {
+                "at": 7590.0999999940395,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 780.0999999940395,
+                "lighting": "hub"
+              },
+              {
+                "at": 7864.19999999553,
+                "event": "part-lod-change",
+                "part": "2",
+                "from": 2,
+                "to": 0,
+                "pixels": 101403.96785460635,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7864.19999999553,
+                "event": "part-lod-change",
+                "part": "3",
+                "from": 2,
+                "to": 0,
+                "pixels": 13272.489587343378,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7864.29999999702,
+                "event": "part-lod-change",
+                "part": "4",
+                "from": 2,
+                "to": 1,
+                "pixels": 609.7929676976114,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7864.29999999702,
+                "event": "part-lod-change",
+                "part": "24",
+                "from": 2,
+                "to": 1,
+                "pixels": 584.6336392723908,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7864.29999999702,
+                "event": "part-lod-change",
+                "part": "25",
+                "from": 2,
+                "to": 0,
+                "pixels": 1754.964355190943,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7864.29999999702,
+                "event": "part-lod-change",
+                "part": "26",
+                "from": 2,
+                "to": 0,
+                "pixels": 87835.47874938289,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7864.29999999702,
+                "event": "part-lod-change",
+                "part": "Quarry_Exit",
+                "from": 2,
+                "to": 0,
+                "pixels": 151386.13266914143,
+                "quality": 3,
+                "dpr": 0.25
+              },
+              {
+                "at": 7864.29999999702,
+                "event": "part-lod-change",
+                "part": "Quarry_Crown",
+                "from": 2,
+                "to": 0,
+                "pixels": 155666.40222423943,
+                "quality": 3,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 2,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Native fallback during delayed quarry loading disposes unpublished asset",
+      "status": "PASS",
+      "evidence": {
+        "disposed": true,
+        "asset": false,
+        "consumers": 0,
+        "trace": [
+          {
+            "at": 649.2000000029802,
+            "event": "load-start"
+          },
+          {
+            "at": 7911.39999999851,
+            "event": "parse-ready",
+            "ms": 57.100000001490116,
+            "decodedBytes": 18236508
+          },
+          {
+            "at": 7913.20000000298,
+            "event": "abandoned-load-disposal",
+            "geometries": 82,
+            "materials": 2,
+            "textures": 3,
+            "imageBitmaps": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "Failed critical stage still reaches native fallback",
+      "status": "PASS",
+      "evidence": {
+        "videoCount": 1,
+        "canvasCount": 0
+      }
+    }
+  ]
+}

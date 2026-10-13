@@ -1,0 +1,61 @@
+[
+  {
+    "name": "final-material-validation",
+    "command": [
+      "python",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/validate-geometry.py"
+    ],
+    "exitCode": 0,
+    "seconds": 0.3678762912750244
+  },
+  {
+    "name": "final-asset-inventory",
+    "command": [
+      "python",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/inventory-assets.py"
+    ],
+    "exitCode": 0,
+    "seconds": 0.23050355911254883
+  },
+  {
+    "name": "final-glTF-validation",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/validate-glb.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 0.26618456840515137
+  },
+  {
+    "name": "final-master-inspection",
+    "command": [
+      "blender",
+      "-b",
+      "--python",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/inspect-master.py"
+    ],
+    "exitCode": 0,
+    "seconds": 2.2225918769836426
+  },
+  {
+    "name": "final-seam-check",
+    "command": [
+      "blender",
+      "-b",
+      "--python",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/check-scene-seams.py"
+    ],
+    "exitCode": 0,
+    "seconds": 1.5181705951690674
+  },
+  {
+    "name": "final-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exitCode": 0,
+    "seconds": 38.99195194244385
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "result": {
+    "wall": {
+      "mode": "authored",
+      "busy": false,
+      "assetReady": true,
+      "revision": 0,
+      "error": null
+    },
+    "trace": [
+      {
+        "at": 649.5999999996275,
+        "event": "load-start"
+      },
+      {
+        "at": 839.9000000003725,
+        "event": "load-ready",
+        "ms": 190.30000000074506
+      },
+      {
+        "at": 1389.800000000745,
+        "event": "texture-init",
+        "ms": 9.099999999627471,
+        "count": 3
+      },
+      {
+        "at": 1447.0999999996275,
+        "event": "shader-compile",
+        "ms": 57.19999999925494
+      },
+      {
+        "at": 4446.700000001118,
+        "event": "covered-ready",
+        "revision": 0,
+        "ms": 3066
+      },
+      {
+        "at": 4663.800000000745,
+        "event": "lod-change",
+        "from": 2,
+        "to": 1,
+        "pixels": 467.8278103806425,
+        "quality": 0,
+        "dpr": 0.5,
+        "camera": [
+          0,
+          1.72,
+          -46
+        ]
+      }
+    ],
+    "lod": 1,
+    "pixels": 375.56844112004967,
+    "stats": {
+      "calls": 17,
+      "triangles": 89259,
+      "textures": 28,
+      "geometries": 146,
+      "dpr": 0.5
+    },
+    "pose": {
+      "x": 19.619999999999997,
+      "y": 5,
+      "z": -60,
+      "yaw": -1.2992790341146578,
+      "pitch": 0.10912685723640474
+    }
+  },
+  "errors": []
+}

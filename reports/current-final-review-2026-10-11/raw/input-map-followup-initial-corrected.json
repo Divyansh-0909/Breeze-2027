@@ -1,0 +1,195 @@
+{
+  "method": "Corrected report-only expectation: map restoration anchor captured on actual map activation, not before key dispatch while ArrowRight inertia can continue. Original failed assertion preserved in edges-and-media.json. No production changes.",
+  "initial": {
+    "x": 0,
+    "y": 1.72,
+    "z": -51,
+    "yaw": 0,
+    "pitch": 0.2
+  },
+  "beforeActivation": {
+    "x": 1.6031341057203736,
+    "y": 1.72,
+    "z": -51,
+    "yaw": 0,
+    "pitch": 0.2
+  },
+  "ascentMs": 394,
+  "activation": {
+    "x": 1.6644810435923985,
+    "y": 1.72,
+    "z": -51,
+    "yaw": 0,
+    "pitch": 0.2
+  },
+  "restored": {
+    "x": 1.6644810435923985,
+    "y": 1.72,
+    "z": -51,
+    "yaw": 0,
+    "pitch": 0.2
+  },
+  "restoreError": 0,
+  "preActivationDrift": 0.06134693787202483,
+  "state": {
+    "snapshot": {
+      "phase": "local",
+      "scene": "hub",
+      "destination": "hub",
+      "serial": 0,
+      "map": false,
+      "mapStage": null,
+      "destinationMenu": false,
+      "unavailableDestination": null,
+      "error": null,
+      "quality": 1,
+      "movie": false,
+      "reduced": true,
+      "inspection": null
+    },
+    "pose": {
+      "x": 1.6644810435923985,
+      "y": 1.72,
+      "z": -51,
+      "yaw": 0,
+      "pitch": 0.2
+    },
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "stats": {
+      "calls": 140,
+      "triangles": 100978,
+      "textures": 25,
+      "geometries": 150,
+      "dpr": 0.25
+    },
+    "memory": {
+      "at": 9050.20000000298,
+      "scene": "hub",
+      "geometries": 150,
+      "textures": 25,
+      "activeGeometryBytes": 1793876,
+      "activeTextureBytesEstimate": 45027332,
+      "jsHeapBytes": 29705521
+    },
+    "gpuTimer": "unavailable",
+    "canvasCount": 1,
+    "contexts": [
+      {
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "vendor": "Google Inc. (Google)",
+        "attributes": {
+          "alpha": true,
+          "antialias": false,
+          "depth": true,
+          "desynchronized": false,
+          "failIfMajorPerformanceCaveat": false,
+          "powerPreference": "high-performance",
+          "premultipliedAlpha": true,
+          "preserveDrawingBuffer": false,
+          "stencil": false,
+          "xrCompatible": false
+        },
+        "stats": {
+          "Texture": {
+            "created": 29,
+            "deleted": 0,
+            "active": 29
+          },
+          "Buffer": {
+            "created": 556,
+            "deleted": 0,
+            "active": 556
+          },
+          "Program": {
+            "created": 22,
+            "deleted": 0,
+            "active": 22
+          },
+          "Shader": {
+            "created": 44,
+            "deleted": 44,
+            "active": 0
+          },
+          "Framebuffer": {
+            "created": 0,
+            "deleted": 0,
+            "active": 0
+          },
+          "Renderbuffer": {
+            "created": 0,
+            "deleted": 0,
+            "active": 0
+          },
+          "VertexArray": {
+            "created": 155,
+            "deleted": 0,
+            "active": 155
+          },
+          "Query": {
+            "created": 0,
+            "deleted": 0,
+            "active": 0
+          }
+        },
+        "extensions": [
+          "EXT_clip_control",
+          "EXT_color_buffer_float",
+          "EXT_color_buffer_half_float",
+          "EXT_conservative_depth",
+          "EXT_depth_clamp",
+          "EXT_float_blend",
+          "EXT_polygon_offset_clamp",
+          "EXT_texture_compression_bptc",
+          "EXT_texture_compression_rgtc",
+          "EXT_texture_filter_anisotropic",
+          "EXT_texture_mirror_clamp_to_edge",
+          "NV_shader_noperspective_interpolation",
+          "OES_draw_buffers_indexed",
+          "OES_sample_variables",
+          "OES_shader_multisample_interpolation",
+          "OES_texture_float_linear",
+          "OVR_multiview2",
+          "WEBGL_clip_cull_distance",
+          "WEBGL_compressed_texture_astc",
+          "WEBGL_compressed_texture_etc",
+          "WEBGL_compressed_texture_etc1",
+          "WEBGL_compressed_texture_s3tc",
+          "WEBGL_compressed_texture_s3tc_srgb",
+          "WEBGL_debug_renderer_info",
+          "WEBGL_debug_shaders",
+          "WEBGL_lose_context",
+          "WEBGL_multi_draw",
+          "WEBGL_polygon_mode",
+          "WEBGL_stencil_texturing"
+        ],
+        "lost": false
+      }
+    ],
+    "videos": [
+      {
+        "src": "/after-movie.mp4",
+        "time": 0,
+        "paused": true,
+        "readyState": 0,
+        "connected": true
+      }
+    ],
+    "viewport": {
+      "width": 1366,
+      "height": 900,
+      "dpr": 0.25
+    }
+  },
+  "fallback": {
+    "canvasCount": 0,
+    "nativeVideoCount": 1,
+    "links": [
+      "Events",
+      "Team",
+      "Contact us",
+      "Past sponsors",
+      "Merch"
+    ]
+  },
+  "status": "PASS"
+}

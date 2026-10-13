@@ -1,0 +1,185 @@
+--- starting/components/immersive/AftermovieScene.tsx
++++ current/components/immersive/AftermovieScene.tsx
+@@ -36,7 +36,7 @@
+     return () => { runtime.movieActions = null; };
+   }, [runtime, video.startMovie, video.stopMovie, video.enableSound, video.getStatus]);
+   return <>
+-    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} replaceWallFace={wall.mode!=="off"&&wall.assetReady} />
++    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} wallReplacement={wall.mode!=="off"&&wall.assetReady?(wall.mode==="reference"||wallPreview?.variant==="previous"?"face":"volume"):null} />
+     {wallPreview&&<QuarryWallSection session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>}
+     <AftermovieEnvironment />
+     {/* Keep one stage and current travel coordinates; restore its original local presentation. */}
+--- starting/components/immersive/HubScene.tsx
++++ current/components/immersive/HubScene.tsx
+@@ -6,7 +6,7 @@
+ import { point3, world } from "./world";
+ import { travelZones } from "./navigation";
+ import { makeBoardTexture, makeGraffitiTexture, makeGroundTexture, makeRockTexture, requireWorldFonts } from "./worldPaint";
+-import { quarryWithoutWallFace } from "./wallSection";
++import { quarryWithoutWallFace, type WallReplacement } from "./wallSection";
+ 
+ export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], color="#e4ded0", arrow, textSize }: { label:string;position:[number,number,number];rotation?:[number,number,number];size?:[number,number];color?:string;arrow?:[number,number];textSize?:number }) {
+   requireWorldFonts();
+@@ -179,9 +179,9 @@
+     <instancedMesh ref={grass} args={[undefined,undefined,180]}><primitive object={tufts} attach="geometry" dispose={null} /><meshLambertMaterial color="#626849" side={THREE.DoubleSide} /></instancedMesh>
+   </>;
+ }
+-export default function HubScene({nearStage,quality,stageView=false,replaceWallFace=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean;replaceWallFace?:boolean}) {
++export default function HubScene({nearStage,quality,stageView=false,wallReplacement=null}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean;wallReplacement?:WallReplacement}) {
+   requireWorldFonts();
+-  const quarry=useMemo(()=>replaceWallFace?quarryWithoutWallFace():quarryGeometry(),[replaceWallFace]),tunnel=useMemo(tunnelGeometry,[]),portal=useMemo(portalGeometry,[]),exit=useMemo(exitGeometry,[]),ground=useMemo(groundGeometry,[]);
++  const quarry=useMemo(()=>wallReplacement?quarryWithoutWallFace(wallReplacement):quarryGeometry(),[wallReplacement]),tunnel=useMemo(tunnelGeometry,[]),portal=useMemo(portalGeometry,[]),exit=useMemo(exitGeometry,[]),ground=useMemo(groundGeometry,[]);
+   const rockTexture=useMemo(makeRockTexture,[]),groundTexture=useMemo(makeGroundTexture,[]);
+   useEffect(()=>()=>{ground.dispose();rockTexture.dispose();groundTexture.dispose();},[ground,rockTexture,groundTexture]);
+   return <>
+--- starting/components/immersive/ImmersiveShell.tsx
++++ current/components/immersive/ImmersiveShell.tsx
+@@ -59,7 +59,7 @@
+   const [wallPreview]=useState(()=>{
+     const mode=new URLSearchParams(window.location.search).get("wallPreview");
+     const allowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1";
+-    return allowed&&mode&&["limestone","authored","reference","off"].includes(mode)?new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored"):null;
++    return allowed&&mode&&["limestone","authored","reference","off"].includes(mode)?new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored",new URLSearchParams(window.location.search).get("wallCandidate")==="previous"?"previous":"corrected"):null;
+   });
+   const wallState=useSyncExternalStore(wallPreview?.subscribe??noWallSubscribe,wallPreview?.snapshot??(()=>noWallState),()=>noWallState);
+   const rendererActive=!flat&&state.phase!=="error";
+--- starting/components/immersive/QuarryWallSection.tsx
++++ current/components/immersive/QuarryWallSection.tsx
+@@ -2,23 +2,25 @@
+ import {useEffect,useLayoutEffect,useMemo,useRef,useSyncExternalStore} from "react";
+ import {useFrame,useThree} from "@react-three/fiber";
+ import * as THREE from "three";
+-import {chooseWallLOD,originalWallFace,projectedWallPixels,wallTransform,type WallPreviewSession} from "./wallSection";
++import {chooseWallLOD,originalWallFace,projectedWallPixels,wallTransform,CORRECTED_WALL,type WallPreviewSession} from "./wallSection";
+ 
+ export default function QuarryWallSection({session,quality,lighting}:{session:WallPreviewSession;quality:number;lighting:string}) {
+   const state=useSyncExternalStore(session.subscribe,session.snapshot,session.snapshot),{gl,scene,camera}=useThree();
+   const asset=session.asset;
+   const clone=useMemo(()=>asset?.scene.clone(true)??null,[asset]);
+-  const lods=useMemo(()=>clone?[0,1,2].map(i=>clone.getObjectByName(`Wall_LOD${i}`) as THREE.Mesh):[],[clone]);
+-  const material=lods[0]?.material as THREE.Material|undefined;
++  const lods=useMemo(()=>clone?[0,1,2].map(i=>clone.getObjectByName(`Wall_LOD${i}`) as THREE.Object3D):[],[clone]);
++  const material=useMemo(()=>{let result:THREE.Material|undefined;lods[0]?.traverse(o=>{if(o instanceof THREE.Mesh)for(const m of Array.isArray(o.material)?o.material:[o.material])if(m.name.startsWith("Approved_Cool_Grey_Limestone_Family"))result=m;});return result;},[lods]);
+   const face=useMemo(()=>state.mode==="reference"?originalWallFace():null,[state.mode]);
+   useEffect(()=>()=>face?.dispose(),[face]);
+-  const transform=useMemo(wallTransform,[]),radius=useMemo(()=>{if(!lods[0])return 13;lods[0].geometry.computeBoundingSphere();return lods[0].geometry.boundingSphere!.radius;},[lods]);
+-  const center=useMemo(()=>lods[0]?.geometry.boundingSphere?.center.clone().applyQuaternion(transform.quaternion).add(transform.position)??transform.position,[lods,transform]);
++  const transform=useMemo(wallTransform,[]);
++  const detailSphere=useMemo(()=>{if(session.variant==="corrected")return new THREE.Sphere(new THREE.Vector3().fromArray(CORRECTED_WALL.detailSphere.center),CORRECTED_WALL.detailSphere.radius);if(lods[0] instanceof THREE.Mesh){lods[0].geometry.computeBoundingSphere();return lods[0].geometry.boundingSphere!.clone();}return new THREE.Sphere(new THREE.Vector3(),13);},[lods,session.variant]);
++  const radius=detailSphere.radius,center=useMemo(()=>detailSphere.center.clone().applyQuaternion(transform.quaternion).add(transform.position),[detailSphere,transform]);
+   const current=useRef(2),warming=useRef({compiled:false,frames:0,start:0,revision:0}),size=useRef(new THREE.Vector2());
+   useLayoutEffect(()=>{
+-    if(clone)clone.traverse(o=>{if(o instanceof THREE.Mesh){o.visible=o.name==="Wall_LOD2";o.castShadow=false;o.receiveShadow=false;o.frustumCulled=true;}});
++    if(clone)clone.traverse(o=>{if(o instanceof THREE.Mesh){o.visible=!o.name.includes("Collision");o.castShadow=false;o.receiveShadow=false;o.frustumCulled=true;}});
++    lods.forEach((o,i)=>{o.visible=i===2;});
+     if(state.mode!=="off"&&clone){session.retainConsumer();return()=>{session.releaseConsumer();};}
+-  },[clone,state.mode,session]);
++  },[clone,lods,state.mode,session]);
+   useEffect(()=>{
+     if(!state.busy&&state.mode!=="off"&&!session.preparedLighting.has(lighting))session.setMode(state.mode);
+   },[session,state.busy,state.mode,lighting]);
+@@ -44,9 +46,9 @@
+     if(session.state.busy) {
+       if(!warm.compiled||warm.revision!==session.state.revision)return;
+       // Sequentially upload every visual LOD beneath cover. Never overlapping visible copies.
+-      if(state.mode==="authored")lods.forEach((mesh,i)=>{mesh.visible=i===Math.min(2,warm.frames);mesh.frustumCulled=false;});
++      if(state.mode==="authored")lods.forEach((mesh,i)=>{mesh.visible=i===Math.min(2,warm.frames);mesh.traverse(o=>{if(o instanceof THREE.Mesh)o.frustumCulled=false;});});
+       gl.render(scene,camera);warm.frames++;
+-      if(warm.frames>=(state.mode==="authored"?7:state.mode==="reference"?2:1)){lods.forEach((mesh,i)=>{mesh.visible=i===2;mesh.frustumCulled=true;});current.current=2;session.prepared(warm.revision,performance.now()-warm.start,lighting);}
++      if(warm.frames>=(state.mode==="authored"?7:state.mode==="reference"?2:1)){lods.forEach((mesh,i)=>{mesh.visible=i===2;mesh.traverse(o=>{if(o instanceof THREE.Mesh)o.frustumCulled=true;});});current.current=2;session.prepared(warm.revision,performance.now()-warm.start,lighting);}
+       return;
+     }
+     if(state.mode!=="authored"||!clone||!(camera instanceof THREE.PerspectiveCamera))return;
+--- starting/components/immersive/wallSection.ts
++++ current/components/immersive/wallSection.ts
+@@ -1,10 +1,15 @@
+ import * as THREE from "three";
+ import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
+ import manifest from "@/public/models/gullyverse/first-wall-section/manifest.json";
++import correctedManifest from "@/public/models/gullyverse/first-wall-corrected/manifest.json";
+ import { quarryGeometry } from "./blockoutGeometry";
+ import type { ImmersiveRuntime } from "./runtime";
+ 
+-export const WALL_URL = "/models/gullyverse/first-wall-section/first-wall-section.glb";
++export const WALL_URL = "/models/gullyverse/first-wall-corrected/first-wall-corrected.glb";
++export const PREVIOUS_WALL_URL = "/models/gullyverse/first-wall-section/first-wall-section.glb";
++export const CORRECTED_WALL = correctedManifest;
++export type WallVariant = "corrected" | "previous";
++export type WallReplacement = "face" | "volume" | null;
+ export const WALL = manifest;
+ export type WallMode = "off" | "reference" | "authored";
+ export function wallTransform() {
+@@ -12,18 +17,23 @@
+   return { position: new THREE.Vector3().fromArray(WALL.anchor), quaternion: new THREE.Quaternion().setFromRotationMatrix(basis) };
+ }
+ /** Copy only; original generator and all other triangles are preserved byte for byte. */
+-export function quarryWithoutWallFace() {
++export function quarryWithoutWallFace(replacement:WallReplacement="face") {
+   const original = quarryGeometry(), result = new THREE.BufferGeometry();
++  const ranges=replacement==="volume"?[CORRECTED_WALL.hostRange,...CORRECTED_WALL.joinRanges].sort((a,b)=>a.start-b.start):[{start:WALL.vertexStart,count:WALL.vertexCount}];
+   for (const [name, attribute] of Object.entries(original.attributes)) {
+-    const n = attribute.itemSize, data = attribute.array as Float32Array;
+-    result.setAttribute(name, new THREE.BufferAttribute(new Float32Array([...data.slice(0, WALL.vertexStart*n), ...data.slice((WALL.vertexStart+WALL.vertexCount)*n)]), n));
++    const n = attribute.itemSize, data = attribute.array as Float32Array, kept:number[]=[];let cursor=0;
++    for(const {start,count} of ranges){kept.push(...data.slice(cursor*n,start*n));cursor=start+count;}
++    kept.push(...data.slice(cursor*n));result.setAttribute(name,new THREE.BufferAttribute(new Float32Array(kept),n));
+   }
+   result.computeBoundingBox(); result.computeBoundingSphere(); original.dispose(); return result;
+ }
+-export function currentWallAnchorFits() {
++export function currentWallAnchorFits(variant:WallVariant="corrected") {
+   const geometry=quarryGeometry(),positions=geometry.getAttribute("position");
+   const points=Array.from({length:WALL.vertexCount},(_,i)=>new THREE.Vector3().fromBufferAttribute(positions,WALL.vertexStart+i));
+-  const fits=WALL.boundaryWorld.every(p=>points.some(q=>q.distanceTo(new THREE.Vector3().fromArray(p))<2e-5));geometry.dispose();return fits;
++  const wholePoints=Array.from({length:CORRECTED_WALL.hostRange.count},(_,i)=>new THREE.Vector3().fromBufferAttribute(positions,CORRECTED_WALL.hostRange.start+i));
++  const joinFits=CORRECTED_WALL.joiningContacts.every(join=>{const points=join.sourceRanges.flatMap(({start,count})=>Array.from({length:count},(_,i)=>new THREE.Vector3().fromBufferAttribute(positions,start+i)));const ids=new Set(join.selectedFaces.flatMap(face=>join.faces[face]));return [...ids].every(i=>points.some(p=>p.distanceTo(new THREE.Vector3().fromArray(join.vertices[i]))<2e-5));});
++  const hostFits=variant==="previous"||(joinFits&&CORRECTED_WALL.hostVerticesWorld.every(p=>wholePoints.some(q=>q.distanceTo(new THREE.Vector3().fromArray(p))<2e-5)));
++  const fits=hostFits&&WALL.boundaryWorld.every(p=>points.some(q=>q.distanceTo(new THREE.Vector3().fromArray(p))<2e-5));geometry.dispose();return fits;
+ }
+ export function originalWallFace() {
+   const original = quarryGeometry(), result = new THREE.BufferGeometry(), transform = wallTransform();
+@@ -69,7 +79,7 @@
+   private listeners=new Set<()=>void>();
+   state:WallState;
+   trace:{at:number;event:string;[key:string]:unknown}[]=[];
+-  constructor(public runtime:ImmersiveRuntime,mode:WallMode) {this.state={mode,busy:true,assetReady:false,revision:0,error:null};}
++  constructor(public runtime:ImmersiveRuntime,mode:WallMode,public variant:WallVariant="corrected") {this.state={mode,busy:true,assetReady:false,revision:0,error:null};}
+   subscribe=(fn:()=>void)=>{this.listeners.add(fn);return()=>this.listeners.delete(fn);};
+   snapshot=()=>this.state;
+   record(event:string,data:Record<string,unknown>={}) {this.trace.push({at:performance.now(),event,...data});if(this.trace.length>2000)this.trace.splice(0,200);}
+@@ -77,11 +87,11 @@
+   setMode=(mode:WallMode)=>{this.runtime.clearInput();this.publish({mode,busy:true,revision:this.state.revision+1,error:null});this.record("mode-request",{mode});if(mode!=="off")void this.load();};
+   async load() {
+     if(this.asset||this.pending||this.disposed)return;
+-    if(!currentWallAnchorFits()){this.publish({mode:"off",busy:true,error:"Wall anchor no longer matches current quarry; original retained",revision:this.state.revision+1});return;}
++    if(!currentWallAnchorFits(this.variant)){this.publish({mode:"off",busy:true,error:"Wall anchor no longer matches current quarry; original retained",revision:this.state.revision+1});return;}
+     const at=performance.now(),generation=this.cacheGeneration;this.record("load-start");
+     const loader=new GLTFLoader(),parse=loader.parse.bind(loader);
+     loader.parse=(data,path,onLoad,onError)=>{const start=performance.now();parse(data,path,gltf=>{this.record("parse-ready",{ms:performance.now()-start,decodedBytes:typeof data==="string"?data.length:data.byteLength});onLoad(gltf);},onError);};
+-    this.pending=loader.loadAsync(WALL_URL).then(gltf=>{
++    this.pending=loader.loadAsync(this.variant==="previous"?PREVIOUS_WALL_URL:WALL_URL).then(gltf=>{
+       if(this.disposed||generation!==this.cacheGeneration){this.record("abandoned-load-disposal",disposeAsset(gltf));return;}
+       if(!["Wall_LOD0","Wall_LOD1","Wall_LOD2","Wall_Collision"].every(name=>gltf.scene.getObjectByName(name))){disposeAsset(gltf);throw new Error("Wall asset has invalid named nodes");}
+       this.asset=gltf;this.record("load-ready",{ms:performance.now()-at});this.publish({assetReady:true});
+--- starting/tests/immersive/wall-section.test.ts
++++ current/tests/immersive/wall-section.test.ts
+@@ -2,7 +2,7 @@
+ import assert from 'node:assert/strict';
+ import * as THREE from 'three';
+ import {quarryGeometry} from '../../components/immersive/blockoutGeometry';
+-import {WALL,chooseWallLOD,projectedWallPixels,quarryWithoutWallFace,originalWallFace,wallTransform} from '../../components/immersive/wallSection';
++import {WALL,CORRECTED_WALL,chooseWallLOD,projectedWallPixels,quarryWithoutWallFace,originalWallFace,wallTransform} from '../../components/immersive/wallSection';
+ 
+ test('one face is removed while every other authored attribute remains exact',()=>{
+  const whole=quarryGeometry(),cut=quarryWithoutWallFace();
+@@ -31,3 +31,10 @@
+  assert.equal(projectedWallPixels(center,2,c,1440),pixels*2);assert.equal(projectedWallPixels(new THREE.Vector3(0,0,20),2,c,720),0);
+  assert.equal(chooseWallLOD(NaN,0,0),2);assert.equal(projectedWallPixels(center,NaN,c,720),0);
+ });
++
++test('volumetric host and localized contacts preserve every unrelated quarry attribute',()=>{
++ const original=quarryGeometry(),replacement=quarryWithoutWallFace('volume'),ranges=[CORRECTED_WALL.hostRange,...CORRECTED_WALL.joinRanges].sort((a,b)=>a.start-b.start),removed=ranges.reduce((n,r)=>n+r.count,0);
++ assert.equal(CORRECTED_WALL.hostRange.start,216);assert.equal(CORRECTED_WALL.hostRange.count,108);assert.equal(removed,144);
++ for(const [name,a]of Object.entries(original.attributes)){const b=replacement.getAttribute(name),expected=[];let cursor=0;for(const {start,count}of ranges){expected.push(...a.array.slice(cursor*a.itemSize,start*a.itemSize));cursor=start+count;}expected.push(...a.array.slice(cursor*a.itemSize));assert.equal(b.count,a.count-removed);assert.deepEqual(Array.from(b.array),expected);}
++ original.dispose();replacement.dispose();
++});

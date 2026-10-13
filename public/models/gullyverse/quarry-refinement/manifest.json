@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "blender": "4.3.2",
+  "units": "metres",
+  "blenderUp": "Z",
+  "glTFUp": "Y",
+  "selectedParts": [
+    23,
+    22
+  ],
+  "angularDomainDegrees": [
+    -122.8,
+    -93.0
+  ],
+  "splitDegrees": -108.2,
+  "worldCenter": [
+    -0.9,
+    0.0,
+    -103.75
+  ],
+  "parts": [
+    {
+      "id": "22-23",
+      "name": "Refined_Pair",
+      "center": [
+        -59.68591843647588,
+        14.592542664280074,
+        -84.07728312000941
+      ],
+      "radius": 26.069823221116152,
+      "bounds": [
+        [
+          -71.4856692937001,
+          -47.88616757925166
+        ],
+        [
+          -1.5,
+          30.68508532856015
+        ],
+        [
+          -100.85320732960243,
+          -67.30135891041641
+        ]
+      ],
+      "nodes": [
+        "Refined_Pair_LOD0",
+        "Refined_Pair_LOD1",
+        "Refined_Pair_LOD2"
+      ]
+    }
+  ],
+  "sourceRegions": [
+    {
+      "id": 23,
+      "name": "Refined_Rock_23",
+      "center": [
+        -58.06504155134134,
+        13.740565629978386,
+        -77.219500856497
+      ],
+      "radius": 20.838758497664074,
+      "bounds": [
+        [
+          -68.24391552343101,
+          -47.88616757925166
+        ],
+        [
+          -1.5,
+          28.981131259956772
+        ],
+        [
+          -87.13764280257762,
+          -67.30135891041641
+        ]
+      ],
+      "nodes": [
+        "Refined_Rock_23_LOD0",
+        "Refined_Rock_23_LOD1",
+        "Refined_Rock_23_LOD2"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Refined_Rock_22",
+      "center": [
+        -60.87526389787756,
+        14.592542664280074,
+        -91.27232923927366
+      ],
+      "radius": 21.525423504477594,
+      "bounds": [
+        [
+          -71.4856692937001,
+          -50.26485850205502
+        ],
+        [
+          -1.5,
+          30.68508532856015
+        ],
+        [
+          -100.85320732960243,
+          -81.69145114894488
+        ]
+      ],
+      "nodes": [
+        "Refined_Rock_22_LOD0",
+        "Refined_Rock_22_LOD1",
+        "Refined_Rock_22_LOD2"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Refined_Rock_23_Master",
+      "triangles": 43008,
+      "vertices": 21506,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 7375.485633847662
+    },
+    {
+      "name": "Refined_Rock_23_LOD0",
+      "triangles": 11098,
+      "vertices": 5551,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 7333.7268934363765
+    },
+    {
+      "name": "Refined_Rock_23_LOD1",
+      "triangles": 4890,
+      "vertices": 2447,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 7226.12892817371
+    },
+    {
+      "name": "Refined_Rock_23_LOD2",
+      "triangles": 3256,
+      "vertices": 1630,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 7015.017966020814
+    },
+    {
+      "name": "Refined_Rock_22_Master",
+      "triangles": 43008,
+      "vertices": 21506,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 8575.289092835219
+    },
+    {
+      "name": "Refined_Rock_22_LOD0",
+      "triangles": 11098,
+      "vertices": 5551,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 8571.783408289812
+    },
+    {
+      "name": "Refined_Rock_22_LOD1",
+      "triangles": 4890,
+      "vertices": 2447,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 8444.910141130578
+    },
+    {
+      "name": "Refined_Rock_22_LOD2",
+      "triangles": 3256,
+      "vertices": 1630,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 8190.680084035681
+    },
+    {
+      "name": "Refined_Pair_Master",
+      "triangles": 82944,
+      "vertices": 41474,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 15950.774726682708
+    },
+    {
+      "name": "Refined_Pair_LOD0",
+      "triangles": 21784,
+      "vertices": 10894,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 15905.510301726226
+    },
+    {
+      "name": "Refined_Pair_LOD1",
+      "triangles": 9368,
+      "vertices": 4686,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 15671.039069304235
+    },
+    {
+      "name": "Refined_Pair_LOD2",
+      "triangles": 6100,
+      "vertices": 3052,
+      "nonManifoldEdges": 0,
+      "signedVolumeM3": 15205.698050056493
+    }
+  ],
+  "material": "Approved_Cool_Grey_Limestone_Family",
+  "materialPolicy": "Runtime borrows the exact Stage2C material/textures; geometry-only GLB after postprocessing. Editable master retains packed approved maps.",
+  "collisionPolicy": "Existing movement/world collision unchanged; selected original proxies remain the collision reference.",
+  "baselineGLBSHA256": "666798708659211d86ecca8158d1e441abbe02713b90168a98e7a8bbdd16cb02",
+  "joinPolicy": "Two original regions welded into one closed volume, internal caps removed; one coordinated LOD prevents a level mismatch across the join."
+}

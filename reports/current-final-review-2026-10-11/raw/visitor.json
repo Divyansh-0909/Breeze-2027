@@ -1,0 +1,394 @@
+{
+  "checks": [
+    {
+      "name": "Full public landing, forward under-scaffold Aftermovie travel, movie Esc, return and map",
+      "status": "PASS",
+      "evidence": {
+        "start": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "arrival": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "edge": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -105.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "end": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 3,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -110.8,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 115,
+            "triangles": 1020152,
+            "textures": 25,
+            "geometries": 154,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 107905.79999999702,
+            "scene": "aftermovie",
+            "geometries": 154,
+            "textures": 25,
+            "activeGeometryBytes": 2730176,
+            "activeTextureBytesEstimate": 45027332,
+            "jsHeapBytes": 25346024
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 31,
+                  "deleted": 2,
+                  "active": 29
+                },
+                "Buffer": {
+                  "created": 620,
+                  "deleted": 48,
+                  "active": 572
+                },
+                "Program": {
+                  "created": 48,
+                  "deleted": 3,
+                  "active": 45
+                },
+                "Shader": {
+                  "created": 96,
+                  "deleted": 84,
+                  "active": 12
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 294,
+                  "deleted": 24,
+                  "active": 270
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "dpr": 0.25
+          }
+        }
+      }
+    },
+    {
+      "name": "All eight Aftermovie faces and four diagonal corner approaches",
+      "status": "PASS",
+      "evidence": [
+        {
+          "edge": 0,
+          "pose": {
+            "x": -12.00000046329995,
+            "y": 1.72,
+            "z": -105.67999999999999,
+            "yaw": -3.1415930786132815,
+            "pitch": 0.16
+          },
+          "buttons": [
+            "Return to Hub",
+            "Events",
+            "Team",
+            "Contact Us",
+            "AccommodationComing soon",
+            "Past SponsorsComing soon",
+            "Entrance",
+            "Stay Here"
+          ]
+        },
+        {
+          "edge": 1,
+          "pose": {
+            "x": -3.668700787268963,
+            "y": 1.72,
+            "z": -105.96870036643281,
+            "yaw": -2.3561947631835944,
+            "pitch": 0.16
+          },
+          "buttons": [
+            "Return to Hub",
+            "Events",
+            "Team",
+            "Contact Us",
+            "AccommodationComing soon",
+            "Past SponsorsComing soon",
+            "Entrance",
+            "Stay Here"
+          ]
+        },
+        {
+          "edge": 2,
+          "pose": {
+            "x": -3.38,
+            "y": 1.72,
+            "z": -112.39999986814775,
+            "yaw": -1.5707964477539065,
+            "pitch": 0.16
+          },
+          "buttons": [
+            "Return to Hub",
+            "Events",
+            "Team",
+            "Contact Us",
+            "AccommodationComing soon",
+            "Past SponsorsComing soon",
+            "Entrance",
+            "Stay Here"
+          ]
+        },
+        {
+          "edge": 3,
+          "pose": {
+            "x": -3.6687004596664243,
+            "y": 1.72,
+            "z": -118.83129930596465,
+            "yaw": -0.7853983154296875,
+            "pitch": 0.16
+          },
+          "buttons": [
+            "Return to Hub",
+            "Events",
+            "Team",
+            "Contact Us",
+            "AccommodationComing soon",
+            "Past SponsorsComing soon",
+            "Entrance",
+            "Stay Here"
+          ]
+        },
+        {
+          "edge": 4,
+          "pose": {
+            "x": -12,
+            "y": 1.72,
+            "z": -119.12,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "buttons": [
+            "Return to Hub",
+            "Events",
+            "Team",
+            "Contact Us",
+            "AccommodationComing soon",
+            "Past SponsorsComing soon",
+            "Entrance",
+            "Stay Here"
+          ]
+        },
+        {
+          "edge": 5,
+          "pose": {
+            "x": -20.33129939919829,
+            "y": 1.72,
+            "z": -118.83129944709994,
+            "yaw": 0.7853981323242188,
+            "pitch": 0.16
+          },
+          "buttons": [
+            "Return to Hub",
+            "Events",
+            "Team",
+            "Contact Us",
+            "AccommodationComing soon",
+            "Past SponsorsComing soon",
+            "Entrance",
+            "Stay Here"
+          ]
+        },
+        {
+          "edge": 6,
+          "pose": {
+            "x": -20.62,
+            "y": 1.72,
+            "z": -112.40000016754094,
+            "yaw": 1.5707961730957032,
+            "pitch": 0.16
+          },
+          "buttons": [
+            "Return to Hub",
+            "Events",
+            "Team",
+            "Contact Us",
+            "AccommodationComing soon",
+            "Past SponsorsComing soon",
+            "Entrance",
+            "Stay Here"
+          ]
+        },
+        {
+          "edge": 7,
+          "pose": {
+            "x": -20.331299495001627,
+            "y": 1.72,
+            "z": -105.9687006487034,
+            "yaw": 2.3561943969726564,
+            "pitch": 0.16
+          },
+          "buttons": [
+            "Return to Hub",
+            "Events",
+            "Team",
+            "Contact Us",
+            "AccommodationComing soon",
+            "Past SponsorsComing soon",
+            "Entrance",
+            "Stay Here"
+          ]
+        },
+        {
+          "corner": "north-east",
+          "pose": {
+            "x": -3.7336744429499578,
+            "y": 1.72,
+            "z": -118.89627328924819,
+            "yaw": 0,
+            "pitch": 0.16
+          }
+        },
+        {
+          "corner": "north-west",
+          "pose": {
+            "x": -20.266325557050042,
+            "y": 1.72,
+            "z": -118.89627328924819,
+            "yaw": 0,
+            "pitch": 0.16
+          }
+        },
+        {
+          "corner": "south-east",
+          "pose": {
+            "x": -3.633688834132255,
+            "y": 1.72,
+            "z": -106.00371231956952,
+            "yaw": 0,
+            "pitch": 0.16
+          }
+        },
+        {
+          "corner": "south-west",
+          "pose": {
+            "x": -20.366311165867746,
+            "y": 1.72,
+            "z": -106.00371231956952,
+            "yaw": 0,
+            "pitch": 0.16
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hub rotation alone, diagonal routes, unavailable Sponsors and second-stall identity",
+      "status": "FAIL",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Home', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <a aria-label=\"Home\" href=\"/?arrival=hub\" class=\"flex items-center justify-center text-white/60 transition-colors duration-200 hover:text-white focus-visible:text-white focus-visible:outline-none\">…</a>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n\n    at /workspace/Breeze-2027-navigation/reports/current-final-review-2026-10-11/scripts/visitor.mjs:13:1235\n    at async test (/workspace/Breeze-2027-navigation/reports/current-final-review-2026-10-11/scripts/visitor.mjs:5:75)\n    at async file:///workspace/Breeze-2027-navigation/reports/current-final-review-2026-10-11/scripts/visitor.mjs:12:2"
+    }
+  ],
+  "errors": [],
+  "browser": "151.0.7922.173",
+  "method": "Public controls for uninterrupted journey and directional routes. Edge/corner-specific tests seed the actual runtime walking pose at an interior fixture, then use real browser WASD and public menu controls; not a claim of walking there from spawn. After information-page Navbar Home, a diagnostic URL reload preserves entered-session intent for subsequent controlled route fixtures. Recording/tracing adds overhead: no FPS benchmark."
+}

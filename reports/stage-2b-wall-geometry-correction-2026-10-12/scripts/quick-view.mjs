@@ -1,0 +1,1 @@
+import {launch,context,ready,view,root,url} from './wall-browser-common.mjs';const b=await launch(),c=await context(b),p=await c.newPage();await p.goto(url);await ready(p);await view(p,[29,5,-60],[42.1893,6.5,-63.6718],{fixed:true,quality:0});await p.screenshot({path:root+'/raw/refined-quick-view.png',scale:'css'});await c.close();await b.close();

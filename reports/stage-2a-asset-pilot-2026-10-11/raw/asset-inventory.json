@@ -1,0 +1,760 @@
+{
+  "GLBs": [
+    {
+      "file": "public/models/gullyverse/pilot-rock/rock-lod2.glb",
+      "bytes": 2627500,
+      "sha256": "85b3c8229b38b94f0ec0a8872a84440fe1403174449eb40351bf8d3e73883b4a",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "Quarry_Pilot_Original_Stone_PBR",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.699999988079071
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 2,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 0,
+          "name": "Rock_LOD2"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_LOD2_Mesh",
+          "vertices": 2171,
+          "triangles": 2820,
+          "glTFBounds": [
+            [
+              -6.034095287322998,
+              0.0,
+              -1.4499852657318115
+            ],
+            [
+              6.030569076538086,
+              10.004802703857422,
+              2.644806385040283
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894534349441528,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.00011548399925231934
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1388991,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 893824,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 221162,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb",
+      "bytes": 4127092,
+      "sha256": "82a48f71b714f48952e10e99aa2f1393fa3a6d2b6126d383318972c0478d2a6d",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "Quarry_Pilot_Original_Stone_PBR",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.699999988079071
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 0,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 0,
+          "name": "Rock_LOD0"
+        },
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 1,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 1,
+          "name": "Rock_LOD1"
+        },
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 2,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 2,
+          "name": "Rock_LOD2"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        },
+        {
+          "extras": {
+            "collision_proxy": true,
+            "proxy_kind": "Conservative axis-aligned hull of all runtime LOD vertices, not production walk polygon",
+            "production_default_enabled": false
+          },
+          "mesh": 3,
+          "name": "Rock_Collision"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_LOD0_Mesh",
+          "vertices": 19040,
+          "triangles": 32616,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.449992299079895
+            ],
+            [
+              6.0343828201293945,
+              10.015950202941895,
+              2.654045820236206
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894657731056213,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.0001296401023864746
+        },
+        {
+          "name": "Rock_LOD1_Mesh",
+          "vertices": 6738,
+          "triangles": 10440,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.4499852657318115
+            ],
+            [
+              6.034262657165527,
+              10.006356239318848,
+              2.6555120944976807
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894653558731079,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.00012928247451782227
+        },
+        {
+          "name": "Rock_LOD2_Mesh",
+          "vertices": 2171,
+          "triangles": 2820,
+          "glTFBounds": [
+            [
+              -6.034095287322998,
+              0.0,
+              -1.4499852657318115
+            ],
+            [
+              6.030569076538086,
+              10.004802703857422,
+              2.644806385040283
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894534349441528,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.00011548399925231934
+        },
+        {
+          "name": "Rock_Collision_Mesh",
+          "vertices": 24,
+          "triangles": 12,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.449992299079895
+            ],
+            [
+              6.0343828201293945,
+              10.015950202941895,
+              2.6555120944976807
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            1.0,
+            1.0
+          ],
+          "UVRange": null,
+          "tangents": false,
+          "maxNormalTangentDot": null
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1388991,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 893824,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 221162,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/pilot-rock/rock-collision.glb",
+      "bytes": 1824,
+      "sha256": "c5f977ff85966cfcdac4e82890ed015e8f26451e675200793b84a3ab2b9e8173",
+      "extensionsUsed": [],
+      "materials": [],
+      "nodes": [
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        },
+        {
+          "extras": {
+            "collision_proxy": true,
+            "proxy_kind": "Conservative axis-aligned hull of all runtime LOD vertices, not production walk polygon",
+            "production_default_enabled": false
+          },
+          "mesh": 0,
+          "name": "Rock_Collision"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_Collision_Mesh",
+          "vertices": 24,
+          "triangles": 12,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.449992299079895
+            ],
+            [
+              6.0343828201293945,
+              10.015950202941895,
+              2.6555120944976807
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            1.0,
+            1.0
+          ],
+          "UVRange": null,
+          "tangents": false,
+          "maxNormalTangentDot": null
+        }
+      ],
+      "images": []
+    },
+    {
+      "file": "public/models/gullyverse/pilot-rock/rock-lod0.glb",
+      "bytes": 3616000,
+      "sha256": "9aca181c51e6e263cb7549f8dc8cd94096bde4796841a3ff8c5028bb5df748d8",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "Quarry_Pilot_Original_Stone_PBR",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.699999988079071
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 0,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 0,
+          "name": "Rock_LOD0"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_LOD0_Mesh",
+          "vertices": 19040,
+          "triangles": 32616,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.449992299079895
+            ],
+            [
+              6.0343828201293945,
+              10.015950202941895,
+              2.654045820236206
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894657731056213,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.0001296401023864746
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1388991,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 893824,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 221162,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    },
+    {
+      "file": "public/models/gullyverse/pilot-rock/rock-lod1.glb",
+      "bytes": 2892436,
+      "sha256": "a1e20d270ce89dec68a05fa1ba6daebd3d9df7c9e415240efec7fe0809bbb610",
+      "extensionsUsed": [],
+      "materials": [
+        {
+          "doubleSided": true,
+          "name": "Quarry_Pilot_Original_Stone_PBR",
+          "normalTexture": {
+            "index": 0,
+            "scale": 0.699999988079071
+          },
+          "occlusionTexture": {
+            "index": 1
+          },
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 2
+            },
+            "metallicFactor": 0,
+            "metallicRoughnessTexture": {
+              "index": 1
+            }
+          }
+        }
+      ],
+      "nodes": [
+        {
+          "extras": {
+            "metres": true,
+            "forward_blender": "-Y",
+            "forward_gltf": "+Z",
+            "anchor": "bottom_center",
+            "material_license": "original-generated-for-project",
+            "production_default_enabled": false,
+            "lod_level": 1,
+            "lod_selection": "explicit preview selection; no automatic runtime policy"
+          },
+          "mesh": 0,
+          "name": "Rock_LOD1"
+        },
+        {
+          "extras": {
+            "units": "metres",
+            "pivot": "bottom_center",
+            "authoring": "Blender Z-up -> glTF Y-up",
+            "world_registry_modified": false
+          },
+          "name": "pilot_anchor"
+        }
+      ],
+      "meshes": [
+        {
+          "name": "Rock_LOD1_Mesh",
+          "vertices": 6738,
+          "triangles": 10440,
+          "glTFBounds": [
+            [
+              -6.0403151512146,
+              0.0,
+              -1.4499852657318115
+            ],
+            [
+              6.034262657165527,
+              10.006356239318848,
+              2.6555120944976807
+            ]
+          ],
+          "finiteAttributes": true,
+          "normalLengthRange": [
+            0.9999998807907104,
+            1.0000001192092896
+          ],
+          "UVRange": [
+            [
+              0.019999999552965164,
+              0.029999971389770508
+            ],
+            [
+              0.9894653558731079,
+              0.9700000286102295
+            ]
+          ],
+          "tangents": true,
+          "maxNormalTangentDot": 0.00012928247451782227
+        }
+      ],
+      "images": [
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 1388991,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/png",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 893824,
+          "format": "PNG",
+          "mode": "RGB"
+        },
+        {
+          "mime": "image/jpeg",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "embeddedBytes": 221162,
+          "format": "JPEG",
+          "mode": "RGB"
+        }
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "file": "assets-source/gullyverse/rock-pilot-2a/textures/rock-ao-1024.png",
+      "bytes": 73799,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "PNG",
+      "sha256": "b0ea9937bd541c6ad8991ae6542ebaa843ce71ad17a9d09a29752ff36154ba86"
+    },
+    {
+      "file": "assets-source/gullyverse/rock-pilot-2a/textures/rock-ao-2048.png",
+      "bytes": 177230,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "b005163fb608aa5ff3a01ef2cc5731bc41981c244b3321cad863f2824ea1748c"
+    },
+    {
+      "file": "assets-source/gullyverse/rock-pilot-2a/textures/rock-roughness-2048.png",
+      "bytes": 1264144,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "c3c4c19c6e4d091fa403d0e446da7613368bb5070e441350b4765e86916edc0d"
+    },
+    {
+      "file": "assets-source/gullyverse/rock-pilot-2a/textures/rock-basecolor-1024.jpg",
+      "bytes": 221162,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "JPEG",
+      "sha256": "d46b7ff37f5bc7945eb3fa33da77e101ea93034860454aff03248da2a92de154"
+    },
+    {
+      "file": "assets-source/gullyverse/rock-pilot-2a/textures/rock-basecolor-2048.png",
+      "bytes": 3520879,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "ec5660060511da3ed6927382829be3b1e4d6e936cdde3217e50651504cce7619"
+    },
+    {
+      "file": "assets-source/gullyverse/rock-pilot-2a/textures/rock-roughness-1024.png",
+      "bytes": 434510,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "PNG",
+      "sha256": "6c2df4055c3f87898f13afc661b35ce835cc3f419a96679af7e75202313ade85"
+    },
+    {
+      "file": "assets-source/gullyverse/rock-pilot-2a/textures/rock-normal-2048.png",
+      "bytes": 5195749,
+      "resolution": [
+        2048,
+        2048
+      ],
+      "format": "PNG",
+      "sha256": "d62bfe59090ce687952da08f734fd429314eb1f7d972bcdb807687a659c96479"
+    },
+    {
+      "file": "assets-source/gullyverse/rock-pilot-2a/textures/rock-normal-1024.png",
+      "bytes": 1388991,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "format": "PNG",
+      "sha256": "03858b7ea58f91a21d113ac1017a49493f9283e8a30791dae0e289528277ca5d"
+    }
+  ],
+  "master": {
+    "file": "assets-source/gullyverse/rock-pilot-2a/quarry-rock-pilot.blend",
+    "bytes": 10114024
+  },
+  "provenance": "All pilot surfaces/materials original, no reference-photo texels."
+}

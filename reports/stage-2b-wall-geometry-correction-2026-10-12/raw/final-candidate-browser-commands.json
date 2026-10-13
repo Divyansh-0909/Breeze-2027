@@ -1,0 +1,57 @@
+[
+  {
+    "name": "final-after-captures",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/after-evidence.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 167.98763513565063
+  },
+  {
+    "name": "final-extra-captures",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/extra-evidence.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 64.95190787315369
+  },
+  {
+    "name": "final-after-performance",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/measure.mjs",
+      "after"
+    ],
+    "exitCode": 0,
+    "seconds": 51.19787549972534
+  },
+  {
+    "name": "final-ten-preview-cycles",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/lifecycle.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 27.60140633583069
+  },
+  {
+    "name": "final-public-walkthrough",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/walkthrough.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 88.84874415397644
+  },
+  {
+    "name": "final-side-inspection",
+    "command": [
+      "node",
+      "reports/stage-2b-wall-geometry-correction-2026-10-12/scripts/inspection-walkthrough.mjs"
+    ],
+    "exitCode": 0,
+    "seconds": 36.44722032546997
+  }
+]

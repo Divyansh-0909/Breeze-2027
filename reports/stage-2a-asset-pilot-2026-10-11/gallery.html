@@ -1,0 +1,1088 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gullyverse Stage 2A rock pilot review</title><style>body{background:#101814;color:#edf2ed;font:16px system-ui;max-width:1500px;margin:auto;padding:24px}a{color:#aaddb7}figure{margin:12px 0 30px}img{max-width:100%;height:auto;display:block}figcaption{padding:12px;background:#1c2b22}code{white-space:pre-wrap}details{margin:8px}nav{display:flex;gap:20px;flex-wrap:wrap}.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,500px),1fr));gap:20px}</style><h1>Stage 2A — isolated Blender rock pilot</h1><p>Current approved website is unchanged. One candidate rock segment is shown using the current Hub lights, ACES exposure 1 and fixed inspection cameras. No physical GPU/mobile benchmark is available. The candidate has more detail than the procedural wall, but geological realism remains for human review; it is not a certified photorealistic final asset.</p><nav><a href="../../docs/gullyverse-stage-2a-asset-pilot.md">Main report</a><a href="PHYSICAL-DEVICE-PROCEDURE.md">Physical operator procedure</a><a href="raw/capture-metadata.json">Capture metadata</a><a href="raw/extra-preview.json">DPR1 metadata</a><a href="raw/asset-inventory.json">Asset inventory</a><a href="preview/serve-preview.py">Portable localhost preview</a></nav><p>For interactive preview after extraction, run <code>python reports/stage-2a-asset-pilot-2026-10-11/preview/serve-preview.py</code> from the package root and open http://127.0.0.1:3001. No npm/network download is needed.</p><h2>Matched comparison pairs</h2><p>01/02 and 14/15 use identical cameras but compare different-sized objects. 17/18 retain the unchanged procedural quarry behind the opt-in candidate. 11/12 are portrait aspect checks; mobile pilot uses LOD1. Full PNGs open via each image link.</p>
+<div class="pair">
+<figure><a href="screenshots/01-existing-procedural-wall.png"><img loading="lazy" src="screenshots/01-existing-procedural-wall.png" alt="01-existing-procedural-wall"></a><figcaption>01-existing-procedural-wall — 1366×900, DPR 0.5, baseline LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 1901,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 11300,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 1,
+    &quot;programs&quot;: 2
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 1,
+    &quot;geometryBytes&quot;: 257456,
+    &quot;texturePayloadEstimate&quot;: 1398101.3333333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/02-pilot-matched-medium.png"><img loading="lazy" src="screenshots/02-pilot-matched-medium.png" alt="02-pilot-matched-medium"></a><figcaption>02-pilot-matched-medium — 1366×900, DPR 0.5, pilot LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 4115.79999999702,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+</div>
+<div class="pair">
+<figure><a href="screenshots/14-dpr1-existing-wall.png"><img loading="lazy" src="screenshots/14-dpr1-existing-wall.png" alt="14-dpr1-existing-wall"></a><figcaption>14-dpr1-existing-wall — 1366×900, DPR 1, baseline LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 3209.39999999851,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 11300,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 1,
+    &quot;programs&quot;: 2
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 1,
+    &quot;geometryBytes&quot;: 257456,
+    &quot;texturePayloadEstimate&quot;: 1398101.3333333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/15-dpr1-pilot-medium.png"><img loading="lazy" src="screenshots/15-dpr1-pilot-medium.png" alt="15-dpr1-pilot-medium"></a><figcaption>15-dpr1-pilot-medium — 1366×900, DPR 1, pilot LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 7076.10000000149,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+</div>
+<div class="pair">
+<figure><a href="screenshots/17-dpr1-existing-world-context.png"><img loading="lazy" src="screenshots/17-dpr1-existing-world-context.png" alt="17-dpr1-existing-world-context"></a><figcaption>17-dpr1-existing-world-context — 1366×900, DPR 1, baseline LOD0, FOV 58°, camera [31, 5.6, -98], context True<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 23169.60000000149,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: true,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 11,
+    &quot;triangles&quot;: 51826,
+    &quot;geometries&quot;: 12,
+    &quot;textures&quot;: 22,
+    &quot;programs&quot;: 15
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 44,
+    &quot;visibleMaterials&quot;: 44,
+    &quot;visibleTextureObjects&quot;: 19,
+    &quot;geometryBytes&quot;: 1015792,
+    &quot;texturePayloadEstimate&quot;: 34571605.33333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/18-dpr1-pilot-world-context.png"><img loading="lazy" src="screenshots/18-dpr1-pilot-world-context.png" alt="18-dpr1-pilot-world-context"></a><figcaption>18-dpr1-pilot-world-context — 1366×900, DPR 1, pilot LOD0, FOV 58°, camera [31, 5.6, -98], context True<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 29394.89999999851,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: true,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 12,
+    &quot;triangles&quot;: 84442,
+    &quot;geometries&quot;: 12,
+    &quot;textures&quot;: 22,
+    &quot;programs&quot;: 15
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 45,
+    &quot;visibleMaterials&quot;: 45,
+    &quot;visibleTextureObjects&quot;: 22,
+    &quot;geometryBytes&quot;: 2125408,
+    &quot;texturePayloadEstimate&quot;: 51348821.333333336
+  }
+}</pre></details></figcaption></figure>
+</div>
+<div class="pair">
+<figure><a href="screenshots/11-mobile-original-wall.png"><img loading="lazy" src="screenshots/11-mobile-original-wall.png" alt="11-mobile-original-wall"></a><figcaption>11-mobile-original-wall — 390×844, DPR 0.5, baseline LOD2, FOV 58°, camera [18, 5.3, -104], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 65736.70000000298,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 2,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      18,
+      5.3,
+      -104
+    ],
+    &quot;quaternion&quot;: [
+      -0.003787908983456304,
+      -0.7070966353657279,
+      -0.003787908983456304,
+      0.7070966353657278
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 11300,
+    &quot;geometries&quot;: 3,
+    &quot;textures&quot;: 5,
+    &quot;programs&quot;: 4
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 1,
+    &quot;geometryBytes&quot;: 257456,
+    &quot;texturePayloadEstimate&quot;: 1398101.3333333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/12-mobile-pilot.png"><img loading="lazy" src="screenshots/12-mobile-pilot.png" alt="12-mobile-pilot"></a><figcaption>12-mobile-pilot — 390×844, DPR 0.5, pilot LOD1, FOV 58°, camera [18, 5.3, -104], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 66924,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 1,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      18,
+      5.3,
+      -104
+    ],
+    &quot;quaternion&quot;: [
+      -0.003787908983456304,
+      -0.7070966353657279,
+      -0.003787908983456304,
+      0.7070966353657278
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 21704,
+    &quot;geometries&quot;: 3,
+    &quot;textures&quot;: 5,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 638768,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+</div>
+<h2>All actual browser captures</h2>
+<figure><a href="screenshots/01-existing-procedural-wall.png"><img loading="lazy" src="screenshots/01-existing-procedural-wall.png" alt="01-existing-procedural-wall"></a><figcaption>01-existing-procedural-wall — 1366×900, DPR 0.5, baseline LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 1901,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 11300,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 1,
+    &quot;programs&quot;: 2
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 1,
+    &quot;geometryBytes&quot;: 257456,
+    &quot;texturePayloadEstimate&quot;: 1398101.3333333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/02-pilot-matched-medium.png"><img loading="lazy" src="screenshots/02-pilot-matched-medium.png" alt="02-pilot-matched-medium"></a><figcaption>02-pilot-matched-medium — 1366×900, DPR 0.5, pilot LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 4115.79999999702,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/03-pilot-close-material.png"><img loading="lazy" src="screenshots/03-pilot-close-material.png" alt="03-pilot-close-material"></a><figcaption>03-pilot-close-material — 1366×900, DPR 0.5, pilot LOD0, FOV 58°, camera [41.1, 5.4, -103.4], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 6919.10000000149,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      41.1,
+      5.4,
+      -103.4
+    ],
+    &quot;quaternion&quot;: [
+      0,
+      -0.6618025632357404,
+      0,
+      0.7496781758158656
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/04-pilot-medium-lod1.png"><img loading="lazy" src="screenshots/04-pilot-medium-lod1.png" alt="04-pilot-medium-lod1"></a><figcaption>04-pilot-medium-lod1 — 1366×900, DPR 0.5, pilot LOD1, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 10707.70000000298,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 1,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 21704,
+    &quot;geometries&quot;: 3,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 638768,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/05-pilot-long-lod2.png"><img loading="lazy" src="screenshots/05-pilot-long-lod2.png" alt="05-pilot-long-lod2"></a><figcaption>05-pilot-long-lod2 — 1366×900, DPR 0.5, pilot LOD2, FOV 58°, camera [3, 7, -87], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 12429.29999999702,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 2,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      3,
+      7,
+      -87
+    ],
+    &quot;quaternion&quot;: [
+      -0.017871689571876,
+      -0.5621591243044386,
+      -0.012152130501363064,
+      0.8267466645819571
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 14084,
+    &quot;geometries&quot;: 4,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 373832,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/06-pilot-angle-left.png"><img loading="lazy" src="screenshots/06-pilot-angle-left.png" alt="06-pilot-angle-left"></a><figcaption>06-pilot-angle-left — 1366×900, DPR 0.5, pilot LOD0, FOV 58°, camera [38, 5.4, -111], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 14131.5,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      38,
+      5.4,
+      -111
+    ],
+    &quot;quaternion&quot;: [
+      0,
+      0.9106329139308874,
+      0,
+      -0.41321628243057046
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 4,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/07-pilot-angle-right.png"><img loading="lazy" src="screenshots/07-pilot-angle-right.png" alt="07-pilot-angle-right"></a><figcaption>07-pilot-angle-right — 1366×900, DPR 0.5, pilot LOD0, FOV 58°, camera [38, 5.4, -97], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 17646.29999999702,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      38,
+      5.4,
+      -97
+    ],
+    &quot;quaternion&quot;: [
+      0,
+      -0.41321628243057046,
+      0,
+      0.9106329139308874
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 4,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/08-desktop-pilot.png"><img loading="lazy" src="screenshots/08-desktop-pilot.png" alt="08-desktop-pilot"></a><figcaption>08-desktop-pilot — 1366×900, DPR 0.5, pilot LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 20915.5,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 4,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/09-existing-quarry-context.png"><img loading="lazy" src="screenshots/09-existing-quarry-context.png" alt="09-existing-quarry-context"></a><figcaption>09-existing-quarry-context — 1366×900, DPR 0.5, baseline LOD2, FOV 58°, camera [31, 5.6, -98], context True<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 59284.5,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 2,
+  &quot;context&quot;: true,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 11,
+    &quot;triangles&quot;: 51826,
+    &quot;geometries&quot;: 11,
+    &quot;textures&quot;: 19,
+    &quot;programs&quot;: 14
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 44,
+    &quot;visibleMaterials&quot;: 44,
+    &quot;visibleTextureObjects&quot;: 19,
+    &quot;geometryBytes&quot;: 1015792,
+    &quot;texturePayloadEstimate&quot;: 34571605.33333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/10-opt-in-pilot-quarry-context.png"><img loading="lazy" src="screenshots/10-opt-in-pilot-quarry-context.png" alt="10-opt-in-pilot-quarry-context"></a><figcaption>10-opt-in-pilot-quarry-context — 1366×900, DPR 0.5, pilot LOD2, FOV 58°, camera [31, 5.6, -98], context True<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 62228.29999999702,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 2,
+  &quot;context&quot;: true,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 12,
+    &quot;triangles&quot;: 54646,
+    &quot;geometries&quot;: 12,
+    &quot;textures&quot;: 22,
+    &quot;programs&quot;: 15
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 45,
+    &quot;visibleMaterials&quot;: 45,
+    &quot;visibleTextureObjects&quot;: 22,
+    &quot;geometryBytes&quot;: 1136920,
+    &quot;texturePayloadEstimate&quot;: 51348821.333333336
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/11-mobile-original-wall.png"><img loading="lazy" src="screenshots/11-mobile-original-wall.png" alt="11-mobile-original-wall"></a><figcaption>11-mobile-original-wall — 390×844, DPR 0.5, baseline LOD2, FOV 58°, camera [18, 5.3, -104], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 65736.70000000298,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 2,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      18,
+      5.3,
+      -104
+    ],
+    &quot;quaternion&quot;: [
+      -0.003787908983456304,
+      -0.7070966353657279,
+      -0.003787908983456304,
+      0.7070966353657278
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 11300,
+    &quot;geometries&quot;: 3,
+    &quot;textures&quot;: 5,
+    &quot;programs&quot;: 4
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 1,
+    &quot;geometryBytes&quot;: 257456,
+    &quot;texturePayloadEstimate&quot;: 1398101.3333333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/12-mobile-pilot.png"><img loading="lazy" src="screenshots/12-mobile-pilot.png" alt="12-mobile-pilot"></a><figcaption>12-mobile-pilot — 390×844, DPR 0.5, pilot LOD1, FOV 58°, camera [18, 5.3, -104], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 66924,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 1,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      18,
+      5.3,
+      -104
+    ],
+    &quot;quaternion&quot;: [
+      -0.003787908983456304,
+      -0.7070966353657279,
+      -0.003787908983456304,
+      0.7070966353657278
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 21704,
+    &quot;geometries&quot;: 3,
+    &quot;textures&quot;: 5,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 638768,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/13-mobile-close.png"><img loading="lazy" src="screenshots/13-mobile-close.png" alt="13-mobile-close"></a><figcaption>13-mobile-close — 390×844, DPR 0.5, pilot LOD0, FOV 58°, camera [41.1, 5.4, -103.4], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 68538,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 390,
+    &quot;height&quot;: 844,
+    &quot;requestedDpr&quot;: 0.5,
+    &quot;effectiveDpr&quot;: 0.5
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      41.1,
+      5.4,
+      -103.4
+    ],
+    &quot;quaternion&quot;: [
+      0,
+      -0.6618025632357404,
+      0,
+      0.7496781758158656
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 4,
+    &quot;textures&quot;: 5,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/14-dpr1-existing-wall.png"><img loading="lazy" src="screenshots/14-dpr1-existing-wall.png" alt="14-dpr1-existing-wall"></a><figcaption>14-dpr1-existing-wall — 1366×900, DPR 1, baseline LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 3209.39999999851,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 11300,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 1,
+    &quot;programs&quot;: 2
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 1,
+    &quot;geometryBytes&quot;: 257456,
+    &quot;texturePayloadEstimate&quot;: 1398101.3333333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/15-dpr1-pilot-medium.png"><img loading="lazy" src="screenshots/15-dpr1-pilot-medium.png" alt="15-dpr1-pilot-medium"></a><figcaption>15-dpr1-pilot-medium — 1366×900, DPR 1, pilot LOD0, FOV 58°, camera [31, 5.6, -98], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 7076.10000000149,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/16-dpr1-material-close.png"><img loading="lazy" src="screenshots/16-dpr1-material-close.png" alt="16-dpr1-material-close"></a><figcaption>16-dpr1-material-close — 1366×900, DPR 1, pilot LOD0, FOV 58°, camera [41.1, 5.4, -103.4], context False<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 13173.29999999702,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: false,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      41.1,
+      5.4,
+      -103.4
+    ],
+    &quot;quaternion&quot;: [
+      0,
+      -0.6618025632357404,
+      0,
+      0.7496781758158656
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 2,
+    &quot;triangles&quot;: 43880,
+    &quot;geometries&quot;: 2,
+    &quot;textures&quot;: 4,
+    &quot;programs&quot;: 3
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 2,
+    &quot;visibleMaterials&quot;: 2,
+    &quot;visibleTextureObjects&quot;: 4,
+    &quot;geometryBytes&quot;: 1362320,
+    &quot;texturePayloadEstimate&quot;: 18175317.333333332
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/17-dpr1-existing-world-context.png"><img loading="lazy" src="screenshots/17-dpr1-existing-world-context.png" alt="17-dpr1-existing-world-context"></a><figcaption>17-dpr1-existing-world-context — 1366×900, DPR 1, baseline LOD0, FOV 58°, camera [31, 5.6, -98], context True<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 23169.60000000149,
+  &quot;mode&quot;: &quot;baseline&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: true,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 11,
+    &quot;triangles&quot;: 51826,
+    &quot;geometries&quot;: 12,
+    &quot;textures&quot;: 22,
+    &quot;programs&quot;: 15
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 44,
+    &quot;visibleMaterials&quot;: 44,
+    &quot;visibleTextureObjects&quot;: 19,
+    &quot;geometryBytes&quot;: 1015792,
+    &quot;texturePayloadEstimate&quot;: 34571605.33333333
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/18-dpr1-pilot-world-context.png"><img loading="lazy" src="screenshots/18-dpr1-pilot-world-context.png" alt="18-dpr1-pilot-world-context"></a><figcaption>18-dpr1-pilot-world-context — 1366×900, DPR 1, pilot LOD0, FOV 58°, camera [31, 5.6, -98], context True<details><summary>Recorded state</summary><pre>{
+  &quot;at&quot;: 29394.89999999851,
+  &quot;mode&quot;: &quot;pilot&quot;,
+  &quot;lod&quot;: 0,
+  &quot;context&quot;: true,
+  &quot;ready&quot;: true,
+  &quot;viewport&quot;: {
+    &quot;width&quot;: 1366,
+    &quot;height&quot;: 900,
+    &quot;requestedDpr&quot;: 1,
+    &quot;effectiveDpr&quot;: 1
+  },
+  &quot;camera&quot;: {
+    &quot;position&quot;: [
+      31,
+      5.6,
+      -98
+    ],
+    &quot;quaternion&quot;: [
+      -0.015368875988364148,
+      -0.5605322407271084,
+      -0.010405235624204968,
+      0.8279245954964172
+    ],
+    &quot;fov&quot;: 58
+  },
+  &quot;stats&quot;: {
+    &quot;calls&quot;: 12,
+    &quot;triangles&quot;: 84442,
+    &quot;geometries&quot;: 12,
+    &quot;textures&quot;: 22,
+    &quot;programs&quot;: 15
+  },
+  &quot;payload&quot;: {
+    &quot;visibleGeometryCount&quot;: 45,
+    &quot;visibleMaterials&quot;: 45,
+    &quot;visibleTextureObjects&quot;: 22,
+    &quot;geometryBytes&quot;: 2125408,
+    &quot;texturePayloadEstimate&quot;: 51348821.333333336
+  }
+}</pre></details></figcaption></figure>
+<figure><a href="screenshots/critical-asset-native-fallback.png"><img loading="lazy" src="screenshots/critical-asset-native-fallback.png" alt="critical-asset-native-fallback"></a><figcaption>critical-asset-native-fallback</figcaption></figure>
+<figure><a href="screenshots/initial-baseline.png"><img loading="lazy" src="screenshots/initial-baseline.png" alt="initial-baseline"></a><figcaption>initial-baseline</figcaption></figure>
+<figure><a href="screenshots/initial-pilot.png"><img loading="lazy" src="screenshots/initial-pilot.png" alt="initial-pilot"></a><figcaption>initial-pilot</figcaption></figure>
+<h2>Reference photographs — inspiration only, not website captures or texture sources</h2>
+<figure><a href="references/quarry-open-sky-geometry.jpeg"><img loading="lazy" src="references/quarry-open-sky-geometry.jpeg" alt="quarry-open-sky-geometry"></a><figcaption>quarry-open-sky-geometry</figcaption></figure>
+<figure><a href="references/quarry-warm-dappled-light.jpeg"><img loading="lazy" src="references/quarry-warm-dappled-light.jpeg" alt="quarry-warm-dappled-light"></a><figcaption>quarry-warm-dappled-light</figcaption></figure>
+<h2>Prior approved baseline documents</h2><p>These unchanged documents are included as plain text snapshots for context. The latest user approval overrides any historic request for further Stage 1 visual approval.</p>
+<p><a href="historical/README.txt">README.txt</a></p>
+<p><a href="historical/gullyverse-current-final-review.txt">gullyverse-current-final-review.txt</a></p>
+<p><a href="historical/gullyverse-current-visual-baseline.txt">gullyverse-current-visual-baseline.txt</a></p>
+<p><a href="historical/gullyverse-environment-pipeline.txt">gullyverse-environment-pipeline.txt</a></p>
+</html>

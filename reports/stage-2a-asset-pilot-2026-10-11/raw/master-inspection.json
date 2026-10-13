@@ -1,0 +1,147 @@
+{
+  "Blender": "4.3.2",
+  "metricScale": 1.0,
+  "objects": [
+    {
+      "name": "Rock_Collision",
+      "signedVolumeM3": 496.5179507580138,
+      "UVLayers": 0,
+      "objectScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "objectRotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "proxyEnclosesRuntimeVertices": null
+    },
+    {
+      "name": "Rock_LOD0",
+      "signedVolumeM3": 322.73573387853116,
+      "UVLayers": 1,
+      "objectScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "objectRotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "proxyEnclosesRuntimeVertices": true
+    },
+    {
+      "name": "Rock_LOD1",
+      "signedVolumeM3": 322.7747247687333,
+      "UVLayers": 1,
+      "objectScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "objectRotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "proxyEnclosesRuntimeVertices": true
+    },
+    {
+      "name": "Rock_LOD2",
+      "signedVolumeM3": 322.58451848896226,
+      "UVLayers": 1,
+      "objectScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "objectRotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "proxyEnclosesRuntimeVertices": true
+    },
+    {
+      "name": "Rock_Master_Sculpt",
+      "signedVolumeM3": 322.7278816451043,
+      "UVLayers": 1,
+      "objectScale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "objectRotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "proxyEnclosesRuntimeVertices": null
+    }
+  ],
+  "LODError": [
+    {
+      "LOD": "Rock_LOD0",
+      "UVBilinearRMSErrorM": 0.027331582201330057,
+      "p95ErrorM": 0.06121283172730618,
+      "maxErrorM": 0.27419673921569304,
+      "method": "Shared front UV bilinear reconstruction versus master, not Hausdorff distance or screen-space error"
+    },
+    {
+      "LOD": "Rock_LOD1",
+      "UVBilinearRMSErrorM": 0.04501834596088597,
+      "p95ErrorM": 0.10661170904153787,
+      "maxErrorM": 0.4880223160250281,
+      "method": "Shared front UV bilinear reconstruction versus master, not Hausdorff distance or screen-space error"
+    },
+    {
+      "LOD": "Rock_LOD2",
+      "UVBilinearRMSErrorM": 0.06738867111385054,
+      "p95ErrorM": 0.15855647902056735,
+      "maxErrorM": 0.5525431949249515,
+      "method": "Shared front UV bilinear reconstruction versus master, not Hausdorff distance or screen-space error"
+    }
+  ],
+  "images": [
+    {
+      "name": "rock-ao-1024.png",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "colorSpace": "Non-Color"
+    },
+    {
+      "name": "rock-basecolor-1024.jpg",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "colorSpace": "sRGB"
+    },
+    {
+      "name": "rock-normal-1024.png",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "colorSpace": "Non-Color"
+    },
+    {
+      "name": "rock-roughness-1024.png",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ],
+      "colorSpace": "Non-Color"
+    }
+  ]
+}

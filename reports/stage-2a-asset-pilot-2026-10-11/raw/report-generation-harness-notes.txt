@@ -1,0 +1,5 @@
+New report-generation tooling initially failed on three assumptions:
+1. Integrity helper treated git.status (the porcelain working-tree string) as an acceptance status. All four actual hash groups were already PASS. Corrected to check the four explicit verification groups.
+2. Initial eight raw performance windows stored state.current; later extra-window records stored state directly. Corrected the reporting adapter; raw performance files were not edited.
+3. Extra windows did not store a max property. Report now computes maximum from those original frame samples.
+These are report-tool schema/assertion errors, not production runtime regressions. No test assertion or application source was weakened or modified.

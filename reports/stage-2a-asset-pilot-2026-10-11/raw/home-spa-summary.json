@@ -1,0 +1,91 @@
+{
+  "method": "Actual SPA directional arrival then Home. Browser-only history instrumentation appends ONLY diagnostics to Home query so existing opt-in preparations are sampled before new Canvas mounts; no production files or route destinations changed. This diagnostic run is distinct from the earlier full-document direct-Team/Contact profile. SwiftShader only, no recording.",
+  "results": [
+    {
+      "route": "/team",
+      "status": "PASS",
+      "actionabilityMs": 18119,
+      "actualClickToLocalDOMMs": 12176,
+      "actualClickToAutomationObservedMs": 12604,
+      "clickToCanvasRemovalMs": 6608,
+      "clickToNewContextMs": 6857,
+      "contextToFirstDrawMs": 2307,
+      "firstDrawToArrivalMs": 2350,
+      "arrivalToLocalMs": 662,
+      "preparation": [
+        {
+          "name": "texture-initialization",
+          "at": 61435.40000000596,
+          "ms": 51.69999999552965,
+          "phase": "boot",
+          "scene": "hub",
+          "serial": 0,
+          "poseZ": -46
+        },
+        {
+          "name": "shader-compilation",
+          "at": 61487.20000000298,
+          "ms": 40.5,
+          "phase": "boot",
+          "scene": "hub",
+          "serial": 0,
+          "poseZ": -46
+        },
+        {
+          "name": "readiness-render-window",
+          "at": 61539.40000000596,
+          "ms": 2295.5,
+          "phase": "boot",
+          "scene": "hub",
+          "serial": 0,
+          "poseZ": -46
+        }
+      ],
+      "maxPostClickLongTaskMs": 2303,
+      "freshStageRequestsAfterHome": []
+    },
+    {
+      "route": "/get-in-touch",
+      "status": "PASS",
+      "actionabilityMs": 13537,
+      "actualClickToLocalDOMMs": 9766,
+      "actualClickToAutomationObservedMs": 10635,
+      "clickToCanvasRemovalMs": 4453,
+      "clickToNewContextMs": 4639,
+      "contextToFirstDrawMs": 1802,
+      "firstDrawToArrivalMs": 2635,
+      "arrivalToLocalMs": 690,
+      "preparation": [
+        {
+          "name": "texture-initialization",
+          "at": 35148.30000000447,
+          "ms": 63.29999999701977,
+          "phase": "boot",
+          "scene": "hub",
+          "serial": 0,
+          "poseZ": -46
+        },
+        {
+          "name": "shader-compilation",
+          "at": 35211.60000000149,
+          "ms": 28.100000001490116,
+          "phase": "boot",
+          "scene": "hub",
+          "serial": 0,
+          "poseZ": -46
+        },
+        {
+          "name": "readiness-render-window",
+          "at": 35248.60000000149,
+          "ms": 2530.2999999970198,
+          "phase": "boot",
+          "scene": "hub",
+          "serial": 0,
+          "poseZ": -46
+        }
+      ],
+      "maxPostClickLongTaskMs": 1512,
+      "freshStageRequestsAfterHome": []
+    }
+  ]
+}

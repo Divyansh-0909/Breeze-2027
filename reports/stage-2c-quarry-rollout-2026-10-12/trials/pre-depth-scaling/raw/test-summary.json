@@ -1,0 +1,278 @@
+{
+  "status": "PASS",
+  "scope": "Production localhost runtime, final quarry asset. Physical GPU/mobile and user visual approval remain pending.",
+  "checks": [
+    {
+      "command": "npm run test:immersive",
+      "status": "PASS",
+      "count": 64,
+      "log": "unit.log"
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "status": "PASS",
+      "log": "typecheck.log"
+    },
+    {
+      "command": "npm run lint",
+      "status": "PASS",
+      "caution": "Existing warnings outside changed runtime files remain.",
+      "log": "lint.log"
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "log": "build.log",
+      "context": "Existing inspection and old pilot preview build flags enabled for evidence; inert local configuration, no database mutations."
+    },
+    {
+      "command": "node reports/stage-2c-quarry-rollout-2026-10-12/scripts/validate-glb.mjs",
+      "status": "PASS",
+      "evidence": "glTF-validator.json",
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "command": "python reports/stage-2c-quarry-rollout-2026-10-12/scripts/validate-exported-topology.py",
+      "status": "PASS",
+      "evidence": "exported-topology-validation.json"
+    },
+    {
+      "command": "python reports/stage-2c-quarry-rollout-2026-10-12/scripts/validate-shape.py",
+      "status": "PASS",
+      "evidence": "shape-validation.json"
+    }
+  ],
+  "productionBrowserCommands": [
+    {
+      "name": "after-captures",
+      "command": [
+        "node",
+        "reports/stage-2c-quarry-rollout-2026-10-12/scripts/capture.mjs",
+        "after"
+      ],
+      "exitCode": 0,
+      "seconds": 139.52617287635803
+    },
+    {
+      "name": "after-performance",
+      "command": [
+        "node",
+        "reports/stage-2c-quarry-rollout-2026-10-12/scripts/measure.mjs",
+        "after"
+      ],
+      "exitCode": 0,
+      "seconds": 48.08555865287781
+    },
+    {
+      "name": "ten-toggle-cycles",
+      "command": [
+        "node",
+        "reports/stage-2c-quarry-rollout-2026-10-12/scripts/lifecycle.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 27.56565499305725
+    },
+    {
+      "name": "default-browser",
+      "command": [
+        "npm",
+        "run",
+        "test:immersive:browser"
+      ],
+      "exitCode": 0,
+      "seconds": 302.83417797088623
+    },
+    {
+      "name": "ten-navigation-cycles",
+      "command": [
+        "node",
+        "reports/stage-2c-quarry-rollout-2026-10-12/scripts/navigation-cycles.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 220.01299405097961
+    },
+    {
+      "name": "ten-video-cycles",
+      "command": [
+        "node",
+        "reports/stage-2c-quarry-rollout-2026-10-12/scripts/video-cycles.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 155.18495440483093
+    },
+    {
+      "name": "recovery-failure",
+      "command": [
+        "node",
+        "reports/stage-2c-quarry-rollout-2026-10-12/scripts/recovery.mjs"
+      ],
+      "exitCode": 0,
+      "seconds": 34.91174387931824
+    }
+  ],
+  "existingBrowserGroups": [
+    {
+      "name": "Fresh click entry, authored pacing and initial persistent Canvas",
+      "status": "PASS"
+    },
+    {
+      "name": "Held-key focus release, all editables/forms, native typing, lost keyup and stale repeat",
+      "status": "PASS"
+    },
+    {
+      "name": "Blur, visibility/freeze, focus restoration and interrupted input",
+      "status": "PASS"
+    },
+    {
+      "name": "Map invalid SVG guard, open/close, resize and same Canvas destination",
+      "status": "PASS"
+    },
+    {
+      "name": "Playback restores actual activation pose; rapid restart cannot change walking anchor",
+      "status": "PASS"
+    },
+    {
+      "name": "Boundary Stay/Escape, hysteresis, return and immersive Back/Forward",
+      "status": "PASS"
+    },
+    {
+      "name": "Navbar Home, reload session, direct URL, history and explicit Entrance policy",
+      "status": "PASS"
+    },
+    {
+      "name": "Fresh-session Enter and touch entry/movement/map; reduced motion",
+      "status": "PASS"
+    }
+  ],
+  "resourceCycles": {
+    "tenToggleCycles": {
+      "status": "PASS",
+      "activeFirst": {
+        "textures": 28,
+        "geometries": 222,
+        "GL": {
+          "Texture": 32,
+          "Buffer": 1006,
+          "Program": 22
+        }
+      },
+      "activeLast": {
+        "textures": 28,
+        "geometries": 222,
+        "GL": {
+          "Texture": 32,
+          "Buffer": 1006,
+          "Program": 22
+        }
+      },
+      "cold": {
+        "textures": 25,
+        "geometries": 143,
+        "GL": {
+          "Texture": 29,
+          "Buffer": 528,
+          "Program": 22
+        }
+      },
+      "retired": {
+        "textures": 25,
+        "geometries": 143,
+        "GL": {
+          "Texture": 29,
+          "Buffer": 528,
+          "Program": 22
+        }
+      },
+      "evidence": "lifecycle.json"
+    },
+    "tenNavigationRoundTrips": {
+      "status": "PASS",
+      "firstHub": {
+        "textures": 28,
+        "geometries": 233,
+        "GL": {
+          "Texture": 32,
+          "Buffer": 1046,
+          "Program": 44
+        }
+      },
+      "lastHub": {
+        "textures": 28,
+        "geometries": 233,
+        "GL": {
+          "Texture": 32,
+          "Buffer": 1046,
+          "Program": 44
+        }
+      },
+      "sameCanvas": true,
+      "evidence": "navigation-cycles.json"
+    },
+    "tenPlaybackExitCycles": {
+      "status": "PASS",
+      "first": {
+        "textures": 28,
+        "geometries": 195,
+        "GL": {
+          "Texture": 32,
+          "Buffer": 897,
+          "Program": 23
+        }
+      },
+      "last": {
+        "textures": 28,
+        "geometries": 195,
+        "GL": {
+          "Texture": 32,
+          "Buffer": 897,
+          "Program": 23
+        }
+      },
+      "everyCycleIdentical": true,
+      "cameraRestoration": true,
+      "evidence": "video-with-wall.json"
+    }
+  },
+  "recovery": [
+    {
+      "name": "Actual context loss/recovery preserves authored quarry, pose and Canvas",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed quarry load safely restores original geometry; retry succeeds",
+      "status": "PASS"
+    },
+    {
+      "name": "Native fallback during delayed quarry loading disposes unpublished asset",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed critical stage still reaches native fallback",
+      "status": "PASS"
+    }
+  ],
+  "preservation": {
+    "status": "PASS",
+    "protectedFiles": 119,
+    "unchanged": 115,
+    "evidence": "final-preservation.json"
+  },
+  "materialLock": {
+    "status": "PASS",
+    "evidence": "material-lock-validation.json"
+  },
+  "capturePairs": {
+    "status": "PASS",
+    "pairs": 14,
+    "PNGCount": 28,
+    "cameraQualityDPRMatch": true,
+    "evidence": "capture-comparison-metadata.json"
+  },
+  "limitations": [
+    "SwiftShader is not ordinary physical GPU hardware.",
+    "GPU counters are resource proxies, not reliable driver VRAM measurements.",
+    "Mobile viewport/touch emulation is not physical mobile performance acceptance.",
+    "Full-rollout visual production approval is pending."
+  ]
+}

@@ -1,0 +1,156 @@
+.experience {
+  min-height: 100svh;
+  overflow: hidden;
+  color: #eee7d5;
+  background: #05080a;
+  font-family: "Satoshi", sans-serif;
+}
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: #05080a;
+}
+
+.sceneCopy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(25px, 6vw, 86px);
+  bottom: clamp(44px, 9vh, 92px);
+  text-shadow: 0 5px 20px #000;
+  animation: copy 3.35s ease both;
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+.sceneCopy span {
+  color: #e2bb62;
+  font: 700 9px/1 "Satoshi", sans-serif;
+  letter-spacing: .28em;
+}
+
+.sceneCopy strong {
+  display: block;
+  margin-top: 13px;
+  font: 400 clamp(43px, 6vw, 80px)/.81 "Aerosoldier", Impact, sans-serif;
+  letter-spacing: -.04em;
+}
+
+.sceneCopy em {
+  color: #d6ad49;
+  font-style: normal;
+}
+
+.sceneCopyHidden {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.skip {
+  position: absolute;
+  z-index: 2;
+  right: 32px;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid #c8c0a7;
+  color: #eee7d5;
+  background: transparent;
+  font: 700 9px/1 "Satoshi", sans-serif;
+  letter-spacing: .15em;
+  cursor: pointer;
+  transition: opacity .35s ease, color .2s ease, border-color .2s ease;
+}
+
+.skip:hover {
+  color: #ecc46d;
+  border-color: #ecc46d;
+}
+
+.skipHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.settledLabel {
+  position: absolute;
+  z-index: 2;
+  inset: 52px 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 30px 34px;
+  color: #c8c5b7;
+  background: linear-gradient(#05080af0 0%, #05080ab8 46%, transparent 100%);
+  font: 700 9px/1 "Satoshi", sans-serif;
+  letter-spacing: .15em;
+  opacity: 0;
+  transform: translateY(-7px);
+  pointer-events: none;
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.settledLabel i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #d4a64b;
+  box-shadow: 0 0 11px #f0bd58;
+}
+
+.settledLabelVisible {
+  opacity: .84;
+  transform: translateY(0);
+}
+
+@keyframes copy {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  16%, 78% {
+    opacity: 1;
+    transform: none;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 760px) {
+  .sceneCopy {
+    left: 20px;
+    bottom: 78px;
+  }
+
+  .skip {
+    right: 18px;
+    bottom: 20px;
+  }
+
+  .settledLabel {
+    inset: 47px 0 auto;
+    padding: 14px 16px 30px;
+  }
+
+  .settledLabel span:last-child {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sceneCopy,
+  .skip,
+  .settledLabel {
+    animation: none;
+    transition: none;
+  }
+}

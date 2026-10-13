@@ -6,6 +6,8 @@ import { exitGeometry, groundGeometry, portalGeometry, quarryGeometry, tunnelGeo
 import { point3, world } from "./world";
 import { travelZones } from "./navigation";
 import { makeBoardTexture, makeGraffitiTexture, makeGroundTexture, makeRockTexture, requireWorldFonts } from "./worldPaint";
+import { quarryWithoutWallFace, type WallReplacement } from "./wallSection";
+import {tunnelOutsideQuarryRear} from "./quarryRollout";
 
 export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], color="#e4ded0", arrow, textSize }: { label:string;position:[number,number,number];rotation?:[number,number,number];size?:[number,number];color?:string;arrow?:[number,number];textSize?:number }) {
   requireWorldFonts();
@@ -178,16 +180,18 @@ function GroundDetail() {
     <instancedMesh ref={grass} args={[undefined,undefined,180]}><primitive object={tufts} attach="geometry" dispose={null} /><meshLambertMaterial color="#626849" side={THREE.DoubleSide} /></instancedMesh>
   </>;
 }
-export default function HubScene({nearStage,quality,stageView=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean}) {
+export default function HubScene({nearStage,quality,stageView=false,wallReplacement=null,authoredQuarry=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean;wallReplacement?:WallReplacement;authoredQuarry?:boolean}) {
   requireWorldFonts();
-  const quarry=useMemo(quarryGeometry,[]),tunnel=useMemo(tunnelGeometry,[]),portal=useMemo(portalGeometry,[]),exit=useMemo(exitGeometry,[]),ground=useMemo(groundGeometry,[]);
+  const quarry=useMemo(()=>authoredQuarry?null:wallReplacement?quarryWithoutWallFace(wallReplacement):quarryGeometry(),[wallReplacement,authoredQuarry]),tunnel=useMemo(()=>authoredQuarry?tunnelOutsideQuarryRear():tunnelGeometry(),[authoredQuarry]),portal=useMemo(portalGeometry,[]),exit=useMemo(()=>authoredQuarry?null:exitGeometry(),[authoredQuarry]),ground=useMemo(groundGeometry,[]);
   const rockTexture=useMemo(makeRockTexture,[]),groundTexture=useMemo(makeGroundTexture,[]);
   useEffect(()=>()=>{ground.dispose();rockTexture.dispose();groundTexture.dispose();},[ground,rockTexture,groundTexture]);
   return <>
     <color attach="background" args={[stageView?"#b2bbb9":"#737d87"]} /><fog attach="fog" args={stageView?["#b2bbb9",55,130]:["#737d87",205,520]} />
     <hemisphereLight args={stageView?["#d8e0dd","#686b59",.65]:["#a9bfd4","#8a8274",1.35]} />
     {!stageView && <directionalLight position={[-70,37,-145]} intensity={1.35} color="#efd0a4" />}
-    <Rock geometry={quarry} map={rockTexture} quarry /><Rock geometry={tunnel} map={rockTexture} /><Rock geometry={portal} map={rockTexture} /><Rock geometry={exit} map={rockTexture} quarry />
+    {quarry&&<Rock geometry={quarry} map={rockTexture} quarry />}
+    <Rock geometry={tunnel} map={rockTexture} />
+    <Rock geometry={portal} map={rockTexture} />{exit&&<Rock geometry={exit} map={rockTexture} quarry />}
     <mesh><primitive object={ground} attach="geometry" dispose={null} /><meshLambertMaterial map={groundTexture} color="#c8c2b4" /></mesh>
     <EntrancePaint portal={portal} /><TunnelPaint /><Scaffold /><StallBlocks /><Population nearStage={nearStage} quality={quality} /><GroundDetail />
   </>;

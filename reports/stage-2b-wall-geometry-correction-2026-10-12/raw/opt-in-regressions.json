@@ -1,0 +1,2183 @@
+{
+  "checks": [
+    {
+      "name": "Exported collision proxy raycast is valid and remains separate from walking bounds",
+      "status": "PASS",
+      "evidence": {
+        "hits": [
+          {
+            "distance": 5.000000312507684,
+            "point": [
+              0,
+              5,
+              -3.125076837307006e-7
+            ]
+          }
+        ],
+        "activeWalkingBoundsChanged": false
+      }
+    },
+    {
+      "name": "Public under-scaffold travel, same Canvas and authored wall persists",
+      "status": "PASS",
+      "evidence": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 115,
+          "triangles": 1020104,
+          "textures": 28,
+          "geometries": 156,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 30443.099999997765,
+          "scene": "aftermovie",
+          "geometries": 156,
+          "textures": 28,
+          "activeGeometryBytes": 4489424,
+          "activeTextureBytesEstimate": 57610244.00000001,
+          "jsHeapBytes": 35206583
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 602,
+                "deleted": 4,
+                "active": 598
+              },
+              "Program": {
+                "created": 47,
+                "deleted": 0,
+                "active": 47
+              },
+              "Shader": {
+                "created": 94,
+                "deleted": 78,
+                "active": 16
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 276,
+                "deleted": 0,
+                "active": 276
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [
+            "Wall_LOD2"
+          ],
+          "renderedMeshes": 3,
+          "variant": "corrected",
+          "trace": [
+            {
+              "at": 605.5,
+              "event": "load-start"
+            },
+            {
+              "at": 1308.5,
+              "event": "parse-ready",
+              "ms": 265,
+              "decodedBytes": 3477940
+            },
+            {
+              "at": 1308.699999999255,
+              "event": "load-ready",
+              "ms": 703.1999999992549
+            },
+            {
+              "at": 1703.699999999255,
+              "event": "texture-init",
+              "ms": 10.699999999254942,
+              "count": 3
+            },
+            {
+              "at": 1742.5999999977648,
+              "event": "shader-compile",
+              "ms": 38.899999998509884
+            },
+            {
+              "at": 4114.800000000745,
+              "event": "covered-ready",
+              "revision": 0,
+              "ms": 2421.800000000745,
+              "lighting": "hub"
+            },
+            {
+              "at": 4234.099999997765,
+              "event": "lod-change",
+              "from": 2,
+              "to": 1,
+              "pixels": 262.66574112227016,
+              "quality": 0,
+              "dpr": 0.25,
+              "camera": [
+                0,
+                1.72,
+                -46
+              ]
+            },
+            {
+              "at": 11361.800000000745,
+              "event": "lod-change",
+              "from": 1,
+              "to": 0,
+              "pixels": 845.0664816710679,
+              "quality": 1,
+              "dpr": 0.25,
+              "camera": [
+                0,
+                1.72,
+                -58.59864709360765
+              ]
+            },
+            {
+              "at": 17717.699999999255,
+              "event": "lod-change",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25,
+              "camera": [
+                -10.5,
+                1.72,
+                -106.8
+              ]
+            },
+            {
+              "at": 18029.199999999255,
+              "event": "mode-request",
+              "mode": "authored"
+            },
+            {
+              "at": 18030.5,
+              "event": "texture-init",
+              "ms": 0,
+              "count": 3
+            },
+            {
+              "at": 18112.099999997765,
+              "event": "shader-compile",
+              "ms": 81.5
+            },
+            {
+              "at": 20229.800000000745,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2199.300000000745,
+              "lighting": "stage"
+            }
+          ],
+          "assetMaterials": 4,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 12582912
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.0799146939691727,
+            0,
+            0,
+            0.9968017063026194
+          ]
+        }
+      }
+    },
+    {
+      "name": "Actual movie playback/Escape restores walking camera with wall present",
+      "status": "PASS",
+      "evidence": {
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "playing": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": true,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -12,
+            "y": 5.9,
+            "z": -117.30000000000001,
+            "yaw": 0,
+            "pitch": 0
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 100,
+            "triangles": 1018740,
+            "textures": 29,
+            "geometries": 152,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 37946.199999999255,
+            "scene": "aftermovie",
+            "geometries": 156,
+            "textures": 28,
+            "activeGeometryBytes": 4489424,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 30315289
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 34,
+                  "deleted": 1,
+                  "active": 33
+                },
+                "Buffer": {
+                  "created": 622,
+                  "deleted": 40,
+                  "active": 582
+                },
+                "Program": {
+                  "created": 49,
+                  "deleted": 4,
+                  "active": 45
+                },
+                "Shader": {
+                  "created": 98,
+                  "deleted": 82,
+                  "active": 16
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 282,
+                  "deleted": 20,
+                  "active": 262
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            },
+            {
+              "src": "/after-movie.mp4",
+              "time": 0.724918,
+              "paused": false,
+              "readyState": 4,
+              "connected": false
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 1,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [
+              "Wall_LOD2"
+            ],
+            "renderedMeshes": 3,
+            "variant": "corrected",
+            "trace": [
+              {
+                "at": 605.5,
+                "event": "load-start"
+              },
+              {
+                "at": 1308.5,
+                "event": "parse-ready",
+                "ms": 265,
+                "decodedBytes": 3477940
+              },
+              {
+                "at": 1308.699999999255,
+                "event": "load-ready",
+                "ms": 703.1999999992549
+              },
+              {
+                "at": 1703.699999999255,
+                "event": "texture-init",
+                "ms": 10.699999999254942,
+                "count": 3
+              },
+              {
+                "at": 1742.5999999977648,
+                "event": "shader-compile",
+                "ms": 38.899999998509884
+              },
+              {
+                "at": 4114.800000000745,
+                "event": "covered-ready",
+                "revision": 0,
+                "ms": 2421.800000000745,
+                "lighting": "hub"
+              },
+              {
+                "at": 4234.099999997765,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 262.66574112227016,
+                "quality": 0,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -46
+                ]
+              },
+              {
+                "at": 11361.800000000745,
+                "event": "lod-change",
+                "from": 1,
+                "to": 0,
+                "pixels": 845.0664816710679,
+                "quality": 1,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -58.59864709360765
+                ]
+              },
+              {
+                "at": 17717.699999999255,
+                "event": "lod-change",
+                "from": 0,
+                "to": 2,
+                "pixels": 0,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  -10.5,
+                  1.72,
+                  -106.8
+                ]
+              },
+              {
+                "at": 18029.199999999255,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 18030.5,
+                "event": "texture-init",
+                "ms": 0,
+                "count": 3
+              },
+              {
+                "at": 18112.099999997765,
+                "event": "shader-compile",
+                "ms": 81.5
+              },
+              {
+                "at": 20229.800000000745,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 2199.300000000745,
+                "lighting": "stage"
+              }
+            ],
+            "assetMaterials": 4,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": -12,
+            "y": 5.9,
+            "z": -117.30000000000001,
+            "yaw": 0,
+            "pitch": 0,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        },
+        "restored": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -110.8,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 115,
+            "triangles": 1020104,
+            "textures": 28,
+            "geometries": 156,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 41915.099999997765,
+            "scene": "aftermovie",
+            "geometries": 156,
+            "textures": 28,
+            "activeGeometryBytes": 4489424,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 30692383
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 34,
+                  "deleted": 2,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 638,
+                  "deleted": 40,
+                  "active": 598
+                },
+                "Program": {
+                  "created": 49,
+                  "deleted": 4,
+                  "active": 45
+                },
+                "Shader": {
+                  "created": 98,
+                  "deleted": 82,
+                  "active": 16
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 286,
+                  "deleted": 20,
+                  "active": 266
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            },
+            {
+              "src": null,
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": false
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 1,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [
+              "Wall_LOD2"
+            ],
+            "renderedMeshes": 3,
+            "variant": "corrected",
+            "trace": [
+              {
+                "at": 605.5,
+                "event": "load-start"
+              },
+              {
+                "at": 1308.5,
+                "event": "parse-ready",
+                "ms": 265,
+                "decodedBytes": 3477940
+              },
+              {
+                "at": 1308.699999999255,
+                "event": "load-ready",
+                "ms": 703.1999999992549
+              },
+              {
+                "at": 1703.699999999255,
+                "event": "texture-init",
+                "ms": 10.699999999254942,
+                "count": 3
+              },
+              {
+                "at": 1742.5999999977648,
+                "event": "shader-compile",
+                "ms": 38.899999998509884
+              },
+              {
+                "at": 4114.800000000745,
+                "event": "covered-ready",
+                "revision": 0,
+                "ms": 2421.800000000745,
+                "lighting": "hub"
+              },
+              {
+                "at": 4234.099999997765,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 262.66574112227016,
+                "quality": 0,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -46
+                ]
+              },
+              {
+                "at": 11361.800000000745,
+                "event": "lod-change",
+                "from": 1,
+                "to": 0,
+                "pixels": 845.0664816710679,
+                "quality": 1,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -58.59864709360765
+                ]
+              },
+              {
+                "at": 17717.699999999255,
+                "event": "lod-change",
+                "from": 0,
+                "to": 2,
+                "pixels": 0,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  -10.5,
+                  1.72,
+                  -106.8
+                ]
+              },
+              {
+                "at": 18029.199999999255,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 18030.5,
+                "event": "texture-init",
+                "ms": 0,
+                "count": 3
+              },
+              {
+                "at": 18112.099999997765,
+                "event": "shader-compile",
+                "ms": 81.5
+              },
+              {
+                "at": 20229.800000000745,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 2199.300000000745,
+                "lighting": "stage"
+              }
+            ],
+            "assetMaterials": 4,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -110.8,
+            "yaw": 0,
+            "pitch": 0.16,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.0799146939691727,
+              0,
+              0,
+              0.9968017063026194
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Boundary Stay/return, aerial map, finite markers and immersive history",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -105.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "returned": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 5,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -110.8,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 115,
+            "triangles": 1020104,
+            "textures": 28,
+            "geometries": 163,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 98908.69999999925,
+            "scene": "aftermovie",
+            "geometries": 163,
+            "textures": 28,
+            "activeGeometryBytes": 4489424,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 34082345
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 34,
+                  "deleted": 2,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 682,
+                  "deleted": 56,
+                  "active": 626
+                },
+                "Program": {
+                  "created": 53,
+                  "deleted": 6,
+                  "active": 47
+                },
+                "Shader": {
+                  "created": 106,
+                  "deleted": 94,
+                  "active": 12
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 316,
+                  "deleted": 28,
+                  "active": 288
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            },
+            {
+              "src": null,
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": false
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 1,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [
+              "Wall_LOD2"
+            ],
+            "renderedMeshes": 3,
+            "variant": "corrected",
+            "trace": [
+              {
+                "at": 605.5,
+                "event": "load-start"
+              },
+              {
+                "at": 1308.5,
+                "event": "parse-ready",
+                "ms": 265,
+                "decodedBytes": 3477940
+              },
+              {
+                "at": 1308.699999999255,
+                "event": "load-ready",
+                "ms": 703.1999999992549
+              },
+              {
+                "at": 1703.699999999255,
+                "event": "texture-init",
+                "ms": 10.699999999254942,
+                "count": 3
+              },
+              {
+                "at": 1742.5999999977648,
+                "event": "shader-compile",
+                "ms": 38.899999998509884
+              },
+              {
+                "at": 4114.800000000745,
+                "event": "covered-ready",
+                "revision": 0,
+                "ms": 2421.800000000745,
+                "lighting": "hub"
+              },
+              {
+                "at": 4234.099999997765,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 262.66574112227016,
+                "quality": 0,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -46
+                ]
+              },
+              {
+                "at": 11361.800000000745,
+                "event": "lod-change",
+                "from": 1,
+                "to": 0,
+                "pixels": 845.0664816710679,
+                "quality": 1,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -58.59864709360765
+                ]
+              },
+              {
+                "at": 17717.699999999255,
+                "event": "lod-change",
+                "from": 0,
+                "to": 2,
+                "pixels": 0,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  -10.5,
+                  1.72,
+                  -106.8
+                ]
+              },
+              {
+                "at": 18029.199999999255,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 18030.5,
+                "event": "texture-init",
+                "ms": 0,
+                "count": 3
+              },
+              {
+                "at": 18112.099999997765,
+                "event": "shader-compile",
+                "ms": 81.5
+              },
+              {
+                "at": 20229.800000000745,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 2199.300000000745,
+                "lighting": "stage"
+              },
+              {
+                "at": 73911.39999999851,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 330.13056934391784,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -49.735807991274555
+                ]
+              },
+              {
+                "at": 76602.5,
+                "event": "lod-change",
+                "from": 1,
+                "to": 2,
+                "pixels": 199.4985246049551,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  -0.15140300377445323,
+                  46.616558934739025,
+                  -55.37386455348421
+                ]
+              },
+              {
+                "at": 89330.80000000075,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 348.0131945149369,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -50.48319599702514
+                ]
+              },
+              {
+                "at": 91337.39999999851,
+                "event": "lod-change",
+                "from": 1,
+                "to": 2,
+                "pixels": 0,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  -10.5,
+                  1.72,
+                  -106.8
+                ]
+              }
+            ],
+            "assetMaterials": 4,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -110.8,
+            "yaw": 0,
+            "pitch": 0.16,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.0799146939691727,
+              0,
+              0,
+              0.9968017063026194
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Actual context loss/recovery retains original stage and wall cache ownership",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "restored": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "aftermovie",
+            "destination": "aftermovie",
+            "serial": 6,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -110.8,
+            "yaw": 0,
+            "pitch": 0.16
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 115,
+            "triangles": 1020104,
+            "textures": 28,
+            "geometries": 124,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 111327.5,
+            "scene": "aftermovie",
+            "geometries": 124,
+            "textures": 28,
+            "activeGeometryBytes": 4489424,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 32500254
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 66,
+                  "deleted": 2,
+                  "active": 64
+                },
+                "Buffer": {
+                  "created": 1151,
+                  "deleted": 56,
+                  "active": 1095
+                },
+                "Program": {
+                  "created": 77,
+                  "deleted": 6,
+                  "active": 71
+                },
+                "Shader": {
+                  "created": 154,
+                  "deleted": 130,
+                  "active": 24
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 440,
+                  "deleted": 28,
+                  "active": 412
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 2,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [
+              "Wall_LOD2"
+            ],
+            "renderedMeshes": 3,
+            "variant": "corrected",
+            "trace": [
+              {
+                "at": 605.5,
+                "event": "load-start"
+              },
+              {
+                "at": 1308.5,
+                "event": "parse-ready",
+                "ms": 265,
+                "decodedBytes": 3477940
+              },
+              {
+                "at": 1308.699999999255,
+                "event": "load-ready",
+                "ms": 703.1999999992549
+              },
+              {
+                "at": 1703.699999999255,
+                "event": "texture-init",
+                "ms": 10.699999999254942,
+                "count": 3
+              },
+              {
+                "at": 1742.5999999977648,
+                "event": "shader-compile",
+                "ms": 38.899999998509884
+              },
+              {
+                "at": 4114.800000000745,
+                "event": "covered-ready",
+                "revision": 0,
+                "ms": 2421.800000000745,
+                "lighting": "hub"
+              },
+              {
+                "at": 4234.099999997765,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 262.66574112227016,
+                "quality": 0,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -46
+                ]
+              },
+              {
+                "at": 11361.800000000745,
+                "event": "lod-change",
+                "from": 1,
+                "to": 0,
+                "pixels": 845.0664816710679,
+                "quality": 1,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -58.59864709360765
+                ]
+              },
+              {
+                "at": 17717.699999999255,
+                "event": "lod-change",
+                "from": 0,
+                "to": 2,
+                "pixels": 0,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  -10.5,
+                  1.72,
+                  -106.8
+                ]
+              },
+              {
+                "at": 18029.199999999255,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 18030.5,
+                "event": "texture-init",
+                "ms": 0,
+                "count": 3
+              },
+              {
+                "at": 18112.099999997765,
+                "event": "shader-compile",
+                "ms": 81.5
+              },
+              {
+                "at": 20229.800000000745,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 2199.300000000745,
+                "lighting": "stage"
+              },
+              {
+                "at": 73911.39999999851,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 330.13056934391784,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -49.735807991274555
+                ]
+              },
+              {
+                "at": 76602.5,
+                "event": "lod-change",
+                "from": 1,
+                "to": 2,
+                "pixels": 199.4985246049551,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  -0.15140300377445323,
+                  46.616558934739025,
+                  -55.37386455348421
+                ]
+              },
+              {
+                "at": 89330.80000000075,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 348.0131945149369,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -50.48319599702514
+                ]
+              },
+              {
+                "at": 91337.39999999851,
+                "event": "lod-change",
+                "from": 1,
+                "to": 2,
+                "pixels": 0,
+                "quality": 3,
+                "dpr": 0.25,
+                "camera": [
+                  -10.5,
+                  1.72,
+                  -106.8
+                ]
+              },
+              {
+                "at": 101576.39999999851,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 101591.59999999776,
+                "event": "texture-init",
+                "ms": 10.599999997764826,
+                "count": 3
+              },
+              {
+                "at": 101628.89999999851,
+                "event": "shader-compile",
+                "ms": 37.30000000074506
+              },
+              {
+                "at": 104908.30000000075,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 3327.400000002235,
+                "lighting": "stage"
+              }
+            ],
+            "assetMaterials": 4,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": -10.5,
+            "y": 1.72,
+            "z": -110.8,
+            "yaw": 0,
+            "pitch": 0.16,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.0799146939691727,
+              0,
+              0,
+              0.9968017063026194
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Failed optional wall restores original quarry; retry works",
+      "status": "PASS",
+      "evidence": {
+        "failed": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 0,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 141,
+            "triangles": 100990,
+            "textures": 25,
+            "geometries": 143,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 6301.60000000149,
+            "scene": "hub",
+            "geometries": 143,
+            "textures": 25,
+            "activeGeometryBytes": 1793876,
+            "activeTextureBytesEstimate": 45027332,
+            "jsHeapBytes": 37023575
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 29,
+                  "deleted": 0,
+                  "active": 29
+                },
+                "Buffer": {
+                  "created": 528,
+                  "deleted": 0,
+                  "active": 528
+                },
+                "Program": {
+                  "created": 22,
+                  "deleted": 0,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 44,
+                  "deleted": 40,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 143,
+                  "deleted": 0,
+                  "active": 143
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "off",
+              "busy": false,
+              "assetReady": false,
+              "revision": 1,
+              "error": "TypeError: Failed to fetch"
+            },
+            "consumers": 0,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 0,
+            "variant": "corrected",
+            "trace": [
+              {
+                "at": 714.6000000014901,
+                "event": "load-start"
+              },
+              {
+                "at": 730.4000000022352,
+                "event": "load-failed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 1547.300000000745,
+                "event": "texture-init",
+                "ms": 0,
+                "count": 0
+              },
+              {
+                "at": 1580.800000000745,
+                "event": "shader-compile",
+                "ms": 33.5
+              },
+              {
+                "at": 2066.2000000029802,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 518.9000000022352,
+                "lighting": "hub"
+              }
+            ],
+            "assetMaterials": 0,
+            "assetTextures": 0,
+            "decodedTextureEstimate": 0
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "retried": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 1,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 142,
+            "triangles": 101600,
+            "textures": 28,
+            "geometries": 152,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 7489.800000000745,
+            "scene": "hub",
+            "geometries": 146,
+            "textures": 28,
+            "activeGeometryBytes": 3553124,
+            "activeTextureBytesEstimate": 57610244.00000001,
+            "jsHeapBytes": 28918800
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 32,
+                  "deleted": 0,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 586,
+                  "deleted": 4,
+                  "active": 582
+                },
+                "Program": {
+                  "created": 23,
+                  "deleted": 0,
+                  "active": 23
+                },
+                "Shader": {
+                  "created": 46,
+                  "deleted": 42,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 153,
+                  "deleted": 1,
+                  "active": 152
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 2,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 1,
+            "projectedPixels": 361.55574762926807,
+            "visible": [
+              "Wall_LOD1"
+            ],
+            "renderedMeshes": 3,
+            "variant": "corrected",
+            "trace": [
+              {
+                "at": 714.6000000014901,
+                "event": "load-start"
+              },
+              {
+                "at": 730.4000000022352,
+                "event": "load-failed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 1547.300000000745,
+                "event": "texture-init",
+                "ms": 0,
+                "count": 0
+              },
+              {
+                "at": 1580.800000000745,
+                "event": "shader-compile",
+                "ms": 33.5
+              },
+              {
+                "at": 2066.2000000029802,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 518.9000000022352,
+                "lighting": "hub"
+              },
+              {
+                "at": 6901.900000002235,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 6910.900000002235,
+                "event": "load-start"
+              },
+              {
+                "at": 7132.900000002235,
+                "event": "parse-ready",
+                "ms": 34.30000000074506,
+                "decodedBytes": 3477940
+              },
+              {
+                "at": 7133,
+                "event": "load-ready",
+                "ms": 222.09999999776483
+              },
+              {
+                "at": 7154.20000000298,
+                "event": "texture-init",
+                "ms": 7.5,
+                "count": 3
+              },
+              {
+                "at": 7172.60000000149,
+                "event": "shader-compile",
+                "ms": 18.299999997019768
+              },
+              {
+                "at": 8010.70000000298,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 864,
+                "lighting": "hub"
+              },
+              {
+                "at": 8313.800000000745,
+                "event": "lod-change",
+                "from": 2,
+                "to": 1,
+                "pixels": 361.55574762926807,
+                "quality": 1,
+                "dpr": 0.25,
+                "camera": [
+                  0,
+                  1.72,
+                  -51
+                ]
+              }
+            ],
+            "assetMaterials": 4,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 12582912
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Interrupted optional load/native fallback disposes unpublished resources",
+      "status": "PASS",
+      "evidence": {
+        "disposed": true,
+        "assetPresent": false,
+        "trace": [
+          {
+            "at": 687.1000000014901,
+            "event": "load-start"
+          },
+          {
+            "at": 789.5,
+            "event": "mode-request",
+            "mode": "off"
+          },
+          {
+            "at": 1395,
+            "event": "texture-init",
+            "ms": 0,
+            "count": 0
+          },
+          {
+            "at": 1434.199999999255,
+            "event": "shader-compile",
+            "ms": 39.19999999925494
+          },
+          {
+            "at": 2058.300000000745,
+            "event": "covered-ready",
+            "revision": 1,
+            "ms": 663.1999999992549,
+            "lighting": "hub"
+          },
+          {
+            "at": 7385.199999999255,
+            "event": "parse-ready",
+            "ms": 44.099999997764826,
+            "decodedBytes": 3477940
+          },
+          {
+            "at": 7386,
+            "event": "abandoned-load-disposal",
+            "geometries": 10,
+            "materials": 4,
+            "textures": 3,
+            "imageBitmaps": 3
+          }
+        ],
+        "consumers": 0
+      }
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

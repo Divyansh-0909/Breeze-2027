@@ -1,0 +1,271 @@
+{
+  "browser": "151.0.7922.173",
+  "scope": "Browser-only instrumentation, unchanged production. Distinguishes automation actionability wait from actual DOM click, route, context creation, readiness, warm frames and arrival. SwiftShader only; no recording.",
+  "results": [
+    {
+      "route": "/team",
+      "viewport": {
+        "width": 1366,
+        "height": 900,
+        "requestedDpr": 0.25
+      },
+      "network": [
+        {
+          "type": "request",
+          "wall": 1791755553784,
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf"
+        },
+        {
+          "type": "response",
+          "wall": 1791755553790,
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755554299,
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb"
+        },
+        {
+          "type": "response",
+          "wall": 1791755554382,
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755559021,
+          "url": "http://127.0.0.1:3000/fonts/Satoshi-Bold.woff2"
+        },
+        {
+          "type": "request",
+          "wall": 1791755559021,
+          "url": "http://127.0.0.1:3000/fonts/Aerosoldier-PersonalUse.otf"
+        },
+        {
+          "type": "request",
+          "wall": 1791755559071,
+          "url": "http://127.0.0.1:3000/fonts/Satoshi-Regular.woff2"
+        },
+        {
+          "type": "response",
+          "wall": 1791755559071,
+          "url": "http://127.0.0.1:3000/fonts/Satoshi-Bold.woff2",
+          "status": 200
+        },
+        {
+          "type": "response",
+          "wall": 1791755559169,
+          "url": "http://127.0.0.1:3000/fonts/Satoshi-Regular.woff2",
+          "status": 200
+        },
+        {
+          "type": "response",
+          "wall": 1791755559226,
+          "url": "http://127.0.0.1:3000/fonts/Aerosoldier-PersonalUse.otf",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755559264,
+          "url": "http://127.0.0.1:3000/?arrival=hub&_rsc=u255c"
+        },
+        {
+          "type": "request",
+          "wall": 1791755559264,
+          "url": "http://127.0.0.1:3000/events?_rsc=u255c"
+        },
+        {
+          "type": "request",
+          "wall": 1791755559265,
+          "url": "http://127.0.0.1:3000/get-in-touch?_rsc=u255c"
+        },
+        {
+          "type": "request",
+          "wall": 1791755559275,
+          "url": "http://127.0.0.1:3000/cart?_rsc=u255c"
+        },
+        {
+          "type": "response",
+          "wall": 1791755559308,
+          "url": "http://127.0.0.1:3000/?arrival=hub&_rsc=u255c",
+          "status": 200
+        },
+        {
+          "type": "response",
+          "wall": 1791755559312,
+          "url": "http://127.0.0.1:3000/events?_rsc=u255c",
+          "status": 200
+        },
+        {
+          "type": "response",
+          "wall": 1791755559312,
+          "url": "http://127.0.0.1:3000/get-in-touch?_rsc=u255c",
+          "status": 200
+        },
+        {
+          "type": "response",
+          "wall": 1791755559312,
+          "url": "http://127.0.0.1:3000/cart?_rsc=u255c",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755599948,
+          "url": "http://127.0.0.1:3000/?arrival=hub&_rsc=mo4ch"
+        },
+        {
+          "type": "response",
+          "wall": 1791755602320,
+          "url": "http://127.0.0.1:3000/?arrival=hub&_rsc=mo4ch",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755609150,
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf"
+        },
+        {
+          "type": "response",
+          "wall": 1791755609181,
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755609533,
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb"
+        },
+        {
+          "type": "response",
+          "wall": 1791755609609,
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200
+        }
+      ],
+      "errors": [],
+      "automationActionStartedWall": 1791755579014,
+      "clickCallReturnedWall": 1791755599944,
+      "URLObservedWall": 1791755606940,
+      "localObservedWall": 1791755613782,
+      "status": "FAIL",
+      "error": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'preparation')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:163)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/Breeze-2027-navigation/reports/stage-2a-asset-pilot-2026-10-11/scripts/home-profile.mjs:12:411"
+    },
+    {
+      "route": "/get-in-touch",
+      "viewport": {
+        "width": 1366,
+        "height": 900,
+        "requestedDpr": 0.25
+      },
+      "network": [
+        {
+          "type": "request",
+          "wall": 1791755615015,
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf"
+        },
+        {
+          "type": "response",
+          "wall": 1791755615024,
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755615454,
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb"
+        },
+        {
+          "type": "response",
+          "wall": 1791755615522,
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755619621,
+          "url": "http://127.0.0.1:3000/?arrival=hub&_rsc=1rqdl"
+        },
+        {
+          "type": "request",
+          "wall": 1791755619634,
+          "url": "http://127.0.0.1:3000/events?_rsc=1rqdl"
+        },
+        {
+          "type": "request",
+          "wall": 1791755619634,
+          "url": "http://127.0.0.1:3000/cart?_rsc=1rqdl"
+        },
+        {
+          "type": "response",
+          "wall": 1791755619674,
+          "url": "http://127.0.0.1:3000/?arrival=hub&_rsc=1rqdl",
+          "status": 200
+        },
+        {
+          "type": "response",
+          "wall": 1791755619676,
+          "url": "http://127.0.0.1:3000/events?_rsc=1rqdl",
+          "status": 200
+        },
+        {
+          "type": "response",
+          "wall": 1791755619676,
+          "url": "http://127.0.0.1:3000/cart?_rsc=1rqdl",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755619807,
+          "url": "http://127.0.0.1:3000/models/breeze/help-desk.glb"
+        },
+        {
+          "type": "response",
+          "wall": 1791755619928,
+          "url": "http://127.0.0.1:3000/models/breeze/help-desk.glb",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755634247,
+          "url": "http://127.0.0.1:3000/?arrival=hub&_rsc=ym6pu"
+        },
+        {
+          "type": "response",
+          "wall": 1791755635880,
+          "url": "http://127.0.0.1:3000/?arrival=hub&_rsc=ym6pu",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755640887,
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf"
+        },
+        {
+          "type": "response",
+          "wall": 1791755640892,
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 200
+        },
+        {
+          "type": "request",
+          "wall": 1791755641273,
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb"
+        },
+        {
+          "type": "response",
+          "wall": 1791755641342,
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200
+        }
+      ],
+      "errors": [],
+      "automationActionStartedWall": 1791755622434,
+      "clickCallReturnedWall": 1791755634245,
+      "URLObservedWall": 1791755638989,
+      "localObservedWall": 1791755645496,
+      "status": "FAIL",
+      "error": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'preparation')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:163)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/Breeze-2027-navigation/reports/stage-2a-asset-pilot-2026-10-11/scripts/home-profile.mjs:12:411"
+    }
+  ]
+}

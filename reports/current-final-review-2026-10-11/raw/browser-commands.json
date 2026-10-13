@@ -1,0 +1,82 @@
+[
+  {
+    "name": "captures",
+    "command": [
+      "node",
+      "reports/current-final-review-2026-10-11/scripts/captures.mjs"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "elapsedSeconds": 293.7034788131714
+  },
+  {
+    "name": "resources",
+    "command": [
+      "node",
+      "reports/current-final-review-2026-10-11/scripts/resources.mjs"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "elapsedSeconds": 394.8146221637726
+  },
+  {
+    "name": "performance",
+    "command": [
+      "node",
+      "reports/current-final-review-2026-10-11/scripts/performance.mjs"
+    ],
+    "environment": {
+      "PERF_LABEL": "current"
+    },
+    "exitCode": 0,
+    "elapsedSeconds": 269.6357958316803
+  },
+  {
+    "name": "visitor",
+    "command": [
+      "node",
+      "reports/current-final-review-2026-10-11/scripts/visitor.mjs"
+    ],
+    "environment": {},
+    "exitCode": 1,
+    "elapsedSeconds": 639.7536754608154
+  },
+  {
+    "name": "edges",
+    "command": [
+      "node",
+      "reports/current-final-review-2026-10-11/scripts/edges-and-media.mjs"
+    ],
+    "environment": {
+      "AUDIT_EDGES_ONLY": "1"
+    },
+    "exitCode": 0,
+    "elapsedSeconds": 176.25814199447632
+  },
+  {
+    "name": "interruption",
+    "command": [
+      "node",
+      "reports/current-final-review-2026-10-11/scripts/interruption.mjs"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "elapsedSeconds": 68.87889099121094
+  },
+  {
+    "name": "project-performance",
+    "command": [
+      "npm",
+      "run",
+      "perf:immersive"
+    ],
+    "environment": {
+      "CHROME_PATH": "/usr/bin/chromium",
+      "GULLYVERSE_PROFILES": "desktop",
+      "GULLYVERSE_MODE": "production",
+      "GULLYVERSE_ARTIFACT_DIR": "reports/current-final-review-2026-10-11/raw/project-performance"
+    },
+    "exitCode": 1,
+    "elapsedSeconds": 376.44403743743896
+  }
+]

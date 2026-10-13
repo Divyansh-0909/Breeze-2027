@@ -1,0 +1,6 @@
+components/immersive/AftermovieScene.tsx(27,71): error TS2345: Argument of type '(() => WallState) | (() => { readonly mode: "off"; readonly busy: false; readonly assetReady: false; })' is not assignable to parameter of type '() => WallState'.
+  Type '() => { readonly mode: "off"; readonly busy: false; readonly assetReady: false; }' is not assignable to type '() => WallState'.
+    Type '{ readonly mode: "off"; readonly busy: false; readonly assetReady: false; }' is missing the following properties from type 'WallState': revision, error
+components/immersive/ImmersiveShell.tsx(64,80): error TS2345: Argument of type '(() => WallState) | (() => { readonly mode: "off"; readonly busy: false; readonly assetReady: false; readonly error: any; })' is not assignable to parameter of type '() => WallState'.
+  Type '() => { readonly mode: "off"; readonly busy: false; readonly assetReady: false; readonly error: any; }' is not assignable to type '() => WallState'.
+    Property 'revision' is missing in type '{ readonly mode: "off"; readonly busy: false; readonly assetReady: false; readonly error: any; }' but required in type 'WallState'.
