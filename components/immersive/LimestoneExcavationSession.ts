@@ -28,7 +28,7 @@ export class LimestoneExcavationSession extends WallPreviewSession {
     this.look = look;
   }
 
-  partsForRendering() {
+  partsForRendering(): Array<{id:string|number;center:number[];radius:number;nodes:string[]}> {
     return this.style === "baseline" ? QUARRY.parts : manifest.variants[this.style].parts;
   }
 

@@ -1,0 +1,155 @@
+{
+  "license": "CC0",
+  "metallic": 0,
+  "lightingChanged": false,
+  "rockColourReference": "Original Stage2A pilot mean, before any world lighting",
+  "macroVariation": "Low-contrast vertex colour tied to actual stratigraphy and regional weathering; no mirrored atlas",
+  "materials": [
+    {
+      "family": "dark-rock",
+      "source": "rock_face_04",
+      "albedoMeanSRGB255": [
+        106.50364766979631,
+        105.10364766980894,
+        98.60364766979106
+      ],
+      "physicalUVTileMetres": 2,
+      "albedoResolution": 2048,
+      "normalResolution": 1024,
+      "ormResolution": 1024,
+      "roughnessRange": [
+        0.9179980158805847,
+        0.9600000381469727
+      ],
+      "normalTechnique": "Periodic source-height residual gradients; amplitude selected artistically, not measured scan depth",
+      "sourceMethodClaim": "Photographic PBR source; capture method not certified by provider API"
+    },
+    {
+      "family": "dry-terrain",
+      "source": "rocky_terrain",
+      "albedoMeanSRGB255": [
+        90.22034164307615,
+        76.91185694097967,
+        48.75458669876549
+      ],
+      "physicalUVTileMetres": 22,
+      "albedoResolution": 1024,
+      "normalResolution": 1024,
+      "ormResolution": 1024,
+      "roughnessRange": [
+        0.9359129071235657,
+        0.9494555592536926
+      ],
+      "normalTechnique": "Periodic source-height high-frequency residual; large identifiable photo forms suppressed. Same accepted roughness/AO ORM.",
+      "sourceMethodClaim": "Photographic PBR source; capture method not certified by provider API"
+    }
+  ],
+  "refinementMaterialChange": "Cliff maps, roughness/normal factors unchanged. Outer-terrain albedo/normal use source-derived residuals, original ORM unchanged. Still six unique active runtime images and two shared materials.",
+  "sharedHolder": "public/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+  "terrainRefinement": "terrain-material-refinement.json",
+  "terrainRefinementData": {
+    "scope": "Outer terrain only; all accepted cliff maps and material factors unchanged",
+    "source": "Stage2C.5 CC0 rocky_terrain derived maps; retained photographic originals and provider provenance",
+    "method": "Periodic high-frequency source residual,13px albedo lowpass and19px height lowpass; no generated random colour noise",
+    "albedoMeanSRGB255": [
+      90.22034164307615,
+      76.91185694097967,
+      48.75458669876549
+    ],
+    "tileMetres": 22,
+    "normalAmplitude": "Artistic shallow relief; not physical scan amplitude",
+    "maps": [
+      {
+        "file": "dry-terrain-basecolor.jpg",
+        "bytes": 410666,
+        "sha256": "0a2a1963c55cbe355749cf188a8345183054d6962bbf19499d42b9d85e5c80ed"
+      },
+      {
+        "file": "dry-terrain-normal.png",
+        "bytes": 442116,
+        "sha256": "d7b111d612eecf1ac610bb8131e3f5c40f103033809b4e73797f3e556a5c534d"
+      },
+      {
+        "file": "dry-terrain-orm.png",
+        "bytes": 476256,
+        "sha256": "0b83728657256e9541941f60e1570ed94b62d1cd4f06c8caa2398beabc33adaf"
+      }
+    ]
+  },
+  "sharedHolderSHA256": "56345a4165738d991ff302fab9b6ecf811e6f397ce5636ccb0651cce4c6fca87",
+  "referenceMaps": [
+    {
+      "file": "dark-rock-basecolor.jpg",
+      "bytes": 1649996,
+      "sha256": "9cf58ed96c262e6e7310e164ae1134255ccb1948151997dde7adc1ecceb21ec0"
+    },
+    {
+      "file": "dark-rock-orm.png",
+      "bytes": 309687,
+      "sha256": "0f9ad7dfa5ad0bffb337517c456712049ad32340209833221ba08e10eeb4dd7c"
+    },
+    {
+      "file": "dark-rock-normal.png",
+      "bytes": 1366447,
+      "sha256": "bf67550e3332468d22923bf5676cbb6421f96af093eaba4b80056a9ca03c4e22"
+    },
+    {
+      "file": "dry-terrain-basecolor.jpg",
+      "bytes": 517134,
+      "sha256": "54a234a67838ab106f8e96db893b8ba27341b3a79f79323e596cc65bb7535b6a"
+    },
+    {
+      "file": "dark-rock-height.png",
+      "bytes": 1040896,
+      "sha256": "1be8ce65335077ba3a36f183e0bd5b926467b830e023b03ffdf69f95429ed412"
+    },
+    {
+      "file": "dry-terrain-normal.png",
+      "bytes": 717345,
+      "sha256": "af05deda7ae9d4b5cad07e0805544d3a01d2c25d43764ef5dfdfceccd0fbe814"
+    },
+    {
+      "file": "dry-terrain-height.png",
+      "bytes": 234905,
+      "sha256": "df784bf47901882833fec25f6ad3ab37fe1c176a7c6a560b1ef571a35e216569"
+    },
+    {
+      "file": "dry-terrain-orm.png",
+      "bytes": 476256,
+      "sha256": "0b83728657256e9541941f60e1570ed94b62d1cd4f06c8caa2398beabc33adaf"
+    }
+  ],
+  "files": [
+    {
+      "path": "assets-source/gullyverse/quarry-foundation/textures/dark-rock-basecolor.jpg",
+      "bytes": 1649996,
+      "sha256": "9cf58ed96c262e6e7310e164ae1134255ccb1948151997dde7adc1ecceb21ec0"
+    },
+    {
+      "path": "assets-source/gullyverse/quarry-foundation/textures/dark-rock-normal.png",
+      "bytes": 1366447,
+      "sha256": "bf67550e3332468d22923bf5676cbb6421f96af093eaba4b80056a9ca03c4e22"
+    },
+    {
+      "path": "assets-source/gullyverse/quarry-foundation/textures/dark-rock-orm.png",
+      "bytes": 309687,
+      "sha256": "0f9ad7dfa5ad0bffb337517c456712049ad32340209833221ba08e10eeb4dd7c"
+    },
+    {
+      "path": "assets-source/gullyverse/quarry-foundation-refined/textures/dry-terrain-basecolor.jpg",
+      "bytes": 410666,
+      "sha256": "0a2a1963c55cbe355749cf188a8345183054d6962bbf19499d42b9d85e5c80ed"
+    },
+    {
+      "path": "assets-source/gullyverse/quarry-foundation-refined/textures/dry-terrain-normal.png",
+      "bytes": 442116,
+      "sha256": "d7b111d612eecf1ac610bb8131e3f5c40f103033809b4e73797f3e556a5c534d"
+    },
+    {
+      "path": "assets-source/gullyverse/quarry-foundation-refined/textures/dry-terrain-orm.png",
+      "bytes": 476256,
+      "sha256": "0b83728657256e9541941f60e1570ed94b62d1cd4f06c8caa2398beabc33adaf"
+    }
+  ],
+  "provenance": "../quarry-foundation/source-provenance.json"
+}

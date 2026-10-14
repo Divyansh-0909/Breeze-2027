@@ -1,0 +1,3108 @@
+{
+  "checks": [
+    {
+      "name": "Public held-key directional Aftermovie gate, covered travel and same Canvas",
+      "status": "PASS",
+      "walkingAndTravelMs": 15116,
+      "start": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 162,
+          "triangles": 116519,
+          "textures": 31,
+          "geometries": 212,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 5728.600000008941,
+          "scene": "hub",
+          "geometries": 212,
+          "textures": 31,
+          "activeGeometryBytes": 10176720,
+          "activeTextureBytesEstimate": 95358979.99999997,
+          "jsHeapBytes": 79853263
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 35,
+                "deleted": 0,
+                "active": 35
+              },
+              "Buffer": {
+                "created": 932,
+                "deleted": 0,
+                "active": 932
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 212,
+                "deleted": 0,
+                "active": 212
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 1,
+            "Wall_04": 2,
+            "Wall_05": 2,
+            "Wall_06": 2,
+            "Wall_07": 2,
+            "Wall_08": 2,
+            "Wall_09": 2,
+            "Wall_10": 2,
+            "Wall_11": 2,
+            "Wall_12": 2,
+            "Wall_13": 2,
+            "Wall_14": 2,
+            "Wall_15": 1,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 2,
+            "Terrain_0_1": 2,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 2,
+            "Terrain_1_0": 2,
+            "Terrain_1_1": 2,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 2,
+            "Terrain_2_0": 2,
+            "Terrain_2_1": 2,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 2,
+            "Terrain_3_0": 2,
+            "Terrain_3_1": 2,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 2,
+            "Foot_Scree": 2
+          },
+          "lodPixels": {
+            "Wall_00": 90027.83922776984,
+            "Wall_01": 66055.2759633159,
+            "Wall_02": 2200.2011087160217,
+            "Wall_03": 400.4788024862694,
+            "Wall_04": 275.4941425505077,
+            "Wall_05": 145.85538953636365,
+            "Wall_06": 98.44190883534048,
+            "Wall_07": 80.63655628850245,
+            "Wall_08": 75.01111334734868,
+            "Wall_09": 66.75514400349817,
+            "Wall_10": 80.6609965061989,
+            "Wall_11": 85.15114465498223,
+            "Wall_12": 125.10690882173898,
+            "Wall_13": 194.72300338153488,
+            "Wall_14": 231.02302532433205,
+            "Wall_15": 464.1167705089224,
+            "Wall_16": 1534.979470234475,
+            "Wall_17": 86785.43762716655,
+            "Terrain_0_0": 158.0481792662696,
+            "Terrain_0_1": 322.93255639756364,
+            "Terrain_0_2": 413554.6887099861,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 158.29965775242624,
+            "Terrain_1_1": 324.3174045702565,
+            "Terrain_1_2": 421006.1860963096,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 158.19900686431225,
+            "Terrain_2_1": 324.18383276445604,
+            "Terrain_2_2": 423769.8810629059,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 158.0862542520871,
+            "Terrain_3_1": 322.87716080116934,
+            "Terrain_3_2": 413573.07028798026,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 292.23214570142346
+          },
+          "selectedNodes": [
+            "Foundation_Wall_00_LOD0",
+            "Foundation_Wall_01_LOD0",
+            "Foundation_Wall_02_LOD0",
+            "Foundation_Wall_16_LOD0",
+            "Foundation_Wall_17_LOD0",
+            "Foundation_Wall_03_LOD1",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_04_LOD2",
+            "Foundation_Wall_05_LOD2",
+            "Foundation_Wall_06_LOD2",
+            "Foundation_Wall_07_LOD2",
+            "Foundation_Wall_08_LOD2",
+            "Foundation_Wall_09_LOD2",
+            "Foundation_Wall_10_LOD2",
+            "Foundation_Wall_11_LOD2",
+            "Foundation_Wall_12_LOD2",
+            "Foundation_Wall_13_LOD2",
+            "Foundation_Wall_14_LOD2",
+            "Foundation_Terrain_0_0_LOD2",
+            "Foundation_Terrain_0_1_LOD2",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD2",
+            "Foundation_Terrain_1_0_LOD2",
+            "Foundation_Terrain_1_1_LOD2",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD2",
+            "Foundation_Terrain_2_0_LOD2",
+            "Foundation_Terrain_2_1_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD2",
+            "Foundation_Terrain_3_0_LOD2",
+            "Foundation_Terrain_3_1_LOD2",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD2",
+            "Foundation_Foot_Scree_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1315.4000000059605,
+              "event": "foundation-material-parse",
+              "ms": 257.79999999701977,
+              "bytes": 5041508
+            },
+            {
+              "at": 1822.5,
+              "event": "foundation-geometry-parse",
+              "ms": 12.700000002980232,
+              "bytes": 8623064
+            },
+            {
+              "at": 1823.5,
+              "event": "foundation-asset-ready",
+              "ms": 1231.7999999970198,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 1823.5,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 1891.2999999970198,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 38.599999994039536
+            },
+            {
+              "at": 1924.7000000029802,
+              "event": "shader-compile",
+              "ms": 33.29999999701977
+            },
+            {
+              "at": 3841.7000000029802,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 1989.5,
+              "lighting": "hub"
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 90027.83922776984,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 66055.2759633159,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 1,
+              "pixels": 957.4495535901259,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 361.5987765219938,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 1,
+              "pixels": 711.4476609175792,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 86785.43762716655,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413554.6887099861,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 421006.1860963096,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 423769.8810629059,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413573.07028798026,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5248.9000000059605,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 1,
+              "to": 0,
+              "pixels": 1090.0531920294306,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5347.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 346.2516728306529,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5458.4000000059605,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 1,
+              "to": 0,
+              "pixels": 1155.1845369077234,
+              "quality": 3,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      },
+      "arrival": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 127,
+          "triangles": 1028579,
+          "textures": 31,
+          "geometries": 216,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 20163.90000000596,
+          "scene": "aftermovie",
+          "geometries": 216,
+          "textures": 31,
+          "activeGeometryBytes": 11119404,
+          "activeTextureBytesEstimate": 95358979.99999997,
+          "jsHeapBytes": 58506988
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 35,
+                "deleted": 0,
+                "active": 35
+              },
+              "Buffer": {
+                "created": 950,
+                "deleted": 2,
+                "active": 948
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 0,
+                "active": 45
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 74,
+                "active": 16
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 397,
+                "deleted": 0,
+                "active": 397
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 2,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 2,
+            "Wall_01": 2,
+            "Wall_02": 2,
+            "Wall_03": 2,
+            "Wall_04": 2,
+            "Wall_05": 0,
+            "Wall_06": 2,
+            "Wall_07": 2,
+            "Wall_08": 2,
+            "Wall_09": 2,
+            "Wall_10": 2,
+            "Wall_11": 2,
+            "Wall_12": 1,
+            "Wall_13": 0,
+            "Wall_14": 2,
+            "Wall_15": 2,
+            "Wall_16": 2,
+            "Wall_17": 2,
+            "Terrain_0_0": 2,
+            "Terrain_0_1": 1,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 2,
+            "Terrain_1_0": 2,
+            "Terrain_1_1": 1,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 2,
+            "Terrain_2_0": 2,
+            "Terrain_2_1": 1,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 2,
+            "Terrain_3_0": 2,
+            "Terrain_3_1": 1,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 2,
+            "Foot_Scree": 2
+          },
+          "lodPixels": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 0,
+            "Wall_04": 0,
+            "Wall_05": 1510.4620288780507,
+            "Wall_06": 260.9695295683491,
+            "Wall_07": 163.3988756564521,
+            "Wall_08": 147.91795443259286,
+            "Wall_09": 142.47690303998436,
+            "Wall_10": 204.89467360308467,
+            "Wall_11": 287.8976109270224,
+            "Wall_12": 899.4197121868135,
+            "Wall_13": 85389.55928813772,
+            "Wall_14": 0,
+            "Wall_15": 0,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 203.38801653103604,
+            "Terrain_0_1": 600.9159286624989,
+            "Terrain_0_2": 413554.6887099861,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 203.7223048794718,
+            "Terrain_1_1": 604.1787062499903,
+            "Terrain_1_2": 421006.1860963096,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 203.5865145128722,
+            "Terrain_2_1": 603.231918305414,
+            "Terrain_2_2": 423769.8810629059,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 203.43811335111252,
+            "Terrain_3_1": 600.7306507404603,
+            "Terrain_3_2": 413573.07028798026,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 0
+          },
+          "selectedNodes": [
+            "Foundation_Wall_05_LOD0",
+            "Foundation_Wall_13_LOD0",
+            "Foundation_Wall_12_LOD1",
+            "Foundation_Wall_00_LOD2",
+            "Foundation_Wall_01_LOD2",
+            "Foundation_Wall_02_LOD2",
+            "Foundation_Wall_03_LOD2",
+            "Foundation_Wall_04_LOD2",
+            "Foundation_Wall_06_LOD2",
+            "Foundation_Wall_07_LOD2",
+            "Foundation_Wall_08_LOD2",
+            "Foundation_Wall_09_LOD2",
+            "Foundation_Wall_10_LOD2",
+            "Foundation_Wall_11_LOD2",
+            "Foundation_Wall_14_LOD2",
+            "Foundation_Wall_15_LOD2",
+            "Foundation_Wall_16_LOD2",
+            "Foundation_Wall_17_LOD2",
+            "Foundation_Terrain_0_0_LOD2",
+            "Foundation_Terrain_0_1_LOD1",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD2",
+            "Foundation_Terrain_1_0_LOD2",
+            "Foundation_Terrain_1_1_LOD1",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD2",
+            "Foundation_Terrain_2_0_LOD2",
+            "Foundation_Terrain_2_1_LOD1",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD2",
+            "Foundation_Terrain_3_0_LOD2",
+            "Foundation_Terrain_3_1_LOD1",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD2",
+            "Foundation_Foot_Scree_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1315.4000000059605,
+              "event": "foundation-material-parse",
+              "ms": 257.79999999701977,
+              "bytes": 5041508
+            },
+            {
+              "at": 1822.5,
+              "event": "foundation-geometry-parse",
+              "ms": 12.700000002980232,
+              "bytes": 8623064
+            },
+            {
+              "at": 1823.5,
+              "event": "foundation-asset-ready",
+              "ms": 1231.7999999970198,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 1823.5,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 1891.2999999970198,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 38.599999994039536
+            },
+            {
+              "at": 1924.7000000029802,
+              "event": "shader-compile",
+              "ms": 33.29999999701977
+            },
+            {
+              "at": 3841.7000000029802,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 1989.5,
+              "lighting": "hub"
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 90027.83922776984,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 66055.2759633159,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 1,
+              "pixels": 957.4495535901259,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 361.5987765219938,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 1,
+              "pixels": 711.4476609175792,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 86785.43762716655,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413554.6887099861,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 421006.1860963096,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 423769.8810629059,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413573.07028798026,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5248.9000000059605,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 1,
+              "to": 0,
+              "pixels": 1090.0531920294306,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5347.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 346.2516728306529,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5458.4000000059605,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 1,
+              "to": 0,
+              "pixels": 1155.1845369077234,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 8749.40000000596,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 0,
+              "to": 1,
+              "pixels": 836.3035437477889,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 10074,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 0,
+              "to": 1,
+              "pixels": 831.6803095228312,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 94441.89357684707,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 929.3881010651291,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 636.2741746281579,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 0,
+              "pixels": 85389.55928813772,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.3063835337628,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 571.3506865387528,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930.20000000298,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 570.5600656629041,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930.20000000298,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.1439471318541,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 12245.60000000894,
+              "event": "mode-request",
+              "mode": "authored"
+            },
+            {
+              "at": 12247.90000000596,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 0
+            },
+            {
+              "at": 12342.60000000894,
+              "event": "shader-compile",
+              "ms": 94.70000000298023
+            },
+            {
+              "at": 13395,
+              "event": "covered-ready",
+              "revision": 2,
+              "ms": 1147.7000000029802,
+              "lighting": "stage"
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 94441.89357684707,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 929.3881010651291,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 636.2741746281579,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 0,
+              "pixels": 85389.55928813772,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.3063835337628,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413554.6887099861,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 571.3506865387528,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 421006.1860963096,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 570.5600656629041,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 423769.8810629059,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.1439471318541,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413573.07028798026,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 18193.20000000298,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 18193.20000000298,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 1,
+              "to": 0,
+              "pixels": 1298.159210735732,
+              "quality": 3,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.0799146939691727,
+            0,
+            0,
+            0.9968017063026194
+          ]
+        }
+      },
+      "phases": [
+        {
+          "at": 732,
+          "phase": "boot",
+          "scene": "hub",
+          "serial": 0
+        },
+        {
+          "at": 5069.100000008941,
+          "phase": "arrival",
+          "scene": "hub",
+          "serial": 0
+        },
+        {
+          "at": 5698.70000000298,
+          "phase": "local",
+          "scene": "hub",
+          "serial": 0
+        },
+        {
+          "at": 11236.5,
+          "phase": "departure",
+          "scene": "hub",
+          "serial": 1
+        },
+        {
+          "at": 11929.79999999702,
+          "phase": "covered",
+          "scene": "aftermovie",
+          "serial": 1
+        },
+        {
+          "at": 17694.5,
+          "phase": "arrival",
+          "scene": "aftermovie",
+          "serial": 1
+        },
+        {
+          "at": 18545.10000000894,
+          "phase": "local",
+          "scene": "aftermovie",
+          "serial": 1
+        }
+      ]
+    },
+    {
+      "name": "Actual boundary clamp, Esc stays, hysteresis re-entry and covered Return to Hub",
+      "status": "PASS",
+      "boundary": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 1,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": true,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -105.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 127,
+          "triangles": 1028579,
+          "textures": 31,
+          "geometries": 216,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 30587.5,
+          "scene": "aftermovie",
+          "geometries": 216,
+          "textures": 31,
+          "activeGeometryBytes": 11119404,
+          "activeTextureBytesEstimate": 95358979.99999997,
+          "jsHeapBytes": 64146420
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 35,
+                "deleted": 0,
+                "active": 35
+              },
+              "Buffer": {
+                "created": 950,
+                "deleted": 2,
+                "active": 948
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 0,
+                "active": 45
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 74,
+                "active": 16
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 397,
+                "deleted": 0,
+                "active": 397
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 2,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 2,
+            "Wall_01": 2,
+            "Wall_02": 2,
+            "Wall_03": 2,
+            "Wall_04": 0,
+            "Wall_05": 1,
+            "Wall_06": 2,
+            "Wall_07": 2,
+            "Wall_08": 2,
+            "Wall_09": 2,
+            "Wall_10": 2,
+            "Wall_11": 2,
+            "Wall_12": 1,
+            "Wall_13": 0,
+            "Wall_14": 2,
+            "Wall_15": 2,
+            "Wall_16": 2,
+            "Wall_17": 2,
+            "Terrain_0_0": 2,
+            "Terrain_0_1": 1,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 2,
+            "Terrain_1_0": 2,
+            "Terrain_1_1": 1,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 2,
+            "Terrain_2_0": 2,
+            "Terrain_2_1": 1,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 2,
+            "Terrain_3_0": 2,
+            "Terrain_3_1": 1,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 2,
+            "Foot_Scree": 2
+          },
+          "lodPixels": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 0,
+            "Wall_04": 94441.89357684707,
+            "Wall_05": 839.0130934063272,
+            "Wall_06": 228.55942715303988,
+            "Wall_07": 150.13041850498388,
+            "Wall_08": 136.48083980596056,
+            "Wall_09": 129.8095619323267,
+            "Wall_10": 180.94825858540636,
+            "Wall_11": 239.07685179400974,
+            "Wall_12": 588.0970741974515,
+            "Wall_13": 85389.55928813772,
+            "Wall_14": 0,
+            "Wall_15": 0,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 198.45348775719285,
+            "Terrain_0_1": 559.8004439318099,
+            "Terrain_0_2": 413554.6887099861,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 198.77151616339162,
+            "Terrain_1_1": 562.7885421176115,
+            "Terrain_1_2": 421006.1860963096,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 198.6438069127035,
+            "Terrain_2_1": 562.036679998481,
+            "Terrain_2_2": 423769.8810629059,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 198.50152945013517,
+            "Terrain_3_1": 559.6437243419249,
+            "Terrain_3_2": 413573.07028798026,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 0
+          },
+          "selectedNodes": [
+            "Foundation_Wall_04_LOD0",
+            "Foundation_Wall_13_LOD0",
+            "Foundation_Wall_05_LOD1",
+            "Foundation_Wall_12_LOD1",
+            "Foundation_Wall_00_LOD2",
+            "Foundation_Wall_01_LOD2",
+            "Foundation_Wall_02_LOD2",
+            "Foundation_Wall_03_LOD2",
+            "Foundation_Wall_06_LOD2",
+            "Foundation_Wall_07_LOD2",
+            "Foundation_Wall_08_LOD2",
+            "Foundation_Wall_09_LOD2",
+            "Foundation_Wall_10_LOD2",
+            "Foundation_Wall_11_LOD2",
+            "Foundation_Wall_14_LOD2",
+            "Foundation_Wall_15_LOD2",
+            "Foundation_Wall_16_LOD2",
+            "Foundation_Wall_17_LOD2",
+            "Foundation_Terrain_0_0_LOD2",
+            "Foundation_Terrain_0_1_LOD1",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD2",
+            "Foundation_Terrain_1_0_LOD2",
+            "Foundation_Terrain_1_1_LOD1",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD2",
+            "Foundation_Terrain_2_0_LOD2",
+            "Foundation_Terrain_2_1_LOD1",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD2",
+            "Foundation_Terrain_3_0_LOD2",
+            "Foundation_Terrain_3_1_LOD1",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD2",
+            "Foundation_Foot_Scree_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1315.4000000059605,
+              "event": "foundation-material-parse",
+              "ms": 257.79999999701977,
+              "bytes": 5041508
+            },
+            {
+              "at": 1822.5,
+              "event": "foundation-geometry-parse",
+              "ms": 12.700000002980232,
+              "bytes": 8623064
+            },
+            {
+              "at": 1823.5,
+              "event": "foundation-asset-ready",
+              "ms": 1231.7999999970198,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 1823.5,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 1891.2999999970198,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 38.599999994039536
+            },
+            {
+              "at": 1924.7000000029802,
+              "event": "shader-compile",
+              "ms": 33.29999999701977
+            },
+            {
+              "at": 3841.7000000029802,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 1989.5,
+              "lighting": "hub"
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 90027.83922776984,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 66055.2759633159,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 1,
+              "pixels": 957.4495535901259,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 361.5987765219938,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 1,
+              "pixels": 711.4476609175792,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 86785.43762716655,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413554.6887099861,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 421006.1860963096,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 423769.8810629059,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413573.07028798026,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5248.9000000059605,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 1,
+              "to": 0,
+              "pixels": 1090.0531920294306,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5347.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 346.2516728306529,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5458.4000000059605,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 1,
+              "to": 0,
+              "pixels": 1155.1845369077234,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 8749.40000000596,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 0,
+              "to": 1,
+              "pixels": 836.3035437477889,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 10074,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 0,
+              "to": 1,
+              "pixels": 831.6803095228312,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 94441.89357684707,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 929.3881010651291,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 636.2741746281579,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 0,
+              "pixels": 85389.55928813772,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.3063835337628,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 571.3506865387528,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930.20000000298,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 570.5600656629041,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930.20000000298,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.1439471318541,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 12245.60000000894,
+              "event": "mode-request",
+              "mode": "authored"
+            },
+            {
+              "at": 12247.90000000596,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 0
+            },
+            {
+              "at": 12342.60000000894,
+              "event": "shader-compile",
+              "ms": 94.70000000298023
+            },
+            {
+              "at": 13395,
+              "event": "covered-ready",
+              "revision": 2,
+              "ms": 1147.7000000029802,
+              "lighting": "stage"
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 94441.89357684707,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 929.3881010651291,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 636.2741746281579,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 0,
+              "pixels": 85389.55928813772,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.3063835337628,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413554.6887099861,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 571.3506865387528,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 421006.1860963096,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 570.5600656629041,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 423769.8810629059,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.1439471318541,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413573.07028798026,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 18193.20000000298,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 18193.20000000298,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 1,
+              "to": 0,
+              "pixels": 1298.159210735732,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 25049.60000000894,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 94441.89357684707,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 29488.70000000298,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 0,
+              "to": 1,
+              "pixels": 842.0363156442183,
+              "quality": 3,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -105.67999999999999,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.0799146939691727,
+            0,
+            0,
+            0.9968017063026194
+          ]
+        }
+      },
+      "returned": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 2,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 162,
+          "triangles": 116519,
+          "textures": 31,
+          "geometries": 216,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 47673,
+          "scene": "hub",
+          "geometries": 216,
+          "textures": 31,
+          "activeGeometryBytes": 10176720,
+          "activeTextureBytesEstimate": 95358979.99999997,
+          "jsHeapBytes": 52110594
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 35,
+                "deleted": 0,
+                "active": 35
+              },
+              "Buffer": {
+                "created": 952,
+                "deleted": 8,
+                "active": 944
+              },
+              "Program": {
+                "created": 45,
+                "deleted": 1,
+                "active": 44
+              },
+              "Shader": {
+                "created": 90,
+                "deleted": 74,
+                "active": 16
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 397,
+                "deleted": 4,
+                "active": 393
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 2,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 1,
+            "Wall_04": 2,
+            "Wall_05": 2,
+            "Wall_06": 2,
+            "Wall_07": 2,
+            "Wall_08": 2,
+            "Wall_09": 2,
+            "Wall_10": 2,
+            "Wall_11": 2,
+            "Wall_12": 2,
+            "Wall_13": 2,
+            "Wall_14": 2,
+            "Wall_15": 1,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 2,
+            "Terrain_0_1": 1,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 2,
+            "Terrain_1_0": 2,
+            "Terrain_1_1": 1,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 2,
+            "Terrain_2_0": 2,
+            "Terrain_2_1": 1,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 2,
+            "Terrain_3_0": 2,
+            "Terrain_3_1": 1,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 2,
+            "Foot_Scree": 2
+          },
+          "lodPixels": {
+            "Wall_00": 90027.83922776984,
+            "Wall_01": 66055.2759633159,
+            "Wall_02": 2200.2011087160217,
+            "Wall_03": 400.4788024862694,
+            "Wall_04": 275.4941425505077,
+            "Wall_05": 145.85538953636365,
+            "Wall_06": 98.44190883534048,
+            "Wall_07": 80.63655628850245,
+            "Wall_08": 75.01111334734868,
+            "Wall_09": 66.75514400349817,
+            "Wall_10": 80.6609965061989,
+            "Wall_11": 85.15114465498223,
+            "Wall_12": 125.10690882173898,
+            "Wall_13": 194.72300338153488,
+            "Wall_14": 231.02302532433205,
+            "Wall_15": 464.1167705089224,
+            "Wall_16": 1534.979470234475,
+            "Wall_17": 86785.43762716655,
+            "Terrain_0_0": 158.0481792662696,
+            "Terrain_0_1": 322.93255639756364,
+            "Terrain_0_2": 413554.6887099861,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 158.29965775242624,
+            "Terrain_1_1": 324.3174045702565,
+            "Terrain_1_2": 421006.1860963096,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 158.19900686431225,
+            "Terrain_2_1": 324.18383276445604,
+            "Terrain_2_2": 423769.8810629059,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 158.0862542520871,
+            "Terrain_3_1": 322.87716080116934,
+            "Terrain_3_2": 413573.07028798026,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 292.23214570142346
+          },
+          "selectedNodes": [
+            "Foundation_Wall_00_LOD0",
+            "Foundation_Wall_01_LOD0",
+            "Foundation_Wall_02_LOD0",
+            "Foundation_Wall_16_LOD0",
+            "Foundation_Wall_17_LOD0",
+            "Foundation_Wall_03_LOD1",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_04_LOD2",
+            "Foundation_Wall_05_LOD2",
+            "Foundation_Wall_06_LOD2",
+            "Foundation_Wall_07_LOD2",
+            "Foundation_Wall_08_LOD2",
+            "Foundation_Wall_09_LOD2",
+            "Foundation_Wall_10_LOD2",
+            "Foundation_Wall_11_LOD2",
+            "Foundation_Wall_12_LOD2",
+            "Foundation_Wall_13_LOD2",
+            "Foundation_Wall_14_LOD2",
+            "Foundation_Terrain_0_0_LOD2",
+            "Foundation_Terrain_0_1_LOD1",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD2",
+            "Foundation_Terrain_1_0_LOD2",
+            "Foundation_Terrain_1_1_LOD1",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD2",
+            "Foundation_Terrain_2_0_LOD2",
+            "Foundation_Terrain_2_1_LOD1",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD2",
+            "Foundation_Terrain_3_0_LOD2",
+            "Foundation_Terrain_3_1_LOD1",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD2",
+            "Foundation_Foot_Scree_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1315.4000000059605,
+              "event": "foundation-material-parse",
+              "ms": 257.79999999701977,
+              "bytes": 5041508
+            },
+            {
+              "at": 1822.5,
+              "event": "foundation-geometry-parse",
+              "ms": 12.700000002980232,
+              "bytes": 8623064
+            },
+            {
+              "at": 1823.5,
+              "event": "foundation-asset-ready",
+              "ms": 1231.7999999970198,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 1823.5,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 1891.2999999970198,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 38.599999994039536
+            },
+            {
+              "at": 1924.7000000029802,
+              "event": "shader-compile",
+              "ms": 33.29999999701977
+            },
+            {
+              "at": 3841.7000000029802,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 1989.5,
+              "lighting": "hub"
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 90027.83922776984,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 66055.2759633159,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 1,
+              "pixels": 957.4495535901259,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 361.5987765219938,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.5,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 1,
+              "pixels": 711.4476609175792,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 86785.43762716655,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413554.6887099861,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 421006.1860963096,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 423769.8810629059,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 3903.6000000089407,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413573.07028798026,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5248.9000000059605,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 1,
+              "to": 0,
+              "pixels": 1090.0531920294306,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5347.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 346.2516728306529,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 5458.4000000059605,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 1,
+              "to": 0,
+              "pixels": 1155.1845369077234,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 8749.40000000596,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 0,
+              "to": 1,
+              "pixels": 836.3035437477889,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 10074,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 0,
+              "to": 1,
+              "pixels": 831.6803095228312,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 94441.89357684707,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 929.3881010651291,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 636.2741746281579,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 0,
+              "pixels": 85389.55928813772,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.3063835337628,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 571.3506865387528,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930.20000000298,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 570.5600656629041,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 11930.20000000298,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.1439471318541,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 12245.60000000894,
+              "event": "mode-request",
+              "mode": "authored"
+            },
+            {
+              "at": 12247.90000000596,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 0
+            },
+            {
+              "at": 12342.60000000894,
+              "event": "shader-compile",
+              "ms": 94.70000000298023
+            },
+            {
+              "at": 13395,
+              "event": "covered-ready",
+              "revision": 2,
+              "ms": 1147.7000000029802,
+              "lighting": "stage"
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 94441.89357684707,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 929.3881010651291,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 636.2741746281579,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 0,
+              "pixels": 85389.55928813772,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.3063835337628,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413554.6887099861,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 571.3506865387528,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 421006.1860963096,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 570.5600656629041,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 423769.8810629059,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 568.1439471318541,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 13696.79999999702,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 413573.07028798026,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 18193.20000000298,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 18193.20000000298,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 1,
+              "to": 0,
+              "pixels": 1298.159210735732,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 25049.60000000894,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 0,
+              "pixels": 94441.89357684707,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 29488.70000000298,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 0,
+              "to": 1,
+              "pixels": 842.0363156442183,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 90027.83922776984,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 66055.2759633159,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 1,
+              "pixels": 957.4495535901259,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 0,
+              "to": 2,
+              "pixels": 241.03854654106186,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 1,
+              "to": 2,
+              "pixels": 135.68958166532252,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 1,
+              "to": 2,
+              "pixels": 116.77098043499784,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 0,
+              "to": 2,
+              "pixels": 175.15037532605206,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 361.5987765219938,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 1,
+              "pixels": 711.4476609175792,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 45360.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 86785.43762716655,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 46937.90000000596,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 1,
+              "to": 0,
+              "pixels": 1081.6685395920422,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 47033,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 344.22506875176805,
+              "quality": 3,
+              "dpr": 0.25
+            },
+            {
+              "at": 47147.10000000894,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 1,
+              "to": 0,
+              "pixels": 1141.494827763729,
+              "quality": 3,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "method": "Real keyboard and public menu controls, no camera/pose assignment. SwiftShader DPR0.25, software walking speed not a physical performance measurement."
+}

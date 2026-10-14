@@ -1,0 +1,111 @@
+import * as THREE from "three";
+import {GLTFLoader, type GLTF} from "three/examples/jsm/loaders/GLTFLoader.js";
+import manifest from "@/public/models/gullyverse/quarry-foundation/manifest.json";
+import refinedManifest from "@/public/models/gullyverse/quarry-foundation-refined/manifest.json";
+import {LimestoneExcavationSession} from "./LimestoneExcavationSession";
+import {currentWallAnchorFits} from "./wallSection";
+import type {ImmersiveRuntime} from "./runtime";
+
+/** Opt-in owner. Clones borrow resources; original-stage caches are untouched.
+ * Connected Stage2C4 is fetched only for explicit comparison or failure. */
+export class QuarryFoundationSession extends LimestoneExcavationSession {
+  foundationEnabled=true;
+  private foundation:GLTF|null=null;
+  private holder:GLTF|null=null;
+  private loading:Promise<GLTF>|null=null;
+  private serial=0;
+  constructor(runtime:ImmersiveRuntime,readonly refinement=false){super(runtime,"detailed","rock");}
+  private get foundationManifest(){return this.refinement?refinedManifest:manifest;}
+  private get directory(){return this.refinement?"/models/gullyverse/quarry-foundation-refined/":"/models/gullyverse/quarry-foundation/";}
+  override partsForRendering(){return this.foundationEnabled?this.foundationManifest.parts:super.partsForRendering();}
+  setFoundation=(enabled:boolean)=>{
+    this.foundationEnabled=enabled;this.asset=null;this.preparedLighting.clear();
+    this.lodSelections={};this.lodPixels={};this.publish({assetReady:false});
+    this.record("foundation-request",{enabled});this.setMode("authored");
+  };
+  private timedLoader(event:string){
+    const loader=new GLTFLoader(),parse=loader.parse.bind(loader);
+    loader.parse=(data,path,success,failure)=>{
+      const start=performance.now();parse(data,path,gltf=>{
+        this.record(event+"-parse",{ms:performance.now()-start,bytes:typeof data==="string"?data.length:data.byteLength});success(gltf);
+      },failure);
+    };return loader;
+  }
+  private async getFoundation(){
+    if(this.foundation)return this.foundation;
+    if(this.loading)return this.loading;
+    const serial=this.serial,start=performance.now(),manifest=this.foundationManifest,directory=this.directory;
+    this.loading=(async()=>{
+      if(!this.holder){
+        const holder=await this.timedLoader("foundation-material").loadAsync(directory+manifest.materialRuntime);
+        if(this.disposed||serial!==this.serial){disposeOwned(holder,true);throw new Error("Foundation material owner retired");}
+        this.holder=holder;
+      }
+      const materials=new Map<string,THREE.Material>();
+      this.holder.scene.traverse(o=>{if(o instanceof THREE.Mesh)for(const m of Array.isArray(o.material)?o.material:[o.material])materials.set(m.name,m);});
+      if(!manifest.materials.every(name=>materials.has(name))){
+        this.record("foundation-invalid-material-disposal",disposeOwned(this.holder,true));this.holder=null;
+        throw new Error("Foundation material family is incomplete");
+      }
+      const gltf=await this.timedLoader("foundation-geometry").loadAsync(directory+manifest.runtime);
+      if(this.disposed||serial!==this.serial){disposeOwned(gltf,true);throw new Error("Foundation geometry owner retired");}
+      const placeholders=new Set<THREE.Material>(),assignments:Array<[THREE.Mesh,THREE.Material]>=[];
+      try{
+        gltf.scene.traverse(o=>{if(o instanceof THREE.Mesh)for(const m of Array.isArray(o.material)?o.material:[o.material]){
+          placeholders.add(m);if(Object.values(m).some(v=>v instanceof THREE.Texture))throw new Error("Foundation geometry embeds duplicate maps");
+        }});
+        for(const part of manifest.parts)for(const name of part.nodes){
+          const node=gltf.scene.getObjectByName(name),material=materials.get(part.material);
+          if(!(node instanceof THREE.Mesh)||!material)throw new Error("Invalid foundation section or LOD: "+name);
+          assignments.push([node,material]);
+        }
+      }catch(error){this.record("foundation-rejected-disposal",disposeOwned(gltf,true));throw error;}
+      // Validate the whole export before publishing any borrowed material.
+      // Rejected payloads still own all their textures and can be freed safely.
+      assignments.forEach(([node,material])=>{node.material=material;});
+      placeholders.forEach(m=>m.dispose());this.foundation=gltf;
+      this.record("foundation-asset-ready",{ms:performance.now()-start,geometryOnly:true,refinedRegions:manifest.regions.length,materialHolderRendered:false});return gltf;
+    })().finally(()=>{this.loading=null;});return this.loading;
+  }
+  override async load(){
+    if(this.disposed||this.state.mode==="off")return;
+    if(!this.foundationEnabled){await super.load();return;}
+    if(this.asset&&this.asset===this.foundation)return;
+    if(!currentWallAnchorFits("quarry")){
+      this.publish({mode:"off",busy:true,error:"Current world anchors differ; original retained",revision:this.state.revision+1});return;
+    }
+    try{
+      const asset=await this.getFoundation();
+      if(this.disposed||!this.foundationEnabled||this.snapshot().mode==="off")return;
+      this.asset=asset;this.record("load-ready",{foundation:true,optIn:true});
+      this.publish({assetReady:true,revision:this.state.revision+1});
+    }catch(error){
+      if(this.disposed||!this.foundationEnabled)return;
+      this.record("foundation-load-failed",{message:String(error)});
+      this.setFoundation(false);this.publish({error:"Foundation unavailable; connected original-rock baseline retained"});
+    }
+  }
+  /** Explicit retirement after covered baseline restore replaces the clone. */
+  retireFoundation(){
+    if(this.foundationEnabled||this.state.busy||this.loading)throw new Error("Finish baseline restore before foundation retirement");
+    this.releaseFoundation();
+  }
+  private releaseFoundation(){
+    this.serial++;
+    if(this.foundation){this.record("foundation-geometry-disposal",disposeOwned(this.foundation,false));this.foundation=null;}
+    if(this.holder){this.record("foundation-material-disposal",disposeOwned(this.holder,true));this.holder=null;}
+  }
+  override retire(){
+    if(this.state.mode!=="off"||this.state.busy||this.consumers)throw new Error("Unmount foundation consumers before retirement");
+    this.releaseFoundation();this.asset=null;super.retire();
+  }
+  override dispose(){this.releaseFoundation();this.asset=null;super.dispose();}
+}
+function disposeOwned(gltf:GLTF,materials:boolean){
+  const geometry=new Set<THREE.BufferGeometry>(),mats=new Set<THREE.Material>(),textures=new Set<THREE.Texture>(),images=new Set<ImageBitmap>();
+  gltf.scene.traverse(o=>{if(o instanceof THREE.Mesh){geometry.add(o.geometry);if(materials)for(const m of Array.isArray(o.material)?o.material:[o.material]){
+    mats.add(m);for(const v of Object.values(m))if(v instanceof THREE.Texture)textures.add(v);
+  }}});
+  geometry.forEach(g=>g.dispose());textures.forEach(t=>{if(t.image?.close)images.add(t.image);t.dispose();});images.forEach(i=>i.close());mats.forEach(m=>m.dispose());
+  return{geometries:geometry.size,textures:textures.size,materials:mats.size};
+}

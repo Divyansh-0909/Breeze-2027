@@ -1,0 +1,5447 @@
+{
+  "status": "PASS",
+  "method": "HTTP cache enabled explicitly; no Playwright routing. CDP blocks API/analytics URLs. Cold cache cleared once per variant, same-context warm revisit. Production1366x900,DPR0.5,Q3. Localhost transfer excludes blocked analytics; decoded/encoded size distinguished from cached transfer; response cache flags recorded.",
+  "runs": [
+    {
+      "label": "foundation-cold",
+      "route": "direct hub",
+      "readyMs": 10483,
+      "totalTransferBytes": 11511767,
+      "encodedBytes": 11501567,
+      "newAssetBytes": 10562303,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "transferSize": 48732,
+          "encodedBodySize": 48432,
+          "decodedBodySize": 48432,
+          "startTime": 27.5,
+          "duration": 43.29999999888241,
+          "responseEnd": 70.79999999888241
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "transferSize": 950,
+          "encodedBodySize": 650,
+          "decodedBodySize": 2063,
+          "startTime": 29.90000000037253,
+          "duration": 38.29999999888241,
+          "responseEnd": 68.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "transferSize": 18612,
+          "encodedBodySize": 18312,
+          "decodedBodySize": 98321,
+          "startTime": 33.29999999888241,
+          "duration": 37.30000000074506,
+          "responseEnd": 70.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "transferSize": 2790,
+          "encodedBodySize": 2490,
+          "decodedBodySize": 5169,
+          "startTime": 33.40000000037253,
+          "duration": 55.5,
+          "responseEnd": 88.90000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "transferSize": 53627,
+          "encodedBodySize": 53327,
+          "decodedBodySize": 168419,
+          "startTime": 33.59999999962747,
+          "duration": 87.40000000037253,
+          "responseEnd": 121
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "transferSize": 47042,
+          "encodedBodySize": 46742,
+          "decodedBodySize": 175945,
+          "startTime": 33.59999999962747,
+          "duration": 90.30000000074506,
+          "responseEnd": 123.90000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "transferSize": 834,
+          "encodedBodySize": 534,
+          "decodedBodySize": 534,
+          "startTime": 33.69999999925494,
+          "duration": 61.5,
+          "responseEnd": 95.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "transferSize": 3661,
+          "encodedBodySize": 3361,
+          "decodedBodySize": 8504,
+          "startTime": 33.69999999925494,
+          "duration": 76.5,
+          "responseEnd": 110.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "transferSize": 5629,
+          "encodedBodySize": 5329,
+          "decodedBodySize": 13857,
+          "startTime": 33.79999999888241,
+          "duration": 77.20000000111759,
+          "responseEnd": 111
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "transferSize": 1480,
+          "encodedBodySize": 1180,
+          "decodedBodySize": 2291,
+          "startTime": 33.90000000037253,
+          "duration": 78.29999999888241,
+          "responseEnd": 112.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "transferSize": 2370,
+          "encodedBodySize": 2070,
+          "decodedBodySize": 6008,
+          "startTime": 33.90000000037253,
+          "duration": 78.69999999925494,
+          "responseEnd": 112.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "transferSize": 963,
+          "encodedBodySize": 663,
+          "decodedBodySize": 1134,
+          "startTime": 33.90000000037253,
+          "duration": 90.19999999925494,
+          "responseEnd": 124.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "transferSize": 672,
+          "encodedBodySize": 372,
+          "decodedBodySize": 372,
+          "startTime": 33.90000000037253,
+          "duration": 90.19999999925494,
+          "responseEnd": 124.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "transferSize": 7101,
+          "encodedBodySize": 6801,
+          "decodedBodySize": 20153,
+          "startTime": 34,
+          "duration": 134.90000000037253,
+          "responseEnd": 168.90000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "transferSize": 24814,
+          "encodedBodySize": 24514,
+          "decodedBodySize": 78443,
+          "startTime": 34.19999999925494,
+          "duration": 132.59999999962747,
+          "responseEnd": 166.7999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "transferSize": 504,
+          "encodedBodySize": 204,
+          "decodedBodySize": 204,
+          "startTime": 34.29999999888241,
+          "duration": 132.7000000011176,
+          "responseEnd": 167
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "transferSize": 8342,
+          "encodedBodySize": 8042,
+          "decodedBodySize": 23355,
+          "startTime": 34.29999999888241,
+          "duration": 136.7000000011176,
+          "responseEnd": 171
+        },
+        {
+          "name": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "transferSize": 181161,
+          "encodedBodySize": 180861,
+          "decodedBodySize": 180861,
+          "startTime": 269.2999999988824,
+          "duration": 99.20000000111759,
+          "responseEnd": 368.5
+        },
+        {
+          "name": "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 273.5,
+          "duration": 92.09999999962747,
+          "responseEnd": 365.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "transferSize": 170021,
+          "encodedBodySize": 169721,
+          "decodedBodySize": 677931,
+          "startTime": 279.19999999925494,
+          "duration": 110.90000000037253,
+          "responseEnd": 390.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "transferSize": 46620,
+          "encodedBodySize": 46320,
+          "decodedBodySize": 146782,
+          "startTime": 279.59999999962747,
+          "duration": 88.80000000074506,
+          "responseEnd": 368.40000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "transferSize": 5493,
+          "encodedBodySize": 5193,
+          "decodedBodySize": 13239,
+          "startTime": 279.90000000037253,
+          "duration": 86.59999999962747,
+          "responseEnd": 366.5
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "transferSize": 14442,
+          "encodedBodySize": 14142,
+          "decodedBodySize": 50298,
+          "startTime": 282.19999999925494,
+          "duration": 80.20000000111759,
+          "responseEnd": 362.40000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "transferSize": 68435,
+          "encodedBodySize": 68135,
+          "decodedBodySize": 279946,
+          "startTime": 282.5,
+          "duration": 98,
+          "responseEnd": 380.5
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "transferSize": 2829,
+          "encodedBodySize": 2529,
+          "decodedBodySize": 9809,
+          "startTime": 287.5,
+          "duration": 88.5,
+          "responseEnd": 376
+        },
+        {
+          "name": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 404.90000000037253,
+          "duration": 120.69999999925494,
+          "responseEnd": 525.5999999996275
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation/foundation-materials.glb",
+          "transferSize": 5039055,
+          "encodedBodySize": 5038755,
+          "decodedBodySize": 5041508,
+          "startTime": 693.5,
+          "duration": 347.19999999925494,
+          "responseEnd": 1040.699999999255
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "transferSize": 8600,
+          "encodedBodySize": 8300,
+          "decodedBodySize": 22248,
+          "startTime": 815.6999999992549,
+          "duration": 6.200000001117587,
+          "responseEnd": 821.9000000003725
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "transferSize": 11339,
+          "encodedBodySize": 11039,
+          "decodedBodySize": 33497,
+          "startTime": 816.2999999988824,
+          "duration": 10.600000001490116,
+          "responseEnd": 826.9000000003725
+        },
+        {
+          "name": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "transferSize": 24813,
+          "encodedBodySize": 24513,
+          "decodedBodySize": 51660,
+          "startTime": 840.2999999988824,
+          "duration": 23.600000001490116,
+          "responseEnd": 863.9000000003725
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "transferSize": 152608,
+          "encodedBodySize": 152308,
+          "decodedBodySize": 152308,
+          "startTime": 1160.9000000003725,
+          "duration": 9.799999998882413,
+          "responseEnd": 1170.699999999255
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation/foundation-geometry.glb",
+          "transferSize": 5523848,
+          "encodedBodySize": 5523548,
+          "decodedBodySize": 8623064,
+          "startTime": 1443.9000000003725,
+          "duration": 456.8999999985099,
+          "responseEnd": 1900.7999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "transferSize": 30904,
+          "encodedBodySize": 30604,
+          "decodedBodySize": 417140,
+          "startTime": 1491,
+          "duration": 19.199999999254942,
+          "responseEnd": 1510.199999999255
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=foundation",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 255.09999999962747,
+        "navigationId": 8788,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.7999999988824129,
+        "domainLookupStart": 0.7999999988824129,
+        "domainLookupEnd": 0.7999999988824129,
+        "connectStart": 0.7999999988824129,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.7999999988824129,
+        "requestStart": 2.299999998882413,
+        "responseStart": 9.699999999254942,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 9.699999999254942,
+        "responseEnd": 14.099999999627471,
+        "transferSize": 2876,
+        "encodedBodySize": 2576,
+        "decodedBodySize": 8509,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 104.79999999888241,
+        "domContentLoadedEventStart": 104.90000000037253,
+        "domContentLoadedEventEnd": 104.90000000037253,
+        "domComplete": 255,
+        "loadEventStart": 255.09999999962747,
+        "loadEventEnd": 255.09999999962747,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "responses": [
+        {
+          "url": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=foundation",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, immutable, no-transform, max-age=31536000"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "status": 404,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "status": 404,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation/foundation-materials.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/cfdd2a94-1b0f-4481-acbc-a4daa4753800",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/5cb20342-dd9e-4d95-a009-88009d0efe90",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/c21183ff-33e6-4ecd-9e13-6bc30433093a",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/c2a001be-5cc0-4975-bbe0-80724355c4ef",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/0b377b15-dd81-4b94-9c67-0a34bc6821a7",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/d3d753cf-2f50-4603-9422-4e4945078945",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation/foundation-geometry.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        }
+      ],
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 162,
+          "triangles": 122002,
+          "textures": 31,
+          "geometries": 212,
+          "dpr": 0.5
+        },
+        "memory": {
+          "at": 9480.5,
+          "scene": "hub",
+          "geometries": 212,
+          "textures": 31,
+          "activeGeometryBytes": 10176720,
+          "activeTextureBytesEstimate": 95358979.99999997,
+          "jsHeapBytes": 59479225
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 35,
+                "deleted": 0,
+                "active": 35
+              },
+              "Buffer": {
+                "created": 932,
+                "deleted": 0,
+                "active": 932
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 212,
+                "deleted": 0,
+                "active": 212
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.5
+        },
+        "lighting": {
+          "lights": [
+            {
+              "type": "HemisphereLight",
+              "colour": "a9bfd4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "DirectionalLight",
+              "colour": "efd0a4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                -70,
+                37,
+                -145
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "ffc681",
+              "intensity": 42,
+              "visible": true,
+              "position": [
+                0,
+                9.75,
+                2.6
+              ]
+            },
+            {
+              "type": "AmbientLight",
+              "colour": "ffffff",
+              "intensity": 0.055,
+              "visible": true,
+              "position": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 110,
+              "visible": true,
+              "position": [
+                0,
+                6.5,
+                -3.6
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                -7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            }
+          ]
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 1,
+            "Wall_04": 1,
+            "Wall_05": 2,
+            "Wall_06": 2,
+            "Wall_07": 2,
+            "Wall_08": 2,
+            "Wall_09": 2,
+            "Wall_10": 2,
+            "Wall_11": 2,
+            "Wall_12": 2,
+            "Wall_13": 1,
+            "Wall_14": 1,
+            "Wall_15": 1,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 2,
+            "Terrain_0_1": 1,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 2,
+            "Terrain_1_0": 2,
+            "Terrain_1_1": 1,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 2,
+            "Terrain_2_0": 2,
+            "Terrain_2_1": 1,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 2,
+            "Terrain_3_0": 2,
+            "Terrain_3_1": 1,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 2,
+            "Foot_Scree": 1
+          },
+          "lodPixels": {
+            "Wall_00": 180055.6784555397,
+            "Wall_01": 132110.5519266318,
+            "Wall_02": 4400.4022174320435,
+            "Wall_03": 800.9576049725388,
+            "Wall_04": 550.9882851010154,
+            "Wall_05": 291.7107790727273,
+            "Wall_06": 196.88381767068097,
+            "Wall_07": 161.2731125770049,
+            "Wall_08": 150.02222669469737,
+            "Wall_09": 133.51028800699635,
+            "Wall_10": 161.3219930123978,
+            "Wall_11": 170.30228930996446,
+            "Wall_12": 250.21381764347797,
+            "Wall_13": 389.44600676306976,
+            "Wall_14": 462.0460506486641,
+            "Wall_15": 928.2335410178448,
+            "Wall_16": 3069.95894046895,
+            "Wall_17": 173570.8752543331,
+            "Terrain_0_0": 316.0963585325392,
+            "Terrain_0_1": 645.8651127951273,
+            "Terrain_0_2": 827109.3774199722,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 316.5993155048525,
+            "Terrain_1_1": 648.634809140513,
+            "Terrain_1_2": 842012.3721926193,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 316.3980137286245,
+            "Terrain_2_1": 648.3676655289121,
+            "Terrain_2_2": 847539.7621258118,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 316.1725085041742,
+            "Terrain_3_1": 645.7543216023387,
+            "Terrain_3_2": 827146.1405759605,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 584.4642914028469
+          },
+          "selectedNodes": [
+            "Foundation_Wall_00_LOD0",
+            "Foundation_Wall_01_LOD0",
+            "Foundation_Wall_02_LOD0",
+            "Foundation_Wall_16_LOD0",
+            "Foundation_Wall_17_LOD0",
+            "Foundation_Wall_03_LOD1",
+            "Foundation_Wall_04_LOD1",
+            "Foundation_Wall_13_LOD1",
+            "Foundation_Wall_14_LOD1",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_05_LOD2",
+            "Foundation_Wall_06_LOD2",
+            "Foundation_Wall_07_LOD2",
+            "Foundation_Wall_08_LOD2",
+            "Foundation_Wall_09_LOD2",
+            "Foundation_Wall_10_LOD2",
+            "Foundation_Wall_11_LOD2",
+            "Foundation_Wall_12_LOD2",
+            "Foundation_Terrain_0_0_LOD2",
+            "Foundation_Terrain_0_1_LOD1",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD2",
+            "Foundation_Terrain_1_0_LOD2",
+            "Foundation_Terrain_1_1_LOD1",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD2",
+            "Foundation_Terrain_2_0_LOD2",
+            "Foundation_Terrain_2_1_LOD1",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD2",
+            "Foundation_Terrain_3_0_LOD2",
+            "Foundation_Terrain_3_1_LOD1",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD2",
+            "Foundation_Foot_Scree_LOD1"
+          ],
+          "trace": [
+            {
+              "at": 1443.5,
+              "event": "foundation-material-parse",
+              "ms": 305.80000000074506,
+              "bytes": 5041508
+            },
+            {
+              "at": 1939.7999999988824,
+              "event": "foundation-geometry-parse",
+              "ms": 11.399999998509884,
+              "bytes": 8623064
+            },
+            {
+              "at": 1940.7999999988824,
+              "event": "foundation-asset-ready",
+              "ms": 1250.199999999255,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 1940.7999999988824,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 2022.199999999255,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 41
+            },
+            {
+              "at": 2059.7999999988824,
+              "event": "shader-compile",
+              "ms": 37.59999999962747
+            },
+            {
+              "at": 4212.199999999255,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2231.5999999996275,
+              "lighting": "hub"
+            },
+            {
+              "at": 4407.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 180055.6784555397,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.4000000003725,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 132110.5519266318,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.4000000003725,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 1914.8991071802518,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.4000000003725,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 624.2875348081321,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.4000000003725,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 482.0770930821237,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 350.3007506521041,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Wall_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 394.73926561215796,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 723.1975530439876,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1422.8953218351585,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 173570.8752543331,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 622.0615416989328,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 827109.3774199722,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 624.7245762089755,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 842012.3721926193,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 624.5185003797844,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 847539.7621258118,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 621.9612056824469,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 827146.1405759605,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4407.5,
+              "event": "part-lod-change",
+              "part": "Foot_Scree",
+              "from": 2,
+              "to": 1,
+              "pixels": 502.07466443094404,
+              "quality": 3,
+              "dpr": 0.5
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      }
+    },
+    {
+      "label": "foundation-warm",
+      "route": "direct hub",
+      "readyMs": 10598,
+      "totalTransferBytes": 2100,
+      "encodedBytes": 11477054,
+      "newAssetBytes": 10562303,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "transferSize": 0,
+          "encodedBodySize": 48432,
+          "decodedBodySize": 48432,
+          "startTime": 296.30000000074506,
+          "duration": 0,
+          "responseEnd": 296.30000000074506
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "transferSize": 0,
+          "encodedBodySize": 650,
+          "decodedBodySize": 2063,
+          "startTime": 296.40000000037253,
+          "duration": 0,
+          "responseEnd": 296.40000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "transferSize": 0,
+          "encodedBodySize": 18312,
+          "decodedBodySize": 98321,
+          "startTime": 296.40000000037253,
+          "duration": 0,
+          "responseEnd": 296.40000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "transferSize": 0,
+          "encodedBodySize": 2490,
+          "decodedBodySize": 5169,
+          "startTime": 296.40000000037253,
+          "duration": 0,
+          "responseEnd": 296.40000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "transferSize": 0,
+          "encodedBodySize": 53327,
+          "decodedBodySize": 168419,
+          "startTime": 296.59999999962747,
+          "duration": 0,
+          "responseEnd": 296.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "transferSize": 0,
+          "encodedBodySize": 46742,
+          "decodedBodySize": 175945,
+          "startTime": 296.59999999962747,
+          "duration": 0,
+          "responseEnd": 296.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "transferSize": 0,
+          "encodedBodySize": 534,
+          "decodedBodySize": 534,
+          "startTime": 296.59999999962747,
+          "duration": 0,
+          "responseEnd": 296.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "transferSize": 0,
+          "encodedBodySize": 3361,
+          "decodedBodySize": 8504,
+          "startTime": 296.69999999925494,
+          "duration": 0,
+          "responseEnd": 296.69999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "transferSize": 0,
+          "encodedBodySize": 5329,
+          "decodedBodySize": 13857,
+          "startTime": 296.80000000074506,
+          "duration": 0,
+          "responseEnd": 296.80000000074506
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "transferSize": 0,
+          "encodedBodySize": 1180,
+          "decodedBodySize": 2291,
+          "startTime": 296.80000000074506,
+          "duration": 0,
+          "responseEnd": 296.80000000074506
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "transferSize": 0,
+          "encodedBodySize": 2070,
+          "decodedBodySize": 6008,
+          "startTime": 296.80000000074506,
+          "duration": 0,
+          "responseEnd": 296.80000000074506
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "transferSize": 0,
+          "encodedBodySize": 663,
+          "decodedBodySize": 1134,
+          "startTime": 297,
+          "duration": 0,
+          "responseEnd": 297
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "transferSize": 0,
+          "encodedBodySize": 372,
+          "decodedBodySize": 372,
+          "startTime": 297,
+          "duration": 0,
+          "responseEnd": 297
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "transferSize": 0,
+          "encodedBodySize": 6801,
+          "decodedBodySize": 20153,
+          "startTime": 297,
+          "duration": 0,
+          "responseEnd": 297
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "transferSize": 0,
+          "encodedBodySize": 24514,
+          "decodedBodySize": 78443,
+          "startTime": 297,
+          "duration": 0,
+          "responseEnd": 297
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "transferSize": 0,
+          "encodedBodySize": 8042,
+          "decodedBodySize": 23355,
+          "startTime": 297.19999999925494,
+          "duration": 0,
+          "responseEnd": 297.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "transferSize": 0,
+          "encodedBodySize": 204,
+          "decodedBodySize": 204,
+          "startTime": 297.19999999925494,
+          "duration": 0,
+          "responseEnd": 297.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 327.19999999925494,
+          "duration": 39.80000000074506,
+          "responseEnd": 367
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "transferSize": 0,
+          "encodedBodySize": 169721,
+          "decodedBodySize": 677931,
+          "startTime": 329.09999999962747,
+          "duration": 0,
+          "responseEnd": 329.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "transferSize": 0,
+          "encodedBodySize": 46320,
+          "decodedBodySize": 146782,
+          "startTime": 329.40000000037253,
+          "duration": 0,
+          "responseEnd": 329.40000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "transferSize": 0,
+          "encodedBodySize": 5193,
+          "decodedBodySize": 13239,
+          "startTime": 330.09999999962747,
+          "duration": 0,
+          "responseEnd": 330.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "transferSize": 0,
+          "encodedBodySize": 14142,
+          "decodedBodySize": 50298,
+          "startTime": 330.59999999962747,
+          "duration": 0,
+          "responseEnd": 330.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "transferSize": 0,
+          "encodedBodySize": 68135,
+          "decodedBodySize": 279946,
+          "startTime": 330.69999999925494,
+          "duration": 0,
+          "responseEnd": 330.69999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "transferSize": 0,
+          "encodedBodySize": 2529,
+          "decodedBodySize": 9809,
+          "startTime": 352.80000000074506,
+          "duration": 0,
+          "responseEnd": 352.80000000074506
+        },
+        {
+          "name": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "transferSize": 0,
+          "encodedBodySize": 180861,
+          "decodedBodySize": 180861,
+          "startTime": 367.59999999962747,
+          "duration": 2,
+          "responseEnd": 369.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation/foundation-materials.glb",
+          "transferSize": 300,
+          "encodedBodySize": 5038755,
+          "decodedBodySize": 5041508,
+          "startTime": 415.5,
+          "duration": 64.40000000037253,
+          "responseEnd": 479.90000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 416.80000000074506,
+          "duration": 68.69999999925494,
+          "responseEnd": 485.5
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "transferSize": 0,
+          "encodedBodySize": 8300,
+          "decodedBodySize": 22248,
+          "startTime": 547.5,
+          "duration": 0,
+          "responseEnd": 547.5
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "transferSize": 0,
+          "encodedBodySize": 11039,
+          "decodedBodySize": 33497,
+          "startTime": 547.8000000007451,
+          "duration": 0,
+          "responseEnd": 547.8000000007451
+        },
+        {
+          "name": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 552,
+          "duration": 7.900000000372529,
+          "responseEnd": 559.9000000003725
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "transferSize": 0,
+          "encodedBodySize": 152308,
+          "decodedBodySize": 152308,
+          "startTime": 753.5,
+          "duration": 1.800000000745058,
+          "responseEnd": 755.3000000007451
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation/foundation-geometry.glb",
+          "transferSize": 300,
+          "encodedBodySize": 5523548,
+          "decodedBodySize": 8623064,
+          "startTime": 811.8000000007451,
+          "duration": 254.19999999925494,
+          "responseEnd": 1066
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "transferSize": 300,
+          "encodedBodySize": 30604,
+          "decodedBodySize": 417140,
+          "startTime": 1240.199999999255,
+          "duration": 3.700000001117587,
+          "responseEnd": 1243.9000000003725
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=foundation",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 323.30000000074506,
+        "navigationId": 2745,
+        "initiatorType": "navigation",
+        "deliveryType": "cache",
+        "nextHopProtocol": "",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 2.099999999627471,
+        "domainLookupStart": 2.099999999627471,
+        "domainLookupEnd": 2.099999999627471,
+        "connectStart": 2.099999999627471,
+        "secureConnectionStart": 0,
+        "connectEnd": 2.099999999627471,
+        "requestStart": 6.400000000372529,
+        "responseStart": 14.199999999254942,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 14.199999999254942,
+        "responseEnd": 14.800000000745058,
+        "transferSize": 300,
+        "encodedBodySize": 2576,
+        "decodedBodySize": 8509,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 234.80000000074506,
+        "unloadEventEnd": 234.80000000074506,
+        "domInteractive": 303.5,
+        "domContentLoadedEventStart": 303.5,
+        "domContentLoadedEventEnd": 303.5,
+        "domComplete": 323.30000000074506,
+        "loadEventStart": 323.30000000074506,
+        "loadEventEnd": 323.30000000074506,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "responses": [
+        {
+          "url": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=foundation",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "status": 404,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "status": 200,
+          "fromDiskCache": true,
+          "fromServiceWorker": false,
+          "cacheControl": "public, immutable, no-transform, max-age=31536000"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation/foundation-materials.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "status": 404,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/2912da95-43c4-4bac-8947-14e009588857",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/73f645ea-1d3f-4aa4-8549-cc608a0047d3",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/a8784caf-5c88-4699-b0de-22367ee54fd2",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/ead96e0c-dbff-4b6e-80ba-929acb81cdd4",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/6d5e3c61-0670-485e-a3df-250cf948bcce",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/5d900301-6cef-4d11-866a-4240e1f90582",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 304,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "status": 200,
+          "fromDiskCache": true,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation/foundation-geometry.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        }
+      ],
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 162,
+          "triangles": 122002,
+          "textures": 31,
+          "geometries": 212,
+          "dpr": 0.5
+        },
+        "memory": {
+          "at": 9186.699999999255,
+          "scene": "hub",
+          "geometries": 212,
+          "textures": 31,
+          "activeGeometryBytes": 10176720,
+          "activeTextureBytesEstimate": 95358979.99999997,
+          "jsHeapBytes": 51817729
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 35,
+                "deleted": 0,
+                "active": 35
+              },
+              "Buffer": {
+                "created": 932,
+                "deleted": 0,
+                "active": 932
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 212,
+                "deleted": 0,
+                "active": 212
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.5
+        },
+        "lighting": {
+          "lights": [
+            {
+              "type": "HemisphereLight",
+              "colour": "a9bfd4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "DirectionalLight",
+              "colour": "efd0a4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                -70,
+                37,
+                -145
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "ffc681",
+              "intensity": 42,
+              "visible": true,
+              "position": [
+                0,
+                9.75,
+                2.6
+              ]
+            },
+            {
+              "type": "AmbientLight",
+              "colour": "ffffff",
+              "intensity": 0.055,
+              "visible": true,
+              "position": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 110,
+              "visible": true,
+              "position": [
+                0,
+                6.5,
+                -3.6
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                -7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            }
+          ]
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 1,
+            "Wall_04": 1,
+            "Wall_05": 2,
+            "Wall_06": 2,
+            "Wall_07": 2,
+            "Wall_08": 2,
+            "Wall_09": 2,
+            "Wall_10": 2,
+            "Wall_11": 2,
+            "Wall_12": 2,
+            "Wall_13": 1,
+            "Wall_14": 1,
+            "Wall_15": 1,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 2,
+            "Terrain_0_1": 1,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 2,
+            "Terrain_1_0": 2,
+            "Terrain_1_1": 1,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 2,
+            "Terrain_2_0": 2,
+            "Terrain_2_1": 1,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 2,
+            "Terrain_3_0": 2,
+            "Terrain_3_1": 1,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 2,
+            "Foot_Scree": 1
+          },
+          "lodPixels": {
+            "Wall_00": 180055.6784555397,
+            "Wall_01": 132110.5519266318,
+            "Wall_02": 4400.4022174320435,
+            "Wall_03": 800.9576049725388,
+            "Wall_04": 550.9882851010154,
+            "Wall_05": 291.7107790727273,
+            "Wall_06": 196.88381767068097,
+            "Wall_07": 161.2731125770049,
+            "Wall_08": 150.02222669469737,
+            "Wall_09": 133.51028800699635,
+            "Wall_10": 161.3219930123978,
+            "Wall_11": 170.30228930996446,
+            "Wall_12": 250.21381764347797,
+            "Wall_13": 389.44600676306976,
+            "Wall_14": 462.0460506486641,
+            "Wall_15": 928.2335410178448,
+            "Wall_16": 3069.95894046895,
+            "Wall_17": 173570.8752543331,
+            "Terrain_0_0": 316.0963585325392,
+            "Terrain_0_1": 645.8651127951273,
+            "Terrain_0_2": 827109.3774199722,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 316.5993155048525,
+            "Terrain_1_1": 648.634809140513,
+            "Terrain_1_2": 842012.3721926193,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 316.3980137286245,
+            "Terrain_2_1": 648.3676655289121,
+            "Terrain_2_2": 847539.7621258118,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 316.1725085041742,
+            "Terrain_3_1": 645.7543216023387,
+            "Terrain_3_2": 827146.1405759605,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 584.4642914028469
+          },
+          "selectedNodes": [
+            "Foundation_Wall_00_LOD0",
+            "Foundation_Wall_01_LOD0",
+            "Foundation_Wall_02_LOD0",
+            "Foundation_Wall_16_LOD0",
+            "Foundation_Wall_17_LOD0",
+            "Foundation_Wall_03_LOD1",
+            "Foundation_Wall_04_LOD1",
+            "Foundation_Wall_13_LOD1",
+            "Foundation_Wall_14_LOD1",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_05_LOD2",
+            "Foundation_Wall_06_LOD2",
+            "Foundation_Wall_07_LOD2",
+            "Foundation_Wall_08_LOD2",
+            "Foundation_Wall_09_LOD2",
+            "Foundation_Wall_10_LOD2",
+            "Foundation_Wall_11_LOD2",
+            "Foundation_Wall_12_LOD2",
+            "Foundation_Terrain_0_0_LOD2",
+            "Foundation_Terrain_0_1_LOD1",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD2",
+            "Foundation_Terrain_1_0_LOD2",
+            "Foundation_Terrain_1_1_LOD1",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD2",
+            "Foundation_Terrain_2_0_LOD2",
+            "Foundation_Terrain_2_1_LOD1",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD2",
+            "Foundation_Terrain_3_0_LOD2",
+            "Foundation_Terrain_3_1_LOD1",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD2",
+            "Foundation_Foot_Scree_LOD1"
+          ],
+          "trace": [
+            {
+              "at": 811.5,
+              "event": "foundation-material-parse",
+              "ms": 310.19999999925494,
+              "bytes": 5041508
+            },
+            {
+              "at": 1129.0999999996275,
+              "event": "foundation-geometry-parse",
+              "ms": 12.800000000745058,
+              "bytes": 8623064
+            },
+            {
+              "at": 1129.699999999255,
+              "event": "foundation-asset-ready",
+              "ms": 715.5,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 1129.800000000745,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 1495.699999999255,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 44.899999998509884
+            },
+            {
+              "at": 1546,
+              "event": "shader-compile",
+              "ms": 50.30000000074506
+            },
+            {
+              "at": 4038.800000000745,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2588.5,
+              "lighting": "hub"
+            },
+            {
+              "at": 4273.699999999255,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 180055.6784555397,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.699999999255,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 132110.5519266318,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.699999999255,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 1914.8991071802518,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.699999999255,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 624.2875348081321,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.699999999255,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 482.0770930821237,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 350.3007506521041,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 394.73926561215796,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 723.1975530439876,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1422.8953218351585,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 173570.8752543331,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 622.0615416989328,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 827109.3774199722,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.9000000003725,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 624.7245762089755,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.9000000003725,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 842012.3721926193,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.9000000003725,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 624.5185003797844,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.9000000003725,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 847539.7621258118,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.9000000003725,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 621.9612056824469,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.9000000003725,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 827146.1405759605,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4273.9000000003725,
+              "event": "part-lod-change",
+              "part": "Foot_Scree",
+              "from": 2,
+              "to": 1,
+              "pixels": 502.07466443094404,
+              "quality": 3,
+              "dpr": 0.5
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      }
+    },
+    {
+      "label": "foundation-refined-cold",
+      "route": "direct hub",
+      "readyMs": 10792,
+      "totalTransferBytes": 11203204,
+      "encodedBytes": 11193004,
+      "newAssetBytes": 10253740,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "transferSize": 48732,
+          "encodedBodySize": 48432,
+          "decodedBodySize": 48432,
+          "startTime": 30.5,
+          "duration": 76.80000000074506,
+          "responseEnd": 107.30000000074506
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "transferSize": 950,
+          "encodedBodySize": 650,
+          "decodedBodySize": 2063,
+          "startTime": 31.700000001117587,
+          "duration": 72.40000000037253,
+          "responseEnd": 104.10000000149012
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "transferSize": 18612,
+          "encodedBodySize": 18312,
+          "decodedBodySize": 98321,
+          "startTime": 31.90000000037253,
+          "duration": 72.70000000111759,
+          "responseEnd": 104.60000000149012
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "transferSize": 2790,
+          "encodedBodySize": 2490,
+          "decodedBodySize": 5169,
+          "startTime": 32.100000001490116,
+          "duration": 110.89999999850988,
+          "responseEnd": 143
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "transferSize": 53627,
+          "encodedBodySize": 53327,
+          "decodedBodySize": 168419,
+          "startTime": 32.20000000111759,
+          "duration": 172.90000000037253,
+          "responseEnd": 205.10000000149012
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "transferSize": 3661,
+          "encodedBodySize": 3361,
+          "decodedBodySize": 8504,
+          "startTime": 32.30000000074506,
+          "duration": 177.80000000074506,
+          "responseEnd": 210.10000000149012
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "transferSize": 834,
+          "encodedBodySize": 534,
+          "decodedBodySize": 534,
+          "startTime": 32.30000000074506,
+          "duration": 177.69999999925494,
+          "responseEnd": 210
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "transferSize": 47042,
+          "encodedBodySize": 46742,
+          "decodedBodySize": 175945,
+          "startTime": 32.30000000074506,
+          "duration": 184.69999999925494,
+          "responseEnd": 217
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "transferSize": 1480,
+          "encodedBodySize": 1180,
+          "decodedBodySize": 2291,
+          "startTime": 32.40000000037253,
+          "duration": 178.59999999962747,
+          "responseEnd": 211
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "transferSize": 5629,
+          "encodedBodySize": 5329,
+          "decodedBodySize": 13857,
+          "startTime": 32.40000000037253,
+          "duration": 184.5,
+          "responseEnd": 216.90000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "transferSize": 2370,
+          "encodedBodySize": 2070,
+          "decodedBodySize": 6008,
+          "startTime": 32.5,
+          "duration": 202.10000000149012,
+          "responseEnd": 234.60000000149012
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "transferSize": 963,
+          "encodedBodySize": 663,
+          "decodedBodySize": 1134,
+          "startTime": 32.5,
+          "duration": 202.30000000074506,
+          "responseEnd": 234.80000000074506
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "transferSize": 672,
+          "encodedBodySize": 372,
+          "decodedBodySize": 372,
+          "startTime": 33.5,
+          "duration": 191.30000000074506,
+          "responseEnd": 224.80000000074506
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "transferSize": 7101,
+          "encodedBodySize": 6801,
+          "decodedBodySize": 20153,
+          "startTime": 34.20000000111759,
+          "duration": 200.7999999988824,
+          "responseEnd": 235
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "transferSize": 24814,
+          "encodedBodySize": 24514,
+          "decodedBodySize": 78443,
+          "startTime": 35.30000000074506,
+          "duration": 204.30000000074506,
+          "responseEnd": 239.60000000149012
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "transferSize": 8342,
+          "encodedBodySize": 8042,
+          "decodedBodySize": 23355,
+          "startTime": 35.40000000037253,
+          "duration": 200,
+          "responseEnd": 235.40000000037253
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "transferSize": 504,
+          "encodedBodySize": 204,
+          "decodedBodySize": 204,
+          "startTime": 35.40000000037253,
+          "duration": 204.7000000011176,
+          "responseEnd": 240.10000000149012
+        },
+        {
+          "name": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "transferSize": 181161,
+          "encodedBodySize": 180861,
+          "decodedBodySize": 180861,
+          "startTime": 340.7000000011176,
+          "duration": 92.29999999888241,
+          "responseEnd": 433
+        },
+        {
+          "name": "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 343.1000000014901,
+          "duration": 105,
+          "responseEnd": 448.1000000014901
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "transferSize": 170021,
+          "encodedBodySize": 169721,
+          "decodedBodySize": 677931,
+          "startTime": 347.80000000074506,
+          "duration": 162.80000000074506,
+          "responseEnd": 510.6000000014901
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "transferSize": 46620,
+          "encodedBodySize": 46320,
+          "decodedBodySize": 146782,
+          "startTime": 348.7000000011176,
+          "duration": 90,
+          "responseEnd": 438.7000000011176
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "transferSize": 5493,
+          "encodedBodySize": 5193,
+          "decodedBodySize": 13239,
+          "startTime": 349.80000000074506,
+          "duration": 68.30000000074506,
+          "responseEnd": 418.1000000014901
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "transferSize": 14442,
+          "encodedBodySize": 14142,
+          "decodedBodySize": 50298,
+          "startTime": 351,
+          "duration": 69.70000000111759,
+          "responseEnd": 420.7000000011176
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "transferSize": 68435,
+          "encodedBodySize": 68135,
+          "decodedBodySize": 279946,
+          "startTime": 351.30000000074506,
+          "duration": 151.19999999925494,
+          "responseEnd": 502.5
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "transferSize": 2829,
+          "encodedBodySize": 2529,
+          "decodedBodySize": 9809,
+          "startTime": 364,
+          "duration": 79.20000000111759,
+          "responseEnd": 443.2000000011176
+        },
+        {
+          "name": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 454.30000000074506,
+          "duration": 54.90000000037253,
+          "responseEnd": 509.2000000011176
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+          "transferSize": 4657237,
+          "encodedBodySize": 4656937,
+          "decodedBodySize": 4659808,
+          "startTime": 715.6000000014901,
+          "duration": 401.7999999988824,
+          "responseEnd": 1117.4000000003725
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "transferSize": 8600,
+          "encodedBodySize": 8300,
+          "decodedBodySize": 22248,
+          "startTime": 860.6000000014901,
+          "duration": 13.399999998509884,
+          "responseEnd": 874
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "transferSize": 11339,
+          "encodedBodySize": 11039,
+          "decodedBodySize": 33497,
+          "startTime": 860.8000000007451,
+          "duration": 13.400000000372529,
+          "responseEnd": 874.2000000011176
+        },
+        {
+          "name": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "transferSize": 24813,
+          "encodedBodySize": 24513,
+          "decodedBodySize": 51660,
+          "startTime": 884.7000000011176,
+          "duration": 21.5,
+          "responseEnd": 906.2000000011176
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "transferSize": 152608,
+          "encodedBodySize": 152308,
+          "decodedBodySize": 152308,
+          "startTime": 1226.7000000011176,
+          "duration": 11.699999999254942,
+          "responseEnd": 1238.4000000003725
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+          "transferSize": 5597103,
+          "encodedBodySize": 5596803,
+          "decodedBodySize": 8530404,
+          "startTime": 1464.1000000014901,
+          "duration": 483.5,
+          "responseEnd": 1947.6000000014901
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "transferSize": 30904,
+          "encodedBodySize": 30604,
+          "decodedBodySize": 417140,
+          "startTime": 1489.6000000014901,
+          "duration": 27.299999998882413,
+          "responseEnd": 1516.9000000003725
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=foundation-refined",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 330.80000000074506,
+        "navigationId": 689,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 5.100000001490116,
+        "domainLookupStart": 5.100000001490116,
+        "domainLookupEnd": 5.100000001490116,
+        "connectStart": 5.100000001490116,
+        "secureConnectionStart": 0,
+        "connectEnd": 5.100000001490116,
+        "requestStart": 7.5,
+        "responseStart": 13,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 13,
+        "responseEnd": 17.300000000745058,
+        "transferSize": 2876,
+        "encodedBodySize": 2576,
+        "decodedBodySize": 8509,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 133.60000000149012,
+        "domContentLoadedEventStart": 133.7000000011176,
+        "domContentLoadedEventEnd": 133.90000000037253,
+        "domComplete": 330.80000000074506,
+        "loadEventStart": 330.80000000074506,
+        "loadEventEnd": 330.80000000074506,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "responses": [
+        {
+          "url": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=foundation-refined",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, immutable, no-transform, max-age=31536000"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "status": 404,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "status": 404,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/6066859e-d6c3-4f9a-adac-cbf86ad8a189",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/dfb5884f-fe48-4e00-8a8f-22de0135894f",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/1def0fc6-13bf-4be6-b003-ebffda5f1474",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/81117369-7321-4e4d-b58f-bf32136dc22c",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/408b8f6a-15e3-42cc-a8e5-d3b596d600fb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/468bca22-2e2c-4537-ad3a-e27101b310d4",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        }
+      ],
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 166,
+          "triangles": 123002,
+          "textures": 31,
+          "geometries": 212,
+          "dpr": 0.5
+        },
+        "memory": {
+          "at": 9654.700000001118,
+          "scene": "hub",
+          "geometries": 212,
+          "textures": 31,
+          "activeGeometryBytes": 10083580,
+          "activeTextureBytesEstimate": 95358979.99999997,
+          "jsHeapBytes": 71953376
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 35,
+                "deleted": 0,
+                "active": 35
+              },
+              "Buffer": {
+                "created": 932,
+                "deleted": 0,
+                "active": 932
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 212,
+                "deleted": 0,
+                "active": 212
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.5
+        },
+        "lighting": {
+          "lights": [
+            {
+              "type": "HemisphereLight",
+              "colour": "a9bfd4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "DirectionalLight",
+              "colour": "efd0a4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                -70,
+                37,
+                -145
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "ffc681",
+              "intensity": 42,
+              "visible": true,
+              "position": [
+                0,
+                9.75,
+                2.6
+              ]
+            },
+            {
+              "type": "AmbientLight",
+              "colour": "ffffff",
+              "intensity": 0.055,
+              "visible": true,
+              "position": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 110,
+              "visible": true,
+              "position": [
+                0,
+                6.5,
+                -3.6
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                -7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            }
+          ]
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 1,
+            "Wall_04": 1,
+            "Wall_05": 2,
+            "Wall_06": 2,
+            "Wall_07": 2,
+            "Wall_08": 2,
+            "Wall_09": 2,
+            "Wall_10": 2,
+            "Wall_11": 2,
+            "Wall_12": 2,
+            "Wall_13": 1,
+            "Wall_14": 1,
+            "Wall_15": 1,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 1,
+            "Terrain_0_1": 0,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 2,
+            "Terrain_1_0": 1,
+            "Terrain_1_1": 1,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 1,
+            "Terrain_2_1": 1,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 1,
+            "Terrain_3_1": 1,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 1
+          },
+          "lodPixels": {
+            "Wall_00": 180055.6784555397,
+            "Wall_01": 132110.5519266318,
+            "Wall_02": 4400.4022174320435,
+            "Wall_03": 800.9576049725388,
+            "Wall_04": 550.9882851010154,
+            "Wall_05": 291.7107790727273,
+            "Wall_06": 196.88381767068097,
+            "Wall_07": 161.2731125770049,
+            "Wall_08": 150.02222669469737,
+            "Wall_09": 133.51028800699635,
+            "Wall_10": 161.3219930123978,
+            "Wall_11": 170.30228930996446,
+            "Wall_12": 250.21381764347797,
+            "Wall_13": 390.4635504768463,
+            "Wall_14": 461.9906623032916,
+            "Wall_15": 955.2572173810802,
+            "Wall_16": 3069.95894046895,
+            "Wall_17": 173570.8752543331,
+            "Terrain_0_0": 558.9375683062648,
+            "Terrain_0_1": 1168.1692537689219,
+            "Terrain_0_2": 4086.236294441315,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 901.7445566177851,
+            "Terrain_1_1": 662.8437858049269,
+            "Terrain_1_2": 859676.1001730964,
+            "Terrain_1_3": 1684877.7983467039,
+            "Terrain_2_0": 450.1187597626627,
+            "Terrain_2_1": 653.6621650447452,
+            "Terrain_2_2": 855128.9114428549,
+            "Terrain_2_3": 2353735.0303922626,
+            "Terrain_3_0": 596.3508972676674,
+            "Terrain_3_1": 880.575147301041,
+            "Terrain_3_2": 4107.200256737636,
+            "Terrain_3_3": 1155043.8969298117,
+            "Foot_Scree": 612.8327987029652
+          },
+          "selectedNodes": [
+            "Foundation_Wall_00_LOD0",
+            "Foundation_Wall_01_LOD0",
+            "Foundation_Wall_02_LOD0",
+            "Foundation_Wall_16_LOD0",
+            "Foundation_Wall_17_LOD0",
+            "Foundation_Wall_03_LOD1",
+            "Foundation_Wall_04_LOD1",
+            "Foundation_Wall_13_LOD1",
+            "Foundation_Wall_14_LOD1",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_05_LOD2",
+            "Foundation_Wall_06_LOD2",
+            "Foundation_Wall_07_LOD2",
+            "Foundation_Wall_08_LOD2",
+            "Foundation_Wall_09_LOD2",
+            "Foundation_Wall_10_LOD2",
+            "Foundation_Wall_11_LOD2",
+            "Foundation_Wall_12_LOD2",
+            "Foundation_Terrain_0_0_LOD1",
+            "Foundation_Terrain_0_1_LOD0",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD2",
+            "Foundation_Terrain_1_0_LOD1",
+            "Foundation_Terrain_1_1_LOD1",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD0",
+            "Foundation_Terrain_2_0_LOD1",
+            "Foundation_Terrain_2_1_LOD1",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD0",
+            "Foundation_Terrain_3_0_LOD1",
+            "Foundation_Terrain_3_1_LOD1",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD0",
+            "Foundation_Foot_Scree_LOD1"
+          ],
+          "trace": [
+            {
+              "at": 1463.300000000745,
+              "event": "foundation-material-parse",
+              "ms": 261.1000000014901,
+              "bytes": 4659808
+            },
+            {
+              "at": 1988,
+              "event": "foundation-geometry-parse",
+              "ms": 12.299999998882413,
+              "bytes": 8530404
+            },
+            {
+              "at": 1988.9000000003725,
+              "event": "foundation-asset-ready",
+              "ms": 1276.5,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 1988.9000000003725,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 2070,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 46.29999999888241
+            },
+            {
+              "at": 2106,
+              "event": "shader-compile",
+              "ms": 36
+            },
+            {
+              "at": 4628.300000000745,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2605.0999999996275,
+              "lighting": "hub"
+            },
+            {
+              "at": 4835.5,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 180055.6784555397,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.60000000149,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 132110.5519266318,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.60000000149,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 1914.8991071802518,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.60000000149,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 624.2875348081321,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.60000000149,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 482.0770930821237,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 351.12380148606275,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 394.69883818454036,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 739.496514225874,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1422.8953218351585,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 173570.8752543331,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 547.477909101494,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 0,
+              "pixels": 1129.5069521160249,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 3765.264403608502,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_1_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 885.0931979779762,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 638.4376326479869,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 859676.1001730964,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_1_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1684877.7983467039,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 441.82082130836454,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 629.8068513901057,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 855128.9114428549,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 2353735.0303922626,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 584.5571128972304,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 855.6421074189277,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 3783.1948735106407,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1155043.8969298117,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4835.800000000745,
+              "event": "part-lod-change",
+              "part": "Foot_Scree",
+              "from": 2,
+              "to": 1,
+              "pixels": 523.7014587765318,
+              "quality": 3,
+              "dpr": 0.5
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      }
+    },
+    {
+      "label": "foundation-refined-warm",
+      "route": "direct hub",
+      "readyMs": 10971,
+      "totalTransferBytes": 2100,
+      "encodedBytes": 11168491,
+      "newAssetBytes": 10253740,
+      "resources": [
+        {
+          "name": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "transferSize": 0,
+          "encodedBodySize": 48432,
+          "decodedBodySize": 48432,
+          "startTime": 354.19999999925494,
+          "duration": 0,
+          "responseEnd": 354.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "transferSize": 0,
+          "encodedBodySize": 650,
+          "decodedBodySize": 2063,
+          "startTime": 354.3999999985099,
+          "duration": 0,
+          "responseEnd": 354.3999999985099
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "transferSize": 0,
+          "encodedBodySize": 18312,
+          "decodedBodySize": 98321,
+          "startTime": 354.59999999962747,
+          "duration": 0,
+          "responseEnd": 354.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "transferSize": 0,
+          "encodedBodySize": 2490,
+          "decodedBodySize": 5169,
+          "startTime": 354.69999999925494,
+          "duration": 0,
+          "responseEnd": 354.69999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "transferSize": 0,
+          "encodedBodySize": 53327,
+          "decodedBodySize": 168419,
+          "startTime": 354.7999999988824,
+          "duration": 0,
+          "responseEnd": 354.7999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "transferSize": 0,
+          "encodedBodySize": 46742,
+          "decodedBodySize": 175945,
+          "startTime": 355.09999999962747,
+          "duration": 0,
+          "responseEnd": 355.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "transferSize": 0,
+          "encodedBodySize": 534,
+          "decodedBodySize": 534,
+          "startTime": 355.09999999962747,
+          "duration": 0,
+          "responseEnd": 355.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "transferSize": 0,
+          "encodedBodySize": 3361,
+          "decodedBodySize": 8504,
+          "startTime": 355.2999999988824,
+          "duration": 0,
+          "responseEnd": 355.2999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "transferSize": 0,
+          "encodedBodySize": 5329,
+          "decodedBodySize": 13857,
+          "startTime": 355.69999999925494,
+          "duration": 0,
+          "responseEnd": 355.69999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "transferSize": 0,
+          "encodedBodySize": 1180,
+          "decodedBodySize": 2291,
+          "startTime": 355.8999999985099,
+          "duration": 0,
+          "responseEnd": 355.8999999985099
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "transferSize": 0,
+          "encodedBodySize": 2070,
+          "decodedBodySize": 6008,
+          "startTime": 355.8999999985099,
+          "duration": 0,
+          "responseEnd": 355.8999999985099
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "transferSize": 0,
+          "encodedBodySize": 663,
+          "decodedBodySize": 1134,
+          "startTime": 356.09999999962747,
+          "duration": 0,
+          "responseEnd": 356.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "transferSize": 0,
+          "encodedBodySize": 372,
+          "decodedBodySize": 372,
+          "startTime": 356.19999999925494,
+          "duration": 0,
+          "responseEnd": 356.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "transferSize": 0,
+          "encodedBodySize": 6801,
+          "decodedBodySize": 20153,
+          "startTime": 356.19999999925494,
+          "duration": 0,
+          "responseEnd": 356.19999999925494
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "transferSize": 0,
+          "encodedBodySize": 24514,
+          "decodedBodySize": 78443,
+          "startTime": 356.3999999985099,
+          "duration": 0,
+          "responseEnd": 356.3999999985099
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "transferSize": 0,
+          "encodedBodySize": 8042,
+          "decodedBodySize": 23355,
+          "startTime": 356.5,
+          "duration": 0,
+          "responseEnd": 356.5
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "transferSize": 0,
+          "encodedBodySize": 204,
+          "decodedBodySize": 204,
+          "startTime": 356.59999999962747,
+          "duration": 0,
+          "responseEnd": 356.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 391.7999999988824,
+          "duration": 41.80000000074506,
+          "responseEnd": 433.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "transferSize": 0,
+          "encodedBodySize": 169721,
+          "decodedBodySize": 677931,
+          "startTime": 394.7999999988824,
+          "duration": 0,
+          "responseEnd": 394.7999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "transferSize": 0,
+          "encodedBodySize": 46320,
+          "decodedBodySize": 146782,
+          "startTime": 395.2999999988824,
+          "duration": 0,
+          "responseEnd": 395.2999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "transferSize": 0,
+          "encodedBodySize": 5193,
+          "decodedBodySize": 13239,
+          "startTime": 395.59999999962747,
+          "duration": 0,
+          "responseEnd": 395.59999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "transferSize": 0,
+          "encodedBodySize": 14142,
+          "decodedBodySize": 50298,
+          "startTime": 396,
+          "duration": 0,
+          "responseEnd": 396
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "transferSize": 0,
+          "encodedBodySize": 68135,
+          "decodedBodySize": 279946,
+          "startTime": 396.2999999988824,
+          "duration": 0,
+          "responseEnd": 396.2999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "transferSize": 0,
+          "encodedBodySize": 2529,
+          "decodedBodySize": 9809,
+          "startTime": 423.09999999962747,
+          "duration": 0,
+          "responseEnd": 423.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "transferSize": 0,
+          "encodedBodySize": 180861,
+          "decodedBodySize": 180861,
+          "startTime": 434.19999999925494,
+          "duration": 1.900000000372529,
+          "responseEnd": 436.09999999962747
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+          "transferSize": 300,
+          "encodedBodySize": 4656937,
+          "decodedBodySize": 4659808,
+          "startTime": 497.19999999925494,
+          "duration": 41.69999999925494,
+          "responseEnd": 538.8999999985099
+        },
+        {
+          "name": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 498,
+          "duration": 43.29999999888241,
+          "responseEnd": 541.2999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "transferSize": 0,
+          "encodedBodySize": 8300,
+          "decodedBodySize": 22248,
+          "startTime": 605,
+          "duration": 0,
+          "responseEnd": 605
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "transferSize": 0,
+          "encodedBodySize": 11039,
+          "decodedBodySize": 33497,
+          "startTime": 605.2999999988824,
+          "duration": 0,
+          "responseEnd": 605.2999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "transferSize": 300,
+          "encodedBodySize": 0,
+          "decodedBodySize": 0,
+          "startTime": 617.5999999996275,
+          "duration": 6.699999999254942,
+          "responseEnd": 624.2999999988824
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+          "transferSize": 300,
+          "encodedBodySize": 5596803,
+          "decodedBodySize": 8530404,
+          "startTime": 672.5,
+          "duration": 278.09999999962747,
+          "responseEnd": 950.5999999996275
+        },
+        {
+          "name": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "transferSize": 0,
+          "encodedBodySize": 152308,
+          "decodedBodySize": 152308,
+          "startTime": 867.6999999992549,
+          "duration": 2.699999999254942,
+          "responseEnd": 870.3999999985099
+        },
+        {
+          "name": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "transferSize": 300,
+          "encodedBodySize": 30604,
+          "decodedBodySize": 417140,
+          "startTime": 1228.699999999255,
+          "duration": 3.400000000372529,
+          "responseEnd": 1232.0999999996275
+        }
+      ],
+      "navigation": {
+        "name": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=foundation-refined",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 381.19999999925494,
+        "navigationId": 2957,
+        "initiatorType": "navigation",
+        "deliveryType": "cache",
+        "nextHopProtocol": "",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 2.5,
+        "domainLookupStart": 2.5,
+        "domainLookupEnd": 2.5,
+        "connectStart": 2.5,
+        "secureConnectionStart": 0,
+        "connectEnd": 2.5,
+        "requestStart": 36.29999999888241,
+        "responseStart": 51.69999999925494,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 51.69999999925494,
+        "responseEnd": 52.5,
+        "transferSize": 300,
+        "encodedBodySize": 2576,
+        "decodedBodySize": 8509,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 297.7999999988824,
+        "unloadEventEnd": 297.7999999988824,
+        "domInteractive": 364.19999999925494,
+        "domContentLoadedEventStart": 364.2999999988824,
+        "domContentLoadedEventEnd": 364.2999999988824,
+        "domComplete": 381.19999999925494,
+        "loadEventStart": 381.19999999925494,
+        "loadEventEnd": 381.19999999925494,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "low"
+        }
+      },
+      "responses": [
+        {
+          "url": "http://127.0.0.1:3000/?arrival=hub&diagnostics&quarryReview=foundation-refined",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "status": 404,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "status": 200,
+          "fromDiskCache": true,
+          "fromServiceWorker": false,
+          "cacheControl": "public, immutable, no-transform, max-age=31536000"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "status": 404,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/7c1f10dd-df7f-4547-b9a1-79a953613afb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/93b03625-e0df-4f4f-b4cd-a6a2f40af297",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/57221f75-f480-49ce-8289-859a55889593",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/32e78ae8-1767-4ea1-94ae-ac74cdae325b",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/a0d177e2-4e52-4ee8-a0e2-8cfda67c40ee",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "blob:http://127.0.0.1:3000/b92dc004-6256-4d5e-846a-6f6f8ae23d1e",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "status": 304,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "status": 200,
+          "fromDiskCache": true,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+          "status": 200,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "cacheControl": "public, max-age=0"
+        }
+      ],
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 166,
+          "triangles": 123002,
+          "textures": 31,
+          "geometries": 212,
+          "dpr": 0.5
+        },
+        "memory": {
+          "at": 10075.799999998882,
+          "scene": "hub",
+          "geometries": 212,
+          "textures": 31,
+          "activeGeometryBytes": 10083580,
+          "activeTextureBytesEstimate": 95358979.99999997,
+          "jsHeapBytes": 69821863
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 35,
+                "deleted": 0,
+                "active": 35
+              },
+              "Buffer": {
+                "created": 932,
+                "deleted": 0,
+                "active": 932
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 212,
+                "deleted": 0,
+                "active": 212
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.5
+        },
+        "lighting": {
+          "lights": [
+            {
+              "type": "HemisphereLight",
+              "colour": "a9bfd4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "DirectionalLight",
+              "colour": "efd0a4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                -70,
+                37,
+                -145
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "ffc681",
+              "intensity": 42,
+              "visible": true,
+              "position": [
+                0,
+                9.75,
+                2.6
+              ]
+            },
+            {
+              "type": "AmbientLight",
+              "colour": "ffffff",
+              "intensity": 0.055,
+              "visible": true,
+              "position": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 110,
+              "visible": true,
+              "position": [
+                0,
+                6.5,
+                -3.6
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                -7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            }
+          ]
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 1,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 1,
+            "Wall_04": 1,
+            "Wall_05": 2,
+            "Wall_06": 2,
+            "Wall_07": 2,
+            "Wall_08": 2,
+            "Wall_09": 2,
+            "Wall_10": 2,
+            "Wall_11": 2,
+            "Wall_12": 2,
+            "Wall_13": 1,
+            "Wall_14": 1,
+            "Wall_15": 1,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 1,
+            "Terrain_0_1": 0,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 2,
+            "Terrain_1_0": 1,
+            "Terrain_1_1": 1,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 1,
+            "Terrain_2_1": 1,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 1,
+            "Terrain_3_1": 1,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 1
+          },
+          "lodPixels": {
+            "Wall_00": 180055.6784555397,
+            "Wall_01": 132110.5519266318,
+            "Wall_02": 4400.4022174320435,
+            "Wall_03": 800.9576049725388,
+            "Wall_04": 550.9882851010154,
+            "Wall_05": 291.7107790727273,
+            "Wall_06": 196.88381767068097,
+            "Wall_07": 161.2731125770049,
+            "Wall_08": 150.02222669469737,
+            "Wall_09": 133.51028800699635,
+            "Wall_10": 161.3219930123978,
+            "Wall_11": 170.30228930996446,
+            "Wall_12": 250.21381764347797,
+            "Wall_13": 390.4635504768463,
+            "Wall_14": 461.9906623032916,
+            "Wall_15": 955.2572173810802,
+            "Wall_16": 3069.95894046895,
+            "Wall_17": 173570.8752543331,
+            "Terrain_0_0": 558.9375683062648,
+            "Terrain_0_1": 1168.1692537689219,
+            "Terrain_0_2": 4086.236294441315,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 901.7445566177851,
+            "Terrain_1_1": 662.8437858049269,
+            "Terrain_1_2": 859676.1001730964,
+            "Terrain_1_3": 1684877.7983467039,
+            "Terrain_2_0": 450.1187597626627,
+            "Terrain_2_1": 653.6621650447452,
+            "Terrain_2_2": 855128.9114428549,
+            "Terrain_2_3": 2353735.0303922626,
+            "Terrain_3_0": 596.3508972676674,
+            "Terrain_3_1": 880.575147301041,
+            "Terrain_3_2": 4107.200256737636,
+            "Terrain_3_3": 1155043.8969298117,
+            "Foot_Scree": 612.8327987029652
+          },
+          "selectedNodes": [
+            "Foundation_Wall_00_LOD0",
+            "Foundation_Wall_01_LOD0",
+            "Foundation_Wall_02_LOD0",
+            "Foundation_Wall_16_LOD0",
+            "Foundation_Wall_17_LOD0",
+            "Foundation_Wall_03_LOD1",
+            "Foundation_Wall_04_LOD1",
+            "Foundation_Wall_13_LOD1",
+            "Foundation_Wall_14_LOD1",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_05_LOD2",
+            "Foundation_Wall_06_LOD2",
+            "Foundation_Wall_07_LOD2",
+            "Foundation_Wall_08_LOD2",
+            "Foundation_Wall_09_LOD2",
+            "Foundation_Wall_10_LOD2",
+            "Foundation_Wall_11_LOD2",
+            "Foundation_Wall_12_LOD2",
+            "Foundation_Terrain_0_0_LOD1",
+            "Foundation_Terrain_0_1_LOD0",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD2",
+            "Foundation_Terrain_1_0_LOD1",
+            "Foundation_Terrain_1_1_LOD1",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD0",
+            "Foundation_Terrain_2_0_LOD1",
+            "Foundation_Terrain_2_1_LOD1",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD0",
+            "Foundation_Terrain_3_0_LOD1",
+            "Foundation_Terrain_3_1_LOD1",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD0",
+            "Foundation_Foot_Scree_LOD1"
+          ],
+          "trace": [
+            {
+              "at": 672,
+              "event": "foundation-material-parse",
+              "ms": 116.10000000149012,
+              "bytes": 4659808
+            },
+            {
+              "at": 1034.5,
+              "event": "foundation-geometry-parse",
+              "ms": 12.400000000372529,
+              "bytes": 8530404
+            },
+            {
+              "at": 1035.3999999985099,
+              "event": "foundation-asset-ready",
+              "ms": 539.1999999992549,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 1035.5,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 1475.5999999996275,
+              "event": "texture-init",
+              "count": 6,
+              "ms": 41.90000000037253
+            },
+            {
+              "at": 1511.7999999988824,
+              "event": "shader-compile",
+              "ms": 36.09999999962747
+            },
+            {
+              "at": 3887.39999999851,
+              "event": "covered-ready",
+              "revision": 1,
+              "ms": 2454.5999999996275,
+              "lighting": "hub"
+            },
+            {
+              "at": 4144.799999998882,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 180055.6784555397,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4144.799999998882,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 132110.5519266318,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4144.799999998882,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 1914.8991071802518,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4144.799999998882,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 624.2875348081321,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4144.799999998882,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 482.0770930821237,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4144.89999999851,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 351.12380148606275,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4144.89999999851,
+              "event": "part-lod-change",
+              "part": "Wall_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 394.69883818454036,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4144.89999999851,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 739.496514225874,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4144.89999999851,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1422.8953218351585,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 173570.8752543331,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_0_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 547.477909101494,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 0,
+              "pixels": 1129.5069521160249,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 3765.264403608502,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_1_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 885.0931979779762,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 638.4376326479869,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 859676.1001730964,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_1_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1684877.7983467039,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_2_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 441.82082130836454,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 629.8068513901057,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 855128.9114428549,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_2_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 2353735.0303922626,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145,
+              "event": "part-lod-change",
+              "part": "Terrain_3_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 584.5571128972304,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145.0999999996275,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 855.6421074189277,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145.0999999996275,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 3783.1948735106407,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145.0999999996275,
+              "event": "part-lod-change",
+              "part": "Terrain_3_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1155043.8969298117,
+              "quality": 3,
+              "dpr": 0.5
+            },
+            {
+              "at": 4145.0999999996275,
+              "event": "part-lod-change",
+              "part": "Foot_Scree",
+              "from": 2,
+              "to": 1,
+              "pixels": 523.7014587765318,
+              "quality": 3,
+              "dpr": 0.5
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      }
+    }
+  ],
+  "errors": []
+}

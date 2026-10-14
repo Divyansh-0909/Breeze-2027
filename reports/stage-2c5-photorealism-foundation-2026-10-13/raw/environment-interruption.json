@@ -1,0 +1,27 @@
+{
+  "atUTC": "2026-10-13T20:50:59Z",
+  "cause": "Managed execution session restart; live server and pending browser processes ended. No source or assets lost.",
+  "passedJobsRetained": [
+    {
+      "script": "candidate-regressions.mjs",
+      "exitCode": 0,
+      "durationSeconds": 284.3893811702728
+    },
+    {
+      "script": "directional-travel.mjs",
+      "exitCode": 0,
+      "durationSeconds": 49.69005799293518
+    },
+    {
+      "script": "lifecycle.mjs",
+      "exitCode": 0,
+      "durationSeconds": 39.50817012786865
+    },
+    {
+      "script": "video-cycles.mjs",
+      "exitCode": 0,
+      "durationSeconds": 158.9062044620514
+    }
+  ],
+  "resume": "Restart only incomplete jobs and collect matched before/after profiling on the resumed environment."
+}

@@ -14,6 +14,7 @@ import styles from "./immersive.module.css";
 import {WallPreviewSession} from "./wallSection";
 import {RefinedQuarrySession} from "./RefinedQuarrySession";
 import {LimestoneExcavationSession} from "./LimestoneExcavationSession";
+import {QuarryFoundationSession} from "./QuarryFoundationSession";
 const noWallSubscribe=()=>()=>{};
 const noWallState={mode:"off",busy:false,assetReady:false,error:null,revision:0} as const;
 
@@ -61,6 +62,8 @@ export default function ImmersiveShell() {
   const [wallPreview]=useState(()=>{
     const query=new URLSearchParams(window.location.search),mode=query.get("wallPreview");
     const allowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1";
+    if(allowed&&query.get("quarryReview")==="foundation-refined")return new QuarryFoundationSession(runtime,true);
+    if(allowed&&query.get("quarryReview")==="foundation")return new QuarryFoundationSession(runtime);
     if(allowed&&query.get("quarryReview")==="excavation")return new LimestoneExcavationSession(runtime,query.get("excavation")==="macro"?"macro":"detailed",query.get("quarryMaterial")==="limestone"?"limestone":"rock");
     if(allowed&&query.get("quarryReview")==="geology")return new RefinedQuarrySession(runtime);
     if(allowed&&mode&&["limestone","authored","reference","off"].includes(mode))return new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored",query.get("wallCandidate")==="previous"?"previous":"corrected");
@@ -128,7 +131,8 @@ export default function ImmersiveShell() {
         <button onClick={()=>wallPreview.setMode("authored")}>Authored wall</button>{" "}<button onClick={()=>wallPreview.setMode("reference")}>Material baseline</button>{" "}<button onClick={()=>wallPreview.setMode("off")}>Original quarry</button>
       </aside>}
       {wallPreview instanceof RefinedQuarrySession&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>TWO-SECTION GEOLOGY REVIEW{wallState.error&&<span> · Candidate unavailable; Stage 2C retained</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setRefinement(false)}>Stage 2C baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setRefinement(true)}>Refined pair</button></aside>}
-      {wallPreview instanceof LimestoneExcavationSession&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>{wallPreview.look==="rock"?"CONNECTED QUARRY · ORIGINAL ROCK PILOT":"CONNECTED QUARRY · LIMESTONE COMPARISON"} · {wallPreview.style}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("baseline")}>Stage 2C baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("macro")}>Macro excavation</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("detailed")}>Detailed geology</button></aside>}
+      {wallPreview instanceof QuarryFoundationSession&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>DARK ROCK FOUNDATION{wallPreview.refinement?" · FRACTURE REFINEMENT":" · TWO CONNECTED REGIONS"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setFoundation(false)}>Connected baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setFoundation(true)}>Foundation regions</button></aside>}
+      {wallPreview instanceof LimestoneExcavationSession&&!(wallPreview instanceof QuarryFoundationSession)&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>{wallPreview.look==="rock"?"CONNECTED QUARRY · ORIGINAL ROCK PILOT":"CONNECTED QUARRY · LIMESTONE COMPARISON"} · {wallPreview.style}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("baseline")}>Stage 2C baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("macro")}>Macro excavation</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("detailed")}>Detailed geology</button></aside>}
     </>}
     <div ref={curtain} className={styles.curtain} style={{ opacity: 1 }} aria-hidden="true"><div className={styles.occluder} /></div>
     {state.inspection && <aside className={styles.inspection}>STAGE 1 / {state.inspection.toUpperCase()} · 1 unit = 1 m <button onClick={() => runtime.inspect(null)}>Resume view</button></aside>}

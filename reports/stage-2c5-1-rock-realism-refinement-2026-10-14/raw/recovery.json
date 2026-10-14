@@ -1,0 +1,5371 @@
+{
+  "checks": [
+    {
+      "name": "Actual WebGL loss/recovery preserves foundation pose and persistent Canvas",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 0,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 166,
+            "triangles": 125578,
+            "textures": 31,
+            "geometries": 212,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 6990.9000000003725,
+            "scene": "hub",
+            "geometries": 212,
+            "textures": 31,
+            "activeGeometryBytes": 10089964,
+            "activeTextureBytesEstimate": 95358979.99999997,
+            "jsHeapBytes": 78218778
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 35,
+                  "deleted": 0,
+                  "active": 35
+                },
+                "Buffer": {
+                  "created": 932,
+                  "deleted": 0,
+                  "active": 932
+                },
+                "Program": {
+                  "created": 22,
+                  "deleted": 0,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 44,
+                  "deleted": 40,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 212,
+                  "deleted": 0,
+                  "active": 212
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "lighting": {
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "colour": "a9bfd4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "type": "DirectionalLight",
+                "colour": "efd0a4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  -70,
+                  37,
+                  -145
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "ffc681",
+                "intensity": 42,
+                "visible": true,
+                "position": [
+                  0,
+                  9.75,
+                  2.6
+                ]
+              },
+              {
+                "type": "AmbientLight",
+                "colour": "ffffff",
+                "intensity": 0.055,
+                "visible": true,
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 110,
+                "visible": true,
+                "position": [
+                  0,
+                  6.5,
+                  -3.6
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  -7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              }
+            ]
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 1,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 35,
+            "variant": "quarry",
+            "lodSelections": {
+              "Wall_00": 0,
+              "Wall_01": 0,
+              "Wall_02": 0,
+              "Wall_03": 1,
+              "Wall_04": 1,
+              "Wall_05": 2,
+              "Wall_06": 2,
+              "Wall_07": 2,
+              "Wall_08": 2,
+              "Wall_09": 2,
+              "Wall_10": 2,
+              "Wall_11": 2,
+              "Wall_12": 2,
+              "Wall_13": 2,
+              "Wall_14": 1,
+              "Wall_15": 1,
+              "Wall_16": 0,
+              "Wall_17": 0,
+              "Terrain_0_0": 1,
+              "Terrain_0_1": 1,
+              "Terrain_0_2": 0,
+              "Terrain_0_3": 2,
+              "Terrain_1_0": 1,
+              "Terrain_1_1": 1,
+              "Terrain_1_2": 0,
+              "Terrain_1_3": 0,
+              "Terrain_2_0": 1,
+              "Terrain_2_1": 1,
+              "Terrain_2_2": 0,
+              "Terrain_2_3": 0,
+              "Terrain_3_0": 1,
+              "Terrain_3_1": 1,
+              "Terrain_3_2": 0,
+              "Terrain_3_3": 0,
+              "Foot_Scree": 1
+            },
+            "lodPixels": {
+              "Wall_00": 90027.83922776984,
+              "Wall_01": 66055.2759633159,
+              "Wall_02": 2200.2011087160217,
+              "Wall_03": 400.4788024862694,
+              "Wall_04": 275.4941425505077,
+              "Wall_05": 145.85538953636365,
+              "Wall_06": 98.44190883534048,
+              "Wall_07": 80.63655628850245,
+              "Wall_08": 75.01111334734868,
+              "Wall_09": 66.75514400349817,
+              "Wall_10": 80.6609965061989,
+              "Wall_11": 85.15114465498223,
+              "Wall_12": 125.10690882173898,
+              "Wall_13": 195.23177523842315,
+              "Wall_14": 230.9953311516458,
+              "Wall_15": 477.6286086905401,
+              "Wall_16": 1534.979470234475,
+              "Wall_17": 86785.43762716655,
+              "Terrain_0_0": 279.4687841531324,
+              "Terrain_0_1": 584.0846268844609,
+              "Terrain_0_2": 2043.1181472206574,
+              "Terrain_0_3": 0,
+              "Terrain_1_0": 450.87227830889253,
+              "Terrain_1_1": 331.42189290246347,
+              "Terrain_1_2": 429838.0500865482,
+              "Terrain_1_3": 842438.8991733519,
+              "Terrain_2_0": 225.05937988133135,
+              "Terrain_2_1": 326.8310825223726,
+              "Terrain_2_2": 427564.45572142745,
+              "Terrain_2_3": 1176867.5151961313,
+              "Terrain_3_0": 298.1754486338337,
+              "Terrain_3_1": 440.2875736505205,
+              "Terrain_3_2": 2053.600128368818,
+              "Terrain_3_3": 577521.9484649058,
+              "Foot_Scree": 306.4163993514826
+            },
+            "selectedNodes": [
+              "Foundation_Wall_00_LOD0",
+              "Foundation_Wall_01_LOD0",
+              "Foundation_Wall_02_LOD0",
+              "Foundation_Wall_16_LOD0",
+              "Foundation_Wall_17_LOD0",
+              "Foundation_Wall_03_LOD1",
+              "Foundation_Wall_04_LOD1",
+              "Foundation_Wall_14_LOD1",
+              "Foundation_Wall_15_LOD1",
+              "Foundation_Wall_05_LOD2",
+              "Foundation_Wall_06_LOD2",
+              "Foundation_Wall_07_LOD2",
+              "Foundation_Wall_08_LOD2",
+              "Foundation_Wall_09_LOD2",
+              "Foundation_Wall_10_LOD2",
+              "Foundation_Wall_11_LOD2",
+              "Foundation_Wall_12_LOD2",
+              "Foundation_Wall_13_LOD2",
+              "Foundation_Terrain_0_0_LOD1",
+              "Foundation_Terrain_0_1_LOD1",
+              "Foundation_Terrain_0_2_LOD0",
+              "Foundation_Terrain_0_3_LOD2",
+              "Foundation_Terrain_1_0_LOD1",
+              "Foundation_Terrain_1_1_LOD1",
+              "Foundation_Terrain_1_2_LOD0",
+              "Foundation_Terrain_1_3_LOD0",
+              "Foundation_Terrain_2_0_LOD1",
+              "Foundation_Terrain_2_1_LOD1",
+              "Foundation_Terrain_2_2_LOD0",
+              "Foundation_Terrain_2_3_LOD0",
+              "Foundation_Terrain_3_0_LOD1",
+              "Foundation_Terrain_3_1_LOD1",
+              "Foundation_Terrain_3_2_LOD0",
+              "Foundation_Terrain_3_3_LOD0",
+              "Foundation_Foot_Scree_LOD1"
+            ],
+            "trace": [
+              {
+                "at": 1571.300000000745,
+                "event": "foundation-material-parse",
+                "ms": 365.90000000037253,
+                "bytes": 4659808
+              },
+              {
+                "at": 2026.0999999996275,
+                "event": "foundation-geometry-parse",
+                "ms": 17.699999999254942,
+                "bytes": 8530404
+              },
+              {
+                "at": 2027.0999999996275,
+                "event": "foundation-asset-ready",
+                "ms": 1300.5,
+                "geometryOnly": true,
+                "refinedRegions": 2,
+                "materialHolderRendered": false
+              },
+              {
+                "at": 2027.0999999996275,
+                "event": "load-ready",
+                "foundation": true,
+                "optIn": true
+              },
+              {
+                "at": 2109.800000000745,
+                "event": "texture-init",
+                "count": 6,
+                "ms": 46.59999999962747
+              },
+              {
+                "at": 2148.4000000003725,
+                "event": "shader-compile",
+                "ms": 38.59999999962747
+              },
+              {
+                "at": 4090.5999999996275,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 2028.0999999996275,
+                "lighting": "hub"
+              },
+              {
+                "at": 4187.200000001118,
+                "event": "part-lod-change",
+                "part": "Wall_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.200000001118,
+                "event": "part-lod-change",
+                "part": "Wall_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.300000000745,
+                "event": "part-lod-change",
+                "part": "Wall_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 957.4495535901259,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.300000000745,
+                "event": "part-lod-change",
+                "part": "Wall_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 312.14376740406607,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.300000000745,
+                "event": "part-lod-change",
+                "part": "Wall_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 241.03854654106186,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Wall_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 369.748257112937,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Wall_16",
+                "from": 2,
+                "to": 1,
+                "pixels": 711.4476609175792,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Wall_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_0_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 273.738954550747,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_0_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 564.7534760580124,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_0_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 1882.632201804251,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_1_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 442.5465989889881,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_1_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 319.21881632399345,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_1_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 429838.0500865482,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_1_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 842438.8991733519,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_2_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 220.91041065418227,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_2_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 314.9034256950529,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_2_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 427564.45572142745,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_2_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1176867.5151961313,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_3_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 292.2785564486152,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_3_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 427.82105370946385,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_3_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 1891.5974367553204,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_3_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 577521.9484649058,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Foot_Scree",
+                "from": 2,
+                "to": 1,
+                "pixels": 261.8507293882659,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 5814.300000000745,
+                "event": "part-lod-change",
+                "part": "Wall_16",
+                "from": 1,
+                "to": 0,
+                "pixels": 751.1930044197571,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 6183.700000001118,
+                "event": "part-lod-change",
+                "part": "Wall_14",
+                "from": 2,
+                "to": 1,
+                "pixels": 227.3354655674429,
+                "quality": 0,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 2,
+            "assetTextures": 6,
+            "decodedTextureEstimate": 50331648
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "after": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 1,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 0,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 166,
+            "triangles": 125578,
+            "textures": 31,
+            "geometries": 210,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 12089.400000000373,
+            "scene": "hub",
+            "geometries": 210,
+            "textures": 31,
+            "activeGeometryBytes": 10089964,
+            "activeTextureBytesEstimate": 95358979.99999997,
+            "jsHeapBytes": 51093948
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 70,
+                  "deleted": 0,
+                  "active": 70
+                },
+                "Buffer": {
+                  "created": 1856,
+                  "deleted": 0,
+                  "active": 1856
+                },
+                "Program": {
+                  "created": 44,
+                  "deleted": 0,
+                  "active": 44
+                },
+                "Shader": {
+                  "created": 88,
+                  "deleted": 80,
+                  "active": 8
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 422,
+                  "deleted": 0,
+                  "active": 422
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "lighting": {
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "colour": "a9bfd4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "type": "DirectionalLight",
+                "colour": "efd0a4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  -70,
+                  37,
+                  -145
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "ffc681",
+                "intensity": 42,
+                "visible": true,
+                "position": [
+                  0,
+                  9.75,
+                  2.6
+                ]
+              },
+              {
+                "type": "AmbientLight",
+                "colour": "ffffff",
+                "intensity": 0.055,
+                "visible": true,
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 110,
+                "visible": true,
+                "position": [
+                  0,
+                  6.5,
+                  -3.6
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  -7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              }
+            ]
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 2,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 35,
+            "variant": "quarry",
+            "lodSelections": {
+              "Wall_00": 0,
+              "Wall_01": 0,
+              "Wall_02": 0,
+              "Wall_03": 1,
+              "Wall_04": 1,
+              "Wall_05": 2,
+              "Wall_06": 2,
+              "Wall_07": 2,
+              "Wall_08": 2,
+              "Wall_09": 2,
+              "Wall_10": 2,
+              "Wall_11": 2,
+              "Wall_12": 2,
+              "Wall_13": 2,
+              "Wall_14": 1,
+              "Wall_15": 1,
+              "Wall_16": 0,
+              "Wall_17": 0,
+              "Terrain_0_0": 1,
+              "Terrain_0_1": 1,
+              "Terrain_0_2": 0,
+              "Terrain_0_3": 2,
+              "Terrain_1_0": 1,
+              "Terrain_1_1": 1,
+              "Terrain_1_2": 0,
+              "Terrain_1_3": 0,
+              "Terrain_2_0": 1,
+              "Terrain_2_1": 1,
+              "Terrain_2_2": 0,
+              "Terrain_2_3": 0,
+              "Terrain_3_0": 1,
+              "Terrain_3_1": 1,
+              "Terrain_3_2": 0,
+              "Terrain_3_3": 0,
+              "Foot_Scree": 1
+            },
+            "lodPixels": {
+              "Wall_00": 90027.83922776984,
+              "Wall_01": 66055.2759633159,
+              "Wall_02": 2200.2011087160217,
+              "Wall_03": 400.4788024862694,
+              "Wall_04": 275.4941425505077,
+              "Wall_05": 145.85538953636365,
+              "Wall_06": 98.44190883534048,
+              "Wall_07": 80.63655628850245,
+              "Wall_08": 75.01111334734868,
+              "Wall_09": 66.75514400349817,
+              "Wall_10": 80.6609965061989,
+              "Wall_11": 85.15114465498223,
+              "Wall_12": 125.10690882173898,
+              "Wall_13": 195.23177523842315,
+              "Wall_14": 230.9953311516458,
+              "Wall_15": 477.6286086905401,
+              "Wall_16": 1534.979470234475,
+              "Wall_17": 86785.43762716655,
+              "Terrain_0_0": 279.4687841531324,
+              "Terrain_0_1": 584.0846268844609,
+              "Terrain_0_2": 2043.1181472206574,
+              "Terrain_0_3": 0,
+              "Terrain_1_0": 450.87227830889253,
+              "Terrain_1_1": 331.42189290246347,
+              "Terrain_1_2": 429838.0500865482,
+              "Terrain_1_3": 842438.8991733519,
+              "Terrain_2_0": 225.05937988133135,
+              "Terrain_2_1": 326.8310825223726,
+              "Terrain_2_2": 427564.45572142745,
+              "Terrain_2_3": 1176867.5151961313,
+              "Terrain_3_0": 298.1754486338337,
+              "Terrain_3_1": 440.2875736505205,
+              "Terrain_3_2": 2053.600128368818,
+              "Terrain_3_3": 577521.9484649058,
+              "Foot_Scree": 306.4163993514826
+            },
+            "selectedNodes": [
+              "Foundation_Wall_00_LOD0",
+              "Foundation_Wall_01_LOD0",
+              "Foundation_Wall_02_LOD0",
+              "Foundation_Wall_16_LOD0",
+              "Foundation_Wall_17_LOD0",
+              "Foundation_Wall_03_LOD1",
+              "Foundation_Wall_04_LOD1",
+              "Foundation_Wall_14_LOD1",
+              "Foundation_Wall_15_LOD1",
+              "Foundation_Wall_05_LOD2",
+              "Foundation_Wall_06_LOD2",
+              "Foundation_Wall_07_LOD2",
+              "Foundation_Wall_08_LOD2",
+              "Foundation_Wall_09_LOD2",
+              "Foundation_Wall_10_LOD2",
+              "Foundation_Wall_11_LOD2",
+              "Foundation_Wall_12_LOD2",
+              "Foundation_Wall_13_LOD2",
+              "Foundation_Terrain_0_0_LOD1",
+              "Foundation_Terrain_0_1_LOD1",
+              "Foundation_Terrain_0_2_LOD0",
+              "Foundation_Terrain_0_3_LOD2",
+              "Foundation_Terrain_1_0_LOD1",
+              "Foundation_Terrain_1_1_LOD1",
+              "Foundation_Terrain_1_2_LOD0",
+              "Foundation_Terrain_1_3_LOD0",
+              "Foundation_Terrain_2_0_LOD1",
+              "Foundation_Terrain_2_1_LOD1",
+              "Foundation_Terrain_2_2_LOD0",
+              "Foundation_Terrain_2_3_LOD0",
+              "Foundation_Terrain_3_0_LOD1",
+              "Foundation_Terrain_3_1_LOD1",
+              "Foundation_Terrain_3_2_LOD0",
+              "Foundation_Terrain_3_3_LOD0",
+              "Foundation_Foot_Scree_LOD1"
+            ],
+            "trace": [
+              {
+                "at": 1571.300000000745,
+                "event": "foundation-material-parse",
+                "ms": 365.90000000037253,
+                "bytes": 4659808
+              },
+              {
+                "at": 2026.0999999996275,
+                "event": "foundation-geometry-parse",
+                "ms": 17.699999999254942,
+                "bytes": 8530404
+              },
+              {
+                "at": 2027.0999999996275,
+                "event": "foundation-asset-ready",
+                "ms": 1300.5,
+                "geometryOnly": true,
+                "refinedRegions": 2,
+                "materialHolderRendered": false
+              },
+              {
+                "at": 2027.0999999996275,
+                "event": "load-ready",
+                "foundation": true,
+                "optIn": true
+              },
+              {
+                "at": 2109.800000000745,
+                "event": "texture-init",
+                "count": 6,
+                "ms": 46.59999999962747
+              },
+              {
+                "at": 2148.4000000003725,
+                "event": "shader-compile",
+                "ms": 38.59999999962747
+              },
+              {
+                "at": 4090.5999999996275,
+                "event": "covered-ready",
+                "revision": 1,
+                "ms": 2028.0999999996275,
+                "lighting": "hub"
+              },
+              {
+                "at": 4187.200000001118,
+                "event": "part-lod-change",
+                "part": "Wall_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.200000001118,
+                "event": "part-lod-change",
+                "part": "Wall_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.300000000745,
+                "event": "part-lod-change",
+                "part": "Wall_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 957.4495535901259,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.300000000745,
+                "event": "part-lod-change",
+                "part": "Wall_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 312.14376740406607,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.300000000745,
+                "event": "part-lod-change",
+                "part": "Wall_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 241.03854654106186,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Wall_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 369.748257112937,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Wall_16",
+                "from": 2,
+                "to": 1,
+                "pixels": 711.4476609175792,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Wall_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_0_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 273.738954550747,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_0_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 564.7534760580124,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_0_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 1882.632201804251,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_1_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 442.5465989889881,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_1_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 319.21881632399345,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_1_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 429838.0500865482,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_1_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 842438.8991733519,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_2_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 220.91041065418227,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_2_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 314.9034256950529,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_2_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 427564.45572142745,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_2_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1176867.5151961313,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_3_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 292.2785564486152,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_3_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 427.82105370946385,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_3_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 1891.5974367553204,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Terrain_3_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 577521.9484649058,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4187.4000000003725,
+                "event": "part-lod-change",
+                "part": "Foot_Scree",
+                "from": 2,
+                "to": 1,
+                "pixels": 261.8507293882659,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 5814.300000000745,
+                "event": "part-lod-change",
+                "part": "Wall_16",
+                "from": 1,
+                "to": 0,
+                "pixels": 751.1930044197571,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 6183.700000001118,
+                "event": "part-lod-change",
+                "part": "Wall_14",
+                "from": 2,
+                "to": 1,
+                "pixels": 227.3354655674429,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 8180.5,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 8233.800000000745,
+                "event": "texture-init",
+                "count": 6,
+                "ms": 46.80000000074506
+              },
+              {
+                "at": 8266.200000001118,
+                "event": "shader-compile",
+                "ms": 32.40000000037253
+              },
+              {
+                "at": 10198.599999999627,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 2012,
+                "lighting": "hub"
+              },
+              {
+                "at": 10291.5,
+                "event": "part-lod-change",
+                "part": "Wall_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.5,
+                "event": "part-lod-change",
+                "part": "Wall_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Wall_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 2200.2011087160217,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Wall_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 400.4788024862694,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Wall_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 275.4941425505077,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Wall_14",
+                "from": 2,
+                "to": 1,
+                "pixels": 230.9953311516458,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Wall_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 477.6286086905401,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Wall_16",
+                "from": 2,
+                "to": 0,
+                "pixels": 1534.979470234475,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Wall_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_0_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 279.4687841531324,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_0_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 584.0846268844609,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_0_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 2043.1181472206574,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_1_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 450.87227830889253,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_1_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 331.42189290246347,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_1_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 429838.0500865482,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_1_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 842438.8991733519,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_2_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 225.05937988133135,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_2_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 326.8310825223726,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_2_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 427564.45572142745,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_2_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1176867.5151961313,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_3_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 298.1754486338337,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_3_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 440.2875736505205,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_3_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 2053.600128368818,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_3_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 577521.9484649058,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 10291.599999999627,
+                "event": "part-lod-change",
+                "part": "Foot_Scree",
+                "from": 2,
+                "to": 1,
+                "pixels": 306.4163993514826,
+                "quality": 0,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 2,
+            "assetTextures": 6,
+            "decodedTextureEstimate": 50331648
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Failed foundation-geometry.glb retains connected dark baseline; explicit retry",
+      "status": "PASS",
+      "evidence": {
+        "failed": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 0,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 151,
+            "triangles": 118227,
+            "textures": 28,
+            "geometries": 195,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 7175.0999999996275,
+            "scene": "hub",
+            "geometries": 195,
+            "textures": 28,
+            "activeGeometryBytes": 9477470,
+            "activeTextureBytesEstimate": 61804548.00000001,
+            "jsHeapBytes": 99176662
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 32,
+                  "deleted": 0,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 790,
+                  "deleted": 0,
+                  "active": 790
+                },
+                "Program": {
+                  "created": 22,
+                  "deleted": 0,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 44,
+                  "deleted": 40,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 195,
+                  "deleted": 0,
+                  "active": 195
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "lighting": {
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "colour": "a9bfd4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "type": "DirectionalLight",
+                "colour": "efd0a4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  -70,
+                  37,
+                  -145
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "ffc681",
+                "intensity": 42,
+                "visible": true,
+                "position": [
+                  0,
+                  9.75,
+                  2.6
+                ]
+              },
+              {
+                "type": "AmbientLight",
+                "colour": "ffffff",
+                "intensity": 0.055,
+                "visible": true,
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 110,
+                "visible": true,
+                "position": [
+                  0,
+                  6.5,
+                  -3.6
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  -7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              }
+            ]
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 2,
+              "error": "Foundation unavailable; connected original-rock baseline retained"
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 18,
+            "variant": "quarry",
+            "lodSelections": {
+              "Excavation_00": 0,
+              "Excavation_01": 0,
+              "Excavation_02": 0,
+              "Excavation_03": 1,
+              "Excavation_04": 1,
+              "Excavation_05": 2,
+              "Excavation_06": 2,
+              "Excavation_07": 2,
+              "Excavation_08": 2,
+              "Excavation_09": 2,
+              "Excavation_10": 2,
+              "Excavation_11": 2,
+              "Excavation_12": 2,
+              "Excavation_13": 2,
+              "Excavation_14": 1,
+              "Excavation_15": 1,
+              "Excavation_16": 0,
+              "Excavation_17": 0
+            },
+            "lodPixels": {
+              "Excavation_00": 90027.83922776984,
+              "Excavation_01": 66055.2759633159,
+              "Excavation_02": 2200.2011087160217,
+              "Excavation_03": 400.4788024862694,
+              "Excavation_04": 275.4941425505077,
+              "Excavation_05": 145.85538953636365,
+              "Excavation_06": 98.44190883534048,
+              "Excavation_07": 80.63655628850245,
+              "Excavation_08": 75.01111334734868,
+              "Excavation_09": 66.75514400349817,
+              "Excavation_10": 80.6609965061989,
+              "Excavation_11": 85.15114465498223,
+              "Excavation_12": 125.10690882173898,
+              "Excavation_13": 194.52311938561917,
+              "Excavation_14": 231.87287233277235,
+              "Excavation_15": 474.2083678127203,
+              "Excavation_16": 1534.979470234475,
+              "Excavation_17": 86785.43762716655
+            },
+            "selectedNodes": [
+              "Excavation_Detailed_Sector_00_LOD0",
+              "Excavation_Detailed_Sector_01_LOD0",
+              "Excavation_Detailed_Sector_02_LOD0",
+              "Excavation_Detailed_Sector_16_LOD0",
+              "Excavation_Detailed_Sector_17_LOD0",
+              "Excavation_Detailed_Sector_03_LOD1",
+              "Excavation_Detailed_Sector_04_LOD1",
+              "Excavation_Detailed_Sector_14_LOD1",
+              "Excavation_Detailed_Sector_15_LOD1",
+              "Excavation_Detailed_Sector_05_LOD2",
+              "Excavation_Detailed_Sector_06_LOD2",
+              "Excavation_Detailed_Sector_07_LOD2",
+              "Excavation_Detailed_Sector_08_LOD2",
+              "Excavation_Detailed_Sector_09_LOD2",
+              "Excavation_Detailed_Sector_10_LOD2",
+              "Excavation_Detailed_Sector_11_LOD2",
+              "Excavation_Detailed_Sector_12_LOD2",
+              "Excavation_Detailed_Sector_13_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 1418.2999999988824,
+                "event": "foundation-material-parse",
+                "ms": 340.09999999962747,
+                "bytes": 4659808
+              },
+              {
+                "at": 1429.4000000003725,
+                "event": "foundation-load-failed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 1429.5999999996275,
+                "event": "foundation-request",
+                "enabled": false
+              },
+              {
+                "at": 1429.5999999996275,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 1883.199999999255,
+                "event": "approved-material-parse",
+                "ms": 92.69999999925494,
+                "bytes": 2505852
+              },
+              {
+                "at": 1883.2999999988824,
+                "event": "approved-material-ready",
+                "ms": 421.3999999985099,
+                "exactPilotFamily": true,
+                "holderMeshRendered": false,
+                "look": "rock",
+                "materialName": "Quarry_Pilot_Original_Stone_PBR",
+                "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+              },
+              {
+                "at": 2257.2999999988824,
+                "event": "excavation-detailed-parse",
+                "ms": 8.799999998882413,
+                "bytes": 7898472
+              },
+              {
+                "at": 2258.199999999255,
+                "event": "excavation-asset-ready",
+                "style": "detailed",
+                "ms": 796.4000000003725,
+                "geometryOnly": true,
+                "baselineRequested": false
+              },
+              {
+                "at": 2258.2999999988824,
+                "event": "load-ready",
+                "style": "detailed",
+                "optIn": true
+              },
+              {
+                "at": 2299,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 11.700000001117587
+              },
+              {
+                "at": 2339.699999999255,
+                "event": "shader-compile",
+                "ms": 40.59999999962747
+              },
+              {
+                "at": 4201.5,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 1914.800000000745,
+                "lighting": "hub"
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 957.4495535901259,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 312.14376740406607,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 241.03854654106186,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.799999998882,
+                "event": "part-lod-change",
+                "part": "Excavation_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 367.69524600840435,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.799999998882,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 2,
+                "to": 1,
+                "pixels": 711.4476609175792,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.799999998882,
+                "event": "part-lod-change",
+                "part": "Excavation_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 5876.799999998882,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 1,
+                "to": 0,
+                "pixels": 741.8187089194539,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 6251,
+                "event": "part-lod-change",
+                "part": "Excavation_14",
+                "from": 2,
+                "to": 1,
+                "pixels": 227.55764348829567,
+                "quality": 0,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 1,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 16777216
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "retry": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 1,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 166,
+            "triangles": 119779,
+            "textures": 34,
+            "geometries": 266,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 9291.799999998882,
+            "scene": "hub",
+            "geometries": 248,
+            "textures": 34,
+            "activeGeometryBytes": 10089964,
+            "activeTextureBytesEstimate": 95358979.99999997,
+            "jsHeapBytes": 81698802
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 38,
+                  "deleted": 0,
+                  "active": 38
+                },
+                "Buffer": {
+                  "created": 1206,
+                  "deleted": 4,
+                  "active": 1202
+                },
+                "Program": {
+                  "created": 23,
+                  "deleted": 0,
+                  "active": 23
+                },
+                "Shader": {
+                  "created": 46,
+                  "deleted": 42,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 267,
+                  "deleted": 1,
+                  "active": 266
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "lighting": {
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "colour": "a9bfd4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "type": "DirectionalLight",
+                "colour": "efd0a4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  -70,
+                  37,
+                  -145
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "ffc681",
+                "intensity": 42,
+                "visible": true,
+                "position": [
+                  0,
+                  9.75,
+                  2.6
+                ]
+              },
+              {
+                "type": "AmbientLight",
+                "colour": "ffffff",
+                "intensity": 0.055,
+                "visible": true,
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 110,
+                "visible": true,
+                "position": [
+                  0,
+                  6.5,
+                  -3.6
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  -7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              }
+            ]
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 4,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 35,
+            "variant": "quarry",
+            "lodSelections": {
+              "Wall_00": 0,
+              "Wall_01": 0,
+              "Wall_02": 0,
+              "Wall_03": 1,
+              "Wall_04": 1,
+              "Wall_05": 2,
+              "Wall_06": 2,
+              "Wall_07": 2,
+              "Wall_08": 2,
+              "Wall_09": 2,
+              "Wall_10": 2,
+              "Wall_11": 2,
+              "Wall_12": 2,
+              "Wall_13": 2,
+              "Wall_14": 2,
+              "Wall_15": 1,
+              "Wall_16": 0,
+              "Wall_17": 0,
+              "Terrain_0_0": 1,
+              "Terrain_0_1": 1,
+              "Terrain_0_2": 0,
+              "Terrain_0_3": 2,
+              "Terrain_1_0": 1,
+              "Terrain_1_1": 1,
+              "Terrain_1_2": 0,
+              "Terrain_1_3": 0,
+              "Terrain_2_0": 2,
+              "Terrain_2_1": 1,
+              "Terrain_2_2": 0,
+              "Terrain_2_3": 0,
+              "Terrain_3_0": 1,
+              "Terrain_3_1": 1,
+              "Terrain_3_2": 0,
+              "Terrain_3_3": 0,
+              "Foot_Scree": 1
+            },
+            "lodPixels": {
+              "Wall_00": 90027.83922776984,
+              "Wall_01": 66055.2759633159,
+              "Wall_02": 2200.2011087160217,
+              "Wall_03": 400.4788024862694,
+              "Wall_04": 275.4941425505077,
+              "Wall_05": 145.85538953636365,
+              "Wall_06": 98.44190883534048,
+              "Wall_07": 80.63655628850245,
+              "Wall_08": 75.01111334734868,
+              "Wall_09": 66.75514400349817,
+              "Wall_10": 80.6609965061989,
+              "Wall_11": 85.15114465498223,
+              "Wall_12": 125.10690882173898,
+              "Wall_13": 195.23177523842315,
+              "Wall_14": 230.9953311516458,
+              "Wall_15": 477.6286086905401,
+              "Wall_16": 1534.979470234475,
+              "Wall_17": 86785.43762716655,
+              "Terrain_0_0": 279.4687841531324,
+              "Terrain_0_1": 584.0846268844609,
+              "Terrain_0_2": 2043.1181472206574,
+              "Terrain_0_3": 0,
+              "Terrain_1_0": 450.87227830889253,
+              "Terrain_1_1": 331.42189290246347,
+              "Terrain_1_2": 429838.0500865482,
+              "Terrain_1_3": 842438.8991733519,
+              "Terrain_2_0": 225.05937988133135,
+              "Terrain_2_1": 326.8310825223726,
+              "Terrain_2_2": 427564.45572142745,
+              "Terrain_2_3": 1176867.5151961313,
+              "Terrain_3_0": 298.1754486338337,
+              "Terrain_3_1": 440.2875736505205,
+              "Terrain_3_2": 2053.600128368818,
+              "Terrain_3_3": 577521.9484649058,
+              "Foot_Scree": 306.4163993514826
+            },
+            "selectedNodes": [
+              "Foundation_Wall_00_LOD0",
+              "Foundation_Wall_01_LOD0",
+              "Foundation_Wall_02_LOD0",
+              "Foundation_Wall_16_LOD0",
+              "Foundation_Wall_17_LOD0",
+              "Foundation_Wall_03_LOD1",
+              "Foundation_Wall_04_LOD1",
+              "Foundation_Wall_15_LOD1",
+              "Foundation_Wall_05_LOD2",
+              "Foundation_Wall_06_LOD2",
+              "Foundation_Wall_07_LOD2",
+              "Foundation_Wall_08_LOD2",
+              "Foundation_Wall_09_LOD2",
+              "Foundation_Wall_10_LOD2",
+              "Foundation_Wall_11_LOD2",
+              "Foundation_Wall_12_LOD2",
+              "Foundation_Wall_13_LOD2",
+              "Foundation_Wall_14_LOD2",
+              "Foundation_Terrain_0_0_LOD1",
+              "Foundation_Terrain_0_1_LOD1",
+              "Foundation_Terrain_0_2_LOD0",
+              "Foundation_Terrain_0_3_LOD2",
+              "Foundation_Terrain_1_0_LOD1",
+              "Foundation_Terrain_1_1_LOD1",
+              "Foundation_Terrain_1_2_LOD0",
+              "Foundation_Terrain_1_3_LOD0",
+              "Foundation_Terrain_2_0_LOD2",
+              "Foundation_Terrain_2_1_LOD1",
+              "Foundation_Terrain_2_2_LOD0",
+              "Foundation_Terrain_2_3_LOD0",
+              "Foundation_Terrain_3_0_LOD1",
+              "Foundation_Terrain_3_1_LOD1",
+              "Foundation_Terrain_3_2_LOD0",
+              "Foundation_Terrain_3_3_LOD0",
+              "Foundation_Foot_Scree_LOD1"
+            ],
+            "trace": [
+              {
+                "at": 1418.2999999988824,
+                "event": "foundation-material-parse",
+                "ms": 340.09999999962747,
+                "bytes": 4659808
+              },
+              {
+                "at": 1429.4000000003725,
+                "event": "foundation-load-failed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 1429.5999999996275,
+                "event": "foundation-request",
+                "enabled": false
+              },
+              {
+                "at": 1429.5999999996275,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 1883.199999999255,
+                "event": "approved-material-parse",
+                "ms": 92.69999999925494,
+                "bytes": 2505852
+              },
+              {
+                "at": 1883.2999999988824,
+                "event": "approved-material-ready",
+                "ms": 421.3999999985099,
+                "exactPilotFamily": true,
+                "holderMeshRendered": false,
+                "look": "rock",
+                "materialName": "Quarry_Pilot_Original_Stone_PBR",
+                "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+              },
+              {
+                "at": 2257.2999999988824,
+                "event": "excavation-detailed-parse",
+                "ms": 8.799999998882413,
+                "bytes": 7898472
+              },
+              {
+                "at": 2258.199999999255,
+                "event": "excavation-asset-ready",
+                "style": "detailed",
+                "ms": 796.4000000003725,
+                "geometryOnly": true,
+                "baselineRequested": false
+              },
+              {
+                "at": 2258.2999999988824,
+                "event": "load-ready",
+                "style": "detailed",
+                "optIn": true
+              },
+              {
+                "at": 2299,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 11.700000001117587
+              },
+              {
+                "at": 2339.699999999255,
+                "event": "shader-compile",
+                "ms": 40.59999999962747
+              },
+              {
+                "at": 4201.5,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 1914.800000000745,
+                "lighting": "hub"
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 957.4495535901259,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 312.14376740406607,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.5999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 241.03854654106186,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.799999998882,
+                "event": "part-lod-change",
+                "part": "Excavation_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 367.69524600840435,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.799999998882,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 2,
+                "to": 1,
+                "pixels": 711.4476609175792,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 4354.799999998882,
+                "event": "part-lod-change",
+                "part": "Excavation_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 5876.799999998882,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 1,
+                "to": 0,
+                "pixels": 741.8187089194539,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 6251,
+                "event": "part-lod-change",
+                "part": "Excavation_14",
+                "from": 2,
+                "to": 1,
+                "pixels": 227.55764348829567,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 8097.299999998882,
+                "event": "foundation-request",
+                "enabled": true
+              },
+              {
+                "at": 8097.299999998882,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 8619.400000000373,
+                "event": "foundation-geometry-parse",
+                "ms": 11.100000001490116,
+                "bytes": 8530404
+              },
+              {
+                "at": 8620.199999999255,
+                "event": "foundation-asset-ready",
+                "ms": 475.40000000037253,
+                "geometryOnly": true,
+                "refinedRegions": 2,
+                "materialHolderRendered": false
+              },
+              {
+                "at": 8620.199999999255,
+                "event": "load-ready",
+                "foundation": true,
+                "optIn": true
+              },
+              {
+                "at": 8677.199999999255,
+                "event": "texture-init",
+                "count": 6,
+                "ms": 33.79999999888241
+              },
+              {
+                "at": 8690.900000000373,
+                "event": "shader-compile",
+                "ms": 13.700000001117587
+              },
+              {
+                "at": 9399,
+                "event": "covered-ready",
+                "revision": 4,
+                "ms": 755.9000000003725,
+                "lighting": "hub"
+              },
+              {
+                "at": 9616.199999999255,
+                "event": "part-lod-change",
+                "part": "Wall_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Wall_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Wall_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 2200.2011087160217,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Wall_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 400.4788024862694,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Wall_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 275.4941425505077,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Wall_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 477.6286086905401,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Wall_16",
+                "from": 2,
+                "to": 0,
+                "pixels": 1534.979470234475,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Wall_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_0_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 279.4687841531324,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_0_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 584.0846268844609,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_0_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 2043.1181472206574,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_1_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 450.87227830889253,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_1_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 331.42189290246347,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_1_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 429838.0500865482,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_1_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 842438.8991733519,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_2_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 326.8310825223726,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_2_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 427564.45572142745,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_2_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1176867.5151961313,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_3_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 298.1754486338337,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.299999998882,
+                "event": "part-lod-change",
+                "part": "Terrain_3_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 440.2875736505205,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.400000000373,
+                "event": "part-lod-change",
+                "part": "Terrain_3_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 2053.600128368818,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.400000000373,
+                "event": "part-lod-change",
+                "part": "Terrain_3_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 577521.9484649058,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9616.400000000373,
+                "event": "part-lod-change",
+                "part": "Foot_Scree",
+                "from": 2,
+                "to": 1,
+                "pixels": 306.4163993514826,
+                "quality": 1,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 2,
+            "assetTextures": 6,
+            "decodedTextureEstimate": 50331648
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Failed foundation-materials.glb retains connected dark baseline; explicit retry",
+      "status": "PASS",
+      "evidence": {
+        "failed": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 0,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 151,
+            "triangles": 118227,
+            "textures": 28,
+            "geometries": 195,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 6669.199999999255,
+            "scene": "hub",
+            "geometries": 195,
+            "textures": 28,
+            "activeGeometryBytes": 9477470,
+            "activeTextureBytesEstimate": 61804548.00000001,
+            "jsHeapBytes": 76739762
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 32,
+                  "deleted": 0,
+                  "active": 32
+                },
+                "Buffer": {
+                  "created": 790,
+                  "deleted": 0,
+                  "active": 790
+                },
+                "Program": {
+                  "created": 22,
+                  "deleted": 0,
+                  "active": 22
+                },
+                "Shader": {
+                  "created": 44,
+                  "deleted": 40,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 195,
+                  "deleted": 0,
+                  "active": 195
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "lighting": {
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "colour": "a9bfd4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "type": "DirectionalLight",
+                "colour": "efd0a4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  -70,
+                  37,
+                  -145
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "ffc681",
+                "intensity": 42,
+                "visible": true,
+                "position": [
+                  0,
+                  9.75,
+                  2.6
+                ]
+              },
+              {
+                "type": "AmbientLight",
+                "colour": "ffffff",
+                "intensity": 0.055,
+                "visible": true,
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 110,
+                "visible": true,
+                "position": [
+                  0,
+                  6.5,
+                  -3.6
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  -7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              }
+            ]
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 2,
+              "error": "Foundation unavailable; connected original-rock baseline retained"
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 18,
+            "variant": "quarry",
+            "lodSelections": {
+              "Excavation_00": 0,
+              "Excavation_01": 0,
+              "Excavation_02": 0,
+              "Excavation_03": 1,
+              "Excavation_04": 1,
+              "Excavation_05": 2,
+              "Excavation_06": 2,
+              "Excavation_07": 2,
+              "Excavation_08": 2,
+              "Excavation_09": 2,
+              "Excavation_10": 2,
+              "Excavation_11": 2,
+              "Excavation_12": 2,
+              "Excavation_13": 2,
+              "Excavation_14": 1,
+              "Excavation_15": 1,
+              "Excavation_16": 0,
+              "Excavation_17": 0
+            },
+            "lodPixels": {
+              "Excavation_00": 90027.83922776984,
+              "Excavation_01": 66055.2759633159,
+              "Excavation_02": 2200.2011087160217,
+              "Excavation_03": 400.4788024862694,
+              "Excavation_04": 275.4941425505077,
+              "Excavation_05": 145.85538953636365,
+              "Excavation_06": 98.44190883534048,
+              "Excavation_07": 80.63655628850245,
+              "Excavation_08": 75.01111334734868,
+              "Excavation_09": 66.75514400349817,
+              "Excavation_10": 80.6609965061989,
+              "Excavation_11": 85.15114465498223,
+              "Excavation_12": 125.10690882173898,
+              "Excavation_13": 194.52311938561917,
+              "Excavation_14": 231.87287233277235,
+              "Excavation_15": 474.2083678127203,
+              "Excavation_16": 1534.979470234475,
+              "Excavation_17": 86785.43762716655
+            },
+            "selectedNodes": [
+              "Excavation_Detailed_Sector_00_LOD0",
+              "Excavation_Detailed_Sector_01_LOD0",
+              "Excavation_Detailed_Sector_02_LOD0",
+              "Excavation_Detailed_Sector_16_LOD0",
+              "Excavation_Detailed_Sector_17_LOD0",
+              "Excavation_Detailed_Sector_03_LOD1",
+              "Excavation_Detailed_Sector_04_LOD1",
+              "Excavation_Detailed_Sector_14_LOD1",
+              "Excavation_Detailed_Sector_15_LOD1",
+              "Excavation_Detailed_Sector_05_LOD2",
+              "Excavation_Detailed_Sector_06_LOD2",
+              "Excavation_Detailed_Sector_07_LOD2",
+              "Excavation_Detailed_Sector_08_LOD2",
+              "Excavation_Detailed_Sector_09_LOD2",
+              "Excavation_Detailed_Sector_10_LOD2",
+              "Excavation_Detailed_Sector_11_LOD2",
+              "Excavation_Detailed_Sector_12_LOD2",
+              "Excavation_Detailed_Sector_13_LOD2"
+            ],
+            "trace": [
+              {
+                "at": 657.1999999992549,
+                "event": "foundation-load-failed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 657.1999999992549,
+                "event": "foundation-request",
+                "enabled": false
+              },
+              {
+                "at": 657.1999999992549,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 1005.1999999992549,
+                "event": "approved-material-parse",
+                "ms": 219.89999999850988,
+                "bytes": 2505852
+              },
+              {
+                "at": 1005.3000000007451,
+                "event": "approved-material-ready",
+                "ms": 323.80000000074506,
+                "exactPilotFamily": true,
+                "holderMeshRendered": false,
+                "look": "rock",
+                "materialName": "Quarry_Pilot_Original_Stone_PBR",
+                "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+              },
+              {
+                "at": 1527.199999999255,
+                "event": "excavation-detailed-parse",
+                "ms": 11.899999998509884,
+                "bytes": 7898472
+              },
+              {
+                "at": 1528,
+                "event": "excavation-asset-ready",
+                "style": "detailed",
+                "ms": 846.5,
+                "geometryOnly": true,
+                "baselineRequested": false
+              },
+              {
+                "at": 1528,
+                "event": "load-ready",
+                "style": "detailed",
+                "optIn": true
+              },
+              {
+                "at": 1899.699999999255,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 10.900000000372529
+              },
+              {
+                "at": 1940.300000000745,
+                "event": "shader-compile",
+                "ms": 40.600000001490116
+              },
+              {
+                "at": 3837,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 1948.7000000011176,
+                "lighting": "hub"
+              },
+              {
+                "at": 3956.800000000745,
+                "event": "part-lod-change",
+                "part": "Excavation_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3956.9000000003725,
+                "event": "part-lod-change",
+                "part": "Excavation_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3956.9000000003725,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 957.4495535901259,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957,
+                "event": "part-lod-change",
+                "part": "Excavation_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 312.14376740406607,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957,
+                "event": "part-lod-change",
+                "part": "Excavation_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 241.03854654106186,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957.0999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 367.69524600840435,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957.0999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 2,
+                "to": 1,
+                "pixels": 711.4476609175792,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957.0999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 5371.5,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 1,
+                "to": 0,
+                "pixels": 737.4869111071729,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 5750.0999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_14",
+                "from": 2,
+                "to": 1,
+                "pixels": 227.35516776241076,
+                "quality": 0,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 1,
+            "assetTextures": 3,
+            "decodedTextureEstimate": 16777216
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        },
+        "retry": {
+          "snapshot": {
+            "phase": "local",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 1,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "pose": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "stats": {
+            "calls": 166,
+            "triangles": 119779,
+            "textures": 34,
+            "geometries": 266,
+            "dpr": 0.25
+          },
+          "memory": {
+            "at": 8984.400000000373,
+            "scene": "hub",
+            "geometries": 230,
+            "textures": 34,
+            "activeGeometryBytes": 10089964,
+            "activeTextureBytesEstimate": 95358979.99999997,
+            "jsHeapBytes": 93119394
+          },
+          "gpuTimer": "unavailable",
+          "canvasCount": 1,
+          "contexts": [
+            {
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)",
+              "attributes": {
+                "alpha": true,
+                "antialias": false,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "high-performance",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+              },
+              "stats": {
+                "Texture": {
+                  "created": 38,
+                  "deleted": 0,
+                  "active": 38
+                },
+                "Buffer": {
+                  "created": 1206,
+                  "deleted": 4,
+                  "active": 1202
+                },
+                "Program": {
+                  "created": 23,
+                  "deleted": 0,
+                  "active": 23
+                },
+                "Shader": {
+                  "created": 46,
+                  "deleted": 42,
+                  "active": 4
+                },
+                "Framebuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "Renderbuffer": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                },
+                "VertexArray": {
+                  "created": 267,
+                  "deleted": 1,
+                  "active": 266
+                },
+                "Query": {
+                  "created": 0,
+                  "deleted": 0,
+                  "active": 0
+                }
+              },
+              "extensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_conservative_depth",
+                "EXT_depth_clamp",
+                "EXT_float_blend",
+                "EXT_polygon_offset_clamp",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_filter_anisotropic",
+                "EXT_texture_mirror_clamp_to_edge",
+                "NV_shader_noperspective_interpolation",
+                "OES_draw_buffers_indexed",
+                "OES_sample_variables",
+                "OES_shader_multisample_interpolation",
+                "OES_texture_float_linear",
+                "OVR_multiview2",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw",
+                "WEBGL_polygon_mode",
+                "WEBGL_stencil_texturing"
+              ],
+              "lost": false
+            }
+          ],
+          "videos": [
+            {
+              "src": "/after-movie.mp4",
+              "time": 0,
+              "paused": true,
+              "readyState": 0,
+              "connected": true
+            }
+          ],
+          "viewport": {
+            "width": 1366,
+            "height": 900,
+            "requestedDpr": 0.25
+          },
+          "lighting": {
+            "lights": [
+              {
+                "type": "HemisphereLight",
+                "colour": "a9bfd4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              {
+                "type": "DirectionalLight",
+                "colour": "efd0a4",
+                "intensity": 1.35,
+                "visible": true,
+                "position": [
+                  -70,
+                  37,
+                  -145
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "ffc681",
+                "intensity": 42,
+                "visible": true,
+                "position": [
+                  0,
+                  9.75,
+                  2.6
+                ]
+              },
+              {
+                "type": "AmbientLight",
+                "colour": "ffffff",
+                "intensity": 0.055,
+                "visible": true,
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 110,
+                "visible": true,
+                "position": [
+                  0,
+                  6.5,
+                  -3.6
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  -7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "PointLight",
+                "colour": "fffbe8",
+                "intensity": 50,
+                "visible": true,
+                "position": [
+                  7.5,
+                  5.2,
+                  -3.8
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              },
+              {
+                "type": "SpotLight",
+                "colour": "fffbe8",
+                "intensity": 300,
+                "visible": true,
+                "position": [
+                  0,
+                  -0.55,
+                  0
+                ]
+              }
+            ]
+          },
+          "wall": {
+            "state": {
+              "mode": "authored",
+              "busy": false,
+              "assetReady": true,
+              "revision": 4,
+              "error": null
+            },
+            "consumers": 1,
+            "activeLOD": 2,
+            "projectedPixels": 0,
+            "visible": [],
+            "renderedMeshes": 35,
+            "variant": "quarry",
+            "lodSelections": {
+              "Wall_00": 0,
+              "Wall_01": 0,
+              "Wall_02": 0,
+              "Wall_03": 1,
+              "Wall_04": 1,
+              "Wall_05": 2,
+              "Wall_06": 2,
+              "Wall_07": 2,
+              "Wall_08": 2,
+              "Wall_09": 2,
+              "Wall_10": 2,
+              "Wall_11": 2,
+              "Wall_12": 2,
+              "Wall_13": 2,
+              "Wall_14": 2,
+              "Wall_15": 1,
+              "Wall_16": 0,
+              "Wall_17": 0,
+              "Terrain_0_0": 1,
+              "Terrain_0_1": 1,
+              "Terrain_0_2": 0,
+              "Terrain_0_3": 2,
+              "Terrain_1_0": 1,
+              "Terrain_1_1": 1,
+              "Terrain_1_2": 0,
+              "Terrain_1_3": 0,
+              "Terrain_2_0": 2,
+              "Terrain_2_1": 1,
+              "Terrain_2_2": 0,
+              "Terrain_2_3": 0,
+              "Terrain_3_0": 1,
+              "Terrain_3_1": 1,
+              "Terrain_3_2": 0,
+              "Terrain_3_3": 0,
+              "Foot_Scree": 1
+            },
+            "lodPixels": {
+              "Wall_00": 90027.83922776984,
+              "Wall_01": 66055.2759633159,
+              "Wall_02": 2200.2011087160217,
+              "Wall_03": 400.4788024862694,
+              "Wall_04": 275.4941425505077,
+              "Wall_05": 145.85538953636365,
+              "Wall_06": 98.44190883534048,
+              "Wall_07": 80.63655628850245,
+              "Wall_08": 75.01111334734868,
+              "Wall_09": 66.75514400349817,
+              "Wall_10": 80.6609965061989,
+              "Wall_11": 85.15114465498223,
+              "Wall_12": 125.10690882173898,
+              "Wall_13": 195.23177523842315,
+              "Wall_14": 230.9953311516458,
+              "Wall_15": 477.6286086905401,
+              "Wall_16": 1534.979470234475,
+              "Wall_17": 86785.43762716655,
+              "Terrain_0_0": 279.4687841531324,
+              "Terrain_0_1": 584.0846268844609,
+              "Terrain_0_2": 2043.1181472206574,
+              "Terrain_0_3": 0,
+              "Terrain_1_0": 450.87227830889253,
+              "Terrain_1_1": 331.42189290246347,
+              "Terrain_1_2": 429838.0500865482,
+              "Terrain_1_3": 842438.8991733519,
+              "Terrain_2_0": 225.05937988133135,
+              "Terrain_2_1": 326.8310825223726,
+              "Terrain_2_2": 427564.45572142745,
+              "Terrain_2_3": 1176867.5151961313,
+              "Terrain_3_0": 298.1754486338337,
+              "Terrain_3_1": 440.2875736505205,
+              "Terrain_3_2": 2053.600128368818,
+              "Terrain_3_3": 577521.9484649058,
+              "Foot_Scree": 306.4163993514826
+            },
+            "selectedNodes": [
+              "Foundation_Wall_00_LOD0",
+              "Foundation_Wall_01_LOD0",
+              "Foundation_Wall_02_LOD0",
+              "Foundation_Wall_16_LOD0",
+              "Foundation_Wall_17_LOD0",
+              "Foundation_Wall_03_LOD1",
+              "Foundation_Wall_04_LOD1",
+              "Foundation_Wall_15_LOD1",
+              "Foundation_Wall_05_LOD2",
+              "Foundation_Wall_06_LOD2",
+              "Foundation_Wall_07_LOD2",
+              "Foundation_Wall_08_LOD2",
+              "Foundation_Wall_09_LOD2",
+              "Foundation_Wall_10_LOD2",
+              "Foundation_Wall_11_LOD2",
+              "Foundation_Wall_12_LOD2",
+              "Foundation_Wall_13_LOD2",
+              "Foundation_Wall_14_LOD2",
+              "Foundation_Terrain_0_0_LOD1",
+              "Foundation_Terrain_0_1_LOD1",
+              "Foundation_Terrain_0_2_LOD0",
+              "Foundation_Terrain_0_3_LOD2",
+              "Foundation_Terrain_1_0_LOD1",
+              "Foundation_Terrain_1_1_LOD1",
+              "Foundation_Terrain_1_2_LOD0",
+              "Foundation_Terrain_1_3_LOD0",
+              "Foundation_Terrain_2_0_LOD2",
+              "Foundation_Terrain_2_1_LOD1",
+              "Foundation_Terrain_2_2_LOD0",
+              "Foundation_Terrain_2_3_LOD0",
+              "Foundation_Terrain_3_0_LOD1",
+              "Foundation_Terrain_3_1_LOD1",
+              "Foundation_Terrain_3_2_LOD0",
+              "Foundation_Terrain_3_3_LOD0",
+              "Foundation_Foot_Scree_LOD1"
+            ],
+            "trace": [
+              {
+                "at": 657.1999999992549,
+                "event": "foundation-load-failed",
+                "message": "TypeError: Failed to fetch"
+              },
+              {
+                "at": 657.1999999992549,
+                "event": "foundation-request",
+                "enabled": false
+              },
+              {
+                "at": 657.1999999992549,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 1005.1999999992549,
+                "event": "approved-material-parse",
+                "ms": 219.89999999850988,
+                "bytes": 2505852
+              },
+              {
+                "at": 1005.3000000007451,
+                "event": "approved-material-ready",
+                "ms": 323.80000000074506,
+                "exactPilotFamily": true,
+                "holderMeshRendered": false,
+                "look": "rock",
+                "materialName": "Quarry_Pilot_Original_Stone_PBR",
+                "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+              },
+              {
+                "at": 1527.199999999255,
+                "event": "excavation-detailed-parse",
+                "ms": 11.899999998509884,
+                "bytes": 7898472
+              },
+              {
+                "at": 1528,
+                "event": "excavation-asset-ready",
+                "style": "detailed",
+                "ms": 846.5,
+                "geometryOnly": true,
+                "baselineRequested": false
+              },
+              {
+                "at": 1528,
+                "event": "load-ready",
+                "style": "detailed",
+                "optIn": true
+              },
+              {
+                "at": 1899.699999999255,
+                "event": "texture-init",
+                "count": 3,
+                "ms": 10.900000000372529
+              },
+              {
+                "at": 1940.300000000745,
+                "event": "shader-compile",
+                "ms": 40.600000001490116
+              },
+              {
+                "at": 3837,
+                "event": "covered-ready",
+                "revision": 2,
+                "ms": 1948.7000000011176,
+                "lighting": "hub"
+              },
+              {
+                "at": 3956.800000000745,
+                "event": "part-lod-change",
+                "part": "Excavation_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3956.9000000003725,
+                "event": "part-lod-change",
+                "part": "Excavation_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3956.9000000003725,
+                "event": "part-lod-change",
+                "part": "Excavation_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 957.4495535901259,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957,
+                "event": "part-lod-change",
+                "part": "Excavation_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 312.14376740406607,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957,
+                "event": "part-lod-change",
+                "part": "Excavation_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 241.03854654106186,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957.0999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 367.69524600840435,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957.0999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 2,
+                "to": 1,
+                "pixels": 711.4476609175792,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 3957.0999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 5371.5,
+                "event": "part-lod-change",
+                "part": "Excavation_16",
+                "from": 1,
+                "to": 0,
+                "pixels": 737.4869111071729,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 5750.0999999996275,
+                "event": "part-lod-change",
+                "part": "Excavation_14",
+                "from": 2,
+                "to": 1,
+                "pixels": 227.35516776241076,
+                "quality": 0,
+                "dpr": 0.25
+              },
+              {
+                "at": 7597.699999999255,
+                "event": "foundation-request",
+                "enabled": true
+              },
+              {
+                "at": 7597.699999999255,
+                "event": "mode-request",
+                "mode": "authored"
+              },
+              {
+                "at": 7992.199999999255,
+                "event": "foundation-material-parse",
+                "ms": 78.39999999850988,
+                "bytes": 4659808
+              },
+              {
+                "at": 8377.599999999627,
+                "event": "foundation-geometry-parse",
+                "ms": 11.299999998882413,
+                "bytes": 8530404
+              },
+              {
+                "at": 8378.5,
+                "event": "foundation-asset-ready",
+                "ms": 721.6999999992549,
+                "geometryOnly": true,
+                "refinedRegions": 2,
+                "materialHolderRendered": false
+              },
+              {
+                "at": 8378.5,
+                "event": "load-ready",
+                "foundation": true,
+                "optIn": true
+              },
+              {
+                "at": 8448.300000000745,
+                "event": "texture-init",
+                "count": 6,
+                "ms": 34.5
+              },
+              {
+                "at": 8469.699999999255,
+                "event": "shader-compile",
+                "ms": 21.399999998509884
+              },
+              {
+                "at": 9191.599999999627,
+                "event": "covered-ready",
+                "revision": 4,
+                "ms": 778.5,
+                "lighting": "hub"
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Wall_00",
+                "from": 2,
+                "to": 0,
+                "pixels": 90027.83922776984,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Wall_01",
+                "from": 2,
+                "to": 0,
+                "pixels": 66055.2759633159,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Wall_02",
+                "from": 2,
+                "to": 0,
+                "pixels": 2200.2011087160217,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Wall_03",
+                "from": 2,
+                "to": 1,
+                "pixels": 400.4788024862694,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Wall_04",
+                "from": 2,
+                "to": 1,
+                "pixels": 275.4941425505077,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Wall_15",
+                "from": 2,
+                "to": 1,
+                "pixels": 477.6286086905401,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Wall_16",
+                "from": 2,
+                "to": 0,
+                "pixels": 1534.979470234475,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Wall_17",
+                "from": 2,
+                "to": 0,
+                "pixels": 86785.43762716655,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Terrain_0_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 279.4687841531324,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Terrain_0_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 584.0846268844609,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Terrain_0_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 2043.1181472206574,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Terrain_1_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 450.87227830889253,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Terrain_1_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 331.42189290246347,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Terrain_1_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 429838.0500865482,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Terrain_1_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 842438.8991733519,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.5,
+                "event": "part-lod-change",
+                "part": "Terrain_2_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 326.8310825223726,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_2_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 427564.45572142745,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_2_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 1176867.5151961313,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_3_0",
+                "from": 2,
+                "to": 1,
+                "pixels": 298.1754486338337,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_3_1",
+                "from": 2,
+                "to": 1,
+                "pixels": 440.2875736505205,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_3_2",
+                "from": 2,
+                "to": 0,
+                "pixels": 2053.600128368818,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.599999999627,
+                "event": "part-lod-change",
+                "part": "Terrain_3_3",
+                "from": 2,
+                "to": 0,
+                "pixels": 577521.9484649058,
+                "quality": 1,
+                "dpr": 0.25
+              },
+              {
+                "at": 9446.599999999627,
+                "event": "part-lod-change",
+                "part": "Foot_Scree",
+                "from": 2,
+                "to": 1,
+                "pixels": 306.4163993514826,
+                "quality": 1,
+                "dpr": 0.25
+              }
+            ],
+            "assetMaterials": 2,
+            "assetTextures": 6,
+            "decodedTextureEstimate": 50331648
+          },
+          "camera": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2,
+            "fov": 58,
+            "near": 0.1,
+            "far": 700,
+            "quaternion": [
+              0.09983341664682815,
+              0,
+              0,
+              0.9950041652780258
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Delayed load stays covered; fallback unmount disposes unpublished resources",
+      "status": "PASS",
+      "evidence": {
+        "disposed": true,
+        "asset": false,
+        "caches": 0,
+        "consumers": 0,
+        "trace": [
+          {
+            "at": 1293.5999999996275,
+            "event": "foundation-material-parse",
+            "ms": 257.69999999925494,
+            "bytes": 4659808
+          },
+          {
+            "at": 1555.4000000003725,
+            "event": "foundation-material-disposal",
+            "geometries": 2,
+            "textures": 6,
+            "materials": 2
+          },
+          {
+            "at": 7210.9000000003725,
+            "event": "foundation-geometry-parse",
+            "ms": 13.900000000372529,
+            "bytes": 8530404
+          }
+        ]
+      }
+    },
+    {
+      "name": "Duplicate embedded texture payload is rejected and owned resources disposed",
+      "status": "PASS",
+      "evidence": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 151,
+          "triangles": 118227,
+          "textures": 28,
+          "geometries": 195,
+          "dpr": 0.25
+        },
+        "memory": {
+          "at": 8455.89999999851,
+          "scene": "hub",
+          "geometries": 195,
+          "textures": 28,
+          "activeGeometryBytes": 9477470,
+          "activeTextureBytesEstimate": 61804548.00000001,
+          "jsHeapBytes": 61849774
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 32,
+                "deleted": 0,
+                "active": 32
+              },
+              "Buffer": {
+                "created": 790,
+                "deleted": 0,
+                "active": 790
+              },
+              "Program": {
+                "created": 22,
+                "deleted": 0,
+                "active": 22
+              },
+              "Shader": {
+                "created": 44,
+                "deleted": 40,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 195,
+                "deleted": 0,
+                "active": 195
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 0.25
+        },
+        "lighting": {
+          "lights": [
+            {
+              "type": "HemisphereLight",
+              "colour": "a9bfd4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "DirectionalLight",
+              "colour": "efd0a4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                -70,
+                37,
+                -145
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "ffc681",
+              "intensity": 42,
+              "visible": true,
+              "position": [
+                0,
+                9.75,
+                2.6
+              ]
+            },
+            {
+              "type": "AmbientLight",
+              "colour": "ffffff",
+              "intensity": 0.055,
+              "visible": true,
+              "position": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 110,
+              "visible": true,
+              "position": [
+                0,
+                6.5,
+                -3.6
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                -7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            }
+          ]
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 2,
+            "error": "Foundation unavailable; connected original-rock baseline retained"
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 18,
+          "variant": "quarry",
+          "lodSelections": {
+            "Excavation_00": 0,
+            "Excavation_01": 0,
+            "Excavation_02": 0,
+            "Excavation_03": 1,
+            "Excavation_04": 1,
+            "Excavation_05": 2,
+            "Excavation_06": 2,
+            "Excavation_07": 2,
+            "Excavation_08": 2,
+            "Excavation_09": 2,
+            "Excavation_10": 2,
+            "Excavation_11": 2,
+            "Excavation_12": 2,
+            "Excavation_13": 2,
+            "Excavation_14": 1,
+            "Excavation_15": 1,
+            "Excavation_16": 0,
+            "Excavation_17": 0
+          },
+          "lodPixels": {
+            "Excavation_00": 90027.83922776984,
+            "Excavation_01": 66055.2759633159,
+            "Excavation_02": 2200.2011087160217,
+            "Excavation_03": 400.4788024862694,
+            "Excavation_04": 275.4941425505077,
+            "Excavation_05": 145.85538953636365,
+            "Excavation_06": 98.44190883534048,
+            "Excavation_07": 80.63655628850245,
+            "Excavation_08": 75.01111334734868,
+            "Excavation_09": 66.75514400349817,
+            "Excavation_10": 80.6609965061989,
+            "Excavation_11": 85.15114465498223,
+            "Excavation_12": 125.10690882173898,
+            "Excavation_13": 194.52311938561917,
+            "Excavation_14": 231.87287233277235,
+            "Excavation_15": 474.2083678127203,
+            "Excavation_16": 1534.979470234475,
+            "Excavation_17": 86785.43762716655
+          },
+          "selectedNodes": [
+            "Excavation_Detailed_Sector_00_LOD0",
+            "Excavation_Detailed_Sector_01_LOD0",
+            "Excavation_Detailed_Sector_02_LOD0",
+            "Excavation_Detailed_Sector_16_LOD0",
+            "Excavation_Detailed_Sector_17_LOD0",
+            "Excavation_Detailed_Sector_03_LOD1",
+            "Excavation_Detailed_Sector_04_LOD1",
+            "Excavation_Detailed_Sector_14_LOD1",
+            "Excavation_Detailed_Sector_15_LOD1",
+            "Excavation_Detailed_Sector_05_LOD2",
+            "Excavation_Detailed_Sector_06_LOD2",
+            "Excavation_Detailed_Sector_07_LOD2",
+            "Excavation_Detailed_Sector_08_LOD2",
+            "Excavation_Detailed_Sector_09_LOD2",
+            "Excavation_Detailed_Sector_10_LOD2",
+            "Excavation_Detailed_Sector_11_LOD2",
+            "Excavation_Detailed_Sector_12_LOD2",
+            "Excavation_Detailed_Sector_13_LOD2"
+          ],
+          "trace": [
+            {
+              "at": 1378.8999999985099,
+              "event": "foundation-material-parse",
+              "ms": 367.90000000037253,
+              "bytes": 4659808
+            },
+            {
+              "at": 1810.2999999988824,
+              "event": "foundation-geometry-parse",
+              "ms": 132.59999999962747,
+              "bytes": 5041508
+            },
+            {
+              "at": 1811.699999999255,
+              "event": "foundation-rejected-disposal",
+              "geometries": 2,
+              "textures": 6,
+              "materials": 2
+            },
+            {
+              "at": 1811.7999999988824,
+              "event": "foundation-load-failed",
+              "message": "Error: Foundation geometry embeds duplicate maps"
+            },
+            {
+              "at": 1812.0999999996275,
+              "event": "foundation-request",
+              "enabled": false
+            },
+            {
+              "at": 1812.0999999996275,
+              "event": "mode-request",
+              "mode": "authored"
+            },
+            {
+              "at": 1986.5999999996275,
+              "event": "approved-material-parse",
+              "ms": 33.80000000074506,
+              "bytes": 2505852
+            },
+            {
+              "at": 1986.699999999255,
+              "event": "approved-material-ready",
+              "ms": 147.5,
+              "exactPilotFamily": true,
+              "holderMeshRendered": false,
+              "look": "rock",
+              "materialName": "Quarry_Pilot_Original_Stone_PBR",
+              "sourceGLB": "public/models/gullyverse/pilot-rock/quarry-rock-pilot.glb"
+            },
+            {
+              "at": 2383.5,
+              "event": "excavation-detailed-parse",
+              "ms": 9.899999998509884,
+              "bytes": 7898472
+            },
+            {
+              "at": 2384.699999999255,
+              "event": "excavation-asset-ready",
+              "style": "detailed",
+              "ms": 545.6999999992549,
+              "geometryOnly": true,
+              "baselineRequested": false
+            },
+            {
+              "at": 2384.7999999988824,
+              "event": "load-ready",
+              "style": "detailed",
+              "optIn": true
+            },
+            {
+              "at": 2451.699999999255,
+              "event": "texture-init",
+              "count": 3,
+              "ms": 14.300000000745058
+            },
+            {
+              "at": 2489.699999999255,
+              "event": "shader-compile",
+              "ms": 38
+            },
+            {
+              "at": 4404.5999999996275,
+              "event": "covered-ready",
+              "revision": 2,
+              "ms": 1967.4000000003725,
+              "lighting": "hub"
+            },
+            {
+              "at": 4540.799999998882,
+              "event": "part-lod-change",
+              "part": "Excavation_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 90027.83922776984,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 4540.799999998882,
+              "event": "part-lod-change",
+              "part": "Excavation_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 66055.2759633159,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 4540.799999998882,
+              "event": "part-lod-change",
+              "part": "Excavation_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 957.4495535901259,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 4540.89999999851,
+              "event": "part-lod-change",
+              "part": "Excavation_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 312.14376740406607,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 4541,
+              "event": "part-lod-change",
+              "part": "Excavation_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 241.03854654106186,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 4541,
+              "event": "part-lod-change",
+              "part": "Excavation_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 367.69524600840435,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 4541,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 2,
+              "to": 1,
+              "pixels": 711.4476609175792,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 4541,
+              "event": "part-lod-change",
+              "part": "Excavation_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 86785.43762716655,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 6346.39999999851,
+              "event": "part-lod-change",
+              "part": "Excavation_16",
+              "from": 1,
+              "to": 0,
+              "pixels": 748.572098136902,
+              "quality": 0,
+              "dpr": 0.25
+            },
+            {
+              "at": 6626,
+              "event": "part-lod-change",
+              "part": "Excavation_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 221.40361436091723,
+              "quality": 0,
+              "dpr": 0.25
+            }
+          ],
+          "assetMaterials": 1,
+          "assetTextures": 3,
+          "decodedTextureEstimate": 16777216
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.09983341664682815,
+            0,
+            0,
+            0.9950041652780258
+          ]
+        }
+      }
+    },
+    {
+      "name": "Critical original stage failure reaches native video fallback",
+      "status": "PASS",
+      "evidence": {
+        "videoCount": 1
+      }
+    },
+    {
+      "name": "Ordinary public URL never requests foundation assets or exposes review controls",
+      "status": "PASS",
+      "evidence": {
+        "requested": [
+          "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+          "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+          "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+          "http://127.0.0.1:3000/_next/static/chunks/webpack-33e2939a5c536f0e.js",
+          "http://127.0.0.1:3000/_next/static/chunks/1684-15ccc9c1e6d430cd.js",
+          "http://127.0.0.1:3000/_next/static/chunks/4bd1b696-ec75cb6411b04a83.js",
+          "http://127.0.0.1:3000/_next/static/chunks/main-app-8a2c7ec146463e19.js",
+          "http://127.0.0.1:3000/_next/static/chunks/6874-b6a1904b5358f3a5.js",
+          "http://127.0.0.1:3000/_next/static/chunks/3063-47fe6cdc7a8a08ba.js",
+          "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e5fb79af18c98fd9.js",
+          "http://127.0.0.1:3000/_next/static/chunks/870fdd6f-b1e5e4aa672c39a8.js",
+          "http://127.0.0.1:3000/_next/static/chunks/app/layout-96537d7eccfe9ec7.js",
+          "http://127.0.0.1:3000/_next/static/chunks/8e1d74a4-62e4124a6419f23f.js",
+          "http://127.0.0.1:3000/_next/static/chunks/4277-33eb5d1436f9096c.js",
+          "http://127.0.0.1:3000/_next/static/chunks/9986-ccbebfe68e6305d6.js",
+          "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-c33b211cce4c0b37.js",
+          "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-1f4ac6de3446b999.js",
+          "http://127.0.0.1:3000/_vercel/insights/script.js",
+          "http://127.0.0.1:3000/_next/static/chunks/b536a0f1-676dba973e4753e7.js",
+          "http://127.0.0.1:3000/_next/static/chunks/b79b7286-47d149dfd80948df.js",
+          "http://127.0.0.1:3000/_next/static/chunks/7188-873ca89ad4707d1d.js",
+          "http://127.0.0.1:3000/_next/static/chunks/6376-d6c6a4dd05f52a0b.js",
+          "http://127.0.0.1:3000/_next/static/chunks/7986.7e63fd5ca1e23403.js",
+          "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+          "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+          "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+          "http://127.0.0.1:3000/models/gullyverse/quarry-rollout/quarry-limestone.glb",
+          "http://127.0.0.1:3000/_next/static/chunks/6806-d038b4564a4b5731.js",
+          "http://127.0.0.1:3000/_next/static/chunks/9506.c449074b8252c2f9.js",
+          "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+          "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+          "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb"
+        ]
+      }
+    }
+  ]
+}
