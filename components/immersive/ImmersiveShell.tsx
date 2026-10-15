@@ -67,7 +67,7 @@ export default function ImmersiveShell() {
     if(allowed&&query.get("quarryReview")==="excavation")return new LimestoneExcavationSession(runtime,query.get("excavation")==="macro"?"macro":"detailed",query.get("quarryMaterial")==="limestone"?"limestone":"rock");
     if(allowed&&query.get("quarryReview")==="geology")return new RefinedQuarrySession(runtime);
     if(allowed&&mode&&["limestone","authored","reference","off"].includes(mode))return new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored",query.get("wallCandidate")==="previous"?"previous":"corrected");
-    return process.env.NEXT_PUBLIC_GULLYVERSE_QUARRY_ROLLOUT!=="0"&&query.get("quarry")!=="original"?new LimestoneExcavationSession(runtime,"detailed","rock"):null;
+    return process.env.NEXT_PUBLIC_GULLYVERSE_QUARRY_ROLLOUT!=="0"&&query.get("quarry")!=="original"?new QuarryFoundationSession(runtime,true):null;
   });
   const [showQuarryReviewControls]=useState(()=>
     (process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1")&&

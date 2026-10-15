@@ -1,0 +1,2974 @@
+{
+  "status": "PASS",
+  "base": "http://127.0.0.1:3000",
+  "browser": "151.0.7922.173",
+  "physicalHardware": false,
+  "checks": [
+    "Fresh ordinary / requires entry and reaches the hub",
+    "Ordinary URL loads actual Stage2C.5.1 geometry and material holder; refinement enabled, no old quarry requests or review controls",
+    "Aerial map to Aftermovie retains the same Canvas; material is inspected separately",
+    "Original video actually plays and exits",
+    "Boundary menu returns to hub through existing travel",
+    "Browser Back/Forward preserves the dark quarry",
+    "Reload retains Stage2C.5.1 without review URL or preview build flag"
+  ],
+  "data": {
+    "style": "detailed",
+    "look": "rock",
+    "refinement": true,
+    "foundationEnabled": true,
+    "state": {
+      "mode": "authored",
+      "busy": false,
+      "assetReady": true,
+      "revision": 1,
+      "error": null
+    },
+    "materials": [
+      {
+        "name": "Foundation_Dark_Rock_PBR",
+        "roughness": 1,
+        "metalness": 1,
+        "maps": [
+          {
+            "slot": "map",
+            "name": "dark-rock-basecolor",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "slot": "normalMap",
+            "name": "dark-rock-normal",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "slot": "roughnessMap",
+            "name": "dark-rock-orm",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "slot": "aoMap",
+            "name": "dark-rock-orm",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      {
+        "name": "Foundation_Dry_Terrain_PBR",
+        "roughness": 1,
+        "metalness": 1,
+        "maps": [
+          {
+            "slot": "map",
+            "name": "dry-terrain-basecolor",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "slot": "normalMap",
+            "name": "dry-terrain-normal",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "slot": "roughnessMap",
+            "name": "dry-terrain-orm",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "slot": "aoMap",
+            "name": "dry-terrain-orm",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      }
+    ],
+    "pose": {
+      "x": 0,
+      "y": 1.72,
+      "z": -51,
+      "yaw": 0,
+      "pitch": 0.2
+    },
+    "camera": {
+      "x": 0,
+      "y": 1.72,
+      "z": -51,
+      "yaw": 0,
+      "pitch": 0.2,
+      "fov": 58
+    },
+    "quality": 0,
+    "viewport": [
+      1366,
+      900
+    ],
+    "dpr": 0.5,
+    "canvases": 1,
+    "reviewControls": 0,
+    "trace": [
+      {
+        "at": 1332.6999999999534,
+        "event": "foundation-material-parse",
+        "ms": 416,
+        "bytes": 4659808
+      },
+      {
+        "at": 1783.6999999999534,
+        "event": "foundation-geometry-parse",
+        "ms": 10.099999999860302,
+        "bytes": 8530404
+      },
+      {
+        "at": 1784.4000000001397,
+        "event": "foundation-asset-ready",
+        "ms": 1255.4000000001397,
+        "geometryOnly": true,
+        "refinedRegions": 2,
+        "materialHolderRendered": false
+      },
+      {
+        "at": 1784.4000000001397,
+        "event": "load-ready",
+        "foundation": true,
+        "optIn": true
+      },
+      {
+        "at": 1861.1999999999534,
+        "event": "texture-init",
+        "count": 6,
+        "ms": 38.89999999990687
+      },
+      {
+        "at": 1893,
+        "event": "shader-compile",
+        "ms": 31.800000000046566
+      },
+      {
+        "at": 4193.5,
+        "event": "covered-ready",
+        "revision": 1,
+        "ms": 2372.399999999907,
+        "lighting": "hub"
+      },
+      {
+        "at": 4418.699999999953,
+        "event": "part-lod-change",
+        "part": "Wall_00",
+        "from": 2,
+        "to": 0,
+        "pixels": 180055.6784555397,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.699999999953,
+        "event": "part-lod-change",
+        "part": "Wall_01",
+        "from": 2,
+        "to": 0,
+        "pixels": 132110.5519266318,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.699999999953,
+        "event": "part-lod-change",
+        "part": "Wall_02",
+        "from": 2,
+        "to": 0,
+        "pixels": 1914.8991071802518,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.699999999953,
+        "event": "part-lod-change",
+        "part": "Wall_03",
+        "from": 2,
+        "to": 1,
+        "pixels": 624.2875348081321,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.699999999953,
+        "event": "part-lod-change",
+        "part": "Wall_04",
+        "from": 2,
+        "to": 1,
+        "pixels": 482.0770930821237,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.699999999953,
+        "event": "part-lod-change",
+        "part": "Wall_05",
+        "from": 2,
+        "to": 1,
+        "pixels": 271.37916333064504,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.800000000047,
+        "event": "part-lod-change",
+        "part": "Wall_12",
+        "from": 2,
+        "to": 1,
+        "pixels": 233.54196086999568,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.800000000047,
+        "event": "part-lod-change",
+        "part": "Wall_13",
+        "from": 2,
+        "to": 1,
+        "pixels": 351.12380148606275,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.800000000047,
+        "event": "part-lod-change",
+        "part": "Wall_14",
+        "from": 2,
+        "to": 1,
+        "pixels": 394.69883818454036,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.800000000047,
+        "event": "part-lod-change",
+        "part": "Wall_15",
+        "from": 2,
+        "to": 0,
+        "pixels": 739.496514225874,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Wall_16",
+        "from": 2,
+        "to": 0,
+        "pixels": 1422.8953218351585,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Wall_17",
+        "from": 2,
+        "to": 0,
+        "pixels": 173570.8752543331,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_0_0",
+        "from": 2,
+        "to": 1,
+        "pixels": 547.477909101494,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_0_1",
+        "from": 2,
+        "to": 0,
+        "pixels": 1129.5069521160249,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_0_2",
+        "from": 2,
+        "to": 0,
+        "pixels": 3765.264403608502,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_1_0",
+        "from": 2,
+        "to": 0,
+        "pixels": 885.0931979779762,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_1_1",
+        "from": 2,
+        "to": 1,
+        "pixels": 638.4376326479869,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_1_2",
+        "from": 2,
+        "to": 0,
+        "pixels": 859676.1001730964,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_1_3",
+        "from": 2,
+        "to": 0,
+        "pixels": 1684877.7983467039,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_2_0",
+        "from": 2,
+        "to": 1,
+        "pixels": 441.82082130836454,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_2_1",
+        "from": 2,
+        "to": 1,
+        "pixels": 629.8068513901057,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_2_2",
+        "from": 2,
+        "to": 0,
+        "pixels": 855128.9114428549,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_2_3",
+        "from": 2,
+        "to": 0,
+        "pixels": 2353735.0303922626,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4418.90000000014,
+        "event": "part-lod-change",
+        "part": "Terrain_3_0",
+        "from": 2,
+        "to": 1,
+        "pixels": 584.5571128972304,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4419,
+        "event": "part-lod-change",
+        "part": "Terrain_3_1",
+        "from": 2,
+        "to": 0,
+        "pixels": 855.6421074189277,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4419,
+        "event": "part-lod-change",
+        "part": "Terrain_3_2",
+        "from": 2,
+        "to": 0,
+        "pixels": 3783.1948735106407,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4419,
+        "event": "part-lod-change",
+        "part": "Terrain_3_3",
+        "from": 2,
+        "to": 0,
+        "pixels": 1155043.8969298117,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 4419,
+        "event": "part-lod-change",
+        "part": "Foot_Scree",
+        "from": 2,
+        "to": 1,
+        "pixels": 523.7014587765318,
+        "quality": 0,
+        "dpr": 0.5
+      },
+      {
+        "at": 8309.40000000014,
+        "event": "part-lod-change",
+        "part": "Wall_03",
+        "from": 1,
+        "to": 0,
+        "pixels": 787.0552371753115,
+        "quality": 0,
+        "dpr": 0.5
+      }
+    ]
+  },
+  "requests": [
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+    "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+    "http://127.0.0.1:3000/models/Man.glb",
+    "http://127.0.0.1:3000/models/Animated-Woman.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+    "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb"
+  ],
+  "captures": [
+    {
+      "file": "after/local-after-hub.png",
+      "data": {
+        "style": "detailed",
+        "look": "rock",
+        "refinement": true,
+        "foundationEnabled": true,
+        "state": {
+          "mode": "authored",
+          "busy": false,
+          "assetReady": true,
+          "revision": 1,
+          "error": null
+        },
+        "materials": [
+          {
+            "name": "Foundation_Dark_Rock_PBR",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "dark-rock-basecolor",
+                "width": 2048,
+                "height": 2048
+              },
+              {
+                "slot": "normalMap",
+                "name": "dark-rock-normal",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "dark-rock-orm",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "aoMap",
+                "name": "dark-rock-orm",
+                "width": 1024,
+                "height": 1024
+              }
+            ]
+          },
+          {
+            "name": "Foundation_Dry_Terrain_PBR",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "dry-terrain-basecolor",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "normalMap",
+                "name": "dry-terrain-normal",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "dry-terrain-orm",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "aoMap",
+                "name": "dry-terrain-orm",
+                "width": 1024,
+                "height": 1024
+              }
+            ]
+          }
+        ],
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "quality": 3,
+        "viewport": [
+          1366,
+          900
+        ],
+        "dpr": 0.5,
+        "canvases": 1,
+        "reviewControls": 0,
+        "trace": [
+          {
+            "at": 2354.6999999999534,
+            "event": "foundation-material-parse",
+            "ms": 512.8000000000466,
+            "bytes": 4659808
+          },
+          {
+            "at": 3213.5,
+            "event": "foundation-geometry-parse",
+            "ms": 13,
+            "bytes": 8530404
+          },
+          {
+            "at": 3214.5999999998603,
+            "event": "foundation-asset-ready",
+            "ms": 2079.5999999998603,
+            "geometryOnly": true,
+            "refinedRegions": 2,
+            "materialHolderRendered": false
+          },
+          {
+            "at": 3214.5999999998603,
+            "event": "load-ready",
+            "foundation": true,
+            "optIn": true
+          },
+          {
+            "at": 3351.1999999999534,
+            "event": "texture-init",
+            "count": 6,
+            "ms": 91.69999999995343
+          },
+          {
+            "at": 3419.5999999998603,
+            "event": "shader-compile",
+            "ms": 68.39999999990687
+          },
+          {
+            "at": 6233.699999999953,
+            "event": "covered-ready",
+            "revision": 1,
+            "ms": 2974.7999999998137,
+            "lighting": "hub"
+          },
+          {
+            "at": 6550.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_00",
+            "from": 2,
+            "to": 1,
+            "pixels": 364.5703839797244,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 441.2472679009229,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 816.6733063893429,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1984.409014629374,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 995655.5415907884,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 726.7802824141169,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 448.1886695464156,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1830.1425895400262,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1684877.7983467039,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 362.9318692441471,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 443.384259569117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1828.0188386978296,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 2353735.0303922626,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 474.27135766909146,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 643.6665466513062,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1988.699317701878,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1155043.8969298117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 16897.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_17",
+            "from": 2,
+            "to": 1,
+            "pixels": 333.27745205963873,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18007.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 2,
+            "to": 1,
+            "pixels": 380.4321579064285,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18007.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 2,
+            "to": 1,
+            "pixels": 405.8881486852423,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_03",
+            "from": 2,
+            "to": 1,
+            "pixels": 412.9610817515592,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 1,
+            "pixels": 396.1715143709656,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1362.2894116572734,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19024.5,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19267.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_00",
+            "from": 1,
+            "to": 0,
+            "pixels": 1249.0730418541948,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_16",
+            "from": 2,
+            "to": 1,
+            "pixels": 332.4552566465008,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 0,
+            "to": 1,
+            "pixels": 795.7017923747516,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1155043.8969298117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19722.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 2,
+            "to": 1,
+            "pixels": 336.704001166599,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_14",
+            "from": 2,
+            "to": 1,
+            "pixels": 342.74060112772594,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_17",
+            "from": 1,
+            "to": 0,
+            "pixels": 1377.9885433796876,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1590.5118864189667,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.300000000047,
+            "event": "part-lod-change",
+            "part": "Foot_Scree",
+            "from": 2,
+            "to": 1,
+            "pixels": 435.6343773758602,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20449.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 1,
+            "pixels": 373.540239159581,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20734,
+            "event": "part-lod-change",
+            "part": "Wall_16",
+            "from": 1,
+            "to": 0,
+            "pixels": 1331.2060235709887,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21213,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 1,
+            "to": 0,
+            "pixels": 1142.087834266746,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21597.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 1,
+            "to": 0,
+            "pixels": 1709.033772674013,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21806.300000000047,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 1,
+            "to": 0,
+            "pixels": 1403.927382168898,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21806.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 0,
+            "to": 1,
+            "pixels": 719.4356778482394,
+            "quality": 3,
+            "dpr": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "file": "after/local-after-map.png",
+      "data": {
+        "style": "detailed",
+        "look": "rock",
+        "refinement": true,
+        "foundationEnabled": true,
+        "state": {
+          "mode": "authored",
+          "busy": false,
+          "assetReady": true,
+          "revision": 1,
+          "error": null
+        },
+        "materials": [
+          {
+            "name": "Foundation_Dark_Rock_PBR",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "dark-rock-basecolor",
+                "width": 2048,
+                "height": 2048
+              },
+              {
+                "slot": "normalMap",
+                "name": "dark-rock-normal",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "dark-rock-orm",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "aoMap",
+                "name": "dark-rock-orm",
+                "width": 1024,
+                "height": 1024
+              }
+            ]
+          },
+          {
+            "name": "Foundation_Dry_Terrain_PBR",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "dry-terrain-basecolor",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "normalMap",
+                "name": "dry-terrain-normal",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "dry-terrain-orm",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "aoMap",
+                "name": "dry-terrain-orm",
+                "width": 1024,
+                "height": 1024
+              }
+            ]
+          }
+        ],
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": -0.8999999999999986,
+          "y": 165.93367317635833,
+          "z": -77,
+          "yaw": -1.570760033104047,
+          "pitch": -1.5707963267948966,
+          "fov": 64.00036968449932
+        },
+        "quality": 3,
+        "viewport": [
+          1366,
+          900
+        ],
+        "dpr": 0.5,
+        "canvases": 1,
+        "reviewControls": 0,
+        "trace": [
+          {
+            "at": 2354.6999999999534,
+            "event": "foundation-material-parse",
+            "ms": 512.8000000000466,
+            "bytes": 4659808
+          },
+          {
+            "at": 3213.5,
+            "event": "foundation-geometry-parse",
+            "ms": 13,
+            "bytes": 8530404
+          },
+          {
+            "at": 3214.5999999998603,
+            "event": "foundation-asset-ready",
+            "ms": 2079.5999999998603,
+            "geometryOnly": true,
+            "refinedRegions": 2,
+            "materialHolderRendered": false
+          },
+          {
+            "at": 3214.5999999998603,
+            "event": "load-ready",
+            "foundation": true,
+            "optIn": true
+          },
+          {
+            "at": 3351.1999999999534,
+            "event": "texture-init",
+            "count": 6,
+            "ms": 91.69999999995343
+          },
+          {
+            "at": 3419.5999999998603,
+            "event": "shader-compile",
+            "ms": 68.39999999990687
+          },
+          {
+            "at": 6233.699999999953,
+            "event": "covered-ready",
+            "revision": 1,
+            "ms": 2974.7999999998137,
+            "lighting": "hub"
+          },
+          {
+            "at": 6550.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_00",
+            "from": 2,
+            "to": 1,
+            "pixels": 364.5703839797244,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 441.2472679009229,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 816.6733063893429,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1984.409014629374,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 995655.5415907884,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 726.7802824141169,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 448.1886695464156,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1830.1425895400262,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1684877.7983467039,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 362.9318692441471,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 443.384259569117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1828.0188386978296,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 2353735.0303922626,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 474.27135766909146,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 643.6665466513062,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1988.699317701878,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1155043.8969298117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 16897.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_17",
+            "from": 2,
+            "to": 1,
+            "pixels": 333.27745205963873,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18007.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 2,
+            "to": 1,
+            "pixels": 380.4321579064285,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18007.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 2,
+            "to": 1,
+            "pixels": 405.8881486852423,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_03",
+            "from": 2,
+            "to": 1,
+            "pixels": 412.9610817515592,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 1,
+            "pixels": 396.1715143709656,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1362.2894116572734,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19024.5,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19267.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_00",
+            "from": 1,
+            "to": 0,
+            "pixels": 1249.0730418541948,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_16",
+            "from": 2,
+            "to": 1,
+            "pixels": 332.4552566465008,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 0,
+            "to": 1,
+            "pixels": 795.7017923747516,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1155043.8969298117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19722.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 2,
+            "to": 1,
+            "pixels": 336.704001166599,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_14",
+            "from": 2,
+            "to": 1,
+            "pixels": 342.74060112772594,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_17",
+            "from": 1,
+            "to": 0,
+            "pixels": 1377.9885433796876,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1590.5118864189667,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.300000000047,
+            "event": "part-lod-change",
+            "part": "Foot_Scree",
+            "from": 2,
+            "to": 1,
+            "pixels": 435.6343773758602,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20449.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 1,
+            "pixels": 373.540239159581,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20734,
+            "event": "part-lod-change",
+            "part": "Wall_16",
+            "from": 1,
+            "to": 0,
+            "pixels": 1331.2060235709887,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21213,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 1,
+            "to": 0,
+            "pixels": 1142.087834266746,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21597.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 1,
+            "to": 0,
+            "pixels": 1709.033772674013,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21806.300000000047,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 1,
+            "to": 0,
+            "pixels": 1403.927382168898,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21806.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 0,
+            "to": 1,
+            "pixels": 719.4356778482394,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 29738,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 1,
+            "to": 0,
+            "pixels": 2379.1083421520834,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 29989.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 0,
+            "to": 1,
+            "pixels": 838.9672778374486,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 29989.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 0,
+            "to": 1,
+            "pixels": 569.5227725237886,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 29989.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 1,
+            "pixels": 356.3668814359698,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_00",
+            "from": 0,
+            "to": 2,
+            "pixels": 256.63428819823605,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 1,
+            "to": 2,
+            "pixels": 160.68512973470368,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 1,
+            "to": 2,
+            "pixels": 175.70563877114446,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_03",
+            "from": 1,
+            "to": 2,
+            "pixels": 130.80850269740512,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 1,
+            "to": 2,
+            "pixels": 160.39065369841416,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 1,
+            "to": 2,
+            "pixels": 229.91068610060563,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_14",
+            "from": 1,
+            "to": 2,
+            "pixels": 234.8056704877263,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 0,
+            "to": 2,
+            "pixels": 305.1130776553087,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_16",
+            "from": 0,
+            "to": 2,
+            "pixels": 249.36162144410352,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_17",
+            "from": 0,
+            "to": 2,
+            "pixels": 311.22927666660445,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 1,
+            "to": 0,
+            "pixels": 1326.7322125095516,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 934862.6692709604,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 1,
+            "to": 0,
+            "pixels": 1154.5169267889914,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 1,
+            "to": 2,
+            "pixels": 119.60421852332358,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 0,
+            "to": 1,
+            "pixels": 677.22371537619,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 0,
+            "to": 1,
+            "pixels": 491.9771878262645,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 0,
+            "to": 1,
+            "pixels": 591.4719451080654,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Foot_Scree",
+            "from": 1,
+            "to": 2,
+            "pixels": 111.27579242177596,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30829.800000000047,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 0,
+            "to": 1,
+            "pixels": 654.8696815775792,
+            "quality": 3,
+            "dpr": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "file": "after/local-after-stage.png",
+      "data": {
+        "style": "detailed",
+        "look": "rock",
+        "refinement": true,
+        "foundationEnabled": true,
+        "state": {
+          "mode": "authored",
+          "busy": false,
+          "assetReady": true,
+          "revision": 2,
+          "error": null
+        },
+        "materials": [
+          {
+            "name": "Foundation_Dark_Rock_PBR",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "dark-rock-basecolor",
+                "width": 2048,
+                "height": 2048
+              },
+              {
+                "slot": "normalMap",
+                "name": "dark-rock-normal",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "dark-rock-orm",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "aoMap",
+                "name": "dark-rock-orm",
+                "width": 1024,
+                "height": 1024
+              }
+            ]
+          },
+          {
+            "name": "Foundation_Dry_Terrain_PBR",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "dry-terrain-basecolor",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "normalMap",
+                "name": "dry-terrain-normal",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "dry-terrain-orm",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "aoMap",
+                "name": "dry-terrain-orm",
+                "width": 1024,
+                "height": 1024
+              }
+            ]
+          }
+        ],
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "quality": 3,
+        "viewport": [
+          1366,
+          900
+        ],
+        "dpr": 0.5,
+        "canvases": 1,
+        "reviewControls": 0,
+        "trace": [
+          {
+            "at": 2354.6999999999534,
+            "event": "foundation-material-parse",
+            "ms": 512.8000000000466,
+            "bytes": 4659808
+          },
+          {
+            "at": 3213.5,
+            "event": "foundation-geometry-parse",
+            "ms": 13,
+            "bytes": 8530404
+          },
+          {
+            "at": 3214.5999999998603,
+            "event": "foundation-asset-ready",
+            "ms": 2079.5999999998603,
+            "geometryOnly": true,
+            "refinedRegions": 2,
+            "materialHolderRendered": false
+          },
+          {
+            "at": 3214.5999999998603,
+            "event": "load-ready",
+            "foundation": true,
+            "optIn": true
+          },
+          {
+            "at": 3351.1999999999534,
+            "event": "texture-init",
+            "count": 6,
+            "ms": 91.69999999995343
+          },
+          {
+            "at": 3419.5999999998603,
+            "event": "shader-compile",
+            "ms": 68.39999999990687
+          },
+          {
+            "at": 6233.699999999953,
+            "event": "covered-ready",
+            "revision": 1,
+            "ms": 2974.7999999998137,
+            "lighting": "hub"
+          },
+          {
+            "at": 6550.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_00",
+            "from": 2,
+            "to": 1,
+            "pixels": 364.5703839797244,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 441.2472679009229,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 816.6733063893429,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1984.409014629374,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 995655.5415907884,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 726.7802824141169,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 448.1886695464156,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1830.1425895400262,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1684877.7983467039,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 362.9318692441471,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 443.384259569117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1828.0188386978296,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 2353735.0303922626,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 474.27135766909146,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 643.6665466513062,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 1988.699317701878,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6550.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1155043.8969298117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 16897.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_17",
+            "from": 2,
+            "to": 1,
+            "pixels": 333.27745205963873,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18007.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 2,
+            "to": 1,
+            "pixels": 380.4321579064285,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18007.699999999953,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 2,
+            "to": 1,
+            "pixels": 405.8881486852423,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_03",
+            "from": 2,
+            "to": 1,
+            "pixels": 412.9610817515592,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 1,
+            "pixels": 396.1715143709656,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18808.899999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1362.2894116572734,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19024.5,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19267.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_00",
+            "from": 1,
+            "to": 0,
+            "pixels": 1249.0730418541948,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_16",
+            "from": 2,
+            "to": 1,
+            "pixels": 332.4552566465008,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 0,
+            "to": 1,
+            "pixels": 795.7017923747516,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19495.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1155043.8969298117,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 19722.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 2,
+            "to": 1,
+            "pixels": 336.704001166599,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_14",
+            "from": 2,
+            "to": 1,
+            "pixels": 342.74060112772594,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Wall_17",
+            "from": 1,
+            "to": 0,
+            "pixels": 1377.9885433796876,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1590.5118864189667,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.199999999953,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20203.300000000047,
+            "event": "part-lod-change",
+            "part": "Foot_Scree",
+            "from": 2,
+            "to": 1,
+            "pixels": 435.6343773758602,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20449.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 1,
+            "pixels": 373.540239159581,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 20734,
+            "event": "part-lod-change",
+            "part": "Wall_16",
+            "from": 1,
+            "to": 0,
+            "pixels": 1331.2060235709887,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21213,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 1,
+            "to": 0,
+            "pixels": 1142.087834266746,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21597.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 1,
+            "to": 0,
+            "pixels": 1709.033772674013,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21806.300000000047,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 1,
+            "to": 0,
+            "pixels": 1403.927382168898,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 21806.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 0,
+            "to": 1,
+            "pixels": 719.4356778482394,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 29738,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 1,
+            "to": 0,
+            "pixels": 2379.1083421520834,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 29989.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 0,
+            "to": 1,
+            "pixels": 838.9672778374486,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 29989.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 0,
+            "to": 1,
+            "pixels": 569.5227725237886,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 29989.899999999907,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 1,
+            "pixels": 356.3668814359698,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_00",
+            "from": 0,
+            "to": 2,
+            "pixels": 256.63428819823605,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_01",
+            "from": 1,
+            "to": 2,
+            "pixels": 160.68512973470368,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_02",
+            "from": 1,
+            "to": 2,
+            "pixels": 175.70563877114446,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_03",
+            "from": 1,
+            "to": 2,
+            "pixels": 130.80850269740512,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 1,
+            "to": 2,
+            "pixels": 160.39065369841416,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 1,
+            "to": 2,
+            "pixels": 229.91068610060563,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_14",
+            "from": 1,
+            "to": 2,
+            "pixels": 234.8056704877263,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_15",
+            "from": 0,
+            "to": 2,
+            "pixels": 305.1130776553087,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_16",
+            "from": 0,
+            "to": 2,
+            "pixels": 249.36162144410352,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Wall_17",
+            "from": 0,
+            "to": 2,
+            "pixels": 311.22927666660445,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 1,
+            "to": 0,
+            "pixels": 1326.7322125095516,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 934862.6692709604,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30219.5,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 1,
+            "to": 0,
+            "pixels": 1154.5169267889914,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 1,
+            "to": 2,
+            "pixels": 119.60421852332358,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 0,
+            "to": 1,
+            "pixels": 677.22371537619,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 0,
+            "to": 1,
+            "pixels": 491.9771878262645,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 0,
+            "to": 1,
+            "pixels": 591.4719451080654,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30524.399999999907,
+            "event": "part-lod-change",
+            "part": "Foot_Scree",
+            "from": 1,
+            "to": 2,
+            "pixels": 111.27579242177596,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 30829.800000000047,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 0,
+            "to": 1,
+            "pixels": 654.8696815775792,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.5,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 0,
+            "pixels": 188883.78715369414,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_05",
+            "from": 2,
+            "to": 0,
+            "pixels": 1858.7762021302583,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 2,
+            "to": 1,
+            "pixels": 469.88410706487593,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_10",
+            "from": 2,
+            "to": 1,
+            "pixels": 371.3914029436242,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_11",
+            "from": 2,
+            "to": 1,
+            "pixels": 496.5740833023753,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 0,
+            "pixels": 1272.5483492563158,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 0,
+            "pixels": 170779.11857627545,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 0,
+            "to": 1,
+            "pixels": 728.6403090148368,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_0_3",
+            "from": 1,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1167.1108325251798,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 1,
+            "to": 0,
+            "pixels": 859676.1001730964,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1143.4236263911253,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 1,
+            "to": 0,
+            "pixels": 855128.9114428549,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 1,
+            "to": 0,
+            "pixels": 1308.2543395152995,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37635.59999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_3",
+            "from": 1,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 37948.19999999995,
+            "event": "mode-request",
+            "mode": "authored"
+          },
+          {
+            "at": 37950.19999999995,
+            "event": "texture-init",
+            "count": 6,
+            "ms": 0.10000000009313226
+          },
+          {
+            "at": 38006.30000000005,
+            "event": "shader-compile",
+            "ms": 56.10000000009313
+          },
+          {
+            "at": 39556.39999999991,
+            "event": "covered-ready",
+            "revision": 2,
+            "ms": 1606.8000000000466,
+            "lighting": "stage"
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 0,
+            "pixels": 188883.78715369414,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_05",
+            "from": 2,
+            "to": 0,
+            "pixels": 1858.7762021302583,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 2,
+            "to": 1,
+            "pixels": 469.88410706487593,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_10",
+            "from": 2,
+            "to": 1,
+            "pixels": 371.3914029436242,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_11",
+            "from": 2,
+            "to": 1,
+            "pixels": 496.5740833023753,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 0,
+            "pixels": 1272.5483492563158,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 0,
+            "pixels": 170779.11857627545,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 728.6403090148368,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 0,
+            "pixels": 1901.331830318667,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 139855.78099551573,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 0,
+            "pixels": 1139.2838739004906,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 0,
+            "pixels": 1167.1108325251798,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 859676.1001730964,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1684877.7983467039,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_2_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 568.4942379454781,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 0,
+            "pixels": 1143.4236263911253,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 855128.9114428549,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 2353735.0303922626,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 768.7198178136081,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 0,
+            "pixels": 1308.2543395152995,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 40196.09999999986,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 160365.2944933077,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 49088.30000000005,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 49088.30000000005,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
