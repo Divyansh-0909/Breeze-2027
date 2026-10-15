@@ -1,0 +1,2459 @@
+{
+  "status": "PASS",
+  "base": "https://breeze-2027-wip.vercel.app",
+  "browser": "151.0.7922.173",
+  "physicalHardware": false,
+  "checks": [
+    "Aerial map to Aftermovie retains the same Canvas; material is inspected separately"
+  ],
+  "data": {
+    "state": {
+      "mode": "authored",
+      "busy": false,
+      "assetReady": true,
+      "revision": 1,
+      "error": null
+    },
+    "materials": [
+      {
+        "name": "Approved_Cool_Grey_Limestone_Family",
+        "roughness": 1,
+        "metalness": 0,
+        "maps": [
+          {
+            "slot": "map",
+            "name": "wall-basecolor-1024",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "slot": "normalMap",
+            "name": "wall-normal-1024",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "slot": "roughnessMap",
+            "name": "wall-ao-512-wall-roughness-512",
+            "width": 512,
+            "height": 512
+          },
+          {
+            "slot": "aoMap",
+            "name": "wall-ao-512-wall-roughness-512",
+            "width": 512,
+            "height": 512
+          }
+        ]
+      },
+      {
+        "name": "",
+        "roughness": 1,
+        "metalness": 1,
+        "maps": [
+          {
+            "slot": "map"
+          },
+          {
+            "slot": "normalMap"
+          },
+          {
+            "slot": "roughnessMap"
+          },
+          {
+            "slot": "aoMap"
+          }
+        ]
+      }
+    ],
+    "pose": {
+      "x": -10.5,
+      "y": 1.72,
+      "z": -110.8,
+      "yaw": 0,
+      "pitch": 0.16
+    },
+    "camera": {
+      "x": -10.5,
+      "y": 1.72,
+      "z": -110.8,
+      "yaw": 0,
+      "pitch": 0.16,
+      "fov": 58
+    },
+    "quality": 3,
+    "viewport": [
+      1366,
+      900
+    ],
+    "dpr": 0.5,
+    "canvases": 1,
+    "reviewControls": 0,
+    "trace": [
+      {
+        "at": 1684.5999999999767,
+        "event": "load-start"
+      },
+      {
+        "at": 3377.2999999999884,
+        "event": "parse-ready",
+        "ms": 51.20000000001164,
+        "decodedBytes": 18594988
+      },
+      {
+        "at": 3377.7999999999884,
+        "event": "load-ready",
+        "ms": 1693.2999999999884
+      },
+      {
+        "at": 3444.5,
+        "event": "texture-init",
+        "count": 3,
+        "ms": 10.200000000011642
+      },
+      {
+        "at": 3485.5999999999767,
+        "event": "shader-compile",
+        "ms": 41.09999999997672
+      },
+      {
+        "at": 6035.700000000012,
+        "event": "covered-ready",
+        "revision": 0,
+        "ms": 2601.7999999999884,
+        "lighting": "hub"
+      },
+      {
+        "at": 6254.900000000023,
+        "event": "part-lod-change",
+        "part": "2",
+        "from": 2,
+        "to": 0,
+        "pixels": 202807.9357092127,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6254.900000000023,
+        "event": "part-lod-change",
+        "part": "3",
+        "from": 2,
+        "to": 0,
+        "pixels": 3165.675512697759,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6254.900000000023,
+        "event": "part-lod-change",
+        "part": "4",
+        "from": 2,
+        "to": 1,
+        "pixels": 900.5103634179443,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "5",
+        "from": 2,
+        "to": 1,
+        "pixels": 556.030343565768,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "6",
+        "from": 2,
+        "to": 1,
+        "pixels": 371.4376362947432,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "22",
+        "from": 2,
+        "to": 1,
+        "pixels": 438.68202675512407,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "23",
+        "from": 2,
+        "to": 1,
+        "pixels": 521.9027757009688,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "24",
+        "from": 2,
+        "to": 1,
+        "pixels": 867.6772702349057,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "25",
+        "from": 2,
+        "to": 0,
+        "pixels": 1902.0905665288442,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "26",
+        "from": 2,
+        "to": 0,
+        "pixels": 175670.95749876578,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "Quarry_Exit",
+        "from": 2,
+        "to": 0,
+        "pixels": 302772.26533828286,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 6255,
+        "event": "part-lod-change",
+        "part": "Quarry_Crown",
+        "from": 2,
+        "to": 0,
+        "pixels": 311332.80444847886,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 10244.5,
+        "event": "part-lod-change",
+        "part": "4",
+        "from": 1,
+        "to": 0,
+        "pixels": 1174.4277065952008,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 10244.5,
+        "event": "part-lod-change",
+        "part": "24",
+        "from": 1,
+        "to": 0,
+        "pixels": 1126.7663548383605,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18233.900000000023,
+        "event": "part-lod-change",
+        "part": "20",
+        "from": 2,
+        "to": 1,
+        "pixels": 365.26858188430907,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18233.900000000023,
+        "event": "part-lod-change",
+        "part": "21",
+        "from": 2,
+        "to": 1,
+        "pixels": 398.81347440052417,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18233.900000000023,
+        "event": "part-lod-change",
+        "part": "23",
+        "from": 1,
+        "to": 0,
+        "pixels": 1113.7811821621244,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18466.79999999999,
+        "event": "part-lod-change",
+        "part": "3",
+        "from": 0,
+        "to": 1,
+        "pixels": 556.2183845345967,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18466.79999999999,
+        "event": "part-lod-change",
+        "part": "4",
+        "from": 0,
+        "to": 1,
+        "pixels": 348.19011188454124,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18466.79999999999,
+        "event": "part-lod-change",
+        "part": "6",
+        "from": 1,
+        "to": 2,
+        "pixels": 227.56483614810335,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18466.79999999999,
+        "event": "part-lod-change",
+        "part": "19",
+        "from": 2,
+        "to": 1,
+        "pixels": 344.8459144554614,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "2",
+        "from": 0,
+        "to": 2,
+        "pixels": 307.41035307528176,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "3",
+        "from": 1,
+        "to": 2,
+        "pixels": 219.15980324936513,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "4",
+        "from": 1,
+        "to": 2,
+        "pixels": 176.63438938803208,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "5",
+        "from": 1,
+        "to": 2,
+        "pixels": 194.2118939256261,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "23",
+        "from": 0,
+        "to": 1,
+        "pixels": 447.77319147849914,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "24",
+        "from": 0,
+        "to": 1,
+        "pixels": 456.1961033076157,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "25",
+        "from": 0,
+        "to": 1,
+        "pixels": 692.0507256078085,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "26",
+        "from": 0,
+        "to": 1,
+        "pixels": 541.9418768496496,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "Quarry_Exit",
+        "from": 0,
+        "to": 1,
+        "pixels": 657.4486400347831,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18636.20000000001,
+        "event": "part-lod-change",
+        "part": "Quarry_Crown",
+        "from": 0,
+        "to": 1,
+        "pixels": 710.9773341480603,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18768.400000000023,
+        "event": "part-lod-change",
+        "part": "19",
+        "from": 1,
+        "to": 2,
+        "pixels": 203.16873089115649,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18768.400000000023,
+        "event": "part-lod-change",
+        "part": "20",
+        "from": 1,
+        "to": 2,
+        "pixels": 211.07540251277211,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18768.400000000023,
+        "event": "part-lod-change",
+        "part": "21",
+        "from": 1,
+        "to": 2,
+        "pixels": 181.09058245531165,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18768.400000000023,
+        "event": "part-lod-change",
+        "part": "23",
+        "from": 1,
+        "to": 2,
+        "pixels": 230.9849922048323,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18768.400000000023,
+        "event": "part-lod-change",
+        "part": "24",
+        "from": 1,
+        "to": 2,
+        "pixels": 210.30834804063343,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18768.5,
+        "event": "part-lod-change",
+        "part": "26",
+        "from": 1,
+        "to": 2,
+        "pixels": 222.3017240246432,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18958.20000000001,
+        "event": "part-lod-change",
+        "part": "22",
+        "from": 1,
+        "to": 2,
+        "pixels": 154.75720808347586,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18958.20000000001,
+        "event": "part-lod-change",
+        "part": "25",
+        "from": 1,
+        "to": 2,
+        "pixels": 154.91784636819827,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18958.20000000001,
+        "event": "part-lod-change",
+        "part": "Quarry_Exit",
+        "from": 1,
+        "to": 2,
+        "pixels": 206.3990760720346,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 18958.20000000001,
+        "event": "part-lod-change",
+        "part": "Quarry_Crown",
+        "from": 1,
+        "to": 2,
+        "pixels": 213.1617306252082,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.20000000001,
+        "event": "part-lod-change",
+        "part": "5",
+        "from": 2,
+        "to": 0,
+        "pixels": 203402.2850712992,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "6",
+        "from": 2,
+        "to": 0,
+        "pixels": 173548.7395177976,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "7",
+        "from": 2,
+        "to": 0,
+        "pixels": 58628.9915141053,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "8",
+        "from": 2,
+        "to": 0,
+        "pixels": 1752.180280569387,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "9",
+        "from": 2,
+        "to": 1,
+        "pixels": 687.2380828352614,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "10",
+        "from": 2,
+        "to": 1,
+        "pixels": 509.7714962883692,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "11",
+        "from": 2,
+        "to": 1,
+        "pixels": 393.44161290315816,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "17",
+        "from": 2,
+        "to": 1,
+        "pixels": 377.9971115341764,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "18",
+        "from": 2,
+        "to": 1,
+        "pixels": 464.4738498251636,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "19",
+        "from": 2,
+        "to": 1,
+        "pixels": 797.2695011940788,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "20",
+        "from": 2,
+        "to": 0,
+        "pixels": 1841.0761888887514,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "21",
+        "from": 2,
+        "to": 0,
+        "pixels": 162684.1767316183,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26265.29999999999,
+        "event": "part-lod-change",
+        "part": "22",
+        "from": 2,
+        "to": 0,
+        "pixels": 202154.0632750316,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 26618.900000000023,
+        "event": "mode-request",
+        "mode": "authored"
+      },
+      {
+        "at": 26632.099999999977,
+        "event": "texture-init",
+        "count": 3,
+        "ms": 0
+      },
+      {
+        "at": 26746.70000000001,
+        "event": "shader-compile",
+        "ms": 114.60000000003492
+      },
+      {
+        "at": 30457.29999999999,
+        "event": "covered-ready",
+        "revision": 1,
+        "ms": 3825.5999999999767,
+        "lighting": "stage"
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "5",
+        "from": 2,
+        "to": 0,
+        "pixels": 203402.2850712992,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "6",
+        "from": 2,
+        "to": 0,
+        "pixels": 173548.7395177976,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "7",
+        "from": 2,
+        "to": 0,
+        "pixels": 58628.9915141053,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "8",
+        "from": 2,
+        "to": 0,
+        "pixels": 1752.180280569387,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "9",
+        "from": 2,
+        "to": 1,
+        "pixels": 687.2380828352614,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "10",
+        "from": 2,
+        "to": 1,
+        "pixels": 509.7714962883692,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "11",
+        "from": 2,
+        "to": 1,
+        "pixels": 393.44161290315816,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "17",
+        "from": 2,
+        "to": 1,
+        "pixels": 377.9971115341764,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "18",
+        "from": 2,
+        "to": 1,
+        "pixels": 464.4738498251636,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "19",
+        "from": 2,
+        "to": 1,
+        "pixels": 797.2695011940788,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "20",
+        "from": 2,
+        "to": 0,
+        "pixels": 1841.0761888887514,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "21",
+        "from": 2,
+        "to": 0,
+        "pixels": 162684.1767316183,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 31965.400000000023,
+        "event": "part-lod-change",
+        "part": "22",
+        "from": 2,
+        "to": 0,
+        "pixels": 202154.0632750316,
+        "quality": 3,
+        "dpr": 0.5
+      },
+      {
+        "at": 43162.40000000002,
+        "event": "part-lod-change",
+        "part": "5",
+        "from": 0,
+        "to": 2,
+        "pixels": 0,
+        "quality": 3,
+        "dpr": 0.5
+      }
+    ]
+  },
+  "requests": [
+    "https://breeze-2027-wip.vercel.app/models/gullyverse/quarry-rollout/quarry-limestone.glb",
+    "https://breeze-2027-wip.vercel.app/models/breeze/aftermovie-stage.glb",
+    "https://breeze-2027-wip.vercel.app/models/Man.glb",
+    "https://breeze-2027-wip.vercel.app/models/Animated-Woman.glb"
+  ],
+  "captures": [
+    {
+      "file": "before/deployed-before-hub.png",
+      "data": {
+        "state": {
+          "mode": "authored",
+          "busy": false,
+          "assetReady": true,
+          "revision": 0,
+          "error": null
+        },
+        "materials": [
+          {
+            "name": "Approved_Cool_Grey_Limestone_Family",
+            "roughness": 1,
+            "metalness": 0,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "wall-basecolor-1024",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "normalMap",
+                "name": "wall-normal-1024",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "wall-ao-512-wall-roughness-512",
+                "width": 512,
+                "height": 512
+              },
+              {
+                "slot": "aoMap",
+                "name": "wall-ao-512-wall-roughness-512",
+                "width": 512,
+                "height": 512
+              }
+            ]
+          },
+          {
+            "name": "",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map"
+              },
+              {
+                "slot": "normalMap"
+              },
+              {
+                "slot": "roughnessMap"
+              },
+              {
+                "slot": "aoMap"
+              }
+            ]
+          }
+        ],
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2,
+          "fov": 58
+        },
+        "quality": 3,
+        "viewport": [
+          1366,
+          900
+        ],
+        "dpr": 0.5,
+        "canvases": 1,
+        "reviewControls": 0,
+        "trace": [
+          {
+            "at": 1684.5999999999767,
+            "event": "load-start"
+          },
+          {
+            "at": 3377.2999999999884,
+            "event": "parse-ready",
+            "ms": 51.20000000001164,
+            "decodedBytes": 18594988
+          },
+          {
+            "at": 3377.7999999999884,
+            "event": "load-ready",
+            "ms": 1693.2999999999884
+          },
+          {
+            "at": 3444.5,
+            "event": "texture-init",
+            "count": 3,
+            "ms": 10.200000000011642
+          },
+          {
+            "at": 3485.5999999999767,
+            "event": "shader-compile",
+            "ms": 41.09999999997672
+          },
+          {
+            "at": 6035.700000000012,
+            "event": "covered-ready",
+            "revision": 0,
+            "ms": 2601.7999999999884,
+            "lighting": "hub"
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "2",
+            "from": 2,
+            "to": 0,
+            "pixels": 202807.9357092127,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "3",
+            "from": 2,
+            "to": 0,
+            "pixels": 3165.675512697759,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 2,
+            "to": 1,
+            "pixels": 900.5103634179443,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "5",
+            "from": 2,
+            "to": 1,
+            "pixels": 556.030343565768,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "6",
+            "from": 2,
+            "to": 1,
+            "pixels": 371.4376362947432,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "22",
+            "from": 2,
+            "to": 1,
+            "pixels": 438.68202675512407,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 2,
+            "to": 1,
+            "pixels": 521.9027757009688,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 2,
+            "to": 1,
+            "pixels": 867.6772702349057,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "25",
+            "from": 2,
+            "to": 0,
+            "pixels": 1902.0905665288442,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "26",
+            "from": 2,
+            "to": 0,
+            "pixels": 175670.95749876578,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "Quarry_Exit",
+            "from": 2,
+            "to": 0,
+            "pixels": 302772.26533828286,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "Quarry_Crown",
+            "from": 2,
+            "to": 0,
+            "pixels": 311332.80444847886,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 10244.5,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 1,
+            "to": 0,
+            "pixels": 1174.4277065952008,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 10244.5,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 1,
+            "to": 0,
+            "pixels": 1126.7663548383605,
+            "quality": 3,
+            "dpr": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "file": "before/deployed-before-map.png",
+      "data": {
+        "state": {
+          "mode": "authored",
+          "busy": false,
+          "assetReady": true,
+          "revision": 0,
+          "error": null
+        },
+        "materials": [
+          {
+            "name": "Approved_Cool_Grey_Limestone_Family",
+            "roughness": 1,
+            "metalness": 0,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "wall-basecolor-1024",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "normalMap",
+                "name": "wall-normal-1024",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "wall-ao-512-wall-roughness-512",
+                "width": 512,
+                "height": 512
+              },
+              {
+                "slot": "aoMap",
+                "name": "wall-ao-512-wall-roughness-512",
+                "width": 512,
+                "height": 512
+              }
+            ]
+          },
+          {
+            "name": "",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map"
+              },
+              {
+                "slot": "normalMap"
+              },
+              {
+                "slot": "roughnessMap"
+              },
+              {
+                "slot": "aoMap"
+              }
+            ]
+          }
+        ],
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "camera": {
+          "x": -0.8999999999999986,
+          "y": 165.93367317635833,
+          "z": -77,
+          "yaw": -1.570760033104047,
+          "pitch": -1.5707963267948966,
+          "fov": 64.00036968449932
+        },
+        "quality": 3,
+        "viewport": [
+          1366,
+          900
+        ],
+        "dpr": 0.5,
+        "canvases": 1,
+        "reviewControls": 0,
+        "trace": [
+          {
+            "at": 1684.5999999999767,
+            "event": "load-start"
+          },
+          {
+            "at": 3377.2999999999884,
+            "event": "parse-ready",
+            "ms": 51.20000000001164,
+            "decodedBytes": 18594988
+          },
+          {
+            "at": 3377.7999999999884,
+            "event": "load-ready",
+            "ms": 1693.2999999999884
+          },
+          {
+            "at": 3444.5,
+            "event": "texture-init",
+            "count": 3,
+            "ms": 10.200000000011642
+          },
+          {
+            "at": 3485.5999999999767,
+            "event": "shader-compile",
+            "ms": 41.09999999997672
+          },
+          {
+            "at": 6035.700000000012,
+            "event": "covered-ready",
+            "revision": 0,
+            "ms": 2601.7999999999884,
+            "lighting": "hub"
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "2",
+            "from": 2,
+            "to": 0,
+            "pixels": 202807.9357092127,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "3",
+            "from": 2,
+            "to": 0,
+            "pixels": 3165.675512697759,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 2,
+            "to": 1,
+            "pixels": 900.5103634179443,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "5",
+            "from": 2,
+            "to": 1,
+            "pixels": 556.030343565768,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "6",
+            "from": 2,
+            "to": 1,
+            "pixels": 371.4376362947432,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "22",
+            "from": 2,
+            "to": 1,
+            "pixels": 438.68202675512407,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 2,
+            "to": 1,
+            "pixels": 521.9027757009688,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 2,
+            "to": 1,
+            "pixels": 867.6772702349057,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "25",
+            "from": 2,
+            "to": 0,
+            "pixels": 1902.0905665288442,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "26",
+            "from": 2,
+            "to": 0,
+            "pixels": 175670.95749876578,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "Quarry_Exit",
+            "from": 2,
+            "to": 0,
+            "pixels": 302772.26533828286,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "Quarry_Crown",
+            "from": 2,
+            "to": 0,
+            "pixels": 311332.80444847886,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 10244.5,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 1,
+            "to": 0,
+            "pixels": 1174.4277065952008,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 10244.5,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 1,
+            "to": 0,
+            "pixels": 1126.7663548383605,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18233.900000000023,
+            "event": "part-lod-change",
+            "part": "20",
+            "from": 2,
+            "to": 1,
+            "pixels": 365.26858188430907,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18233.900000000023,
+            "event": "part-lod-change",
+            "part": "21",
+            "from": 2,
+            "to": 1,
+            "pixels": 398.81347440052417,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18233.900000000023,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 1,
+            "to": 0,
+            "pixels": 1113.7811821621244,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18466.79999999999,
+            "event": "part-lod-change",
+            "part": "3",
+            "from": 0,
+            "to": 1,
+            "pixels": 556.2183845345967,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18466.79999999999,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 0,
+            "to": 1,
+            "pixels": 348.19011188454124,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18466.79999999999,
+            "event": "part-lod-change",
+            "part": "6",
+            "from": 1,
+            "to": 2,
+            "pixels": 227.56483614810335,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18466.79999999999,
+            "event": "part-lod-change",
+            "part": "19",
+            "from": 2,
+            "to": 1,
+            "pixels": 344.8459144554614,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "2",
+            "from": 0,
+            "to": 2,
+            "pixels": 307.41035307528176,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "3",
+            "from": 1,
+            "to": 2,
+            "pixels": 219.15980324936513,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 1,
+            "to": 2,
+            "pixels": 176.63438938803208,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "5",
+            "from": 1,
+            "to": 2,
+            "pixels": 194.2118939256261,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 0,
+            "to": 1,
+            "pixels": 447.77319147849914,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 0,
+            "to": 1,
+            "pixels": 456.1961033076157,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "25",
+            "from": 0,
+            "to": 1,
+            "pixels": 692.0507256078085,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "26",
+            "from": 0,
+            "to": 1,
+            "pixels": 541.9418768496496,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "Quarry_Exit",
+            "from": 0,
+            "to": 1,
+            "pixels": 657.4486400347831,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "Quarry_Crown",
+            "from": 0,
+            "to": 1,
+            "pixels": 710.9773341480603,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "19",
+            "from": 1,
+            "to": 2,
+            "pixels": 203.16873089115649,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "20",
+            "from": 1,
+            "to": 2,
+            "pixels": 211.07540251277211,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "21",
+            "from": 1,
+            "to": 2,
+            "pixels": 181.09058245531165,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 1,
+            "to": 2,
+            "pixels": 230.9849922048323,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 1,
+            "to": 2,
+            "pixels": 210.30834804063343,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.5,
+            "event": "part-lod-change",
+            "part": "26",
+            "from": 1,
+            "to": 2,
+            "pixels": 222.3017240246432,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18958.20000000001,
+            "event": "part-lod-change",
+            "part": "22",
+            "from": 1,
+            "to": 2,
+            "pixels": 154.75720808347586,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18958.20000000001,
+            "event": "part-lod-change",
+            "part": "25",
+            "from": 1,
+            "to": 2,
+            "pixels": 154.91784636819827,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18958.20000000001,
+            "event": "part-lod-change",
+            "part": "Quarry_Exit",
+            "from": 1,
+            "to": 2,
+            "pixels": 206.3990760720346,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18958.20000000001,
+            "event": "part-lod-change",
+            "part": "Quarry_Crown",
+            "from": 1,
+            "to": 2,
+            "pixels": 213.1617306252082,
+            "quality": 3,
+            "dpr": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "file": "before/deployed-before-stage.png",
+      "data": {
+        "state": {
+          "mode": "authored",
+          "busy": false,
+          "assetReady": true,
+          "revision": 1,
+          "error": null
+        },
+        "materials": [
+          {
+            "name": "Approved_Cool_Grey_Limestone_Family",
+            "roughness": 1,
+            "metalness": 0,
+            "maps": [
+              {
+                "slot": "map",
+                "name": "wall-basecolor-1024",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "normalMap",
+                "name": "wall-normal-1024",
+                "width": 1024,
+                "height": 1024
+              },
+              {
+                "slot": "roughnessMap",
+                "name": "wall-ao-512-wall-roughness-512",
+                "width": 512,
+                "height": 512
+              },
+              {
+                "slot": "aoMap",
+                "name": "wall-ao-512-wall-roughness-512",
+                "width": 512,
+                "height": 512
+              }
+            ]
+          },
+          {
+            "name": "",
+            "roughness": 1,
+            "metalness": 1,
+            "maps": [
+              {
+                "slot": "map"
+              },
+              {
+                "slot": "normalMap"
+              },
+              {
+                "slot": "roughnessMap"
+              },
+              {
+                "slot": "aoMap"
+              }
+            ]
+          }
+        ],
+        "pose": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "camera": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16,
+          "fov": 58
+        },
+        "quality": 3,
+        "viewport": [
+          1366,
+          900
+        ],
+        "dpr": 0.5,
+        "canvases": 1,
+        "reviewControls": 0,
+        "trace": [
+          {
+            "at": 1684.5999999999767,
+            "event": "load-start"
+          },
+          {
+            "at": 3377.2999999999884,
+            "event": "parse-ready",
+            "ms": 51.20000000001164,
+            "decodedBytes": 18594988
+          },
+          {
+            "at": 3377.7999999999884,
+            "event": "load-ready",
+            "ms": 1693.2999999999884
+          },
+          {
+            "at": 3444.5,
+            "event": "texture-init",
+            "count": 3,
+            "ms": 10.200000000011642
+          },
+          {
+            "at": 3485.5999999999767,
+            "event": "shader-compile",
+            "ms": 41.09999999997672
+          },
+          {
+            "at": 6035.700000000012,
+            "event": "covered-ready",
+            "revision": 0,
+            "ms": 2601.7999999999884,
+            "lighting": "hub"
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "2",
+            "from": 2,
+            "to": 0,
+            "pixels": 202807.9357092127,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "3",
+            "from": 2,
+            "to": 0,
+            "pixels": 3165.675512697759,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6254.900000000023,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 2,
+            "to": 1,
+            "pixels": 900.5103634179443,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "5",
+            "from": 2,
+            "to": 1,
+            "pixels": 556.030343565768,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "6",
+            "from": 2,
+            "to": 1,
+            "pixels": 371.4376362947432,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "22",
+            "from": 2,
+            "to": 1,
+            "pixels": 438.68202675512407,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 2,
+            "to": 1,
+            "pixels": 521.9027757009688,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 2,
+            "to": 1,
+            "pixels": 867.6772702349057,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "25",
+            "from": 2,
+            "to": 0,
+            "pixels": 1902.0905665288442,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "26",
+            "from": 2,
+            "to": 0,
+            "pixels": 175670.95749876578,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "Quarry_Exit",
+            "from": 2,
+            "to": 0,
+            "pixels": 302772.26533828286,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 6255,
+            "event": "part-lod-change",
+            "part": "Quarry_Crown",
+            "from": 2,
+            "to": 0,
+            "pixels": 311332.80444847886,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 10244.5,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 1,
+            "to": 0,
+            "pixels": 1174.4277065952008,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 10244.5,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 1,
+            "to": 0,
+            "pixels": 1126.7663548383605,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18233.900000000023,
+            "event": "part-lod-change",
+            "part": "20",
+            "from": 2,
+            "to": 1,
+            "pixels": 365.26858188430907,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18233.900000000023,
+            "event": "part-lod-change",
+            "part": "21",
+            "from": 2,
+            "to": 1,
+            "pixels": 398.81347440052417,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18233.900000000023,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 1,
+            "to": 0,
+            "pixels": 1113.7811821621244,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18466.79999999999,
+            "event": "part-lod-change",
+            "part": "3",
+            "from": 0,
+            "to": 1,
+            "pixels": 556.2183845345967,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18466.79999999999,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 0,
+            "to": 1,
+            "pixels": 348.19011188454124,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18466.79999999999,
+            "event": "part-lod-change",
+            "part": "6",
+            "from": 1,
+            "to": 2,
+            "pixels": 227.56483614810335,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18466.79999999999,
+            "event": "part-lod-change",
+            "part": "19",
+            "from": 2,
+            "to": 1,
+            "pixels": 344.8459144554614,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "2",
+            "from": 0,
+            "to": 2,
+            "pixels": 307.41035307528176,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "3",
+            "from": 1,
+            "to": 2,
+            "pixels": 219.15980324936513,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "4",
+            "from": 1,
+            "to": 2,
+            "pixels": 176.63438938803208,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "5",
+            "from": 1,
+            "to": 2,
+            "pixels": 194.2118939256261,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 0,
+            "to": 1,
+            "pixels": 447.77319147849914,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 0,
+            "to": 1,
+            "pixels": 456.1961033076157,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "25",
+            "from": 0,
+            "to": 1,
+            "pixels": 692.0507256078085,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "26",
+            "from": 0,
+            "to": 1,
+            "pixels": 541.9418768496496,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "Quarry_Exit",
+            "from": 0,
+            "to": 1,
+            "pixels": 657.4486400347831,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18636.20000000001,
+            "event": "part-lod-change",
+            "part": "Quarry_Crown",
+            "from": 0,
+            "to": 1,
+            "pixels": 710.9773341480603,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "19",
+            "from": 1,
+            "to": 2,
+            "pixels": 203.16873089115649,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "20",
+            "from": 1,
+            "to": 2,
+            "pixels": 211.07540251277211,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "21",
+            "from": 1,
+            "to": 2,
+            "pixels": 181.09058245531165,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "23",
+            "from": 1,
+            "to": 2,
+            "pixels": 230.9849922048323,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.400000000023,
+            "event": "part-lod-change",
+            "part": "24",
+            "from": 1,
+            "to": 2,
+            "pixels": 210.30834804063343,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18768.5,
+            "event": "part-lod-change",
+            "part": "26",
+            "from": 1,
+            "to": 2,
+            "pixels": 222.3017240246432,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18958.20000000001,
+            "event": "part-lod-change",
+            "part": "22",
+            "from": 1,
+            "to": 2,
+            "pixels": 154.75720808347586,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18958.20000000001,
+            "event": "part-lod-change",
+            "part": "25",
+            "from": 1,
+            "to": 2,
+            "pixels": 154.91784636819827,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18958.20000000001,
+            "event": "part-lod-change",
+            "part": "Quarry_Exit",
+            "from": 1,
+            "to": 2,
+            "pixels": 206.3990760720346,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 18958.20000000001,
+            "event": "part-lod-change",
+            "part": "Quarry_Crown",
+            "from": 1,
+            "to": 2,
+            "pixels": 213.1617306252082,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.20000000001,
+            "event": "part-lod-change",
+            "part": "5",
+            "from": 2,
+            "to": 0,
+            "pixels": 203402.2850712992,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "6",
+            "from": 2,
+            "to": 0,
+            "pixels": 173548.7395177976,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "7",
+            "from": 2,
+            "to": 0,
+            "pixels": 58628.9915141053,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "8",
+            "from": 2,
+            "to": 0,
+            "pixels": 1752.180280569387,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "9",
+            "from": 2,
+            "to": 1,
+            "pixels": 687.2380828352614,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "10",
+            "from": 2,
+            "to": 1,
+            "pixels": 509.7714962883692,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "11",
+            "from": 2,
+            "to": 1,
+            "pixels": 393.44161290315816,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "17",
+            "from": 2,
+            "to": 1,
+            "pixels": 377.9971115341764,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "18",
+            "from": 2,
+            "to": 1,
+            "pixels": 464.4738498251636,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "19",
+            "from": 2,
+            "to": 1,
+            "pixels": 797.2695011940788,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "20",
+            "from": 2,
+            "to": 0,
+            "pixels": 1841.0761888887514,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "21",
+            "from": 2,
+            "to": 0,
+            "pixels": 162684.1767316183,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26265.29999999999,
+            "event": "part-lod-change",
+            "part": "22",
+            "from": 2,
+            "to": 0,
+            "pixels": 202154.0632750316,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 26618.900000000023,
+            "event": "mode-request",
+            "mode": "authored"
+          },
+          {
+            "at": 26632.099999999977,
+            "event": "texture-init",
+            "count": 3,
+            "ms": 0
+          },
+          {
+            "at": 26746.70000000001,
+            "event": "shader-compile",
+            "ms": 114.60000000003492
+          },
+          {
+            "at": 30457.29999999999,
+            "event": "covered-ready",
+            "revision": 1,
+            "ms": 3825.5999999999767,
+            "lighting": "stage"
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "5",
+            "from": 2,
+            "to": 0,
+            "pixels": 203402.2850712992,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "6",
+            "from": 2,
+            "to": 0,
+            "pixels": 173548.7395177976,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "7",
+            "from": 2,
+            "to": 0,
+            "pixels": 58628.9915141053,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "8",
+            "from": 2,
+            "to": 0,
+            "pixels": 1752.180280569387,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "9",
+            "from": 2,
+            "to": 1,
+            "pixels": 687.2380828352614,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "10",
+            "from": 2,
+            "to": 1,
+            "pixels": 509.7714962883692,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "11",
+            "from": 2,
+            "to": 1,
+            "pixels": 393.44161290315816,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "17",
+            "from": 2,
+            "to": 1,
+            "pixels": 377.9971115341764,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "18",
+            "from": 2,
+            "to": 1,
+            "pixels": 464.4738498251636,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "19",
+            "from": 2,
+            "to": 1,
+            "pixels": 797.2695011940788,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "20",
+            "from": 2,
+            "to": 0,
+            "pixels": 1841.0761888887514,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "21",
+            "from": 2,
+            "to": 0,
+            "pixels": 162684.1767316183,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 31965.400000000023,
+            "event": "part-lod-change",
+            "part": "22",
+            "from": 2,
+            "to": 0,
+            "pixels": 202154.0632750316,
+            "quality": 3,
+            "dpr": 0.5
+          },
+          {
+            "at": 43162.40000000002,
+            "event": "part-lod-change",
+            "part": "5",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.5
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
