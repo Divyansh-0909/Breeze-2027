@@ -1,18 +1,7 @@
 "use client";
 
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -22,20 +11,19 @@ import {
 } from "@/components/ui/dialog";
 import { SubmittedTransaction } from "@prisma/client";
 import TransactionVerify from "@/components/breeze-admin/transaction-verify";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export default function TransactionTable({
-  transactions,
+  pendingTransactions,
+  rejectedTransactions,
   eventMap,
   merchMap,
-  showActions = true,
-  isRejected = false,
 }: {
-  transactions: SubmittedTransaction[];
+  pendingTransactions: SubmittedTransaction[];
+  rejectedTransactions: SubmittedTransaction[];
   eventMap: Map<
     string,
     {
@@ -58,44 +46,32 @@ export default function TransactionTable({
       product_description: string;
     }
   >;
-  showActions?: boolean;
-  isRejected?: boolean;
 }) {
+  const [activeTab, setActiveTab] = useState<"pending" | "rejected">("pending");
   const [approvingId, setApprovingId] = useState<string | null>(null);
   const [confirmApproveId, setConfirmApproveId] = useState<string | null>(null);
+
+  const transactions = activeTab === "pending" ? pendingTransactions : rejectedTransactions;
+  const showActions = activeTab === "pending";
+  const isRejected = activeTab === "rejected";
 
   const handleQuickApprove = async (transactionId: string) => {
     try {
       setApprovingId(transactionId);
       const response = await fetch("/api/breeze-admin/confirm", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          transactionId: transactionId,
-          status: "APPROVED",
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ transactionId, status: "APPROVED" }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to approve transaction");
-      }
+      if (!response.ok) throw new Error("Failed to approve transaction");
 
       const data = await response.json();
-
       if (data.emailSent) {
-        toast.success("✓ Transaction Approved", {
-          description: "Approval email sent successfully",
-        });
+        toast.success("Transaction Approved", { description: "Approval email sent successfully" });
       } else {
-        toast.error("⚠ Approved (Email Failed)", {
-          description: `Email could not be sent: ${
-            data.emailError || "Unknown error"
-          }`,
-        });
+        toast.error("Approved (Email Failed)", { description: `Email error: ${data.emailError || "Unknown"}` });
       }
-
       setTimeout(() => window.location.reload(), 1500);
     } catch (error) {
       console.error("Error approving transaction:", error);
@@ -106,253 +82,186 @@ export default function TransactionTable({
   };
 
   return (
-    <Table className="w-11/12 lg:w-3/4 mx-auto mt-10 rounded-lg overflow-hidden border border-gray-200 shadow-lg">
-      <TableCaption className="pb-4 text-gray-700 font-medium">
-        {isRejected ? (
-          <div className="space-y-1">
-            <p className="text-lg">Rejected Transactions</p>
-            <p className="text-sm text-gray-500">
-              View details and rejection reasons
-            </p>
+    <div>
+      {/* Tab switcher */}
+      <div className="flex items-center gap-1 mb-4 p-0.5 rounded-lg w-fit" style={{ background: '#141414', border: '1px solid #1e1e1e' }}>
+        <button
+          onClick={() => setActiveTab("pending")}
+          className="flex items-center gap-2 px-4 py-1.5 rounded-md text-[13px] font-medium transition-all duration-100 cursor-pointer"
+          style={{
+            background: activeTab === "pending" ? '#1e1e1e' : 'transparent',
+            color: activeTab === "pending" ? '#e5e5e5' : '#666',
+          }}
+        >
+          Pending
+          <span className="text-[11px] px-1.5 py-0.5 rounded-full" style={{
+            background: activeTab === "pending" ? '#333' : '#1a1a1a',
+            color: activeTab === "pending" ? '#fbbf24' : '#555',
+          }}>
+            {pendingTransactions.length}
+          </span>
+        </button>
+        <button
+          onClick={() => setActiveTab("rejected")}
+          className="flex items-center gap-2 px-4 py-1.5 rounded-md text-[13px] font-medium transition-all duration-100 cursor-pointer"
+          style={{
+            background: activeTab === "rejected" ? '#1e1e1e' : 'transparent',
+            color: activeTab === "rejected" ? '#e5e5e5' : '#666',
+          }}
+        >
+          Rejected
+          <span className="text-[11px] px-1.5 py-0.5 rounded-full" style={{
+            background: activeTab === "rejected" ? '#333' : '#1a1a1a',
+            color: activeTab === "rejected" ? '#f87171' : '#555',
+          }}>
+            {rejectedTransactions.length}
+          </span>
+        </button>
+      </div>
+
+      {/* Transaction list */}
+      {transactions.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-16">
+          <p className="text-[13px]" style={{ color: '#555' }}>
+            {isRejected ? "No rejected transactions" : "No pending transactions"}
+          </p>
+        </div>
+      ) : (
+        <div className="rounded-lg overflow-hidden" style={{ border: '1px solid #1e1e1e' }}>
+          {/* Header */}
+          <div className={`grid gap-3 px-4 py-2.5 text-[11px] font-medium uppercase tracking-wider ${isRejected ? 'grid-cols-[1fr_1.5fr_1.5fr_1fr_0.8fr_80px_80px]' : 'grid-cols-[1fr_1.5fr_1.5fr_1fr_0.8fr]'}`} style={{ background: '#141414', color: '#555', borderBottom: '1px solid #1e1e1e' }}>
+            <div>Time</div>
+            <div>Name</div>
+            <div>Email</div>
+            <div>Roll No.</div>
+            <div className="text-right">Amount</div>
+            {isRejected && <div>Email</div>}
+            {isRejected && <div>Actions</div>}
           </div>
-        ) : (
-          <div className="space-y-1">
-            <p className="text-lg">Pending Transactions</p>
-            <p className="text-sm text-gray-500">
-              Click any transaction to approve/reject
-            </p>
-          </div>
-        )}
-      </TableCaption>
-      <TableHeader>
-        <TableRow className="bg-gradient-to-r from-blue-50 to-indigo-50">
-          <TableHead className="font-semibold text-gray-700">
-            Submitted At
-          </TableHead>
-          <TableHead className="font-semibold text-gray-700">Name</TableHead>
-          <TableHead className="font-semibold text-gray-700">Email</TableHead>
-          <TableHead className="font-semibold text-gray-700">
-            Phone Number
-          </TableHead>
-          <TableHead className="font-semibold text-gray-700">Roll Number</TableHead>
-          <TableHead className="font-semibold text-gray-700">Amount</TableHead>
-          {isRejected && (
-            <>
-              <TableHead className="font-semibold text-gray-700">
-                Email Sent
-              </TableHead>
-              <TableHead className="font-semibold text-gray-700">
-                Actions
-              </TableHead>
-            </>
-          )}
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {transactions.length === 0 ? (
-          <TableRow>
-            <TableCell
-              colSpan={isRejected ? 8 : 6}
-              className="text-center py-8 text-gray-500 italic"
-            >
-              {isRejected
-                ? "No rejected transactions"
-                : "No pending transactions"}
-            </TableCell>
-          </TableRow>
-        ) : (
-          transactions.map((transaction, i) => (
+
+          {/* Rows */}
+          {transactions.map((transaction, i) => (
             <Dialog key={i}>
               <DialogTrigger asChild>
-                <TableRow
-                  className={`cursor-pointer transition-colors duration-200 ${
-                    isRejected ? "hover:bg-red-50" : "hover:bg-blue-50"
-                  }`}
+                <div
+                  className={`grid gap-3 px-4 py-3 items-center cursor-pointer transition-colors duration-75 ${isRejected ? 'grid-cols-[1fr_1.5fr_1.5fr_1fr_0.8fr_80px_80px]' : 'grid-cols-[1fr_1.5fr_1.5fr_1fr_0.8fr]'}`}
+                  style={{ borderBottom: '1px solid #1a1a1a' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = '#141414'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                 >
-                  <TableCell className="font-medium">
+                  <div className="text-[12px]" style={{ color: '#666' }}>
                     {transaction.created_at.toLocaleString()}
-                  </TableCell>
-                  <TableCell>{transaction.name}</TableCell>
-                  <TableCell className="text-blue-600">
+                  </div>
+                  <div className="text-[13px] font-medium truncate" style={{ color: '#e5e5e5' }}>
+                    {transaction.name}
+                  </div>
+                  <div className="text-[13px] truncate" style={{ color: '#888' }}>
                     {transaction.email}
-                  </TableCell>
-                  <TableCell>{transaction.phone}</TableCell>
-                  <TableCell className="max-w-xs truncate">
+                  </div>
+                  <div className="text-[13px] truncate" style={{ color: '#888' }}>
                     {transaction.address}
-                  </TableCell>
-                  <TableCell className="font-semibold">
-                    Rs. {Number(transaction.amount).toLocaleString()}
-                  </TableCell>
+                  </div>
+                  <div className="text-[13px] font-medium text-right" style={{ color: '#e5e5e5' }}>
+                    ₹{Number(transaction.amount).toLocaleString()}
+                  </div>
                   {isRejected && (
-                    <>
-                      <TableCell>
-                        {(transaction as any).email_sent ? (
-                          <Badge variant="default" className="bg-green-500">
-                            ✓ Sent
-                          </Badge>
-                        ) : (
-                          <Badge variant="destructive">✗ Failed</Badge>
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          size="sm"
-                          disabled={approvingId === transaction.token}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setConfirmApproveId(transaction.token);
-                          }}
-                          className="bg-green-500 hover:bg-green-600 text-white gap-1"
-                        >
-                          <Check size={14} />
-                          {approvingId === transaction.token
-                            ? "Approving..."
-                            : "Approve"}
-                        </Button>
-                        {/* Confirmation Dialog */}
-                        {confirmApproveId === transaction.token && (
-                          <Dialog
-                            open
-                            onOpenChange={(open) => {
-                              if (!open) setConfirmApproveId(null);
-                            }}
-                          >
-                            <DialogContent className="max-w-lg w-full bg-white border-[#202020]/10">
-                              <DialogHeader className="pb-4 border-b border-[#202020]/10">
-                                <DialogTitle className="text-3xl font-bold text-[#202020] tracking-tight">
-                                  Confirm Approval
-                                </DialogTitle>
-                                <DialogDescription className="text-sm text-gray-500 mt-2">
-                                  Are you sure you want to approve this
-                                  transaction?
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="my-4 space-y-3 text-sm bg-gray-50 p-4 rounded-lg border border-[#202020]/10">
-                                <div className="flex justify-between">
-                                  <span className="font-semibold text-[#202020]">
-                                    Name:
-                                  </span>
-                                  <span className="text-gray-700">
-                                    {transaction.name}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span className="font-semibold text-[#202020]">
-                                    Email:
-                                  </span>
-                                  <span className="text-gray-700">
-                                    {transaction.email}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span className="font-semibold text-[#202020]">
-                                    Phone:
-                                  </span>
-                                  <span className="text-gray-700">
-                                    {transaction.phone}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span className="font-semibold text-[#202020]">
-                                    Amount:
-                                  </span>
-                                  <span className="text-gray-700 font-semibold">
-                                    Rs.{" "}
-                                    {Number(
-                                      transaction.amount
-                                    ).toLocaleString()}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span className="font-semibold text-[#202020]">
-                                    Submitted At:
-                                  </span>
-                                  <span className="text-gray-700">
-                                    {transaction.created_at.toLocaleString()}
-                                  </span>
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                  <span className="font-semibold text-[#202020]">
-                                    Roll Number:
-                                  </span>
-                                  <span className="text-gray-700">
-                                    {transaction.address}
-                                  </span>
-                                </div>
-                                {(transaction as any).rejection_reason && (
-                                  <div className="flex flex-col gap-1 pt-2 border-t border-[#202020]/10">
-                                    <span className="font-semibold text-[#202020]">
-                                      Rejection Reason:
-                                    </span>
-                                    <span className="text-gray-700">
-                                      {(transaction as any).rejection_reason}
-                                    </span>
-                                  </div>
-                                )}
-                              </div>
-                              <DialogFooter className="gap-3 pt-4 border-t border-[#202020]/10">
-                                <Button
-                                  variant="outline"
-                                  onClick={() => setConfirmApproveId(null)}
-                                  className="border-[#202020]/20 text-gray-600 hover:bg-gray-50"
-                                >
-                                  Cancel
-                                </Button>
-                                <Button
-                                  className="bg-[#202020] hover:bg-[#303030] text-white font-semibold"
-                                  onClick={() =>
-                                    handleQuickApprove(transaction.token)
-                                  }
-                                  disabled={approvingId === transaction.token}
-                                >
-                                  {approvingId === transaction.token
-                                    ? "Approving..."
-                                    : "Yes, Approve"}
-                                </Button>
-                              </DialogFooter>
-                            </DialogContent>
-                          </Dialog>
-                        )}
-                      </TableCell>
-                    </>
+                    <div>
+                      <span className="text-[11px] px-2 py-0.5 rounded-full font-medium" style={{
+                        background: (transaction as any).email_sent ? 'rgba(52,211,153,0.1)' : 'rgba(248,113,113,0.1)',
+                        color: (transaction as any).email_sent ? '#34d399' : '#f87171',
+                        border: `1px solid ${(transaction as any).email_sent ? 'rgba(52,211,153,0.2)' : 'rgba(248,113,113,0.2)'}`,
+                      }}>
+                        {(transaction as any).email_sent ? "Sent" : "Failed"}
+                      </span>
+                    </div>
                   )}
-                </TableRow>
+                  {isRejected && (
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <button
+                        disabled={approvingId === transaction.token}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setConfirmApproveId(transaction.token);
+                        }}
+                        className="flex items-center gap-1 px-2 py-1 rounded text-[11px] font-medium transition-colors duration-100 cursor-pointer"
+                        style={{ background: 'rgba(52,211,153,0.1)', color: '#34d399', border: '1px solid rgba(52,211,153,0.2)' }}
+                      >
+                        <Check size={12} />
+                        {approvingId === transaction.token ? "…" : "Approve"}
+                      </button>
+
+                      {/* Confirm dialog */}
+                      {confirmApproveId === transaction.token && (
+                        <Dialog open onOpenChange={(open) => { if (!open) setConfirmApproveId(null); }}>
+                          <DialogContent className="max-w-[440px] p-0 gap-0" style={{ background: '#141414', border: '1px solid #1e1e1e', color: '#e5e5e5' }}>
+                            <DialogHeader className="px-5 py-4" style={{ borderBottom: '1px solid #1e1e1e' }}>
+                              <DialogTitle className="text-[15px] font-semibold" style={{ color: '#e5e5e5' }}>Confirm Approval</DialogTitle>
+                              <DialogDescription className="text-[12px] mt-1" style={{ color: '#666' }}>
+                                Approve this transaction and send confirmation email?
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="p-5 space-y-2">
+                              {[
+                                ["Name", transaction.name],
+                                ["Email", transaction.email],
+                                ["Amount", `₹${Number(transaction.amount).toLocaleString()}`],
+                                ["Roll No.", transaction.address],
+                              ].map(([label, value]) => (
+                                <div key={label} className="flex justify-between text-[13px]">
+                                  <span style={{ color: '#666' }}>{label}</span>
+                                  <span style={{ color: '#e5e5e5' }}>{value}</span>
+                                </div>
+                              ))}
+                            </div>
+                            <DialogFooter className="px-5 py-3 gap-2" style={{ borderTop: '1px solid #1e1e1e' }}>
+                              <Button onClick={() => setConfirmApproveId(null)} className="h-8 text-[13px] font-medium rounded-md cursor-pointer" style={{ background: 'transparent', border: '1px solid #262626', color: '#888' }}>
+                                Cancel
+                              </Button>
+                              <Button onClick={() => handleQuickApprove(transaction.token)} disabled={approvingId === transaction.token} className="h-8 text-[13px] font-medium rounded-md cursor-pointer" style={{ background: '#e5e5e5', color: '#0a0a0a' }}>
+                                {approvingId === transaction.token ? "Approving…" : "Approve"}
+                              </Button>
+                            </DialogFooter>
+                          </DialogContent>
+                        </Dialog>
+                      )}
+                    </div>
+                  )}
+                </div>
               </DialogTrigger>
-              <DialogContent className="max-w-4xl w-11/12 max-h-[90vh] overflow-y-auto bg-white border-[#202020]/10">
-                <DialogHeader className="pb-4 border-b border-[#202020]/10">
-                  <DialogTitle className="text-3xl font-bold text-[#202020] tracking-tight">
-                    {isRejected
-                      ? "Rejected Transaction Details"
-                      : "Transaction Details"}
+
+              {/* Transaction detail dialog */}
+              <DialogContent className="max-w-4xl w-11/12 max-h-[90vh] overflow-y-auto p-0 gap-0" style={{ background: '#141414', border: '1px solid #1e1e1e', color: '#e5e5e5' }}>
+                <DialogHeader className="px-6 py-4" style={{ borderBottom: '1px solid #1e1e1e' }}>
+                  <DialogTitle className="text-[15px] font-semibold" style={{ color: '#e5e5e5' }}>
+                    {isRejected ? "Rejected Transaction" : "Transaction Details"}
                   </DialogTitle>
-                  <DialogDescription className="text-sm text-gray-500 mt-2">
+                  <DialogDescription className="text-[12px] mt-1" style={{ color: '#666' }}>
                     Review the transaction details and proof of payment
                     {!isRejected && (
                       <>
                         <br />
-                        <span className="text-gray-600">Receipt link: </span>
-                        <a
-                          href={`/reciept/${transaction.token}`}
-                          className="text-[#202020] hover:underline font-medium"
-                        >
-                          https://breezesnu.com/reciept/{transaction.token}
+                        <span style={{ color: '#555' }}>Receipt: </span>
+                        <a href={`/reciept/${transaction.token}`} className="hover:underline" style={{ color: '#888' }}>
+                          breezesnu.com/reciept/{transaction.token}
                         </a>
                       </>
                     )}
                   </DialogDescription>
                 </DialogHeader>
-                <TransactionVerify
-                  merchMap={merchMap}
-                  eventMap={eventMap}
-                  transaction={transaction}
-                  showActions={showActions}
-                  isRejected={isRejected}
-                />
+                <div className="p-6">
+                  <TransactionVerify
+                    merchMap={merchMap}
+                    eventMap={eventMap}
+                    transaction={transaction}
+                    showActions={showActions}
+                    isRejected={isRejected}
+                  />
+                </div>
               </DialogContent>
             </Dialog>
-          ))
-        )}
-      </TableBody>
-    </Table>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

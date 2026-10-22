@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
+import { createAdminClient } from "@/utils/supabase/admin";
 import { prisma } from "@/lib/prisma";
 import { requireBreezeAdmin } from "@/lib/auth";
 
@@ -9,43 +9,62 @@ export async function addUser(
   newPassword: string,
   newRole: string
 ) {
-  // Verify BREEZE admin access
-  const adminCheck = await requireBreezeAdmin();
-  if (adminCheck.authorized === false) {
-    return false;
-  }
-
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.signUp({ email: newEmail, password: newPassword, phone: "" })
-  if (error) {
-    console.log(error);
-    return false;
-  }
-  if (data) {
-    await prisma.roles.create({
-      data: {
-        id: data.user.id,
-        email: newEmail,
-        club_name: newRole.toUpperCase(),
-      },
-    });
-    return true;
-  }
-  return false;
-}
-
-export async function deleteUser(userId: string) {
-  // Verify BREEZE admin access
   const adminCheck = await requireBreezeAdmin();
   if (adminCheck.authorized === false) {
     return false;
   }
 
   try {
-    await prisma.roles.delete({ where: { id: userId } });
+    const adminSupabase = createAdminClient();
+    const normalizedEmail = newEmail.trim().toLowerCase();
+    const normalizedRole = newRole.trim().toUpperCase();
+
+    const { data, error } = await adminSupabase.auth.admin.createUser({
+      email: normalizedEmail,
+      password: newPassword,
+      email_confirm: true,
+    });
+
+    if (error || !data.user) {
+      console.error("Error creating user:", error);
+      return false;
+    }
+
+    await prisma.roles.upsert({
+      where: { id: data.user.id },
+      update: {
+        email: normalizedEmail,
+        club_name: normalizedRole,
+      },
+      create: {
+        id: data.user.id,
+        email: normalizedEmail,
+        club_name: normalizedRole,
+      },
+    });
+
     return true;
-  } catch {
+  } catch (err) {
+    console.error("addUser error:", err);
     return false;
   }
 }
+
+export async function deleteUser(userId: string) {
+  const adminCheck = await requireBreezeAdmin();
+  if (adminCheck.authorized === false) {
+    return false;
+  }
+
+  try {
+    const adminSupabase = createAdminClient();
+    await adminSupabase.auth.admin.deleteUser(userId);
+    await prisma.roles.delete({ where: { id: userId } });
+    return true;
+  } catch (err) {
+    console.error("deleteUser error:", err);
+    return false;
+  }
+}
+
 

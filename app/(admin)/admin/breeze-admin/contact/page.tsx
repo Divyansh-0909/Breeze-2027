@@ -2,20 +2,12 @@
 
 import { useEffect, useState } from "react";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { Mail } from "lucide-react";
 
 interface ContactSubmission {
   id: string;
@@ -31,9 +23,7 @@ export default function ContactSubmissionsPage() {
   const [loading, setLoading] = useState(true);
   const [selectedSubmission, setSelectedSubmission] = useState<ContactSubmission | null>(null);
 
-  useEffect(() => {
-    fetchSubmissions();
-  }, []);
+  useEffect(() => { fetchSubmissions(); }, []);
 
   const fetchSubmissions = async () => {
     try {
@@ -47,104 +37,108 @@ export default function ContactSubmissionsPage() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <p className="text-gray-500">Loading submissions...</p>
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Contact Form Submissions</h1>
-      
-      {submissions.length === 0 ? (
-        <p className="text-gray-500">No contact submissions yet.</p>
+    <div className="px-8 py-6 max-w-[1200px]">
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-[18px] font-semibold tracking-[-0.02em]" style={{ color: '#e5e5e5' }}>Contact</h1>
+        <p className="text-[13px] mt-0.5" style={{ color: '#666' }}>Messages from the contact form</p>
+      </div>
+
+      {/* Stats */}
+      <div className="flex items-center gap-6 mb-6 px-4 py-3 rounded-lg" style={{ background: '#141414', border: '1px solid #1e1e1e' }}>
+        <div>
+          <p className="text-[11px] font-medium uppercase tracking-wider" style={{ color: '#555' }}>Total Messages</p>
+          <p className="text-[20px] font-semibold" style={{ color: '#e5e5e5' }}>{submissions.length}</p>
+        </div>
+      </div>
+
+      {loading ? (
+        <div className="flex items-center justify-center py-16">
+          <p className="text-[13px]" style={{ color: '#555' }}>Loading submissions…</p>
+        </div>
+      ) : submissions.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-16">
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ background: '#1a1a1a', border: '1px solid #262626' }}>
+            <Mail size={18} style={{ color: '#555' }} />
+          </div>
+          <p className="text-[13px]" style={{ color: '#555' }}>No contact submissions yet</p>
+        </div>
       ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Phone</TableHead>
-                <TableHead>Message</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {submissions.map((submission) => (
-                <TableRow key={submission.id}>
-                  <TableCell className="whitespace-nowrap">
-                    {new Date(submission.created_at).toLocaleDateString("en-IN", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </TableCell>
-                  <TableCell className="font-medium">{submission.name}</TableCell>
-                  <TableCell>
-                    <a
-                      href={`mailto:${submission.email}`}
-                      className="text-blue-600 hover:underline"
-                    >
-                      {submission.email}
-                    </a>
-                  </TableCell>
-                  <TableCell>{submission.phone}</TableCell>
-                  <TableCell className="max-w-[200px] truncate">
-                    {submission.message}
-                  </TableCell>
-                  <TableCell>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setSelectedSubmission(submission)}
-                    >
-                      View Full
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <div className="rounded-lg overflow-hidden" style={{ border: '1px solid #1e1e1e' }}>
+          {/* Header */}
+          <div className="grid grid-cols-[1fr_1.2fr_1.5fr_1fr_2fr] gap-3 px-4 py-2.5 text-[11px] font-medium uppercase tracking-wider" style={{ background: '#141414', color: '#555', borderBottom: '1px solid #1e1e1e' }}>
+            <div>Date</div>
+            <div>Name</div>
+            <div>Email</div>
+            <div>Phone</div>
+            <div>Message</div>
+          </div>
+
+          {/* Rows */}
+          {submissions.map((submission) => (
+            <div
+              key={submission.id}
+              className="grid grid-cols-[1fr_1.2fr_1.5fr_1fr_2fr] gap-3 px-4 py-3 items-center cursor-pointer transition-colors duration-75"
+              style={{ borderBottom: '1px solid #1a1a1a' }}
+              onClick={() => setSelectedSubmission(submission)}
+              onMouseEnter={(e) => { e.currentTarget.style.background = '#141414'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+            >
+              <div className="text-[12px]" style={{ color: '#666' }}>
+                {new Date(submission.created_at).toLocaleDateString("en-IN", {
+                  day: "numeric", month: "short", year: "numeric",
+                })}
+              </div>
+              <div className="text-[13px] font-medium truncate" style={{ color: '#e5e5e5' }}>
+                {submission.name}
+              </div>
+              <div className="text-[13px] truncate" style={{ color: '#888' }}>
+                {submission.email}
+              </div>
+              <div className="text-[13px]" style={{ color: '#888' }}>
+                {submission.phone}
+              </div>
+              <div className="text-[13px] truncate" style={{ color: '#666' }}>
+                {submission.message}
+              </div>
+            </div>
+          ))}
         </div>
       )}
 
-      {/* Full Message Dialog */}
+      {/* Detail dialog */}
       <Dialog open={!!selectedSubmission} onOpenChange={() => setSelectedSubmission(null)}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader>
-            <DialogTitle>Message from {selectedSubmission?.name}</DialogTitle>
+        <DialogContent className="max-w-[480px] p-0 gap-0" style={{ background: '#141414', border: '1px solid #1e1e1e', color: '#e5e5e5' }}>
+          <DialogHeader className="px-5 py-4" style={{ borderBottom: '1px solid #1e1e1e' }}>
+            <DialogTitle className="text-[15px] font-semibold" style={{ color: '#e5e5e5' }}>
+              Message from {selectedSubmission?.name}
+            </DialogTitle>
           </DialogHeader>
-          <div className="space-y-4">
-            <div>
-              <p className="text-sm text-gray-500">Email</p>
-              <p className="font-medium">{selectedSubmission?.email}</p>
+          <div className="p-5 space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-wider mb-1" style={{ color: '#555' }}>Email</p>
+                <a href={`mailto:${selectedSubmission?.email}`} className="text-[13px] hover:underline" style={{ color: '#888' }}>
+                  {selectedSubmission?.email}
+                </a>
+              </div>
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-wider mb-1" style={{ color: '#555' }}>Phone</p>
+                <p className="text-[13px]" style={{ color: '#888' }}>{selectedSubmission?.phone}</p>
+              </div>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Phone</p>
-              <p className="font-medium">{selectedSubmission?.phone}</p>
-            </div>
-            <div>
-              <p className="text-sm text-gray-500">Message</p>
-              <p className="whitespace-pre-wrap bg-gray-50 p-3 rounded-lg">
+              <p className="text-[11px] font-medium uppercase tracking-wider mb-1.5" style={{ color: '#555' }}>Message</p>
+              <p className="text-[13px] leading-relaxed whitespace-pre-wrap p-3 rounded-md" style={{ background: '#0f0f0f', border: '1px solid #1e1e1e', color: '#ccc' }}>
                 {selectedSubmission?.message}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Submitted</p>
-              <p className="font-medium">
+              <p className="text-[11px] font-medium uppercase tracking-wider mb-1" style={{ color: '#555' }}>Submitted</p>
+              <p className="text-[13px]" style={{ color: '#888' }}>
                 {selectedSubmission && new Date(selectedSubmission.created_at).toLocaleDateString("en-IN", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
+                  day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit",
                 })}
               </p>
             </div>

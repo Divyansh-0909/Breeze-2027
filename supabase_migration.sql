@@ -189,9 +189,9 @@ DROP POLICY IF EXISTS "EventItem: Breeze admin update" ON "EventItem";
 DROP POLICY IF EXISTS "EventItem: Breeze admin delete" ON "EventItem";
 
 CREATE POLICY "EventItem: Public read" ON "EventItem" FOR SELECT USING (true);
-CREATE POLICY "EventItem: Breeze admin insert" ON "EventItem" FOR INSERT WITH CHECK (is_breeze_admin());
-CREATE POLICY "EventItem: Breeze admin update" ON "EventItem" FOR UPDATE USING (is_breeze_admin()) WITH CHECK (is_breeze_admin());
-CREATE POLICY "EventItem: Breeze admin delete" ON "EventItem" FOR DELETE USING (is_breeze_admin());
+CREATE POLICY "EventItem: Admin or club insert" ON "EventItem" FOR INSERT WITH CHECK (is_breeze_admin() OR event_org = get_user_club());
+CREATE POLICY "EventItem: Admin or club update" ON "EventItem" FOR UPDATE USING (is_breeze_admin() OR event_org = get_user_club()) WITH CHECK (is_breeze_admin() OR event_org = get_user_club());
+CREATE POLICY "EventItem: Admin or club delete" ON "EventItem" FOR DELETE USING (is_breeze_admin() OR event_org = get_user_club());
 
 -- MerchItem
 DROP POLICY IF EXISTS "MerchItem: Public read" ON "MerchItem";
@@ -262,9 +262,9 @@ DROP POLICY IF EXISTS "Assets: Breeze admin update" ON storage.objects;
 DROP POLICY IF EXISTS "Assets: Breeze admin delete" ON storage.objects;
 
 CREATE POLICY "Assets: Public read" ON storage.objects FOR SELECT USING (bucket_id = 'assets');
-CREATE POLICY "Assets: Breeze admin insert" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'assets' AND is_breeze_admin());
-CREATE POLICY "Assets: Breeze admin update" ON storage.objects FOR UPDATE USING (bucket_id = 'assets' AND is_breeze_admin()) WITH CHECK (bucket_id = 'assets' AND is_breeze_admin());
-CREATE POLICY "Assets: Breeze admin delete" ON storage.objects FOR DELETE USING (bucket_id = 'assets' AND is_breeze_admin());
+CREATE POLICY "Assets: Admin or club insert" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'assets' AND (is_breeze_admin() OR get_user_club() IS NOT NULL));
+CREATE POLICY "Assets: Admin or club update" ON storage.objects FOR UPDATE USING (bucket_id = 'assets' AND (is_breeze_admin() OR get_user_club() IS NOT NULL)) WITH CHECK (bucket_id = 'assets' AND (is_breeze_admin() OR get_user_club() IS NOT NULL));
+CREATE POLICY "Assets: Admin or club delete" ON storage.objects FOR DELETE USING (bucket_id = 'assets' AND (is_breeze_admin() OR get_user_club() IS NOT NULL));
 
 -- Transaction-proofs bucket policies
 DROP POLICY IF EXISTS "Transaction-proofs: Public insert" ON storage.objects;
