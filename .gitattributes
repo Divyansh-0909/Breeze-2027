@@ -2,3 +2,8 @@
 # Runtime GLBs and textures stay ordinary Git files for website builds.
 assets-source/**/*.blend filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+# Full-resolution cave-study authoring maps stay in LFS; web runtime maps below
+# public/ remain ordinary Git payloads so Vercel can serve them directly.
+assets-source/gullyverse/cave-material-study/**/*.png filter=lfs diff=lfs merge=lfs -text
+assets-source/gullyverse/cave-material-study/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+assets-source/gullyverse/cave-material-study/**/*.exr filter=lfs diff=lfs merge=lfs -text

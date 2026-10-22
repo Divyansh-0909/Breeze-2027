@@ -1,0 +1,1410 @@
+{
+  "version": "private-cave-material-shootout-20261022",
+  "privateOnly": true,
+  "productionApproved": false,
+  "geometryHost": "UNCHANGED c9-cave-recovery/cave-entrance.glb",
+  "quarrySamplerChanged": false,
+  "uniformComparisonTilePeriodM": 5.395311,
+  "featureScales": [
+    1,
+    2
+  ],
+  "runtimeResolution": 4096,
+  "loadPolicy": "One selected material only, sequential retirement after covered preparation; never preload all candidates",
+  "materials": [
+    {
+      "id": "rock_01",
+      "provider": "Poly Haven",
+      "name": "Rock 01",
+      "page": "https://polyhaven.com/a/rock_01",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        1.5,
+        1.5
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "Diffuse",
+        "nor_dx",
+        "nor_gl",
+        "blend",
+        "gltf",
+        "Bump",
+        "arm",
+        "AO",
+        "Displacement",
+        "Rough",
+        "spec",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_01/rock_01_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rock_01/rock_01_diff_4k.jpg",
+          "bytes": 11989566,
+          "providerMD5": "34970cbd9fb6430672a6e14801f4d0e9",
+          "sha256": "8fcb8d2a6726b5fa16fac99cabdc85e9f6d0273a1297f35757c9f931349046f9",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_01/rock_01_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_01/rock_01_nor_gl_4k.png",
+          "bytes": 25380045,
+          "providerMD5": "41ae84df8f09fa63765070ef276c8a2f",
+          "sha256": "874db579e606f15f32f923fc16c2673b7d4ea1a95ffbfa38df74f7055a6aff5f",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_01/rock_01_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_01/rock_01_rough_4k.png",
+          "bytes": 31294687,
+          "providerMD5": "54cd90c8347d72af24011158e1465440",
+          "sha256": "aac30984cbe71152c6d03f66ebcbc13f7ca6a069a5afa68a6c9e5e76ada4125f",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_01/rock_01_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_01/rock_01_disp_4k.png",
+          "bytes": 29426153,
+          "providerMD5": "bd8f93035e324d92c26748b247208561",
+          "sha256": "561241d9fe9d55bc53e621b8f0dae95358256822f20aab8966c0ff7bf7555231",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/rock_01/basecolor.jpg",
+          "bytes": 10667770,
+          "sha256": "797ee2d701314e2b30cc0fa2bcff8449b1543cdfb90d16f06d3c6d269765e2e8",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_01/normal.png",
+          "bytes": 25374461,
+          "sha256": "db1601938677706d490d00cf185f60df5119845f0cffcb1b7443fc8b376661f4",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_01/orm.png",
+          "bytes": 15565125,
+          "sha256": "94c4435dbc0057fa23ba2f8b4a51e35d4f195b36b42e0013b40bcd5bd5d076af",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 51607356,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        1.0,
+        1.0
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": false,
+      "scalarSource": {
+        "mode": "I;16",
+        "denominator": 65535,
+        "roughnessRange": [
+          0.2736552953720093,
+          0.7547569870948792
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "rock_2",
+      "provider": "Poly Haven",
+      "name": "Rock 2",
+      "page": "https://polyhaven.com/a/rock_2",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        1.5,
+        1.5
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "Diffuse",
+        "nor_dx",
+        "nor_gl",
+        "blend",
+        "gltf",
+        "Bump",
+        "arm",
+        "AO",
+        "Displacement",
+        "Rough",
+        "spec",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_2/rock_2_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rock_2/rock_2_diff_4k.jpg",
+          "bytes": 12360756,
+          "providerMD5": "beeadfb27435e84eee4d1b7e4b3cb3ae",
+          "sha256": "430b23f62c7a42cb33dc15901195f194da3926ac5d82502858b53ec333bbf890",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_2/rock_2_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_2/rock_2_nor_gl_4k.png",
+          "bytes": 28379068,
+          "providerMD5": "918b8de07b7589d497eb91f5e3d3e979",
+          "sha256": "8e90e127a3202aca49a2441b7914436e04f95ce1e4cd99aaf9e7ea9bdb000579",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_2/rock_2_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_2/rock_2_rough_4k.png",
+          "bytes": 30097379,
+          "providerMD5": "e8470d47e57c6c8124e22cf07d00d49a",
+          "sha256": "eca4d61be8d276fc476e244a32f7962dd15201c86db506d37507dbb75cd4140a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_2/rock_2_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_2/rock_2_disp_4k.png",
+          "bytes": 32027966,
+          "providerMD5": "ca97ecaf80d012b2b05fd6f7f6d9c40d",
+          "sha256": "d08513f797994cb5afa03508e4da49e298fb3ffc9a39f2b13152704ae537a046",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/rock_2/basecolor.jpg",
+          "bytes": 11059669,
+          "sha256": "d7f1e0f53416a81561d4b5dd5a8b63abc12d433edecd16e5ff230a3514058d68",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_2/normal.png",
+          "bytes": 28373658,
+          "sha256": "a86575542ffba31feb8c92b2c0592334a10e9dcd6ce0568281d22f65aa3204a1",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_2/orm.png",
+          "bytes": 11780003,
+          "sha256": "8eb1776d9b644ad1e86d9952701511ce15823a14379d86852a25b77ae59fb087",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 51213330,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        1.0,
+        1.0
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": false,
+      "scalarSource": {
+        "mode": "I;16",
+        "denominator": 65535,
+        "roughnessRange": [
+          0.3970702588558197,
+          0.7512931823730469
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "rock_3",
+      "provider": "Poly Haven",
+      "name": "Rock 3",
+      "page": "https://polyhaven.com/a/rock_3",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        1.5,
+        1.5
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "Diffuse",
+        "nor_dx",
+        "nor_gl",
+        "blend",
+        "gltf",
+        "Bump",
+        "arm",
+        "AO",
+        "Displacement",
+        "Rough",
+        "spec",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_3/rock_3_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rock_3/rock_3_diff_4k.jpg",
+          "bytes": 11713423,
+          "providerMD5": "e0627d2d53d97b27cc5e5f0fa243261e",
+          "sha256": "33ed8439be30d8d7ad75c7feb786056cd092f0b7d50153947c2d85a47dfad3d0",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_3/rock_3_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_3/rock_3_nor_gl_4k.png",
+          "bytes": 30167151,
+          "providerMD5": "d11ca4af1a391feca0d243598a17287b",
+          "sha256": "3de61390f49ff5a147b264f09227c091248e540c914131ba147f449737098474",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_3/rock_3_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_3/rock_3_rough_4k.png",
+          "bytes": 30859097,
+          "providerMD5": "d7577251803eccbaf299ab14d7952180",
+          "sha256": "8cf94612ed88310beb83e79a95f4da3b9f8aae842b7a91020fc025fb6d07b842",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_3/rock_3_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_3/rock_3_disp_4k.png",
+          "bytes": 31984680,
+          "providerMD5": "bcca13117a8d376649f11af0d3a2d763",
+          "sha256": "7daf858e20e5f65beb39983da1ed00157df4633a215cb0b2ad457e108026889a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/rock_3/basecolor.jpg",
+          "bytes": 10400260,
+          "sha256": "e39037a667ab6a2eddc23d655480518a62713399a4e9a725e48c8f30b335d6d9",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_3/normal.png",
+          "bytes": 30161423,
+          "sha256": "8fc9d214fdb3f55bb4faf9640c73c1290d986faa2121790805e6eaf5a8cd1d18",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_3/orm.png",
+          "bytes": 13089839,
+          "sha256": "711bdb9adf7f246861f830dad85608bfde7402af46c3fd1dd0db916195adb861",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 53651522,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        1.0,
+        1.0
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": false,
+      "scalarSource": {
+        "mode": "I;16",
+        "denominator": 65535,
+        "roughnessRange": [
+          0.29394981265068054,
+          0.7526817917823792
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "worn_rock_natural_01",
+      "provider": "Poly Haven",
+      "name": "Worn Rock Natural 01",
+      "page": "https://polyhaven.com/a/worn_rock_natural_01",
+      "authors": {
+        "Rob Tuytel": "Processing",
+        "Dimitrios Savva": "Photography"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        2.0,
+        2.0
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "Diffuse",
+        "nor_dx",
+        "nor_gl",
+        "blend",
+        "gltf",
+        "arm",
+        "Displacement",
+        "AO",
+        "Rough",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/worn_rock_natural_01/worn_rock_natural_01_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/worn_rock_natural_01/worn_rock_natural_01_diff_4k.jpg",
+          "bytes": 12973841,
+          "providerMD5": "d60d2d4c8e8ab98cbee2102bfd640ead",
+          "sha256": "d4cb7fb4b4bc3ba0165d0bb394eccb5a41e4ee63c363545c8a4044b57fff3407",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/worn_rock_natural_01/worn_rock_natural_01_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/worn_rock_natural_01/worn_rock_natural_01_nor_gl_4k.png",
+          "bytes": 30103539,
+          "providerMD5": "9e43470816adb86c4316ab29865a2941",
+          "sha256": "915a555d1b06d4c20f201159473ed097ccba6e1bc30a22da7d86fe8f41068a81",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/worn_rock_natural_01/worn_rock_natural_01_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/worn_rock_natural_01/worn_rock_natural_01_rough_4k.png",
+          "bytes": 8953121,
+          "providerMD5": "d34303de6362f5344d6e11ca7b02072e",
+          "sha256": "3cfba5c2f748e8e52dfc54d1c7288ddda4a0987270d6b59f46356e3ff67deb0d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/worn_rock_natural_01/worn_rock_natural_01_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/worn_rock_natural_01/worn_rock_natural_01_disp_4k.png",
+          "bytes": 11240679,
+          "providerMD5": "feeefb7d63772a3bdd6613416c38b5ce",
+          "sha256": "ff54a862f50d84d9b1f0bf2eb142378b809565f2eb7c625125617ec69602fe02",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/worn_rock_natural_01/basecolor.jpg",
+          "bytes": 6509237,
+          "sha256": "ff4c0df4ed36c21f39e55aad960552b82b2147f418ee46f48adc8859ad48e9d5",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/worn_rock_natural_01/normal.png",
+          "bytes": 27594748,
+          "sha256": "ebd0b616f3d3e9e62f1ed68421d9b033506bcd56ade6255c6de477c47e95726a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/worn_rock_natural_01/orm.png",
+          "bytes": 12795431,
+          "sha256": "57a9064ca221eed8caffd0e87186e62d8db5c84eaa9a89f33cfafb82cff56a0b",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 46899416,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        0.6627450980392157,
+        0.9803921568627451
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": false,
+      "scalarSource": {
+        "mode": "L",
+        "denominator": 255,
+        "roughnessRange": [
+          0.6627451181411743,
+          0.9803921580314636
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "rock_face_03",
+      "provider": "Poly Haven",
+      "name": "Rock Face 03",
+      "page": "https://polyhaven.com/a/rock_face_03",
+      "authors": {
+        "Dario Barresi": "Photography",
+        "Rico Cilliers": "Processing"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        2.6999995708465576,
+        2.6999995708465576
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "Diffuse",
+        "nor_dx",
+        "nor_gl",
+        "blend",
+        "gltf",
+        "arm",
+        "AO",
+        "Displacement",
+        "Rough",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_face_03/rock_face_03_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rock_face_03/rock_face_03_diff_4k.jpg",
+          "bytes": 15319503,
+          "providerMD5": "50105980b509029b9040f43b1f6ddc71",
+          "sha256": "83148536c125cee3a2e2fc1368c8851ad4c87aef8b8bb35c5129d82d223effb3",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_face_03/rock_face_03_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_face_03/rock_face_03_nor_gl_4k.png",
+          "bytes": 90742764,
+          "providerMD5": "04ea5ce2c309c9a84ee8918eaed6ea1d",
+          "sha256": "392f78c13c5e414877d592d06d2a05be5bf71ff544a009c8799659437f798795",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_face_03/rock_face_03_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_face_03/rock_face_03_rough_4k.png",
+          "bytes": 29718284,
+          "providerMD5": "b3562b4ff9f1aea984f162bf479e921a",
+          "sha256": "6ef4b2641f1cde50c518270aa9510f9fce9b5043b21d91f3b9527bb941606916",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_face_03/rock_face_03_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_face_03/rock_face_03_disp_4k.png",
+          "bytes": 21772279,
+          "providerMD5": "95aee779596494f8cf578575530314ed",
+          "sha256": "123d5c5e087f99365f7fe7508937917294dedede244236f6c2b0f05675e2cc6e",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/rock_face_03/basecolor.jpg",
+          "bytes": 8037434,
+          "sha256": "d06dc71cb170c59281f0fda9a45d34738d7384bcdcedb6e7524fe41f900f27d3",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_face_03/normal.png",
+          "bytes": 31784801,
+          "sha256": "d79eede6dabef8c107366d94e7d2a2f240f4c429e12edffb4640e6dd65c66382",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_face_03/orm.png",
+          "bytes": 15449272,
+          "sha256": "f6dfeee6db7e7e2ac08f24103a97c5bc0fb804e61d433cf24f320f0002f8172f",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 55271507,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        1.0,
+        1.0
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": false,
+      "scalarSource": {
+        "mode": "I;16",
+        "denominator": 65535,
+        "roughnessRange": [
+          0.5481040477752686,
+          0.9798733592033386
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "rock_face",
+      "provider": "Poly Haven",
+      "name": "Rock Face",
+      "page": "https://polyhaven.com/a/rock_face",
+      "authors": {
+        "Greg Zaal": "Photography",
+        "Dario Barresi": "Processing"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        2.380000114440918,
+        2.380000114440918
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "Diffuse",
+        "nor_dx",
+        "nor_gl",
+        "blend",
+        "gltf",
+        "arm",
+        "AO",
+        "Displacement",
+        "Rough",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_face/rock_face_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rock_face/rock_face_diff_4k.jpg",
+          "bytes": 11665139,
+          "providerMD5": "bd14c0c0141ebee097ca38c607003181",
+          "sha256": "f22c19c46d8a03b199b92d779d1e28a00481098177fba41c4f84cf100c5e7164",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_face/rock_face_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_face/rock_face_nor_gl_4k.png",
+          "bytes": 88453065,
+          "providerMD5": "e4673716b580920f7f85a4b0c879fc4f",
+          "sha256": "3e86b0e4e966e2008cb24f393d0b5f32c2bb409900af136a62dbe89650f166d4",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_face/rock_face_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_face/rock_face_rough_4k.png",
+          "bytes": 25540407,
+          "providerMD5": "1f16b0ddadc658f2d33a5c8f3c5565cd",
+          "sha256": "62c09c7d53789b7815c668ec34d74739ab31b1df3becac72135a78c43282cf42",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_face/rock_face_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_face/rock_face_disp_4k.png",
+          "bytes": 22894519,
+          "providerMD5": "8a850beb28692c49e64e56ede4dfdea7",
+          "sha256": "6f1b83b97237e34accad628e685114613cb4f3c88193b1ff399711c784b79aef",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/rock_face/basecolor.jpg",
+          "bytes": 5387660,
+          "sha256": "0c7c1fe6189d6d7f3b5a60967f6a2bf9ef431b39dc519c47212ce398ac077d32",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_face/normal.png",
+          "bytes": 28604145,
+          "sha256": "6e397df97a0db347a86a992b43a698730e60c02eec3e9645285c677b594990f2",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_face/orm.png",
+          "bytes": 7762058,
+          "sha256": "b7bedf21e7cfe75953b6a425c1af707c1700e7759e57603293e9e2b2d009c1b0",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 41753863,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        1.0,
+        1.0
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": false,
+      "scalarSource": {
+        "mode": "I;16",
+        "denominator": 65535,
+        "roughnessRange": [
+          0.773128867149353,
+          0.8694590926170349
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "dark_rock_02",
+      "provider": "Poly Haven",
+      "name": "Dark Rock 02",
+      "page": "https://polyhaven.com/a/dark_rock_02",
+      "authors": {
+        "Amal Kumar": "All"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        2.0009167194366455,
+        2.000917911529541
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "blend",
+        "AO",
+        "arm",
+        "Diffuse",
+        "Displacement",
+        "nor_dx",
+        "nor_gl",
+        "Rough",
+        "gltf",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/dark_rock_02/dark_rock_02_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/dark_rock_02/dark_rock_02_diff_4k.jpg",
+          "bytes": 9601413,
+          "providerMD5": "2e9156b7acb8025dd63d010fc56db4c7",
+          "sha256": "b5ac415b6eb3ee41139f1f7d2f1106a6d6061b05fa03e9b358cf9365130a07ee",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/dark_rock_02/dark_rock_02_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/dark_rock_02/dark_rock_02_nor_gl_4k.png",
+          "bytes": 100871350,
+          "providerMD5": "ce917e44b2a4476fb106da9b5ed57b85",
+          "sha256": "a20269f20f3d66b1af57b54c1306bd206881b3de08dd96e476451bfebac80eba",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/dark_rock_02/dark_rock_02_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/dark_rock_02/dark_rock_02_rough_4k.png",
+          "bytes": 28145252,
+          "providerMD5": "689ce3613b08878cfb99a47a1f82c990",
+          "sha256": "7649ab6520a6fa5f249d80b043a2f74c9eec5803e18761b09e394d51737e491a",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/dark_rock_02/dark_rock_02_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/dark_rock_02/dark_rock_02_disp_4k.png",
+          "bytes": 18721894,
+          "providerMD5": "627825360fdef2d0d23dfad90386c6ab",
+          "sha256": "828bc0b762c67175d38fd6987fafd27728ac960e79a3a3ba0ea5f5fb065e2c56",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/dark_rock_02/basecolor.jpg",
+          "bytes": 4156248,
+          "sha256": "b6652537d56449f59e286c0298264373e609445a256f286703a59a80330d92d1",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/dark_rock_02/normal.png",
+          "bytes": 29043215,
+          "sha256": "3e685f7376116b9801436f025a4794e8a2cfa1000369e3a12f65059093d4d797",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/dark_rock_02/orm.png",
+          "bytes": 12137949,
+          "sha256": "774e6957a433a09ffa6f08b1e82214b52f23f590384415a7cedd38ff52f5a90f",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 45337412,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        1.0,
+        1.0
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": false,
+      "scalarSource": {
+        "mode": "I;16",
+        "denominator": 65535,
+        "roughnessRange": [
+          0.6672465205192566,
+          0.9975127577781677
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "quarry_wall",
+      "provider": "Poly Haven",
+      "name": "Quarry Wall",
+      "page": "https://polyhaven.com/a/quarry_wall",
+      "authors": {
+        "Dimitrios Savva": "All"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        1.8000000715255737,
+        1.8000000715255737
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "Diffuse",
+        "nor_dx",
+        "nor_gl",
+        "blend",
+        "gltf",
+        "arm",
+        "AO",
+        "Displacement",
+        "Rough",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/quarry_wall/quarry_wall_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/quarry_wall/quarry_wall_diff_4k.jpg",
+          "bytes": 15772673,
+          "providerMD5": "e6459a62c4eda73daae0a637264197d6",
+          "sha256": "b3b9ff7d4d74b3e873f43ef20403de3eb64335b22d4bfb4a37fc4f22b0621a6c",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/quarry_wall/quarry_wall_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/quarry_wall/quarry_wall_nor_gl_4k.png",
+          "bytes": 91178414,
+          "providerMD5": "edc292d62c32610b52c706759816e0f1",
+          "sha256": "ec135327ba450fc99db638d4b06fa873aed5161909a9b3f8743392b28f9111fb",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/quarry_wall/quarry_wall_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/quarry_wall/quarry_wall_rough_4k.png",
+          "bytes": 38747908,
+          "providerMD5": "ef8ed7eb3055a1322c17cdfac8c844ec",
+          "sha256": "18c2269e4dbe0f3aac7544d60a4a347448e42e7fca23d8aa6a65b64c9f1165c5",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/quarry_wall/quarry_wall_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/quarry_wall/quarry_wall_disp_4k.png",
+          "bytes": 24790929,
+          "providerMD5": "3665700840f6c36271d4d690af800b6b",
+          "sha256": "e05fa8e8db9560dee7e90cfd2c96fb695e166b84ddffc8fa99694307b2d37757",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/quarry_wall/basecolor.jpg",
+          "bytes": 8323643,
+          "sha256": "23ce785805a8f0116e496f98fabc791b81b36ec35411527cb98de1ea0491a7ec",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/quarry_wall/normal.png",
+          "bytes": 32570072,
+          "sha256": "3351b95661babc1bafdb32e1ef19c72bd76bfd9f9c23018cf2d7c74ca2152d6d",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/quarry_wall/orm.png",
+          "bytes": 12567680,
+          "sha256": "f7c15e24630a870df68fff9d3d5685fb7483fdb3a6db8712912bb6b46f06ea7f",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 53461395,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        0.7098039215686275,
+        0.8980392156862745
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": false,
+      "scalarSource": {
+        "mode": "RGB",
+        "denominator": 255,
+        "roughnessRange": [
+          0.7098039388656616,
+          0.8980392217636108
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "rock_05",
+      "provider": "Poly Haven",
+      "name": "Rock 05",
+      "page": "https://polyhaven.com/a/rock_05",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://polyhaven.com/license",
+      "nativeDimensionsM": [
+        1.5,
+        1.5
+      ],
+      "sourceDimensionsUnit": "Provider metadata millimetres, divided by 1000",
+      "availableMaps": [
+        "Diffuse",
+        "nor_dx",
+        "nor_gl",
+        "blend",
+        "gltf",
+        "Bump",
+        "arm",
+        "AO",
+        "Displacement",
+        "Rough",
+        "spec",
+        "mtlx"
+      ],
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "providerSlot": "Diffuse",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_05/rock_05_diff_4k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/rock_05/rock_05_diff_4k.jpg",
+          "bytes": 10739079,
+          "providerMD5": "62981d45a24f43572a4618f21dfa10e1",
+          "sha256": "ef6c94d522b1ab05be074b188bf709198acce88fdb5f6f3348224170bffc5d64",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "normal",
+          "providerSlot": "nor_gl",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_05/rock_05_nor_gl_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_05/rock_05_nor_gl_4k.png",
+          "bytes": 25327930,
+          "providerMD5": "c30a57a9ad6a3141bd7fb1fc62fc6796",
+          "sha256": "9443eac5d3b756a6b9a0d6b826ad6c267060c94ec5c0b951d075a36511f47d08",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "roughness",
+          "providerSlot": "Rough",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_05/rock_05_rough_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_05/rock_05_rough_4k.png",
+          "bytes": 30607576,
+          "providerMD5": "31d06a3665964e314bce89a04bddd374",
+          "sha256": "6bfa88f50f7327082f86e98e87a3f57c7b80cd285df17b1317491b7bb63bbac4",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "slot": "height",
+          "providerSlot": "Displacement",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/rock_05/rock_05_disp_4k.png",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/4k/rock_05/rock_05_disp_4k.png",
+          "bytes": 32003028,
+          "providerMD5": "2b716e346114d8fd55d421bd505ff3d5",
+          "sha256": "4b36264186fc62301e2b605ea4dc9cd9874b431e3d6f0a6380db2ef06f5be9aa",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/rock_05/basecolor.jpg",
+          "bytes": 9544510,
+          "sha256": "ea1f241687383be36ccbf2f113e72e5ab6d5e70c6db0dc7b717f217146d9a220",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_05/normal.png",
+          "bytes": 25322763,
+          "sha256": "a4ccef197c450abc48a3dabcc7136c03a534225dc9cb2b4db8b3bcdb5a8c4c53",
+          "pixels": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/rock_05/orm.png",
+          "bytes": 12803054,
+          "sha256": "c20fa003e11dcba835663c9b8b4f937ea3d43ede5d2f637931b997298c1ac2e4",
+          "pixels": [
+            4096,
+            4096
+          ]
+        }
+      ],
+      "runtimeBytes": 47670327,
+      "decodedRGBA8MipBytes": 268435456.0,
+      "sourceHeightRuntime": false,
+      "displacementRuntime": false,
+      "AOApplied": false,
+      "roughnessRange": [
+        1.0,
+        1.0
+      ],
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": true,
+      "scalarSource": {
+        "mode": "I;16",
+        "denominator": 65535,
+        "roughnessRange": [
+          0.3323567509651184,
+          0.7521019577980042
+        ]
+      },
+      "aspect": 1,
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 5.395311,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    },
+    {
+      "id": "ambientcg_Rock041",
+      "provider": "ambientCG",
+      "name": "Rock 041",
+      "page": "https://ambientcg.com/a/Rock041",
+      "authors": {
+        "ambientCG / Lennart Demes": "Asset library publisher; individual photographer not identified by API"
+      },
+      "license": "CC0 1.0",
+      "licenseURL": "https://ambientcg.com/license",
+      "creationMethod": "PBRPhotogrammetry",
+      "nativeDimensionsM": null,
+      "sourceDimensionsUnit": "Provider supplies zero dimensions; native metre scale UNKNOWN, not inferred",
+      "availableMaps": [
+        "Rock041_4K-JPG_AmbientOcclusion.jpg",
+        "Rock041_4K-JPG_NormalDX.jpg",
+        "Rock041_4K-JPG_NormalGL.jpg",
+        "Rock041_4K-JPG_Color.jpg",
+        "Rock041_4K-JPG_Roughness.jpg",
+        "Rock041_4K-JPG_Displacement.jpg"
+      ],
+      "sourceArchive": {
+        "url": "https://ambientcg.com/get?file=Rock041_4K-JPG.zip",
+        "file": "assets-source/gullyverse/cave-material-study/licensed-source/ambientcg_Rock041/Rock041_4K-JPG.zip",
+        "bytes": 58800669,
+        "sha256": "2c84aab052565d35b332abaf20732ab46451712883b3abf603d854049901e0a5"
+      },
+      "sourceMaps": [
+        {
+          "slot": "basecolor",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/ambientcg_Rock041/Rock041_4K-JPG_Color.jpg",
+          "bytes": 11310965,
+          "sha256": "57ee6a5ba77e76146f47571814797a5801940b45005983989b63f6e8586dcbd7",
+          "pixels": [
+            4096,
+            2048
+          ]
+        },
+        {
+          "slot": "normal",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/ambientcg_Rock041/Rock041_4K-JPG_NormalGL.jpg",
+          "bytes": 16228386,
+          "sha256": "231810766353776235d5449ebb93a63c94d4bdb0f1aa6dd9483db64416f0ad6b",
+          "pixels": [
+            4096,
+            2048
+          ]
+        },
+        {
+          "slot": "roughness",
+          "file": "assets-source/gullyverse/cave-material-study/licensed-source/ambientcg_Rock041/Rock041_4K-JPG_Roughness.jpg",
+          "bytes": 6448583,
+          "sha256": "886feb60f3f320550d68c5fbc459e3226113738033405841c62ff88558da9408",
+          "pixels": [
+            4096,
+            2048
+          ]
+        }
+      ],
+      "runtimeMaps": [
+        {
+          "file": "models/gullyverse/cave-material-study/ambientcg_Rock041/basecolor.jpg",
+          "bytes": 4567005,
+          "sha256": "c8ad05857b2dae33aeba30cc61d1fc6d041f954ac6346a3c6f3dfd0e635d3222",
+          "pixels": [
+            4096,
+            2048
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/ambientcg_Rock041/normal.png",
+          "bytes": 16873404,
+          "sha256": "140321822e6b3c6f092b3617d6fe8f22f7a31c2d28fca530f580715cef62dd97",
+          "pixels": [
+            4096,
+            2048
+          ]
+        },
+        {
+          "file": "models/gullyverse/cave-material-study/ambientcg_Rock041/orm.png",
+          "bytes": 9710437,
+          "sha256": "0a6c704396910be75d80985c7711c22fff21a475a61365904a9e0014865e53f7",
+          "pixels": [
+            4096,
+            2048
+          ]
+        }
+      ],
+      "runtimeBytes": 31150846,
+      "decodedRGBA8MipBytes": 134217728.0,
+      "aspect": 2,
+      "AOApplied": false,
+      "displacementRuntime": false,
+      "status": "SHORTLISTED_FOR_BROWSER_COMPARISON",
+      "independentDiscovery": true,
+      "scalarSource": {
+        "mode": "L",
+        "denominator": 255,
+        "roughnessRange": [
+          0.19607843458652496,
+          1.0
+        ]
+      },
+      "comparisonUV": {
+        "metresPerHostUVUnit": 2,
+        "tileWidthMAt1x": 5.395311,
+        "tileHeightMAt1x": 2.6976555,
+        "normalStrength": 0.7,
+        "albedoGain": 1,
+        "AOApplied": false,
+        "runtimeDisplacement": false,
+        "sameHostGeometry": true
+      }
+    }
+  ]
+}

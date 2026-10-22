@@ -31,6 +31,7 @@ export class CaveEntranceSession extends GeologyFidelitySession {
   get entranceParts() { return this.descriptor.parts; }
   entranceRoot: WeakRef<THREE.Object3D> | null = null;
   get entranceReady() { return !!this.entrance; }
+  get entranceRevision() { return this.materialRevision; }
   constructor(runtime: ImmersiveRuntime, readonly edition: 'stage3a' | 'stage3a1' = 'stage3a') {
     super(runtime);
     this.descriptor = edition === 'stage3a1' ? deepManifest : manifest;

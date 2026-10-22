@@ -22,6 +22,9 @@ import {GeologyFidelitySession} from "./GeologyFidelitySession";
 import {rockTextureScale} from "./scannedRockSampling";
 import {CaveEntranceSession} from "./CaveEntranceSession";
 import {carryCaveReview,naturalCaveReview} from "./caveReview";
+import {CaveMaterialStudySession,CAVE_STUDY_MATERIALS,caveStudyMaterial} from "./caveMaterialStudy";
+const wipEnvironmentDefault=process.env.NEXT_PUBLIC_GULLYVERSE_WIP_DEFAULT==="1";
+const reviewAllowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1"||wipEnvironmentDefault;
 const noWallSubscribe=()=>()=>{};
 const noWallState={mode:"off",busy:false,assetReady:false,error:null,revision:0} as const;
 
@@ -55,7 +58,7 @@ export default function ImmersiveShell() {
       if (!entrance) rememberGullyverseEntry();
       if (source !== "url" && (locationFromPath(window.location.pathname) !== id || entrance)) {
         const href = carryCaveReview(immersiveHref(id, entrance), window.location.search,
-          process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1");
+          reviewAllowed);
         const diagnostic = new URLSearchParams(window.location.search).has("diagnostics");
         window.history.pushState({ ...window.history.state, breezeArrival: entrance ? "entrance" : id }, "", href + (diagnostic ? (href.includes("?") ? "&" : "?") + "diagnostics" : ""));
       } else if (id === "hub" && !entrance) {
@@ -69,7 +72,8 @@ export default function ImmersiveShell() {
   const [flat, setFlat] = useState(false);
   const [wallPreview]=useState(()=>{
     const query=new URLSearchParams(window.location.search),mode=query.get("wallPreview");
-    const allowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1";
+    const allowed=reviewAllowed;
+    if(allowed&&query.get('entranceReview')==='material-study')return new CaveMaterialStudySession(runtime,caveStudyMaterial(query.get('caveMaterial')),query.get('caveFeatureScale')==='2'?2:1,query.get('caveGeometry')==='pilot');
     if(naturalCaveReview(window.location.search,allowed))return new CaveEntranceSession(runtime,query.get('entranceReview')==='deep-rock'?'stage3a1':'stage3a');
     if(allowed&&query.get("quarryReview")==="geology-fidelity")return new GeologyFidelitySession(runtime);
     if(allowed&&query.get("quarryReview")==="material-fidelity")return new ScannedMaterialFidelitySession(runtime);
@@ -80,10 +84,13 @@ export default function ImmersiveShell() {
     if(allowed&&query.get("quarryReview")==="excavation")return new LimestoneExcavationSession(runtime,query.get("excavation")==="macro"?"macro":"detailed",query.get("quarryMaterial")==="limestone"?"limestone":"rock");
     if(allowed&&query.get("quarryReview")==="geology")return new RefinedQuarrySession(runtime);
     if(allowed&&mode&&["limestone","authored","reference","off"].includes(mode))return new WallPreviewSession(runtime,mode==="off"?"off":mode==="reference"?"reference":"authored",query.get("wallCandidate")==="previous"?"previous":"corrected");
+    // WIP visitors get the existing cave + C9 owner and its approved C8 3×
+    // material without review URLs. Explicit historical comparisons stay above.
+    if(wipEnvironmentDefault&&query.get("quarry")!=="original")return new CaveEntranceSession(runtime);
     return process.env.NEXT_PUBLIC_GULLYVERSE_QUARRY_ROLLOUT!=="0"&&query.get("quarry")!=="original"?new QuarryFoundationSession(runtime,true):null;
   });
   const [showQuarryReviewControls]=useState(()=>
-    (process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1")&&
+    reviewAllowed&&
     ["excavation","geology","foundation","foundation-refined","scanned-material-multi","scanned-composition","material-fidelity","geology-fidelity"].includes(new URLSearchParams(window.location.search).get("quarryReview")??""));
   const wallState=useSyncExternalStore(wallPreview?.subscribe??noWallSubscribe,wallPreview?.snapshot??(()=>noWallState),()=>noWallState);
   const rendererActive=!flat&&state.phase!=="error";
@@ -98,7 +105,7 @@ export default function ImmersiveShell() {
   useImmersiveInput(runtime);
   useEffect(() => {
     runtime.onCoveredRoute = href => router.push(carryCaveReview(href, window.location.search,
-      process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1"));
+      reviewAllowed));
     return () => { runtime.onCoveredRoute = null; };
   }, [runtime, router]);
   useEffect(() => {
@@ -151,6 +158,7 @@ export default function ImmersiveShell() {
       {showQuarryReviewControls&&wallPreview instanceof RefinedQuarrySession&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>TWO-SECTION GEOLOGY REVIEW{wallState.error&&<span> · Candidate unavailable; Stage 2C retained</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setRefinement(false)}>Stage 2C baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setRefinement(true)}>Refined pair</button></aside>}
       {showQuarryReviewControls&&wallPreview instanceof GeologyFidelitySession&&<aside data-quarry-controls data-geology-fidelity-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>GEOLOGY FIDELITY · NATIVE SCANS · C8 3×{!wallPreview.compositionEnabled&&" · MATERIAL-ONLY COMPARISON"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setComposition(false)}>Material-only comparison</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setComposition(true)}>Native geology / retry</button></aside>}
       {wallPreview instanceof CaveEntranceSession&&wallPreview.entranceDiagnostics().failed&&<aside data-cave-review-controls style={{position:"absolute",left:12,top:80,zIndex:40,fontSize:12,padding:10,background:"#1d2a24ee",color:"#eee"}}>Cave preview unavailable; original entrance retained.<br/><button disabled={wallState.busy} onClick={()=>wallPreview.retryEntrance()}>Retry cave preview</button></aside>}
+      {wallPreview instanceof CaveMaterialStudySession&&<aside data-cave-study-controls style={{position:"absolute",left:12,top:80,zIndex:40,fontSize:12,padding:10,background:"#1d2a24ee",color:"#eee"}}>PRIVATE CAVE MATERIAL STUDY · C9 UNCHANGED<br/><label>Material <select style={{background:"#21312b",color:"#eee"}} disabled={wallState.busy} value={wallPreview.studyDiagnostics().selected} onChange={event=>{const id=caveStudyMaterial(event.target.value);wallPreview.setStudySelection(id);const url=new URL(window.location.href);url.searchParams.set('caveMaterial',id);window.history.replaceState(window.history.state,'',url);}}>{CAVE_STUDY_MATERIALS.map(id=><option key={id} value={id}>{id}</option>)}</select></label>{' '}<button disabled={wallState.busy} onClick={()=>{const scale=wallPreview.studyDiagnostics().featureScale===1?2:1;wallPreview.setStudySelection(wallPreview.studyDiagnostics().selected,scale);const url=new URL(window.location.href);url.searchParams.set('caveFeatureScale',String(scale));window.history.replaceState(window.history.state,'',url);}}>Cave feature size {wallPreview.studyDiagnostics().featureScale}×</button>{' '}<button disabled={wallState.busy} onClick={()=>{const enabled=wallPreview.studyDiagnostics().geometryMode!=='pilot';wallPreview.setStudyGeometry(enabled);const url=new URL(window.location.href);url.searchParams.set('caveGeometry',enabled?'pilot':'baseline');window.history.replaceState(window.history.state,'',url);}}>Geometry: {wallPreview.studyDiagnostics().geometryMode}</button>{wallPreview.studyDiagnostics().error&&<span> · Material unavailable; retained cave. Choose again to retry.</span>}</aside>}
       {showQuarryReviewControls&&wallPreview instanceof ScannedMaterialFidelitySession&&!(wallPreview instanceof GeologyFidelitySession)&&<aside data-quarry-controls data-material-fidelity-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>MATERIAL FIDELITY · C8 3× · ORIGINAL 35.557m SCOPE{!wallPreview.scannedEnabled&&" · C5.1 COMPARISON"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setScannedMaterial(false)}>Public material comparison</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setScannedMaterial(true,3)}>3× material / retry</button></aside>}
       {showQuarryReviewControls&&wallPreview instanceof ScannedRockMaterialSession&&!(wallPreview instanceof ScannedCompositionSession)&&!(wallPreview instanceof ScannedMaterialFidelitySession)&&<aside data-quarry-controls data-scanned-material-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>RECOVERED C8 MATERIAL · {wallPreview.scannedEnabled?`${wallPreview.textureScale}× · C5.1 HOST`:"C5.1 COMPARISON"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setScannedMaterial(false)}>C5.1 material</button>{" "}{([1,2,3,4] as const).map(scale=><button key={scale} disabled={wallState.busy} onClick={()=>wallPreview.setScannedMaterial(true,scale)}>C8 {scale}×{scale===3?" approved":""}</button>)}</aside>}
       {showQuarryReviewControls&&wallPreview instanceof QuarryFoundationSession&&!(wallPreview instanceof ScannedRockMaterialSession)&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>DARK ROCK FOUNDATION{wallPreview.refinement?" · FRACTURE REFINEMENT":" · TWO CONNECTED REGIONS"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setFoundation(false)}>Connected baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setFoundation(true)}>Foundation regions</button></aside>}

@@ -10,7 +10,7 @@ export default function CaveEntrance({session, quality, needed}: {session: CaveE
   const state = useSyncExternalStore(session.subscribe, session.snapshot, session.snapshot);
   const {gl, scene, camera} = useThree();
   useEffect(() => { if (needed) session.requireCave(); }, [needed, session, state.mode]);
-  const entranceReady = session.entranceReady, materialRevision = session.materialRevision;
+  const entranceReady = session.entranceReady, materialRevision = session.entranceRevision;
   const clone = useMemo(() => {
     if (!state.assetReady || !entranceReady || materialRevision < 1) return null;
     return session.cloneEntrance();
@@ -18,6 +18,12 @@ export default function CaveEntrance({session, quality, needed}: {session: CaveE
   const parts = useMemo(() => clone ? session.entranceParts.map(part => ({...part, level: 2,
     point: new THREE.Vector3().fromArray(part.center), meshes: part.nodes.map(name => clone.getObjectByName(name) as THREE.Mesh)})) : [], [clone, session]);
   const size = useRef(new THREE.Vector2()), warmed = useRef(0);
+  // Track the committed render clone, not an abandoned StrictMode render.
+  useEffect(() => {
+    if (!clone) return;
+    session.entranceRoot = new WeakRef(clone);
+    return () => { if (session.entranceRoot?.deref() === clone) session.entranceRoot = null; };
+  }, [clone,session]);
   useEffect(() => { if (!clone) return; session.retainConsumer(); return () => session.releaseConsumer(); }, [clone, session]);
   useEffect(() => { warmed.current = 0; }, [state.busy, state.revision]);
   useFrame(() => {

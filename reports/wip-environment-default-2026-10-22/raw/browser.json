@@ -1,0 +1,4361 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "Bare landing URL selects existing natural cave + C9 + approved 3x",
+      "url": "http://127.0.0.1:3000/",
+      "state": {
+        "phase": "landing",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "38df41e1-0d4a-4ec0-b0b0-1b424461b87a",
+          "source": "701375e5-833d-4d44-9abe-661c21a92e8e",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "Real entrance choreography reaches C9 hub without selectors",
+      "url": "http://127.0.0.1:3000/",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "38df41e1-0d4a-4ec0-b0b0-1b424461b87a",
+          "source": "701375e5-833d-4d44-9abe-661c21a92e8e",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "Aerial map retains default C9 owner",
+      "url": "http://127.0.0.1:3000/",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": true,
+        "mapStage": "open",
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "38df41e1-0d4a-4ec0-b0b0-1b424461b87a",
+          "source": "701375e5-833d-4d44-9abe-661c21a92e8e",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "Original Aftermovie plays with default C9 owner",
+      "url": "http://127.0.0.1:3000/aftermovie",
+      "state": {
+        "phase": "local",
+        "scene": "aftermovie",
+        "destination": "aftermovie",
+        "serial": 1,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": true,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "38df41e1-0d4a-4ec0-b0b0-1b424461b87a",
+          "source": "701375e5-833d-4d44-9abe-661c21a92e8e",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "Return from stage keeps the same Canvas, cave and C9",
+      "url": "http://127.0.0.1:3000/?arrival=hub",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 2,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "38df41e1-0d4a-4ec0-b0b0-1b424461b87a",
+          "source": "701375e5-833d-4d44-9abe-661c21a92e8e",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "History and direct reload keep selected default without review flags",
+      "url": "http://127.0.0.1:3000/?arrival=hub",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "b06d58f8-f4b1-4dd7-9383-820588ace42a",
+          "source": "07de74f7-1b10-438d-9e51-2758b8f13f01",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "Unfinished texture study remains explicitly selectable on WIP",
+      "url": "http://127.0.0.1:3000/?entranceReview=material-study&caveMaterial=rock_01&caveFeatureScale=2",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "19d10434-949a-47a4-bdc5-83f55e0c1a12",
+          "source": "ed6991d4-1647-4e55-a401-e633dbddbd79",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "study": {
+        "selected": "rock_01",
+        "featureScale": 2,
+        "ready": true,
+        "error": null,
+        "active": "rock_01",
+        "geometryMode": "baseline",
+        "geometryURL": "/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+        "pilot": {
+          "requested": false,
+          "ready": false,
+          "failed": false,
+          "bytes": 481588,
+          "sha256": "5af0963c0a87a932b17be7777141686bf50c4128813c9fc768c7de7b398a3386",
+          "sourceScale": 0.85,
+          "regionLengthM": 9
+        },
+        "geometrySHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "quarrySamplerScale": 3,
+        "studySourceImages": 3,
+        "retiredFamilies": 0,
+        "textureWrappers": 3,
+        "decodedRGBA8MipEstimateBytes": 268435456,
+        "maps": [
+          {
+            "name": "Cave_Study_rock_01_basecolor.jpg",
+            "uuid": "6c96d322-741a-4a3e-8e7a-af65f4ea0ce1",
+            "source": "c5dda173-8187-4435-a540-216967153475",
+            "repeat": [
+              0.18534612740581588,
+              0.18534612740581588
+            ],
+            "channel": 0,
+            "colorSpace": "srgb",
+            "flipY": false
+          },
+          {
+            "name": "Cave_Study_rock_01_orm.png",
+            "uuid": "bab9190c-efd5-4069-b0c9-987245d62bf1",
+            "source": "1ae946c6-53b5-40f2-9c26-bb9a8353c432",
+            "repeat": [
+              0.18534612740581588,
+              0.18534612740581588
+            ],
+            "channel": 0,
+            "colorSpace": "",
+            "flipY": false
+          },
+          {
+            "name": "Cave_Study_rock_01_normal.png",
+            "uuid": "f3a120aa-a9ee-4d8b-bffc-d5dada48ce74",
+            "source": "a904965a-5dc0-4973-9db4-ae636e133ec1",
+            "repeat": [
+              0.18534612740581588,
+              0.18534612740581588
+            ],
+            "channel": 0,
+            "colorSpace": "",
+            "flipY": false
+          }
+        ],
+        "publicDefaultChanged": false,
+        "newDynamicLights": 0
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "Optional unfinished 9m pilot loads only after explicit selection",
+      "url": "http://127.0.0.1:3000/?entranceReview=material-study&caveMaterial=rock_01&caveFeatureScale=2",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "19d10434-949a-47a4-bdc5-83f55e0c1a12",
+          "source": "ed6991d4-1647-4e55-a401-e633dbddbd79",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "study": {
+        "selected": "rock_01",
+        "featureScale": 2,
+        "ready": true,
+        "error": null,
+        "active": "rock_01",
+        "geometryMode": "pilot",
+        "geometryURL": "/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+        "pilot": {
+          "requested": true,
+          "ready": true,
+          "failed": false,
+          "bytes": 481588,
+          "sha256": "5af0963c0a87a932b17be7777141686bf50c4128813c9fc768c7de7b398a3386",
+          "sourceScale": 0.85,
+          "regionLengthM": 9
+        },
+        "geometrySHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "quarrySamplerScale": 3,
+        "studySourceImages": 3,
+        "retiredFamilies": 0,
+        "textureWrappers": 3,
+        "decodedRGBA8MipEstimateBytes": 268435456,
+        "maps": [
+          {
+            "name": "Cave_Study_rock_01_basecolor.jpg",
+            "uuid": "6c96d322-741a-4a3e-8e7a-af65f4ea0ce1",
+            "source": "c5dda173-8187-4435-a540-216967153475",
+            "repeat": [
+              0.18534612740581588,
+              0.18534612740581588
+            ],
+            "channel": 0,
+            "colorSpace": "srgb",
+            "flipY": false
+          },
+          {
+            "name": "Cave_Study_rock_01_orm.png",
+            "uuid": "bab9190c-efd5-4069-b0c9-987245d62bf1",
+            "source": "1ae946c6-53b5-40f2-9c26-bb9a8353c432",
+            "repeat": [
+              0.18534612740581588,
+              0.18534612740581588
+            ],
+            "channel": 0,
+            "colorSpace": "",
+            "flipY": false
+          },
+          {
+            "name": "Cave_Study_rock_01_normal.png",
+            "uuid": "f3a120aa-a9ee-4d8b-bffc-d5dada48ce74",
+            "source": "a904965a-5dc0-4973-9db4-ae636e133ec1",
+            "repeat": [
+              0.18534612740581588,
+              0.18534612740581588
+            ],
+            "channel": 0,
+            "colorSpace": "",
+            "flipY": false
+          }
+        ],
+        "publicDefaultChanged": false,
+        "newDynamicLights": 0
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "Historical C5.1 comparison still available",
+      "url": "http://127.0.0.1:3000/?quarryReview=foundation-refined",
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "canvasCount": 1
+    },
+    {
+      "name": "Mobile-aspect landing selects the approved default cave",
+      "url": "http://127.0.0.1:3000/?arrival=entrance",
+      "state": {
+        "phase": "landing",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "textureScale": 3,
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "5a1d0f04-d0dc-4ae7-86eb-2388920fbf47",
+          "source": "0dc0c516-87e3-4e2d-b75e-51ecb118bfd3",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "cave": {
+        "ready": true,
+        "failed": false,
+        "bytes": 4603424,
+        "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "parts": [
+          {
+            "id": "Entrance",
+            "nodes": [
+              "Cave_Entrance_LOD0",
+              "Cave_Entrance_LOD1",
+              "Cave_Entrance_LOD2"
+            ],
+            "triangles": [
+              18000,
+              9000,
+              4200
+            ],
+            "materialRole": "rock",
+            "center": [
+              -2.5,
+              7.759920626878738,
+              -7.033431053161621
+            ],
+            "radius": 35.27385589228208,
+            "bounds": [
+              [
+                -35,
+                -0.3800000548362732,
+                -18.066862106323242
+              ],
+              [
+                30,
+                15.89984130859375,
+                4
+              ]
+            ]
+          },
+          {
+            "id": "Throat",
+            "nodes": [
+              "Cave_Throat_LOD0",
+              "Cave_Throat_LOD1",
+              "Cave_Throat_LOD2"
+            ],
+            "triangles": [
+              4400,
+              2500,
+              1600
+            ],
+            "materialRole": "rock",
+            "center": [
+              -0.720484733581543,
+              2.8836980760097504,
+              -1.5345596075057983
+            ],
+            "radius": 7.4555652740077045,
+            "bounds": [
+              [
+                -5.651337623596191,
+                -0.48260337114334106,
+                -6
+              ],
+              [
+                4.2103681564331055,
+                6.249999523162842,
+                2.9308807849884033
+              ]
+            ]
+          },
+          {
+            "id": "Passage1",
+            "nodes": [
+              "Cave_Passage1_LOD0",
+              "Cave_Passage1_LOD1",
+              "Cave_Passage1_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -3.613776445388794,
+              2.7218260020017624,
+              -10.5
+            ],
+            "radius": 7.770815792085589,
+            "bounds": [
+              [
+                -9.255642890930176,
+                -0.1599999964237213,
+                -15
+              ],
+              [
+                2.028090000152588,
+                5.603652000427246,
+                -6
+              ]
+            ]
+          },
+          {
+            "id": "Passage2",
+            "nodes": [
+              "Cave_Passage2_LOD0",
+              "Cave_Passage2_LOD1",
+              "Cave_Passage2_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -5.803726851940155,
+              2.6474272459745407,
+              -19.5
+            ],
+            "radius": 6.71425778263175,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -24
+              ],
+              [
+                -1.6867364645004272,
+                5.454854488372803,
+                -15
+              ]
+            ]
+          },
+          {
+            "id": "Passage3",
+            "nodes": [
+              "Cave_Passage3_LOD0",
+              "Cave_Passage3_LOD1",
+              "Cave_Passage3_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -4.526358634233475,
+              2.6253020018339157,
+              -28.5
+            ],
+            "radius": 7.55691815374595,
+            "bounds": [
+              [
+                -9.920717239379883,
+                -0.1599999964237213,
+                -33
+              ],
+              [
+                0.8679999709129333,
+                5.410604000091553,
+                -24
+              ]
+            ]
+          },
+          {
+            "id": "Passage4",
+            "nodes": [
+              "Cave_Passage4_LOD0",
+              "Cave_Passage4_LOD1",
+              "Cave_Passage4_LOD2"
+            ],
+            "triangles": [
+              6400,
+              2900,
+              1500
+            ],
+            "materialRole": "rock",
+            "center": [
+              -1.6377575397491455,
+              2.7199999541044235,
+              -37.5
+            ],
+            "radius": 7.368333269911156,
+            "bounds": [
+              [
+                -6.711999893188477,
+                -0.1599999964237213,
+                -42
+              ],
+              [
+                3.4364848136901855,
+                5.599999904632568,
+                -33
+              ]
+            ]
+          },
+          {
+            "id": "Floor",
+            "nodes": [
+              "Cave_Floor_LOD0",
+              "Cave_Floor_LOD1",
+              "Cave_Floor_LOD2"
+            ],
+            "triangles": [
+              736,
+              736,
+              736
+            ],
+            "materialRole": "floor",
+            "center": [
+              -2.6550002098083496,
+              0.012000000104308128,
+              -19
+            ],
+            "radius": 24.08721710788437,
+            "bounds": [
+              [
+                -9.8100004196167,
+                0.012000000104308128,
+                -42
+              ],
+              [
+                4.5,
+                0.012000000104308128,
+                4
+              ]
+            ]
+          }
+        ],
+        "source": {
+          "asset": "coastal_cliff_04",
+          "license": "CC0 1.0",
+          "page": "https://polyhaven.com/a/coastal_cliff_04",
+          "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+          "uniformScaleXYZ": [
+            1.7,
+            1.7,
+            1.7
+          ],
+          "croppedNotFit": true
+        },
+        "edition": "stage3a",
+        "tunnelTextureFeatureScale": 1,
+        "localTextureSampling": null,
+        "approvedTextureScale": 3,
+        "newImages": 0,
+        "visibleFixtures": 0,
+        "visibilityLoading": {
+          "requested": true,
+          "deferredWhileOffscreen": false,
+          "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+        },
+        "localTerrainClearance": {
+          "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+          "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+          "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+          "runtimeBytes": 397124,
+          "boundsOfOnlyRemovedVolume": [
+            [
+              -4.5,
+              -0.12,
+              -7.5
+            ],
+            [
+              4.5,
+              7.5,
+              13
+            ]
+          ],
+          "tiles": [
+            {
+              "tile": "1_2",
+              "inputTriangles": 959,
+              "unchangedOutsideTriangles": 952,
+              "candidateIntersectingTriangles": 7,
+              "trianglesClippedByVolume": 7,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 974
+            },
+            {
+              "tile": "2_2",
+              "inputTriangles": 946,
+              "unchangedOutsideTriangles": 940,
+              "candidateIntersectingTriangles": 6,
+              "trianglesClippedByVolume": 5,
+              "zeroAreaIntersectionFragmentsDiscarded": 0,
+              "outputTriangles": 959
+            }
+          ],
+          "targetNodes": [
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_2_LOD1",
+            "Foundation_Terrain_1_2_LOD2",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_2_LOD1",
+            "Foundation_Terrain_2_2_LOD2"
+          ],
+          "runtimeNodes": [
+            "Cave_Entry_Clearance_1_2_LOD0",
+            "Cave_Entry_Clearance_1_2_LOD1",
+            "Cave_Entry_Clearance_1_2_LOD2",
+            "Cave_Entry_Clearance_2_2_LOD0",
+            "Cave_Entry_Clearance_2_2_LOD1",
+            "Cave_Entry_Clearance_2_2_LOD2"
+          ],
+          "originalGroundRegistryAndC9RockAssetsChanged": false
+        },
+        "lighting": {
+          "newDynamicLights": 0,
+          "visibleFixtures": 0,
+          "globalLightingChanged": false,
+          "localOpeningResponse": 1,
+          "method": "Analytical local overburden/spill proxy, not baked GI"
+        },
+        "completeStage3A": false,
+        "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+      },
+      "canvasCount": 1
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+    "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/entry-clearance.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/recovered-c8-material/scanned-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-bake.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+    "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+    "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/entry-clearance.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/recovered-c8-material/scanned-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-bake.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+    "http://127.0.0.1:3000/models/gullyverse/cave-material-study/rock_01/basecolor.jpg",
+    "http://127.0.0.1:3000/models/gullyverse/cave-material-study/rock_01/normal.png",
+    "http://127.0.0.1:3000/models/gullyverse/cave-material-study/rock_01/orm.png",
+    "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+    "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/entry-clearance.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/recovered-c8-material/scanned-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-bake.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+    "http://127.0.0.1:3000/models/gullyverse/cave-material-study/emboss-pilot.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+    "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+    "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/entry-clearance.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/recovered-c8-material/scanned-materials.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-bake.glb",
+    "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb"
+  ],
+  "physicalHardware": false,
+  "renderer": "Headless Chromium / software renderer; not hardware acceptance",
+  "viewport": "1000x700 and 390x844, DPR .35, tier3 preparation",
+  "scope": "Default selection, journey, map, stage playback, history/reload and unfinished preview availability. Existing art limitations remain."
+}

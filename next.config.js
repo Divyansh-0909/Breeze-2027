@@ -1,5 +1,10 @@
 // next.config.js
 module.exports = {
+  // Enable the user-selected environment only on the WIP branch deployment.
+  // Vercel supplies this at build time; main keeps its existing default.
+  env: {
+    NEXT_PUBLIC_GULLYVERSE_WIP_DEFAULT: process.env.VERCEL_GIT_COMMIT_REF === 'work-in-progress-2027' ? '1' : '0',
+  },
   serverExternalPackages: ['pdf-parse', '@napi-rs/canvas', 'tesseract.js', 'tesseract.js-core'],
   experimental: {
     serverActions: {

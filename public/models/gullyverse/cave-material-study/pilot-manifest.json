@@ -1,0 +1,93 @@
+{
+  "privateOnly": true,
+  "productionApproved": false,
+  "status": "DIAGNOSTIC_PENDING_STRICT_VALIDATION",
+  "region": "Passage2",
+  "regionLengthM": 9,
+  "stationsBlenderM": [
+    15,
+    24
+  ],
+  "replaceNodes": [
+    "Cave_Passage2_LOD0",
+    "Cave_Passage2_LOD1",
+    "Cave_Passage2_LOD2"
+  ],
+  "runtime": "emboss-pilot.glb",
+  "runtimeBytes": 481588,
+  "runtimeSHA256": "5af0963c0a87a932b17be7777141686bf50c4128813c9fc768c7de7b398a3386",
+  "source": {
+    "asset": "namaqualand_cliff_01",
+    "page": "https://polyhaven.com/a/namaqualand_cliff_01",
+    "license": "CC0 1.0",
+    "nativeBoundsM": [
+      [
+        -3.872086524963379,
+        4.406957149505615
+      ],
+      [
+        -0.7795994281768799,
+        3.610534191131592
+      ],
+      [
+        -0.41918590664863586,
+        4.541877269744873
+      ]
+    ],
+    "uniformScaleXYZ": [
+      0.85,
+      0.85,
+      0.85
+    ],
+    "rotation": "Rigid quarter-turn aboutZ",
+    "translationBlenderM": [
+      -9.12,
+      19.5,
+      0.1
+    ]
+  },
+  "authorHigh": {
+    "vertices": 377316,
+    "polygons": 376670,
+    "voxelSizeM": 0.065,
+    "rockBodyThicknessM": 3.8,
+    "booleanModifiers": 0
+  },
+  "runtimeCages": [
+    {
+      "LOD": 0,
+      "triangles": 6400,
+      "boundaryVerticesPinned": 618,
+      "maximumMovementM": 0.5833400358016538,
+      "movedVertices": 1001,
+      "clearanceProjectionsRejected": 0,
+      "specificFoldVertexRepairs": 171
+    },
+    {
+      "LOD": 1,
+      "triangles": 2900,
+      "boundaryVerticesPinned": 616,
+      "maximumMovementM": 0.5502952365777741,
+      "movedVertices": 403,
+      "clearanceProjectionsRejected": 0,
+      "specificFoldVertexRepairs": 34
+    },
+    {
+      "LOD": 2,
+      "triangles": 1500,
+      "boundaryVerticesPinned": 615,
+      "maximumMovementM": 0.5502952365777741,
+      "movedVertices": 166,
+      "clearanceProjectionsRejected": 0,
+      "specificFoldVertexRepairs": 6
+    }
+  ],
+  "limitations": "Nearest-surface retopology can lose deep hidden undercuts; evaluate actual neutral geometry before adoption. Not a scan of a cave.",
+  "frozenInputs": {
+    "assets-source/gullyverse/c9-cave-recovery/cave-entrance-working.blend": "bf18482a3c019eddf9e1c4a64d7b69177af215c6443b1ea0dda2ba78806eff5f",
+    "public/models/gullyverse/c9-cave-recovery/cave-entrance.glb": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+    "assets-source/gullyverse/cave-material-study/licensed-source/namaqualand_cliff_01/namaqualand_cliff_01_1k.blend": "eba0ae3947ec26c866f9174b6a70816d96b1d3c543356fa6d27f0d8a4eef09f1"
+  },
+  "newTextureImages": 0,
+  "collisionChanged": false
+}

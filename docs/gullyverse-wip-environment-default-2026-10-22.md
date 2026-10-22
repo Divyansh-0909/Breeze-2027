@@ -1,0 +1,15 @@
+# WIP default environment and unfinished-study inclusion
+
+The user explicitly approved enabling the 3× rock texture, C9 quarry and existing cave by default on the WIP website, then separately requested including the unfinished texture work. Starting commit: `7e65fa58ce949eba5125d6c59f00814eb88bec6a`.
+
+`next.config.js` exposes a build-time flag only when Vercel's Git branch is `work-in-progress-2027`. Ordinary WIP URLs select the existing Stage3A CaveEntranceSession, which inherits the selected corrected C9 geology and approved C8 3× material. Direct routes, history, map travel and returning from the original Aftermovie all use this same persistent owner. No manual review flags are required for the default. Main and other branches retain their existing C5.1 default.
+
+Explicit historical review selectors retain precedence. C5.1 remains available through `?quarryReview=foundation-refined`; legacy original geometry remains available through `?quarry=original`. The new default does not regenerate any geometry, resample approved materials, change lighting or edit movement, stage, scaffold or destination coordinates.
+
+The unfinished cave material study is now included as an explicitly selectable experiment. Its module, integration, ten runtime material sets, source maps/Blender master, local pilot GLB, scripts, tests and partial screenshot evidence are retained. Source maps use Git LFS; visitor runtime maps remain ordinary Git files. Redundant provider archives, Blender autosaves and caches are omitted. See the study STATUS.md for the exact incomplete scope. It is not the default and is not declared final production art.
+
+Validation: production build PASS; TypeScript PASS; 103 immersive unit tests PASS, including WIP/main/other/unconfigured branch gating. Build lint passes with preserved existing warnings. The actual-browser production check passed ten checkpoints: bare landing, real cave traversal to C9 hub, aerial map, original Aftermovie playback, return with the same Canvas, history/reload, experimental texture selection, optional pilot loading, retained C5.1 comparison and mobile-aspect landing. No study textures were requested by the ordinary landing default. Test viewport 1000×700 / 390×844, DPR 0.35, tier3 preparation on software Chromium; these results are not physical-device certification.
+
+The cave and quarry retain their previously documented art, inherited visibility and cold-preparation limitations. This bounded change enables and preserves existing work; it does not finish the cave art, the interrupted texture comparison, final graffiti or physical hardware testing.
+
+A separate versioned Drive checkpoint under the WIP handoff hierarchy preserves this change and the previously incomplete asset collection. It reuses two earlier verified binary parts and the unchanged completed recovery dependency; fresh part metadata and download-back SHA-256 verification are recorded in the final checkpoint index/receipt. This report alone does not certify the upload: consult that receipt for final verification.
