@@ -31,13 +31,22 @@ export async function verifyAuth(): Promise<AuthResult> {
             };
         }
 
-        const { data: role, error: roleError } = await supabase
+        let { data: role } = await supabase
             .from("Roles")
             .select("club_name")
             .eq("id", user.id)
-            .single();
+            .maybeSingle();
 
-        if (roleError || !role) {
+        if (!role && user.email) {
+            const { data: roleByEmail } = await supabase
+                .from("Roles")
+                .select("club_name")
+                .ilike("email", user.email)
+                .maybeSingle();
+            role = roleByEmail;
+        }
+
+        if (!role) {
             return {
                 authenticated: false,
                 response: NextResponse.json(

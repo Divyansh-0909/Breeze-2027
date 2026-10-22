@@ -1,6 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -37,33 +36,63 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user && !request.nextUrl.pathname.startsWith("/admin/login")) {
-    // no user, redirect to the admin login page
+  const isLoginRoute = request.nextUrl.pathname.startsWith("/admin/login");
+
+  if (!user && !isLoginRoute) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     return NextResponse.redirect(url);
   }
 
   if (user) {
-    const { data, error } = await supabase
+    let clubName: string | null = null;
+
+    // Check role by ID first
+    const { data: roleById } = await supabase
       .from("Roles")
-      .select("*")
-      .eq("email", user.email);
-    if (error) {
-      console.error(error);
+      .select("club_name")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (roleById?.club_name) {
+      clubName = roleById.club_name;
+    } else if (user.email) {
+      // Fallback to checking role by email (case-insensitive)
+      const { data: roleByEmail } = await supabase
+        .from("Roles")
+        .select("club_name")
+        .ilike("email", user.email)
+        .maybeSingle();
+      if (roleByEmail?.club_name) {
+        clubName = roleByEmail.club_name;
+      }
+    }
+
+    // If user is already logged in and attempts to access /admin/login
+    if (isLoginRoute) {
+      const url = request.nextUrl.clone();
+      if (clubName === "BREEZE") {
+        url.pathname = "/admin/breeze-admin";
+        return NextResponse.redirect(url);
+      } else if (clubName) {
+        url.pathname = "/admin/clubs";
+        return NextResponse.redirect(url);
+      }
+    }
+
+    // If user has no assigned role, prevent access to protected admin portals
+    if (!clubName && !isLoginRoute) {
       const url = request.nextUrl.clone();
       url.pathname = "/admin/login";
+      url.searchParams.set("error", "no_role");
       return NextResponse.redirect(url);
     }
-    
-    const clubName = data && data.length > 0 ? data[0].club_name : null;
 
-    // If the clubs user is not a BREEZE admin, redirect to the clubs page
+    // If a club user tries to access BREEZE admin routes
     if (
       clubName !== "BREEZE" &&
       (request.nextUrl.pathname.startsWith("/admin/breeze-admin") ||
-        request.nextUrl.pathname.startsWith("/api/breeze-admin")) &&
-      !request.nextUrl.pathname.startsWith("/admin/login")
+        request.nextUrl.pathname.startsWith("/api/breeze-admin"))
     ) {
       const url = request.nextUrl.clone();
       url.pathname = "/admin/clubs";

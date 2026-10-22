@@ -9,41 +9,39 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Roles } from "@prisma/client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
-
 import { createEvent } from "./actions";
+import { Plus } from "lucide-react";
 
 export default function AddEvent({ curr_club }: { curr_club: Roles }) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
   const [isMultiDay, setIsMultiDay] = useState(false);
   const [hasPairPricing, setHasPairPricing] = useState(false);
+  const [eventType, setEventType] = useState("Cultural");
   const router = useRouter();
 
-  const MAX_FILE_SIZE = 4 * 1024 * 1024; // 5MB in bytes
+  const MAX_FILE_SIZE = 4 * 1024 * 1024;
 
-  const validateFileSize = (file: File) => {
-    if (file.size > MAX_FILE_SIZE) {
-      return false;
-    }
-    return true;
-  };
+  const validateFileSize = (file: File) => file.size <= MAX_FILE_SIZE;
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return format(date, "MMM do yyyy");
   };
 
-
-
   async function handleSubmit(formData: FormData) {
     const posterFile = formData.get("event_poster") as File;
-
     if (!validateFileSize(posterFile)) {
       setError("Image size must be less than 4MB");
       return;
@@ -51,8 +49,6 @@ export default function AddEvent({ curr_club }: { curr_club: Roles }) {
 
     const rawDate = formData.get("event_date") as string;
     const formattedDate = formatDate(rawDate);
-
-    // Handle end date for multi-day events
     const rawEndDate = formData.get("event_end_date") as string;
     const formattedEndDate = rawEndDate ? formatDate(rawEndDate) : null;
 
@@ -66,229 +62,175 @@ export default function AddEvent({ curr_club }: { curr_club: Roles }) {
         modifiedFormData.append(key, value);
       }
     });
+    modifiedFormData.set("event_type", eventType);
 
     const result = await createEvent(modifiedFormData);
     if (result.success) {
       setOpen(false);
+      setError("");
+      setIsMultiDay(false);
+      setHasPairPricing(false);
+      setEventType("Cultural");
       router.refresh();
     } else {
       setError(result.error || "An error occurred");
     }
   }
 
+  const inputStyle = {
+    background: '#0a0a0a',
+    border: '1px solid #262626',
+    color: '#e5e5e5',
+  };
+
   return (
-    <div className="flex justify-end mb-8">
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button className="bg-[#202020] hover:bg-[#303030] text-white font-medium px-6 py-2.5 rounded-lg transition-all">
-            + Create Event
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-white border-[#202020]/10">
-          <DialogHeader className="pb-4 border-b border-[#202020]/10">
-            <DialogTitle className="text-3xl font-bold text-[#202020] tracking-tight">
-              Create New Event
-            </DialogTitle>
-            <p className="text-sm text-gray-500 mt-2">
-              Fill in the details to create a new event for your club
-            </p>
-          </DialogHeader>
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm font-medium">
-              {error}
-            </div>
-          )}
-          <form action={handleSubmit} className="space-y-5 pt-4">
-            <input type="hidden" name="event_org" value={curr_club.club_name} />
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <button
+          className="flex items-center gap-1.5 px-3 py-[6px] rounded-md text-[13px] font-medium transition-colors duration-100 cursor-pointer"
+          style={{ background: '#e5e5e5', color: '#0a0a0a' }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = '#d4d4d4'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = '#e5e5e5'; }}
+        >
+          <Plus size={14} strokeWidth={2} />
+          Create Event
+        </button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[520px] max-h-[90vh] overflow-y-auto p-0 gap-0" style={{ background: '#141414', border: '1px solid #1e1e1e', color: '#e5e5e5' }}>
+        <DialogHeader className="px-5 py-4" style={{ borderBottom: '1px solid #1e1e1e' }}>
+          <DialogTitle className="text-[15px] font-semibold tracking-[-0.01em]" style={{ color: '#e5e5e5' }}>
+            Create Event
+          </DialogTitle>
+          <p className="text-[12px] mt-1" style={{ color: '#666' }}>
+            Add a new event for {curr_club.club_name}
+          </p>
+        </DialogHeader>
 
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-[#202020]">
-                Event Name *
-              </label>
-              <Input
-                name="event_name"
-                className="w-full border-[#202020]/20 focus:border-[#202020] focus:ring-[#202020] bg-gray-50"
-                placeholder="e.g., Annual Music Concert"
-                required
+        {error && (
+          <div className="mx-5 mt-4 px-3 py-2 rounded-md text-[12px]" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)', color: '#f87171' }}>
+            {error}
+          </div>
+        )}
+
+        <form action={handleSubmit} className="p-5 space-y-4">
+          <input type="hidden" name="event_org" value={curr_club.club_name} />
+
+          <div className="space-y-1.5">
+            <label className="text-[12px] font-medium" style={{ color: '#aaa' }}>Event Name</label>
+            <Input name="event_name" placeholder="e.g., Annual Music Concert" required className="h-8 text-[13px] rounded-md" style={inputStyle} />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-[12px] font-medium" style={{ color: '#aaa' }}>Description</label>
+            <Textarea name="event_description" placeholder="Describe the event..." required className="min-h-[80px] text-[13px] rounded-md resize-none" style={inputStyle} />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-[12px] font-medium" style={{ color: '#aaa' }}>Event Type</label>
+            <Select value={eventType} onValueChange={setEventType}>
+              <SelectTrigger className="h-9 text-[13px] rounded-md font-medium border border-[#383842] bg-[#18181c] text-[#f4f4f5]">
+                <SelectValue placeholder="Select type" />
+              </SelectTrigger>
+              <SelectContent className="border border-[#383842] bg-[#18181c] text-[#f4f4f5] shadow-2xl">
+                <SelectItem value="Cultural">Cultural</SelectItem>
+                <SelectItem value="Technical">Technical</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <label className="text-[12px] font-medium" style={{ color: '#888' }}>Price (₹)</label>
+              <Input type="number" name="event_price" placeholder="500" min="0" required className="h-8 text-[13px] rounded-md" style={inputStyle} />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-[12px] font-medium" style={{ color: '#888' }}>Venue</label>
+              <Input name="event_venue" placeholder="Main Auditorium" required className="h-8 text-[13px] rounded-md" style={inputStyle} />
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-[12px] font-medium" style={{ color: '#888' }}>Start Date</label>
+            <Input type="date" name="event_date" required className="h-8 text-[13px] rounded-md" style={inputStyle} />
+          </div>
+
+          {/* Multi-day toggle */}
+          <div className="rounded-md p-3" style={{ background: '#0f0f0f', border: '1px solid #1e1e1e' }}>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={isMultiDay}
+                onChange={(e) => setIsMultiDay(e.target.checked)}
+                className="w-3.5 h-3.5 rounded"
+                style={{ accentColor: '#e5e5e5' }}
               />
-            </div>
+              <span className="text-[12px] font-medium" style={{ color: '#aaa' }}>Multi-day event</span>
+            </label>
+            {isMultiDay && (
+              <div className="mt-3 space-y-1.5">
+                <label className="text-[12px] font-medium" style={{ color: '#888' }}>End Date</label>
+                <Input type="date" name="event_end_date" required={isMultiDay} className="h-8 text-[13px] rounded-md" style={inputStyle} />
+              </div>
+            )}
+          </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-[#202020]">
-                Description *
-              </label>
-              <Textarea
-                name="event_description"
-                className="w-full min-h-[100px] border-[#202020]/20 focus:border-[#202020] focus:ring-[#202020] bg-gray-50 resize-none"
-                placeholder="Describe what attendees can expect from this event..."
-                required
+          {/* Pair pricing toggle */}
+          <div className="rounded-md p-3" style={{ background: '#0f0f0f', border: '1px solid #1e1e1e' }}>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={hasPairPricing}
+                onChange={(e) => setHasPairPricing(e.target.checked)}
+                className="w-3.5 h-3.5 rounded"
+                style={{ accentColor: '#e5e5e5' }}
               />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-[#202020]">
-                Event Type *
-              </label>
-              <select
-                name="event_type"
-                className="w-full h-10 px-3 border border-[#202020]/20 rounded-md focus:border-[#202020] focus:ring-[#202020] focus:ring-1 bg-gray-50 text-sm"
-                required
-              >
-                <option value="">Select event type</option>
-                <option value="Cultural">Cultural</option>
-                <option value="Technical">Technical</option>
-              </select>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-[#202020]">
-                  Price (₹) *
-                </label>
-                <Input
-                  type="number"
-                  name="event_price"
-                  className="w-full border-[#202020]/20 focus:border-[#202020] focus:ring-[#202020] bg-gray-50"
-                  placeholder="500"
-                  min="0"
-                  required
-                />
+              <span className="text-[12px] font-medium" style={{ color: '#aaa' }}>Pair ticket pricing</span>
+            </label>
+            {hasPairPricing && (
+              <div className="mt-3 space-y-1.5">
+                <label className="text-[12px] font-medium" style={{ color: '#888' }}>Pair Price (₹)</label>
+                <Input type="number" name="event_pair_price" placeholder="800" min="0" required={hasPairPricing} className="h-8 text-[13px] rounded-md" style={inputStyle} />
               </div>
+            )}
+          </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-[#202020]">
-                  Venue *
-                </label>
-                <Input
-                  name="event_venue"
-                  className="w-full border-[#202020]/20 focus:border-[#202020] focus:ring-[#202020] bg-gray-50"
-                  placeholder="Main Auditorium"
-                  required
-                />
-              </div>
-            </div>
+          <div className="space-y-1.5">
+            <label className="text-[12px] font-medium" style={{ color: '#888' }}>Event Poster</label>
+            <Input
+              type="file"
+              name="event_poster"
+              accept="image/*"
+              required
+              className="h-auto py-1.5 text-[12px] rounded-md file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:text-[12px] file:font-medium file:cursor-pointer"
+              style={{ ...inputStyle, color: '#888' }}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file && !validateFileSize(file)) setError("Image size must be less than 4MB");
+                else setError("");
+              }}
+            />
+            <p className="text-[11px]" style={{ color: '#555' }}>Max 4MB · JPG, PNG, WEBP</p>
+          </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-[#202020]">
-                Start Date *
-              </label>
-              <Input
-                type="date"
-                name="event_date"
-                className="w-full border-[#202020]/20 focus:border-[#202020] focus:ring-[#202020] bg-gray-50"
-                required
-              />
-            </div>
-
-            {/* Multi-day Event Toggle */}
-            <div className="space-y-3 p-4 bg-gray-50 rounded-lg border border-[#202020]/10">
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="is_multi_day"
-                  checked={isMultiDay}
-                  onChange={(e) => setIsMultiDay(e.target.checked)}
-                  className="w-4 h-4 rounded border-[#202020]/20"
-                />
-                <label htmlFor="is_multi_day" className="text-sm font-semibold text-[#202020]">
-                  Multi-day Event (up to 3 days)
-                </label>
-              </div>
-              {isMultiDay && (
-                <div className="space-y-2 mt-3">
-                  <label className="text-sm font-semibold text-[#202020]">
-                    End Date *
-                  </label>
-                  <Input
-                    type="date"
-                    name="event_end_date"
-                    className="w-full border-[#202020]/20 focus:border-[#202020] focus:ring-[#202020] bg-gray-50"
-                    required={isMultiDay}
-                  />
-                  <span className="text-xs text-gray-500">
-                    Maximum 3 days from start date
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {/* Pair Pricing Toggle */}
-            <div className="space-y-3 p-4 bg-gray-50 rounded-lg border border-[#202020]/10">
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="has_pair_pricing"
-                  checked={hasPairPricing}
-                  onChange={(e) => setHasPairPricing(e.target.checked)}
-                  className="w-4 h-4 rounded border-[#202020]/20"
-                />
-                <label htmlFor="has_pair_pricing" className="text-sm font-semibold text-[#202020]">
-                  Enable Pair Ticket Pricing
-                </label>
-              </div>
-              {hasPairPricing && (
-                <div className="space-y-2 mt-3">
-                  <label className="text-sm font-semibold text-[#202020]">
-                    Pair Price (₹) *
-                  </label>
-                  <Input
-                    type="number"
-                    name="event_pair_price"
-                    className="w-full border-[#202020]/20 focus:border-[#202020] focus:ring-[#202020] bg-gray-50"
-                    placeholder="800"
-                    min="0"
-                    required={hasPairPricing}
-                  />
-                  <span className="text-xs text-gray-500">
-                    Price for a pair of tickets (usually discounted)
-                  </span>
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-[#202020]">
-                Event Poster *
-              </label>
-              <Input
-                type="file"
-                name="event_poster"
-                className="w-full border-[#202020]/20 focus:border-[#202020] file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#202020] file:text-white hover:file:bg-[#303030] file:cursor-pointer bg-gray-50"
-                accept="image/*"
-                required
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file && !validateFileSize(file)) {
-                    setError("Image size must be less than 4MB");
-                  } else {
-                    setError("");
-                  }
-                }}
-              />
-              <span className="text-xs text-gray-500">
-                Max file size: 4MB • Recommended: 1200×800px • JPG, PNG, WEBP
-              </span>
-            </div>
-
-            <div className="flex gap-3 pt-4 border-t border-[#202020]/10">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setOpen(false)}
-                className="flex-1 border-[#202020]/20 text-gray-600 hover:bg-gray-50"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                className="flex-1 bg-[#202020] hover:bg-[#303030] text-white font-semibold"
-              >
-                Create Event
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
-    </div>
+          <div className="flex gap-2 pt-2" style={{ borderTop: '1px solid #1e1e1e' }}>
+            <Button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="flex-1 h-8 text-[13px] font-medium rounded-md cursor-pointer"
+              style={{ background: 'transparent', border: '1px solid #262626', color: '#888' }}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="flex-1 h-8 text-[13px] font-medium rounded-md cursor-pointer"
+              style={{ background: '#e5e5e5', color: '#0a0a0a' }}
+            >
+              Create Event
+            </Button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }
