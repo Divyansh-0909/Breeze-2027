@@ -1,0 +1,15 @@
+Fidelity uses the original35.557m local region, shared C8 maps and unchanged non-target geometry PASS
+Ten C8/C9 cycles plateau; native geometry and shared image IDs are reused PASS
+Actual context loss/recovery preserves C9, pose, images and Canvas PASS
+Explicit inactive retirement and reload free only owned C9 resources PASS
+Complete fallback unmount releases local geometry and one bake without double-close PASS
+Failed fidelity-region.glb retains C8 and retries without another complete quarry download PASS
+Failed fidelity-bake.glb retains C8 and retries without another complete quarry download PASS
+Invalid local geometry with embedded PBR images is rejected and its own images closed PASS
+Delayed local geometry stays covered until both material and local owners are ready PASS
+Unmount during delayed local loading drains unpublished resources PASS
+Failed local cave-entrance.glb preserves accepted C9 and retries PASS
+Failed local entry-clearance.glb preserves accepted C9 and retries PASS
+Unexpected embedded cave textures are rejected and closed without touching shared C8 PASS
+Unmount during delayed cave loading drains unpublished geometry PASS
+Ordinary public URL remains C5.1 without C8/C9 assets or controls PASS

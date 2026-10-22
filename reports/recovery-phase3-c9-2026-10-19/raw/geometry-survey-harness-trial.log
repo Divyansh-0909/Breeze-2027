@@ -1,0 +1,15 @@
+09:36:16 | INFO: Data are loaded, start creating Blender stuff
+09:36:16 | INFO: Blender create Mesh node C9_Wall_15_LOD0
+09:36:16 | INFO: Blender create Mesh node C9_Wall_15_LOD1
+09:36:16 | INFO: Blender create Mesh node C9_Wall_15_LOD2
+09:36:16 | INFO: glTF import finished in 0.14s
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/reports/recovery-phase3-c9-2026-10-19/scripts/validate-composition.py", line 40, in <module>
+    uvs.append({'name':layer.name,'finite':bool(np.isfinite(uv).all()),'badTangentCorners':int((lengths<.99).sum())})
+                       ^^^^^^^^^^
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xc0 in position 0: invalid start byte
+
+Error: script failed, file: 'reports/recovery-phase3-c9-2026-10-19/scripts/validate-composition.py', exiting.
+Blender 4.3.2
+
+Blender quit

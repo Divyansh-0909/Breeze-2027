@@ -1,0 +1,88 @@
+{
+  "version": "recovery-phase2-c8-material",
+  "historicalSelector": "scanned-material-multi",
+  "approvedDefaultScale": 3,
+  "atlasMetresAt1x": 10.790622,
+  "atlasMetresAt3x": 32.371866000000004,
+  "hostUVUnitMetres": 2,
+  "baseUVRepeat": 0.18534612740581588,
+  "approvedUVRepeat": 0.061782042468605296,
+  "sourcePeriodsPerAtlas": {
+    "marble_rock_03": 6,
+    "rock_face_03": 4
+  },
+  "linearAlbedoGains": {
+    "marble_rock_03": 1.3489028164,
+    "rock_face_03": 0.8928655525
+  },
+  "normalStrength": 0.7,
+  "metallic": 0,
+  "ormChannels": {
+    "R": "1, no duplicate baked AO",
+    "G": "source roughness blend",
+    "B": 0
+  },
+  "colourSpaces": {
+    "basecolor": "sRGB",
+    "normal": "linear OpenGL tangent-space",
+    "orm": "linear"
+  },
+  "runtimeResolutions": {
+    "basecolor": [
+      2048,
+      2048
+    ],
+    "normal": [
+      1024,
+      1024
+    ],
+    "orm": [
+      1024,
+      1024
+    ]
+  },
+  "uniqueRuntimeImages": 3,
+  "estimatedRGBA8MipBytes": 33554432,
+  "maskReconstruction": "Explicit interrupted inclined weathered beds and source-height preference; original lost mask formula unavailable, not claimed pixel-identical",
+  "secondaryMaskRange": [
+    0.05999999865889549,
+    0.4260571002960205
+  ],
+  "albedoMeanSRGB255": [
+    118.57598876953125,
+    98.4445571899414,
+    73.96858215332031
+  ],
+  "roughnessRange": [
+    0.6972503662109375,
+    0.9872594475746155
+  ],
+  "geometryChanged": false,
+  "geometryDerivedUV1": "C5.1 has no UV1 bake; no replacement bake invented or sampled as UV0",
+  "textures": [
+    {
+      "file": "geological-weathering-mask.png",
+      "bytes": 798358,
+      "sha256": "4980c15213388400b683de7c4459f495ee98d6e10b28ec2df1228641f6addc58",
+      "runtime": false
+    },
+    {
+      "file": "scanned-multi-basecolor.jpg",
+      "bytes": 2827431,
+      "sha256": "61ff6a9fd28567f132187e51e61744077102be18dfae6aabb4527a9ab00ab740",
+      "runtime": true
+    },
+    {
+      "file": "scanned-multi-normal.png",
+      "bytes": 1935742,
+      "sha256": "2aecfd5bfe4e5a0218c3d0541530658d8cf0b188bd507fbc5ee25f7f3621e43a",
+      "runtime": true
+    },
+    {
+      "file": "scanned-multi-orm.png",
+      "bytes": 646882,
+      "sha256": "df3ad2f56daa68c5a06426ee7f306f51c4a3ee4bb6e101c813eda52493d9c4df",
+      "runtime": true
+    }
+  ]
+}

@@ -1,0 +1,4047 @@
+{
+  "build": "yMi3FGOCwP0ohacWxJzGK",
+  "runs": [
+    {
+      "mode": "c51",
+      "initialQualityOverride": null,
+      "milliseconds": 43902,
+      "preparationWallMs": 41793.29999999702,
+      "conservativeDeadlineMarginMs": 3206.7000000029802,
+      "marginNote": "Observed boot-to-local wall time; deadline excludes suspended/hidden time. Fresh isolated context, no application timeout change.",
+      "data": {
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "preparations": [
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2099.60000000149,
+            "ms": 6.600000001490116,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2523.3000000044703,
+            "ms": 15.899999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2543.5,
+            "ms": 8.300000004470348,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2551.89999999851,
+            "ms": 13,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 2912.3000000044703,
+            "ms": 47.899999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4681.89999999851,
+            "ms": 8.300000004470348,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4970.30000000447,
+            "ms": 17.69999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 5162.60000000149,
+            "ms": 15.299999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "texture-initialization",
+            "at": 5365.30000000447,
+            "ms": 37,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "shader-compilation",
+            "at": 5402.30000000447,
+            "ms": 13.299999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "readiness-render-window",
+            "at": 5424.80000000447,
+            "ms": 36566.39999999851,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          }
+        ],
+        "phases": [
+          {
+            "at": 1092.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 41991.5,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 42885.89999999851,
+            "phase": "local",
+            "scene": "aftermovie",
+            "serial": 0
+          }
+        ],
+        "stats": {
+          "calls": 132,
+          "triangles": 1032658,
+          "textures": 31,
+          "geometries": 185,
+          "dpr": 0.25
+        },
+        "frames": [
+          {
+            "at": 30485.39999999851,
+            "ms": 424.09999999403954,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.3000000044703484
+          },
+          {
+            "at": 30957.60000000149,
+            "ms": 472.20000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 4.5
+          },
+          {
+            "at": 31387.20000000298,
+            "ms": 429.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.1999999955296516
+          },
+          {
+            "at": 31849.20000000298,
+            "ms": 462,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 32275.60000000149,
+            "ms": 426.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.20000000298023224,
+            "cpuRenderMs": 1.6999999955296516
+          },
+          {
+            "at": 32703.89999999851,
+            "ms": 428.29999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 33166.20000000298,
+            "ms": 462.30000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.9000000059604645
+          },
+          {
+            "at": 33608.30000000447,
+            "ms": 442.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 34073.20000000298,
+            "ms": 464.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.2999999970197678
+          },
+          {
+            "at": 34497.80000000447,
+            "ms": 424.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 34957.5,
+            "ms": 459.59999999403954,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.3999999985098839
+          },
+          {
+            "at": 35384.80000000447,
+            "ms": 427.40000000596046,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 1.4000000059604645
+          },
+          {
+            "at": 35808,
+            "ms": 423.19999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 3.7999999970197678
+          },
+          {
+            "at": 36264.80000000447,
+            "ms": 456.80000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 1.6000000014901161
+          },
+          {
+            "at": 36685.39999999851,
+            "ms": 420.59999999403954,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 3.3000000044703484
+          },
+          {
+            "at": 37111,
+            "ms": 425.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 37568.80000000447,
+            "ms": 457.80000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.3000000044703484
+          },
+          {
+            "at": 37995.20000000298,
+            "ms": 426.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.19999999552965164,
+            "cpuRenderMs": 1.4000000059604645
+          },
+          {
+            "at": 38446.70000000298,
+            "ms": 451.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.3000000044703484
+          },
+          {
+            "at": 38872.5,
+            "ms": 425.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 39303.39999999851,
+            "ms": 430.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 39776.60000000149,
+            "ms": 473.20000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 9.900000005960464
+          },
+          {
+            "at": 40205.70000000298,
+            "ms": 429.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.8000000044703484
+          },
+          {
+            "at": 40669.20000000298,
+            "ms": 463.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.8999999985098839
+          },
+          {
+            "at": 41097.89999999851,
+            "ms": 428.69999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.3999999985098839
+          },
+          {
+            "at": 41561.70000000298,
+            "ms": 463.80000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.7999999970197678
+          },
+          {
+            "at": 41987.39999999851,
+            "ms": 425.69999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.3000000044703484
+          },
+          {
+            "at": 42455.30000000447,
+            "ms": 467.90000000596046,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "poseZ": -110.2759303660048,
+            "cpuUpdateMs": 0.19999999552965164,
+            "cpuRenderMs": 1.3999999985098839
+          },
+          {
+            "at": 42885.89999999851,
+            "ms": 430.59999999403954,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 0.6000000014901161,
+            "cpuRenderMs": 3.600000001490116
+          },
+          {
+            "at": 43363.39999999851,
+            "ms": 477.5,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 0.6000000014901161,
+            "cpuRenderMs": 6.700000002980232
+          }
+        ],
+        "wallTrace": [
+          {
+            "at": 1812.8000000044703,
+            "event": "foundation-material-parse",
+            "ms": 403,
+            "bytes": 4659808
+          },
+          {
+            "at": 2539.2000000029802,
+            "event": "foundation-geometry-parse",
+            "ms": 15.899999998509884,
+            "bytes": 8530404
+          },
+          {
+            "at": 2540.8000000044703,
+            "event": "foundation-asset-ready",
+            "ms": 1601.5,
+            "geometryOnly": true,
+            "refinedRegions": 2,
+            "materialHolderRendered": false
+          },
+          {
+            "at": 2540.8000000044703,
+            "event": "load-ready",
+            "foundation": true,
+            "optIn": true
+          },
+          {
+            "at": 2800.39999999851,
+            "event": "texture-init",
+            "count": 6,
+            "ms": 64.79999999701977
+          },
+          {
+            "at": 2969.8000000044703,
+            "event": "shader-compile",
+            "ms": 169.30000000447035
+          },
+          {
+            "at": 5183.5,
+            "event": "covered-ready",
+            "revision": 1,
+            "ms": 2448.7999999970198,
+            "lighting": "stage"
+          },
+          {
+            "at": 5362.60000000149,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 0,
+            "pixels": 94441.89357684707,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.60000000149,
+            "event": "part-lod-change",
+            "part": "Wall_05",
+            "from": 2,
+            "to": 0,
+            "pixels": 929.3881010651291,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.70000000298,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 2,
+            "to": 1,
+            "pixels": 234.94205353243797,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Wall_11",
+            "from": 2,
+            "to": 1,
+            "pixels": 248.28704165118765,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 1,
+            "pixels": 636.2741746281579,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 0,
+            "pixels": 85389.55928813772,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 364.3201545074184,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 0,
+            "pixels": 950.6659151593335,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 69927.89049775786,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 569.6419369502453,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 583.5554162625899,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 429838.0500865482,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 842438.8991733519,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_2_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 284.24711897273903,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 571.7118131955626,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 427564.45572142745,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1176867.5151961313,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 384.35990890680404,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 654.1271697576498,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5362.80000000447,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 80182.64724665385,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 30062.20000000298,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 1,
+            "to": 2,
+            "pixels": 234.94205353243797,
+            "quality": 2,
+            "dpr": 0.25
+          },
+          {
+            "at": 42455.5,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 42455.5,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          }
+        ],
+        "nativeFallback": false
+      },
+      "errors": []
+    },
+    {
+      "mode": "c8",
+      "initialQualityOverride": null,
+      "milliseconds": 43668,
+      "preparationWallMs": 41380,
+      "conservativeDeadlineMarginMs": 3620,
+      "marginNote": "Observed boot-to-local wall time; deadline excludes suspended/hidden time. Fresh isolated context, no application timeout change.",
+      "data": {
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "preparations": [
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 1806.7000000029802,
+            "ms": 508.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2576.5,
+            "ms": 19.200000002980232,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2963.2000000029802,
+            "ms": 8.899999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2972.3000000044703,
+            "ms": 13.699999995529652,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3060,
+            "ms": 30.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 3485.2000000029802,
+            "ms": 15.899999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4301.10000000149,
+            "ms": 7,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4400.30000000447,
+            "ms": 17.899999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4453.10000000149,
+            "ms": 11.200000002980232,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "texture-initialization",
+            "at": 4536.80000000447,
+            "ms": 64.10000000149012,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "shader-compilation",
+            "at": 4601,
+            "ms": 13.700000002980232,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "readiness-render-window",
+            "at": 4615.20000000298,
+            "ms": 37179.20000000298,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          }
+        ],
+        "phases": [
+          {
+            "at": 1269.9000000059605,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 41794.80000000447,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 42649.90000000596,
+            "phase": "local",
+            "scene": "aftermovie",
+            "serial": 0
+          }
+        ],
+        "stats": {
+          "calls": 132,
+          "triangles": 1032658,
+          "textures": 34,
+          "geometries": 185,
+          "dpr": 0.25
+        },
+        "frames": [
+          {
+            "at": 30101.10000000149,
+            "ms": 466.19999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 4.199999995529652
+          },
+          {
+            "at": 30588.90000000596,
+            "ms": 487.80000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 31022.30000000447,
+            "ms": 433.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 31497.80000000447,
+            "ms": 475.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.1999999955296516
+          },
+          {
+            "at": 31932.60000000149,
+            "ms": 434.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 5.899999998509884
+          },
+          {
+            "at": 32397,
+            "ms": 464.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2.1999999955296516
+          },
+          {
+            "at": 32840.60000000149,
+            "ms": 443.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 33297.5,
+            "ms": 456.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 33726.90000000596,
+            "ms": 429.40000000596046,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.8999999985098839
+          },
+          {
+            "at": 34189.10000000149,
+            "ms": 462.19999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2.8000000044703484
+          },
+          {
+            "at": 34618.40000000596,
+            "ms": 429.20000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1
+          },
+          {
+            "at": 35047.5,
+            "ms": 429.19999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 35509.60000000149,
+            "ms": 462.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.6999999955296516
+          },
+          {
+            "at": 35944.20000000298,
+            "ms": 434.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.2999999970197678
+          },
+          {
+            "at": 36402.5,
+            "ms": 458.29999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.1000000014901161
+          },
+          {
+            "at": 36830.5,
+            "ms": 427.90000000596046,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.8000000044703484
+          },
+          {
+            "at": 37295.20000000298,
+            "ms": 464.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.1000000014901161
+          },
+          {
+            "at": 37728.70000000298,
+            "ms": 433.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 38193.90000000596,
+            "ms": 465.20000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.2000000029802322
+          },
+          {
+            "at": 38631.90000000596,
+            "ms": 438,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.19999999552965164,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 39093.30000000447,
+            "ms": 461.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.1000000014901161
+          },
+          {
+            "at": 39533,
+            "ms": 439.69999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.4000000059604645
+          },
+          {
+            "at": 40011.5,
+            "ms": 478.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.2999999970197678
+          },
+          {
+            "at": 40443.30000000447,
+            "ms": 431.80000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.7000000029802322
+          },
+          {
+            "at": 40906.40000000596,
+            "ms": 463.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 1.6000000014901161
+          },
+          {
+            "at": 41335.30000000447,
+            "ms": 428.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.0999999940395355
+          },
+          {
+            "at": 41793.20000000298,
+            "ms": 457.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.8999999985098839
+          },
+          {
+            "at": 42228.20000000298,
+            "ms": 435,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "poseZ": -110.04768070164158,
+            "cpuUpdateMs": 0.29999999701976776,
+            "cpuRenderMs": 3.3000000044703484
+          },
+          {
+            "at": 42649.80000000447,
+            "ms": 421.6000000014901,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 0.5,
+            "cpuRenderMs": 1.5999999940395355
+          },
+          {
+            "at": 43122.90000000596,
+            "ms": 473.1000000014901,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 0.6999999955296516,
+            "cpuRenderMs": 3.1999999955296516
+          }
+        ],
+        "material": {
+          "enabled": true,
+          "scale": 3,
+          "preparing": false,
+          "geometryChanged": false,
+          "host": "C5.1",
+          "selectedNodes": [
+            "Foundation_Wall_15_LOD0",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_15_LOD2"
+          ],
+          "material": "Recovered_C8_Scanned_Multi_PBR",
+          "normalScale": [
+            0.7,
+            0.7
+          ],
+          "uniqueImages": 3,
+          "wrappers": 5,
+          "decodedRGBA8MipBytes": 33554431.999999996,
+          "textures": [
+            {
+              "uuid": "66325279-5462-4ec6-982a-629273ba75a5",
+              "source": "f5d3ebb4-4c4e-4918-9092-8b6ea1dd63f0",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "srgb",
+              "width": 2048,
+              "height": 2048
+            },
+            {
+              "uuid": "26c9c30e-13d3-4631-adfb-d0ee33039633",
+              "source": "32829977-527d-4ded-91d9-3f60386bf009",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "4f98ee62-b440-460f-be26-43c1a2e2410d",
+              "source": "58e5ab93-0fd4-4dde-b374-63f73e093c10",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "9e0c389f-667c-462f-9720-abdf10e580fd",
+              "source": "58e5ab93-0fd4-4dde-b374-63f73e093c10",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "aa8317b5-e4f7-471a-880d-db0b0e7991d3",
+              "source": "58e5ab93-0fd4-4dde-b374-63f73e093c10",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            }
+          ]
+        },
+        "wallTrace": [
+          {
+            "at": 2244.9000000059605,
+            "event": "foundation-material-parse",
+            "ms": 494.30000000447035,
+            "bytes": 4659808
+          },
+          {
+            "at": 2315.4000000059605,
+            "event": "scanned-material-ready",
+            "ms": 1238.3000000044703,
+            "uniqueRuntimeImages": 3,
+            "holderRendered": false,
+            "geometryOwner": "unchanged C5.1"
+          },
+          {
+            "at": 3090.60000000149,
+            "event": "foundation-geometry-parse",
+            "ms": 30.600000001490116,
+            "bytes": 8530404
+          },
+          {
+            "at": 3091.8000000044703,
+            "event": "foundation-asset-ready",
+            "ms": 2017.3999999985099,
+            "geometryOnly": true,
+            "refinedRegions": 2,
+            "materialHolderRendered": false
+          },
+          {
+            "at": 3091.8000000044703,
+            "event": "load-ready",
+            "foundation": true,
+            "optIn": true
+          },
+          {
+            "at": 3369.4000000059605,
+            "event": "texture-init",
+            "count": 11,
+            "ms": 115.60000000149012
+          },
+          {
+            "at": 3505.3000000044703,
+            "event": "shader-compile",
+            "ms": 135.89999999850988
+          },
+          {
+            "at": 4466.60000000149,
+            "event": "covered-ready",
+            "revision": 2,
+            "ms": 1213.5,
+            "lighting": "stage"
+          },
+          {
+            "at": 4531.70000000298,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 0,
+            "pixels": 94441.89357684707,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.70000000298,
+            "event": "part-lod-change",
+            "part": "Wall_05",
+            "from": 2,
+            "to": 0,
+            "pixels": 929.3881010651291,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.80000000447,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 2,
+            "to": 1,
+            "pixels": 234.94205353243797,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Wall_11",
+            "from": 2,
+            "to": 1,
+            "pixels": 248.28704165118765,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 1,
+            "pixels": 636.2741746281579,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 0,
+            "pixels": 85389.55928813772,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 364.3201545074184,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 0,
+            "pixels": 950.6659151593335,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 69927.89049775786,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 569.6419369502453,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 583.5554162625899,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 429838.0500865482,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4531.9000000059605,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 842438.8991733519,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4532,
+            "event": "part-lod-change",
+            "part": "Terrain_2_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 284.24711897273903,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4532,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 571.7118131955626,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4532,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 427564.45572142745,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4532,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1176867.5151961313,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4532,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 384.35990890680404,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4532,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 654.1271697576498,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4532,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 80182.64724665385,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 29636.40000000596,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 1,
+            "to": 2,
+            "pixels": 234.94205353243797,
+            "quality": 2,
+            "dpr": 0.25
+          },
+          {
+            "at": 42228.5,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 42228.5,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          }
+        ],
+        "nativeFallback": false
+      },
+      "errors": []
+    },
+    {
+      "mode": "recovered",
+      "initialQualityOverride": null,
+      "milliseconds": 43909,
+      "preparationWallMs": 41525.30000000447,
+      "conservativeDeadlineMarginMs": 3474.6999999955297,
+      "marginNote": "Observed boot-to-local wall time; deadline excludes suspended/hidden time. Fresh isolated context, no application timeout change.",
+      "data": {
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "preparations": [
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 1518.3999999985099,
+            "ms": 10.799999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 1866.7999999970198,
+            "ms": 510.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2599.6999999955297,
+            "ms": 6.100000001490116,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3026.1999999955297,
+            "ms": 7.399999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3033.7999999970198,
+            "ms": 11.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3139.0999999940395,
+            "ms": 15.400000005960464,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 3567.89999999851,
+            "ms": 19.799999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4453.89999999851,
+            "ms": 11.699999995529652,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4599,
+            "ms": 21.399999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4670.5,
+            "ms": 16.599999994039536,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "texture-initialization",
+            "at": 4739.5,
+            "ms": 85.59999999403954,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "shader-compilation",
+            "at": 4825.0999999940395,
+            "ms": 14,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "readiness-render-window",
+            "at": 4845.0999999940395,
+            "ms": 37169,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          }
+        ],
+        "phases": [
+          {
+            "at": 1392.0999999940395,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 42015.09999999404,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 42917.39999999851,
+            "phase": "local",
+            "scene": "aftermovie",
+            "serial": 0
+          }
+        ],
+        "stats": {
+          "calls": 132,
+          "triangles": 1032658,
+          "textures": 35,
+          "geometries": 185,
+          "dpr": 0.25
+        },
+        "frames": [
+          {
+            "at": 30323.89999999851,
+            "ms": 432,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.19999999552965164,
+            "cpuRenderMs": 1.1999999955296516
+          },
+          {
+            "at": 30827.79999999702,
+            "ms": 503.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 31287.59999999404,
+            "ms": 459.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 3.2999999970197678
+          },
+          {
+            "at": 31718.79999999702,
+            "ms": 431.20000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.20000000298023224,
+            "cpuRenderMs": 1.9000000059604645
+          },
+          {
+            "at": 32176.59999999404,
+            "ms": 457.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 32620.19999999553,
+            "ms": 443.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 4.299999997019768
+          },
+          {
+            "at": 33082.5,
+            "ms": 462.20000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.4000000059604645
+          },
+          {
+            "at": 33522.29999999702,
+            "ms": 439.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 2.7999999970197678
+          },
+          {
+            "at": 33981,
+            "ms": 458.80000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.2999999970197678
+          },
+          {
+            "at": 34412.09999999404,
+            "ms": 431.09999999403954,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 2.899999998509884
+          },
+          {
+            "at": 34873.5,
+            "ms": 461.40000000596046,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 1.2000000029802322
+          },
+          {
+            "at": 35302.5,
+            "ms": 429,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 2.5
+          },
+          {
+            "at": 35802.29999999702,
+            "ms": 499.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.8000000044703484
+          },
+          {
+            "at": 36232.69999999553,
+            "ms": 430.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.2999999970197678
+          },
+          {
+            "at": 36689.69999999553,
+            "ms": 456.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.3999999985098839
+          },
+          {
+            "at": 37117.19999999553,
+            "ms": 427.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.6999999955296516
+          },
+          {
+            "at": 37578.59999999404,
+            "ms": 461.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.6000000014901161
+          },
+          {
+            "at": 38006.29999999702,
+            "ms": 427.70000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.5999999940395355
+          },
+          {
+            "at": 38434.59999999404,
+            "ms": 428.29999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.2000000029802322
+          },
+          {
+            "at": 38897,
+            "ms": 462.40000000596046,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.3000000044703484
+          },
+          {
+            "at": 39370.5,
+            "ms": 473.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 1.8000000044703484
+          },
+          {
+            "at": 39798.69999999553,
+            "ms": 428.19999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.7000000029802322
+          },
+          {
+            "at": 40224.39999999851,
+            "ms": 425.70000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.7999999970197678
+          },
+          {
+            "at": 40683,
+            "ms": 458.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.8999999985098839
+          },
+          {
+            "at": 41111.59999999404,
+            "ms": 428.59999999403954,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 41533,
+            "ms": 421.40000000596046,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 1.9000000059604645
+          },
+          {
+            "at": 42013.89999999851,
+            "ms": 480.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 42491.19999999553,
+            "ms": 477.29999999701977,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "poseZ": -110.3600480760175,
+            "cpuUpdateMs": 0.30000000447034836,
+            "cpuRenderMs": 1.3999999985098839
+          },
+          {
+            "at": 42917.29999999702,
+            "ms": 426.1000000014901,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 1.1000000014901161,
+            "cpuRenderMs": 1.7999999970197678
+          },
+          {
+            "at": 43405.59999999404,
+            "ms": 488.29999999701977,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 0.7000000029802322,
+            "cpuRenderMs": 1.2999999970197678
+          }
+        ],
+        "material": {
+          "enabled": true,
+          "scale": 3,
+          "preparing": false,
+          "geometryChanged": false,
+          "host": "C5.1",
+          "selectedNodes": [
+            "Foundation_Wall_15_LOD0",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_15_LOD2"
+          ],
+          "material": "Recovered_C8_Scanned_Multi_PBR",
+          "normalScale": [
+            0.7,
+            0.7
+          ],
+          "uniqueImages": 3,
+          "wrappers": 5,
+          "decodedRGBA8MipBytes": 33554431.999999996,
+          "textures": [
+            {
+              "uuid": "5ec5b834-2bb8-4a6e-9389-c16611a3890e",
+              "source": "410194d5-eb0c-4a1d-bc44-72e175436479",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "srgb",
+              "width": 2048,
+              "height": 2048
+            },
+            {
+              "uuid": "e52d4bc9-bcb5-4a37-9313-4ba10460774b",
+              "source": "1d044465-504d-4b7a-9ebd-a106a70bdb3e",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "a5b799f0-e475-49e4-8c2a-65a3f4748a11",
+              "source": "78554570-2b8c-4f7d-9903-df54ed932be9",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "cccc1979-1252-488a-8aa7-81b774510e34",
+              "source": "78554570-2b8c-4f7d-9903-df54ed932be9",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "5db3ceef-bfbd-4c3c-80c8-db15d4cd0fb9",
+              "source": "78554570-2b8c-4f7d-9903-df54ed932be9",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            }
+          ]
+        },
+        "wallTrace": [
+          {
+            "at": 1529.5999999940395,
+            "event": "scanned-composition-ready",
+            "ms": 541.3999999985099,
+            "geometryBytes": 2710964,
+            "sourceUniformScale": 0.9,
+            "newPBRImages": 0,
+            "host": "Wall_15",
+            "geometryNormalImages": 1,
+            "completeWorldCopies": 0
+          },
+          {
+            "at": 2335.0999999940395,
+            "event": "foundation-material-parse",
+            "ms": 450.90000000596046,
+            "bytes": 4659808
+          },
+          {
+            "at": 2377.5,
+            "event": "scanned-material-ready",
+            "ms": 1390,
+            "uniqueRuntimeImages": 3,
+            "holderRendered": false,
+            "geometryOwner": "unchanged C5.1"
+          },
+          {
+            "at": 3154.5,
+            "event": "foundation-geometry-parse",
+            "ms": 15.400000005960464,
+            "bytes": 8530404
+          },
+          {
+            "at": 3155.89999999851,
+            "event": "foundation-asset-ready",
+            "ms": 2172.60000000149,
+            "geometryOnly": true,
+            "refinedRegions": 2,
+            "materialHolderRendered": false
+          },
+          {
+            "at": 3155.89999999851,
+            "event": "load-ready",
+            "foundation": true,
+            "optIn": true
+          },
+          {
+            "at": 3448.39999999851,
+            "event": "texture-init",
+            "count": 12,
+            "ms": 143.60000000149012
+          },
+          {
+            "at": 3590.1999999955297,
+            "event": "shader-compile",
+            "ms": 141.69999999552965
+          },
+          {
+            "at": 4689.39999999851,
+            "event": "covered-ready",
+            "revision": 3,
+            "ms": 1385.3999999985099,
+            "lighting": "stage"
+          },
+          {
+            "at": 4734.29999999702,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 0,
+            "pixels": 94441.89357684707,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.29999999702,
+            "event": "part-lod-change",
+            "part": "Wall_05",
+            "from": 2,
+            "to": 0,
+            "pixels": 929.3881010651291,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.29999999702,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 2,
+            "to": 1,
+            "pixels": 234.94205353243797,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Wall_11",
+            "from": 2,
+            "to": 1,
+            "pixels": 248.28704165118765,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 1,
+            "pixels": 636.2741746281579,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 0,
+            "pixels": 85389.55928813772,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 364.3201545074184,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 0,
+            "pixels": 950.6659151593335,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 69927.89049775786,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 569.6419369502453,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 583.5554162625899,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 429838.0500865482,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 842438.8991733519,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_2_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 284.24711897273903,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 571.7118131955626,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 427564.45572142745,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1176867.5151961313,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 384.35990890680404,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 654.1271697576498,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 4734.5,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 80182.64724665385,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 29892,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 1,
+            "to": 2,
+            "pixels": 234.94205353243797,
+            "quality": 2,
+            "dpr": 0.25
+          },
+          {
+            "at": 42492.29999999702,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 42492.39999999851,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          }
+        ],
+        "nativeFallback": false
+      },
+      "errors": []
+    },
+    {
+      "mode": "corrected",
+      "initialQualityOverride": null,
+      "milliseconds": 44256,
+      "preparationWallMs": 41918.89999999851,
+      "conservativeDeadlineMarginMs": 3081.10000000149,
+      "marginNote": "Observed boot-to-local wall time; deadline excludes suspended/hidden time. Fresh isolated context, no application timeout change.",
+      "data": {
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "preparations": [
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2122.5999999940395,
+            "ms": 17.700000002980232,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 1977.6999999955297,
+            "ms": 628.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2950.5,
+            "ms": 6,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3303.5999999940395,
+            "ms": 15.600000001490116,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3498,
+            "ms": 17.399999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3515.5999999940395,
+            "ms": 5.100000001490116,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 3891.299999989569,
+            "ms": 15.800000004470348,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 3911.1999999955297,
+            "ms": 8.800000004470348,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4764.79999999702,
+            "ms": 19.399999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4944.69999999553,
+            "ms": 16.80000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "texture-initialization",
+            "at": 5088.0999999940395,
+            "ms": 81,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "shader-compilation",
+            "at": 5169.19999999553,
+            "ms": 13.200000002980232,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "readiness-render-window",
+            "at": 5195.5,
+            "ms": 37163.69999999553,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          }
+        ],
+        "phases": [
+          {
+            "at": 1345.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 42359.69999999553,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 43264.29999999702,
+            "phase": "local",
+            "scene": "aftermovie",
+            "serial": 0
+          }
+        ],
+        "stats": {
+          "calls": 132,
+          "triangles": 1032658,
+          "textures": 35,
+          "geometries": 179,
+          "dpr": 0.25
+        },
+        "frames": [
+          {
+            "at": 30780.89999999851,
+            "ms": 497.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 2.2999999970197678
+          },
+          {
+            "at": 31245.69999999553,
+            "ms": 464.69999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 31675.09999999404,
+            "ms": 429.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.9000000059604645
+          },
+          {
+            "at": 32101.39999999851,
+            "ms": 426.30000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.8000000044703484
+          },
+          {
+            "at": 32558.5,
+            "ms": 457.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.3000000044703484
+          },
+          {
+            "at": 32978.89999999851,
+            "ms": 420.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.6999999955296516
+          },
+          {
+            "at": 33405,
+            "ms": 426.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 34.80000000447035
+          },
+          {
+            "at": 33866.89999999851,
+            "ms": 461.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 34288.79999999702,
+            "ms": 421.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 3.399999998509884
+          },
+          {
+            "at": 34743.29999999702,
+            "ms": 454.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2.2999999970197678
+          },
+          {
+            "at": 35168.29999999702,
+            "ms": 425,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.1999999955296516
+          },
+          {
+            "at": 35593.29999999702,
+            "ms": 425,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.7999999970197678
+          },
+          {
+            "at": 36051.39999999851,
+            "ms": 458.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.3000000044703484
+          },
+          {
+            "at": 36485.39999999851,
+            "ms": 434,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 5.100000001490116
+          },
+          {
+            "at": 36948.5,
+            "ms": 463.1000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.19999999552965164,
+            "cpuRenderMs": 1.1999999955296516
+          },
+          {
+            "at": 37377.09999999404,
+            "ms": 428.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 4.100000001490116
+          },
+          {
+            "at": 37844,
+            "ms": 467,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 2
+          },
+          {
+            "at": 38283,
+            "ms": 439,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 1.8999999985098839
+          },
+          {
+            "at": 38753.79999999702,
+            "ms": 470.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 39183.5,
+            "ms": 429.70000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.19999999552965164,
+            "cpuRenderMs": 1.3999999985098839
+          },
+          {
+            "at": 39668.29999999702,
+            "ms": 484.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 3.7000000029802322
+          },
+          {
+            "at": 40139.69999999553,
+            "ms": 471.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.6999999955296516
+          },
+          {
+            "at": 40566.5,
+            "ms": 426.80000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552,
+            "cpuRenderMs": 18.5
+          },
+          {
+            "at": 41043.19999999553,
+            "ms": 476.69999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.9000000059604645
+          },
+          {
+            "at": 41471.09999999404,
+            "ms": 427.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.7000000029802322
+          },
+          {
+            "at": 41895.39999999851,
+            "ms": 424.30000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.8999999985098839
+          },
+          {
+            "at": 42356.09999999404,
+            "ms": 460.69999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 2.600000001490116
+          },
+          {
+            "at": 42805.79999999702,
+            "ms": 449.70000000298023,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "poseZ": -110.14778572798866,
+            "cpuUpdateMs": 0.20000000298023224,
+            "cpuRenderMs": 2.899999998509884
+          },
+          {
+            "at": 43264.09999999404,
+            "ms": 458.29999999701977,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 0.7000000029802322,
+            "cpuRenderMs": 2.5
+          },
+          {
+            "at": 43743.19999999553,
+            "ms": 479.1000000014901,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 0.5,
+            "cpuRenderMs": 1.7999999970197678
+          }
+        ],
+        "material": {
+          "enabled": true,
+          "scale": 3,
+          "preparing": false,
+          "geometryChanged": true,
+          "host": "fidelity visual region; unchanged authoritative collision registry",
+          "selectedNodes": [
+            "Foundation_Wall_15_LOD0",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_15_LOD2"
+          ],
+          "material": "Recovered_C8_Scanned_Multi_PBR",
+          "normalScale": [
+            0.7,
+            0.7
+          ],
+          "uniqueImages": 3,
+          "wrappers": 5,
+          "decodedRGBA8MipBytes": 33554431.999999996,
+          "textures": [
+            {
+              "uuid": "21b90758-5bbf-4de9-9983-b3e43b45e124",
+              "source": "8375d8c0-5cd5-4625-80ff-18275e47e79e",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "srgb",
+              "width": 2048,
+              "height": 2048
+            },
+            {
+              "uuid": "974e7da2-75a7-43d6-b236-2180c86f76ee",
+              "source": "82d0fa8c-d797-4f47-83f5-83f73184abb3",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "cbd7e471-b667-40b9-89ff-4cf1055c145c",
+              "source": "f83fadc9-2ec4-4571-9148-28a871f7ad8e",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "94a1649f-072d-4b97-9350-c53c124a7921",
+              "source": "f83fadc9-2ec4-4571-9148-28a871f7ad8e",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "128b6fe5-f2d8-4b88-b867-2529f10c0039",
+              "source": "f83fadc9-2ec4-4571-9148-28a871f7ad8e",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            }
+          ],
+          "fidelityMaterial": true,
+          "regionArcMetres": [
+            311.02719558677654,
+            346.5843803697403
+          ],
+          "regionLengthMetres": 35.55718478296376,
+          "newTextureImages": 0,
+          "materialLayerGeometryChanged": false
+        },
+        "wallTrace": [
+          {
+            "at": 2140.89999999851,
+            "event": "fidelity-local-ready",
+            "ms": 1122.7999999970198,
+            "bytes": 8250316,
+            "newPBRImages": 0,
+            "regionMetres": 35.55718478296376
+          },
+          {
+            "at": 2577.89999999851,
+            "event": "foundation-material-parse",
+            "ms": 569.3999999985099,
+            "bytes": 4659808
+          },
+          {
+            "at": 2606.5999999940395,
+            "event": "scanned-material-ready",
+            "ms": 1589.6999999955297,
+            "uniqueRuntimeImages": 3,
+            "holderRendered": false,
+            "geometryOwner": "unchanged C5.1"
+          },
+          {
+            "at": 3319.1999999955297,
+            "event": "foundation-geometry-parse",
+            "ms": 15.600000001490116,
+            "bytes": 8530404
+          },
+          {
+            "at": 3320.5,
+            "event": "foundation-asset-ready",
+            "ms": 2306.60000000149,
+            "geometryOnly": true,
+            "refinedRegions": 2,
+            "materialHolderRendered": false
+          },
+          {
+            "at": 3320.5999999940395,
+            "event": "load-ready",
+            "foundation": true,
+            "optIn": true
+          },
+          {
+            "at": 3854.5,
+            "event": "texture-init",
+            "count": 12,
+            "ms": 121.5
+          },
+          {
+            "at": 3920.2999999970198,
+            "event": "shader-compile",
+            "ms": 65.70000000298023
+          },
+          {
+            "at": 5015.69999999553,
+            "event": "covered-ready",
+            "revision": 3,
+            "ms": 1283.5999999940395,
+            "lighting": "stage"
+          },
+          {
+            "at": 5172.69999999553,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 0,
+            "pixels": 94441.89357684707,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Wall_05",
+            "from": 2,
+            "to": 0,
+            "pixels": 929.3881010651291,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 2,
+            "to": 1,
+            "pixels": 234.94205353243797,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Wall_11",
+            "from": 2,
+            "to": 1,
+            "pixels": 248.28704165118765,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 1,
+            "pixels": 636.2741746281579,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 0,
+            "pixels": 85389.55928813772,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 364.3201545074184,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 0,
+            "pixels": 950.6659151593335,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 69927.89049775786,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 569.6419369502453,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 583.5554162625899,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 429838.0500865482,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 842438.8991733519,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_2_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 284.24711897273903,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 571.7118131955626,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 427564.45572142745,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1176867.5151961313,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 384.35990890680404,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 654.1271697576498,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 5172.79999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 80182.64724665385,
+            "quality": 0,
+            "dpr": 0.25
+          },
+          {
+            "at": 30286.39999999851,
+            "event": "part-lod-change",
+            "part": "Wall_06",
+            "from": 1,
+            "to": 2,
+            "pixels": 234.94205353243797,
+            "quality": 2,
+            "dpr": 0.25
+          },
+          {
+            "at": 42806,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 42806,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          }
+        ],
+        "nativeFallback": false
+      },
+      "errors": []
+    },
+    {
+      "mode": "corrected",
+      "initialQualityOverride": 3,
+      "milliseconds": 13496,
+      "preparationWallMs": 11291.79999999702,
+      "conservativeDeadlineMarginMs": 33708.20000000298,
+      "marginNote": "Observed boot-to-local wall time; deadline excludes suspended/hidden time. Fresh isolated context, no application timeout change.",
+      "data": {
+        "state": {
+          "phase": "local",
+          "scene": "aftermovie",
+          "destination": "aftermovie",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 3,
+          "movie": false,
+          "reduced": false,
+          "inspection": null
+        },
+        "preparations": [
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2353.2000000029802,
+            "ms": 9.699999995529652,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 2261.7999999970198,
+            "ms": 495.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3048.60000000149,
+            "ms": 5.799999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3427.2000000029802,
+            "ms": 20.899999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3453.60000000149,
+            "ms": 19.100000001490116,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "gltf-parse-to-ready",
+            "at": 3472.89999999851,
+            "ms": 6,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 3861.6999999955297,
+            "ms": 13.100000001490116,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4724.20000000298,
+            "ms": 6.299999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4906.89999999851,
+            "ms": 21,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "crowd-pose-bake",
+            "at": 4974.89999999851,
+            "ms": 7.800000004470348,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "texture-initialization",
+            "at": 5065.60000000149,
+            "ms": 75.10000000149012,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "shader-compilation",
+            "at": 5140.70000000298,
+            "ms": 15.299999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          },
+          {
+            "name": "readiness-render-window",
+            "at": 5169,
+            "ms": 6921.79999999702,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0,
+            "poseZ": -106.8
+          }
+        ],
+        "phases": [
+          {
+            "at": 1689,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 12091.20000000298,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "serial": 0
+          },
+          {
+            "at": 12980.79999999702,
+            "phase": "local",
+            "scene": "aftermovie",
+            "serial": 0
+          }
+        ],
+        "stats": {
+          "calls": 132,
+          "triangles": 1030478,
+          "textures": 35,
+          "geometries": 179,
+          "dpr": 0.25
+        },
+        "frames": [
+          {
+            "at": 3135.2999999970198,
+            "ms": 31.299999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0
+          },
+          {
+            "at": 3147.2999999970198,
+            "ms": 12,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612
+          },
+          {
+            "at": 3307.39999999851,
+            "ms": 160.10000000149012,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612
+          },
+          {
+            "at": 3365.7000000029802,
+            "ms": 58.30000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.09999999403953552
+          },
+          {
+            "at": 3426.89999999851,
+            "ms": 61.19999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0
+          },
+          {
+            "at": 3857.60000000149,
+            "ms": 430.70000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0
+          },
+          {
+            "at": 3875.2999999970198,
+            "ms": 17.69999999552965,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 66.69999999552965
+          },
+          {
+            "at": 4730.89999999851,
+            "ms": 855.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 10.100000001490116
+          },
+          {
+            "at": 4928.10000000149,
+            "ms": 197.20000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 2.7000000029802322
+          },
+          {
+            "at": 4983,
+            "ms": 54.899999998509884,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.2999999970197678
+          },
+          {
+            "at": 5060.70000000298,
+            "ms": 77.70000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0
+          },
+          {
+            "at": 5146.10000000149,
+            "ms": 85.39999999850988,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0
+          },
+          {
+            "at": 5146.60000000149,
+            "ms": 0.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0
+          },
+          {
+            "at": 5152.10000000149,
+            "ms": 5.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0
+          },
+          {
+            "at": 5168.89999999851,
+            "ms": 16.799999997019768,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 348.3999999985099
+          },
+          {
+            "at": 6736.39999999851,
+            "ms": 1567.5,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.20000000298023224,
+            "cpuRenderMs": 3.5
+          },
+          {
+            "at": 7198.70000000298,
+            "ms": 462.30000000447035,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 5
+          },
+          {
+            "at": 7686.60000000149,
+            "ms": 487.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 3.100000001490116
+          },
+          {
+            "at": 8110.60000000149,
+            "ms": 424,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 3
+          },
+          {
+            "at": 8572,
+            "ms": 461.3999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.20000000298023224,
+            "cpuRenderMs": 2.899999998509884
+          },
+          {
+            "at": 9003.60000000149,
+            "ms": 431.6000000014901,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 3.5
+          },
+          {
+            "at": 9462.5,
+            "ms": 458.8999999985099,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 9890.29999999702,
+            "ms": 427.79999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.3999999985098839
+          },
+          {
+            "at": 10351.20000000298,
+            "ms": 460.90000000596046,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.19999999552965164,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 10780.79999999702,
+            "ms": 429.59999999403954,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.6000000014901161
+          },
+          {
+            "at": 11205.79999999702,
+            "ms": 425,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.1000000014901161
+          },
+          {
+            "at": 11667,
+            "ms": 461.20000000298023,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.10000000149011612,
+            "cpuRenderMs": 1.6000000014901161
+          },
+          {
+            "at": 12089.29999999702,
+            "ms": 422.29999999701977,
+            "phase": "boot",
+            "scene": "aftermovie",
+            "poseZ": -106.8,
+            "cpuUpdateMs": 0.30000000447034836,
+            "cpuRenderMs": 1.5
+          },
+          {
+            "at": 12555.79999999702,
+            "ms": 466.5,
+            "phase": "arrival",
+            "scene": "aftermovie",
+            "poseZ": -110.28153085096876,
+            "cpuUpdateMs": 0.20000000298023224,
+            "cpuRenderMs": 2.899999998509884
+          },
+          {
+            "at": 12980.70000000298,
+            "ms": 424.90000000596046,
+            "phase": "local",
+            "scene": "aftermovie",
+            "poseZ": -110.8,
+            "cpuUpdateMs": 0.3999999985098839,
+            "cpuRenderMs": 1.3999999985098839
+          }
+        ],
+        "material": {
+          "enabled": true,
+          "scale": 3,
+          "preparing": false,
+          "geometryChanged": true,
+          "host": "fidelity visual region; unchanged authoritative collision registry",
+          "selectedNodes": [
+            "Foundation_Wall_15_LOD0",
+            "Foundation_Wall_15_LOD1",
+            "Foundation_Wall_15_LOD2"
+          ],
+          "material": "Recovered_C8_Scanned_Multi_PBR",
+          "normalScale": [
+            0.7,
+            0.7
+          ],
+          "uniqueImages": 3,
+          "wrappers": 5,
+          "decodedRGBA8MipBytes": 33554431.999999996,
+          "textures": [
+            {
+              "uuid": "406423da-7653-4e64-ba18-26a966ab8187",
+              "source": "14f0f528-13e2-4bba-9923-c49de914c4ec",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "srgb",
+              "width": 2048,
+              "height": 2048
+            },
+            {
+              "uuid": "2142a4c4-adbe-4028-b2af-52728fc2718f",
+              "source": "1cc7c772-2736-4372-ba58-10902acf4929",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "e9afcc95-954a-4333-9548-2080a8e82eff",
+              "source": "a4eaf342-5c2d-4470-8219-d7da0bd4ff9c",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "1c016864-f293-41c1-b98c-a7cfc57f96f7",
+              "source": "a4eaf342-5c2d-4470-8219-d7da0bd4ff9c",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            },
+            {
+              "uuid": "27c9282f-07ad-468e-9e70-f66fb9a6865d",
+              "source": "a4eaf342-5c2d-4470-8219-d7da0bd4ff9c",
+              "channel": 0,
+              "repeat": [
+                0.06178204218546549,
+                0.06178204218546549
+              ],
+              "offset": [
+                0,
+                0.8146538734436035
+              ],
+              "rotation": 0,
+              "colourSpace": "",
+              "width": 1024,
+              "height": 1024
+            }
+          ],
+          "fidelityMaterial": true,
+          "regionArcMetres": [
+            311.02719558677654,
+            346.5843803697403
+          ],
+          "regionLengthMetres": 35.55718478296376,
+          "newTextureImages": 0,
+          "materialLayerGeometryChanged": false
+        },
+        "wallTrace": [
+          {
+            "at": 2363.7000000029802,
+            "event": "fidelity-local-ready",
+            "ms": 1170.1000000014901,
+            "bytes": 8250316,
+            "newPBRImages": 0,
+            "regionMetres": 35.55718478296376
+          },
+          {
+            "at": 2726.5,
+            "event": "foundation-material-parse",
+            "ms": 491.1000000014901,
+            "bytes": 4659808
+          },
+          {
+            "at": 2757.60000000149,
+            "event": "scanned-material-ready",
+            "ms": 1564.8999999985099,
+            "uniqueRuntimeImages": 3,
+            "holderRendered": false,
+            "geometryOwner": "unchanged C5.1"
+          },
+          {
+            "at": 3448.2000000029802,
+            "event": "foundation-geometry-parse",
+            "ms": 21,
+            "bytes": 8530404
+          },
+          {
+            "at": 3449.2999999970198,
+            "event": "foundation-asset-ready",
+            "ms": 2263.5999999940395,
+            "geometryOnly": true,
+            "refinedRegions": 2,
+            "materialHolderRendered": false
+          },
+          {
+            "at": 3449.39999999851,
+            "event": "load-ready",
+            "foundation": true,
+            "optIn": true
+          },
+          {
+            "at": 3772.7000000029802,
+            "event": "texture-init",
+            "count": 12,
+            "ms": 117.30000000447035
+          },
+          {
+            "at": 3875.10000000149,
+            "event": "shader-compile",
+            "ms": 102.39999999850988
+          },
+          {
+            "at": 4984.89999999851,
+            "event": "covered-ready",
+            "revision": 3,
+            "ms": 1330.1999999955297,
+            "lighting": "stage"
+          },
+          {
+            "at": 5061,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 2,
+            "to": 0,
+            "pixels": 94441.89357684707,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061,
+            "event": "part-lod-change",
+            "part": "Wall_05",
+            "from": 2,
+            "to": 1,
+            "pixels": 929.3881010651291,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.10000000149,
+            "event": "part-lod-change",
+            "part": "Wall_12",
+            "from": 2,
+            "to": 1,
+            "pixels": 636.2741746281579,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Wall_13",
+            "from": 2,
+            "to": 0,
+            "pixels": 85389.55928813772,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_0_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 364.3201545074184,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_0_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 950.6659151593335,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_0_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 69927.89049775786,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_1_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 569.6419369502453,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_1_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 583.5554162625899,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_1_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 429838.0500865482,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 842438.8991733519,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_2_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 571.7118131955626,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_2_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 427564.45572142745,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_2_3",
+            "from": 2,
+            "to": 0,
+            "pixels": 1176867.5151961313,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_3_0",
+            "from": 2,
+            "to": 1,
+            "pixels": 384.35990890680404,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.20000000298,
+            "event": "part-lod-change",
+            "part": "Terrain_3_1",
+            "from": 2,
+            "to": 1,
+            "pixels": 654.1271697576498,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 5061.29999999702,
+            "event": "part-lod-change",
+            "part": "Terrain_3_2",
+            "from": 2,
+            "to": 0,
+            "pixels": 80182.64724665385,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 12556,
+            "event": "part-lod-change",
+            "part": "Wall_04",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 12556,
+            "event": "part-lod-change",
+            "part": "Wall_05",
+            "from": 1,
+            "to": 0,
+            "pixels": 1397.2310075673279,
+            "quality": 3,
+            "dpr": 0.25
+          },
+          {
+            "at": 12556,
+            "event": "part-lod-change",
+            "part": "Terrain_1_3",
+            "from": 0,
+            "to": 2,
+            "pixels": 0,
+            "quality": 3,
+            "dpr": 0.25
+          }
+        ],
+        "nativeFallback": false
+      },
+      "errors": []
+    }
+  ],
+  "physicalHardware": false
+}

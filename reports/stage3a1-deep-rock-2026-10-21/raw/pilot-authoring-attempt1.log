@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_cave_deep_pilot.py", line 13, in <module>
+    new,info=graft(body,ROOT,source_x=-27.,source_z=4.6,station=11.2,side=-1,width=6.2,height=3.2,depth_offset=2.85)
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/cave_native_graft.py", line 158, in graft
+    params=sorted(set(round(planar_parameter(o.data.vertices[i].co,outline),10)for o,loop in[(patch,patchloop),(shell,shellloop)]for i in loop))
+                  ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/cave_native_graft.py", line 158, in <genexpr>
+    params=sorted(set(round(planar_parameter(o.data.vertices[i].co,outline),10)for o,loop in[(patch,patchloop),(shell,shellloop)]for i in loop))
+                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/cave_native_graft.py", line 82, in planar_parameter
+    assert best[0]<3e-5,('Boundary is not on protected crop outline',best,p)
+           ^^^^^^^^^^^^
+AssertionError: ('Boundary is not on protected crop outline', (0.032651127675865824, 16.00670588146482), Vector((-3.133382558822632, 3.425387144088745, -1.0057567358016968)))
+Blender 4.3.2
+Read blend: "/workspace/Breeze-2027-navigation/assets-source/gullyverse/c9-cave-recovery/cave-entrance-working.blend"
+
+Blender quit

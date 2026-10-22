@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/reports/recovery-stage3a-cave-tunnel-2026-10-20/scripts/build-checkpoint.py", line 92, in <module>
+    assert {(r['path'],r['bytes'],r['sha256'])for r in part}=={(r['path'],r['bytes'],r['sha256'])for r in sealed['files']},'Final art changed after sealing'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Final art changed after sealing

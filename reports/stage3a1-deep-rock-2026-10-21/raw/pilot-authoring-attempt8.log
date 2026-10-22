@@ -1,0 +1,82 @@
+NATIVE_CROP_EDGE_REPAIR {'count': 0, 'maximumM': 0}
+LOCAL_CUT_CONFORMITY [16, 0]
+NATIVE_GRAFT {"sourceFile": "assets-source/gullyverse/quarry-scanned-composition/licensed-source/coastal_cliff_01/coastal_cliff_01_2k.blend", "sourceOriginM": [-27.0, 0.5266228318214417, 4.599999904632568], "uniformXYZScale": [1, 1, 1], "rigidRotation3x3": [[0.918164849281311, -0.3888380825519562, -0.07601485401391983], [0.3888380825519562, 0.8475563526153564, 0.3611830174922943], [-0.07601485401391983, -0.3611830174922943, 0.9293915033340454]], "siteFrame3x3": [[-0.4290568232536316, -0.9032775163650513, 0.0], [0.9032775163650513, -0.4290568232536316, 0.0], [0.0, -0.0, 1.0]], "nativeTrianglesCroppedNotEnvelope": true, "nativeCropWidthM": 6.2, "nativeCropHeightM": 3.2, "rigidWallDepthTranslationM": 3.8114161849021913, "maximumBoundaryReturnDepthM": 2.2063665241196326, "boundaryParameters": 607, "siteStationM": 11.2, "side": -1, "polygon": [[-3.1, -1.024], [-2.0460000000000003, -1.6], [1.7979999999999998, -1.504], [3.038, -0.6080000000000001], [2.79, 0.8], [1.364, 1.6], [-1.612, 1.504], [-3.1620000000000004, 0.576]], "sourceTriangulatedFaces": 22852, "completeCaveTriangles": 26842, "method": "True native triangles, rigid uniform transform, irregular cut, union-parameter boundary retopology. No Boolean/noise/front-envelope/anisotropic normalization."}
+PILOT_HIGH_TOPOLOGY {'vertices': 13716, 'faces': 26817, 'nonManifold': 0, 'degenerateFaces': 0, 'looseVertices': 0}
+UV_OLD_TREE_READY
+UV_LAYER_READY 80451
+UV_SEED_AND_PINS_READY
+UNWRAP_BEGIN
+UNWRAP_END
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+08:22:13 | INFO: Starting glTF 2.0 export
+08:22:13 | INFO: Extracting primitive: Plane.008
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Plane.009
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Plane.010
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Throat_Authored_High.001
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Throat_Authored_High.002
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Throat_Authored_High.003
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage2_Authored_High.001
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage2_Authored_High.002
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage2_Authored_High.003
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage3_Authored_High.001
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage3_Authored_High.002
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage3_Authored_High.003
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage4_Authored_High.001
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage4_Authored_High.002
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage4_Authored_High.003
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Floor_Authored_High.001
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Floor_Authored_High.002
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Floor_Authored_High.003
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage1_Deep_Authored_High.001
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage1_Deep_Authored_High.002
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Extracting primitive: Cave_Passage1_Deep_Authored_High.003
+08:22:13 | INFO: Primitives created: 1
+08:22:13 | INFO: Finished glTF 2.0 export in 0.32159972190856934 s
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Invalid genuine Mikk derivative {"node":"Cave_Passage1_LOD0","corner":1131,"tangent":[0,0,0,-1],"normal":[-0.9474673271179199,0.05843598395586014,0.31446903944015503],"uv":[2.999999761581421,-6.135060787200928]}
+    at file:///workspace/Breeze-2027-navigation/scripts/blender/cave_mikktspace.mjs:63:14 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_cave_deep_pilot.py", line 81, in <module>
+    subprocess.run(['node',str(ROOT/'scripts/blender/cave_mikktspace.mjs'),str(file),'--shared-normals',str(framefile)],cwd=ROOT,check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['node', '/workspace/Breeze-2027-navigation/scripts/blender/cave_mikktspace.mjs', '/workspace/Breeze-2027-navigation/public/models/gullyverse/c9-cave-deep-relief/cave-deep-pilot.glb', '--shared-normals', '/workspace/Breeze-2027-navigation/assets-source/gullyverse/c9-cave-deep-relief/shared-boundary-normals.json']' returned non-zero exit status 1.
+
+Blender 4.3.2
+Read blend: "/workspace/Breeze-2027-navigation/assets-source/gullyverse/c9-cave-recovery/cave-entrance-working.blend"
+
+Blender quit

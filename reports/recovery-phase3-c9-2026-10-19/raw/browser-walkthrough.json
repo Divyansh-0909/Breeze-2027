@@ -1,0 +1,2658 @@
+{
+  "status": "PASS",
+  "states": [
+    {
+      "label": "historical entrance retained; C9 owner ready",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "landing",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": 0,
+        "y": 1.72,
+        "z": 11.5,
+        "yaw": 0,
+        "pitch": 0.15
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=scanned-composition"
+    },
+    {
+      "label": "original tunnel traversal to C9 hub",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": 0,
+        "y": 1.72,
+        "z": -51,
+        "yaw": 0,
+        "pitch": 0.2
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=scanned-composition"
+    },
+    {
+      "label": "public visitor walk start",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -18,
+        "y": 1.72,
+        "z": -55,
+        "yaw": 1.2277723863741932,
+        "pitch": 0.1429698281180687
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=scanned-composition"
+    },
+    {
+      "label": "actual keyboard walk along visitor boundary",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -17.999999003351274,
+        "y": 1.72,
+        "z": -62.34999999999988,
+        "yaw": 1.4662939928195058,
+        "pitch": 0.1429698281180687
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=scanned-composition"
+    },
+    {
+      "label": "map open before aftermovie",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": true,
+        "mapStage": "open",
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -17.999999003351274,
+        "y": 1.72,
+        "z": -62.3499999999999,
+        "yaw": 1.4662939928195058,
+        "pitch": 0.1429698281180687
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=scanned-composition"
+    },
+    {
+      "label": "original stage arrival with C9 selected",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "aftermovie",
+        "destination": "aftermovie",
+        "serial": 1,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -10.5,
+        "y": 1.72,
+        "z": -110.8,
+        "yaw": 0,
+        "pitch": 0.16
+      },
+      "url": "http://127.0.0.1:3000/aftermovie?quarryReview=scanned-composition&diagnostics"
+    },
+    {
+      "label": "original Aftermovie playing",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "aftermovie",
+        "destination": "aftermovie",
+        "serial": 1,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": true,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -12,
+        "y": 5.9,
+        "z": -117.30000000000001,
+        "yaw": 0,
+        "pitch": 0
+      },
+      "url": "http://127.0.0.1:3000/aftermovie?quarryReview=scanned-composition&diagnostics"
+    },
+    {
+      "label": "map open before hub",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "aftermovie",
+        "destination": "aftermovie",
+        "serial": 1,
+        "map": true,
+        "mapStage": "open",
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -10.5,
+        "y": 1.72,
+        "z": -110.8,
+        "yaw": 0,
+        "pitch": 0.16
+      },
+      "url": "http://127.0.0.1:3000/aftermovie?quarryReview=scanned-composition&diagnostics"
+    },
+    {
+      "label": "return to C9 hub",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 2,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": 0,
+        "y": 1.72,
+        "z": -51,
+        "yaw": 0,
+        "pitch": 0.2
+      },
+      "url": "http://127.0.0.1:3000/?arrival=hub&quarryReview=scanned-composition&diagnostics"
+    },
+    {
+      "label": "selected C9 visible after full journey",
+      "composition": {
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/recovered-c9-composition/composition-region.glb",
+        "hostPart": "Wall_15",
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "871b2876-b933-4ab7-8768-b97d1318ece8",
+          "source": "7a5bbb24-d642-4687-a343-cdaea6a3f092",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 44823,
+            "sourceTriangles": 21991,
+            "retainedHostTriangles": 21139,
+            "joinTriangles": 1693,
+            "originalHostTriangles": 24233,
+            "removedHostTriangles": 3094,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 393,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 1,
+            "triangles": 12689,
+            "sourceTriangles": 6493,
+            "retainedHostTriangles": 4604,
+            "joinTriangles": 1592,
+            "originalHostTriangles": 5253,
+            "removedHostTriangles": 649,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 341,
+            "openBoundaryLoops": 1
+          },
+          {
+            "LOD": 2,
+            "triangles": 4797,
+            "sourceTriangles": 2093,
+            "retainedHostTriangles": 1167,
+            "joinTriangles": 1537,
+            "originalHostTriangles": 1303,
+            "removedHostTriangles": 136,
+            "bounds": [
+              [
+                -51.3253173828125,
+                -0.800000011920929,
+                -76.30183410644531
+              ],
+              [
+                -37.82157897949219,
+                35.29502868652344,
+                -54.359981536865234
+              ]
+            ],
+            "nativeBounds": [
+              [
+                -47.41972835991761,
+                0.38408450484275825,
+                -70.79825433632466
+              ],
+              [
+                -40.475482382575784,
+                8.239275264739991,
+                -60.47429672053427
+              ]
+            ],
+            "externalBoundaryVertices": 319,
+            "openBoundaryLoops": 1
+          }
+        ],
+        "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": false,
+        "host": "C5.1",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "c37437e8-ca35-4da6-b3d9-a6dfe4f6fa92",
+            "source": "00c6bc3e-4cc9-46d2-8e86-bb933cd08523",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "7022f719-6632-410e-93be-1a9d275e2b5d",
+            "source": "fa5be098-d39f-40d1-adf7-363b9d3126fc",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "cfeef415-fef2-46e6-a332-1e38222326d2",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "acd7810d-2b70-4f36-ab52-fa42cf4bdc64",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "ee1b7519-ec25-4953-a4d9-552174048c22",
+            "source": "dae2a359-5a62-4476-9873-a48ee7fdb5c9",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ]
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 2,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -18,
+        "y": 1.72,
+        "z": -55,
+        "yaw": 1.2277723863741932,
+        "pitch": 0.1429698281180687
+      },
+      "url": "http://127.0.0.1:3000/?arrival=hub&quarryReview=scanned-composition&diagnostics"
+    }
+  ],
+  "errors": [],
+  "method": "Actual browser recording. Public walk starts at a validated pose, uses real pointer look and held W keys, then actual map, original playback and return controls. Separate inspection is explicitly non-public with automatic screen-space LOD selection. SwiftShader footage, no retiming.",
+  "physicalHardware": false
+}

@@ -8,6 +8,7 @@ import { travelZones } from "./navigation";
 import { makeBoardTexture, makeGraffitiTexture, makeGroundTexture, makeRockTexture, requireWorldFonts } from "./worldPaint";
 import { quarryWithoutWallFace, type WallReplacement } from "./wallSection";
 import {tunnelOutsideQuarryRear} from "./quarryRollout";
+import {caveLegacyInterface,mapCaveLegacyMaterial} from './caveLegacyInterface';
 
 export function WorldSign({ label, position, rotation=[0,0,0], size=[4.5,.84], color="#e4ded0", arrow, textSize }: { label:string;position:[number,number,number];rotation?:[number,number,number];size?:[number,number];color?:string;arrow?:[number,number];textSize?:number }) {
   requireWorldFonts();
@@ -180,9 +181,15 @@ function GroundDetail() {
     <instancedMesh ref={grass} args={[undefined,undefined,180]}><primitive object={tufts} attach="geometry" dispose={null} /><meshLambertMaterial color="#626849" side={THREE.DoubleSide} /></instancedMesh>
   </>;
 }
-export default function HubScene({nearStage,quality,stageView=false,wallReplacement=null,authoredQuarry=false}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean;wallReplacement?:WallReplacement;authoredQuarry?:boolean}) {
+function BorrowedCaveRock({geometry,material,map}:{geometry:THREE.BufferGeometry;material:THREE.MeshStandardMaterial|null;map:THREE.Texture}) {
+  const fallback=useMemo(()=>new THREE.MeshLambertMaterial({map,vertexColors:true,side:THREE.DoubleSide}),[map]);
+  useEffect(()=>()=>geometry.dispose(),[geometry]);
+  useEffect(()=>()=>fallback.dispose(),[fallback]);
+  return <mesh geometry={geometry} material={material??fallback} dispose={null}/>;
+}
+export default function HubScene({nearStage,quality,stageView=false,wallReplacement=null,authoredQuarry=false,caveReview=false,caveActive=false,caveMaterial=null}:{nearStage:boolean;quality:number;overview:boolean;stageView?:boolean;wallReplacement?:WallReplacement;authoredQuarry?:boolean;caveReview?:boolean;caveActive?:boolean;caveMaterial?:THREE.MeshStandardMaterial|null}) {
   requireWorldFonts();
-  const quarry=useMemo(()=>authoredQuarry?null:wallReplacement?quarryWithoutWallFace(wallReplacement):quarryGeometry(),[wallReplacement,authoredQuarry]),tunnel=useMemo(()=>authoredQuarry?tunnelOutsideQuarryRear():tunnelGeometry(),[authoredQuarry]),portal=useMemo(portalGeometry,[]),exit=useMemo(()=>authoredQuarry?null:exitGeometry(),[authoredQuarry]),ground=useMemo(groundGeometry,[]);
+  const quarry=useMemo(()=>authoredQuarry?null:wallReplacement?quarryWithoutWallFace(wallReplacement):quarryGeometry(),[wallReplacement,authoredQuarry]),tunnel=useMemo(()=>caveActive?mapCaveLegacyMaterial(caveLegacyInterface(authoredQuarry)):authoredQuarry?tunnelOutsideQuarryRear():tunnelGeometry(),[authoredQuarry,caveActive]),portal=useMemo(()=>caveActive?null:portalGeometry(),[caveActive]),exit=useMemo(()=>authoredQuarry?null:exitGeometry(),[authoredQuarry]),ground=useMemo(groundGeometry,[]);
   const rockTexture=useMemo(makeRockTexture,[]),groundTexture=useMemo(makeGroundTexture,[]);
   useEffect(()=>()=>{ground.dispose();rockTexture.dispose();groundTexture.dispose();},[ground,rockTexture,groundTexture]);
   return <>
@@ -190,9 +197,9 @@ export default function HubScene({nearStage,quality,stageView=false,wallReplacem
     <hemisphereLight args={stageView?["#d8e0dd","#686b59",.65]:["#a9bfd4","#8a8274",1.35]} />
     {!stageView && <directionalLight position={[-70,37,-145]} intensity={1.35} color="#efd0a4" />}
     {quarry&&<Rock geometry={quarry} map={rockTexture} quarry />}
-    <Rock geometry={tunnel} map={rockTexture} />
-    <Rock geometry={portal} map={rockTexture} />{exit&&<Rock geometry={exit} map={rockTexture} quarry />}
+    {caveReview?<BorrowedCaveRock geometry={tunnel} material={caveActive?caveMaterial:null} map={rockTexture}/>:<Rock geometry={tunnel} map={rockTexture} />}
+    {portal&&<Rock geometry={portal} map={rockTexture} />}{exit&&<Rock geometry={exit} map={rockTexture} quarry />}
     <mesh><primitive object={ground} attach="geometry" dispose={null} /><meshLambertMaterial map={groundTexture} color="#c8c2b4" /></mesh>
-    <EntrancePaint portal={portal} /><TunnelPaint /><Scaffold /><StallBlocks /><Population nearStage={nearStage} quality={quality} /><GroundDetail />
+    {!caveReview&&portal&&<EntrancePaint portal={portal} />}{!caveReview&&<TunnelPaint />}<Scaffold /><StallBlocks /><Population nearStage={nearStage} quality={quality} /><GroundDetail />
   </>;
 }

@@ -1,0 +1,908 @@
+{
+  "c8-technical": [
+    {
+      "page": 1,
+      "text": "Gullyverse Stage 2C.8 \u2014 scanned materials and local rock relief\nLatest user decision: 3\u00d7 texture scale is approved and locked. The private scanned-material-multi preview now opens at 3\u00d7 when no scale is\nspecified. Explicit 1\u00d7, 2\u00d7 and 4\u00d7 comparisons remain available. This decision supersedes the earlier provisional 2\u00d7 recommendation and \u201cawaiting texture\nreview\u201d notes.\nPhysical-geometry decision: REQUIRES ARTIST-ASSET INPUT. The original C8 solid-joining, shared-boundary, topology and authored-tangent gates still\nfail. Texture-scale approval does not validate those exports or authorize a quarry-wide rollout. Keep the original C6.2 comparison intact; the failed C8 physical\nbody remains a labelled private diagnostic. No photorealism claim is made.\nC5.1 remains the public default. C6.2 and rej"
+    },
+    {
+      "page": 2,
+      "text": "The actual current registry is public/models/gullyverse/blockout.layout.json: the 20-point quarry boundary spans X \u221249.8\u202648.0 m and Z \u2212165.5\u2026\u221242\nm (97.8 \u00d7123.5 m registry bounds); wall-height anchors span 31.85\u202641.6 m. These are read from this working tree, not restored historical requirements.\nThe registry, floor, terrain baseline, stage, scaffold, signs, tunnel, stalls, movement/gates, map/camera coordinates, lighting/fog/exposure/sky and video assets\nwere not edited.\nThe three requested public positions [-18,1.72,-55], [-18,1.72,-62], [-17,1.72,-69] pass the actual current constrain/obstacle and positive-clearance\nchecks. Inspection cameras closer than the walking envelope are explicitly labelled; they are not public visitor positions. The final images also show that\npublic positions2/3"
+    },
+    {
+      "page": 3,
+      "text": "5. Pass A \u2014 original 1\u00d7 material-only experiment\nHistorical native-scale assessment: the following material trials predate the user-approved 3\u00d7 sampling. Their original negative results are preserved; the\nlatest selected sampling is recorded above. Actual browser captures were made before new geometry authoring. A0/A1/A2 all reference the same C6.2\ngeometry URL and SHA256 185a339ddb17a5a4e0c84ce9b57e84b7116eaa0938e806823632213f66c15a23.\nControl\nResult\nA0 \u2014 original C6.2\nRetained preferred comparison. Darker and more restrained, with the known stretched-form/seam defects still present.\nA1 \u2014 single scanned Marble\nRock03\nMore real grain but too pebbly and visually busy at ordinary visitor distance. Does not independently earn adoption.\nA2 \u2014 Marble Rock03 + Rock\nFace03\nRestrained inclined weat"
+    },
+    {
+      "page": 4,
+      "text": "7. Integration, boundaries, LOD and clearance\nThe existing authoritative collision/navigation registry is untouched; the exported collision-reference GLB is inspection-only, never attached as new website\ncolliders. No visitor bounds, gates, stage sightlines or camera controls were changed.\nThe original screen-space selection/hysteresis infrastructure renders one visual LOD per part and retains shared cache ownership. It selects the new lower\nmesh and retained upper mesh separately through the same part contract. This does not prove that the new LOD geometry meets the shared interface\ncontract.\nThe independent actual-export survey retains the 2e\u22125 m interface threshold. It fails with maximum retained-boundary errors 0.780498 /0.846106 /4.078280\nm for LOD0/1/2. A full 5,040-ray perimeter/upw"
+    },
+    {
+      "page": 5,
+      "text": "The A1 maps total 3,856,583 bytes; A2 maps 4,483,782 bytes. Original2K source downloads are kept for authoring/review only. No runtime8K set, new4K\nfamily, global triplanar/displacement shader, new compression decoder or source-model tessellation system was introduced. Positions/UVs remain float32;\nthe existing geometry packer quantizes normal components where present. No claimed Draco/Meshopt/KTX2 benefit was invented.\nThe extra memory and transfer are not justified by a superior visitor image. A future winning source family should replace an obsolete family through the\nexisting owner rather than stack independent texture collections per wall.\n10. Separate texture approval from physical-geometry acceptance\nThe original 1\u00d7 combined C8 art test was judged weaker than C6.2: it looked busier "
+    },
+    {
+      "page": 6,
+      "text": "Matched frame/render samples\nSingle settled10-second windows per mode/view, not repeated confidence intervals. Sparse software frames make p99 coarse. No claim of sustained60FPS\nor comparable laptop speed is made. GL resource counters/JS heap are proxies, not VRAM measurements.\nMode / view\nMean FPS\np50 ms\np95 ms\np99 ms\nCalls\nTriangles\nTextures / geometries\nc51 / hub\n4.47\n217.70\n275.50\n280.40\n166.00\n123,002.00\n31 /212\nc51 / visitor-benchmark\n4.45\n212.90\n273.80\n287.80\n36.00\n109,647.00\n31 /212\nc51 / hub-keyboard-movement\n4.86\n200.40\n246.50\n254.80\n165.00\n122,992.00\n31 /212\nc51 / aerial-map\n3.37\n298.50\n349.70\n353.60\n188.00\n121,638.00\n31 /219\nc51 / stage-looking-back\n2.55\n399.10\n466.50\n487.70\n76.00\n1,040,290.00\n31 /223\nc62 / hub\n4.63\n205.20\n282.40\n297.40\n166.00\n123,002.00\n32 /209\nc62 / visitor-b"
+    },
+    {
+      "page": 7,
+      "text": "scalable production budget. No full-quarry cost/FPS guarantee is extrapolated. First fix the artist-authored local partition, share one accepted material family,\nand measure screen-space LODs on physical hardware before setting final budgets. No larger owner/streaming rewrite was attempted.\nRuntime regressions, cache and playback\nBrowser job\nResult\nElapsed s\nmaterial-ownership\nPASS\n9.51\nperformance-c51\nPASS\n93.87\nperformance-c62\nPASS\n94.78\nperformance-c8\nPASS\n94.95\nnetwork-loading\nPASS\n95.97\ncaptures-c51\nPASS\n190.77\ncaptures-c62\nPASS\n199.75\ncaptures-c7\nPASS\n121.28\ncaptures-c8\nPASS\n207.06\nregressions\nPASS\n288.56\ndirectional-travel\nPASS\n55.37\ncache-lifecycle\nFAIL\n37.89\nvideo-cycles\nPASS\n61.86\nnavigation-cycles\nPASS\n111.66\nrecovery\nPASS\n77.19\nshader-links\nPASS\n26.51\npublic-walkthrough\nPASS\n16"
+    },
+    {
+      "page": 8,
+      "text": "Corrected failed-C8 diagnostic lifecycle: PASS,10 covered enable/disable cycles plus retirement/reload/unmount. Navigation: PASS, 5 hub/stage round trips.\nPlayback: 3 short real playback/exit cycles, including preview changes during playback; PASS.\nSettled foundation- cycle2\u219210 counters: {'textures': 38, 'geometries': 263, 'GL': {'Texture': 42, 'Buffer': 1174, 'Program': 25},\n'JSHeap': 93828869} \u2192 {'textures': 38, 'geometries': 263, 'GL': {'Texture': 42, 'Buffer': 1174, 'Program': 25}, 'JSHeap': 97784023}.\nHeap is recorded but garbage-collection timing prevents a strict flat-heap guarantee.\nSettled baseline- cycle2\u219210 counters: {'textures': 38, 'geometries': 263, 'GL': {'Texture': 42, 'Buffer': 1174, 'Program': 25}, 'JSHeap':\n99120105} \u2192 {'textures': 38, 'geometries': 263, 'GL': {'Texture'"
+    },
+    {
+      "page": 9,
+      "text": "Private multi-source preview selects approved3x with no scale parameter: PASS.\n1x/4x controls preserved; return to3x exact, UV1/non-C8 maps fixed, image and geometry IDs unchanged: PASS.\nnative-control: PASS.\nexplicit4x: PASS.\ninvalid-falls-back-to-approved: PASS.\noriginal-single-source-control: PASS.\npublic-default: PASS.\nFinal capture/default checks, preservation hashes, starting state. These focused checks apply to the new default-lock build. The original extensive\nnavigation/playback/failure/context cohorts in \u00a712 retain their original build IDs; they were not all repeated or relabelled as current-build results. No new\nphysical-GPU timing claim is made.\nThe full screenshot PDF has 162 pages, covering 157 original browser screenshots, plus the selection/paired comparison pages. Complete"
+    }
+  ],
+  "c8-gallery": [
+    {
+      "page": 1,
+      "text": "GULLYVERSE - STAGE2C.8\nFULL SCREENSHOT REVIEW\nApproved texture pattern: 3x\nPrivate multi-source preview now defaults to3x.\nOriginal1x /2x /4x controls and prior versions retained.\nPublicC5.1 and all world / stage / lighting configurations preserved.\nGeometry warning: new physicalC8 export still fails its join gate.\nTexture-scale approval does not approve new physical geometry.\n157 original browser screenshots indexed in this PDF.\nSelected3x views first; remaining historical evidence follows.\nEach page records the actual version, scale and metadata source.\nPDF embeds compressed images for iPhone convenience.\nThe ZIP includes every full-resolution originalPNG and raw metadata.\nSwiftShader evidence only; physical-device performance PENDING.\nNo commit, push, merge, deployment or quarry-wide ro"
+    },
+    {
+      "page": 2,
+      "text": "OriginalC6.2 vs approved3x material\nOriginal C6.2\nApproved3x - same C6.2 geometry\nIdentical camera and approved lighting. Full metadata/originals in the evidence package.\n"
+    },
+    {
+      "page": 3,
+      "text": "3x selected /4x comparison - 03-tunnel-exit-left\n3x - selected\n4x - comparison only\nIdentical camera and approved lighting. Full metadata/originals in the evidence package.\n"
+    },
+    {
+      "page": 4,
+      "text": "3x selected /4x comparison - 04-behind-left-stalls\n3x - selected\n4x - comparison only\nIdentical camera and approved lighting. Full metadata/originals in the evidence package.\n"
+    },
+    {
+      "page": 5,
+      "text": "3x selected /4x comparison - 05-behind-right-stalls\n3x - selected\n4x - comparison only\nIdentical camera and approved lighting. Full metadata/originals in the evidence package.\n"
+    },
+    {
+      "page": 6,
+      "text": "1/157 - approved-3x-visitor.png\nAPPROVED 3x MATERIAL PREVIEW | Approved3x / final default verification\nValidated public visitor position1. New default3x build; exact effective camera/DPR/quality in metadata.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/screenshots/approved-3x-visitor.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 7,
+      "text": "2/157 - approved-3x-close.png\nAPPROVED 3x MATERIAL PREVIEW | Approved3x / final default verification\nNon-public close inspection. New default3x build; exact effective camera/DPR/quality in metadata.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/screenshots/approved-3x-close.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 8,
+      "text": "3/157 - approved-3x-tunnel-exit.png\nAPPROVED 3x MATERIAL PREVIEW | Approved3x / final default verification\nQuarry entrance looking toward the private west-wall study. New default3x build; exact effective camera/DPR/quality in metadata.\nCamera[0.000,1.720,-43.000] yaw1.1165 pitch0.1510 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/screenshots/approved-3x-tunnel-exit.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 9,
+      "text": "4/157 - approved-3x-behind-left-stalls.png\nAPPROVED 3x MATERIAL PREVIEW | Approved3x / final default verification\nTemporary behind-stall inspection; outside the hub walking polygon. New default3x build; exact effective camera/DPR/quality in metadata.\nCamera[-27.000,1.720,-64.000] yaw1.3633 pitch0.3128 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/screenshots/approved-3x-behind-left-stalls.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 10,
+      "text": "5/157 - approved-3x-hub.png\nAPPROVED 3x MATERIAL PREVIEW | Approved3x / final default verification\nPublic hub spawn looking toward the study. New default3x build; exact effective camera/DPR/quality in metadata.\nCamera[0.000,1.720,-51.000] yaw1.1273 pitch0.1848 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/screenshots/approved-3x-hub.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 11,
+      "text": "6/157 - approved-3x-portrait.png\nAPPROVED 3x MATERIAL PREVIEW | Approved3x / final default verification\nPortrait aspect390x844; no physical phone claim.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/screenshots/approved-3x-portrait.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 12,
+      "text": "7/157 - approved-3x-map-portrait.png\nAPPROVED 3x MATERIAL PREVIEW | Approved3x / final default verification\nActual full-screen Map control; shared coordinates/framing unchanged.\nCamera[-0.900,233.848,-77.000] yaw0.0000 pitch-1.5708 FOV80; viewport390x844; requestedDPR1; effectiveDPR0.6; Q3; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/screenshots/approved-3x-map-portrait.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 13,
+      "text": "8/157 - pattern-3x-visitor.png\nUSER SELECTED 3x | 3x /4x size comparison\nValid public position [-18,1.72,-55]; matched approved dusk,1366x900,requestedDPR1,Q0.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-4x-2026-10-17/pattern-3x-visitor.png | Metadata: reports/texture-scale-4x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 14,
+      "text": "9/157 - pattern-3x-close.png\nUSER SELECTED 3x | 3x /4x size comparison\nNon-public close inspection camera; identical approved lighting.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-4x-2026-10-17/pattern-3x-close.png | Metadata: reports/texture-scale-4x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 15,
+      "text": "10/157 - pattern-4x-visitor.png\n4x comparison - not selected | 3x /4x size comparison\nValid public position [-18,1.72,-55]; matched approved dusk,1366x900,requestedDPR1,Q0.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-4x-2026-10-17/pattern-4x-visitor.png | Metadata: reports/texture-scale-4x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 16,
+      "text": "11/157 - pattern-4x-close.png\n4x comparison - not selected | 3x /4x size comparison\nNon-public close inspection camera; identical approved lighting.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-4x-2026-10-17/pattern-4x-close.png | Metadata: reports/texture-scale-4x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 17,
+      "text": "12/157 - pattern-3x-portrait.png\nUSER SELECTED 3x | 3x /4x size comparison\nPortrait aspect390x844, same public position and approved lighting. Browser emulation, not physical iPhone.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-4x-2026-10-17/pattern-3x-portrait.png | Metadata: reports/texture-scale-4x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 18,
+      "text": "13/157 - pattern-4x-portrait.png\n4x comparison - not selected | 3x /4x size comparison\nPortrait aspect390x844, same public position and approved lighting. Browser emulation, not physical iPhone.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-4x-2026-10-17/pattern-4x-portrait.png | Metadata: reports/texture-scale-4x-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 19,
+      "text": "14/157 - desktop-01-entrance-3x.png\nUSER SELECTED 3x | Matched tunnel / stall / entrance context\nOriginal registry landing view. Entrance and tunnel use their unchanged materials; this is a context/control view, not the enlarged rock test surface.\nCamera[0.000,1.720,11.500] yaw0.0000 pitch0.1536 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-01-entrance-3x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 20,
+      "text": "15/157 - desktop-01-entrance-4x.png\n4x comparison - not selected | Matched tunnel / stall / entrance context\nOriginal registry landing view. Entrance and tunnel use their unchanged materials; this is a context/control view, not the enlarged rock test surface.\nCamera[0.000,1.720,11.500] yaw0.0000 pitch0.1536 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-01-entrance-4x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 21,
+      "text": "16/157 - desktop-02-tunnel-exit-3x.png\nUSER SELECTED 3x | Matched tunnel / stall / entrance context\nOriginal registry exit camera. Wide quarry composition; the benchmark is off to the left and may be outside this view.\nCamera[-1.300,1.720,-38.000] yaw-0.0406 pitch0.1755 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-02-tunnel-exit-3x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 22,
+      "text": "17/157 - desktop-02-tunnel-exit-4x.png\n4x comparison - not selected | Matched tunnel / stall / entrance context\nOriginal registry exit camera. Wide quarry composition; the benchmark is off to the left and may be outside this view.\nCamera[-1.300,1.720,-38.000] yaw-0.0406 pitch0.1755 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-02-tunnel-exit-4x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 23,
+      "text": "18/157 - desktop-03-tunnel-exit-left-3x.png\nUSER SELECTED 3x | Matched tunnel / stall / entrance context\nEye-height quarry entry position. Camera turned left toward the private west-wall study, without changing any saved camera configuration.\nCamera[0.000,1.720,-43.000] yaw1.1165 pitch0.1510 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-03-tunnel-exit-left-3x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 24,
+      "text": "19/157 - desktop-03-tunnel-exit-left-4x.png\n4x comparison - not selected | Matched tunnel / stall / entrance context\nEye-height quarry entry position. Camera turned left toward the private west-wall study, without changing any saved camera configuration.\nCamera[0.000,1.720,-43.000] yaw1.1165 pitch0.1510 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-03-tunnel-exit-left-4x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 25,
+      "text": "20/157 - desktop-04-behind-left-stalls-3x.png\nUSER SELECTED 3x | Matched tunnel / stall / entrance context\nTemporary eye-height inspection camera behind the first left stall, outside the hub walking polygon. Existing stall/wall geometry retained.\nCamera[-27.000,1.720,-64.000] yaw1.3633 pitch0.3128 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-04-behind-left-stalls-3x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 26,
+      "text": "21/157 - desktop-04-behind-left-stalls-4x.png\n4x comparison - not selected | Matched tunnel / stall / entrance context\nTemporary eye-height inspection camera behind the first left stall, outside the hub walking polygon. Existing stall/wall geometry retained.\nCamera[-27.000,1.720,-64.000] yaw1.3633 pitch0.3128 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-04-behind-left-stalls-4x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 27,
+      "text": "22/157 - desktop-05-behind-right-stalls-3x.png\nUSER SELECTED 3x | Matched tunnel / stall / entrance context\nTemporary eye-height inspection camera behind the first right stall, outside the hub walking polygon. Distant view across to the west-wall study.\nCamera[28.000,1.720,-64.000] yaw1.5168 pitch0.1113 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-05-behind-right-stalls-3x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 28,
+      "text": "23/157 - desktop-05-behind-right-stalls-4x.png\n4x comparison - not selected | Matched tunnel / stall / entrance context\nTemporary eye-height inspection camera behind the first right stall, outside the hub walking polygon. Distant view across to the west-wall study.\nCamera[28.000,1.720,-64.000] yaw1.5168 pitch0.1113 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-05-behind-right-stalls-4x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 29,
+      "text": "24/157 - desktop-06-right-stall-wall-3x.png\nUSER SELECTED 3x | Matched tunnel / stall / entrance context\nEye-height hub viewpoint. The east wall is outside the private texture study, so it remains unchanged at both settings.\nCamera[14.000,1.720,-65.000] yaw-1.1965 pitch0.2058 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-06-right-stall-wall-3x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 30,
+      "text": "25/157 - desktop-06-right-stall-wall-4x.png\n4x comparison - not selected | Matched tunnel / stall / entrance context\nEye-height hub viewpoint. The east wall is outside the private texture study, so it remains unchanged at both settings.\nCamera[14.000,1.720,-65.000] yaw-1.1965 pitch0.2058 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-context-2026-10-17/desktop-06-right-stall-wall-4x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 31,
+      "text": "26/157 - portrait-03-tunnel-exit-left-3x.png\nUSER SELECTED 3x | Matched tunnel / stall / entrance context\nEye-height quarry entry position. Camera turned left toward the private west-wall study, without changing any saved camera configuration.\nCamera[0.000,1.720,-43.000] yaw1.1165 pitch0.1510 FOV80.237146455139; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-context-2026-10-17/portrait-03-tunnel-exit-left-3x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 32,
+      "text": "27/157 - portrait-03-tunnel-exit-left-4x.png\n4x comparison - not selected | Matched tunnel / stall / entrance context\nEye-height quarry entry position. Camera turned left toward the private west-wall study, without changing any saved camera configuration.\nCamera[0.000,1.720,-43.000] yaw1.1165 pitch0.1510 FOV80.237146455139; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-context-2026-10-17/portrait-03-tunnel-exit-left-4x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 33,
+      "text": "28/157 - portrait-04-behind-left-stalls-3x.png\nUSER SELECTED 3x | Matched tunnel / stall / entrance context\nTemporary eye-height inspection camera behind the first left stall, outside the hub walking polygon. Existing stall/wall geometry retained.\nCamera[-27.000,1.720,-64.000] yaw1.3633 pitch0.3128 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/texture-scale-context-2026-10-17/portrait-04-behind-left-stalls-3x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 34,
+      "text": "29/157 - portrait-04-behind-left-stalls-4x.png\n4x comparison - not selected | Matched tunnel / stall / entrance context\nTemporary eye-height inspection camera behind the first left stall, outside the hub walking polygon. Existing stall/wall geometry retained.\nCamera[-27.000,1.720,-64.000] yaw1.3633 pitch0.3128 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale4.\nOriginal: reports/texture-scale-context-2026-10-17/portrait-04-behind-left-stalls-4x.png | Metadata: reports/texture-scale-context-2026-10-17/capture-metadata.json\n"
+    },
+    {
+      "page": 35,
+      "text": "30/157 - desktop-01-public-first.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nValidated public visitor position 1, normal distance. Approved Hub lighting; DPR1/quality0.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 36,
+      "text": "31/157 - desktop-02-public-middle.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nValidated public visitor position 2. Approved Hub lighting; DPR1/quality0.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-02-public-middle.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 37,
+      "text": "32/157 - desktop-03-public-boundary.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nValidated public visitor position 3. Approved Hub lighting; DPR1/quality0.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-03-public-boundary.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 38,
+      "text": "33/157 - desktop-04-along-wall.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nAlong-wall inspection outside public walking polygon. Approved Hub lighting; DPR1/quality0.\nCamera[-32.000,1.720,-54.000] yaw0.6435 pitch0.2064 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-04-along-wall.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 39,
+      "text": "34/157 - desktop-05-close-fractures.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nElevated close inspection outside public circulation. Approved Hub lighting; DPR1/quality0.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-05-close-fractures.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 40,
+      "text": "35/157 - desktop-06-broken-beds.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nInspection of actual thick broken ledges, outside movement polygon. Approved Hub lighting; DPR1/quality0.\nCamera[-38.000,5.500,-61.000] yaw1.1071 pitch0.0558 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-06-broken-beds.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 41,
+      "text": "36/157 - desktop-07-medium.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nMedium-distance inspection. Approved Hub lighting; DPR1/quality0.\nCamera[-27.000,1.720,-60.000] yaw1.3135 pitch0.4413 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-07-medium.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 42,
+      "text": "37/157 - desktop-08-left-transition.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nS0 geological interface, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-30.000,5.000,-72.000] yaw1.4711 pitch0.1482 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-08-left-transition.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 43,
+      "text": "38/157 - desktop-09-right-transition.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nS1 geological interface, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-24.000,3.000,-50.000] yaw1.1903 pitch0.3556 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-09-right-transition.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 44,
+      "text": "39/157 - desktop-10-upper-rim.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nLow-angle inspection toward preserved rim. Approved Hub lighting; DPR1/quality0.\nCamera[-25.000,1.720,-58.000] yaw1.2490 pitch0.9235 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-10-upper-rim.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 45,
+      "text": "40/157 - desktop-11-wall-foot.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nWall-foot/ground contact, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-35.000,1.720,-62.000] yaw1.3045 pitch-0.1153 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-11-wall-foot.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 46,
+      "text": "41/157 - desktop-12-hub.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nActual public hub spawn facing the cliff. Approved Hub lighting; DPR1/quality0.\nCamera[0.000,1.720,-51.000] yaw1.1273 pitch0.1848 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-12-hub.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 47,
+      "text": "42/157 - desktop-13-scaffold.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nLocked scaffold/stage composition. Approved Hub lighting; DPR1/quality0.\nCamera[8.000,1.720,-46.000] yaw0.5517 pitch0.2029 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-13-scaffold.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 48,
+      "text": "43/157 - desktop-14-tunnel-exit.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nOriginal tunnel-exit composition; no camera-source edits. Approved Hub lighting; DPR1/quality0.\nCamera[-1.300,1.720,-38.000] yaw-0.0406 pitch0.1755 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-14-tunnel-exit.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 49,
+      "text": "44/157 - desktop-15-aerial.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nActual Map control, approved camera and adaptive tier.\nCamera[-0.900,165.934,-77.000] yaw-1.5708 pitch-1.5708 FOV64.00036968449932; viewport1366x900; requestedDPR1; effectiveDPR0.6; Q3; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-15-aerial.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 50,
+      "text": "45/157 - desktop-16-stage-looking-back.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nUnchanged Aftermovie lighting.\nCamera[-10.500,1.720,-108.300] yaw2.4549 pitch0.2329 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/desktop-16-stage-looking-back.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 51,
+      "text": "46/157 - mobile-01-public-first.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nValidated public visitor position 1, normal distance. Touch emulation, not a physical mobile benchmark.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/mobile-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 52,
+      "text": "47/157 - mobile-12-hub.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nActual public hub spawn facing the cliff. Touch emulation, not a physical mobile benchmark.\nCamera[0.000,1.720,-51.000] yaw1.1273 pitch0.1848 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/mobile-12-hub.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 53,
+      "text": "48/157 - mobile-13-scaffold.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nLocked scaffold/stage composition. Touch emulation, not a physical mobile benchmark.\nCamera[8.000,1.720,-46.000] yaw0.5517 pitch0.2029 FOV88.7706475853118; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/mobile-13-scaffold.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 54,
+      "text": "49/157 - mobile-15-aerial.png\nPUBLIC C5.1 - PRESERVED | Original C8 study and scale-control evidence\nActual map control in portrait emulation.\nCamera[-0.900,233.848,-77.000] yaw0.0000 pitch-1.5708 FOV80; viewport390x844; requestedDPR1; effectiveDPR0.6; Q3; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c51/mobile-15-aerial.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-captures.json\n"
+    },
+    {
+      "page": 55,
+      "text": "50/157 - desktop-01-public-first.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nValidated public visitor position 1, normal distance. Approved Hub lighting; DPR1/quality0.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 56,
+      "text": "51/157 - desktop-02-public-middle.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nValidated public visitor position 2. Approved Hub lighting; DPR1/quality0.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-02-public-middle.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 57,
+      "text": "52/157 - desktop-03-public-boundary.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nValidated public visitor position 3. Approved Hub lighting; DPR1/quality0.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-03-public-boundary.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 58,
+      "text": "53/157 - desktop-04-along-wall.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nAlong-wall inspection outside public walking polygon. Approved Hub lighting; DPR1/quality0.\nCamera[-32.000,1.720,-54.000] yaw0.6435 pitch0.2064 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-04-along-wall.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 59,
+      "text": "54/157 - desktop-05-close-fractures.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nElevated close inspection outside public circulation. Approved Hub lighting; DPR1/quality0.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-05-close-fractures.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 60,
+      "text": "55/157 - desktop-06-broken-beds.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nInspection of actual thick broken ledges, outside movement polygon. Approved Hub lighting; DPR1/quality0.\nCamera[-38.000,5.500,-61.000] yaw1.1071 pitch0.0558 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-06-broken-beds.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 61,
+      "text": "56/157 - desktop-07-medium.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nMedium-distance inspection. Approved Hub lighting; DPR1/quality0.\nCamera[-27.000,1.720,-60.000] yaw1.3135 pitch0.4413 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-07-medium.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 62,
+      "text": "57/157 - desktop-08-left-transition.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nS0 geological interface, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-30.000,5.000,-72.000] yaw1.4711 pitch0.1482 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-08-left-transition.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 63,
+      "text": "58/157 - desktop-09-right-transition.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nS1 geological interface, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-24.000,3.000,-50.000] yaw1.1903 pitch0.3556 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-09-right-transition.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 64,
+      "text": "59/157 - desktop-10-upper-rim.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nLow-angle inspection toward preserved rim. Approved Hub lighting; DPR1/quality0.\nCamera[-25.000,1.720,-58.000] yaw1.2490 pitch0.9235 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-10-upper-rim.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 65,
+      "text": "60/157 - desktop-11-wall-foot.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nWall-foot/ground contact, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-35.000,1.720,-62.000] yaw1.3045 pitch-0.1153 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-11-wall-foot.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 66,
+      "text": "61/157 - desktop-12-hub.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nActual public hub spawn facing the cliff. Approved Hub lighting; DPR1/quality0.\nCamera[0.000,1.720,-51.000] yaw1.1273 pitch0.1848 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-12-hub.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 67,
+      "text": "62/157 - desktop-13-scaffold.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nLocked scaffold/stage composition. Approved Hub lighting; DPR1/quality0.\nCamera[8.000,1.720,-46.000] yaw0.5517 pitch0.2029 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-13-scaffold.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 68,
+      "text": "63/157 - desktop-14-tunnel-exit.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nOriginal tunnel-exit composition; no camera-source edits. Approved Hub lighting; DPR1/quality0.\nCamera[-1.300,1.720,-38.000] yaw-0.0406 pitch0.1755 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-14-tunnel-exit.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 69,
+      "text": "64/157 - desktop-15-aerial.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nActual Map control, approved camera and adaptive tier.\nCamera[-0.900,165.934,-77.000] yaw-1.5708 pitch-1.5708 FOV64.00036968449932; viewport1366x900; requestedDPR1; effectiveDPR0.6; Q3; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-15-aerial.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 70,
+      "text": "65/157 - desktop-16-stage-looking-back.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nUnchanged Aftermovie lighting.\nCamera[-10.500,1.720,-108.300] yaw2.4549 pitch0.2329 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/desktop-16-stage-looking-back.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 71,
+      "text": "66/157 - mobile-01-public-first.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nValidated public visitor position 1, normal distance. Touch emulation, not a physical mobile benchmark.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/mobile-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 72,
+      "text": "67/157 - mobile-12-hub.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nActual public hub spawn facing the cliff. Touch emulation, not a physical mobile benchmark.\nCamera[0.000,1.720,-51.000] yaw1.1273 pitch0.1848 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/mobile-12-hub.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 73,
+      "text": "68/157 - mobile-13-scaffold.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nLocked scaffold/stage composition. Touch emulation, not a physical mobile benchmark.\nCamera[8.000,1.720,-46.000] yaw0.5517 pitch0.2029 FOV88.7706475853118; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/mobile-13-scaffold.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 74,
+      "text": "69/157 - mobile-15-aerial.png\nORIGINAL C6.2 COMPARISON | Original C8 study and scale-control evidence\nActual map control in portrait emulation.\nCamera[-0.900,233.848,-77.000] yaw0.0000 pitch-1.5708 FOV80; viewport390x844; requestedDPR1; effectiveDPR0.6; Q3; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c62/mobile-15-aerial.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-captures.json\n"
+    },
+    {
+      "page": 75,
+      "text": "70/157 - desktop-01-public-first.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nValidated public visitor position 1, normal distance. Approved Hub lighting; DPR1/quality0.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/desktop-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 76,
+      "text": "71/157 - desktop-02-public-middle.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nValidated public visitor position 2. Approved Hub lighting; DPR1/quality0.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/desktop-02-public-middle.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 77,
+      "text": "72/157 - desktop-03-public-boundary.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nValidated public visitor position 3. Approved Hub lighting; DPR1/quality0.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/desktop-03-public-boundary.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 78,
+      "text": "73/157 - desktop-12-hub.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nActual public hub spawn facing the cliff. Approved Hub lighting; DPR1/quality0.\nCamera[0.000,1.720,-51.000] yaw1.1273 pitch0.1848 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/desktop-12-hub.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 79,
+      "text": "74/157 - desktop-13-scaffold.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nLocked scaffold/stage composition. Approved Hub lighting; DPR1/quality0.\nCamera[8.000,1.720,-46.000] yaw0.5517 pitch0.2029 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/desktop-13-scaffold.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 80,
+      "text": "75/157 - desktop-14-tunnel-exit.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nOriginal tunnel-exit composition; no camera-source edits. Approved Hub lighting; DPR1/quality0.\nCamera[-1.300,1.720,-38.000] yaw-0.0406 pitch0.1755 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/desktop-14-tunnel-exit.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 81,
+      "text": "76/157 - desktop-15-aerial.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nActual Map control, approved camera and adaptive tier.\nCamera[-0.900,165.934,-77.000] yaw-1.5708 pitch-1.5708 FOV64.00036968449932; viewport1366x900; requestedDPR1; effectiveDPR0.6; Q3; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/desktop-15-aerial.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 82,
+      "text": "77/157 - desktop-16-stage-looking-back.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nUnchanged Aftermovie lighting.\nCamera[-10.500,1.720,-108.300] yaw2.4549 pitch0.2329 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/desktop-16-stage-looking-back.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 83,
+      "text": "78/157 - mobile-01-public-first.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nValidated public visitor position 1, normal distance. Touch emulation, not a physical mobile benchmark.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/mobile-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 84,
+      "text": "79/157 - mobile-15-aerial.png\nC7 REJECTED - HISTORY | Original C8 study and scale-control evidence\nActual map control in portrait emulation.\nCamera[-0.900,233.848,-77.000] yaw0.0000 pitch-1.5708 FOV80; viewport390x844; requestedDPR1; effectiveDPR0.6; Q3; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c7/mobile-15-aerial.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c7-captures.json\n"
+    },
+    {
+      "page": 85,
+      "text": "80/157 - desktop-01-public-first.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nValidated public visitor position 1, normal distance. Approved Hub lighting; DPR1/quality0.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 86,
+      "text": "81/157 - desktop-02-public-middle.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nValidated public visitor position 2. Approved Hub lighting; DPR1/quality0.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-02-public-middle.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 87,
+      "text": "82/157 - desktop-03-public-boundary.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nValidated public visitor position 3. Approved Hub lighting; DPR1/quality0.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-03-public-boundary.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 88,
+      "text": "83/157 - desktop-04-along-wall.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nAlong-wall inspection outside public walking polygon. Approved Hub lighting; DPR1/quality0.\nCamera[-32.000,1.720,-54.000] yaw0.6435 pitch0.2064 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-04-along-wall.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 89,
+      "text": "84/157 - desktop-05-close-fractures.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nElevated close inspection outside public circulation. Approved Hub lighting; DPR1/quality0.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-05-close-fractures.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 90,
+      "text": "85/157 - desktop-06-broken-beds.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nInspection of actual thick broken ledges, outside movement polygon. Approved Hub lighting; DPR1/quality0.\nCamera[-38.000,5.500,-61.000] yaw1.1071 pitch0.0558 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-06-broken-beds.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 91,
+      "text": "86/157 - desktop-07-medium.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nMedium-distance inspection. Approved Hub lighting; DPR1/quality0.\nCamera[-27.000,1.720,-60.000] yaw1.3135 pitch0.4413 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-07-medium.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 92,
+      "text": "87/157 - desktop-08-left-transition.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nS0 geological interface, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-30.000,5.000,-72.000] yaw1.4711 pitch0.1482 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-08-left-transition.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 93,
+      "text": "88/157 - desktop-09-right-transition.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nS1 geological interface, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-24.000,3.000,-50.000] yaw1.1903 pitch0.3556 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-09-right-transition.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 94,
+      "text": "89/157 - desktop-10-upper-rim.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nLow-angle inspection toward preserved rim. Approved Hub lighting; DPR1/quality0.\nCamera[-25.000,1.720,-58.000] yaw1.2490 pitch0.9235 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-10-upper-rim.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 95,
+      "text": "90/157 - desktop-11-wall-foot.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nWall-foot/ground contact, inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-35.000,1.720,-62.000] yaw1.3045 pitch-0.1153 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-11-wall-foot.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 96,
+      "text": "91/157 - desktop-12-hub.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nActual public hub spawn facing the cliff. Approved Hub lighting; DPR1/quality0.\nCamera[0.000,1.720,-51.000] yaw1.1273 pitch0.1848 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-12-hub.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 97,
+      "text": "92/157 - desktop-13-scaffold.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nLocked scaffold/stage composition. Approved Hub lighting; DPR1/quality0.\nCamera[8.000,1.720,-46.000] yaw0.5517 pitch0.2029 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-13-scaffold.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 98,
+      "text": "93/157 - desktop-14-tunnel-exit.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nOriginal tunnel-exit composition; no camera-source edits. Approved Hub lighting; DPR1/quality0.\nCamera[-1.300,1.720,-38.000] yaw-0.0406 pitch0.1755 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-14-tunnel-exit.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 99,
+      "text": "94/157 - desktop-17-local-source-join-left.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nLocal native source south join; inspection camera outside public movement envelope. Approved Hub lighting; DPR1/quality0.\nCamera[-40.000,4.000,-76.000] yaw2.0344 pitch0.1113 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-17-local-source-join-left.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 100,
+      "text": "95/157 - desktop-18-local-source-join-right.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nLocal native source north join; inspection only. Approved Hub lighting; DPR1/quality0.\nCamera[-35.000,4.000,-58.000] yaw1.0517 pitch0.1234 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-18-local-source-join-right.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 101,
+      "text": "96/157 - desktop-15-aerial.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nActual Map control, approved camera and adaptive tier.\nCamera[-0.900,165.934,-77.000] yaw-1.5708 pitch-1.5708 FOV64.00036968449932; viewport1366x900; requestedDPR1; effectiveDPR0.6; Q3; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-15-aerial.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 102,
+      "text": "97/157 - desktop-16-stage-looking-back.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nUnchanged Aftermovie lighting.\nCamera[-10.500,1.720,-108.300] yaw2.4549 pitch0.2329 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/desktop-16-stage-looking-back.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 103,
+      "text": "98/157 - mobile-01-public-first.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nValidated public visitor position 1, normal distance. Touch emulation, not a physical mobile benchmark.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/mobile-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 104,
+      "text": "99/157 - mobile-12-hub.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nActual public hub spawn facing the cliff. Touch emulation, not a physical mobile benchmark.\nCamera[0.000,1.720,-51.000] yaw1.1273 pitch0.1848 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/mobile-12-hub.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 105,
+      "text": "100/157 - mobile-13-scaffold.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nLocked scaffold/stage composition. Touch emulation, not a physical mobile benchmark.\nCamera[8.000,1.720,-46.000] yaw0.5517 pitch0.2029 FOV88.7706475853118; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/mobile-13-scaffold.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 106,
+      "text": "101/157 - mobile-15-aerial.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nActual map control in portrait emulation.\nCamera[-0.900,233.848,-77.000] yaw0.0000 pitch-1.5708 FOV80; viewport390x844; requestedDPR1; effectiveDPR0.6; Q3; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/c8/mobile-15-aerial.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-captures.json\n"
+    },
+    {
+      "page": 107,
+      "text": "102/157 - public1.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a0/public1.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 108,
+      "text": "103/157 - public2.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a0/public2.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 109,
+      "text": "104/157 - public3.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a0/public3.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 110,
+      "text": "105/157 - close.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nInspection camera outside walking polygon. Geometry unchanged.\nCamera[-40.000,6.000,-62.000] yaw1.1071 pitch0.1480 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a0/close.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 111,
+      "text": "106/157 - public1.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a1/public1.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 112,
+      "text": "107/157 - public2.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a1/public2.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 113,
+      "text": "108/157 - public3.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a1/public3.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 114,
+      "text": "109/157 - close.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nInspection camera outside walking polygon. Geometry unchanged.\nCamera[-40.000,6.000,-62.000] yaw1.1071 pitch0.1480 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a1/close.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 115,
+      "text": "110/157 - public1.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a2/public1.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 116,
+      "text": "111/157 - public2.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a2/public2.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 117,
+      "text": "112/157 - public3.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nValidated public position. Unchanged approved lighting, identical C6.2 geometry.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a2/public3.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 118,
+      "text": "113/157 - close.png\nPRE-GEOMETRY MATERIAL CONTROL | Original C8 study and scale-control evidence\nInspection camera outside walking polygon. Geometry unchanged.\nCamera[-40.000,6.000,-62.000] yaw1.1071 pitch0.1480 FOV58; viewport1366x900; requestedDPR0.75; effectiveDPR0.75; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/pass-a/a2/close.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json\n"
+    },
+    {
+      "page": 119,
+      "text": "114/157 - desktop-01-public-first.png\nHISTORICAL1x MATERIAL CONTROL a0 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a0/desktop-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 120,
+      "text": "115/157 - desktop-02-public-middle.png\nHISTORICAL1x MATERIAL CONTROL a0 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a0/desktop-02-public-middle.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 121,
+      "text": "116/157 - desktop-03-public-boundary.png\nHISTORICAL1x MATERIAL CONTROL a0 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a0/desktop-03-public-boundary.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 122,
+      "text": "117/157 - desktop-05-close-fractures.png\nHISTORICAL1x MATERIAL CONTROL a0 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a0/desktop-05-close-fractures.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 123,
+      "text": "118/157 - desktop-17-local-source-join-left.png\nHISTORICAL1x MATERIAL CONTROL a0 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-40.000,4.000,-76.000] yaw2.0344 pitch0.1113 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a0/desktop-17-local-source-join-left.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 124,
+      "text": "119/157 - desktop-18-local-source-join-right.png\nHISTORICAL1x MATERIAL CONTROL a0 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-35.000,4.000,-58.000] yaw1.0517 pitch0.1234 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a0/desktop-18-local-source-join-right.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 125,
+      "text": "120/157 - desktop-01-public-first.png\nHISTORICAL1x MATERIAL CONTROL a1 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a1/desktop-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 126,
+      "text": "121/157 - desktop-02-public-middle.png\nHISTORICAL1x MATERIAL CONTROL a1 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a1/desktop-02-public-middle.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 127,
+      "text": "122/157 - desktop-03-public-boundary.png\nHISTORICAL1x MATERIAL CONTROL a1 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a1/desktop-03-public-boundary.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 128,
+      "text": "123/157 - desktop-05-close-fractures.png\nHISTORICAL1x MATERIAL CONTROL a1 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a1/desktop-05-close-fractures.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 129,
+      "text": "124/157 - desktop-17-local-source-join-left.png\nHISTORICAL1x MATERIAL CONTROL a1 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-40.000,4.000,-76.000] yaw2.0344 pitch0.1113 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a1/desktop-17-local-source-join-left.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 130,
+      "text": "125/157 - desktop-18-local-source-join-right.png\nHISTORICAL1x MATERIAL CONTROL a1 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-35.000,4.000,-58.000] yaw1.0517 pitch0.1234 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a1/desktop-18-local-source-join-right.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 131,
+      "text": "126/157 - desktop-01-public-first.png\nHISTORICAL1x MATERIAL CONTROL a2 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a2/desktop-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 132,
+      "text": "127/157 - desktop-02-public-middle.png\nHISTORICAL1x MATERIAL CONTROL a2 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a2/desktop-02-public-middle.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 133,
+      "text": "128/157 - desktop-03-public-boundary.png\nHISTORICAL1x MATERIAL CONTROL a2 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a2/desktop-03-public-boundary.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 134,
+      "text": "129/157 - desktop-05-close-fractures.png\nHISTORICAL1x MATERIAL CONTROL a2 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a2/desktop-05-close-fractures.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 135,
+      "text": "130/157 - desktop-17-local-source-join-left.png\nHISTORICAL1x MATERIAL CONTROL a2 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-40.000,4.000,-76.000] yaw2.0344 pitch0.1113 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a2/desktop-17-local-source-join-left.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 136,
+      "text": "131/157 - desktop-18-local-source-join-right.png\nHISTORICAL1x MATERIAL CONTROL a2 | Original C8 study and scale-control evidence\nFinal texture-controls build. Same C6.2 geometry. Q0/DPR1/1366x900. Public01-03 validated (02/03 partly stall-occluded); other positions are inspection only.\nCamera[-35.000,4.000,-58.000] yaw1.0517 pitch0.1234 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/material-controls/a2/desktop-18-local-source-join-right.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 137,
+      "text": "132/157 - final-pattern-2x-01-public-first.png\nPATTERN-SIZE COMPARISON / 2x | Original C8 study and scale-control evidence\nUser-directed2x visible pattern size. Same colour/map bytes, normal strength, geometry, camera and approved dusk. UV0 maps scale together; baked geometry UV1 stays fixed.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale2.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/final-pattern-2x-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 138,
+      "text": "133/157 - final-pattern-2x-05-close-fractures.png\nPATTERN-SIZE COMPARISON / 2x | Original C8 study and scale-control evidence\nUser-directed2x visible pattern size. Same colour/map bytes, normal strength, geometry, camera and approved dusk. UV0 maps scale together; baked geometry UV1 stays fixed.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale2.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/final-pattern-2x-05-close-fractures.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 139,
+      "text": "134/157 - final-pattern-3x-01-public-first.png\nPATTERN-SIZE COMPARISON / 3x | Original C8 study and scale-control evidence\nUser-directed3x visible pattern size. Same colour/map bytes, normal strength, geometry, camera and approved dusk. UV0 maps scale together; baked geometry UV1 stays fixed.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/final-pattern-3x-01-public-first.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 140,
+      "text": "135/157 - final-pattern-3x-05-close-fractures.png\nPATTERN-SIZE COMPARISON / 3x | Original C8 study and scale-control evidence\nUser-directed3x visible pattern size. Same colour/map bytes, normal strength, geometry, camera and approved dusk. UV0 maps scale together; baked geometry UV1 stays fixed.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale3.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/final-pattern-3x-05-close-fractures.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 141,
+      "text": "136/157 - final-pattern-2x-mobile.png\nPATTERN-SIZE COMPARISON / 2x | Original C8 study and scale-control evidence\nPortrait touch emulation;2x explicitly selected by private query before preparation. No physical phone claim.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV100.36920599534565; viewport390x844; requestedDPR1; effectiveDPR1; Q0; scale2.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/final-pattern-2x-mobile.png | Metadata:\nreports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 142,
+      "text": "137/157 - final-pattern-2x-mobile-map.png\nPATTERN-SIZE COMPARISON / 2x | Original C8 study and scale-control evidence\nActual Map control with2x private material; approved map coordinates/framing unchanged.\nCamera[-0.900,233.848,-77.000] yaw0.0000 pitch-1.5708 FOV80; viewport390x844; requestedDPR1; effectiveDPR0.6; Q3; scale2.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/final-pattern-2x-mobile-map.png | Metadata:\nreports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json\n"
+    },
+    {
+      "page": 143,
+      "text": "138/157 - public-dusk-pbr.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nApproved unchanged dusk lighting and source PBR.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/public-dusk-pbr.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 144,
+      "text": "139/157 - public-neutral-pbr.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nTemporary neutral inspection, same material/exposure/camera.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/public-neutral-pbr.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 145,
+      "text": "140/157 - public-neutral-geometry-only.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nMandatory geometry-only: all fine/colour/normal/roughness/AO maps disabled; grey rough stone under neutral diagnostics. Not a production look.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/public-neutral-geometry-only.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 146,
+      "text": "141/157 - close-dusk-pbr.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nApproved unchanged dusk lighting and source PBR.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/close-dusk-pbr.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 147,
+      "text": "142/157 - close-neutral-pbr.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nTemporary neutral inspection, same material/exposure/camera.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/close-neutral-pbr.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 148,
+      "text": "143/157 - close-neutral-geometry-only.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nMandatory geometry-only: all fine/colour/normal/roughness/AO maps disabled; grey rough stone under neutral diagnostics. Not a production look.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/close-neutral-geometry-only.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 149,
+      "text": "144/157 - close-neutral-wireframe.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nActual mesh wireframe; no generated concept render.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/close-neutral-wireframe.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 150,
+      "text": "145/157 - close-neutral-normals.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nGeometric normals, fine maps disabled.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/close-neutral-normals.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 151,
+      "text": "146/157 - close-dusk-lod0.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nForced single LOD for identical-pose inspection; automatic switching tested separately.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/close-dusk-lod0.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 152,
+      "text": "147/157 - close-dusk-lod1.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nForced single LOD for identical-pose inspection; automatic switching tested separately.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/close-dusk-lod1.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 153,
+      "text": "148/157 - close-dusk-lod2.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nForced single LOD for identical-pose inspection; automatic switching tested separately.\nCamera[-42.000,7.000,-62.000] yaw0.9273 pitch0.0997 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/close-dusk-lod2.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-diagnostics.json\n"
+    },
+    {
+      "page": 154,
+      "text": "149/157 - public2-neutral-geometry-only.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nTemporary neutral light / clay maps disabled. Same validated public camera as final dusk comparison. Geometry-only art gate remains FAIL.\nCamera[-18.000,1.720,-62.000] yaw1.4641 pitch0.2530 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/public2-neutral-geometry-only.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/extra-diagnostics.json\n"
+    },
+    {
+      "page": 155,
+      "text": "150/157 - public3-neutral-geometry-only.png\nFAILED PHYSICAL C8 DIAGNOSTIC | Original C8 study and scale-control evidence\nTemporary neutral light / clay maps disabled. Same validated public camera as final dusk comparison. Geometry-only art gate remains FAIL.\nCamera[-17.000,1.720,-69.000] yaw1.7079 pitch0.2437 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/diagnostics/public3-neutral-geometry-only.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/extra-diagnostics.json\n"
+    },
+    {
+      "page": 156,
+      "text": "151/157 - pattern-1x-public1.png\nPATTERN-SIZE COMPARISON / 1x | Original C8 study and scale-control evidence\nUser-directed texture feature magnification only on unchanged C6.2 geometry with A2 maps. Same camera, lighting, image sources and normal strength. Baked geometry UV1 normals are not rescaled. Temporary browser prototype before\npersistent private controls.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/pattern-1x-public1.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/texture-size-prototype.json\n"
+    },
+    {
+      "page": 157,
+      "text": "152/157 - pattern-2x-public1.png\nPATTERN-SIZE COMPARISON / 1x | Original C8 study and scale-control evidence\nUser-directed texture feature magnification only on unchanged C6.2 geometry with A2 maps. Same camera, lighting, image sources and normal strength. Baked geometry UV1 normals are not rescaled. Temporary browser prototype before\npersistent private controls.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/pattern-2x-public1.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/texture-size-prototype.json\n"
+    },
+    {
+      "page": 158,
+      "text": "153/157 - pattern-3x-public1.png\nPATTERN-SIZE COMPARISON / 1x | Original C8 study and scale-control evidence\nUser-directed texture feature magnification only on unchanged C6.2 geometry with A2 maps. Same camera, lighting, image sources and normal strength. Baked geometry UV1 normals are not rescaled. Temporary browser prototype before\npersistent private controls.\nCamera[-18.000,1.720,-55.000] yaw1.2278 pitch0.2082 FOV58; viewport1366x900; requestedDPR1; effectiveDPR1; Q0; scale1.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/texture-size/pattern-3x-public1.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/texture-size-prototype.json\n"
+    },
+    {
+      "page": 159,
+      "text": "154/157 - stage-playing.png\nOriginal stage - actual playback | Original stage playback test evidence\nOriginal browser playback test screenshot; adjacent cycle/camera records are in video-with-wall.json. Exact per-image pose was not separately sampled.\nExact per-image camera not separately sampled; inspect the labelled browser-test source.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/recordings/stage-playing.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/video-with-wall.json\n"
+    },
+    {
+      "page": 160,
+      "text": "155/157 - stage-restored.png\nOriginal stage - camera restored | Original stage playback test evidence\nOriginal browser playback test screenshot; adjacent cycle/camera records are in video-with-wall.json. Exact per-image pose was not separately sampled.\nExact per-image camera not separately sampled; inspect the labelled browser-test source.\nOriginal: reports/stage-2c8-polyhaven-rock-2026-10-17/recordings/stage-restored.png | Metadata: reports/stage-2c8-polyhaven-rock-2026-10-17/raw/video-with-wall.json\n"
+    },
+    {
+      "page": 161,
+      "text": "156/157 - map-ascent.png\nAPPROVED3x - actual map transition | Approved3x public-controls walkthrough\nRecorded during the actual public-controls walking video. Metadata sampled immediately after the screenshot.\nCamera[-0.900,165.934,-77.000] yaw-1.5708 pitch-1.5708 FOV64.00036968449932; viewport1366x900; requestedDPR0.5; effectiveDPR0.5; Q3; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/recordings/map-ascent.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/raw/walkthrough.json\n"
+    },
+    {
+      "page": 162,
+      "text": "157/157 - map-descent.png\nAPPROVED3x - actual map transition | Approved3x public-controls walkthrough\nRecorded during the actual public-controls walking video. Metadata sampled immediately after the screenshot.\nCamera[-17.430,1.720,-69.270] yaw1.5708 pitch0.2000 FOV58; viewport1366x900; requestedDPR0.5; effectiveDPR0.5; Q3; scale3.\nOriginal: reports/stage-2c8-approved-3x-2026-10-17/recordings/map-descent.png | Metadata: reports/stage-2c8-approved-3x-2026-10-17/raw/walkthrough.json\n"
+    }
+  ],
+  "c9-gallery": [
+    {
+      "page": 1,
+      "text": "GULLYVERSE / STAGE 2C.9\nScanned-rock composition - private art review\nKEEP APPROVED C8 - C9 IS NOT READY FOR ROLLOUT.\nReal scan crop at uniform0.9 scale; no stretched source mesh.\nApproved scanned3x material, dusk lighting and layout preserved.\nOne local lower-wall formation; surrounding C62 remains.\nB/D pages compare approved material preview against C9.\nA/C pages retain original C62 and optional material continuity.\nNeutral images disable fine textures and normal maps.\nEvery screenshot is from the actual website browser renderer.\nSome physical relief improves; joins remain visibly artificial.\nVisitor-distance impact is modest and often stall-occluded.\nPassed engineering checks do not equal art approval.\nPhysical laptop/iPhone/Android performance: PENDING.\nSwiftShader measurements are dia"
+    },
+    {
+      "page": 2,
+      "text": "Public visitor 1\nValid public position\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 3,
+      "text": "Public visitor 2\nValid public position; existing stalls may occlude\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 4,
+      "text": "Public visitor 3\nValid public position; existing stalls retained\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 5,
+      "text": "Medium geological view\nNon-public inspection, ~18m\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 6,
+      "text": "Close raised rock\nNon-public inspection, ~7m\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 7,
+      "text": "Rejected rear-side camera diagnostic\nREJECTED diagnostic camera behind retained wall; not a front-side acceptance view. Use17-along-valid.\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 8,
+      "text": "Southern geological join\nNon-public inspection\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 9,
+      "text": "Northern geological join\nNon-public inspection\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 10,
+      "text": "Rim continuation\nValid eye-height position, looking up\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 11,
+      "text": "Wall-foot contact\nNon-public contact inspection\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 12,
+      "text": "Hub context\nValid public hub position\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 13,
+      "text": "Scaffold context\nValid public position\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 14,
+      "text": "Tunnel exit\nOriginal tunnel exit diagnostic pose\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 15,
+      "text": "Behind left stalls\nNon-public inspection behind stalls\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 16,
+      "text": "Behind right stalls\nNon-public inspection across quarry\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 17,
+      "text": "Public visitor 1 / portrait\nValid public position\nB - approved C8 3x\nD - C9 native-scale scan\n390x844 | FOV 100.4 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 18,
+      "text": "Behind left stalls / portrait\nNon-public inspection behind stalls\nB - approved C8 3x\nD - C9 native-scale scan\n390x844 | FOV 100.4 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 19,
+      "text": "Aerial map\nReal map camera and markers\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 64.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 20,
+      "text": "Portrait map / portrait\nBrowser aspect emulation, not physical iPhone\nB - approved C8 3x\nD - C9 native-scale scan\n390x844 | FOV 80.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 21,
+      "text": "Along-wall front-side inspection\nNon-public inspection inside the visual cliff; replaces rejected06 camera behind the retained wall.\nB - approved C8 3x\nD - C9 native-scale scan\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 22,
+      "text": "Public visitor 1\nValid public position\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 23,
+      "text": "Public visitor 2\nValid public position; existing stalls may occlude\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 24,
+      "text": "Public visitor 3\nValid public position; existing stalls retained\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 25,
+      "text": "Medium geological view\nNon-public inspection, ~18m\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 26,
+      "text": "Close raised rock\nNon-public inspection, ~7m\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 27,
+      "text": "Rejected rear-side camera diagnostic\nREJECTED diagnostic camera behind retained wall; not a front-side acceptance view. Use17-along-valid.\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 28,
+      "text": "Southern geological join\nNon-public inspection\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 29,
+      "text": "Northern geological join\nNon-public inspection\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 30,
+      "text": "Rim continuation\nValid eye-height position, looking up\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 31,
+      "text": "Wall-foot contact\nNon-public contact inspection\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 32,
+      "text": "Hub context\nValid public hub position\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 33,
+      "text": "Scaffold context\nValid public position\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 34,
+      "text": "Tunnel exit\nOriginal tunnel exit diagnostic pose\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 35,
+      "text": "Behind left stalls\nNon-public inspection behind stalls\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 36,
+      "text": "Behind right stalls\nNon-public inspection across quarry\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 37,
+      "text": "Public visitor 1 / portrait\nValid public position\nA - original C6.2\nC - optional C8.1\n390x844 | FOV 100.4 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 38,
+      "text": "Behind left stalls / portrait\nNon-public inspection behind stalls\nA - original C6.2\nC - optional C8.1\n390x844 | FOV 100.4 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 39,
+      "text": "Aerial map\nReal map camera and markers\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 64.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 40,
+      "text": "Portrait map / portrait\nBrowser aspect emulation, not physical iPhone\nA - original C6.2\nC - optional C8.1\n390x844 | FOV 80.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 41,
+      "text": "Along-wall front-side inspection\nNon-public inspection inside the visual cliff; replaces rejected06 camera behind the retained wall.\nA - original C6.2\nC - optional C8.1\n1366x900 | FOV 58.0 | DPR 1 | Q0 | matched lighting\n"
+    },
+    {
+      "page": 42,
+      "text": "NEUTRAL GEOMETRY ONLY - Public visitor 1\nTemporary diagnostic lights; no fine normal maps or diffuse rock textures.\n"
+    },
+    {
+      "page": 43,
+      "text": "NEUTRAL GEOMETRY ONLY - Close raised rock\nTemporary diagnostic lights; no fine normal maps or diffuse rock textures.\n"
+    },
+    {
+      "page": 44,
+      "text": "Rejected rear-side camera diagnostic\nTemporary diagnostic lights; no fine normal maps or diffuse rock textures.\n"
+    },
+    {
+      "page": 45,
+      "text": "Wireframe geometry diagnostic\nTemporary diagnostic lights; no fine normal maps or diffuse rock textures.\n"
+    },
+    {
+      "page": 46,
+      "text": "Automatic LOD / non-public inspection - 110m approximate\nSee automatic-lod-inspection.json for actual camera pose and selected nodes.\n"
+    },
+    {
+      "page": 47,
+      "text": "Automatic LOD / non-public inspection - 15m approximate\nSee automatic-lod-inspection.json for actual camera pose and selected nodes.\n"
+    },
+    {
+      "page": 48,
+      "text": "Automatic LOD / non-public inspection - 30m approximate\nSee automatic-lod-inspection.json for actual camera pose and selected nodes.\n"
+    },
+    {
+      "page": 49,
+      "text": "Automatic LOD / non-public inspection - 6m approximate\nSee automatic-lod-inspection.json for actual camera pose and selected nodes.\n"
+    },
+    {
+      "page": 50,
+      "text": "Automatic LOD / non-public inspection - 65m approximate\nSee automatic-lod-inspection.json for actual camera pose and selected nodes.\n"
+    },
+    {
+      "page": 51,
+      "text": "Actual browser journey evidence / map-ascent.png\nRecorded public Map or original stage playback; metadata in walkthrough/video lifecycle JSON.\n"
+    },
+    {
+      "page": 52,
+      "text": "Actual browser journey evidence / map-descent.png\nRecorded public Map or original stage playback; metadata in walkthrough/video lifecycle JSON.\n"
+    },
+    {
+      "page": 53,
+      "text": "Actual browser journey evidence / stage-playing.png\nRecorded public Map or original stage playback; metadata in walkthrough/video lifecycle JSON.\n"
+    },
+    {
+      "page": 54,
+      "text": "Actual browser journey evidence / stage-restored.png\nRecorded public Map or original stage playback; metadata in walkthrough/video lifecycle JSON.\n"
+    }
+  ]
+}

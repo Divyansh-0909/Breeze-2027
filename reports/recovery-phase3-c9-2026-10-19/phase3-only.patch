@@ -1,0 +1,95 @@
+--- a/components/immersive/ImmersiveShell.tsx
++++ b/components/immersive/ImmersiveShell.tsx
+@@ -16,6 +16,7 @@
+ import {LimestoneExcavationSession} from "./LimestoneExcavationSession";
+ import {QuarryFoundationSession} from "./QuarryFoundationSession";
+ import {ScannedRockMaterialSession} from "./ScannedRockMaterialSession";
++import {ScannedCompositionSession} from "./ScannedCompositionSession";
+ import {carryScannedMaterialReview,rockTextureScale} from "./scannedRockSampling";
+ const noWallSubscribe=()=>()=>{};
+ const noWallState={mode:"off",busy:false,assetReady:false,error:null,revision:0} as const;
+@@ -65,6 +66,7 @@
+   const [wallPreview]=useState(()=>{
+     const query=new URLSearchParams(window.location.search),mode=query.get("wallPreview");
+     const allowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1";
++    if(allowed&&query.get("quarryReview")==="scanned-composition")return new ScannedCompositionSession(runtime);
+     if(allowed&&query.get("quarryReview")==="scanned-material-multi")return new ScannedRockMaterialSession(runtime,rockTextureScale(query.get("rockTextureScale")));
+     if(allowed&&query.get("quarryReview")==="foundation-refined")return new QuarryFoundationSession(runtime,true);
+     if(allowed&&query.get("quarryReview")==="foundation")return new QuarryFoundationSession(runtime);
+@@ -75,7 +77,7 @@
+   });
+   const [showQuarryReviewControls]=useState(()=>
+     (process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1")&&
+-    ["excavation","geology","foundation","foundation-refined","scanned-material-multi"].includes(new URLSearchParams(window.location.search).get("quarryReview")??""));
++    ["excavation","geology","foundation","foundation-refined","scanned-material-multi","scanned-composition"].includes(new URLSearchParams(window.location.search).get("quarryReview")??""));
+   const wallState=useSyncExternalStore(wallPreview?.subscribe??noWallSubscribe,wallPreview?.snapshot??(()=>noWallState),()=>noWallState);
+   const rendererActive=!flat&&state.phase!=="error";
+   useEffect(()=>{
+@@ -137,8 +139,9 @@
+       {wallPreview.variant!=="quarry"&&<aside data-wall-preview style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>WALL SECTION PREVIEW · {wallState.mode} · <span data-wall-lod>LOD {wallPreview.activeLOD}</span>{wallState.error&&<span> · Asset unavailable; original restored</span>}<br/>
+         <button onClick={()=>wallPreview.setMode("authored")}>Authored wall</button>{" "}<button onClick={()=>wallPreview.setMode("reference")}>Material baseline</button>{" "}<button onClick={()=>wallPreview.setMode("off")}>Original quarry</button>
+       </aside>}
++      {showQuarryReviewControls&&wallPreview instanceof ScannedCompositionSession&&<aside data-quarry-controls data-scanned-composition-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>RECOVERED C9 · NATIVE 0.9× · C8 3×{!wallPreview.compositionEnabled&&" · C8 COMPARISON"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setComposition(false)}>C8 3× comparison</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setComposition(true)}>C9 native formation / retry</button></aside>}
+       {showQuarryReviewControls&&wallPreview instanceof RefinedQuarrySession&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>TWO-SECTION GEOLOGY REVIEW{wallState.error&&<span> · Candidate unavailable; Stage 2C retained</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setRefinement(false)}>Stage 2C baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setRefinement(true)}>Refined pair</button></aside>}
+-      {showQuarryReviewControls&&wallPreview instanceof ScannedRockMaterialSession&&<aside data-quarry-controls data-scanned-material-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>RECOVERED C8 MATERIAL · {wallPreview.scannedEnabled?`${wallPreview.textureScale}× · C5.1 HOST`:"C5.1 COMPARISON"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setScannedMaterial(false)}>C5.1 material</button>{" "}{([1,2,3,4] as const).map(scale=><button key={scale} disabled={wallState.busy} onClick={()=>wallPreview.setScannedMaterial(true,scale)}>C8 {scale}×{scale===3?" approved":""}</button>)}</aside>}
++      {showQuarryReviewControls&&wallPreview instanceof ScannedRockMaterialSession&&!(wallPreview instanceof ScannedCompositionSession)&&<aside data-quarry-controls data-scanned-material-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>RECOVERED C8 MATERIAL · {wallPreview.scannedEnabled?`${wallPreview.textureScale}× · C5.1 HOST`:"C5.1 COMPARISON"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setScannedMaterial(false)}>C5.1 material</button>{" "}{([1,2,3,4] as const).map(scale=><button key={scale} disabled={wallState.busy} onClick={()=>wallPreview.setScannedMaterial(true,scale)}>C8 {scale}×{scale===3?" approved":""}</button>)}</aside>}
+       {showQuarryReviewControls&&wallPreview instanceof QuarryFoundationSession&&!(wallPreview instanceof ScannedRockMaterialSession)&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>DARK ROCK FOUNDATION{wallPreview.refinement?" · FRACTURE REFINEMENT":" · TWO CONNECTED REGIONS"}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setFoundation(false)}>Connected baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setFoundation(true)}>Foundation regions</button></aside>}
+       {showQuarryReviewControls&&wallPreview instanceof LimestoneExcavationSession&&!(wallPreview instanceof QuarryFoundationSession)&&<aside data-quarry-controls style={{position:"absolute",right:12,top:80,zIndex:40,fontSize:11,padding:8,background:"#1d2a24ee",color:"#eee"}}>{wallPreview.look==="rock"?"CONNECTED QUARRY · ORIGINAL ROCK PILOT":"CONNECTED QUARRY · LIMESTONE COMPARISON"} · {wallPreview.style}{wallState.error&&<span> · {wallState.error}</span>}<br/><button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("baseline")}>Stage 2C baseline</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("macro")}>Macro excavation</button>{" "}<button disabled={wallState.busy} onClick={()=>wallPreview.setExcavation("detailed")}>Detailed geology</button></aside>}
+     </>}
+--- a/components/immersive/QuarryPerimeter.tsx
++++ b/components/immersive/QuarryPerimeter.tsx
+@@ -6,6 +6,7 @@
+ import {RefinedQuarrySession,refinementParts} from "./RefinedQuarrySession";
+ import {LimestoneExcavationSession} from "./LimestoneExcavationSession";
+ import {ScannedRockMaterialSession} from "./ScannedRockMaterialSession";
++import {ScannedCompositionSession} from "./ScannedCompositionSession";
+ import {renderQuarryPreparation} from "./quarryPreparation";
+ 
+ /** Shared approved material; one screen-space LOD per fitted quarry part. */
+@@ -14,8 +15,9 @@
+   const refined=session instanceof RefinedQuarrySession?session:null;
+   const excavation=session instanceof LimestoneExcavationSession?session:null;
+   const scanned=session instanceof ScannedRockMaterialSession?session:null;
++  const composition=session instanceof ScannedCompositionSession?session:null;
+   const enabled=!!refined?.refinementEnabled&&!!refined.refinement;
+-  const clone=useMemo(()=>excavation?excavation.cloneForRendering():refined?refined.cloneForRendering():session.asset?.scene.clone(true)??null,[session.asset,excavation,refined,refined?.refinement,enabled,scanned?.materialRevision]);
++  const clone=useMemo(()=>excavation?excavation.cloneForRendering():refined?refined.cloneForRendering():session.asset?.scene.clone(true)??null,[session.asset,excavation,refined,refined?.refinement,enabled,scanned?.materialRevision,composition?.compositionRevision]);
+   const parts=useMemo(()=>clone?(excavation?excavation.partsForRendering():refined?refinementParts(enabled):QUARRY.parts).map(part=>({id:String(part.id),center:new THREE.Vector3().fromArray(part.center),radius:part.radius,lods:part.nodes.map(name=>clone.getObjectByName(name) as THREE.Mesh),level:2})):[],[clone,enabled,refined,excavation]);
+   const size=useRef(new THREE.Vector2()),warm=useRef({compiled:false,frames:0,revision:0,start:0});
+   useLayoutEffect(()=>{
+@@ -29,7 +31,7 @@
+     gl.domElement.addEventListener("webglcontextrestored",restored);return()=>gl.domElement.removeEventListener("webglcontextrestored",restored);
+   },[gl,session]);
+   useEffect(()=>{
+-    if(!state.busy||scanned?.materialPreparing||(state.mode!=="off"&&(!clone||refined?.refinementEnabled&&!refined.refinement)))return;
++    if(!state.busy||scanned?.materialPreparing||composition?.compositionPreparing||(state.mode!=="off"&&(!clone||refined?.refinementEnabled&&!refined.refinement)))return;
+     let alive=true;const revision=state.revision;warm.current={compiled:false,frames:0,revision,start:performance.now()};
+     void(async()=>{
+       if(gl.getContext().isContextLost())return;
+@@ -39,7 +41,7 @@
+       if(alive&&revision===session.state.revision&&!gl.getContext().isContextLost())warm.current.compiled=true;
+     })().catch(error=>{if(alive){session.record("preparation-error",{message:String(error)});session.setMode("off");}});
+     return()=>{alive=false;};
+-  },[clone,gl,scene,camera,session,state.busy,state.mode,state.revision,lighting,refined,scanned?.materialPreparing]);
++  },[clone,gl,scene,camera,session,state.busy,state.mode,state.revision,lighting,refined,scanned?.materialPreparing,composition?.compositionPreparing]);
+   useFrame(()=>{
+     if(session.runtime.suspended||gl.getContext().isContextLost())return;
+     const w=warm.current;
+--- a/components/immersive/scannedRockSampling.ts
++++ b/components/immersive/scannedRockSampling.ts
+@@ -13,11 +13,12 @@
+  * Ordinary URLs retain the exact existing navigation behavior. */
+ export function carryScannedMaterialReview(href: string, search: string, allowed: boolean) {
+   const current = new URLSearchParams(search);
+-  if (!allowed || current.get("quarryReview") !== SCANNED_MATERIAL_SELECTOR) return href;
++  const selector = current.get("quarryReview");
++  if (!allowed || ![SCANNED_MATERIAL_SELECTOR, "scanned-composition"].includes(selector ?? "")) return href;
+   const [path, query = ""] = href.split("?");
+   const next = new URLSearchParams(query);
+-  next.set("quarryReview", SCANNED_MATERIAL_SELECTOR);
+-  if (current.has("rockTextureScale")) next.set("rockTextureScale", String(rockTextureScale(current.get("rockTextureScale"))));
++  next.set("quarryReview", selector!);
++  if (selector === SCANNED_MATERIAL_SELECTOR && current.has("rockTextureScale")) next.set("rockTextureScale", String(rockTextureScale(current.get("rockTextureScale"))));
+   return path + "?" + next.toString();
+ }
+ 

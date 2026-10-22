@@ -1,0 +1,26 @@
+{
+  "status": "UNCHANGED_LEGACY_DEFECT_CONFIRMED",
+  "mesh": "Foundation_Terrain_2_1_LOD1",
+  "eye": [
+    0.0,
+    1.72,
+    -96.0
+  ],
+  "pitch": 30,
+  "yaw": 48,
+  "LOD": 1,
+  "componentDistanceM": 70.45111846923828,
+  "componentNormalDotRay": 0.24137093452736735,
+  "originalComponentHit": {
+    "distance": 70.45111846923828,
+    "normalDotRay": 0.24137093452736735,
+    "mesh": "Foundation_Terrain_2_1_LOD1"
+  },
+  "currentWholeSceneFirstHit": {
+    "distance": 70.45111846923828,
+    "normalDotRay": -0.7265774719417095,
+    "mesh": "Foundation_Wall_06_LOD1"
+  },
+  "assetUnchangedSHA256": "bec262fa42b7c4c4b6b1cb8bfe1096b9a9aa2974b35e28be0438c9151be5cd25",
+  "explanation": "The current whole-scene BVH returns coincident front-facing Wall06 at the same distance. The original unchanged Terrain2_1 back face still exists; it is not claimed repaired. Six other inherited first-hit LOD samples remain. All seven known legacy component defects are preserved, with no new candidate hits."
+}

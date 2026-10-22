@@ -1,0 +1,2050 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "variant": "existing recovered C8",
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": "quarry"
+        },
+        "pose": {
+          "x": -18,
+          "y": 1.72,
+          "z": -55,
+          "yaw": 1.2277723863741932,
+          "pitch": 0.20815966652762152
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 36,
+          "triangles": 143437,
+          "textures": 34,
+          "geometries": 212,
+          "dpr": 1
+        },
+        "memory": {
+          "at": 19365.800000000745,
+          "scene": "hub",
+          "geometries": 212,
+          "textures": 34,
+          "activeGeometryBytes": 10089964,
+          "activeTextureBytesEstimate": 140098222.66666663,
+          "jsHeapBytes": 72089240
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 38,
+                "deleted": 0,
+                "active": 38
+              },
+              "Buffer": {
+                "created": 934,
+                "deleted": 2,
+                "active": 932
+              },
+              "Program": {
+                "created": 23,
+                "deleted": 0,
+                "active": 23
+              },
+              "Shader": {
+                "created": 46,
+                "deleted": 42,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 212,
+                "deleted": 0,
+                "active": 212
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 1
+        },
+        "lighting": {
+          "lights": [
+            {
+              "type": "HemisphereLight",
+              "colour": "a9bfd4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "DirectionalLight",
+              "colour": "efd0a4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                -70,
+                37,
+                -145
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "ffc681",
+              "intensity": 42,
+              "visible": true,
+              "position": [
+                0,
+                9.75,
+                2.6
+              ]
+            },
+            {
+              "type": "AmbientLight",
+              "colour": "ffffff",
+              "intensity": 0.055,
+              "visible": true,
+              "position": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 110,
+              "visible": true,
+              "position": [
+                0,
+                6.5,
+                -3.6
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                -7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            }
+          ]
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 2,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 2,
+            "Wall_01": 2,
+            "Wall_02": 2,
+            "Wall_03": 2,
+            "Wall_04": 2,
+            "Wall_05": 2,
+            "Wall_06": 0,
+            "Wall_07": 0,
+            "Wall_08": 0,
+            "Wall_09": 1,
+            "Wall_10": 1,
+            "Wall_11": 1,
+            "Wall_12": 1,
+            "Wall_13": 1,
+            "Wall_14": 1,
+            "Wall_15": 0,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 0,
+            "Terrain_0_1": 0,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 0,
+            "Terrain_1_1": 0,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 0,
+            "Terrain_2_1": 0,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 0,
+            "Terrain_3_1": 0,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 2,
+            "Foot_Scree": 0
+          },
+          "lodPixels": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 0,
+            "Wall_04": 0,
+            "Wall_05": 0,
+            "Wall_06": 372096.54683736636,
+            "Wall_07": 5738.466247092429,
+            "Wall_08": 965.3030056528938,
+            "Wall_09": 550.9454131551407,
+            "Wall_10": 549.0701401296823,
+            "Wall_11": 483.02744996748214,
+            "Wall_12": 592.485617503064,
+            "Wall_13": 692.694875767721,
+            "Wall_14": 666.2284787432883,
+            "Wall_15": 1024.5124035160138,
+            "Wall_16": 1456.0919770572134,
+            "Wall_17": 347141.7505086662,
+            "Terrain_0_0": 1269.9259707489075,
+            "Terrain_0_1": 1485.9353664412777,
+            "Terrain_0_2": 2395.1126822487126,
+            "Terrain_0_3": 1655.8496022664317,
+            "Terrain_1_0": 6398.7995014016215,
+            "Terrain_1_1": 1760.3647907821537,
+            "Terrain_1_2": 3755.2494268080354,
+            "Terrain_1_3": 24588.106634272488,
+            "Terrain_2_0": 2348868.2743722857,
+            "Terrain_2_1": 1691341.0006104906,
+            "Terrain_2_2": 1710257.8228857098,
+            "Terrain_2_3": 4707470.060784525,
+            "Terrain_3_0": 2896884.7825797214,
+            "Terrain_3_1": 2961685.3714005477,
+            "Terrain_3_2": 4700109.156844204,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 1030.725665583607
+          },
+          "selectedNodes": [
+            "Foundation_Wall_06_LOD0",
+            "Foundation_Wall_07_LOD0",
+            "Foundation_Wall_08_LOD0",
+            "Foundation_Wall_15_LOD0",
+            "Foundation_Wall_16_LOD0",
+            "Foundation_Wall_17_LOD0",
+            "Foundation_Wall_09_LOD1",
+            "Foundation_Wall_10_LOD1",
+            "Foundation_Wall_11_LOD1",
+            "Foundation_Wall_12_LOD1",
+            "Foundation_Wall_13_LOD1",
+            "Foundation_Wall_14_LOD1",
+            "Foundation_Wall_00_LOD2",
+            "Foundation_Wall_01_LOD2",
+            "Foundation_Wall_02_LOD2",
+            "Foundation_Wall_03_LOD2",
+            "Foundation_Wall_04_LOD2",
+            "Foundation_Wall_05_LOD2",
+            "Foundation_Terrain_0_0_LOD0",
+            "Foundation_Terrain_0_1_LOD0",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD0",
+            "Foundation_Terrain_1_0_LOD0",
+            "Foundation_Terrain_1_1_LOD0",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD0",
+            "Foundation_Terrain_2_0_LOD0",
+            "Foundation_Terrain_2_1_LOD0",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD0",
+            "Foundation_Terrain_3_0_LOD0",
+            "Foundation_Terrain_3_1_LOD0",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD2",
+            "Foundation_Foot_Scree_LOD0"
+          ],
+          "trace": [
+            {
+              "at": 1843.4000000022352,
+              "event": "foundation-material-parse",
+              "ms": 354.30000000074506,
+              "bytes": 4659808
+            },
+            {
+              "at": 1860.5,
+              "event": "scanned-material-ready",
+              "ms": 1003,
+              "uniqueRuntimeImages": 3,
+              "holderRendered": false,
+              "geometryOwner": "unchanged C5.1"
+            },
+            {
+              "at": 2466.900000002235,
+              "event": "foundation-geometry-parse",
+              "ms": 19.400000002235174,
+              "bytes": 8530404
+            },
+            {
+              "at": 2468,
+              "event": "foundation-asset-ready",
+              "ms": 1613.5999999977648,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 2468,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 2636.199999999255,
+              "event": "texture-init",
+              "count": 11,
+              "ms": 105.69999999925494
+            },
+            {
+              "at": 2674.800000000745,
+              "event": "shader-compile",
+              "ms": 38.5
+            },
+            {
+              "at": 4291.60000000149,
+              "event": "covered-ready",
+              "revision": 2,
+              "ms": 1761.699999999255,
+              "lighting": "hub"
+            },
+            {
+              "at": 4505,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 216066.81414664764,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.10000000149,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 158532.66231195818,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.10000000149,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 2297.8789286163023,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.10000000149,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 749.1450417697586,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.10000000149,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 578.4925116985485,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 421.34856178327533,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 473.63860582144844,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 887.3958170710488,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1707.47438620219,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 208285.05030519975,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_0_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 656.9734909217929,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 0,
+              "pixels": 1355.4083425392296,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 4518.317284330203,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_1_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 1062.1118375735714,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 766.1251591775844,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 1031611.3202077157,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_1_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 2021853.3580160446,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_2_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 530.1849855700375,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 755.7682216681269,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 1026154.6937314259,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 2824482.0364707154,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 701.4685354766765,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 1026.7705289027133,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 4539.833848212769,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1386052.676315774,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Foot_Scree",
+              "from": 2,
+              "to": 1,
+              "pixels": 628.4417505318381,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 9985,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 337.9441425054203,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10290.5,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 1,
+              "to": 0,
+              "pixels": 1146.3086608572962,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10290.5,
+              "event": "part-lod-change",
+              "part": "Terrain_1_0",
+              "from": 1,
+              "to": 0,
+              "pixels": 1082.0934679413422,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_06",
+              "from": 2,
+              "to": 0,
+              "pixels": 372096.54683736636,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_07",
+              "from": 2,
+              "to": 0,
+              "pixels": 5738.466247092429,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_08",
+              "from": 2,
+              "to": 1,
+              "pixels": 965.3030056528938,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_09",
+              "from": 2,
+              "to": 1,
+              "pixels": 550.9454131551407,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_10",
+              "from": 2,
+              "to": 1,
+              "pixels": 549.0701401296823,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_11",
+              "from": 2,
+              "to": 1,
+              "pixels": 483.02744996748214,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 592.485617503064,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_0",
+              "from": 1,
+              "to": 0,
+              "pixels": 1269.9259707489075,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1655.8496022664317,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 1,
+              "to": 0,
+              "pixels": 1760.3647907821537,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_0",
+              "from": 1,
+              "to": 0,
+              "pixels": 2348868.2743722857,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 1,
+              "to": 0,
+              "pixels": 1691341.0006104906,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_0",
+              "from": 1,
+              "to": 0,
+              "pixels": 2896884.7825797214,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 1,
+              "to": 0,
+              "pixels": 2961685.3714005477,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_3",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 14489.5,
+              "event": "part-lod-change",
+              "part": "Wall_08",
+              "from": 1,
+              "to": 0,
+              "pixels": 965.3030056528938,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 14489.5,
+              "event": "part-lod-change",
+              "part": "Foot_Scree",
+              "from": 1,
+              "to": 0,
+              "pixels": 1030.725665583607,
+              "quality": 0,
+              "dpr": 1
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": -18,
+          "y": 1.72,
+          "z": -55,
+          "yaw": 1.2277723863741932,
+          "pitch": 0.20815966652762152,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.08492295834396989,
+            0.5729311977620571,
+            -0.05984683894623376,
+            0.81299218301604
+          ]
+        }
+      }
+    },
+    {
+      "variant": "temporary material-only coverage diagnostic",
+      "scope": "original study arc311.027196-346.584380 across current14/15/16; no geometry changed, not a new production candidate",
+      "nodes": [
+        "Foundation_Wall_14_LOD0",
+        "Foundation_Wall_14_LOD1",
+        "Foundation_Wall_14_LOD2",
+        "Foundation_Wall_16_LOD0",
+        "Foundation_Wall_16_LOD1",
+        "Foundation_Wall_16_LOD2"
+      ],
+      "data": {
+        "snapshot": {
+          "phase": "local",
+          "scene": "hub",
+          "destination": "hub",
+          "serial": 0,
+          "map": false,
+          "mapStage": null,
+          "destinationMenu": false,
+          "unavailableDestination": null,
+          "error": null,
+          "quality": 0,
+          "movie": false,
+          "reduced": false,
+          "inspection": "quarry"
+        },
+        "pose": {
+          "x": -18,
+          "y": 1.72,
+          "z": -55,
+          "yaw": 1.2277723863741932,
+          "pitch": 0.20815966652762152
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "stats": {
+          "calls": 36,
+          "triangles": 143437,
+          "textures": 34,
+          "geometries": 212,
+          "dpr": 1
+        },
+        "memory": {
+          "at": 29195,
+          "scene": "hub",
+          "geometries": 212,
+          "textures": 34,
+          "activeGeometryBytes": 10089964,
+          "activeTextureBytesEstimate": 140098222.66666663,
+          "jsHeapBytes": 74217755
+        },
+        "gpuTimer": "unavailable",
+        "canvasCount": 1,
+        "contexts": [
+          {
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)",
+            "attributes": {
+              "alpha": true,
+              "antialias": false,
+              "depth": true,
+              "desynchronized": false,
+              "failIfMajorPerformanceCaveat": false,
+              "powerPreference": "high-performance",
+              "premultipliedAlpha": true,
+              "preserveDrawingBuffer": false,
+              "stencil": false,
+              "xrCompatible": false
+            },
+            "stats": {
+              "Texture": {
+                "created": 38,
+                "deleted": 0,
+                "active": 38
+              },
+              "Buffer": {
+                "created": 934,
+                "deleted": 2,
+                "active": 932
+              },
+              "Program": {
+                "created": 23,
+                "deleted": 0,
+                "active": 23
+              },
+              "Shader": {
+                "created": 46,
+                "deleted": 42,
+                "active": 4
+              },
+              "Framebuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "Renderbuffer": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              },
+              "VertexArray": {
+                "created": 214,
+                "deleted": 0,
+                "active": 214
+              },
+              "Query": {
+                "created": 0,
+                "deleted": 0,
+                "active": 0
+              }
+            },
+            "extensions": [
+              "EXT_clip_control",
+              "EXT_color_buffer_float",
+              "EXT_color_buffer_half_float",
+              "EXT_conservative_depth",
+              "EXT_depth_clamp",
+              "EXT_float_blend",
+              "EXT_polygon_offset_clamp",
+              "EXT_texture_compression_bptc",
+              "EXT_texture_compression_rgtc",
+              "EXT_texture_filter_anisotropic",
+              "EXT_texture_mirror_clamp_to_edge",
+              "NV_shader_noperspective_interpolation",
+              "OES_draw_buffers_indexed",
+              "OES_sample_variables",
+              "OES_shader_multisample_interpolation",
+              "OES_texture_float_linear",
+              "OVR_multiview2",
+              "WEBGL_clip_cull_distance",
+              "WEBGL_compressed_texture_astc",
+              "WEBGL_compressed_texture_etc",
+              "WEBGL_compressed_texture_etc1",
+              "WEBGL_compressed_texture_s3tc",
+              "WEBGL_compressed_texture_s3tc_srgb",
+              "WEBGL_debug_renderer_info",
+              "WEBGL_debug_shaders",
+              "WEBGL_lose_context",
+              "WEBGL_multi_draw",
+              "WEBGL_polygon_mode",
+              "WEBGL_stencil_texturing"
+            ],
+            "lost": false
+          }
+        ],
+        "videos": [
+          {
+            "src": "/after-movie.mp4",
+            "time": 0,
+            "paused": true,
+            "readyState": 0,
+            "connected": true
+          }
+        ],
+        "viewport": {
+          "width": 1366,
+          "height": 900,
+          "requestedDpr": 1
+        },
+        "lighting": {
+          "lights": [
+            {
+              "type": "HemisphereLight",
+              "colour": "a9bfd4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "DirectionalLight",
+              "colour": "efd0a4",
+              "intensity": 1.35,
+              "visible": true,
+              "position": [
+                -70,
+                37,
+                -145
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "ffc681",
+              "intensity": 42,
+              "visible": true,
+              "position": [
+                0,
+                9.75,
+                2.6
+              ]
+            },
+            {
+              "type": "AmbientLight",
+              "colour": "ffffff",
+              "intensity": 0.055,
+              "visible": true,
+              "position": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 110,
+              "visible": true,
+              "position": [
+                0,
+                6.5,
+                -3.6
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                -7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "PointLight",
+              "colour": "fffbe8",
+              "intensity": 50,
+              "visible": true,
+              "position": [
+                7.5,
+                5.2,
+                -3.8
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            },
+            {
+              "type": "SpotLight",
+              "colour": "fffbe8",
+              "intensity": 300,
+              "visible": true,
+              "position": [
+                0,
+                -0.55,
+                0
+              ]
+            }
+          ]
+        },
+        "wall": {
+          "state": {
+            "mode": "authored",
+            "busy": false,
+            "assetReady": true,
+            "revision": 2,
+            "error": null
+          },
+          "consumers": 1,
+          "activeLOD": 2,
+          "projectedPixels": 0,
+          "visible": [],
+          "renderedMeshes": 35,
+          "variant": "quarry",
+          "lodSelections": {
+            "Wall_00": 2,
+            "Wall_01": 2,
+            "Wall_02": 2,
+            "Wall_03": 2,
+            "Wall_04": 2,
+            "Wall_05": 2,
+            "Wall_06": 0,
+            "Wall_07": 0,
+            "Wall_08": 0,
+            "Wall_09": 1,
+            "Wall_10": 1,
+            "Wall_11": 1,
+            "Wall_12": 1,
+            "Wall_13": 1,
+            "Wall_14": 1,
+            "Wall_15": 0,
+            "Wall_16": 0,
+            "Wall_17": 0,
+            "Terrain_0_0": 0,
+            "Terrain_0_1": 0,
+            "Terrain_0_2": 0,
+            "Terrain_0_3": 0,
+            "Terrain_1_0": 0,
+            "Terrain_1_1": 0,
+            "Terrain_1_2": 0,
+            "Terrain_1_3": 0,
+            "Terrain_2_0": 0,
+            "Terrain_2_1": 0,
+            "Terrain_2_2": 0,
+            "Terrain_2_3": 0,
+            "Terrain_3_0": 0,
+            "Terrain_3_1": 0,
+            "Terrain_3_2": 0,
+            "Terrain_3_3": 2,
+            "Foot_Scree": 0
+          },
+          "lodPixels": {
+            "Wall_00": 0,
+            "Wall_01": 0,
+            "Wall_02": 0,
+            "Wall_03": 0,
+            "Wall_04": 0,
+            "Wall_05": 0,
+            "Wall_06": 372096.54683736636,
+            "Wall_07": 5738.466247092429,
+            "Wall_08": 965.3030056528938,
+            "Wall_09": 550.9454131551407,
+            "Wall_10": 549.0701401296823,
+            "Wall_11": 483.02744996748214,
+            "Wall_12": 592.485617503064,
+            "Wall_13": 692.694875767721,
+            "Wall_14": 666.2284787432883,
+            "Wall_15": 1024.5124035160138,
+            "Wall_16": 1456.0919770572134,
+            "Wall_17": 347141.7505086662,
+            "Terrain_0_0": 1269.9259707489075,
+            "Terrain_0_1": 1485.9353664412777,
+            "Terrain_0_2": 2395.1126822487126,
+            "Terrain_0_3": 1655.8496022664317,
+            "Terrain_1_0": 6398.7995014016215,
+            "Terrain_1_1": 1760.3647907821537,
+            "Terrain_1_2": 3755.2494268080354,
+            "Terrain_1_3": 24588.106634272488,
+            "Terrain_2_0": 2348868.2743722857,
+            "Terrain_2_1": 1691341.0006104906,
+            "Terrain_2_2": 1710257.8228857098,
+            "Terrain_2_3": 4707470.060784525,
+            "Terrain_3_0": 2896884.7825797214,
+            "Terrain_3_1": 2961685.3714005477,
+            "Terrain_3_2": 4700109.156844204,
+            "Terrain_3_3": 0,
+            "Foot_Scree": 1030.725665583607
+          },
+          "selectedNodes": [
+            "Foundation_Wall_06_LOD0",
+            "Foundation_Wall_07_LOD0",
+            "Foundation_Wall_08_LOD0",
+            "Foundation_Wall_15_LOD0",
+            "Foundation_Wall_16_LOD0",
+            "Foundation_Wall_17_LOD0",
+            "Foundation_Wall_09_LOD1",
+            "Foundation_Wall_10_LOD1",
+            "Foundation_Wall_11_LOD1",
+            "Foundation_Wall_12_LOD1",
+            "Foundation_Wall_13_LOD1",
+            "Foundation_Wall_14_LOD1",
+            "Foundation_Wall_00_LOD2",
+            "Foundation_Wall_01_LOD2",
+            "Foundation_Wall_02_LOD2",
+            "Foundation_Wall_03_LOD2",
+            "Foundation_Wall_04_LOD2",
+            "Foundation_Wall_05_LOD2",
+            "Foundation_Terrain_0_0_LOD0",
+            "Foundation_Terrain_0_1_LOD0",
+            "Foundation_Terrain_0_2_LOD0",
+            "Foundation_Terrain_0_3_LOD0",
+            "Foundation_Terrain_1_0_LOD0",
+            "Foundation_Terrain_1_1_LOD0",
+            "Foundation_Terrain_1_2_LOD0",
+            "Foundation_Terrain_1_3_LOD0",
+            "Foundation_Terrain_2_0_LOD0",
+            "Foundation_Terrain_2_1_LOD0",
+            "Foundation_Terrain_2_2_LOD0",
+            "Foundation_Terrain_2_3_LOD0",
+            "Foundation_Terrain_3_0_LOD0",
+            "Foundation_Terrain_3_1_LOD0",
+            "Foundation_Terrain_3_2_LOD0",
+            "Foundation_Terrain_3_3_LOD2",
+            "Foundation_Foot_Scree_LOD0"
+          ],
+          "trace": [
+            {
+              "at": 1843.4000000022352,
+              "event": "foundation-material-parse",
+              "ms": 354.30000000074506,
+              "bytes": 4659808
+            },
+            {
+              "at": 1860.5,
+              "event": "scanned-material-ready",
+              "ms": 1003,
+              "uniqueRuntimeImages": 3,
+              "holderRendered": false,
+              "geometryOwner": "unchanged C5.1"
+            },
+            {
+              "at": 2466.900000002235,
+              "event": "foundation-geometry-parse",
+              "ms": 19.400000002235174,
+              "bytes": 8530404
+            },
+            {
+              "at": 2468,
+              "event": "foundation-asset-ready",
+              "ms": 1613.5999999977648,
+              "geometryOnly": true,
+              "refinedRegions": 2,
+              "materialHolderRendered": false
+            },
+            {
+              "at": 2468,
+              "event": "load-ready",
+              "foundation": true,
+              "optIn": true
+            },
+            {
+              "at": 2636.199999999255,
+              "event": "texture-init",
+              "count": 11,
+              "ms": 105.69999999925494
+            },
+            {
+              "at": 2674.800000000745,
+              "event": "shader-compile",
+              "ms": 38.5
+            },
+            {
+              "at": 4291.60000000149,
+              "event": "covered-ready",
+              "revision": 2,
+              "ms": 1761.699999999255,
+              "lighting": "hub"
+            },
+            {
+              "at": 4505,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 2,
+              "to": 0,
+              "pixels": 216066.81414664764,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.10000000149,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 2,
+              "to": 0,
+              "pixels": 158532.66231195818,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.10000000149,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 2,
+              "to": 0,
+              "pixels": 2297.8789286163023,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.10000000149,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 2,
+              "to": 1,
+              "pixels": 749.1450417697586,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.10000000149,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 2,
+              "to": 1,
+              "pixels": 578.4925116985485,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_13",
+              "from": 2,
+              "to": 1,
+              "pixels": 421.34856178327533,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_14",
+              "from": 2,
+              "to": 1,
+              "pixels": 473.63860582144844,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 2,
+              "to": 1,
+              "pixels": 887.3958170710488,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_16",
+              "from": 2,
+              "to": 0,
+              "pixels": 1707.47438620219,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Wall_17",
+              "from": 2,
+              "to": 0,
+              "pixels": 208285.05030519975,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_0_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 656.9734909217929,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_0_1",
+              "from": 2,
+              "to": 0,
+              "pixels": 1355.4083425392296,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_0_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 4518.317284330203,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_1_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 1062.1118375735714,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 766.1251591775844,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_1_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 1031611.3202077157,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_1_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 2021853.3580160446,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_2_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 530.1849855700375,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.199999999255,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 755.7682216681269,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 1026154.6937314259,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 2824482.0364707154,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_0",
+              "from": 2,
+              "to": 1,
+              "pixels": 701.4685354766765,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 2,
+              "to": 1,
+              "pixels": 1026.7705289027133,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_2",
+              "from": 2,
+              "to": 0,
+              "pixels": 4539.833848212769,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1386052.676315774,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 4505.300000000745,
+              "event": "part-lod-change",
+              "part": "Foot_Scree",
+              "from": 2,
+              "to": 1,
+              "pixels": 628.4417505318381,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 9985,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 2,
+              "to": 1,
+              "pixels": 337.9441425054203,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10290.5,
+              "event": "part-lod-change",
+              "part": "Wall_15",
+              "from": 1,
+              "to": 0,
+              "pixels": 1146.3086608572962,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 10290.5,
+              "event": "part-lod-change",
+              "part": "Terrain_1_0",
+              "from": 1,
+              "to": 0,
+              "pixels": 1082.0934679413422,
+              "quality": 3,
+              "dpr": 0.6
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_00",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_01",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_02",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_03",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_04",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_05",
+              "from": 1,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_06",
+              "from": 2,
+              "to": 0,
+              "pixels": 372096.54683736636,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_07",
+              "from": 2,
+              "to": 0,
+              "pixels": 5738.466247092429,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_08",
+              "from": 2,
+              "to": 1,
+              "pixels": 965.3030056528938,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_09",
+              "from": 2,
+              "to": 1,
+              "pixels": 550.9454131551407,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_10",
+              "from": 2,
+              "to": 1,
+              "pixels": 549.0701401296823,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_11",
+              "from": 2,
+              "to": 1,
+              "pixels": 483.02744996748214,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Wall_12",
+              "from": 2,
+              "to": 1,
+              "pixels": 592.485617503064,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_0",
+              "from": 1,
+              "to": 0,
+              "pixels": 1269.9259707489075,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_0_3",
+              "from": 2,
+              "to": 0,
+              "pixels": 1655.8496022664317,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_1_1",
+              "from": 1,
+              "to": 0,
+              "pixels": 1760.3647907821537,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_0",
+              "from": 1,
+              "to": 0,
+              "pixels": 2348868.2743722857,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_2_1",
+              "from": 1,
+              "to": 0,
+              "pixels": 1691341.0006104906,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_0",
+              "from": 1,
+              "to": 0,
+              "pixels": 2896884.7825797214,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_1",
+              "from": 1,
+              "to": 0,
+              "pixels": 2961685.3714005477,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 13711.300000000745,
+              "event": "part-lod-change",
+              "part": "Terrain_3_3",
+              "from": 0,
+              "to": 2,
+              "pixels": 0,
+              "quality": 3,
+              "dpr": 1
+            },
+            {
+              "at": 14489.5,
+              "event": "part-lod-change",
+              "part": "Wall_08",
+              "from": 1,
+              "to": 0,
+              "pixels": 965.3030056528938,
+              "quality": 0,
+              "dpr": 1
+            },
+            {
+              "at": 14489.5,
+              "event": "part-lod-change",
+              "part": "Foot_Scree",
+              "from": 1,
+              "to": 0,
+              "pixels": 1030.725665583607,
+              "quality": 0,
+              "dpr": 1
+            }
+          ],
+          "assetMaterials": 2,
+          "assetTextures": 6,
+          "decodedTextureEstimate": 50331648
+        },
+        "camera": {
+          "x": -18,
+          "y": 1.72,
+          "z": -55,
+          "yaw": 1.2277723863741932,
+          "pitch": 0.20815966652762152,
+          "fov": 58,
+          "near": 0.1,
+          "far": 700,
+          "quaternion": [
+            0.08492295834396989,
+            0.5729311977620571,
+            -0.05984683894623376,
+            0.81299218301604
+          ]
+        }
+      }
+    }
+  ]
+}

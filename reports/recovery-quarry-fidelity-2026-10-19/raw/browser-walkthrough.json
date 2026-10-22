@@ -1,0 +1,2648 @@
+{
+  "status": "PASS",
+  "states": [
+    {
+      "label": "historical entrance retained; C9 owner ready",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "landing",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": 0,
+        "y": 1.72,
+        "z": 11.5,
+        "yaw": 0,
+        "pitch": 0.15
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=geology-fidelity"
+    },
+    {
+      "label": "original tunnel traversal to C9 hub",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": 0,
+        "y": 1.72,
+        "z": -51,
+        "yaw": 0,
+        "pitch": 0.2
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=geology-fidelity"
+    },
+    {
+      "label": "public visitor walk start",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -18,
+        "y": 1.72,
+        "z": -55,
+        "yaw": 1.2277723863741932,
+        "pitch": 0.1429698281180687
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=geology-fidelity"
+    },
+    {
+      "label": "actual keyboard walk along visitor boundary",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -17.999999003351274,
+        "y": 1.72,
+        "z": -62.34999999999985,
+        "yaw": 1.4662939928195058,
+        "pitch": 0.1429698281180687
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=geology-fidelity"
+    },
+    {
+      "label": "map open before aftermovie",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 1,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 0,
+        "map": true,
+        "mapStage": "open",
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -17.999999003351274,
+        "y": 1.72,
+        "z": -62.3499999999999,
+        "yaw": 1.4662939928195058,
+        "pitch": 0.1429698281180687
+      },
+      "url": "http://127.0.0.1:3000/?diagnostics&quarryReview=geology-fidelity"
+    },
+    {
+      "label": "original stage arrival with C9 selected",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "aftermovie",
+        "destination": "aftermovie",
+        "serial": 1,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -10.5,
+        "y": 1.72,
+        "z": -110.8,
+        "yaw": 0,
+        "pitch": 0.16
+      },
+      "url": "http://127.0.0.1:3000/aftermovie?quarryReview=geology-fidelity&diagnostics"
+    },
+    {
+      "label": "original Aftermovie playing",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "aftermovie",
+        "destination": "aftermovie",
+        "serial": 1,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": true,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -12,
+        "y": 5.9,
+        "z": -117.30000000000001,
+        "yaw": 0,
+        "pitch": 0
+      },
+      "url": "http://127.0.0.1:3000/aftermovie?quarryReview=geology-fidelity&diagnostics"
+    },
+    {
+      "label": "map open before hub",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "aftermovie",
+        "destination": "aftermovie",
+        "serial": 1,
+        "map": true,
+        "mapStage": "open",
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -10.5,
+        "y": 1.72,
+        "z": -110.8,
+        "yaw": 0,
+        "pitch": 0.16
+      },
+      "url": "http://127.0.0.1:3000/aftermovie?quarryReview=geology-fidelity&diagnostics"
+    },
+    {
+      "label": "return to C9 hub",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 2,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": 0,
+        "y": 1.72,
+        "z": -51,
+        "yaw": 0,
+        "pitch": 0.2
+      },
+      "url": "http://127.0.0.1:3000/?arrival=hub&quarryReview=geology-fidelity&diagnostics"
+    },
+    {
+      "label": "selected C9 visible after full journey",
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "a20c7856-1e7d-4a26-96f3-4e89f30110d2",
+          "source": "7d2f5a7d-522d-4cf5-93d9-cf376f1f52e8",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      },
+      "material": {
+        "enabled": true,
+        "scale": 3,
+        "preparing": false,
+        "geometryChanged": true,
+        "host": "fidelity visual region; unchanged authoritative collision registry",
+        "selectedNodes": [
+          "Foundation_Wall_15_LOD0",
+          "Foundation_Wall_15_LOD1",
+          "Foundation_Wall_15_LOD2"
+        ],
+        "material": "Recovered_C8_Scanned_Multi_PBR",
+        "normalScale": [
+          0.7,
+          0.7
+        ],
+        "uniqueImages": 3,
+        "wrappers": 5,
+        "decodedRGBA8MipBytes": 33554431.999999996,
+        "textures": [
+          {
+            "uuid": "cdbcacac-e862-43da-966d-2d85be3e001e",
+            "source": "d0482188-8403-4faf-81c7-2ba04690a72d",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "srgb",
+            "width": 2048,
+            "height": 2048
+          },
+          {
+            "uuid": "d9d6b555-13f0-40d5-9dab-0333b8df2573",
+            "source": "2832ef43-8fae-42c5-b685-4cf56e059777",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "2df6fda3-8be5-4580-9d66-70c3d074dbfb",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "5f0945d1-0433-4770-a16c-d04df5e2405f",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "uuid": "eecf344d-7a17-4de2-95ec-748c596e3063",
+            "source": "78e4feb0-743f-4a30-b27a-2cc20568a85b",
+            "channel": 0,
+            "repeat": [
+              0.06178204218546549,
+              0.06178204218546549
+            ],
+            "offset": [
+              0,
+              0.8146538734436035
+            ],
+            "rotation": 0,
+            "colourSpace": "",
+            "width": 1024,
+            "height": 1024
+          }
+        ],
+        "fidelityMaterial": true,
+        "regionArcMetres": [
+          311.02719558677654,
+          346.5843803697403
+        ],
+        "regionLengthMetres": 35.55718478296376,
+        "newTextureImages": 0,
+        "materialLayerGeometryChanged": false
+      },
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 2,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "pose": {
+        "x": -18,
+        "y": 1.72,
+        "z": -55,
+        "yaw": 1.2277723863741932,
+        "pitch": 0.1429698281180687
+      },
+      "url": "http://127.0.0.1:3000/?arrival=hub&quarryReview=geology-fidelity&diagnostics"
+    }
+  ],
+  "errors": [],
+  "method": "Actual browser recording. Public walk starts at a validated pose, uses real pointer look and held W keys, then actual map, original playback and return controls. Separate inspection is explicitly non-public with automatic screen-space LOD selection. SwiftShader footage, no retiming.",
+  "physicalHardware": false
+}

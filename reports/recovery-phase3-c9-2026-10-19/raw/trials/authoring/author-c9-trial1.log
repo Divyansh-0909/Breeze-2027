@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_recovered_c9.py", line 267, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_recovered_c9.py", line 156, in main
+    master,native,faces,planes,discarded=clip_native(original)
+                                         ~~~~~~~~~~~^^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_recovered_c9.py", line 71, in clip_native
+    loops=boundary_loops(m);assert len(loops)==1,('source crop must be one bounded disk',list(map(len,loops)))
+                                   ^^^^^^^^^^^^^
+AssertionError: ('source crop must be one bounded disk', [1531, 7])
+Blender 4.3.2
+Read blend: "/workspace/Breeze-2027-navigation/assets-source/gullyverse/quarry-scanned-composition/licensed-source/coastal_cliff_01/coastal_cliff_01_2k.blend"
+
+Blender quit

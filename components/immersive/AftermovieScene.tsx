@@ -19,6 +19,8 @@ import type { ImmersiveRuntime } from "./runtime";
 import QuarryWallSection from "./QuarryWallSection";
 import QuarryPerimeter from "./QuarryPerimeter";
 import type { WallPreviewSession } from "./wallSection";
+import {CaveEntranceSession} from './CaveEntranceSession';
+import CaveEntrance from './CaveEntrance';
 const noSubscribe=()=>()=>{};
 const offWall={mode:"off",busy:false,assetReady:false,revision:0,error:null} as const;
 
@@ -37,7 +39,8 @@ export default function AftermovieScene({ runtime, serial, quality, nearStage, o
     return () => { runtime.movieActions = null; };
   }, [runtime, video.startMovie, video.stopMovie, video.enableSound, video.getStatus]);
   return <>
-    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} authoredQuarry={wallPreview?.variant==="quarry"&&wall.mode!=="off"&&wall.assetReady} wallReplacement={wallPreview?.variant!=="quarry"&&wall.mode!=="off"&&wall.assetReady?(wall.mode==="reference"||wallPreview?.variant==="previous"?"face":"volume"):null} />
+    <HubScene nearStage={nearStage} quality={quality} overview={overview} stageView={stageView} caveReview={wallPreview instanceof CaveEntranceSession} caveMaterial={wallPreview instanceof CaveEntranceSession?wallPreview.borrowCaveMaterial():null} caveActive={wallPreview instanceof CaveEntranceSession&&wallPreview.entranceReady&&wall.mode!=="off"&&wall.assetReady} authoredQuarry={wallPreview?.variant==="quarry"&&wall.mode!=="off"&&wall.assetReady} wallReplacement={wallPreview?.variant!=="quarry"&&wall.mode!=="off"&&wall.assetReady?(wall.mode==="reference"||wallPreview?.variant==="previous"?"face":"volume"):null} />
+    {wallPreview instanceof CaveEntranceSession&&wall.mode!=="off"&&wall.assetReady&&<CaveEntrance session={wallPreview} quality={quality} needed={!nearStage||overview}/>}
     {wallPreview&&(wallPreview.variant==="quarry"?<QuarryPerimeter session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>:<QuarryWallSection session={wallPreview} quality={quality} lighting={stageView?"stage":"hub"}/>)}
     <AftermovieEnvironment />
     {/* Keep one stage and current travel coordinates; restore its original local presentation. */}

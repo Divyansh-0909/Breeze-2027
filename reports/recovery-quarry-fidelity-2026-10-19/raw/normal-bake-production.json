@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "bakes": [
+    {
+      "LOD": 1,
+      "seconds": 1.5398627430004126,
+      "UV1AtlasHalf": [
+        0,
+        0.5
+      ]
+    },
+    {
+      "LOD": 2,
+      "seconds": 1.3871766869997373,
+      "UV1AtlasHalf": [
+        0.5,
+        1
+      ]
+    }
+  ],
+  "float32RoundTripFrameRepairs": [
+    {
+      "LOD": 1,
+      "hardFractureFaces": [
+        9169
+      ],
+      "positionsAndUV0Changed": false
+    },
+    {
+      "LOD": 2,
+      "hardFractureFaces": [
+        35016
+      ],
+      "positionsAndUV0Changed": false
+    }
+  ],
+  "bindingsBeforeGeometryOnlyPacking": [
+    {
+      "node": "Fidelity_Wall_15_LOD0",
+      "normalTextureChannel": 0
+    },
+    {
+      "node": "Fidelity_Wall_15_LOD1",
+      "normalTextureChannel": 1
+    },
+    {
+      "node": "Fidelity_Wall_15_LOD2",
+      "normalTextureChannel": 1
+    }
+  ],
+  "normalSourceSHA256": "fe412025e97cb4ccd66d2a8a2c65604a35e197ce90dc3e1ffd44af28c1c68269",
+  "geometryBytes": 8250316,
+  "bakeHolderBytes": 553448,
+  "finePBRSourceImagesUnchanged": true,
+  "masterSHA256": "431cc87de5e03969b70e71943e8e05485e2296da8e7bfeeb3cd982335dae0856"
+}

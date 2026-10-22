@@ -1,0 +1,7 @@
+from pathlib import Path
+import bpy,json
+ROOT=Path('/workspace/Breeze-2027-navigation');S=ROOT/'assets-source/gullyverse/c9-cave-recovery';O=ROOT/'public/models/gullyverse/c9-cave-recovery';R=ROOT/'reports/recovery-stage3a-cave-tunnel-2026-10-20/raw'
+m=json.loads((O/'manifest.json').read_text());s=json.loads((ROOT/'assets-source/gullyverse/recovered-c8-material/material-manifest.json').read_text())
+m.update(candidateImplemented=True,productionApproved=False,interiorStatus='42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending.',textureMapping={'geometryUVMetresPerUnit':s['hostUVUnitMetres'],'sharedTextureRepeatAtApprovedScale':s['approvedUVRepeat'],'effectiveAtlasPeriodAt3xM':s['hostUVUnitMetres']/s['approvedUVRepeat'],'UV1QuarryBakeChanged':False},lighting={'newLights':0,'visibleFixtures':0,'globalLightingChanged':False,'interiorOnly':'Analytical opening/overburden response; not baked GI. Exterior material unfiltered.'})
+for p in [O/'manifest.json',R/'entrance-working-runtime.json']:p.write_text(json.dumps(m,indent=2)+'\n')
+bpy.ops.wm.open_mainfile(filepath=str(S/'cave-entrance-working.blend'));text=bpy.data.texts['CAVE_RECOVERY_CONTRACT'];text.clear();text.write(json.dumps(m,indent=2));bpy.context.scene.unit_settings.system='METRIC';bpy.context.scene.unit_settings.scale_length=1;bpy.ops.wm.save_as_mainfile(filepath=str(S/'cave-entrance-working.blend'),compress=True)

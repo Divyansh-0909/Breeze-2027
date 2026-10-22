@@ -1,0 +1,368 @@
+# Gullyverse Stage 2C.8 — scanned materials and local rock relief
+
+**Latest user decision: 3× texture scale is approved and locked.** The private `scanned-material-multi` preview now opens at 3× when no scale is specified. Explicit 1×, 2× and 4× comparisons remain available. This decision supersedes the earlier provisional 2× recommendation and “awaiting texture review” notes.
+
+**Physical-geometry decision: REQUIRES ARTIST-ASSET INPUT.** The original C8 solid-joining, shared-boundary, topology and authored-tangent gates still fail. Texture-scale approval does not validate those exports or authorize a quarry-wide rollout. Keep the original C6.2 comparison intact; the failed C8 physical body remains a labelled private diagnostic. No photorealism claim is made.
+
+C5.1 remains the public default. C6.2 and rejected C7 remain intact. No commit, push, merge, deployment, global lighting change or quarry-wide rollout was performed.
+
+## Review first
+
+- [Final report PDF](../reports/stage-2c8-approved-3x-2026-10-17/report.pdf)
+- [Full screenshot PDF](../reports/stage-2c8-approved-3x-2026-10-17/full-screenshots.pdf)
+- [Selected 3× and context review gallery](../reports/stage-2c8-approved-3x-2026-10-17/gallery.html)
+- [Self-contained final evidence and asset ZIP](../gullyverse-stage-2c8-approved-3x-review.zip)
+- [Photographic art-direction/source sheet](../reports/stage-2c8-polyhaven-rock-2026-10-17/art-direction-reference.md)
+- [Approved3× actual-browser public walk and map transition](../reports/stage-2c8-approved-3x-2026-10-17/recordings/approved-3x-walk.mp4)
+- [Actual-browser public walk and map transition — earlier 2× material preview](../reports/stage-2c8-polyhaven-rock-2026-10-17/recordings/visitor-walk-and-aerial.mp4)
+- [Inspection traverse and automatic LOD — failed physical C8 diagnostic](../reports/stage-2c8-polyhaven-rock-2026-10-17/recordings/near-wall-inspection.mp4)
+
+The full screenshot PDF contains the indexed C8 evidence, 3×/4× comparisons, entrance/tunnel/stall context and new default-3× captures. Each image is labelled by its actual version, scale and lighting; older screenshots are not presented as the new default. PDF images are compressed for practical viewing on iPhone. All original-resolution PNGs and capture metadata remain separate in the ZIP. No screenshot was colour-edited or relit for presentation.
+
+The earlier reports, PNGs, PDFs, raw failures and original `gullyverse-stage-2c8-polyhaven-rock-review.zip` remain intact. The new archive is a separate final delivery. This is an evidence/asset package, not a complete runnable website.
+
+## Approved texture sampling and current preview behavior
+
+The user compared 1×, 2×, 3× and 4×, including matched tunnel-entry and behind-stall views, then explicitly instructed: **“lets lock in 3x”**. This locks the demonstrated multi-source material's texture sampling, without silently approving new geometry or changing the public environment.
+
+Open the gated private preview with `?arrival=hub&diagnostics&quarryReview=scanned-material-multi`. It now selects **3× by default**. Add `&rockTextureScale=1`, `2`, `3` or `4` for exact historical/control comparisons. The original single-source experiment and failed physical-relief diagnostic retain their 1× defaults; C6.2/C7 and public C5.1 keep their existing behavior.
+
+UV0 colour, roughness and source-normal channels scale together to one-third of their original repeat. UV1 geometry-baked normals stay fixed. Original repeats are cached per texture, so changing sizes does not accumulate multiplication. Existing image/geometry resources are reused; the lock adds **zero new texture-image bytes or geometry bytes**. Global lighting, world registry, floor, stage, stalls, scaffold, tunnel, navigation and saved cameras are unchanged.
+
+This is user-approved artistic magnification beyond the native scan coverage, not a claim that the source scans physically span a larger cliff. Native 3D source transforms remain uniform 1.0×/0.85×. The editable master and previous exports are preserved rather than silently reauthored.
+
+[Sampling presets](../assets-source/gullyverse/quarry-scanned-relief/texture-size-presets.json), [user decision](../reports/stage-2c8-approved-3x-2026-10-17/user-decision.json), [fresh default and control verification](../reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json). The original material-first experiment and its negative native-scale assessment remain historical evidence below. They do not override the user's later 3× selection.
+
+## 1. Exact starting baseline and preservation
+
+The initial inspection at **2026-10-17 10:29:28 UTC** found branch **`codex/navigation-board`**, HEAD **`14f36da1a9b79a3b4926f7445bf0cde6c6c8f767`**, no staged files, and two modified tracked files: `components/immersive/ImmersiveShell.tsx` and `components/immersive/QuarryFoundationSession.ts`. Those files already contained earlier C6/C6.1/C6.2/C7 review integration. The later approval pass starts from the same branch/HEAD with the accumulated uncommitted C8 and scale-control changes; its immediate starting snapshots and hashes are separately recorded. There were **1,364 initial untracked paths**, including prior source/assets/reports and the newly created snapshot helper; this is not an attribution of every path to the user. Present implementation takes precedence over older reports.
+
+A non-destructive snapshot hashes **1,019 source/config/asset files**, totalling **1,672,206,795 bytes**. The local recovery archive is `reports/stage-2c8-polyhaven-rock-2026-10-17/backup/current-source-assets.tar.gz` (**1,140,768,310 bytes**); it is deliberately excluded from the review ZIP. No environment credentials, build output or dependency directories were copied into that archive. Starting status, original tracked diff and hashes are in [baseline-state.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/baseline-state.json) and [baseline-hashes.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/baseline-hashes.json).
+
+Only the same two existing application files were extended for C8's explicitly gated private selectors and material/geometry-owner selection. All new authoring scripts, assets and evidence use new C8 paths. The final preservation check and the phase-only diff are linked in the verification appendix.
+
+The actual current registry is `public/models/gullyverse/blockout.layout.json`: the 20-point quarry boundary spans X −49.8…48.0 m and Z −165.5…−42 m (**97.8 ×123.5 m registry bounds**); wall-height anchors span **31.85…41.6 m**. These are read from this working tree, not restored historical requirements. The registry, floor, terrain baseline, stage, scaffold, signs, tunnel, stalls, movement/gates, map/camera coordinates, lighting/fog/exposure/sky and video assets were not edited.
+
+The three requested public positions `[-18,1.72,-55]`, `[-18,1.72,-62]`, `[-17,1.72,-69]` pass the actual current constrain/obstacle and positive-clearance checks. Inspection cameras closer than the walking envelope are explicitly labelled; they are not public visitor positions. The final images also show that public positions2/3 are substantially occluded by the existing stall roofs/posts when aimed at this lower wall. Physical validity does not guarantee an unobstructed art view. Those occlusions are preserved, labelled and not mistaken for candidate geometry; position1 remains the useful unoccluded public comparison. The hidden lower formations do not establish visitor-distance success.
+
+## 2. Why C6.2, and why C7 was not reused
+
+The user prefers C6.2's dark, irregular fractured character. Its 35.557 m study area and comparison assets remain read-only. Its known ~4.8×/7× horizontal source fitting is **not approved** and is not reused to place new C8 rock bodies.
+
+C7 is retained solely as historical evidence. Its neutral geometry-only views expose manufactured planes, folds and stepped cuts. None of C7's generated cliff geometry, source-normalized fitting or mathematical loft is used for the new C8 formations. Existing material/cache/navigation infrastructure is reused because that infrastructure is separate from the rejected modelling method.
+
+## 3. Real-quarry reference analysis
+
+The inspected files are:
+
+- `design/references/03-open-roof-quarry/quarry-open-sky-geometry.jpeg`
+- `design/references/03-open-roof-quarry/quarry-warm-dappled-light.jpeg`
+
+They show broad charcoal/grey-brown rock bodies, selective lighter exposed faces, muted weathered brown areas and dark joints. Much of the warm-versus-dark distribution follows light direction, occlusion and shadow; it does not justify arbitrary painted black/brown stripes. Middle-scale broken beds, thick ledges, vertical/diagonal joints, regionally related fractures, substantial upper land and broken lower contact matter more than additional fine grain.
+
+No mineral classification, calibrated recess depth, physical albedo or material percentage can be established from these images alone. Their photographic provenance/white balance is not independently certified here. They are visual references; **no reference-image pixels were pasted into runtime textures**.
+
+## 4. Poly Haven research, dimensions and rights
+
+All four requested official candidates were inspected using provider metadata and genuine diffuse, OpenGL normal, roughness, displacement and AO files. Each received a verified 2K source download; thumbnails were not used as production maps.
+
+| Candidate | Actual source coverage | Finding / experiment role |
+| --- | --- | --- |
+| `marble_rock_03` | 1.798437 ×1.798438 m | Chunky fractured/crevice surface candidate; raw albedo is warm/pale. Used in A1 and as A2's main family. Actual browser result is too pebbly/busy at public distance. |
+| `quarry_wall` | approximately 1.8 ×1.8 m | Coarse weathered quarry grain and ochre mottling; comparatively weak meso relief. Inspected, not shipped as a runtime material. |
+| `quarry_wall_02` | approximately 1.8 ×1.8 m | Strong striations risk repeating the rejected horizontal-band problem. Inspected, not selected. |
+| `rock_face_03` | approximately 2.7 ×2.7 m | Compatible weathered brown-grey/branching surface; selected only as A2's secondary trial. Some warm weathering remains visually excessive. |
+
+**Unit correction:** the API dimensions are **millimetres**, verified against Poly Haven's official addon's `Real Scale (mm)` storage and `/1000` scaling code. A 1.8 m scan is not interpreted as an 18 m cliff module. Height pixel values are not a certified metre amplitude. The readable provider Blender settings use displacement scales 0.06 (`quarry_wall`), 0.05 (`quarry_wall_02`) and 0.15 (`rock_face_03`), which are author settings, not independent physical depth certification.
+
+Provider metadata, URLs, creators, MD5/SHA256 and licence evidence are preserved in [source-provenance.json](../assets-source/gullyverse/quarry-scanned-relief/source-provenance.json) and [downloads.json](../assets-source/gullyverse/quarry-scanned-relief/downloads.json). **24 verified files /190,813,235 bytes** were downloaded for local study, not shipped wholesale to visitors. Poly Haven assets are CC0, supporting commercial reuse/redistribution; a previously preserved official licence page and fresh official API provenance accompany the files. Official HTML pages returned 403 in this environment; official `api.polyhaven.com` and `dl.polyhaven.org` access succeeded. No access-policy bypass was used.
+
+`marble_rock_03`'s compressed provider Blender file uses a newer `BLENDER17-01` container that Blender 4.3.2 cannot read. Its genuine image maps remain usable. The other three material files were inspected after lossless Zstandard decompression, preserving originals. A generic provider glTF preview shape is not misrepresented as scanned cliff geometry.
+
+The existing CC0 real 3D sources are `rock_face_01` (7.108232 ×5.624305 ×4.980437 m native Blender bounds) and `rock_face_02` (4.870412 ×3.472860 ×4.734235 m). These are the original forms, not the old stretched C6.2 result.
+
+## 5. Pass A — original 1× material-only experiment
+
+**Historical native-scale assessment:** the following material trials predate the user-approved 3× sampling. Their original negative results are preserved; the latest selected sampling is recorded above. Actual browser captures were made **before new geometry authoring**. A0/A1/A2 all reference the same C6.2 geometry URL and SHA256 **`185a339ddb17a5a4e0c84ce9b57e84b7116eaa0938e806823632213f66c15a23`**.
+
+| Control | Result |
+| --- | --- |
+| A0 — original C6.2 | Retained preferred comparison. Darker and more restrained, with the known stretched-form/seam defects still present. |
+| A1 — single scanned Marble Rock03 | More real grain but too pebbly and visually busy at ordinary visitor distance. Does not independently earn adoption. |
+| A2 — Marble Rock03 + Rock Face03 | Restrained inclined weathered-bed masks add variation, but the surface remains busy/warm and the treatment border is conspicuous. Does not independently earn adoption. |
+
+The two new source albedos receive one documented **linear luminance gain** each (1.3489028164 and 0.8928655525) to match the accepted family's mean luminance; this does **not** match their chromatic balance or guarantee equal apparent brightness. The actual screenshots look warmer and more contrasty than C6.2. Global lighting/exposure is unchanged. This mismatch is a failed material outcome, not permission to brighten or recolour the public quarry.
+
+In the original 1× experiment, source UV coverage was: A1 repeats at 1.798437 m. A2's 10.790622 m shared atlas contains six Marble periods and approximately four RockFace03 periods, with finite inclined weathering masks/source-height preference. It is not random polygon colouring. Its 2K albedo and 1K normal/ORM divide resolution across that larger chart, so per-period detail is reduced; repetition has not been proven eliminated. It is a trial, not an approved material standard.
+
+Albedo is sRGB. OpenGL normals/ORM are linear/non-colour. Stone is non-metallic. Source roughness is retained. ORM AO is R=1 to avoid multiplying source baked joint darkness into already contrasty colour; source AO was inspected, not blindly doubled. Near normal strength is 0.7. On unchanged A1/A2 lower LODs, the old C6.2 UV1 geometric normal bake is retained to respect its existing tangent frame.
+
+At the original 1× stage, A2 was used only as the controlled combined experiment, **not selected as a winning material**. The user subsequently chose its demonstrated 3× texture sampling after reviewing larger-scale and context captures; this is the current approved sampling reference. [Pass A assessment](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-assessment.json) and [capture metadata](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/pass-a-captures.json) preserve the negative result.
+
+## 6. Pass B/C — native-proportion physical relief, failed integration
+
+Two original source bodies were rigidly oriented into an approximately **10.47 m Z-span** inside the lower C6.2 study wall (roughly Z −72.423…−61.951 m, exposed source Y approximately0.964…8.531 m). Source01 uses **uniform1.0×** and source02 **uniform0.85×**, with −5°/+8° local twists. Transform singular values confirm equal XYZ scale. PCA is used only to choose rigid orientation; there is no source-chart normalization, no depth flattening, no width-only stretch and no C7 loft/noise construction.
+
+The original cliff surface was closed into a body behind the visitor-facing wall; native source faces were closed behind their captured boundary and Boolean-unioned into that body. This was intended to remove duplicate visible surfaces rather than leave decorative boulders in front. Original sources/high geometry and runtime LODs are retained in the editable master. The native source forms occupy only that local band, but closing and decimating the host also changes mesh data outside it within the retained35.557 m lower study partition. **The failed result therefore does not satisfy the intended strictly local visual-replacement contract.** It is retained only as labelled failure evidence; it must not be treated as a completed8–12 m production benchmark. C6.2 itself is untouched.
+
+**This solid-joining method failed.** Extruding folded capture surfaces and unioning them with the old undercut host produces redundant internal faces, needle intersections and non-manifold topology. Local microscopic cleanup repaired some UV/tangent needles, but did not solve the fundamental solid join. We stopped rather than replacing this with another folded plane, additional noise or another large geometry iteration.
+
+The normal production export path stops on that failure. An explicit **`GULLYVERSE_EXPORT_FAILED_ART_TEST=1`** flag permits diagnostic exports only. The runtime manifest says `productionEligible:false` and records the failed topology/tangent contract. The private UI labels it a failed-join diagnostic. **glTF syntax validation does not make this geometry production-valid.**
+
+| New lower body | Triangles | Non-manifold interior edges | Open edges |
+| --- | ---: | ---: | ---: |
+| LOD0 |39,456|1,579|3|
+| LOD1 |13,978|1,582|5|
+| LOD2 |6,514|1,582|5|
+
+With the retained upper region, the local-file totals are **57,455 /19,977 /8,713** triangles. The old C6.2 local-file totals are reported in the measured appendix. The new body's buried back is a diagnostic cost, not an approved new quarry silhouette or a scalable optimization.
+
+Invalid tangent corners remain on simplified geometry. Rather than export zero tangent vectors as if valid, diagnostic GLBs omit tangent attributes and use Three.js derivative frames. That is explicitly a **failed production tangent/bake contract**, not a completed high-to-low solution. No extra unique normal atlas was justified for a failed model.
+
+## 7. Integration, boundaries, LOD and clearance
+
+The existing authoritative collision/navigation registry is untouched; the exported collision-reference GLB is **inspection-only**, never attached as new website colliders. No visitor bounds, gates, stage sightlines or camera controls were changed.
+
+The original screen-space selection/hysteresis infrastructure renders one visual LOD per part and retains shared cache ownership. It selects the new lower mesh and retained upper mesh separately through the same part contract. This does not prove that the new LOD geometry meets the shared interface contract.
+
+The independent actual-export survey retains the **2e−5 m** interface threshold. It fails with maximum retained-boundary errors **0.780498 /0.846106 /4.078280 m** for LOD0/1/2. A full **5,040-ray** perimeter/upward survey finds **0 unexpected horizontal gaps**, **0 hit/miss skyline disagreements**, but **6 inverted visible hits**. Passing horizontal coverage does not cancel the boundary/inversion failures. The survey collects all original assertion failures without relaxing thresholds and finishes FAIL. These assets must not be rolled out.
+
+The neutral geometry-only browser image shows physical relief, but still exposes an inserted rough region and incompatible surrounding geology. Native source proportions are necessary; they do not by themselves supply a convincing site-scale cliff composition or retopology. Material maps cannot repair the transition.
+
+## 8. Runtime implementation and reversibility
+
+Private review selectors, enabled only by the existing development/preview gate:
+
+|Selector|Meaning|
+|---|---|
+|`quarryReview=foundation-refined`|Retained public C5.1 comparison|
+|`quarryReview=rock-calibration`|Retained original C6.2|
+|`quarryReview=site-scale-cliff`|Rejected C7, historical comparison only|
+|`quarryReview=scanned-material-single`|A1 unchanged C6.2 geometry / single source|
+|`quarryReview=scanned-material-multi`|A2 unchanged C6.2 geometry / two-source atlas|
+|`quarryReview=scanned-relief`|C8 failed private physical-relief diagnostic|
+
+The private multi-source review defaults to the user-approved 3×; explicit scales remain selectable. The public default factory remains C5.1. These selectors are review infrastructure, not a new public destination or an authentication feature. They have not been deployed.
+
+`QuarryFoundationSession` reuses the existing C5.1 base geometry owner and replaces only the existing local study partitions. A1/A2 reuse the original C6.2 local geometry file. C8 has one local geometry file, not another complete-world export, and does not simultaneously fetch the old local study geometry. Material holders are hidden owners; scene clones borrow resources. Retiring the holder and geometry is still separated from unmounting consumers.
+
+The C6.2-derived holder has `vertexColors=false`; its new C8 material proxies preserve that contract. C8 geometry therefore does not require `COLOR_0`. The untouched public C5.1 holder's vertex-colour contract remains unchanged. Browser checks verify that no active material expects a missing colour attribute. No shared global material behaviour was changed to hide an export defect.
+
+## 9. Asset source, texture cost and authoring workflow
+
+Editable asset: [quarry-scanned-relief.blend](../assets-source/gullyverse/quarry-scanned-relief/quarry-scanned-relief.blend). It retains original-proportion source bodies, the failed high-detail join, runtime LODs and packed A2 maps. Its scene text marks the failed-art verdict. It is a diagnostic master, not a finished sculpt.
+
+Runtime files and data: [relief-manifest.json](../public/models/gullyverse/quarry-scanned-relief/relief-manifest.json), [relief-region.glb](../public/models/gullyverse/quarry-scanned-relief/relief-region.glb), [material-manifest.json](../assets-source/gullyverse/quarry-scanned-relief/material-manifest.json).
+
+Reproducible commands from the repository root:
+
+```bash
+python scripts/blender/prepare_scanned_rock_materials.py
+# Strict authoring normally stops at the invalid topology gate:
+blender -b -t 2 --python scripts/blender/author_scanned_relief.py
+# Explicitly reproduce the FAILED diagnostic export only:
+GULLYVERSE_EXPORT_FAILED_ART_TEST=1 blender -b -t 2 --python scripts/blender/author_scanned_relief.py
+blender -b -t 2 --python scripts/blender/configure_scanned_relief_master.py
+```
+
+Blender4.3.2, metres, BlenderZ-up→glTFY-up. Provider originals remain untouched. Source-body transform/dimension records accompany the manifest. This is a reproducible diagnostic procedure, not a claim of bit-identical cross-version Boolean/decimator output.
+
+Each new runtime material trial uses **three unique images**: 2048² JPEG colour,1024² PNG normal and1024² PNG ORM. Estimated RGBA8+mip payload is **32MiB** additional to the retained C6.2 family (~53.33MiB), approximately **85.33MiB unique decoded image payload**. Active material consumers expose 16 texture wrappers around 10 unique image sources. The holder owns 17 wrappers including one unused material; disposal checks use the owner count. Wrapper count and unique-image estimate are reported separately. That estimate is not measured VRAM. A1 and A2 are separate selected modes, not simultaneous full-resolution downloads.
+
+The A1 maps total **3,856,583 bytes**; A2 maps **4,483,782 bytes**. Original2K source downloads are kept for authoring/review only. No runtime8K set, new4K family, global triplanar/displacement shader, new compression decoder or source-model tessellation system was introduced. Positions/UVs remain float32; the existing geometry packer quantizes normal components where present. No claimed Draco/Meshopt/KTX2 benefit was invented.
+
+The extra memory and transfer are not justified by a superior visitor image. A future winning source family should replace an obsolete family through the existing owner rather than stack independent texture collections per wall.
+
+## 10. Separate texture approval from physical-geometry acceptance
+
+The original 1× combined C8 art test was judged weaker than C6.2: it looked busier and warmer, while its solid join remained visibly incompatible. The user then reviewed the material-only larger-scale experiments and selected **3×**. That later instruction is authoritative for the texture sampling. It does not erase the failed physical joins, protected-boundary errors, non-manifold topology or missing authored tangent coverage.
+
+The selected preview applies the new material at 3× to **unchanged C6.2 study geometry**. The separate new-geometry `scanned-relief` export is still diagnostic only. These are different candidates; the selected material preview must not be confused with a validated new embossed cliff.
+
+| Gate | C8 result |
+| --- | --- |
+| Authentic sources / no anisotropic new-source stretch |PASS: provenance, native dimensions and uniform transforms recorded|
+| Texture sampling |PASS: user selected and locked A2 at 3×; original 1× assessment retained separately|
+| Geological form without fine maps |FAIL: not a convincing continuous excavated rock body|
+| Multi-shade material |Selected 3× sampling preserved; original 1× warm/busy observations remain historical limitations, without changing user-approved lighting|
+| Natural joins / protected shared borders |FAIL: substantial boundary error, non-manifold joins and inverted hits|
+| Visitor-distance result |3× pattern selected after public/context comparisons; new physical C8 body still fails the combined-art gate|
+| Production tangent/LOD geometry contract |FAIL; diagnostic derivative frames are explicitly labelled|
+| Wider production readiness |FAIL; do not adopt or roll out|
+
+The real-quarry references have broad geological hierarchy, convincing thick broken beds, varied excavation cuts, irregular but coherent stone bodies, natural rim/foot relationships and selective surface contrast. C8 does not close those differences. It is not photorealistic, and more texture resolution or additional noise would not resolve the modelling problem.
+
+## 11. Required next asset input — not started
+
+**Recommendation: preserve the approved 3× material sampling; REQUIRES ARTIST-ASSET INPUT for the physical benchmark. Keep C6.2 available for comparison.** Do not scale this C8 result. Do not revive C7's method or C6.2's stretching.
+
+Supply or commission one artist-composed8–12 m cliff body in metres, located inside the retained study interface, with deliberate broad stone planes, properly proportioned broken beds, deep joints/undercuts and a transition into the existing shell. A suitable modular scan/sculpt kit must provide geological bodies at their documented native scale, not only a tileable texture or a generic preview shape.
+
+The handoff needs editable Blender high geometry; a closed/appropriately bounded retopologized runtime surface; exact shared border landmarks at every LOD; correct winding/normals; usable metre-scale UVs and valid tangent frames; near/mid/far meshes preserving visible relief; a shared dark non-metal PBR family; named nodes/part bounds/anchor metadata; a separate visual-only collision reference; and documented CC0 or equivalent commercial redistribution rights. Licensed high-poly sources must remain editable and attributable. Use an adapted copy of the present local-manifest/material-owner contract, not a new navigation or streaming system.
+
+The artist must review clay/neutral and unchanged dusk renders from all three actual public positions before microdetail or larger rollout. Geometry/transition quality has to pass first. Optional lighting changes remain a separate user decision; no global fill/exposure change is proposed as a geometry repair.
+
+## 12. Measurements and verification
+
+The following measurements are from the original full C8 cohort and subsequent texture-control cohorts, with their build IDs recorded. A separate approval-pass supplement below verifies the new default. Earlier timed results are not relabelled as measurements of the new default-3× build. Physical hardware acceptance remains **PENDING**; touch/portrait emulation is not a physical iPhone/Android test. A successful browser regression or glTF parser result does not reverse the failed art/geometry verdict.
+
+<!-- MEASURED_APPENDIX -->
+
+Original full C8 browser cohort: build `EEm3kHYO-m_9CyZ010hU3`. The later user-directed texture-size controls use build `uBStPyyaAcmNq7F_wnBzA`. Model/map bytes remain identical; the two application integration files changed only between cohorts. Original performance/navigation/playback results below apply to the original build. The supplement independently checks final mapping, material captures, allocation stability, public walking/map and failure/context recovery. No source/assets changed within either frozen cohort.
+
+Hardware: AMD EPYC 9V74 80-Core Processor; 3 visible CPUs, cgroup quota `200000 100000`; Debian13, `Chromium 151.0.7922.173 built on Debian GNU/Linux 13 (trixie)`, `Blender 4.3.2`. No GPU device nodes or attached physical phones/laptop. Exact OS/kernel and limits: [raw/hardware.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/hardware.json). Renderer: ANGLE Vulkan SwiftShader software. Performance windows:1366×900, effectiveDPR0.5/Q3; no artificial CPU/network throttling, no concurrent authoring/browser jobs. Host contention is not controlled. These are diagnostics, not physical-device FPS.
+
+### Matched frame/render samples
+
+Single settled10-second windows per mode/view, not repeated confidence intervals. Sparse software frames make p99 coarse. No claim of sustained60FPS or comparable laptop speed is made. GL resource counters/JS heap are proxies, not VRAM measurements.
+
+| Mode / view | Mean FPS | p50 ms | p95 ms | p99 ms | Calls | Triangles | Textures / geometries |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| c51 / hub | 4.47 | 217.70 | 275.50 | 280.40 | 166.00 | 123,002.00 | 31 /212 |
+| c51 / visitor-benchmark | 4.45 | 212.90 | 273.80 | 287.80 | 36.00 | 109,647.00 | 31 /212 |
+| c51 / hub-keyboard-movement | 4.86 | 200.40 | 246.50 | 254.80 | 165.00 | 122,992.00 | 31 /212 |
+| c51 / aerial-map | 3.37 | 298.50 | 349.70 | 353.60 | 188.00 | 121,638.00 | 31 /219 |
+| c51 / stage-looking-back | 2.55 | 399.10 | 466.50 | 487.70 | 76.00 | 1,040,290.00 | 31 /223 |
+| c62 / hub | 4.63 | 205.20 | 282.40 | 297.40 | 166.00 | 123,002.00 | 32 /209 |
+| c62 / visitor-benchmark | 3.63 | 282.50 | 305.10 | 306.80 | 35.00 | 114,705.00 | 32 /209 |
+| c62 / hub-keyboard-movement | 4.95 | 196.40 | 262.20 | 282.30 | 166.00 | 123,002.00 | 32 /209 |
+| c62 / aerial-map | 2.92 | 342.00 | 387.70 | 389.10 | 187.00 | 123,896.00 | 32 /216 |
+| c62 / stage-looking-back | 2.91 | 332.10 | 398.50 | 401.10 | 75.00 | 1,045,486.00 | 32 /220 |
+| c8 / hub | 4.84 | 199.10 | 262.90 | 267.40 | 166.00 | 123,002.00 | 35 /209 |
+| c8 / visitor-benchmark | 4.29 | 218.50 | 292.30 | 296.00 | 35.00 | 122,684.00 | 35 /209 |
+| c8 / hub-keyboard-movement | 5.09 | 192.30 | 252.00 | 261.60 | 166.00 | 123,002.00 | 35 /209 |
+| c8 / aerial-map | 3.31 | 295.20 | 381.70 | 383.10 | 187.00 | 128,211.00 | 35 /216 |
+| c8 / stage-looking-back | 2.55 | 390.90 | 460.30 | 472.70 | 75.00 | 1,053,465.00 | 35 /220 |
+
+The geometry/texture/content differences are measured costs; small software FPS differences in these single windows do not establish physical-GPU improvement or a certified regression. Raw frame samples, long tasks, allocations and heap snapshots: [raw/c51-performance.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c51-performance.json), [raw/c62-performance.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c62-performance.json), [raw/c8-performance.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-performance.json).
+
+### Cold/warm loading and preparation
+
+| Mode / cache | Ready ms | Total measured transfer bytes | Asset ready ms | Material parse ms | Texture init ms | Shader compile ms | Covered ready ms |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| foundation-refined-cold | 11,384.00 | 11,214,536.00 | 1,318.30 | 271.40 | 39.90 | 41.60 | 2,562.40 |
+| foundation-refined-warm | 11,180.00 | 2,100.00 | 564.70 | 254.70 | 38.40 | 40.00 | 2,651.40 |
+| rock-calibration-cold | 11,764.00 | 13,454,654.00 | 1,423.50 | 266.80 | 43.90 | 44.20 | 2,631.80 |
+| rock-calibration-warm | 10,022.00 | 2,400.00 | 625.70 | 202.80 | 42.80 | 41.30 | 2,439.00 |
+| scanned-relief-cold | 11,796.00 | 18,458,262.00 | 1,411.00 | 303.10 | 75.20 | 36.70 | 2,891.80 |
+| scanned-relief-warm | 10,156.00 | 3,300.00 | 830.20 | 334.00 | 66.70 | 68.60 | 2,487.10 |
+
+HTTP cache was explicitly enabled; cold cache cleared per mode, warm same-context revisit. CDP blocks API/analytics, without Playwright routing disabling the HTTP cache. Localhost measurements include document/JS/assets and distinguish transfer from encoded bodies/cache. They are not network-latency simulation. Preparation numbers are nested/instrumented scopes, not independent terms to sum. [raw/network-loading.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/network-loading.json) and [raw/entrance-timing.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/entrance-timing.json).
+
+### Actual file payload and scaling limitation
+
+| File | Bytes |
+|---|---:|
+| `single-materials.glb` | 5,531,088 |
+| `multi-materials.glb` | 5,531,092 |
+| `relief-region.glb` | 3,084,268 |
+| `relief-lod0.glb` | 1,961,108 |
+| `relief-lod1.glb` | 751,424 |
+| `relief-lod2.glb` | 376,168 |
+| `relief-collision-reference.glb` | 299,456 |
+
+Retained C6.2 local totals: [35998, 11998, 4398] triangles across LOD0/1/2; its local geometry file is 1966096 bytes. C8 uses the same8,530,404-byte base owner once, plus its one local file and selected holder/maps. Raw file bytes differ from measured compressed transfer.
+
+The extra32MiB shared image family need not multiply per region if actually shared, but retaining old+new families indefinitely is wasteful. Repeating C8's3.08MB local file across many regions would also duplicate retained legacy study geometry and buried backs. It is not a valid per10m streaming unit or a scalable production budget. No full-quarry cost/FPS guarantee is extrapolated. First fix the artist-authored local partition, share one accepted material family, and measure screen-space LODs on physical hardware before setting final budgets. No larger owner/streaming rewrite was attempted.
+
+### Runtime regressions, cache and playback
+
+| Browser job | Result | Elapsed s |
+|---|---|---:|
+| material-ownership | PASS | 9.51 |
+| performance-c51 | PASS | 93.87 |
+| performance-c62 | PASS | 94.78 |
+| performance-c8 | PASS | 94.95 |
+| network-loading | PASS | 95.97 |
+| captures-c51 | PASS | 190.77 |
+| captures-c62 | PASS | 199.75 |
+| captures-c7 | PASS | 121.28 |
+| captures-c8 | PASS | 207.06 |
+| regressions | PASS | 288.56 |
+| directional-travel | PASS | 55.37 |
+| cache-lifecycle | FAIL | 37.89 |
+| video-cycles | PASS | 61.86 |
+| navigation-cycles | PASS | 111.66 |
+| recovery | PASS | 77.19 |
+| shader-links | PASS | 26.51 |
+| public-walkthrough | PASS | 160.48 |
+| automatic-lod-recording | PASS | 42.55 |
+
+The original cohort includes actual entry/tunnel, input ownership, map/resize/destination selection, stage/movie camera restoration and rapid replay, boundary/menu hysteresis, history/Home policy, touch emulation/reduced motion, directional travel, repeated resources, critical failure/retry, context loss/recovery and public-default checks. Exact performed assertions and any harness failures are in [raw/browser-cohort.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/browser-cohort.json). A pass here does not validate C8's geology.
+
+Visitor journey groups: Fresh click entry, authored pacing and initial persistent Canvas **PASS**; Held-key focus release, all editables/forms, native typing, lost keyup and stale repeat **PASS**; Blur, visibility/freeze, focus restoration and interrupted input **PASS**; Map invalid SVG guard, open/close, resize and same Canvas destination **PASS**; Playback restores actual activation pose; rapid restart cannot change walking anchor **PASS**; Boundary Stay/Escape, hysteresis, return and immersive Back/Forward **PASS**; Navbar Home, reload session, direct URL, history and explicit Entrance policy **PASS**; Fresh-session Enter and touch entry/movement/map; reduced motion **PASS**.
+
+Directional travel: Public held-key directional Aftermovie gate, covered travel and same Canvas **PASS**; Actual boundary clamp, Esc stays, hysteresis re-entry and covered Return to Hub **PASS**.
+
+Recovery/failure: Actual WebGL loss/recovery preserves foundation pose and persistent Canvas **PASS**; Failed integrated-region-geometry.glb retains connected dark baseline; explicit retry **PASS**; Failed multi-materials.glb retains connected dark baseline; explicit retry **PASS**; Failed foundation-geometry.glb retains connected dark baseline; explicit retry **PASS**; Delayed load stays covered; fallback unmount disposes unpublished resources **PASS**; Duplicate embedded texture payload is rejected and owned resources disposed **PASS**; Critical original stage failure reaches native video fallback **PASS**; Ordinary public URL preserves C5.1 and never requests C6 assets or exposes review controls **PASS**.
+
+The original lifecycle harness failed its final disposal assertion because it expected16 active-consumer texture wrappers while the owner held17 including one unused wrapper. Ten settled toggle counters had already plateaued. The corrected test measures the holder ownership directly and verifies the GPU releases10 unique images. Original failure retained under trials; this is a test-expectation correction, not proof that a leak was repaired.
+
+| Final texture-size supplement | Result | Elapsed s |
+|---|---|---:|
+| final-material-and-size-captures | PASS | 318.00 |
+| extra-clay-public-views | PASS | 28.15 |
+| corrected-lifecycle | PASS | 43.28 |
+| final-public-walkthrough | PASS | 98.58 |
+| final-failure-and-recovery | PASS | 76.41 |
+
+Final 2× controls: UV0 colour/roughness/normal channels scale together; UV1 baked normals and other material families remain fixed. Eighteen size changes preserve image/geometry IDs and settled GL counters without additional model downloads. The original A0/A1/A2 controls remain1×. The serial replacement public walk uses A2 at2×; original failed-C8 walk is separately preserved and is not used for FPS measurement. Raw checks: [raw/final-material-captures.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/final-material-captures.json).
+
+Corrected failed-C8 diagnostic lifecycle: **PASS**,10 covered enable/disable cycles plus retirement/reload/unmount. Navigation: **PASS**, 5 hub/stage round trips. Playback: 3 short real playback/exit cycles, including preview changes during playback; PASS.
+
+Settled foundation- cycle2→10 counters: `{'textures': 38, 'geometries': 263, 'GL': {'Texture': 42, 'Buffer': 1174, 'Program': 25}, 'JSHeap': 93828869}` → `{'textures': 38, 'geometries': 263, 'GL': {'Texture': 42, 'Buffer': 1174, 'Program': 25}, 'JSHeap': 97784023}`. Heap is recorded but garbage-collection timing prevents a strict flat-heap guarantee.
+
+Settled baseline- cycle2→10 counters: `{'textures': 38, 'geometries': 263, 'GL': {'Texture': 42, 'Buffer': 1174, 'Program': 25}, 'JSHeap': 99120105}` → `{'textures': 38, 'geometries': 263, 'GL': {'Texture': 42, 'Buffer': 1174, 'Program': 25}, 'JSHeap': 89108295}`. Heap is recorded but garbage-collection timing prevents a strict flat-heap guarantee.
+
+Repeated allocation tests establish only the sampled plateau/retirement behaviour, not leak-free VRAM or long-session mobile acceptance. Raw evidence: [raw/lifecycle.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/lifecycle.json), [raw/scaled-material-lifecycle.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/scaled-material-lifecycle.json), [raw/navigation-cycles.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/navigation-cycles.json), [raw/video-with-wall.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/video-with-wall.json), [raw/recovery.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/recovery.json), [raw/shader-validation.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/shader-validation.json).
+
+### Build, geometry and evidence validation
+
+- Original and final texture-control production builds and separate `tsc --noEmit`: PASS. Lint: PASS under the existing warning policy; unrelated existing warnings remain unchanged. Immersive unit tests: **93/93 PASS**. These general tests are not a substitute for the new failed geometry survey.
+
+- Khronos glTF validator: all7 C8 GLBs **0 errors /0 warnings**. That is format validity, not watertightness/art/LOD correctness. [raw/glTF-validator.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/glTF-validator.json).
+
+- Strict actual-export geometry survey: **FAIL**. Interface errors0.780498/0.846106/4.078280m and6 inverted visible ray hits remain. All5,040 rays were collected; tolerances were not loosened. [raw/excavation-geometry-validation.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/excavation-geometry-validation.json).
+
+- Native source dimensions/uniform transforms: PASS. Material colour-channel/COLOR_0 consumer compatibility: PASS. Authored tangent coverage/solid topology/LOD joins: FAIL; derivative fallback is valid glTF rendering but does not complete the requested authored-frame/bake verification. The first attribute inspector had a missing-attribute TypeError, retained as a harness defect; the subsequent explicit inventory reports the actual unmet contract. [raw/export-attributes.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/export-attributes.json).
+
+- Original combined physical-geometry acceptance: **FAIL**, independent of build/browser passes. The later user-approved texture scale is **3×**, recorded separately; historical raw gate files are not rewritten. [raw/art-gate.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/art-gate.json).
+
+- Baseline preservation: [raw/baseline-preservation-validation.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/baseline-preservation-validation.json); original stage/crowd/video sample hashes: [raw/iconic-assets-preservation.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/iconic-assets-preservation.json). Branch/HEAD and starting untracked paths remain. C8-only source diff: [c8-only.patch](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-only.patch). Exact new source/asset paths/hashes: [raw/c8-source-asset-inventory.json](../reports/stage-2c8-polyhaven-rock-2026-10-17/raw/c8-source-asset-inventory.json).
+
+- Review images, original camera/render metadata, H264 conversions and package inventory are independently checked. Native background-tab suspension, long movie sessions, device thermal behaviour, real GPU/mobile frame rate and real VRAM remain UNVERIFIED/PENDING. [Physical-device procedure](../reports/stage-2c8-polyhaven-rock-2026-10-17/physical-device-procedure.md).
+
+Initial implementation/harness failures are preserved: PassA TypeScript union selection was corrected before its successful build; an early texture-wrapper expectation was corrected to16 active wrappers/10 unique images; the retirement assertion was then corrected to17 holder-owned wrappers including its unused material; numerical topology/UV attempts and the ultimately failed solid join remain in raw/trials. No geometry threshold was increased to hide C8 failure. Supplemental browser-only harness corrections, if any, are recorded in `harness-corrections.json`.
+
+### Stop state
+
+The later user-directed texture-size request is implemented; the user reviewed 3×/4× context captures and **approved 3×**. The private multi-source preview now defaults to that setting, while explicit comparisons remain available. The original combined physical C8 objective is **not achieved**. Preserve the preferred C6.2 comparison and public C5.1. Do not promote the diagnostic, scale it, modify lighting to hide it or begin a further procedural refinement cycle. The next useful input is artist-authored geological composition and boundary-compatible retopology, followed by the same public-distance/clay/dusk tests. No further stage has been started.
+
+
+## 13. Final 3× approval pass and deliverable coverage
+
+The immediate starting state, source snapshots, asset hashes and explicit approval are recorded in the new delivery directory. Only two existing application files change for this pass: `components/immersive/ImmersiveShell.tsx` chooses 3× when the private multi-source selector has no scale, and `components/immersive/QuarryFoundationSession.ts` applies the matching direct-constructor default. Invalid scale input falls back to that mode's default. Other modes keep 1×, and 1/2/3/4 remain explicit controls. The sampling preset JSON and this report are updated to record the user decision. No GLB, texture image, collision registry, global lighting or public-default substitution is changed.
+
+The original requested report subjects are covered here: exact baseline/preservation (§1), C7 rejection and C6.2 comparison (§2), photographic analysis (§3), candidates/licences/actual scan scale (§4), independent material-only trial (§5), physical-relief method and failed join (§6–7), runtime/ownership (§8), Blender/UV/material workflow and costs (§9), user texture choice versus art gate (§10), required artist input (§11), measured performance/tests/limitations (§12), and the final approval supplement below.
+
+No additional quarry sector is replaced. Physical-device performance is still PENDING. The stopped geometry experiment remains honestly labelled; neither a user texture choice nor successful runtime tests turn it into approved production geology. No commit, push, merge or deployment was performed.
+
+<!-- APPROVAL_PASS_RESULTS -->
+
+Final default-lock build: `mTsmG0CiPhgpqLZcf4SOf`. Production build (including existing-policy lint), separate TypeScript checks and **93/93 immersive unit tests PASS**. Focused browser checks: **PASS** (7 groups):
+
+- Private multi-source preview selects approved3x with no scale parameter: **PASS**.
+- 1x/4x controls preserved; return to3x exact, UV1/non-C8 maps fixed, image and geometry IDs unchanged: **PASS**.
+- native-control: **PASS**.
+- explicit4x: **PASS**.
+- invalid-falls-back-to-approved: **PASS**.
+- original-single-source-control: **PASS**.
+- public-default: **PASS**.
+
+[Final capture/default checks](../reports/stage-2c8-approved-3x-2026-10-17/capture-metadata.json), [preservation hashes](../reports/stage-2c8-approved-3x-2026-10-17/preservation.json), [starting state](../reports/stage-2c8-approved-3x-2026-10-17/starting-state.json). These focused checks apply to the new default-lock build. The original extensive navigation/playback/failure/context cohorts in §12 retain their original build IDs; they were not all repeated or relabelled as current-build results. No new physical-GPU timing claim is made.
+
+The full screenshot PDF has **162 pages**, covering **157 original browser screenshots**, plus the selection/paired comparison pages. [Complete original-PNG catalogue](../reports/stage-2c8-approved-3x-2026-10-17/full-screenshot-catalogue.json). Older diagnostic/1×/2×/4× frames are clearly labelled rather than represented as approved3×. Original images and older archives remain intact.
+
+Fresh approved-3× public-controls walking and map ascent/descent: **PASS**, with 3× verified in every recorded state. [Recording trace](../reports/stage-2c8-approved-3x-2026-10-17/raw/walkthrough.json), [H264 conversion checks](../reports/stage-2c8-approved-3x-2026-10-17/raw/recording-conversion.json). The video is actual software-rendered browser footage, without retiming or generated frames.
+
+[Exact default-lock application diff](../reports/stage-2c8-approved-3x-2026-10-17/approved-3x-source.patch). Existing app edits were backed up before modification; the diff adds only the private multi-source default/fallback choice. No staged changes, branch/HEAD changes, commit, push or deployment.

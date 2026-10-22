@@ -1,0 +1,50 @@
+✔ natural cave is private and explicitly selected; old URLs do not opt in (1.00815ms)
+✖ travel and direct routes carry the cave with the accepted corrected quarry (1.93651ms)
+✔ the replacement only removes exact six-metre inner rings, preserving every later attribute (107.328488ms)
+✖ late entrance completion after retirement disposes all geometry and never reloads the parent (6.771959ms)
+✔ failed optional entrance preserves selected quarry loading and supports a clean retry (3.92843ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 821.940865
+
+✖ failing tests:
+
+test at tests/immersive/cave-review.test.ts:19:1
+✖ travel and direct routes carry the cave with the accepted corrected quarry (1.93651ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  '' !== '#top'
+  
+      at TestContext.<anonymous> (/workspace/Breeze-2027-navigation/tests/immersive/cave-review.test.ts:26:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: '#top',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/immersive/cave-review.test.ts:52:1
+✖ late entrance completion after retirement disposes all geometry and never reloads the parent (6.771959ms)
+  Error: Unmount foundation consumers before retirement
+      at CaveEntranceSession.retire (/workspace/Breeze-2027-navigation/components/immersive/QuarryFoundationSession.ts:99:71)
+      at CaveEntranceSession.retire (/workspace/Breeze-2027-navigation/components/immersive/ScannedRockMaterialSession.ts:157:11)
+      at CaveEntranceSession.retire (/workspace/Breeze-2027-navigation/components/immersive/GeologyFidelitySession.ts:183:29)
+      at CaveEntranceSession.retire (/workspace/Breeze-2027-navigation/components/immersive/CaveEntranceSession.ts:88:53)
+      at TestContext.<anonymous> (/workspace/Breeze-2027-navigation/tests/immersive/cave-review.test.ts:60:39)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)

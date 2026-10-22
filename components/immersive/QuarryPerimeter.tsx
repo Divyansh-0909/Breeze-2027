@@ -5,14 +5,20 @@ import * as THREE from "three";
 import {chooseWallLOD,projectedWallPixels,QUARRY,type WallPreviewSession} from "./wallSection";
 import {RefinedQuarrySession,refinementParts} from "./RefinedQuarrySession";
 import {LimestoneExcavationSession} from "./LimestoneExcavationSession";
+import {ScannedRockMaterialSession} from "./ScannedRockMaterialSession";
+import {ScannedCompositionSession} from "./ScannedCompositionSession";
+import {GeologyFidelitySession} from "./GeologyFidelitySession";
+import {renderQuarryPreparation} from "./quarryPreparation";
 
 /** Shared approved material; one screen-space LOD per fitted quarry part. */
 export default function QuarryPerimeter({session,quality,lighting}:{session:WallPreviewSession;quality:number;lighting:string}) {
   const state=useSyncExternalStore(session.subscribe,session.snapshot,session.snapshot),{gl,scene,camera}=useThree();
   const refined=session instanceof RefinedQuarrySession?session:null;
   const excavation=session instanceof LimestoneExcavationSession?session:null;
+  const scanned=session instanceof ScannedRockMaterialSession?session:null;
+  const composition=session instanceof ScannedCompositionSession||session instanceof GeologyFidelitySession?session:null;
   const enabled=!!refined?.refinementEnabled&&!!refined.refinement;
-  const clone=useMemo(()=>excavation?excavation.cloneForRendering():refined?refined.cloneForRendering():session.asset?.scene.clone(true)??null,[session.asset,excavation,refined,refined?.refinement,enabled]);
+  const clone=useMemo(()=>excavation?excavation.cloneForRendering():refined?refined.cloneForRendering():session.asset?.scene.clone(true)??null,[session.asset,excavation,refined,refined?.refinement,enabled,scanned?.materialRevision,composition?.compositionRevision]);
   const parts=useMemo(()=>clone?(excavation?excavation.partsForRendering():refined?refinementParts(enabled):QUARRY.parts).map(part=>({id:String(part.id),center:new THREE.Vector3().fromArray(part.center),radius:part.radius,lods:part.nodes.map(name=>clone.getObjectByName(name) as THREE.Mesh),level:2})):[],[clone,enabled,refined,excavation]);
   const size=useRef(new THREE.Vector2()),warm=useRef({compiled:false,frames:0,revision:0,start:0});
   useLayoutEffect(()=>{
@@ -26,7 +32,7 @@ export default function QuarryPerimeter({session,quality,lighting}:{session:Wall
     gl.domElement.addEventListener("webglcontextrestored",restored);return()=>gl.domElement.removeEventListener("webglcontextrestored",restored);
   },[gl,session]);
   useEffect(()=>{
-    if(!state.busy||(state.mode!=="off"&&(!clone||refined?.refinementEnabled&&!refined.refinement)))return;
+    if(!state.busy||scanned?.materialPreparing||composition?.compositionPreparing||(state.mode!=="off"&&(!clone||refined?.refinementEnabled&&!refined.refinement)))return;
     let alive=true;const revision=state.revision;warm.current={compiled:false,frames:0,revision,start:performance.now()};
     void(async()=>{
       if(gl.getContext().isContextLost())return;
@@ -36,14 +42,16 @@ export default function QuarryPerimeter({session,quality,lighting}:{session:Wall
       if(alive&&revision===session.state.revision&&!gl.getContext().isContextLost())warm.current.compiled=true;
     })().catch(error=>{if(alive){session.record("preparation-error",{message:String(error)});session.setMode("off");}});
     return()=>{alive=false;};
-  },[clone,gl,scene,camera,session,state.busy,state.mode,state.revision,lighting,refined]);
+  },[clone,gl,scene,camera,session,state.busy,state.mode,state.revision,lighting,refined,scanned?.materialPreparing,composition?.compositionPreparing]);
   useFrame(()=>{
     if(session.runtime.suspended||gl.getContext().isContextLost())return;
     const w=warm.current;
     if(session.state.busy){
       if(!w.compiled||w.revision!==session.state.revision)return;
       if(state.mode!=="off")parts.forEach(part=>part.lods.forEach((mesh,i)=>{mesh.visible=i===Math.min(2,w.frames);mesh.frustumCulled=false;}));
-      gl.render(scene,camera);w.frames++;
+      if(scanned&&clone&&state.mode!=="off")renderQuarryPreparation(gl,scene,camera,clone);
+      else gl.render(scene,camera);
+      w.frames++;
       if(w.frames>=(state.mode==="off"?1:4)){
         parts.forEach(part=>{part.level=2;part.lods.forEach((mesh,i)=>{mesh.visible=i===2;mesh.frustumCulled=true;});});
         session.prepared(w.revision,performance.now()-w.start,lighting);

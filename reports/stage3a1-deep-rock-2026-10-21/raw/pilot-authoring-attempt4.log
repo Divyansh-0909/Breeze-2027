@@ -1,0 +1,19 @@
+NATIVE_CROP_EDGE_REPAIR {'count': 0, 'maximumM': 0}
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_cave_deep_pilot.py", line 13, in <module>
+    new,info=graft(body,ROOT,source_x=-27.,source_z=4.6,station=11.2,side=-1,width=6.2,height=3.2,depth_offset=2.85)
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/cave_native_graft.py", line 208, in graft
+    v,f=polygon_triangles(outside);shell=make_mesh('Existing_Cave_With_Authored_Cut',[x[:3]for x in v],f)
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/cave_native_graft.py", line 52, in polygon_triangles
+    if np.linalg.norm(np.cross(b-a,c-a))>1e-11:faces.append([ids[0],ids[j],ids[j+1]])
+                      ~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/numpy/_core/numeric.py", line 1661, in cross
+    raise ValueError(msg)
+ValueError: incompatible dimensions for cross product
+(dimension must be 2 or 3)
+Blender 4.3.2
+Read blend: "/workspace/Breeze-2027-navigation/assets-source/gullyverse/c9-cave-recovery/cave-entrance-working.blend"
+
+Blender quit

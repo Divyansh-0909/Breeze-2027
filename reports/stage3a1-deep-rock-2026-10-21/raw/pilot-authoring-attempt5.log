@@ -1,0 +1,17 @@
+NATIVE_CROP_EDGE_REPAIR {'count': 0, 'maximumM': 0}
+LOCAL_CUT_CONFORMITY [16, 0]
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_cave_deep_pilot.py", line 13, in <module>
+    new,info=graft(body,ROOT,source_x=-27.,source_z=4.6,station=11.2,side=-1,width=6.2,height=3.2,depth_offset=2.85)
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/cave_native_graft.py", line 219, in graft
+    a=subdivide_loop(shell,shellloop,params,outline);b=subdivide_loop(patch,patchloop,params,outline)
+                                                       ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/cave_native_graft.py", line 130, in subdivide_loop
+    e=bm.edges.get((va,vb));assert e is not None,('Nonmonotone captured boundary',o.name,a,b)
+                                   ^^^^^^^^^^^^^
+AssertionError: ('Nonmonotone captured boundary', 'Native_Actual_Triangles_Graft', np.float64(0.17569235931883928), np.float64(0.17729441780517677))
+Blender 4.3.2
+Read blend: "/workspace/Breeze-2027-navigation/assets-source/gullyverse/c9-cave-recovery/cave-entrance-working.blend"
+
+Blender quit

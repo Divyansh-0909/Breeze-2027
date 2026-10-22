@@ -1,0 +1,75 @@
+
+> my-landing@0.1.0 build
+> next build && prisma generate
+
+   ▲ Next.js 15.3.8
+
+   Creating an optimized production build ...
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled successfully in 9.0s
+   Linting and checking validity of types ...
+
+./components/immersive/QuarryPerimeter.tsx
+21:144  Warning: React Hook useMemo has unnecessary dependencies: 'composition.compositionRevision', 'enabled', 'refined.refinement', and 'scanned.materialRevision'. Either exclude them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/landing-page/gate3d/PastPerformersGallery.tsx
+86:33  Warning: The ref value 'pathRefs.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'pathRefs.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+88:33  Warning: The ref value 'cardRefs.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'cardRefs.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+164:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page/gate3d/Tunnel.tsx
+130:49  Warning: React Hook useMemo has an unnecessary dependency: 'fontReady'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+605:6  Warning: React Hook useMemo has an unnecessary dependency: 'fontReady'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+688:6  Warning: React Hook useMemo has an unnecessary dependency: 'fontReady'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/landing-page-old/Flower.tsx
+21:7  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page-old/TimeCarousel.tsx
+43:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page-old/after-movie.tsx
+80:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+86:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page-old/clock.tsx
+16:6  Warning: React Hook useEffect has a missing dependency: 'calculateTimeLeft'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/landing-page-old/landing.tsx
+60:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+74:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+86:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/landing-page-old/procard.tsx
+55:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/sponsorship-component/SponsScroll.tsx
+77:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+95:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+113:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./components/ui/infinite-moving-cards.tsx
+28:6  Warning: React Hook useEffect has a missing dependency: 'addAnimation'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/ui/parallax-floating.tsx
+123:50  Warning: The ref value 'idRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'idRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+Failed to compile.
+
+./components/immersive/CaveEntranceSession.ts:36:5
+Type error: Type '{ version: string; privateOnly: boolean; completeStage3A: boolean; interiorStatus: string; runtime: string; runtimeBytes: number; runtimeSHA256: string; parts: { id: string; nodes: string[]; triangles: number[]; materialRole: string; center: number[]; radius: number; bounds: number[][]; }[]; ... 14 more ...; entranc...' is not assignable to type '{ version: string; privateOnly: boolean; completeStage3A: boolean; interiorStatus: string; runtime: string; runtimeBytes: number; runtimeSHA256: string; parts: { id: string; nodes: string[]; triangles: number[]; materialRole: string; center: number[]; radius: number; bounds: number[][]; }[]; ... 14 more ...; entranc...'. Two different types with this name exist, but they are unrelated.
+  Type '{ version: string; privateOnly: boolean; completeStage3A: boolean; interiorStatus: string; runtime: string; runtimeBytes: number; runtimeSHA256: string; parts: { id: string; nodes: string[]; triangles: number[]; materialRole: string; center: number[]; radius: number; bounds: number[][]; }[]; ... 19 more ...; quarryT...' is not assignable to type '{ version: string; privateOnly: boolean; completeStage3A: boolean; interiorStatus: string; runtime: string; runtimeBytes: number; runtimeSHA256: string; parts: { id: string; nodes: string[]; triangles: number[]; materialRole: string; center: number[]; radius: number; bounds: number[][]; }[]; ... 14 more ...; entranc...'.
+    Types of property '"sharedFrameCorrection"' are incompatible.
+      Type '{ method: string; protectedStationsBlenderYMetres: number[]; canonicalPositions: number; updatedCornerNormals: { Cave_Throat_LOD0: number; Cave_Throat_LOD1: number; Cave_Throat_LOD2: number; ... 11 more ...; Cave_Passage4_LOD2: number; }; }' is missing the following properties from type '{ method: string; protectedStationsBlenderYMetres: number[]; canonicalPositions: number; updatedCornerNormals: { Cave_Throat_LOD0: number; Cave_Throat_LOD1: number; Cave_Throat_LOD2: number; ... 11 more ...; Cave_Passage4_LOD2: number; }; canonicalFrameFile: string; runtimeFloat32CanonicalOverride: boolean; }': "canonicalFrameFile", "runtimeFloat32CanonicalOverride"
+
+[0m [90m 34 |[39m   constructor(runtime[33m:[39m [33mImmersiveRuntime[39m[33m,[39m readonly edition[33m:[39m [32m'stage3a'[39m [33m|[39m [32m'stage3a1'[39m [33m=[39m [32m'stage3a'[39m) {[0m
+[0m [90m 35 |[39m     [36msuper[39m(runtime)[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 36 |[39m     [36mthis[39m[33m.[39mdescriptor [33m=[39m edition [33m===[39m [32m'stage3a1'[39m [33m?[39m deepManifest [33m:[39m manifest[33m;[39m[0m
+[0m [90m    |[39m     [31m[1m^[22m[39m[0m
+[0m [90m 37 |[39m     [36mthis[39m[33m.[39mentranceURL [33m=[39m edition [33m===[39m [32m'stage3a1'[39m [33m?[39m [33mCAVE_DEEP_RELIEF_URL[39m [33m:[39m [33mCAVE_ENTRANCE_URL[39m[33m;[39m[0m
+[0m [90m 38 |[39m     [36mthis[39m[33m.[39mcaveFeatureScale [33m=[39m edition [33m===[39m [32m'stage3a1'[39m [33m?[39m [35m2[39m [33m:[39m [35m1[39m[33m;[39m[0m
+[0m [90m 39 |[39m     [90m// Direct stage entry has no cave pixels. Preserve its existing cold-start[39m[0m
+Next.js build worker exited with code: 1 and signal: null

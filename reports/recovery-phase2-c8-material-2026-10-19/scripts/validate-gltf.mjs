@@ -1,0 +1,10 @@
+import {createRequire} from "node:module";
+import {readFile, writeFile} from "node:fs/promises";
+const require = createRequire(import.meta.url);
+const validator = require(process.env.GULLYVERSE_GLTF_VALIDATOR_MODULE || "/tmp/gullyverse-limestone-validator-20261012/node_modules/gltf-validator");
+const path = "public/models/gullyverse/recovered-c8-material/scanned-materials.glb";
+const data = await readFile(path);
+const result = await validator.validateBytes(new Uint8Array(data), {uri: "scanned-materials.glb"});
+await writeFile("reports/recovery-phase2-c8-material-2026-10-19/raw/gltf-validation.json", JSON.stringify({path, bytes: data.length, validatorVersion: validator.version(), result}, null, 2));
+console.log(result.issues.numErrors, "errors;", result.issues.numWarnings, "warnings");
+if (result.issues.numErrors || result.issues.numWarnings) process.exitCode = 1;

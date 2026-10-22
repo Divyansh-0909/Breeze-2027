@@ -1,0 +1,89 @@
+{
+  "status": "FAIL",
+  "targetedFailedSightlines": 16,
+  "additionalRaysPerVersion": 1200,
+  "sameNormalDotGate": 0.03,
+  "newInvertedHits": [
+    {
+      "eye": [
+        -10.5,
+        1.72,
+        -110.8
+      ],
+      "pitch": 14,
+      "yaw": 204.5,
+      "LOD": 2,
+      "baseline": {
+        "distance": 64.90927124023438,
+        "normalDotRay": -0.8853448387235403,
+        "mesh": "Foundation_Wall_16_LOD2"
+      },
+      "candidate": {
+        "distance": 63.072731018066406,
+        "normalDotRay": 0.039393335580825806,
+        "mesh": "Fidelity_Wall_15_LOD2"
+      }
+    },
+    {
+      "eye": [
+        -10.5,
+        1.72,
+        -110.8
+      ],
+      "pitch": 15,
+      "yaw": 203,
+      "LOD": 2,
+      "baseline": {
+        "distance": 65.9791030883789,
+        "normalDotRay": -0.8511508069932461,
+        "mesh": "Foundation_Wall_16_LOD2"
+      },
+      "candidate": {
+        "distance": 65.99300384521484,
+        "normalDotRay": 0.8068092688918114,
+        "mesh": "Fidelity_Wall_15_LOD2"
+      }
+    },
+    {
+      "eye": [
+        -10.5,
+        1.72,
+        -110.8
+      ],
+      "pitch": 15,
+      "yaw": 205,
+      "LOD": 2,
+      "baseline": {
+        "distance": 65.15264129638672,
+        "normalDotRay": -0.8836355488747358,
+        "mesh": "Foundation_Wall_16_LOD2"
+      },
+      "candidate": {
+        "distance": 61.71536636352539,
+        "normalDotRay": 0.2941870242357254,
+        "mesh": "Fidelity_Wall_15_LOD2"
+      }
+    },
+    {
+      "eye": [
+        17.4,
+        1.72,
+        -72.55
+      ],
+      "pitch": 15,
+      "yaw": 251,
+      "LOD": 1,
+      "baseline": {
+        "distance": 59.49129104614258,
+        "normalDotRay": -0.8512508422136307,
+        "mesh": "Foundation_Wall_16_LOD1"
+      },
+      "candidate": {
+        "distance": 59.11070251464844,
+        "normalDotRay": 0.4259844236075878,
+        "mesh": "Fidelity_Wall_15_LOD1"
+      }
+    }
+  ],
+  "scope": "Denser cones around recorded trial failures; sample-based, not exhaustive geometry proof."
+}

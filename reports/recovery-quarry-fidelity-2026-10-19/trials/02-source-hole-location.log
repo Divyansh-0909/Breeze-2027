@@ -1,0 +1,17 @@
+NATIVE_CAPTURE_HOLE Upper_Coastal04 0.47419387205143615 41 center [-36.56149561812238, 1.4216643891683438, 0.9200454528738813] bounds [-36.726219177246094, 1.2925095558166504, 0.9177015423774719] [-36.42361831665039, 1.6575658321380615, 0.922845721244812]
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_quarry_fidelity.py", line 258, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_quarry_fidelity.py", line 203, in main
+    high,row=crop(original,name,x0,x1,z0,z1)
+             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Breeze-2027-navigation/scripts/blender/author_quarry_fidelity.py", line 58, in crop
+    assert span<.15 and len(hole)<30,('Unsuitable large native capture hole',name,span,len(hole))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('Unsuitable large native capture hole', 'Upper_Coastal04', 0.47419387205143615, 41)
+
+Error: script failed, file: 'scripts/blender/author_quarry_fidelity.py', exiting.
+Blender 4.3.2
+
+Blender quit

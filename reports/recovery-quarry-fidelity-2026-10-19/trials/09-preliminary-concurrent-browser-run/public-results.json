@@ -1,0 +1,319 @@
+{
+  "checks": [
+    {
+      "name": "Fresh click entry, authored pacing and initial persistent Canvas",
+      "status": "PASS",
+      "evidence": {
+        "entranceMs": 11686,
+        "timing": {
+          "activationToLocalMs": 7326.4000000003725,
+          "largestFrameMs": 295.70000000018626,
+          "phases": [
+            {
+              "at": 1518.4000000003725,
+              "phase": "boot",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 12554.700000000186,
+              "phase": "landing",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 17887.799999999814,
+              "phase": "entrance",
+              "scene": "hub",
+              "serial": 0
+            },
+            {
+              "at": 25214.200000000186,
+              "phase": "local",
+              "scene": "hub",
+              "serial": 0
+            }
+          ]
+        },
+        "pose": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        }
+      }
+    },
+    {
+      "name": "Held-key focus release, all editables/forms, native typing, lost keyup and stale repeat",
+      "status": "PASS",
+      "evidence": [
+        {
+          "type": "input",
+          "before": {
+            "x": 0.2832426487565059,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 0.2832426487565059,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "textarea",
+          "before": {
+            "x": 0.5664852975130118,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 0.5664852975130118,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "select",
+          "before": {
+            "x": 0.8497279462695178,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 0.8497279462695178,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "contenteditable",
+          "before": {
+            "x": 1.1329705950260236,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 1.1329705950260236,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "empty-contenteditable",
+          "before": {
+            "x": 1.4162132437825294,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 1.4162132437825294,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "plaintext",
+          "before": {
+            "x": 1.6994558925390353,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 1.6994558925390353,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "form-button",
+          "before": {
+            "x": 1.9826985412955411,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 1.9826985412955411,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        },
+        {
+          "type": "form-container",
+          "before": {
+            "x": 2.2659411900520467,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "after": {
+            "x": 2.2659411900520467,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blur, visibility/freeze, focus restoration and interrupted input",
+      "status": "PASS",
+      "evidence": {
+        "results": [
+          {
+            "events": [
+              "blur",
+              "focus"
+            ],
+            "before": {
+              "x": 1.9826985412955407,
+              "y": 1.72,
+              "z": -51,
+              "yaw": 0,
+              "pitch": 0.2
+            }
+          },
+          {
+            "events": [
+              "freeze",
+              "resume"
+            ],
+            "before": {
+              "x": 1.6994558925390348,
+              "y": 1.72,
+              "z": -51,
+              "yaw": 0,
+              "pitch": 0.2
+            }
+          }
+        ],
+        "nativeBackground": "Headless hidden-tab suspension not proven by synthetic events."
+      }
+    },
+    {
+      "name": "Map invalid SVG guard, open/close, resize and same Canvas destination",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "x": 1.6994558925390348,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "arrival": {
+          "x": -10.5,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        }
+      }
+    },
+    {
+      "name": "Playback restores actual activation pose; rapid restart cannot change walking anchor",
+      "status": "PASS",
+      "evidence": {
+        "anchor": {
+          "x": -8.781224976744241,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        },
+        "rapidPose": {
+          "x": -12,
+          "y": 5.9,
+          "z": -117.30000000000001,
+          "yaw": 0,
+          "pitch": 0
+        },
+        "restored": {
+          "x": -8.781224976744241,
+          "y": 1.72,
+          "z": -110.8,
+          "yaw": 0,
+          "pitch": 0.16
+        }
+      }
+    },
+    {
+      "name": "Boundary Stay/Escape, hysteresis, return and immersive Back/Forward",
+      "status": "FAIL",
+      "error": "locator.waitFor: Timeout 50000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Where to next?' }) to be visible\u001b[22m\n\n    at /workspace/Breeze-2027-navigation/tests/immersive/stabilization.browser.mjs:19:175\n    at async check (/workspace/Breeze-2027-navigation/tests/immersive/stabilization.browser.mjs:11:290)\n    at async file:///workspace/Breeze-2027-navigation/tests/immersive/stabilization.browser.mjs:19:1"
+    },
+    {
+      "name": "Navbar Home, reload session, direct URL, history and explicit Entrance policy",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to:\n\n'error'\n    at local (file:///workspace/Breeze-2027-navigation/tests/immersive/stabilization.browser.mjs:9:141)\n    at async file:///workspace/Breeze-2027-navigation/tests/immersive/stabilization.browser.mjs:20:512\n    at async check (file:///workspace/Breeze-2027-navigation/tests/immersive/stabilization.browser.mjs:11:290)\n    at async file:///workspace/Breeze-2027-navigation/tests/immersive/stabilization.browser.mjs:20:1"
+    },
+    {
+      "name": "Fresh-session Enter and touch entry/movement/map; reduced motion",
+      "status": "PASS",
+      "evidence": {
+        "saved": {
+          "x": 0,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "moved": {
+          "x": 0.7661446140282548,
+          "y": 1.72,
+          "z": -51,
+          "yaw": 0,
+          "pitch": 0.2
+        },
+        "profile": {
+          "viewport": [
+            390,
+            844
+          ],
+          "dpr": 0.25,
+          "stats": {
+            "calls": 155,
+            "triangles": 121976,
+            "textures": 31,
+            "geometries": 219,
+            "dpr": 0.25
+          },
+          "quality": 1
+        },
+        "physicalMobile": false
+      }
+    }
+  ],
+  "errors": []
+}

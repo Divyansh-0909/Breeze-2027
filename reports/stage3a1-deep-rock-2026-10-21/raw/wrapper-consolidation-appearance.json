@@ -1,0 +1,55 @@
+{
+  "status": "PASS_SAMPLING_AND_PILOT_APPEARANCE_DISTANT_LOD_VARIATION",
+  "oldBuild": "5ODgY2BCN7F56SnWGnFTB",
+  "finalBuild": "WkDLrfjIEo-S3ibJCUS6-",
+  "resourceOnlyChange": true,
+  "originalReviewPDFsRemainValid": true,
+  "rows": [
+    {
+      "old": "screenshots/pilot-gate/pilot-desktop-dusk-2x-normal-walking.png",
+      "final": "screenshots/pilot-gate-final/pilot-final-desktop-dusk-2x-normal-walking.png",
+      "matchingSettings": true,
+      "changedPixels": 0,
+      "maxChannelDifference": 0,
+      "meanChannelDifference": 0.0,
+      "oldOwnedWrappers": 5,
+      "finalOwnedWrappers": 3,
+      "sameGeometrySHA256": true
+    },
+    {
+      "old": "screenshots/pilot-gate/pilot-desktop-dusk-2x-side-fracture.png",
+      "final": "screenshots/pilot-gate-final/pilot-final-desktop-dusk-2x-side-fracture.png",
+      "matchingSettings": true,
+      "changedPixels": 0,
+      "maxChannelDifference": 0,
+      "meanChannelDifference": 0.0,
+      "oldOwnedWrappers": 5,
+      "finalOwnedWrappers": 3,
+      "sameGeometrySHA256": true
+    },
+    {
+      "old": "screenshots/pilot-gate/pilot-desktop-neutral-normal-walking.png",
+      "final": "screenshots/pilot-gate-final/pilot-final-desktop-neutral-normal-walking.png",
+      "matchingSettings": true,
+      "changedPixels": 10236,
+      "maxChannelDifference": 64,
+      "meanChannelDifference": 0.04020985846754514,
+      "oldOwnedWrappers": 5,
+      "finalOwnedWrappers": 3,
+      "sameGeometrySHA256": true
+    },
+    {
+      "old": "screenshots/pilot-gate/pilot-desktop-neutral-side-fracture.png",
+      "final": "screenshots/pilot-gate-final/pilot-final-desktop-neutral-side-fracture.png",
+      "matchingSettings": true,
+      "changedPixels": 0,
+      "maxChannelDifference": 0,
+      "meanChannelDifference": 0.0,
+      "oldOwnedWrappers": 5,
+      "finalOwnedWrappers": 3,
+      "sameGeometrySHA256": true
+    }
+  ],
+  "wholeFramePixelIdentity": false,
+  "explanation": "Both dusk views and the neutral side view match every pixel. In the neutral walking image, changed pixels are confined to x1285..1365,y410..609 at the far-right distant passage. The pilot area is unchanged. Runtime metadata records Passage4 LOD1 before versus LOD0 after, accounting for the3500visible-triangle difference; the pilot itself remainsLOD0. Automatic screen-space hysteresis depends on traversal history. No PNG was altered or cropped for review."
+}

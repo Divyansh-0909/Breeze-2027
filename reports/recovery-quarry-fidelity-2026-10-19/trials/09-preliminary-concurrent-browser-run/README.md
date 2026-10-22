@@ -1,0 +1,1 @@
+Preliminary browser run with concurrent high-DPR screenshots and authoring. Public boundary menu timed out; later navigation check cascaded. Not final acceptance evidence. Stopped before final asset/build freeze; rerun serially. No navigation-code change was made to suppress failure.

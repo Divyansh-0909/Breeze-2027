@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "startingFiles": 3761,
+  "startingBytes": 2849797618,
+  "unchangedFiles": 3758,
+  "authorizedExistingSourceChanges": [
+    "components/immersive/ImmersiveShell.tsx",
+    "components/immersive/QuarryPerimeter.tsx",
+    "components/immersive/scannedRockSampling.ts"
+  ],
+  "missingFiles": [],
+  "protectedHistoricalAssetsUnchanged": true,
+  "heroExactFloat32TrianglePreservation": [
+    {
+      "LOD": 0,
+      "oldRegionTriangles": 44823,
+      "unchangedOldTrianglesInNew": 28501,
+      "newRegionTriangles": 67991,
+      "UV0UV1TangentsPresent": true
+    },
+    {
+      "LOD": 1,
+      "oldRegionTriangles": 12689,
+      "unchangedOldTrianglesInNew": 9173,
+      "newRegionTriangles": 40940,
+      "UV0UV1TangentsPresent": true
+    },
+    {
+      "LOD": 2,
+      "oldRegionTriangles": 4797,
+      "unchangedOldTrianglesInNew": 3934,
+      "newRegionTriangles": 35296,
+      "UV0UV1TangentsPresent": true
+    }
+  ],
+  "limitations": "Overlap count includes any retained host triangles. Packed-master source tags verify every original hero triangle separately. This is preservation, not pixel-identical C6.2 reconstruction."
+}

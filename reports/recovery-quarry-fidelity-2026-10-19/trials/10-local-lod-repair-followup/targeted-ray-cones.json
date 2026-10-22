@@ -1,0 +1,69 @@
+{
+  "status": "FAIL",
+  "targetedFailedSightlines": 20,
+  "additionalRaysPerVersion": 1500,
+  "sameNormalDotGate": 0.03,
+  "newInvertedHits": [
+    {
+      "eye": [
+        0,
+        1.72,
+        -51
+      ],
+      "pitch": 19.5,
+      "yaw": 278.5,
+      "LOD": 1,
+      "baseline": {
+        "distance": 41.995113372802734,
+        "normalDotRay": -0.6268581263720989,
+        "mesh": "Foundation_Wall_15_LOD1"
+      },
+      "candidate": {
+        "distance": 38.94461441040039,
+        "normalDotRay": 0.05624169111251831,
+        "mesh": "Fidelity_Wall_15_LOD1"
+      }
+    },
+    {
+      "eye": [
+        0,
+        1.72,
+        -51
+      ],
+      "pitch": 20.5,
+      "yaw": 279.5,
+      "LOD": 1,
+      "baseline": {
+        "distance": 43.113914489746094,
+        "normalDotRay": -0.6602240651845932,
+        "mesh": "Foundation_Wall_15_LOD1"
+      },
+      "candidate": {
+        "distance": 38.79364776611328,
+        "normalDotRay": 0.3385470509529114,
+        "mesh": "Fidelity_Wall_15_LOD1"
+      }
+    },
+    {
+      "eye": [
+        -18,
+        1.72,
+        -62
+      ],
+      "pitch": 35,
+      "yaw": 279.5,
+      "LOD": 2,
+      "baseline": {
+        "distance": 35.83563995361328,
+        "normalDotRay": -0.5316844768822193,
+        "mesh": "Foundation_Wall_15_LOD2"
+      },
+      "candidate": {
+        "distance": 34.268470764160156,
+        "normalDotRay": 0.8200680408626795,
+        "mesh": "Fidelity_Wall_15_LOD2"
+      }
+    }
+  ],
+  "scope": "Denser cones around recorded trial failures; sample-based, not exhaustive geometry proof."
+}

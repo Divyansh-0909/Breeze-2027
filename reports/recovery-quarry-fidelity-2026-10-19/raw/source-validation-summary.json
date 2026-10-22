@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "jobs": [
+    {
+      "name": "typecheck",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "exitCode": 0,
+      "seconds": 8.491
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 2.924
+    },
+    {
+      "name": "immersive-unit",
+      "command": [
+        "npm",
+        "run",
+        "test:immersive"
+      ],
+      "exitCode": 0,
+      "seconds": 6.198
+    },
+    {
+      "name": "production-build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 41.265
+    }
+  ],
+  "backendLimitation": "Invalid non-secret Supabase placeholders for local build; backend/payment/service integration not certified."
+}

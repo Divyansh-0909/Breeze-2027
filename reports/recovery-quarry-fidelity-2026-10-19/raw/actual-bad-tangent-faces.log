@@ -1,0 +1,22 @@
+19:52:01 | INFO: Data are loaded, start creating Blender stuff
+19:52:01 | INFO: Blender create Mesh node Fidelity_Wall_15_LOD0.001
+19:52:01 | INFO: Blender create Mesh node Fidelity_Wall_15_LOD1.001
+19:52:01 | INFO: Blender create Mesh node Fidelity_Wall_15_LOD2.001
+19:52:01 | INFO: glTF import finished in 0.27s
+Blender 4.3.2
+Error: Tangent space computation needs a UV Map, "hZ" not found, aborting
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+RuntimeError: Error: Tangent space computation needs a UV Map, "hZ" not found, aborting
+
+
+Error: script failed, expr: 'import bpy,json; from pathlib import Path; bpy.ops.import_scene.gltf(filepath=str(Path('public/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb').resolve())); rows=[]
+for o in bpy.data.objects:
+ if o.type!='MESH':continue
+ for u in o.data.uv_layers:
+  o.data.calc_tangents(uvmap=u.name);bad={l.index for l in o.data.loops if l.tangent.length<.99}
+  for p in o.data.polygons:
+   if set(p.loop_indices)&bad:rows.append(dict(mesh=o.name,uv=u.name,face=p.index,positions=[list(o.data.vertices[i].co)for i in p.vertices],badLoops=list(set(p.loop_indices)&bad),normals=[list(o.data.corner_normals[i].vector)for i in p.loop_indices],geometricNormal=list(p.normal)))
+Path('reports/recovery-quarry-fidelity-2026-10-19/raw/actual-bad-tangent-faces.json').write_text(json.dumps(rows,indent=2));print(rows)', exiting.
+
+Blender quit

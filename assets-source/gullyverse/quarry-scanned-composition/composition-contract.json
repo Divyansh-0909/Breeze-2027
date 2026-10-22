@@ -1,0 +1,282 @@
+{
+  "phase": "Recovery Phase 3",
+  "source": "Poly Haven coastal_cliff_01",
+  "license": "CC0",
+  "sourceSHA256": "091b3d5a8a1b649b56c5a07f6bc43fe61893695f2b5ecb512ba7d58641763aef",
+  "sourceNativeDimensionsM": [
+    91.97995376586914,
+    10.966708660125732,
+    10.325531363487244
+  ],
+  "cropBoundsNativeM": [
+    [
+      -35.32162094116211,
+      -1.2790746688842773,
+      0.31564944982528687
+    ],
+    [
+      -24.732839584350586,
+      3.8621442317962646,
+      9.043639183044434
+    ]
+  ],
+  "cropDimensionsM": [
+    10.588781356811523,
+    5.141218900680542,
+    8.727989733219147
+  ],
+  "cropTriangles": 51337,
+  "cropPlanes": [
+    {
+      "point": [
+        -35.15,
+        0,
+        4.5
+      ],
+      "inwardNormal": [
+        1,
+        0,
+        -0.045
+      ]
+    },
+    {
+      "point": [
+        -24.85,
+        0,
+        4.5
+      ],
+      "inwardNormal": [
+        -1,
+        0,
+        -0.028
+      ]
+    },
+    {
+      "point": [
+        -30,
+        0,
+        0.5
+      ],
+      "inwardNormal": [
+        0.035,
+        0,
+        1
+      ]
+    },
+    {
+      "point": [
+        -30,
+        0,
+        8.92
+      ],
+      "inwardNormal": [
+        -0.025,
+        0,
+        -1
+      ]
+    }
+  ],
+  "discardedComponents": [
+    {
+      "repair": "tiny native capture hole triangulated, original boundary vertices retained",
+      "vertices": 3,
+      "spanM": 0.009159649554618966
+    }
+  ],
+  "uniformScale": 0.9,
+  "transformWorldYUp": [
+    [
+      -0.4817804647587285,
+      -0.7601891763086762,
+      0.0,
+      -57.657065536586195
+    ],
+    [
+      0.0,
+      0.0,
+      0.9,
+      0.10000000000000003
+    ],
+    [
+      -0.7601891763086762,
+      0.4817804647587285,
+      0.0,
+      -89.06209001669869
+    ]
+  ],
+  "singularValues": [
+    0.9,
+    0.9,
+    0.8999999999999999
+  ],
+  "formationWorldBounds": [
+    [
+      -47.41972835991761,
+      0.38408450484275825,
+      -70.79825433632466
+    ],
+    [
+      -40.475482382575784,
+      8.239275264739991,
+      -60.47429672053427
+    ]
+  ],
+  "hostPart": "Wall_15",
+  "historicalHostPart": "lower Wall_14 within LOST C6.2 partition",
+  "hostGeometrySHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+  "hostArcM": [
+    315.07670942703663,
+    337.02719558677654
+  ],
+  "hostCompatibility": "Surviving C5.1 actual Wall_15 at arc327, not fabricated lost C6.2. Exact original outer boundary per LOD; local scan cut and connecting annulus reconstructed, not bit-identical.",
+  "runtime": "composition-region.glb",
+  "runtimeBytes": 2710964,
+  "runtimeSHA256": "b4a45c158e29f4a133e43799c0a2fc865f4bb5180a40471ced6adf04504258a4",
+  "materialOwner": "recovered-c8-material/scanned-materials.glb",
+  "approvedTextureScale": 3,
+  "newPBRImages": 0,
+  "newGeometryBakeImages": 1,
+  "parts": [
+    {
+      "id": "Wall_15",
+      "nodes": [
+        "C9_Wall_15_LOD0",
+        "C9_Wall_15_LOD1",
+        "C9_Wall_15_LOD2"
+      ],
+      "center": [
+        -44.573448181152344,
+        17.247514337301254,
+        -65.33090782165527
+      ],
+      "radius": 22.17344662987702
+    }
+  ],
+  "LODs": [
+    {
+      "LOD": 0,
+      "triangles": 44823,
+      "sourceTriangles": 21991,
+      "retainedHostTriangles": 21139,
+      "joinTriangles": 1693,
+      "originalHostTriangles": 24233,
+      "removedHostTriangles": 3094,
+      "bounds": [
+        [
+          -51.3253173828125,
+          -0.800000011920929,
+          -76.30183410644531
+        ],
+        [
+          -37.82157897949219,
+          35.29502868652344,
+          -54.359981536865234
+        ]
+      ],
+      "nativeBounds": [
+        [
+          -47.41972835991761,
+          0.38408450484275825,
+          -70.79825433632466
+        ],
+        [
+          -40.475482382575784,
+          8.239275264739991,
+          -60.47429672053427
+        ]
+      ],
+      "externalBoundaryVertices": 393,
+      "openBoundaryLoops": 1
+    },
+    {
+      "LOD": 1,
+      "triangles": 12689,
+      "sourceTriangles": 6493,
+      "retainedHostTriangles": 4604,
+      "joinTriangles": 1592,
+      "originalHostTriangles": 5253,
+      "removedHostTriangles": 649,
+      "bounds": [
+        [
+          -51.3253173828125,
+          -0.800000011920929,
+          -76.30183410644531
+        ],
+        [
+          -37.82157897949219,
+          35.29502868652344,
+          -54.359981536865234
+        ]
+      ],
+      "nativeBounds": [
+        [
+          -47.41972835991761,
+          0.38408450484275825,
+          -70.79825433632466
+        ],
+        [
+          -40.475482382575784,
+          8.239275264739991,
+          -60.47429672053427
+        ]
+      ],
+      "externalBoundaryVertices": 341,
+      "openBoundaryLoops": 1
+    },
+    {
+      "LOD": 2,
+      "triangles": 4797,
+      "sourceTriangles": 2093,
+      "retainedHostTriangles": 1167,
+      "joinTriangles": 1537,
+      "originalHostTriangles": 1303,
+      "removedHostTriangles": 136,
+      "bounds": [
+        [
+          -51.3253173828125,
+          -0.800000011920929,
+          -76.30183410644531
+        ],
+        [
+          -37.82157897949219,
+          35.29502868652344,
+          -54.359981536865234
+        ]
+      ],
+      "nativeBounds": [
+        [
+          -47.41972835991761,
+          0.38408450484275825,
+          -70.79825433632466
+        ],
+        [
+          -40.475482382575784,
+          8.239275264739991,
+          -60.47429672053427
+        ]
+      ],
+      "externalBoundaryVertices": 319,
+      "openBoundaryLoops": 1
+    }
+  ],
+  "privateOnly": true,
+  "publicDefaultChanged": false,
+  "collisionChanged": false,
+  "lightingChanged": false,
+  "normalBake": {
+    "runtime": "composition-bake.glb",
+    "bytes": 713124,
+    "sha256": "b6fc27708439b099ce752c2e49f000f509a6e651f1571a2db4dee86e6b608c98",
+    "resolution": 1024,
+    "estimatedRGBA8MipBytes": 5592405.333333333,
+    "channels": [
+      0,
+      1,
+      1
+    ],
+    "content": "geometry-only high-to-low, no fine C8 normal baked twice",
+    "UV0SamplingUnchanged": true,
+    "lostOldC62BakeNotRecreated": true
+  },
+  "authoringMaster": "assets-source/gullyverse/quarry-scanned-composition/quarry-scanned-composition.blend"
+}

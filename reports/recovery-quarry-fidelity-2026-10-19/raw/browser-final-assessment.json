@@ -1,0 +1,119 @@
+{
+  "status": "PASS_WITH_RETAINED_COMBINED_COHORT_TIMEOUT",
+  "build": "yMi3FGOCwP0ohacWxJzGK",
+  "serialCohorts": [
+    {
+      "name": "public-stabilization",
+      "script": "tests/immersive/stabilization.browser.mjs",
+      "exitCode": 0,
+      "build": "yMi3FGOCwP0ohacWxJzGK",
+      "seconds": 405.52
+    },
+    {
+      "name": "private-regressions",
+      "script": "reports/recovery-quarry-fidelity-2026-10-19/scripts/candidate-regressions-c9.mjs",
+      "exitCode": 1,
+      "build": "yMi3FGOCwP0ohacWxJzGK",
+      "seconds": 374.181
+    },
+    {
+      "name": "directional-travel",
+      "script": "reports/recovery-quarry-fidelity-2026-10-19/scripts/directional-travel-c9.mjs",
+      "exitCode": 0,
+      "build": "yMi3FGOCwP0ohacWxJzGK",
+      "seconds": 81.053
+    },
+    {
+      "name": "composition-ownership-recovery",
+      "script": "reports/recovery-quarry-fidelity-2026-10-19/scripts/composition-browser-checks.mjs",
+      "exitCode": 0,
+      "build": "yMi3FGOCwP0ohacWxJzGK",
+      "seconds": 113.36
+    },
+    {
+      "name": "preview-persistence",
+      "script": "reports/recovery-quarry-fidelity-2026-10-19/scripts/preview-persistence.mjs",
+      "exitCode": 0,
+      "build": "yMi3FGOCwP0ohacWxJzGK",
+      "seconds": 351.124
+    }
+  ],
+  "combinedPrivateChecks": [
+    [
+      "Fresh click entry, authored pacing and initial persistent Canvas",
+      "PASS"
+    ],
+    [
+      "Held-key focus release, all editables/forms, native typing, lost keyup and stale repeat",
+      "PASS"
+    ],
+    [
+      "Blur, visibility/freeze, focus restoration and interrupted input",
+      "PASS"
+    ],
+    [
+      "Map invalid SVG guard, open/close, resize and same Canvas destination",
+      "PASS"
+    ],
+    [
+      "Playback restores actual activation pose; rapid restart cannot change walking anchor",
+      "PASS"
+    ],
+    [
+      "Boundary Stay/Escape, hysteresis, return and immersive Back/Forward",
+      "PASS"
+    ],
+    [
+      "Navbar Home, reload session, direct URL, history and explicit Entrance policy",
+      "PASS"
+    ],
+    [
+      "Fresh-session Enter and touch entry/movement/map; reduced motion",
+      "FAIL"
+    ]
+  ],
+  "isolatedUnchangedTouchAssertions": {
+    "checks": [
+      {
+        "name": "Fresh-session Enter and touch entry/movement/map; reduced motion",
+        "status": "PASS",
+        "evidence": {
+          "saved": {
+            "x": 0,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "moved": {
+            "x": 2.2330177815880807,
+            "y": 1.72,
+            "z": -51,
+            "yaw": 0,
+            "pitch": 0.2
+          },
+          "profile": {
+            "viewport": [
+              390,
+              844
+            ],
+            "dpr": 0.25,
+            "stats": {
+              "calls": 156,
+              "triangles": 115017,
+              "textures": 35,
+              "geometries": 213,
+              "dpr": 0.25
+            },
+            "quality": 2
+          },
+          "physicalMobile": false
+        }
+      }
+    ],
+    "errors": []
+  },
+  "applicationChangedForRetest": false,
+  "assertionOrTimeoutRelaxed": false,
+  "limitation": "Combined private cohort still records a90-second landing wait timeout while desktop stage and mobile Canvas are both active. Isolated same assertions pass; exact cause unproven. No concurrent-two-Canvas guarantee."
+}
