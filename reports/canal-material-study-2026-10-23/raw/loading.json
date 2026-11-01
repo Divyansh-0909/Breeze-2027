@@ -1,0 +1,3425 @@
+{
+  "checks": [
+    {
+      "name": "Ordinary WIP default never downloads canal candidate maps",
+      "status": "PASS",
+      "evidence": {
+        "cold": {
+          "kind": "cold-cache",
+          "ms": 10771,
+          "state": {
+            "phase": "landing",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "cave": {
+            "ready": true,
+            "failed": false,
+            "bytes": 4603424,
+            "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+            "parts": [
+              {
+                "id": "Entrance",
+                "nodes": [
+                  "Cave_Entrance_LOD0",
+                  "Cave_Entrance_LOD1",
+                  "Cave_Entrance_LOD2"
+                ],
+                "triangles": [
+                  18000,
+                  9000,
+                  4200
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -2.5,
+                  7.759920626878738,
+                  -7.033431053161621
+                ],
+                "radius": 35.27385589228208,
+                "bounds": [
+                  [
+                    -35,
+                    -0.3800000548362732,
+                    -18.066862106323242
+                  ],
+                  [
+                    30,
+                    15.89984130859375,
+                    4
+                  ]
+                ]
+              },
+              {
+                "id": "Throat",
+                "nodes": [
+                  "Cave_Throat_LOD0",
+                  "Cave_Throat_LOD1",
+                  "Cave_Throat_LOD2"
+                ],
+                "triangles": [
+                  4400,
+                  2500,
+                  1600
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -0.720484733581543,
+                  2.8836980760097504,
+                  -1.5345596075057983
+                ],
+                "radius": 7.4555652740077045,
+                "bounds": [
+                  [
+                    -5.651337623596191,
+                    -0.48260337114334106,
+                    -6
+                  ],
+                  [
+                    4.2103681564331055,
+                    6.249999523162842,
+                    2.9308807849884033
+                  ]
+                ]
+              },
+              {
+                "id": "Passage1",
+                "nodes": [
+                  "Cave_Passage1_LOD0",
+                  "Cave_Passage1_LOD1",
+                  "Cave_Passage1_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -3.613776445388794,
+                  2.7218260020017624,
+                  -10.5
+                ],
+                "radius": 7.770815792085589,
+                "bounds": [
+                  [
+                    -9.255642890930176,
+                    -0.1599999964237213,
+                    -15
+                  ],
+                  [
+                    2.028090000152588,
+                    5.603652000427246,
+                    -6
+                  ]
+                ]
+              },
+              {
+                "id": "Passage2",
+                "nodes": [
+                  "Cave_Passage2_LOD0",
+                  "Cave_Passage2_LOD1",
+                  "Cave_Passage2_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -5.803726851940155,
+                  2.6474272459745407,
+                  -19.5
+                ],
+                "radius": 6.71425778263175,
+                "bounds": [
+                  [
+                    -9.920717239379883,
+                    -0.1599999964237213,
+                    -24
+                  ],
+                  [
+                    -1.6867364645004272,
+                    5.454854488372803,
+                    -15
+                  ]
+                ]
+              },
+              {
+                "id": "Passage3",
+                "nodes": [
+                  "Cave_Passage3_LOD0",
+                  "Cave_Passage3_LOD1",
+                  "Cave_Passage3_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -4.526358634233475,
+                  2.6253020018339157,
+                  -28.5
+                ],
+                "radius": 7.55691815374595,
+                "bounds": [
+                  [
+                    -9.920717239379883,
+                    -0.1599999964237213,
+                    -33
+                  ],
+                  [
+                    0.8679999709129333,
+                    5.410604000091553,
+                    -24
+                  ]
+                ]
+              },
+              {
+                "id": "Passage4",
+                "nodes": [
+                  "Cave_Passage4_LOD0",
+                  "Cave_Passage4_LOD1",
+                  "Cave_Passage4_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -1.6377575397491455,
+                  2.7199999541044235,
+                  -37.5
+                ],
+                "radius": 7.368333269911156,
+                "bounds": [
+                  [
+                    -6.711999893188477,
+                    -0.1599999964237213,
+                    -42
+                  ],
+                  [
+                    3.4364848136901855,
+                    5.599999904632568,
+                    -33
+                  ]
+                ]
+              },
+              {
+                "id": "Floor",
+                "nodes": [
+                  "Cave_Floor_LOD0",
+                  "Cave_Floor_LOD1",
+                  "Cave_Floor_LOD2"
+                ],
+                "triangles": [
+                  736,
+                  736,
+                  736
+                ],
+                "materialRole": "floor",
+                "center": [
+                  -2.6550002098083496,
+                  0.012000000104308128,
+                  -19
+                ],
+                "radius": 24.08721710788437,
+                "bounds": [
+                  [
+                    -9.8100004196167,
+                    0.012000000104308128,
+                    -42
+                  ],
+                  [
+                    4.5,
+                    0.012000000104308128,
+                    4
+                  ]
+                ]
+              }
+            ],
+            "source": {
+              "asset": "coastal_cliff_04",
+              "license": "CC0 1.0",
+              "page": "https://polyhaven.com/a/coastal_cliff_04",
+              "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+              "uniformScaleXYZ": [
+                1.7,
+                1.7,
+                1.7
+              ],
+              "croppedNotFit": true
+            },
+            "edition": "stage3a",
+            "tunnelTextureFeatureScale": 1,
+            "localTextureSampling": null,
+            "approvedTextureScale": 3,
+            "newImages": 0,
+            "visibleFixtures": 0,
+            "visibilityLoading": {
+              "requested": true,
+              "deferredWhileOffscreen": false,
+              "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+            },
+            "localTerrainClearance": {
+              "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+              "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+              "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+              "runtimeBytes": 397124,
+              "boundsOfOnlyRemovedVolume": [
+                [
+                  -4.5,
+                  -0.12,
+                  -7.5
+                ],
+                [
+                  4.5,
+                  7.5,
+                  13
+                ]
+              ],
+              "tiles": [
+                {
+                  "tile": "1_2",
+                  "inputTriangles": 959,
+                  "unchangedOutsideTriangles": 952,
+                  "candidateIntersectingTriangles": 7,
+                  "trianglesClippedByVolume": 7,
+                  "zeroAreaIntersectionFragmentsDiscarded": 0,
+                  "outputTriangles": 974
+                },
+                {
+                  "tile": "2_2",
+                  "inputTriangles": 946,
+                  "unchangedOutsideTriangles": 940,
+                  "candidateIntersectingTriangles": 6,
+                  "trianglesClippedByVolume": 5,
+                  "zeroAreaIntersectionFragmentsDiscarded": 0,
+                  "outputTriangles": 959
+                }
+              ],
+              "targetNodes": [
+                "Foundation_Terrain_1_2_LOD0",
+                "Foundation_Terrain_1_2_LOD1",
+                "Foundation_Terrain_1_2_LOD2",
+                "Foundation_Terrain_2_2_LOD0",
+                "Foundation_Terrain_2_2_LOD1",
+                "Foundation_Terrain_2_2_LOD2"
+              ],
+              "runtimeNodes": [
+                "Cave_Entry_Clearance_1_2_LOD0",
+                "Cave_Entry_Clearance_1_2_LOD1",
+                "Cave_Entry_Clearance_1_2_LOD2",
+                "Cave_Entry_Clearance_2_2_LOD0",
+                "Cave_Entry_Clearance_2_2_LOD1",
+                "Cave_Entry_Clearance_2_2_LOD2"
+              ],
+              "originalGroundRegistryAndC9RockAssetsChanged": false
+            },
+            "lighting": {
+              "newDynamicLights": 0,
+              "visibleFixtures": 0,
+              "globalLightingChanged": false,
+              "localOpeningResponse": 1,
+              "method": "Analytical local overburden/spill proxy, not baked GI"
+            },
+            "completeStage3A": false,
+            "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+          },
+          "resources": [
+            {
+              "name": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+              "transferSize": 48732,
+              "encodedBodySize": 48432,
+              "decodedBodySize": 48432,
+              "duration": 153.60000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+              "transferSize": 950,
+              "encodedBodySize": 650,
+              "decodedBodySize": 2063,
+              "duration": 148.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+              "transferSize": 18612,
+              "encodedBodySize": 18312,
+              "decodedBodySize": 98321,
+              "duration": 151.09999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/webpack-ad6f074f03c35ee5.js",
+              "transferSize": 2784,
+              "encodedBodySize": 2484,
+              "decodedBodySize": 5169,
+              "duration": 183.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/ad304178-54ad20d502d72544.js",
+              "transferSize": 53627,
+              "encodedBodySize": 53327,
+              "decodedBodySize": 168419,
+              "duration": 240.89999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/main-app-eac928cca7dbb260.js",
+              "transferSize": 830,
+              "encodedBodySize": 530,
+              "decodedBodySize": 530,
+              "duration": 266.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/2571-bf2db7746d2d340e.js",
+              "transferSize": 47163,
+              "encodedBodySize": 46863,
+              "decodedBodySize": 175921,
+              "duration": 273.79999999701977
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/9297-8f1560085d492806.js",
+              "transferSize": 3675,
+              "encodedBodySize": 3375,
+              "decodedBodySize": 8509,
+              "duration": 267.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/5854-12b11300d16c6599.js",
+              "transferSize": 5645,
+              "encodedBodySize": 5345,
+              "decodedBodySize": 13857,
+              "duration": 273.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e511e65f0c9031fc.js",
+              "transferSize": 1479,
+              "encodedBodySize": 1179,
+              "decodedBodySize": 2288,
+              "duration": 269.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/layout-62ee450cfdd6a904.js",
+              "transferSize": 2352,
+              "encodedBodySize": 2052,
+              "decodedBodySize": 6004,
+              "duration": 282.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/e32d03b3-27b33dd06e9d7b57.js",
+              "transferSize": 963,
+              "encodedBodySize": 663,
+              "decodedBodySize": 1134,
+              "duration": 323.5999999977648
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/c03f66b7-53b0aedb9027d8c9.js",
+              "transferSize": 673,
+              "encodedBodySize": 373,
+              "decodedBodySize": 373,
+              "duration": 323.4000000022352
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/8789-bfd4baf01f7ca627.js",
+              "transferSize": 7101,
+              "encodedBodySize": 6801,
+              "decodedBodySize": 20153,
+              "duration": 326.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-56ecd14f1b9b67a5.js",
+              "transferSize": 8349,
+              "encodedBodySize": 8049,
+              "decodedBodySize": 23352,
+              "duration": 328.1000000014901
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/6190-109b714bb6d46c0a.js",
+              "transferSize": 24673,
+              "encodedBodySize": 24373,
+              "decodedBodySize": 78436,
+              "duration": 332.70000000298023
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-bfedfc58778dd0fe.js",
+              "transferSize": 505,
+              "encodedBodySize": 205,
+              "decodedBodySize": 205,
+              "duration": 335.3999999985099
+            },
+            {
+              "name": "http://127.0.0.1:3000/_vercel/insights/script.js",
+              "transferSize": 300,
+              "encodedBodySize": 0,
+              "decodedBodySize": 0,
+              "duration": 90
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/5d8d0667-9a6331c0d2db6c57.js",
+              "transferSize": 170021,
+              "encodedBodySize": 169721,
+              "decodedBodySize": 677930,
+              "duration": 163.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/75390f04-d239e7b8e3e99937.js",
+              "transferSize": 46619,
+              "encodedBodySize": 46319,
+              "decodedBodySize": 146782,
+              "duration": 147.79999999701977
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/3151-7ca0d150a98dbc1a.js",
+              "transferSize": 5507,
+              "encodedBodySize": 5207,
+              "decodedBodySize": 13240,
+              "duration": 86.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/3759-e98ca8895ce536a6.js",
+              "transferSize": 14464,
+              "encodedBodySize": 14164,
+              "decodedBodySize": 50296,
+              "duration": 90.39999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/7042.7de8f9459d30c2d4.js",
+              "transferSize": 85987,
+              "encodedBodySize": 85687,
+              "decodedBodySize": 356883,
+              "duration": 149.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+              "transferSize": 2829,
+              "encodedBodySize": 2529,
+              "decodedBodySize": 9809,
+              "duration": 94.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+              "transferSize": 181161,
+              "encodedBodySize": 180861,
+              "decodedBodySize": 180861,
+              "duration": 141.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+              "transferSize": 300,
+              "encodedBodySize": 0,
+              "decodedBodySize": 0,
+              "duration": 35.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+              "transferSize": 2737597,
+              "encodedBodySize": 2737297,
+              "decodedBodySize": 4603424,
+              "duration": 327.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/2932-97769ee46efeef92.js",
+              "transferSize": 8626,
+              "encodedBodySize": 8326,
+              "decodedBodySize": 22246,
+              "duration": 24.699999999254942
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/955.796feb98d351499b.js",
+              "transferSize": 12761,
+              "encodedBodySize": 12461,
+              "decodedBodySize": 38373,
+              "duration": 24.599999997764826
+            },
+            {
+              "name": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+              "transferSize": 24813,
+              "encodedBodySize": 24513,
+              "decodedBodySize": 51660,
+              "duration": 21.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+              "transferSize": 152608,
+              "encodedBodySize": 152308,
+              "decodedBodySize": 152308,
+              "duration": 56.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/entry-clearance.glb",
+              "transferSize": 106878,
+              "encodedBodySize": 106578,
+              "decodedBodySize": 397124,
+              "duration": 85.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+              "transferSize": 4657237,
+              "encodedBodySize": 4656937,
+              "decodedBodySize": 4659808,
+              "duration": 784.1999999992549
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/recovered-c8-material/scanned-materials.glb",
+              "transferSize": 5327171,
+              "encodedBodySize": 5326871,
+              "decodedBodySize": 5412804,
+              "duration": 856.5999999977648
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+              "transferSize": 6295533,
+              "encodedBodySize": 6295233,
+              "decodedBodySize": 8250316,
+              "duration": 977.1000000014901
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-bake.glb",
+              "transferSize": 547171,
+              "encodedBodySize": 546871,
+              "decodedBodySize": 553448,
+              "duration": 93.39999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+              "transferSize": 30904,
+              "encodedBodySize": 30604,
+              "decodedBodySize": 417140,
+              "duration": 61.100000001490116
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+              "transferSize": 5597103,
+              "encodedBodySize": 5596803,
+              "decodedBodySize": 8530404,
+              "duration": 625.6000000014901
+            }
+          ],
+          "quarryScale": 3
+        },
+        "warm": {
+          "kind": "warm-cache-reload",
+          "ms": 10360,
+          "state": {
+            "phase": "landing",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "cave": {
+            "ready": true,
+            "failed": false,
+            "bytes": 4603424,
+            "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+            "parts": [
+              {
+                "id": "Entrance",
+                "nodes": [
+                  "Cave_Entrance_LOD0",
+                  "Cave_Entrance_LOD1",
+                  "Cave_Entrance_LOD2"
+                ],
+                "triangles": [
+                  18000,
+                  9000,
+                  4200
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -2.5,
+                  7.759920626878738,
+                  -7.033431053161621
+                ],
+                "radius": 35.27385589228208,
+                "bounds": [
+                  [
+                    -35,
+                    -0.3800000548362732,
+                    -18.066862106323242
+                  ],
+                  [
+                    30,
+                    15.89984130859375,
+                    4
+                  ]
+                ]
+              },
+              {
+                "id": "Throat",
+                "nodes": [
+                  "Cave_Throat_LOD0",
+                  "Cave_Throat_LOD1",
+                  "Cave_Throat_LOD2"
+                ],
+                "triangles": [
+                  4400,
+                  2500,
+                  1600
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -0.720484733581543,
+                  2.8836980760097504,
+                  -1.5345596075057983
+                ],
+                "radius": 7.4555652740077045,
+                "bounds": [
+                  [
+                    -5.651337623596191,
+                    -0.48260337114334106,
+                    -6
+                  ],
+                  [
+                    4.2103681564331055,
+                    6.249999523162842,
+                    2.9308807849884033
+                  ]
+                ]
+              },
+              {
+                "id": "Passage1",
+                "nodes": [
+                  "Cave_Passage1_LOD0",
+                  "Cave_Passage1_LOD1",
+                  "Cave_Passage1_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -3.613776445388794,
+                  2.7218260020017624,
+                  -10.5
+                ],
+                "radius": 7.770815792085589,
+                "bounds": [
+                  [
+                    -9.255642890930176,
+                    -0.1599999964237213,
+                    -15
+                  ],
+                  [
+                    2.028090000152588,
+                    5.603652000427246,
+                    -6
+                  ]
+                ]
+              },
+              {
+                "id": "Passage2",
+                "nodes": [
+                  "Cave_Passage2_LOD0",
+                  "Cave_Passage2_LOD1",
+                  "Cave_Passage2_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -5.803726851940155,
+                  2.6474272459745407,
+                  -19.5
+                ],
+                "radius": 6.71425778263175,
+                "bounds": [
+                  [
+                    -9.920717239379883,
+                    -0.1599999964237213,
+                    -24
+                  ],
+                  [
+                    -1.6867364645004272,
+                    5.454854488372803,
+                    -15
+                  ]
+                ]
+              },
+              {
+                "id": "Passage3",
+                "nodes": [
+                  "Cave_Passage3_LOD0",
+                  "Cave_Passage3_LOD1",
+                  "Cave_Passage3_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -4.526358634233475,
+                  2.6253020018339157,
+                  -28.5
+                ],
+                "radius": 7.55691815374595,
+                "bounds": [
+                  [
+                    -9.920717239379883,
+                    -0.1599999964237213,
+                    -33
+                  ],
+                  [
+                    0.8679999709129333,
+                    5.410604000091553,
+                    -24
+                  ]
+                ]
+              },
+              {
+                "id": "Passage4",
+                "nodes": [
+                  "Cave_Passage4_LOD0",
+                  "Cave_Passage4_LOD1",
+                  "Cave_Passage4_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -1.6377575397491455,
+                  2.7199999541044235,
+                  -37.5
+                ],
+                "radius": 7.368333269911156,
+                "bounds": [
+                  [
+                    -6.711999893188477,
+                    -0.1599999964237213,
+                    -42
+                  ],
+                  [
+                    3.4364848136901855,
+                    5.599999904632568,
+                    -33
+                  ]
+                ]
+              },
+              {
+                "id": "Floor",
+                "nodes": [
+                  "Cave_Floor_LOD0",
+                  "Cave_Floor_LOD1",
+                  "Cave_Floor_LOD2"
+                ],
+                "triangles": [
+                  736,
+                  736,
+                  736
+                ],
+                "materialRole": "floor",
+                "center": [
+                  -2.6550002098083496,
+                  0.012000000104308128,
+                  -19
+                ],
+                "radius": 24.08721710788437,
+                "bounds": [
+                  [
+                    -9.8100004196167,
+                    0.012000000104308128,
+                    -42
+                  ],
+                  [
+                    4.5,
+                    0.012000000104308128,
+                    4
+                  ]
+                ]
+              }
+            ],
+            "source": {
+              "asset": "coastal_cliff_04",
+              "license": "CC0 1.0",
+              "page": "https://polyhaven.com/a/coastal_cliff_04",
+              "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+              "uniformScaleXYZ": [
+                1.7,
+                1.7,
+                1.7
+              ],
+              "croppedNotFit": true
+            },
+            "edition": "stage3a",
+            "tunnelTextureFeatureScale": 1,
+            "localTextureSampling": null,
+            "approvedTextureScale": 3,
+            "newImages": 0,
+            "visibleFixtures": 0,
+            "visibilityLoading": {
+              "requested": true,
+              "deferredWhileOffscreen": false,
+              "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+            },
+            "localTerrainClearance": {
+              "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+              "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+              "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+              "runtimeBytes": 397124,
+              "boundsOfOnlyRemovedVolume": [
+                [
+                  -4.5,
+                  -0.12,
+                  -7.5
+                ],
+                [
+                  4.5,
+                  7.5,
+                  13
+                ]
+              ],
+              "tiles": [
+                {
+                  "tile": "1_2",
+                  "inputTriangles": 959,
+                  "unchangedOutsideTriangles": 952,
+                  "candidateIntersectingTriangles": 7,
+                  "trianglesClippedByVolume": 7,
+                  "zeroAreaIntersectionFragmentsDiscarded": 0,
+                  "outputTriangles": 974
+                },
+                {
+                  "tile": "2_2",
+                  "inputTriangles": 946,
+                  "unchangedOutsideTriangles": 940,
+                  "candidateIntersectingTriangles": 6,
+                  "trianglesClippedByVolume": 5,
+                  "zeroAreaIntersectionFragmentsDiscarded": 0,
+                  "outputTriangles": 959
+                }
+              ],
+              "targetNodes": [
+                "Foundation_Terrain_1_2_LOD0",
+                "Foundation_Terrain_1_2_LOD1",
+                "Foundation_Terrain_1_2_LOD2",
+                "Foundation_Terrain_2_2_LOD0",
+                "Foundation_Terrain_2_2_LOD1",
+                "Foundation_Terrain_2_2_LOD2"
+              ],
+              "runtimeNodes": [
+                "Cave_Entry_Clearance_1_2_LOD0",
+                "Cave_Entry_Clearance_1_2_LOD1",
+                "Cave_Entry_Clearance_1_2_LOD2",
+                "Cave_Entry_Clearance_2_2_LOD0",
+                "Cave_Entry_Clearance_2_2_LOD1",
+                "Cave_Entry_Clearance_2_2_LOD2"
+              ],
+              "originalGroundRegistryAndC9RockAssetsChanged": false
+            },
+            "lighting": {
+              "newDynamicLights": 0,
+              "visibleFixtures": 0,
+              "globalLightingChanged": false,
+              "localOpeningResponse": 1,
+              "method": "Analytical local overburden/spill proxy, not baked GI"
+            },
+            "completeStage3A": false,
+            "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+          },
+          "resources": [
+            {
+              "name": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+              "transferSize": 48732,
+              "encodedBodySize": 48432,
+              "decodedBodySize": 48432,
+              "duration": 30.899999998509884
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+              "transferSize": 950,
+              "encodedBodySize": 650,
+              "decodedBodySize": 2063,
+              "duration": 37.100000001490116
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+              "transferSize": 18612,
+              "encodedBodySize": 18312,
+              "decodedBodySize": 98321,
+              "duration": 39.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/webpack-ad6f074f03c35ee5.js",
+              "transferSize": 2784,
+              "encodedBodySize": 2484,
+              "decodedBodySize": 5169,
+              "duration": 74.89999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/2571-bf2db7746d2d340e.js",
+              "transferSize": 47163,
+              "encodedBodySize": 46863,
+              "decodedBodySize": 175921,
+              "duration": 93.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/ad304178-54ad20d502d72544.js",
+              "transferSize": 53627,
+              "encodedBodySize": 53327,
+              "decodedBodySize": 168419,
+              "duration": 94.89999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/main-app-eac928cca7dbb260.js",
+              "transferSize": 830,
+              "encodedBodySize": 530,
+              "decodedBodySize": 530,
+              "duration": 81.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/9297-8f1560085d492806.js",
+              "transferSize": 3675,
+              "encodedBodySize": 3375,
+              "decodedBodySize": 8509,
+              "duration": 87.60000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/5854-12b11300d16c6599.js",
+              "transferSize": 5645,
+              "encodedBodySize": 5345,
+              "decodedBodySize": 13857,
+              "duration": 90.89999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e511e65f0c9031fc.js",
+              "transferSize": 1479,
+              "encodedBodySize": 1179,
+              "decodedBodySize": 2288,
+              "duration": 88.09999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/layout-62ee450cfdd6a904.js",
+              "transferSize": 2352,
+              "encodedBodySize": 2052,
+              "decodedBodySize": 6004,
+              "duration": 101.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/c03f66b7-53b0aedb9027d8c9.js",
+              "transferSize": 673,
+              "encodedBodySize": 373,
+              "decodedBodySize": 373,
+              "duration": 118.40000000223517
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/e32d03b3-27b33dd06e9d7b57.js",
+              "transferSize": 963,
+              "encodedBodySize": 663,
+              "decodedBodySize": 1134,
+              "duration": 120.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/8789-bfd4baf01f7ca627.js",
+              "transferSize": 7101,
+              "encodedBodySize": 6801,
+              "decodedBodySize": 20153,
+              "duration": 141.59999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-56ecd14f1b9b67a5.js",
+              "transferSize": 8349,
+              "encodedBodySize": 8049,
+              "decodedBodySize": 23352,
+              "duration": 120.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/6190-109b714bb6d46c0a.js",
+              "transferSize": 24673,
+              "encodedBodySize": 24373,
+              "decodedBodySize": 78436,
+              "duration": 149.70000000298023
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-bfedfc58778dd0fe.js",
+              "transferSize": 505,
+              "encodedBodySize": 205,
+              "decodedBodySize": 205,
+              "duration": 149.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_vercel/insights/script.js",
+              "transferSize": 300,
+              "encodedBodySize": 0,
+              "decodedBodySize": 0,
+              "duration": 65.80000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/5d8d0667-9a6331c0d2db6c57.js",
+              "transferSize": 170021,
+              "encodedBodySize": 169721,
+              "decodedBodySize": 677930,
+              "duration": 111.90000000223517
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/75390f04-d239e7b8e3e99937.js",
+              "transferSize": 46619,
+              "encodedBodySize": 46319,
+              "decodedBodySize": 146782,
+              "duration": 65.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/3151-7ca0d150a98dbc1a.js",
+              "transferSize": 5507,
+              "encodedBodySize": 5207,
+              "decodedBodySize": 13240,
+              "duration": 53
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/3759-e98ca8895ce536a6.js",
+              "transferSize": 14464,
+              "encodedBodySize": 14164,
+              "decodedBodySize": 50296,
+              "duration": 64
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/7042.7de8f9459d30c2d4.js",
+              "transferSize": 85987,
+              "encodedBodySize": 85687,
+              "decodedBodySize": 356883,
+              "duration": 93.09999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+              "transferSize": 2829,
+              "encodedBodySize": 2529,
+              "decodedBodySize": 9809,
+              "duration": 122.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+              "transferSize": 300,
+              "encodedBodySize": 0,
+              "decodedBodySize": 0,
+              "duration": 34.600000001490116
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+              "transferSize": 2737597,
+              "encodedBodySize": 2737297,
+              "decodedBodySize": 4603424,
+              "duration": 412.29999999701977
+            },
+            {
+              "name": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+              "transferSize": 181161,
+              "encodedBodySize": 180861,
+              "decodedBodySize": 180861,
+              "duration": 36.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/2932-97769ee46efeef92.js",
+              "transferSize": 8626,
+              "encodedBodySize": 8326,
+              "decodedBodySize": 22246,
+              "duration": 23.700000002980232
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/955.796feb98d351499b.js",
+              "transferSize": 12761,
+              "encodedBodySize": 12461,
+              "decodedBodySize": 38373,
+              "duration": 32.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+              "transferSize": 24813,
+              "encodedBodySize": 24513,
+              "decodedBodySize": 51660,
+              "duration": 20.300000000745058
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+              "transferSize": 152608,
+              "encodedBodySize": 152308,
+              "decodedBodySize": 152308,
+              "duration": 11.299999997019768
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/entry-clearance.glb",
+              "transferSize": 106878,
+              "encodedBodySize": 106578,
+              "decodedBodySize": 397124,
+              "duration": 82.80000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+              "transferSize": 4657237,
+              "encodedBodySize": 4656937,
+              "decodedBodySize": 4659808,
+              "duration": 793.1999999992549
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/recovered-c8-material/scanned-materials.glb",
+              "transferSize": 5327171,
+              "encodedBodySize": 5326871,
+              "decodedBodySize": 5412804,
+              "duration": 1030.8999999985099
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+              "transferSize": 6295533,
+              "encodedBodySize": 6295233,
+              "decodedBodySize": 8250316,
+              "duration": 1443.699999999255
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-bake.glb",
+              "transferSize": 547171,
+              "encodedBodySize": 546871,
+              "decodedBodySize": 553448,
+              "duration": 92.90000000223517
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+              "transferSize": 30904,
+              "encodedBodySize": 30604,
+              "decodedBodySize": 417140,
+              "duration": 69.89999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+              "transferSize": 5597103,
+              "encodedBodySize": 5596803,
+              "decodedBodySize": 8530404,
+              "duration": 570.6999999992549
+            }
+          ],
+          "quarryScale": 3
+        },
+        "networkFinished": [
+          {
+            "requestId": "05A2BA5532A86B3C4FA3DD16278CD18C",
+            "wireBytes": 3037
+          },
+          {
+            "requestId": "5780.3",
+            "wireBytes": 1031
+          },
+          {
+            "requestId": "5780.4",
+            "wireBytes": 18703
+          },
+          {
+            "requestId": "5780.2",
+            "wireBytes": 48732
+          },
+          {
+            "requestId": "5780.5",
+            "wireBytes": 2880
+          },
+          {
+            "requestId": "5780.8",
+            "wireBytes": 877
+          },
+          {
+            "requestId": "5780.9",
+            "wireBytes": 3771
+          },
+          {
+            "requestId": "5780.11",
+            "wireBytes": 1574
+          },
+          {
+            "requestId": "5780.6",
+            "wireBytes": 53764
+          },
+          {
+            "requestId": "5780.10",
+            "wireBytes": 5742
+          },
+          {
+            "requestId": "5780.12",
+            "wireBytes": 2448
+          },
+          {
+            "requestId": "5780.7",
+            "wireBytes": 47292
+          },
+          {
+            "requestId": "5780.14",
+            "wireBytes": 720
+          },
+          {
+            "requestId": "5780.13",
+            "wireBytes": 1058
+          },
+          {
+            "requestId": "5780.17",
+            "wireBytes": 8446
+          },
+          {
+            "requestId": "5780.15",
+            "wireBytes": 7198
+          },
+          {
+            "requestId": "5780.16",
+            "wireBytes": 24786
+          },
+          {
+            "requestId": "5780.18",
+            "wireBytes": 551
+          },
+          {
+            "requestId": "5780.60",
+            "wireBytes": 5604
+          },
+          {
+            "requestId": "5780.61",
+            "wireBytes": 14561
+          },
+          {
+            "requestId": "5780.63",
+            "wireBytes": 2911
+          },
+          {
+            "requestId": "5780.64",
+            "wireBytes": 181228
+          },
+          {
+            "requestId": "5780.62",
+            "wireBytes": 86146
+          },
+          {
+            "requestId": "5780.59",
+            "wireBytes": 46741
+          },
+          {
+            "requestId": "5780.58",
+            "wireBytes": 170244
+          },
+          {
+            "requestId": "5780.69",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.71",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.72",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.74",
+            "wireBytes": 12858
+          },
+          {
+            "requestId": "5780.73",
+            "wireBytes": 8723
+          },
+          {
+            "requestId": "5780.75",
+            "wireBytes": 24873
+          },
+          {
+            "requestId": "5780.70",
+            "wireBytes": 2739470
+          },
+          {
+            "requestId": "5780.76",
+            "wireBytes": 152610
+          },
+          {
+            "requestId": "5780.77",
+            "wireBytes": 107018
+          },
+          {
+            "requestId": "5780.81",
+            "wireBytes": 547556
+          },
+          {
+            "requestId": "5780.82",
+            "wireBytes": 30980
+          },
+          {
+            "requestId": "5780.78",
+            "wireBytes": 4660066
+          },
+          {
+            "requestId": "5780.79",
+            "wireBytes": 5330440
+          },
+          {
+            "requestId": "5780.83",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.80",
+            "wireBytes": 6299602
+          },
+          {
+            "requestId": "5780.84",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.85",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.86",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.87",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.88",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.89",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.91",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.92",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.90",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.93",
+            "wireBytes": 5600853
+          },
+          {
+            "requestId": "62E0E2732F6A1B29989F7FAADED4A0C5",
+            "wireBytes": 3037
+          },
+          {
+            "requestId": "5780.95",
+            "wireBytes": 48732
+          },
+          {
+            "requestId": "5780.96",
+            "wireBytes": 1031
+          },
+          {
+            "requestId": "5780.97",
+            "wireBytes": 18703
+          },
+          {
+            "requestId": "5780.98",
+            "wireBytes": 2880
+          },
+          {
+            "requestId": "5780.101",
+            "wireBytes": 877
+          },
+          {
+            "requestId": "5780.102",
+            "wireBytes": 3771
+          },
+          {
+            "requestId": "5780.103",
+            "wireBytes": 5742
+          },
+          {
+            "requestId": "5780.104",
+            "wireBytes": 1574
+          },
+          {
+            "requestId": "5780.100",
+            "wireBytes": 47292
+          },
+          {
+            "requestId": "5780.99",
+            "wireBytes": 53764
+          },
+          {
+            "requestId": "5780.105",
+            "wireBytes": 2448
+          },
+          {
+            "requestId": "5780.107",
+            "wireBytes": 720
+          },
+          {
+            "requestId": "5780.106",
+            "wireBytes": 1058
+          },
+          {
+            "requestId": "5780.110",
+            "wireBytes": 8446
+          },
+          {
+            "requestId": "5780.108",
+            "wireBytes": 7198
+          },
+          {
+            "requestId": "5780.109",
+            "wireBytes": 24786
+          },
+          {
+            "requestId": "5780.111",
+            "wireBytes": 551
+          },
+          {
+            "requestId": "5780.153",
+            "wireBytes": 5604
+          },
+          {
+            "requestId": "5780.155",
+            "wireBytes": 86146
+          },
+          {
+            "requestId": "5780.156",
+            "wireBytes": 2911
+          },
+          {
+            "requestId": "5780.152",
+            "wireBytes": 46741
+          },
+          {
+            "requestId": "5780.154",
+            "wireBytes": 14561
+          },
+          {
+            "requestId": "5780.151",
+            "wireBytes": 170244
+          },
+          {
+            "requestId": "5780.160",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.163",
+            "wireBytes": 181228
+          },
+          {
+            "requestId": "5780.164",
+            "wireBytes": 8723
+          },
+          {
+            "requestId": "5780.165",
+            "wireBytes": 12858
+          },
+          {
+            "requestId": "5780.166",
+            "wireBytes": 24873
+          },
+          {
+            "requestId": "5780.162",
+            "wireBytes": 2739470
+          },
+          {
+            "requestId": "5780.167",
+            "wireBytes": 152610
+          },
+          {
+            "requestId": "5780.168",
+            "wireBytes": 107018
+          },
+          {
+            "requestId": "5780.172",
+            "wireBytes": 547556
+          },
+          {
+            "requestId": "5780.173",
+            "wireBytes": 30980
+          },
+          {
+            "requestId": "5780.174",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.169",
+            "wireBytes": 4660066
+          },
+          {
+            "requestId": "5780.176",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.178",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.179",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.180",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.170",
+            "wireBytes": 5330440
+          },
+          {
+            "requestId": "5780.177",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.175",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.182",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.181",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.183",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5780.171",
+            "wireBytes": 6299602
+          },
+          {
+            "requestId": "5780.184",
+            "wireBytes": 5600853
+          }
+        ],
+        "settings": "1366x900, DPR .25, explicit quality3 covered preparation. Software loading diagnostic, NOT default full-DPR deadline or hardware certification."
+      }
+    },
+    {
+      "name": "Private cold/warm selected family loads exactly three maps, never the catalog",
+      "status": "PASS",
+      "evidence": {
+        "cold": {
+          "kind": "cold-cache",
+          "ms": 10812,
+          "state": {
+            "phase": "landing",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "study": {
+            "selected": "chipped_concrete",
+            "featureScale": 1,
+            "ready": true,
+            "error": null,
+            "active": "chipped_concrete",
+            "geometryMode": "baseline",
+            "geometryURL": "/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+            "comparisonTilePeriodM": 2.023241625,
+            "hostUVMetresPerUnit": 2,
+            "baselineSamplingUnchanged": false,
+            "geometrySHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+            "quarrySamplerScale": 3,
+            "studySourceImages": 3,
+            "retiredFamilies": 0,
+            "textureWrappers": 3,
+            "decodedRGBA8MipEstimateBytes": 67108864,
+            "maps": [
+              {
+                "name": "Canal_Study_chipped_concrete_orm.png",
+                "uuid": "412a0b0e-a9b5-428f-84a1-819f3ec9787a",
+                "source": "535488a5-311c-46ca-a607-9f52b3672e95",
+                "repeat": [
+                  0.9885126794976848,
+                  0.9885126794976848
+                ],
+                "channel": 0,
+                "colorSpace": "",
+                "flipY": false
+              },
+              {
+                "name": "Canal_Study_chipped_concrete_basecolor.jpg",
+                "uuid": "4495c135-9bcc-45ca-afef-5a7686010afa",
+                "source": "967c777b-f042-4644-9f0e-4c7cb787e6bf",
+                "repeat": [
+                  0.9885126794976848,
+                  0.9885126794976848
+                ],
+                "channel": 0,
+                "colorSpace": "srgb",
+                "flipY": false
+              },
+              {
+                "name": "Canal_Study_chipped_concrete_normal.png",
+                "uuid": "92b78453-ebd4-44f7-a387-76bdd14b6e40",
+                "source": "ed9bd390-ed80-434a-9f7a-13c620082211",
+                "repeat": [
+                  0.9885126794976848,
+                  0.9885126794976848
+                ],
+                "channel": 0,
+                "colorSpace": "",
+                "flipY": false
+              }
+            ],
+            "publicDefaultChanged": false,
+            "newDynamicLights": 0
+          },
+          "cave": {
+            "ready": true,
+            "failed": false,
+            "bytes": 4603424,
+            "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+            "parts": [
+              {
+                "id": "Entrance",
+                "nodes": [
+                  "Cave_Entrance_LOD0",
+                  "Cave_Entrance_LOD1",
+                  "Cave_Entrance_LOD2"
+                ],
+                "triangles": [
+                  18000,
+                  9000,
+                  4200
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -2.5,
+                  7.759920626878738,
+                  -7.033431053161621
+                ],
+                "radius": 35.27385589228208,
+                "bounds": [
+                  [
+                    -35,
+                    -0.3800000548362732,
+                    -18.066862106323242
+                  ],
+                  [
+                    30,
+                    15.89984130859375,
+                    4
+                  ]
+                ]
+              },
+              {
+                "id": "Throat",
+                "nodes": [
+                  "Cave_Throat_LOD0",
+                  "Cave_Throat_LOD1",
+                  "Cave_Throat_LOD2"
+                ],
+                "triangles": [
+                  4400,
+                  2500,
+                  1600
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -0.720484733581543,
+                  2.8836980760097504,
+                  -1.5345596075057983
+                ],
+                "radius": 7.4555652740077045,
+                "bounds": [
+                  [
+                    -5.651337623596191,
+                    -0.48260337114334106,
+                    -6
+                  ],
+                  [
+                    4.2103681564331055,
+                    6.249999523162842,
+                    2.9308807849884033
+                  ]
+                ]
+              },
+              {
+                "id": "Passage1",
+                "nodes": [
+                  "Cave_Passage1_LOD0",
+                  "Cave_Passage1_LOD1",
+                  "Cave_Passage1_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -3.613776445388794,
+                  2.7218260020017624,
+                  -10.5
+                ],
+                "radius": 7.770815792085589,
+                "bounds": [
+                  [
+                    -9.255642890930176,
+                    -0.1599999964237213,
+                    -15
+                  ],
+                  [
+                    2.028090000152588,
+                    5.603652000427246,
+                    -6
+                  ]
+                ]
+              },
+              {
+                "id": "Passage2",
+                "nodes": [
+                  "Cave_Passage2_LOD0",
+                  "Cave_Passage2_LOD1",
+                  "Cave_Passage2_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -5.803726851940155,
+                  2.6474272459745407,
+                  -19.5
+                ],
+                "radius": 6.71425778263175,
+                "bounds": [
+                  [
+                    -9.920717239379883,
+                    -0.1599999964237213,
+                    -24
+                  ],
+                  [
+                    -1.6867364645004272,
+                    5.454854488372803,
+                    -15
+                  ]
+                ]
+              },
+              {
+                "id": "Passage3",
+                "nodes": [
+                  "Cave_Passage3_LOD0",
+                  "Cave_Passage3_LOD1",
+                  "Cave_Passage3_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -4.526358634233475,
+                  2.6253020018339157,
+                  -28.5
+                ],
+                "radius": 7.55691815374595,
+                "bounds": [
+                  [
+                    -9.920717239379883,
+                    -0.1599999964237213,
+                    -33
+                  ],
+                  [
+                    0.8679999709129333,
+                    5.410604000091553,
+                    -24
+                  ]
+                ]
+              },
+              {
+                "id": "Passage4",
+                "nodes": [
+                  "Cave_Passage4_LOD0",
+                  "Cave_Passage4_LOD1",
+                  "Cave_Passage4_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -1.6377575397491455,
+                  2.7199999541044235,
+                  -37.5
+                ],
+                "radius": 7.368333269911156,
+                "bounds": [
+                  [
+                    -6.711999893188477,
+                    -0.1599999964237213,
+                    -42
+                  ],
+                  [
+                    3.4364848136901855,
+                    5.599999904632568,
+                    -33
+                  ]
+                ]
+              },
+              {
+                "id": "Floor",
+                "nodes": [
+                  "Cave_Floor_LOD0",
+                  "Cave_Floor_LOD1",
+                  "Cave_Floor_LOD2"
+                ],
+                "triangles": [
+                  736,
+                  736,
+                  736
+                ],
+                "materialRole": "floor",
+                "center": [
+                  -2.6550002098083496,
+                  0.012000000104308128,
+                  -19
+                ],
+                "radius": 24.08721710788437,
+                "bounds": [
+                  [
+                    -9.8100004196167,
+                    0.012000000104308128,
+                    -42
+                  ],
+                  [
+                    4.5,
+                    0.012000000104308128,
+                    4
+                  ]
+                ]
+              }
+            ],
+            "source": {
+              "asset": "coastal_cliff_04",
+              "license": "CC0 1.0",
+              "page": "https://polyhaven.com/a/coastal_cliff_04",
+              "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+              "uniformScaleXYZ": [
+                1.7,
+                1.7,
+                1.7
+              ],
+              "croppedNotFit": true
+            },
+            "edition": "stage3a",
+            "tunnelTextureFeatureScale": 1,
+            "localTextureSampling": null,
+            "approvedTextureScale": 3,
+            "newImages": 0,
+            "visibleFixtures": 0,
+            "visibilityLoading": {
+              "requested": true,
+              "deferredWhileOffscreen": false,
+              "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+            },
+            "localTerrainClearance": {
+              "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+              "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+              "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+              "runtimeBytes": 397124,
+              "boundsOfOnlyRemovedVolume": [
+                [
+                  -4.5,
+                  -0.12,
+                  -7.5
+                ],
+                [
+                  4.5,
+                  7.5,
+                  13
+                ]
+              ],
+              "tiles": [
+                {
+                  "tile": "1_2",
+                  "inputTriangles": 959,
+                  "unchangedOutsideTriangles": 952,
+                  "candidateIntersectingTriangles": 7,
+                  "trianglesClippedByVolume": 7,
+                  "zeroAreaIntersectionFragmentsDiscarded": 0,
+                  "outputTriangles": 974
+                },
+                {
+                  "tile": "2_2",
+                  "inputTriangles": 946,
+                  "unchangedOutsideTriangles": 940,
+                  "candidateIntersectingTriangles": 6,
+                  "trianglesClippedByVolume": 5,
+                  "zeroAreaIntersectionFragmentsDiscarded": 0,
+                  "outputTriangles": 959
+                }
+              ],
+              "targetNodes": [
+                "Foundation_Terrain_1_2_LOD0",
+                "Foundation_Terrain_1_2_LOD1",
+                "Foundation_Terrain_1_2_LOD2",
+                "Foundation_Terrain_2_2_LOD0",
+                "Foundation_Terrain_2_2_LOD1",
+                "Foundation_Terrain_2_2_LOD2"
+              ],
+              "runtimeNodes": [
+                "Cave_Entry_Clearance_1_2_LOD0",
+                "Cave_Entry_Clearance_1_2_LOD1",
+                "Cave_Entry_Clearance_1_2_LOD2",
+                "Cave_Entry_Clearance_2_2_LOD0",
+                "Cave_Entry_Clearance_2_2_LOD1",
+                "Cave_Entry_Clearance_2_2_LOD2"
+              ],
+              "originalGroundRegistryAndC9RockAssetsChanged": false
+            },
+            "lighting": {
+              "newDynamicLights": 0,
+              "visibleFixtures": 0,
+              "globalLightingChanged": false,
+              "localOpeningResponse": 1,
+              "method": "Analytical local overburden/spill proxy, not baked GI"
+            },
+            "completeStage3A": false,
+            "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+          },
+          "resources": [
+            {
+              "name": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+              "transferSize": 48732,
+              "encodedBodySize": 48432,
+              "decodedBodySize": 48432,
+              "duration": 64.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+              "transferSize": 950,
+              "encodedBodySize": 650,
+              "decodedBodySize": 2063,
+              "duration": 65.90000000223517
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+              "transferSize": 18612,
+              "encodedBodySize": 18312,
+              "decodedBodySize": 98321,
+              "duration": 73.09999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/webpack-ad6f074f03c35ee5.js",
+              "transferSize": 2784,
+              "encodedBodySize": 2484,
+              "decodedBodySize": 5169,
+              "duration": 91.29999999701977
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/ad304178-54ad20d502d72544.js",
+              "transferSize": 53627,
+              "encodedBodySize": 53327,
+              "decodedBodySize": 168419,
+              "duration": 108.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/main-app-eac928cca7dbb260.js",
+              "transferSize": 830,
+              "encodedBodySize": 530,
+              "decodedBodySize": 530,
+              "duration": 109.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/9297-8f1560085d492806.js",
+              "transferSize": 3675,
+              "encodedBodySize": 3375,
+              "decodedBodySize": 8509,
+              "duration": 119.30000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/2571-bf2db7746d2d340e.js",
+              "transferSize": 47163,
+              "encodedBodySize": 46863,
+              "decodedBodySize": 175921,
+              "duration": 166.30000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/5854-12b11300d16c6599.js",
+              "transferSize": 5645,
+              "encodedBodySize": 5345,
+              "decodedBodySize": 13857,
+              "duration": 119.40000000223517
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e511e65f0c9031fc.js",
+              "transferSize": 1479,
+              "encodedBodySize": 1179,
+              "decodedBodySize": 2288,
+              "duration": 119.40000000223517
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/layout-62ee450cfdd6a904.js",
+              "transferSize": 2352,
+              "encodedBodySize": 2052,
+              "decodedBodySize": 6004,
+              "duration": 163.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/e32d03b3-27b33dd06e9d7b57.js",
+              "transferSize": 963,
+              "encodedBodySize": 663,
+              "decodedBodySize": 1134,
+              "duration": 163.80000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/c03f66b7-53b0aedb9027d8c9.js",
+              "transferSize": 673,
+              "encodedBodySize": 373,
+              "decodedBodySize": 373,
+              "duration": 172
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/8789-bfd4baf01f7ca627.js",
+              "transferSize": 7101,
+              "encodedBodySize": 6801,
+              "decodedBodySize": 20153,
+              "duration": 186.89999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/6190-109b714bb6d46c0a.js",
+              "transferSize": 24673,
+              "encodedBodySize": 24373,
+              "decodedBodySize": 78436,
+              "duration": 190.90000000223517
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-bfedfc58778dd0fe.js",
+              "transferSize": 505,
+              "encodedBodySize": 205,
+              "decodedBodySize": 205,
+              "duration": 190.39999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-56ecd14f1b9b67a5.js",
+              "transferSize": 8349,
+              "encodedBodySize": 8049,
+              "decodedBodySize": 23352,
+              "duration": 198.09999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/_vercel/insights/script.js",
+              "transferSize": 300,
+              "encodedBodySize": 0,
+              "decodedBodySize": 0,
+              "duration": 140.59999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/5d8d0667-9a6331c0d2db6c57.js",
+              "transferSize": 170021,
+              "encodedBodySize": 169721,
+              "decodedBodySize": 677930,
+              "duration": 164.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/75390f04-d239e7b8e3e99937.js",
+              "transferSize": 46619,
+              "encodedBodySize": 46319,
+              "decodedBodySize": 146782,
+              "duration": 136.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/3151-7ca0d150a98dbc1a.js",
+              "transferSize": 5507,
+              "encodedBodySize": 5207,
+              "decodedBodySize": 13240,
+              "duration": 106.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/3759-e98ca8895ce536a6.js",
+              "transferSize": 14464,
+              "encodedBodySize": 14164,
+              "decodedBodySize": 50296,
+              "duration": 135
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/7042.7de8f9459d30c2d4.js",
+              "transferSize": 85987,
+              "encodedBodySize": 85687,
+              "decodedBodySize": 356883,
+              "duration": 160.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+              "transferSize": 181161,
+              "encodedBodySize": 180861,
+              "decodedBodySize": 180861,
+              "duration": 158.39999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+              "transferSize": 2829,
+              "encodedBodySize": 2529,
+              "decodedBodySize": 9809,
+              "duration": 116.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+              "transferSize": 300,
+              "encodedBodySize": 0,
+              "decodedBodySize": 0,
+              "duration": 65.59999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/canal-material-study/chipped_concrete/basecolor.jpg",
+              "transferSize": 1497797,
+              "encodedBodySize": 1497497,
+              "decodedBodySize": 1497497,
+              "duration": 63.20000000298023
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/canal-material-study/chipped_concrete/normal.png",
+              "transferSize": 7139800,
+              "encodedBodySize": 7139500,
+              "decodedBodySize": 7139500,
+              "duration": 113.30000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/canal-material-study/chipped_concrete/orm.png",
+              "transferSize": 1727979,
+              "encodedBodySize": 1727679,
+              "decodedBodySize": 1727679,
+              "duration": 66.60000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+              "transferSize": 2737597,
+              "encodedBodySize": 2737297,
+              "decodedBodySize": 4603424,
+              "duration": 452.70000000298023
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/2932-97769ee46efeef92.js",
+              "transferSize": 8626,
+              "encodedBodySize": 8326,
+              "decodedBodySize": 22246,
+              "duration": 44.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/955.796feb98d351499b.js",
+              "transferSize": 12761,
+              "encodedBodySize": 12461,
+              "decodedBodySize": 38373,
+              "duration": 47.400000002235174
+            },
+            {
+              "name": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+              "transferSize": 24813,
+              "encodedBodySize": 24513,
+              "decodedBodySize": 51660,
+              "duration": 215.80000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/entry-clearance.glb",
+              "transferSize": 106878,
+              "encodedBodySize": 106578,
+              "decodedBodySize": 397124,
+              "duration": 14.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+              "transferSize": 152608,
+              "encodedBodySize": 152308,
+              "decodedBodySize": 152308,
+              "duration": 5.900000002235174
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+              "transferSize": 4657237,
+              "encodedBodySize": 4656937,
+              "decodedBodySize": 4659808,
+              "duration": 830.8000000007451
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/recovered-c8-material/scanned-materials.glb",
+              "transferSize": 5327171,
+              "encodedBodySize": 5326871,
+              "decodedBodySize": 5412804,
+              "duration": 905.3000000007451
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+              "transferSize": 6295533,
+              "encodedBodySize": 6295233,
+              "decodedBodySize": 8250316,
+              "duration": 1174
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-bake.glb",
+              "transferSize": 547171,
+              "encodedBodySize": 546871,
+              "decodedBodySize": 553448,
+              "duration": 123.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+              "transferSize": 30904,
+              "encodedBodySize": 30604,
+              "decodedBodySize": 417140,
+              "duration": 30.199999999254942
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+              "transferSize": 5597103,
+              "encodedBodySize": 5596803,
+              "decodedBodySize": 8530404,
+              "duration": 481.19999999925494
+            }
+          ],
+          "quarryScale": 3
+        },
+        "warm": {
+          "kind": "warm-cache-reload",
+          "ms": 10286,
+          "state": {
+            "phase": "landing",
+            "scene": "hub",
+            "destination": "hub",
+            "serial": 0,
+            "map": false,
+            "mapStage": null,
+            "destinationMenu": false,
+            "unavailableDestination": null,
+            "error": null,
+            "quality": 3,
+            "movie": false,
+            "reduced": false,
+            "inspection": null
+          },
+          "study": {
+            "selected": "chipped_concrete",
+            "featureScale": 1,
+            "ready": true,
+            "error": null,
+            "active": "chipped_concrete",
+            "geometryMode": "baseline",
+            "geometryURL": "/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+            "comparisonTilePeriodM": 2.023241625,
+            "hostUVMetresPerUnit": 2,
+            "baselineSamplingUnchanged": false,
+            "geometrySHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+            "quarrySamplerScale": 3,
+            "studySourceImages": 3,
+            "retiredFamilies": 0,
+            "textureWrappers": 3,
+            "decodedRGBA8MipEstimateBytes": 67108864,
+            "maps": [
+              {
+                "name": "Canal_Study_chipped_concrete_basecolor.jpg",
+                "uuid": "1b6b41c1-997b-439d-b5ea-944d523756fc",
+                "source": "9928f948-5691-45f4-9b01-1659dfc70228",
+                "repeat": [
+                  0.9885126794976848,
+                  0.9885126794976848
+                ],
+                "channel": 0,
+                "colorSpace": "srgb",
+                "flipY": false
+              },
+              {
+                "name": "Canal_Study_chipped_concrete_orm.png",
+                "uuid": "5fa83cb1-42cf-4e96-80e8-df3503465c30",
+                "source": "c428d63a-504c-4e0c-a421-642fff73425b",
+                "repeat": [
+                  0.9885126794976848,
+                  0.9885126794976848
+                ],
+                "channel": 0,
+                "colorSpace": "",
+                "flipY": false
+              },
+              {
+                "name": "Canal_Study_chipped_concrete_normal.png",
+                "uuid": "a2945025-b5ff-43e6-9a7c-5df4130b036b",
+                "source": "827af964-bc4d-4068-9504-1bd1dd9b9846",
+                "repeat": [
+                  0.9885126794976848,
+                  0.9885126794976848
+                ],
+                "channel": 0,
+                "colorSpace": "",
+                "flipY": false
+              }
+            ],
+            "publicDefaultChanged": false,
+            "newDynamicLights": 0
+          },
+          "cave": {
+            "ready": true,
+            "failed": false,
+            "bytes": 4603424,
+            "runtimeSHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+            "parts": [
+              {
+                "id": "Entrance",
+                "nodes": [
+                  "Cave_Entrance_LOD0",
+                  "Cave_Entrance_LOD1",
+                  "Cave_Entrance_LOD2"
+                ],
+                "triangles": [
+                  18000,
+                  9000,
+                  4200
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -2.5,
+                  7.759920626878738,
+                  -7.033431053161621
+                ],
+                "radius": 35.27385589228208,
+                "bounds": [
+                  [
+                    -35,
+                    -0.3800000548362732,
+                    -18.066862106323242
+                  ],
+                  [
+                    30,
+                    15.89984130859375,
+                    4
+                  ]
+                ]
+              },
+              {
+                "id": "Throat",
+                "nodes": [
+                  "Cave_Throat_LOD0",
+                  "Cave_Throat_LOD1",
+                  "Cave_Throat_LOD2"
+                ],
+                "triangles": [
+                  4400,
+                  2500,
+                  1600
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -0.720484733581543,
+                  2.8836980760097504,
+                  -1.5345596075057983
+                ],
+                "radius": 7.4555652740077045,
+                "bounds": [
+                  [
+                    -5.651337623596191,
+                    -0.48260337114334106,
+                    -6
+                  ],
+                  [
+                    4.2103681564331055,
+                    6.249999523162842,
+                    2.9308807849884033
+                  ]
+                ]
+              },
+              {
+                "id": "Passage1",
+                "nodes": [
+                  "Cave_Passage1_LOD0",
+                  "Cave_Passage1_LOD1",
+                  "Cave_Passage1_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -3.613776445388794,
+                  2.7218260020017624,
+                  -10.5
+                ],
+                "radius": 7.770815792085589,
+                "bounds": [
+                  [
+                    -9.255642890930176,
+                    -0.1599999964237213,
+                    -15
+                  ],
+                  [
+                    2.028090000152588,
+                    5.603652000427246,
+                    -6
+                  ]
+                ]
+              },
+              {
+                "id": "Passage2",
+                "nodes": [
+                  "Cave_Passage2_LOD0",
+                  "Cave_Passage2_LOD1",
+                  "Cave_Passage2_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -5.803726851940155,
+                  2.6474272459745407,
+                  -19.5
+                ],
+                "radius": 6.71425778263175,
+                "bounds": [
+                  [
+                    -9.920717239379883,
+                    -0.1599999964237213,
+                    -24
+                  ],
+                  [
+                    -1.6867364645004272,
+                    5.454854488372803,
+                    -15
+                  ]
+                ]
+              },
+              {
+                "id": "Passage3",
+                "nodes": [
+                  "Cave_Passage3_LOD0",
+                  "Cave_Passage3_LOD1",
+                  "Cave_Passage3_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -4.526358634233475,
+                  2.6253020018339157,
+                  -28.5
+                ],
+                "radius": 7.55691815374595,
+                "bounds": [
+                  [
+                    -9.920717239379883,
+                    -0.1599999964237213,
+                    -33
+                  ],
+                  [
+                    0.8679999709129333,
+                    5.410604000091553,
+                    -24
+                  ]
+                ]
+              },
+              {
+                "id": "Passage4",
+                "nodes": [
+                  "Cave_Passage4_LOD0",
+                  "Cave_Passage4_LOD1",
+                  "Cave_Passage4_LOD2"
+                ],
+                "triangles": [
+                  6400,
+                  2900,
+                  1500
+                ],
+                "materialRole": "rock",
+                "center": [
+                  -1.6377575397491455,
+                  2.7199999541044235,
+                  -37.5
+                ],
+                "radius": 7.368333269911156,
+                "bounds": [
+                  [
+                    -6.711999893188477,
+                    -0.1599999964237213,
+                    -42
+                  ],
+                  [
+                    3.4364848136901855,
+                    5.599999904632568,
+                    -33
+                  ]
+                ]
+              },
+              {
+                "id": "Floor",
+                "nodes": [
+                  "Cave_Floor_LOD0",
+                  "Cave_Floor_LOD1",
+                  "Cave_Floor_LOD2"
+                ],
+                "triangles": [
+                  736,
+                  736,
+                  736
+                ],
+                "materialRole": "floor",
+                "center": [
+                  -2.6550002098083496,
+                  0.012000000104308128,
+                  -19
+                ],
+                "radius": 24.08721710788437,
+                "bounds": [
+                  [
+                    -9.8100004196167,
+                    0.012000000104308128,
+                    -42
+                  ],
+                  [
+                    4.5,
+                    0.012000000104308128,
+                    4
+                  ]
+                ]
+              }
+            ],
+            "source": {
+              "asset": "coastal_cliff_04",
+              "license": "CC0 1.0",
+              "page": "https://polyhaven.com/a/coastal_cliff_04",
+              "sourceFile": "assets-source/gullyverse/quarry-fidelity-correction/licensed-source/coastal_cliff_04/coastal_cliff_04_1k.blend",
+              "uniformScaleXYZ": [
+                1.7,
+                1.7,
+                1.7
+              ],
+              "croppedNotFit": true
+            },
+            "edition": "stage3a",
+            "tunnelTextureFeatureScale": 1,
+            "localTextureSampling": null,
+            "approvedTextureScale": 3,
+            "newImages": 0,
+            "visibleFixtures": 0,
+            "visibilityLoading": {
+              "requested": true,
+              "deferredWhileOffscreen": false,
+              "policy": "Direct stage defers local cave until first hub/map; existing preparation cover gates adoption"
+            },
+            "localTerrainClearance": {
+              "status": "GENERATED_PENDING_BROWSER_VALIDATION",
+              "originalSHA256": "134cbf9609e77df09cea1feb28b9e52f3c880c3320ba79f63ecb84ecbe53586f",
+              "runtimeSHA256": "53393e5234f7fc622ef702a69314ae66fc27d5c92853393a4fdf856dee0116d7",
+              "runtimeBytes": 397124,
+              "boundsOfOnlyRemovedVolume": [
+                [
+                  -4.5,
+                  -0.12,
+                  -7.5
+                ],
+                [
+                  4.5,
+                  7.5,
+                  13
+                ]
+              ],
+              "tiles": [
+                {
+                  "tile": "1_2",
+                  "inputTriangles": 959,
+                  "unchangedOutsideTriangles": 952,
+                  "candidateIntersectingTriangles": 7,
+                  "trianglesClippedByVolume": 7,
+                  "zeroAreaIntersectionFragmentsDiscarded": 0,
+                  "outputTriangles": 974
+                },
+                {
+                  "tile": "2_2",
+                  "inputTriangles": 946,
+                  "unchangedOutsideTriangles": 940,
+                  "candidateIntersectingTriangles": 6,
+                  "trianglesClippedByVolume": 5,
+                  "zeroAreaIntersectionFragmentsDiscarded": 0,
+                  "outputTriangles": 959
+                }
+              ],
+              "targetNodes": [
+                "Foundation_Terrain_1_2_LOD0",
+                "Foundation_Terrain_1_2_LOD1",
+                "Foundation_Terrain_1_2_LOD2",
+                "Foundation_Terrain_2_2_LOD0",
+                "Foundation_Terrain_2_2_LOD1",
+                "Foundation_Terrain_2_2_LOD2"
+              ],
+              "runtimeNodes": [
+                "Cave_Entry_Clearance_1_2_LOD0",
+                "Cave_Entry_Clearance_1_2_LOD1",
+                "Cave_Entry_Clearance_1_2_LOD2",
+                "Cave_Entry_Clearance_2_2_LOD0",
+                "Cave_Entry_Clearance_2_2_LOD1",
+                "Cave_Entry_Clearance_2_2_LOD2"
+              ],
+              "originalGroundRegistryAndC9RockAssetsChanged": false
+            },
+            "lighting": {
+              "newDynamicLights": 0,
+              "visibleFixtures": 0,
+              "globalLightingChanged": false,
+              "localOpeningResponse": 1,
+              "method": "Analytical local overburden/spill proxy, not baked GI"
+            },
+            "completeStage3A": false,
+            "interiorStatus": "42m source-derived rock vault implemented privately. Awaiting visual approval; exact artist PNGs remain pending."
+          },
+          "resources": [
+            {
+              "name": "http://127.0.0.1:3000/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+              "transferSize": 48732,
+              "encodedBodySize": 48432,
+              "decodedBodySize": 48432,
+              "duration": 25.899999998509884
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/a6fc798b75e96a95.css",
+              "transferSize": 950,
+              "encodedBodySize": 650,
+              "decodedBodySize": 2063,
+              "duration": 27.800000000745058
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/5de609199904783e.css",
+              "transferSize": 18612,
+              "encodedBodySize": 18312,
+              "decodedBodySize": 98321,
+              "duration": 31.199999999254942
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/webpack-ad6f074f03c35ee5.js",
+              "transferSize": 2784,
+              "encodedBodySize": 2484,
+              "decodedBodySize": 5169,
+              "duration": 37.399999998509884
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/ad304178-54ad20d502d72544.js",
+              "transferSize": 53627,
+              "encodedBodySize": 53327,
+              "decodedBodySize": 168419,
+              "duration": 47
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/2571-bf2db7746d2d340e.js",
+              "transferSize": 47163,
+              "encodedBodySize": 46863,
+              "decodedBodySize": 175921,
+              "duration": 86
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/main-app-eac928cca7dbb260.js",
+              "transferSize": 830,
+              "encodedBodySize": 530,
+              "decodedBodySize": 530,
+              "duration": 59.19999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/9297-8f1560085d492806.js",
+              "transferSize": 3675,
+              "encodedBodySize": 3375,
+              "decodedBodySize": 8509,
+              "duration": 62
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/5854-12b11300d16c6599.js",
+              "transferSize": 5645,
+              "encodedBodySize": 5345,
+              "decodedBodySize": 13857,
+              "duration": 68.60000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/not-found-e511e65f0c9031fc.js",
+              "transferSize": 1479,
+              "encodedBodySize": 1179,
+              "decodedBodySize": 2288,
+              "duration": 64.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/layout-62ee450cfdd6a904.js",
+              "transferSize": 2352,
+              "encodedBodySize": 2052,
+              "decodedBodySize": 6004,
+              "duration": 64
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/e32d03b3-27b33dd06e9d7b57.js",
+              "transferSize": 963,
+              "encodedBodySize": 663,
+              "decodedBodySize": 1134,
+              "duration": 74.59999999776483
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/c03f66b7-53b0aedb9027d8c9.js",
+              "transferSize": 673,
+              "encodedBodySize": 373,
+              "decodedBodySize": 373,
+              "duration": 77.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/8789-bfd4baf01f7ca627.js",
+              "transferSize": 7101,
+              "encodedBodySize": 6801,
+              "decodedBodySize": 20153,
+              "duration": 86
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/6190-109b714bb6d46c0a.js",
+              "transferSize": 24673,
+              "encodedBodySize": 24373,
+              "decodedBodySize": 78436,
+              "duration": 86.80000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/layout-56ecd14f1b9b67a5.js",
+              "transferSize": 8349,
+              "encodedBodySize": 8049,
+              "decodedBodySize": 23352,
+              "duration": 86.40000000223517
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/app/(user)/page-bfedfc58778dd0fe.js",
+              "transferSize": 505,
+              "encodedBodySize": 205,
+              "decodedBodySize": 205,
+              "duration": 89.80000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/_vercel/insights/script.js",
+              "transferSize": 300,
+              "encodedBodySize": 0,
+              "decodedBodySize": 0,
+              "duration": 69.89999999850988
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/5d8d0667-9a6331c0d2db6c57.js",
+              "transferSize": 170021,
+              "encodedBodySize": 169721,
+              "decodedBodySize": 677930,
+              "duration": 87.79999999701977
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/75390f04-d239e7b8e3e99937.js",
+              "transferSize": 46619,
+              "encodedBodySize": 46319,
+              "decodedBodySize": 146782,
+              "duration": 65.10000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/3151-7ca0d150a98dbc1a.js",
+              "transferSize": 5507,
+              "encodedBodySize": 5207,
+              "decodedBodySize": 13240,
+              "duration": 53.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/3759-e98ca8895ce536a6.js",
+              "transferSize": 14464,
+              "encodedBodySize": 14164,
+              "decodedBodySize": 50296,
+              "duration": 53.30000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/7042.7de8f9459d30c2d4.js",
+              "transferSize": 85987,
+              "encodedBodySize": 85687,
+              "decodedBodySize": 356883,
+              "duration": 76.5
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/css/fd3c83a79e88ce1e.css",
+              "transferSize": 2829,
+              "encodedBodySize": 2529,
+              "decodedBodySize": 9809,
+              "duration": 60.80000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/icon.png?af10a153a5603216",
+              "transferSize": 181161,
+              "encodedBodySize": 180861,
+              "decodedBodySize": 180861,
+              "duration": 47.099999997764826
+            },
+            {
+              "name": "http://127.0.0.1:3000/_vercel/speed-insights/script.js",
+              "transferSize": 300,
+              "encodedBodySize": 0,
+              "decodedBodySize": 0,
+              "duration": 56.599999997764826
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/canal-material-study/chipped_concrete/basecolor.jpg",
+              "transferSize": 1497797,
+              "encodedBodySize": 1497497,
+              "decodedBodySize": 1497497,
+              "duration": 42.70000000298023
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/canal-material-study/chipped_concrete/normal.png",
+              "transferSize": 7139800,
+              "encodedBodySize": 7139500,
+              "decodedBodySize": 7139500,
+              "duration": 78.60000000149012
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/canal-material-study/chipped_concrete/orm.png",
+              "transferSize": 1727979,
+              "encodedBodySize": 1727679,
+              "decodedBodySize": 1727679,
+              "duration": 48.599999997764826
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+              "transferSize": 2737597,
+              "encodedBodySize": 2737297,
+              "decodedBodySize": 4603424,
+              "duration": 540.9000000022352
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/2932-97769ee46efeef92.js",
+              "transferSize": 8626,
+              "encodedBodySize": 8326,
+              "decodedBodySize": 22246,
+              "duration": 50.30000000074506
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/chunks/955.796feb98d351499b.js",
+              "transferSize": 12761,
+              "encodedBodySize": 12461,
+              "decodedBodySize": 38373,
+              "duration": 48.900000002235174
+            },
+            {
+              "name": "http://127.0.0.1:3000/fonts/Fatal%20Fighter.ttf",
+              "transferSize": 24813,
+              "encodedBodySize": 24513,
+              "decodedBodySize": 51660,
+              "duration": 51.29999999701977
+            },
+            {
+              "name": "http://127.0.0.1:3000/_next/static/media/breeze-logo.963fe1df.webp",
+              "transferSize": 152608,
+              "encodedBodySize": 152308,
+              "decodedBodySize": 152308,
+              "duration": 4.900000002235174
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/c9-cave-recovery/entry-clearance.glb",
+              "transferSize": 106878,
+              "encodedBodySize": 106578,
+              "decodedBodySize": 397124,
+              "duration": 14.400000002235174
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-materials.glb",
+              "transferSize": 4657237,
+              "encodedBodySize": 4656937,
+              "decodedBodySize": 4659808,
+              "duration": 602
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/recovered-c8-material/scanned-materials.glb",
+              "transferSize": 5327171,
+              "encodedBodySize": 5326871,
+              "decodedBodySize": 5412804,
+              "duration": 636.9000000022352
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+              "transferSize": 6295533,
+              "encodedBodySize": 6295233,
+              "decodedBodySize": 8250316,
+              "duration": 1104.1000000014901
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-fidelity-correction/fidelity-bake.glb",
+              "transferSize": 547171,
+              "encodedBodySize": 546871,
+              "decodedBodySize": 553448,
+              "duration": 55.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/breeze/aftermovie-stage.glb",
+              "transferSize": 30904,
+              "encodedBodySize": 30604,
+              "decodedBodySize": 417140,
+              "duration": 86.69999999925494
+            },
+            {
+              "name": "http://127.0.0.1:3000/models/gullyverse/quarry-foundation-refined/foundation-geometry.glb",
+              "transferSize": 5597103,
+              "encodedBodySize": 5596803,
+              "decodedBodySize": 8530404,
+              "duration": 673.7000000029802
+            }
+          ],
+          "quarryScale": 3
+        },
+        "networkFinished": [
+          {
+            "requestId": "E3DC31C9405F6767E950E8C44288FB3A",
+            "wireBytes": 3037
+          },
+          {
+            "requestId": "5819.3",
+            "wireBytes": 1031
+          },
+          {
+            "requestId": "5819.4",
+            "wireBytes": 18703
+          },
+          {
+            "requestId": "5819.2",
+            "wireBytes": 48732
+          },
+          {
+            "requestId": "5819.5",
+            "wireBytes": 2880
+          },
+          {
+            "requestId": "5819.8",
+            "wireBytes": 877
+          },
+          {
+            "requestId": "5819.9",
+            "wireBytes": 3771
+          },
+          {
+            "requestId": "5819.10",
+            "wireBytes": 5742
+          },
+          {
+            "requestId": "5819.11",
+            "wireBytes": 1574
+          },
+          {
+            "requestId": "5819.6",
+            "wireBytes": 53764
+          },
+          {
+            "requestId": "5819.12",
+            "wireBytes": 2448
+          },
+          {
+            "requestId": "5819.13",
+            "wireBytes": 1058
+          },
+          {
+            "requestId": "5819.7",
+            "wireBytes": 47292
+          },
+          {
+            "requestId": "5819.14",
+            "wireBytes": 720
+          },
+          {
+            "requestId": "5819.15",
+            "wireBytes": 7198
+          },
+          {
+            "requestId": "5819.18",
+            "wireBytes": 551
+          },
+          {
+            "requestId": "5819.16",
+            "wireBytes": 24786
+          },
+          {
+            "requestId": "5819.17",
+            "wireBytes": 8446
+          },
+          {
+            "requestId": "5819.60",
+            "wireBytes": 5604
+          },
+          {
+            "requestId": "5819.59",
+            "wireBytes": 46741
+          },
+          {
+            "requestId": "5819.61",
+            "wireBytes": 14561
+          },
+          {
+            "requestId": "5819.64",
+            "wireBytes": 2911
+          },
+          {
+            "requestId": "5819.63",
+            "wireBytes": 181228
+          },
+          {
+            "requestId": "5819.62",
+            "wireBytes": 86146
+          },
+          {
+            "requestId": "5819.58",
+            "wireBytes": 170244
+          },
+          {
+            "requestId": "5819.68",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.69",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.70",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.73",
+            "wireBytes": 7139785
+          },
+          {
+            "requestId": "5819.74",
+            "wireBytes": 1727964
+          },
+          {
+            "requestId": "5819.72",
+            "wireBytes": 1497783
+          },
+          {
+            "requestId": "5819.76",
+            "wireBytes": 8723
+          },
+          {
+            "requestId": "5819.77",
+            "wireBytes": 12858
+          },
+          {
+            "requestId": "5819.78",
+            "wireBytes": 24873
+          },
+          {
+            "requestId": "5819.75",
+            "wireBytes": 2739470
+          },
+          {
+            "requestId": "5819.79",
+            "wireBytes": 107018
+          },
+          {
+            "requestId": "5819.80",
+            "wireBytes": 152610
+          },
+          {
+            "requestId": "5819.84",
+            "wireBytes": 547556
+          },
+          {
+            "requestId": "5819.85",
+            "wireBytes": 30980
+          },
+          {
+            "requestId": "5819.86",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.81",
+            "wireBytes": 4660066
+          },
+          {
+            "requestId": "5819.82",
+            "wireBytes": 5330440
+          },
+          {
+            "requestId": "5819.87",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.88",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.89",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.90",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.91",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.92",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.94",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.95",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.93",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.83",
+            "wireBytes": 6299602
+          },
+          {
+            "requestId": "5819.96",
+            "wireBytes": 5600853
+          },
+          {
+            "requestId": "ABBB7B31AC6B77CB0E2961CA0B956027",
+            "wireBytes": 3037
+          },
+          {
+            "requestId": "5819.99",
+            "wireBytes": 1031
+          },
+          {
+            "requestId": "5819.98",
+            "wireBytes": 48732
+          },
+          {
+            "requestId": "5819.100",
+            "wireBytes": 18703
+          },
+          {
+            "requestId": "5819.101",
+            "wireBytes": 2880
+          },
+          {
+            "requestId": "5819.102",
+            "wireBytes": 53764
+          },
+          {
+            "requestId": "5819.104",
+            "wireBytes": 877
+          },
+          {
+            "requestId": "5819.105",
+            "wireBytes": 3771
+          },
+          {
+            "requestId": "5819.108",
+            "wireBytes": 2448
+          },
+          {
+            "requestId": "5819.106",
+            "wireBytes": 5742
+          },
+          {
+            "requestId": "5819.107",
+            "wireBytes": 1574
+          },
+          {
+            "requestId": "5819.109",
+            "wireBytes": 1058
+          },
+          {
+            "requestId": "5819.110",
+            "wireBytes": 720
+          },
+          {
+            "requestId": "5819.111",
+            "wireBytes": 7198
+          },
+          {
+            "requestId": "5819.113",
+            "wireBytes": 8446
+          },
+          {
+            "requestId": "5819.103",
+            "wireBytes": 47292
+          },
+          {
+            "requestId": "5819.112",
+            "wireBytes": 24786
+          },
+          {
+            "requestId": "5819.114",
+            "wireBytes": 551
+          },
+          {
+            "requestId": "5819.156",
+            "wireBytes": 5604
+          },
+          {
+            "requestId": "5819.159",
+            "wireBytes": 2911
+          },
+          {
+            "requestId": "5819.157",
+            "wireBytes": 14561
+          },
+          {
+            "requestId": "5819.160",
+            "wireBytes": 181228
+          },
+          {
+            "requestId": "5819.155",
+            "wireBytes": 46741
+          },
+          {
+            "requestId": "5819.158",
+            "wireBytes": 86146
+          },
+          {
+            "requestId": "5819.154",
+            "wireBytes": 170244
+          },
+          {
+            "requestId": "5819.165",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.166",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.167",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.168",
+            "wireBytes": 1497783
+          },
+          {
+            "requestId": "5819.170",
+            "wireBytes": 1727964
+          },
+          {
+            "requestId": "5819.169",
+            "wireBytes": 7139785
+          },
+          {
+            "requestId": "5819.172",
+            "wireBytes": 8723
+          },
+          {
+            "requestId": "5819.173",
+            "wireBytes": 12858
+          },
+          {
+            "requestId": "5819.174",
+            "wireBytes": 24873
+          },
+          {
+            "requestId": "5819.175",
+            "wireBytes": 152610
+          },
+          {
+            "requestId": "5819.171",
+            "wireBytes": 2739470
+          },
+          {
+            "requestId": "5819.176",
+            "wireBytes": 107018
+          },
+          {
+            "requestId": "5819.180",
+            "wireBytes": 547556
+          },
+          {
+            "requestId": "5819.181",
+            "wireBytes": 30980
+          },
+          {
+            "requestId": "5819.182",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.177",
+            "wireBytes": 4660066
+          },
+          {
+            "requestId": "5819.178",
+            "wireBytes": 5330440
+          },
+          {
+            "requestId": "5819.183",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.184",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.185",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.186",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.187",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.188",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.190",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.191",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.189",
+            "wireBytes": 0
+          },
+          {
+            "requestId": "5819.179",
+            "wireBytes": 6299602
+          },
+          {
+            "requestId": "5819.192",
+            "wireBytes": 5600853
+          }
+        ],
+        "settings": "1366x900, DPR .25, explicit quality3 covered preparation. Software loading diagnostic, NOT default full-DPR deadline or hardware certification."
+      }
+    }
+  ],
+  "physicalHardware": false
+}

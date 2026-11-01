@@ -1,0 +1,205 @@
+{
+  "evidence": [
+    {
+      "url": "http://127.0.0.1:3000/?arrival=hub&quarryReview=geology-fidelity&entranceReview=canal-material&caveMaterial=chipped_concrete&diagnostics",
+      "study": {
+        "selected": "chipped_concrete",
+        "featureScale": 1,
+        "ready": true,
+        "error": null,
+        "active": "chipped_concrete",
+        "geometryMode": "baseline",
+        "geometryURL": "/models/gullyverse/c9-cave-recovery/cave-entrance.glb",
+        "comparisonTilePeriodM": 2.023241625,
+        "hostUVMetresPerUnit": 2,
+        "baselineSamplingUnchanged": false,
+        "geometrySHA256": "1aa3fd6afd38996937a3f3da47ed63ab2c95a3a5d25d0fdf0638268a84719fc6",
+        "quarrySamplerScale": 3,
+        "studySourceImages": 3,
+        "retiredFamilies": 0,
+        "textureWrappers": 3,
+        "decodedRGBA8MipEstimateBytes": 67108864,
+        "maps": [
+          {
+            "name": "Canal_Study_chipped_concrete_basecolor.jpg",
+            "uuid": "6a15a145-17b6-4702-af52-8af3acb24cdc",
+            "source": "be521570-6065-4edd-bb76-04cdbb47f8a0",
+            "repeat": [
+              0.9885126794976848,
+              0.9885126794976848
+            ],
+            "channel": 0,
+            "colorSpace": "srgb",
+            "flipY": false
+          },
+          {
+            "name": "Canal_Study_chipped_concrete_orm.png",
+            "uuid": "c4a4f555-752a-4bd3-86ed-5f2410c5050d",
+            "source": "b61d019d-d5e0-4609-ac3b-e6805655010c",
+            "repeat": [
+              0.9885126794976848,
+              0.9885126794976848
+            ],
+            "channel": 0,
+            "colorSpace": "",
+            "flipY": false
+          },
+          {
+            "name": "Canal_Study_chipped_concrete_normal.png",
+            "uuid": "3ca083f4-45e0-4694-8475-648069bd8ac9",
+            "source": "af9fbaa7-486f-4d9a-b063-41cb46af1a13",
+            "repeat": [
+              0.9885126794976848,
+              0.9885126794976848
+            ],
+            "channel": 0,
+            "colorSpace": "",
+            "flipY": false
+          }
+        ],
+        "publicDefaultChanged": false,
+        "newDynamicLights": 0
+      },
+      "quarryScale": 3,
+      "state": {
+        "phase": "local",
+        "scene": "hub",
+        "destination": "hub",
+        "serial": 2,
+        "map": false,
+        "mapStage": null,
+        "destinationMenu": false,
+        "unavailableDestination": null,
+        "error": null,
+        "quality": 3,
+        "movie": false,
+        "reduced": false,
+        "inspection": null
+      },
+      "composition": {
+        "fidelityGeology": true,
+        "enabled": true,
+        "preparing": false,
+        "ready": true,
+        "revision": 2,
+        "sourceUniformScale": 0.9,
+        "additionalSourceUniformScales": [
+          1.03,
+          1.03,
+          1.06,
+          1.06
+        ],
+        "textureScale": 3,
+        "geometryURL": "/models/gullyverse/quarry-fidelity-correction/fidelity-region.glb",
+        "hostParts": [
+          "Wall_14",
+          "Wall_15",
+          "Wall_16"
+        ],
+        "localGeometries": 3,
+        "newPBRImages": 0,
+        "geometryNormalImages": 1,
+        "geometryNormal": {
+          "uuid": "1537ac59-7968-4e20-a143-de3970b8e967",
+          "source": "1edc50a5-5ddc-4433-8f5c-5d9e89f01000",
+          "channel": 1,
+          "repeat": [
+            1,
+            1
+          ],
+          "width": 1024,
+          "height": 1024
+        },
+        "regionLengthMetres": 35.55718478296376,
+        "LODs": [
+          {
+            "LOD": 0,
+            "triangles": 67991,
+            "heroTriangles": 21991,
+            "retainedHostTriangles": 30785,
+            "composedSurfaceTriangles": 36000,
+            "joinTriangles": 1206,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 0,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 427,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 1,
+            "triangles": 40940,
+            "heroTriangles": 6493,
+            "retainedHostTriangles": 9998,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 996,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [],
+            "protectedBoundaryVertices": 362,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          },
+          {
+            "LOD": 2,
+            "triangles": 35296,
+            "heroTriangles": 2093,
+            "retainedHostTriangles": 4446,
+            "composedSurfaceTriangles": 29946,
+            "joinTriangles": 904,
+            "sourceCreaseVerticesProtected": 0,
+            "planarReductionAngleDegrees": 6,
+            "localJoinRetopology": [
+              {
+                "LOD": 2,
+                "facePair": [
+                  35099,
+                  35098
+                ],
+                "method": "Local manifold diagonal rotation at measured top join",
+                "scoreBefore": 29581.571353192634,
+                "scoreAfter": 17.992299983409787,
+                "positionsUnchanged": true
+              }
+            ],
+            "protectedBoundaryVertices": 334,
+            "bounds": [
+              [
+                -51.87217330932617,
+                -0.800000011920929,
+                -80.1684341430664
+              ],
+              [
+                -30.761768341064453,
+                35.29502868652344,
+                -47.17298889160156
+              ]
+            ]
+          }
+        ],
+        "runtimeSHA256": "e586c847864af096d6309c3edd2cb4ad3e39355f58469e1c7629f684b568e934"
+      }
+    }
+  ],
+  "settings": "Actual browser journey, 1366x900 DPR .5 quality3 software recording, encoded 960x632. Not physical device or full-resolution comparison stills."
+}

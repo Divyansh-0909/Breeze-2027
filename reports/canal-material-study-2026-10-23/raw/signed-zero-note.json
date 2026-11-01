@@ -1,0 +1,5 @@
+{
+  "cause": "JSON checkpoint serialization canonicalizes IEEE -0 to +0; assert.deepStrictEqual distinguishes them although the physical pose is identical.",
+  "fix": "Compare exact canonical JSON values for finite camera/light/viewport metadata. No epsilon, pose shift, mesh or geometry-test tolerance change.",
+  "renderedImagesInvalidated": false
+}
