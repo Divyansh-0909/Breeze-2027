@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/dev/shm/rev12/source/validate_storeys.py", line 51, in <module>
+    p=Vector((0,0,z));p[axis]=j['joinPlaneCoordinateM'];p[other]=otherpos;direction=Vector((.613,.487,.621)).normalized();hit=ct.ray_cast(p,direction,200);near=ct.find_nearest(p);inside=hit[0]is not None and hit[1].dot(direction)>0 and near[3]>1e-4;assert inside,(j['from'],j['to'],list(p),hit,near)
+                                                                                                                                                                                                                                                                ^^^^^^
+AssertionError: ('F1', 'L1', [-27.0, 14.0, 10.5], (Vector((-27.0, 14.0, 10.5)), Vector((-0.0, -1.0, 0.0)), 39205, 0.0), (Vector((-27.0, 14.0, 10.5)), Vector((-0.0, -1.0, 0.0)), 39205, 0.0))
+
+Error: script failed, file: '/dev/shm/rev12/source/validate_storeys.py', exiting.
+Blender 4.3.2
+Read blend: "/dev/shm/rev12/source/Gullyverse-Rev12-Three-Plus-Storeys.blend"
+
+Blender quit

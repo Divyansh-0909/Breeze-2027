@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/dev/shm/rev12/source/capture_all.py", line 6, in <module>
+    with (O/'evidence'/(name+'.log')).open('w')as f:subprocess.run(['blender','-b',str(master),'-t','2','--python-exit-code','9','--python',str(O/'source'/name)],env=dict(os.environ,LP_NUM_THREADS='2'),stdout=f,stderr=subprocess.STDOUT,check=True)
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['blender', '-b', '/dev/shm/rev12/source/Gullyverse-Rev12-Three-Plus-Storeys.blend', '-t', '2', '--python-exit-code', '9', '--python', '/dev/shm/rev12/source/render_diagnostics.py']' returned non-zero exit status 9.

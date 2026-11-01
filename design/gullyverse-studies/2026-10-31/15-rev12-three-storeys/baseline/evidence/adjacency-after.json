@@ -1,0 +1,251 @@
+{
+  "status": "PASS_11_PARCELS_ONE_CONNECTED_BLOCK",
+  "units": "metres",
+  "adjacency": {
+    "L1": [
+      "F1",
+      "L2"
+    ],
+    "L2": [
+      "L1",
+      "L3"
+    ],
+    "L3": [
+      "L2",
+      "B1"
+    ],
+    "R1": [
+      "R2",
+      "F2"
+    ],
+    "R2": [
+      "R3",
+      "R1"
+    ],
+    "R3": [
+      "B3",
+      "R2"
+    ],
+    "B1": [
+      "L3",
+      "B2"
+    ],
+    "B2": [
+      "B1",
+      "B3"
+    ],
+    "B3": [
+      "B2",
+      "R3"
+    ],
+    "F1": [
+      "L1"
+    ],
+    "F2": [
+      "R1"
+    ]
+  },
+  "joins": [
+    {
+      "from": "F1",
+      "to": "L1",
+      "beforePodiumXYGapM": 1.5500000000000007,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "Y",
+      "joinPlaneCoordinateM": 14,
+      "sharedContactIntervalM": [
+        -28,
+        -18.1
+      ],
+      "sharedLengthM": 9.899999999999999,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 10.42,
+      "upperRoofZ": 10.42,
+      "roofStepM": 0.0,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "L1",
+      "to": "L2",
+      "beforePodiumXYGapM": 0.75,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "Y",
+      "joinPlaneCoordinateM": 25.2,
+      "sharedContactIntervalM": [
+        -28,
+        -18.7
+      ],
+      "sharedLengthM": 9.3,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 10.42,
+      "upperRoofZ": 16.419999999999998,
+      "roofStepM": 5.999999999999998,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "L2",
+      "to": "L3",
+      "beforePodiumXYGapM": 0.5500000000000043,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "Y",
+      "joinPlaneCoordinateM": 37,
+      "sharedContactIntervalM": [
+        -28,
+        -18.7
+      ],
+      "sharedLengthM": 9.3,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 13.42,
+      "upperRoofZ": 16.419999999999998,
+      "roofStepM": 2.9999999999999982,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "L3",
+      "to": "B1",
+      "beforePodiumXYGapM": 5.763896251668657,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "Y",
+      "joinPlaneCoordinateM": 50,
+      "sharedContactIntervalM": [
+        -28,
+        -17.9
+      ],
+      "sharedLengthM": 10.100000000000001,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 13.42,
+      "upperRoofZ": 13.42,
+      "roofStepM": 0.0,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "B1",
+      "to": "B2",
+      "beforePodiumXYGapM": 1.1999999999999993,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "X",
+      "joinPlaneCoordinateM": -9.5,
+      "sharedContactIntervalM": [
+        50,
+        59.0
+      ],
+      "sharedLengthM": 9.0,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 13.42,
+      "upperRoofZ": 16.419999999999998,
+      "roofStepM": 2.9999999999999982,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "B2",
+      "to": "B3",
+      "beforePodiumXYGapM": 1.3500000000000005,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "X",
+      "joinPlaneCoordinateM": 8.2,
+      "sharedContactIntervalM": [
+        50,
+        59.0
+      ],
+      "sharedLengthM": 9.0,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 13.42,
+      "upperRoofZ": 16.419999999999998,
+      "roofStepM": 2.9999999999999982,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "B3",
+      "to": "R3",
+      "beforePodiumXYGapM": 3.7725985739275316,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "Y",
+      "joinPlaneCoordinateM": 50,
+      "sharedContactIntervalM": [
+        19.0,
+        28
+      ],
+      "sharedLengthM": 9.0,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 13.42,
+      "upperRoofZ": 16.419999999999998,
+      "roofStepM": 2.9999999999999982,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "R3",
+      "to": "R2",
+      "beforePodiumXYGapM": 0.6499999999999986,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "Y",
+      "joinPlaneCoordinateM": 38.1,
+      "sharedContactIntervalM": [
+        19.0,
+        28
+      ],
+      "sharedLengthM": 9.0,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 10.42,
+      "upperRoofZ": 16.419999999999998,
+      "roofStepM": 5.999999999999998,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "R2",
+      "to": "R1",
+      "beforePodiumXYGapM": 1.2500000000000036,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "Y",
+      "joinPlaneCoordinateM": 27,
+      "sharedContactIntervalM": [
+        18.4,
+        28
+      ],
+      "sharedLengthM": 9.600000000000001,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 10.42,
+      "upperRoofZ": 13.42,
+      "roofStepM": 3.0,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    },
+    {
+      "from": "R1",
+      "to": "F2",
+      "beforePodiumXYGapM": 2.7586228448267436,
+      "afterPodiumXYGapM": 0.0,
+      "joinPlaneAxis": "Y",
+      "joinPlaneCoordinateM": 14,
+      "sharedContactIntervalM": [
+        18.4,
+        28
+      ],
+      "sharedLengthM": 9.600000000000001,
+      "partyWallThicknessM": 0.6,
+      "lowerRoofZ": 13.42,
+      "upperRoofZ": 13.42,
+      "roofStepM": 0.0,
+      "construction": "single exposed-surface union; shared interior faces removed, roof slab seals at differing heights",
+      "intentionalAlley": false
+    }
+  ],
+  "allTenIntendedJoinsClosed": true,
+  "laneOpeningM": 16.6,
+  "laneOpeningBoundsX": [
+    -8.3,
+    8.3
+  ],
+  "upperAirAtSteppedRoofline": "intentional open sky above adjoining lower roof, not a detached structural gap",
+  "meshComponentProof": "preservation-geometry-height.json; one continuous vertex-connected manifold core",
+  "noWallAcrossLane": true,
+  "unexplainedHouseToHouseAlleyGaps": 0,
+  "scope": "Ten house-body joins; public floor unchanged. Peripheral service setbacks require separate visual assessment and are not added walking areas."
+}

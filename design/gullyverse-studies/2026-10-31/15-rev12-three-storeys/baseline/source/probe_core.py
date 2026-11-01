@@ -1,0 +1,3 @@
+import bpy,bmesh,json
+from pathlib import Path
+O=Path('/dev/shm/rev11');r=json.load(open(O/'evidence/authoring.json'));m=bpy.data.objects[r['newMeshes'][0]].data;bm=bmesh.new();bm.from_mesh(m);print('CORE',len(m.vertices),len(m.edges),len(m.polygons),'VOLUME',bm.calc_volume(signed=True),'NORMAL0',sum(f.normal.length<.5 for f in bm.faces),'DEGENERATE',sum(f.calc_area()<1e-9 for f in bm.faces),'MANIFOLD',all(e.is_manifold for e in bm.edges));bm.normal_update();print('UPDATED',bm.calc_volume(signed=True));print('BOUNDS',[(min(v.co[i]for v in m.vertices),max(v.co[i]for v in m.vertices))for i in range(3)]);print('BAD',[(f.index,f.calc_area(),[list(v.co)for v in f.verts])for f in bm.faces if f.calc_area()<1e-9][:8])

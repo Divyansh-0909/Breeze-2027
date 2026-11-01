@@ -1,0 +1,16 @@
+EXACT_ORTHOGONAL_UNION_GRID (306, 303, 162) 15020316
+UNION_AXIS 0 rectangles 6526
+UNION_AXIS 1 rectangles 12622
+UNION_AXIS 2 rectangles 21153
+BAD_CORE_EDGES 6 [{'ends': [[-9.5, 50.150001525878906, 13.199999809265137], [-9.5, 50.209999084472656, 13.199999809265137]], 'faceCount': 4}, {'ends': [[8.199999809265137, 50.29999923706055, 13.199999809265137], [8.199999809265137, 50.25, 13.199999809265137]], 'faceCount': 4}, {'ends': [[18.600000381469727, 27.0, 13.199999809265137], [18.75, 27.0, 13.199999809265137]], 'faceCount': 4}, {'ends': [[18.790000915527344, 38.099998474121094, 16.420000076293945], [18.799999237060547, 38.099998474121094, 16.420000076293945]], 'faceCount': 4}, {'ends': [[-9.5, 50.29999923706055, 13.199999809265137], [-9.5, 50.209999084472656, 13.199999809265137]], 'faceCount': 4}, {'ends': [[-19.0, 25.200000762939453, 16.420000076293945], [-18.989999771118164, 25.200000762939453, 16.420000076293945]], 'faceCount': 4}]
+Traceback (most recent call last):
+  File "/dev/shm/rev12/source/author_taller.py", line 231, in <module>
+    assert not bad,'Authored union has edge/corner-only contact; repair shapes'
+           ^^^^^^^
+AssertionError: Authored union has edge/corner-only contact; repair shapes
+
+Error: script failed, file: '/dev/shm/rev12/source/author_taller.py', exiting.
+Blender 4.3.2
+Read blend: "/dev/shm/rev12/inputs/Rev11-original.blend"
+
+Blender quit
