@@ -1,0 +1,1415 @@
+{
+  "status": "PASS",
+  "fiveShops": [
+    {
+      "shop": [
+        -1,
+        -25
+      ],
+      "host": "Building / -1 / 0",
+      "geometry": [
+        {
+          "object": "Building / -1 / 0",
+          "vertices": 16,
+          "faces": 14,
+          "triangles": 28,
+          "closedManifold": true,
+          "signedVolume": 485.7011857334135,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 5.684341886080802e-14,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        },
+        {
+          "object": "Shop recess",
+          "vertices": 16,
+          "faces": 16,
+          "triangles": 32,
+          "closedManifold": true,
+          "signedVolume": 1.0826211449478118,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 8.881784197001252e-16,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        }
+      ],
+      "cavityRays": [
+        {
+          "ray": "front",
+          "hit": [
+            -8.399999618530273,
+            -25.0,
+            7.71999979019165
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "expectedCoordinate": -8.4
+        },
+        {
+          "ray": "left",
+          "hit": [
+            -5.849999904632568,
+            -28.100000381469727,
+            7.71999979019165
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "expectedCoordinate": -28.1
+        },
+        {
+          "ray": "right",
+          "hit": [
+            -5.849999904632568,
+            -21.899999618530273,
+            7.71999979019165
+          ],
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "expectedCoordinate": -21.9
+        },
+        {
+          "ray": "floor",
+          "hit": [
+            -5.849999904632568,
+            -25.0,
+            6.014999866485596
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "expectedCoordinate": 6.015
+        },
+        {
+          "ray": "ceiling",
+          "hit": [
+            -5.849999904632568,
+            -25.0,
+            8.850000381469727
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "expectedCoordinate": 8.85
+        }
+      ],
+      "shelves": 9,
+      "cartons": 36,
+      "stockObjectsBehindOpening": 45,
+      "minimumStockBehindOpeningM": 0.6750006675720215,
+      "minimumStockSideWallGapM": 0.06999931335449228,
+      "maxCartonBottomShelfTopErrorM": 0.0,
+      "doorwayRouteSamples": 128,
+      "capsuleRadiusM": 0.35,
+      "minimumMeasuredRouteRayClearanceM": 0.4895353317260742,
+      "doorwayRouteOptions": [
+        {
+          "side": -1,
+          "status": "PASS",
+          "errors": []
+        },
+        {
+          "side": 1,
+          "status": "PASS",
+          "errors": []
+        }
+      ],
+      "atLeastOne035mApproachClear": true,
+      "allApproachFailuresRetained": [],
+      "stockObjectsVisibleFromLane": [
+        "Shop stock shelf",
+        "Shop stock shelf.001",
+        "Shop stock shelf.002",
+        "Dry goods carton",
+        "Dry goods carton.001",
+        "Dry goods carton.002",
+        "Dry goods carton.003",
+        "Dry goods carton.004",
+        "Dry goods carton.005",
+        "Dry goods carton.006",
+        "Dry goods carton.007",
+        "Dry goods carton.008",
+        "Dry goods carton.009",
+        "Dry goods carton.010",
+        "Dry goods carton.011",
+        "Shop stock shelf.003",
+        "Shop stock shelf.004",
+        "Shop stock shelf.005",
+        "Dry goods carton.012",
+        "Dry goods carton.013",
+        "Dry goods carton.014",
+        "Dry goods carton.015",
+        "Dry goods carton.016",
+        "Dry goods carton.017",
+        "Dry goods carton.018",
+        "Dry goods carton.019",
+        "Dry goods carton.020",
+        "Dry goods carton.021",
+        "Dry goods carton.022",
+        "Dry goods carton.023",
+        "Shop stock shelf.006",
+        "Shop stock shelf.007",
+        "Shop stock shelf.008",
+        "Dry goods carton.024",
+        "Dry goods carton.025",
+        "Dry goods carton.026",
+        "Dry goods carton.027",
+        "Dry goods carton.028",
+        "Dry goods carton.029",
+        "Dry goods carton.030",
+        "Dry goods carton.031",
+        "Dry goods carton.032",
+        "Dry goods carton.033",
+        "Dry goods carton.034",
+        "Dry goods carton.035"
+      ],
+      "stockObjectsVisibleFromInside": [
+        "Shop stock shelf",
+        "Shop stock shelf.001",
+        "Shop stock shelf.002",
+        "Dry goods carton",
+        "Dry goods carton.001",
+        "Dry goods carton.002",
+        "Dry goods carton.003",
+        "Dry goods carton.004",
+        "Dry goods carton.005",
+        "Dry goods carton.006",
+        "Dry goods carton.007",
+        "Dry goods carton.008",
+        "Dry goods carton.009",
+        "Dry goods carton.010",
+        "Dry goods carton.011",
+        "Shop stock shelf.003",
+        "Shop stock shelf.004",
+        "Shop stock shelf.005",
+        "Dry goods carton.012",
+        "Dry goods carton.013",
+        "Dry goods carton.014",
+        "Dry goods carton.015",
+        "Dry goods carton.016",
+        "Dry goods carton.017",
+        "Dry goods carton.018",
+        "Dry goods carton.019",
+        "Dry goods carton.020",
+        "Dry goods carton.021",
+        "Dry goods carton.022",
+        "Dry goods carton.023",
+        "Shop stock shelf.006",
+        "Shop stock shelf.007",
+        "Shop stock shelf.008",
+        "Dry goods carton.024",
+        "Dry goods carton.025",
+        "Dry goods carton.026",
+        "Dry goods carton.027",
+        "Dry goods carton.028",
+        "Dry goods carton.029",
+        "Dry goods carton.030",
+        "Dry goods carton.031",
+        "Dry goods carton.032",
+        "Dry goods carton.033",
+        "Dry goods carton.034",
+        "Dry goods carton.035"
+      ],
+      "allThreeBanksVisibleFromLane": true
+    },
+    {
+      "shop": [
+        -1,
+        -7
+      ],
+      "host": "Building / -1 / 2",
+      "geometry": [
+        {
+          "object": "Building / -1 / 2",
+          "vertices": 16,
+          "faces": 14,
+          "triangles": 28,
+          "closedManifold": true,
+          "signedVolume": 565.2611850725178,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 0,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        },
+        {
+          "object": "Shop recess.002",
+          "vertices": 16,
+          "faces": 16,
+          "triangles": 32,
+          "closedManifold": true,
+          "signedVolume": 1.0826214239929408,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 3.552713678800501e-15,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        }
+      ],
+      "cavityRays": [
+        {
+          "ray": "front",
+          "hit": [
+            -8.399999618530273,
+            -7.0,
+            7.869999885559082
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "expectedCoordinate": -8.4
+        },
+        {
+          "ray": "left",
+          "hit": [
+            -5.849999904632568,
+            -10.100000381469727,
+            7.869999885559082
+          ],
+          "normal": [
+            0.0,
+            0.9999999403953552,
+            0.0
+          ],
+          "expectedCoordinate": -10.1
+        },
+        {
+          "ray": "right",
+          "hit": [
+            -5.849999904632568,
+            -3.9000003337860107,
+            7.869999885559082
+          ],
+          "normal": [
+            0.0,
+            -0.9999999403953552,
+            0.0
+          ],
+          "expectedCoordinate": -3.9
+        },
+        {
+          "ray": "floor",
+          "hit": [
+            -5.849999904632568,
+            -7.0,
+            6.164999961853027
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "expectedCoordinate": 6.165
+        },
+        {
+          "ray": "ceiling",
+          "hit": [
+            -5.849999904632568,
+            -7.0,
+            9.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "expectedCoordinate": 9.0
+        }
+      ],
+      "shelves": 9,
+      "cartons": 36,
+      "stockObjectsBehindOpening": 45,
+      "minimumStockBehindOpeningM": 0.6750006675720215,
+      "minimumStockSideWallGapM": 0.07000026702880868,
+      "maxCartonBottomShelfTopErrorM": 0.0,
+      "doorwayRouteSamples": 128,
+      "capsuleRadiusM": 0.35,
+      "minimumMeasuredRouteRayClearanceM": 0.48953667283058167,
+      "doorwayRouteOptions": [
+        {
+          "side": -1,
+          "status": "PASS",
+          "errors": []
+        },
+        {
+          "side": 1,
+          "status": "PASS",
+          "errors": []
+        }
+      ],
+      "atLeastOne035mApproachClear": true,
+      "allApproachFailuresRetained": [],
+      "stockObjectsVisibleFromLane": [
+        "Shop stock shelf.009",
+        "Shop stock shelf.010",
+        "Shop stock shelf.011",
+        "Dry goods carton.036",
+        "Dry goods carton.037",
+        "Dry goods carton.038",
+        "Dry goods carton.039",
+        "Dry goods carton.040",
+        "Dry goods carton.041",
+        "Dry goods carton.042",
+        "Dry goods carton.043",
+        "Dry goods carton.044",
+        "Dry goods carton.045",
+        "Dry goods carton.046",
+        "Dry goods carton.047",
+        "Shop stock shelf.012",
+        "Shop stock shelf.013",
+        "Shop stock shelf.014",
+        "Dry goods carton.048",
+        "Dry goods carton.049",
+        "Dry goods carton.050",
+        "Dry goods carton.051",
+        "Dry goods carton.052",
+        "Dry goods carton.053",
+        "Dry goods carton.054",
+        "Dry goods carton.055",
+        "Dry goods carton.056",
+        "Dry goods carton.057",
+        "Dry goods carton.058",
+        "Dry goods carton.059",
+        "Shop stock shelf.015",
+        "Shop stock shelf.016",
+        "Shop stock shelf.017",
+        "Dry goods carton.060",
+        "Dry goods carton.061",
+        "Dry goods carton.062",
+        "Dry goods carton.063",
+        "Dry goods carton.064",
+        "Dry goods carton.065",
+        "Dry goods carton.066",
+        "Dry goods carton.067",
+        "Dry goods carton.068",
+        "Dry goods carton.069",
+        "Dry goods carton.070",
+        "Dry goods carton.071"
+      ],
+      "stockObjectsVisibleFromInside": [
+        "Shop stock shelf.009",
+        "Shop stock shelf.010",
+        "Shop stock shelf.011",
+        "Dry goods carton.036",
+        "Dry goods carton.037",
+        "Dry goods carton.038",
+        "Dry goods carton.039",
+        "Dry goods carton.040",
+        "Dry goods carton.041",
+        "Dry goods carton.042",
+        "Dry goods carton.043",
+        "Dry goods carton.044",
+        "Dry goods carton.045",
+        "Dry goods carton.046",
+        "Dry goods carton.047",
+        "Shop stock shelf.012",
+        "Shop stock shelf.013",
+        "Shop stock shelf.014",
+        "Dry goods carton.048",
+        "Dry goods carton.049",
+        "Dry goods carton.050",
+        "Dry goods carton.051",
+        "Dry goods carton.052",
+        "Dry goods carton.053",
+        "Dry goods carton.054",
+        "Dry goods carton.055",
+        "Dry goods carton.056",
+        "Dry goods carton.057",
+        "Dry goods carton.058",
+        "Dry goods carton.059",
+        "Shop stock shelf.015",
+        "Shop stock shelf.016",
+        "Shop stock shelf.017",
+        "Dry goods carton.060",
+        "Dry goods carton.061",
+        "Dry goods carton.062",
+        "Dry goods carton.063",
+        "Dry goods carton.064",
+        "Dry goods carton.065",
+        "Dry goods carton.066",
+        "Dry goods carton.067",
+        "Dry goods carton.068",
+        "Dry goods carton.069",
+        "Dry goods carton.070",
+        "Dry goods carton.071"
+      ],
+      "allThreeBanksVisibleFromLane": true
+    },
+    {
+      "shop": [
+        -1,
+        2
+      ],
+      "host": "Building / -1 / 3",
+      "geometry": [
+        {
+          "object": "Building / -1 / 3",
+          "vertices": 16,
+          "faces": 14,
+          "triangles": 28,
+          "closedManifold": true,
+          "signedVolume": 424.5011538940439,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 1.7053025658242404e-13,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        },
+        {
+          "object": "Shop recess.003",
+          "vertices": 16,
+          "faces": 16,
+          "triangles": 32,
+          "closedManifold": true,
+          "signedVolume": 1.0826188338137812,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 8.881784197001252e-16,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        }
+      ],
+      "cavityRays": [
+        {
+          "ray": "front",
+          "hit": [
+            -8.399999618530273,
+            2.0,
+            8.319999694824219
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "expectedCoordinate": -8.4
+        },
+        {
+          "ray": "left",
+          "hit": [
+            -5.849999904632568,
+            -1.0999996662139893,
+            8.319999694824219
+          ],
+          "normal": [
+            0.0,
+            0.9999999403953552,
+            0.0
+          ],
+          "expectedCoordinate": -1.1
+        },
+        {
+          "ray": "right",
+          "hit": [
+            -5.849999904632568,
+            5.09999942779541,
+            8.319999694824219
+          ],
+          "normal": [
+            0.0,
+            -0.9999999403953552,
+            0.0
+          ],
+          "expectedCoordinate": 5.1
+        },
+        {
+          "ray": "floor",
+          "hit": [
+            -5.849999904632568,
+            2.0,
+            6.614999771118164
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "expectedCoordinate": 6.614999999999999
+        },
+        {
+          "ray": "ceiling",
+          "hit": [
+            -5.849999904632568,
+            2.0,
+            9.449999809265137
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "expectedCoordinate": 9.45
+        }
+      ],
+      "shelves": 9,
+      "cartons": 36,
+      "stockObjectsBehindOpening": 45,
+      "minimumStockBehindOpeningM": 0.6750001907348633,
+      "minimumStockSideWallGapM": 0.06999979019165048,
+      "maxCartonBottomShelfTopErrorM": 9.5367431640625e-07,
+      "doorwayRouteSamples": 128,
+      "capsuleRadiusM": 0.35,
+      "minimumMeasuredRouteRayClearanceM": 0.19211070239543915,
+      "doorwayRouteOptions": [
+        {
+          "side": -1,
+          "status": "BLOCKED",
+          "errors": [
+            {
+              "point": [
+                -2.7857142857142856,
+                -0.20000000000000018,
+                7.3999999999999995
+              ],
+              "object": "Scooter steering.002",
+              "distance": 0.3068435788154602
+            },
+            {
+              "point": [
+                -2.8833333333333337,
+                -0.20000000000000018,
+                7.3999999999999995
+              ],
+              "object": "Scooter steering.002",
+              "distance": 0.26850369572639465
+            },
+            {
+              "point": [
+                -2.8833333333333337,
+                -0.20000000000000018,
+                7.3999999999999995
+              ],
+              "object": "Scooter steering.002",
+              "distance": 0.24361804127693176
+            },
+            {
+              "point": [
+                -2.980952380952381,
+                -0.20000000000000018,
+                7.3999999999999995
+              ],
+              "object": "Scooter steering.002",
+              "distance": 0.19460314512252808
+            },
+            {
+              "point": [
+                -3.0785714285714283,
+                -0.20000000000000018,
+                7.3999999999999995
+              ],
+              "object": "Scooter steering.002",
+              "distance": 0.19211070239543915
+            },
+            {
+              "point": [
+                -3.0785714285714283,
+                -0.20000000000000018,
+                7.3999999999999995
+              ],
+              "object": "Scooter steering.002",
+              "distance": 0.19612286984920502
+            },
+            {
+              "point": [
+                -3.1761904761904765,
+                -0.20000000000000018,
+                7.3999999999999995
+              ],
+              "object": "Scooter steering.002",
+              "distance": 0.21665620803833008
+            },
+            {
+              "point": [
+                -3.2738095238095237,
+                -0.20000000000000018,
+                7.3999999999999995
+              ],
+              "object": "Scooter steering.002",
+              "distance": 0.27299022674560547
+            }
+          ]
+        },
+        {
+          "side": 1,
+          "status": "PASS",
+          "errors": []
+        }
+      ],
+      "atLeastOne035mApproachClear": true,
+      "allApproachFailuresRetained": [
+        {
+          "point": [
+            -2.7857142857142856,
+            -0.20000000000000018,
+            7.3999999999999995
+          ],
+          "object": "Scooter steering.002",
+          "distance": 0.3068435788154602
+        },
+        {
+          "point": [
+            -2.8833333333333337,
+            -0.20000000000000018,
+            7.3999999999999995
+          ],
+          "object": "Scooter steering.002",
+          "distance": 0.26850369572639465
+        },
+        {
+          "point": [
+            -2.8833333333333337,
+            -0.20000000000000018,
+            7.3999999999999995
+          ],
+          "object": "Scooter steering.002",
+          "distance": 0.24361804127693176
+        },
+        {
+          "point": [
+            -2.980952380952381,
+            -0.20000000000000018,
+            7.3999999999999995
+          ],
+          "object": "Scooter steering.002",
+          "distance": 0.19460314512252808
+        },
+        {
+          "point": [
+            -3.0785714285714283,
+            -0.20000000000000018,
+            7.3999999999999995
+          ],
+          "object": "Scooter steering.002",
+          "distance": 0.19211070239543915
+        },
+        {
+          "point": [
+            -3.0785714285714283,
+            -0.20000000000000018,
+            7.3999999999999995
+          ],
+          "object": "Scooter steering.002",
+          "distance": 0.19612286984920502
+        },
+        {
+          "point": [
+            -3.1761904761904765,
+            -0.20000000000000018,
+            7.3999999999999995
+          ],
+          "object": "Scooter steering.002",
+          "distance": 0.21665620803833008
+        },
+        {
+          "point": [
+            -3.2738095238095237,
+            -0.20000000000000018,
+            7.3999999999999995
+          ],
+          "object": "Scooter steering.002",
+          "distance": 0.27299022674560547
+        }
+      ],
+      "stockObjectsVisibleFromLane": [
+        "Shop stock shelf.018",
+        "Shop stock shelf.019",
+        "Shop stock shelf.020",
+        "Dry goods carton.072",
+        "Dry goods carton.073",
+        "Dry goods carton.074",
+        "Dry goods carton.075",
+        "Dry goods carton.076",
+        "Dry goods carton.077",
+        "Dry goods carton.078",
+        "Dry goods carton.079",
+        "Dry goods carton.080",
+        "Dry goods carton.081",
+        "Dry goods carton.082",
+        "Dry goods carton.083",
+        "Shop stock shelf.021",
+        "Shop stock shelf.022",
+        "Shop stock shelf.023",
+        "Dry goods carton.084",
+        "Dry goods carton.085",
+        "Dry goods carton.086",
+        "Dry goods carton.087",
+        "Dry goods carton.088",
+        "Dry goods carton.089",
+        "Dry goods carton.090",
+        "Dry goods carton.091",
+        "Dry goods carton.092",
+        "Dry goods carton.093",
+        "Dry goods carton.094",
+        "Dry goods carton.095",
+        "Shop stock shelf.024",
+        "Shop stock shelf.025",
+        "Shop stock shelf.026",
+        "Dry goods carton.096",
+        "Dry goods carton.097",
+        "Dry goods carton.098",
+        "Dry goods carton.099",
+        "Dry goods carton.100",
+        "Dry goods carton.101",
+        "Dry goods carton.102",
+        "Dry goods carton.103",
+        "Dry goods carton.104",
+        "Dry goods carton.105",
+        "Dry goods carton.106",
+        "Dry goods carton.107"
+      ],
+      "stockObjectsVisibleFromInside": [
+        "Shop stock shelf.018",
+        "Shop stock shelf.019",
+        "Shop stock shelf.020",
+        "Dry goods carton.072",
+        "Dry goods carton.073",
+        "Dry goods carton.074",
+        "Dry goods carton.075",
+        "Dry goods carton.076",
+        "Dry goods carton.077",
+        "Dry goods carton.078",
+        "Dry goods carton.079",
+        "Dry goods carton.080",
+        "Dry goods carton.081",
+        "Dry goods carton.082",
+        "Dry goods carton.083",
+        "Shop stock shelf.021",
+        "Shop stock shelf.022",
+        "Shop stock shelf.023",
+        "Dry goods carton.084",
+        "Dry goods carton.085",
+        "Dry goods carton.086",
+        "Dry goods carton.087",
+        "Dry goods carton.088",
+        "Dry goods carton.089",
+        "Dry goods carton.090",
+        "Dry goods carton.091",
+        "Dry goods carton.092",
+        "Dry goods carton.093",
+        "Dry goods carton.094",
+        "Dry goods carton.095",
+        "Shop stock shelf.024",
+        "Shop stock shelf.025",
+        "Shop stock shelf.026",
+        "Dry goods carton.096",
+        "Dry goods carton.097",
+        "Dry goods carton.098",
+        "Dry goods carton.099",
+        "Dry goods carton.100",
+        "Dry goods carton.101",
+        "Dry goods carton.102",
+        "Dry goods carton.103",
+        "Dry goods carton.104",
+        "Dry goods carton.105",
+        "Dry goods carton.106",
+        "Dry goods carton.107"
+      ],
+      "allThreeBanksVisibleFromLane": true
+    },
+    {
+      "shop": [
+        1,
+        -16
+      ],
+      "host": "Building / 1 / 1",
+      "geometry": [
+        {
+          "object": "Building / 1 / 1",
+          "vertices": 16,
+          "faces": 14,
+          "triangles": 28,
+          "closedManifold": true,
+          "signedVolume": 565.2611661163334,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 2.842170943040401e-14,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        },
+        {
+          "object": "Shop recess.005",
+          "vertices": 16,
+          "faces": 16,
+          "triangles": 32,
+          "closedManifold": true,
+          "signedVolume": 1.082620301136904,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 8.881784197001252e-16,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        }
+      ],
+      "cavityRays": [
+        {
+          "ray": "front",
+          "hit": [
+            8.399999618530273,
+            -16.0,
+            7.71999979019165
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "expectedCoordinate": 8.4
+        },
+        {
+          "ray": "left",
+          "hit": [
+            5.849999904632568,
+            -19.100000381469727,
+            7.71999979019165
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "expectedCoordinate": -19.1
+        },
+        {
+          "ray": "right",
+          "hit": [
+            5.849999904632568,
+            -12.899999618530273,
+            7.71999979019165
+          ],
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "expectedCoordinate": -12.9
+        },
+        {
+          "ray": "floor",
+          "hit": [
+            5.849999904632568,
+            -16.0,
+            6.015000343322754
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "expectedCoordinate": 6.015
+        },
+        {
+          "ray": "ceiling",
+          "hit": [
+            5.849999904632568,
+            -16.0,
+            8.850000381469727
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "expectedCoordinate": 8.85
+        }
+      ],
+      "shelves": 9,
+      "cartons": 36,
+      "stockObjectsBehindOpening": 45,
+      "minimumStockBehindOpeningM": 0.6750001907348633,
+      "minimumStockSideWallGapM": 0.06999931335449228,
+      "maxCartonBottomShelfTopErrorM": 0.0,
+      "doorwayRouteSamples": 128,
+      "capsuleRadiusM": 0.35,
+      "minimumMeasuredRouteRayClearanceM": 0.4895346760749817,
+      "doorwayRouteOptions": [
+        {
+          "side": -1,
+          "status": "PASS",
+          "errors": []
+        },
+        {
+          "side": 1,
+          "status": "PASS",
+          "errors": []
+        }
+      ],
+      "atLeastOne035mApproachClear": true,
+      "allApproachFailuresRetained": [],
+      "stockObjectsVisibleFromLane": [
+        "Shop stock shelf.027",
+        "Shop stock shelf.028",
+        "Shop stock shelf.029",
+        "Dry goods carton.108",
+        "Dry goods carton.109",
+        "Dry goods carton.110",
+        "Dry goods carton.111",
+        "Dry goods carton.112",
+        "Dry goods carton.113",
+        "Dry goods carton.114",
+        "Dry goods carton.115",
+        "Dry goods carton.116",
+        "Dry goods carton.117",
+        "Dry goods carton.118",
+        "Dry goods carton.119",
+        "Shop stock shelf.030",
+        "Shop stock shelf.031",
+        "Shop stock shelf.032",
+        "Dry goods carton.120",
+        "Dry goods carton.121",
+        "Dry goods carton.122",
+        "Dry goods carton.123",
+        "Dry goods carton.124",
+        "Dry goods carton.125",
+        "Dry goods carton.126",
+        "Dry goods carton.127",
+        "Dry goods carton.128",
+        "Dry goods carton.129",
+        "Dry goods carton.130",
+        "Dry goods carton.131",
+        "Shop stock shelf.033",
+        "Shop stock shelf.034",
+        "Shop stock shelf.035",
+        "Dry goods carton.132",
+        "Dry goods carton.133",
+        "Dry goods carton.134",
+        "Dry goods carton.135",
+        "Dry goods carton.136",
+        "Dry goods carton.137",
+        "Dry goods carton.138",
+        "Dry goods carton.139",
+        "Dry goods carton.140",
+        "Dry goods carton.141",
+        "Dry goods carton.142",
+        "Dry goods carton.143"
+      ],
+      "stockObjectsVisibleFromInside": [
+        "Shop stock shelf.027",
+        "Shop stock shelf.028",
+        "Shop stock shelf.029",
+        "Dry goods carton.108",
+        "Dry goods carton.109",
+        "Dry goods carton.110",
+        "Dry goods carton.111",
+        "Dry goods carton.112",
+        "Dry goods carton.113",
+        "Dry goods carton.114",
+        "Dry goods carton.115",
+        "Dry goods carton.116",
+        "Dry goods carton.117",
+        "Dry goods carton.118",
+        "Dry goods carton.119",
+        "Shop stock shelf.030",
+        "Shop stock shelf.031",
+        "Shop stock shelf.032",
+        "Dry goods carton.120",
+        "Dry goods carton.121",
+        "Dry goods carton.122",
+        "Dry goods carton.123",
+        "Dry goods carton.124",
+        "Dry goods carton.125",
+        "Dry goods carton.126",
+        "Dry goods carton.127",
+        "Dry goods carton.128",
+        "Dry goods carton.129",
+        "Dry goods carton.130",
+        "Dry goods carton.131",
+        "Shop stock shelf.033",
+        "Shop stock shelf.034",
+        "Shop stock shelf.035",
+        "Dry goods carton.132",
+        "Dry goods carton.133",
+        "Dry goods carton.134",
+        "Dry goods carton.135",
+        "Dry goods carton.136",
+        "Dry goods carton.137",
+        "Dry goods carton.138",
+        "Dry goods carton.139",
+        "Dry goods carton.140",
+        "Dry goods carton.141",
+        "Dry goods carton.142",
+        "Dry goods carton.143"
+      ],
+      "allThreeBanksVisibleFromLane": true
+    },
+    {
+      "shop": [
+        1,
+        -7
+      ],
+      "host": "Building / 1 / 2",
+      "geometry": [
+        {
+          "object": "Building / 1 / 2",
+          "vertices": 16,
+          "faces": 14,
+          "triangles": 28,
+          "closedManifold": true,
+          "signedVolume": 424.5012063108443,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 5.684341886080802e-14,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        },
+        {
+          "object": "Shop recess.006",
+          "vertices": 16,
+          "faces": 16,
+          "triangles": 32,
+          "closedManifold": true,
+          "signedVolume": 1.082621423992941,
+          "minTangentLength": 0.9999999403953534,
+          "maxNormalTangentDot": 1.0658141036401503e-14,
+          "finiteUV": true,
+          "zeroAreaFaces": 0
+        }
+      ],
+      "cavityRays": [
+        {
+          "ray": "front",
+          "hit": [
+            8.399999618530273,
+            -7.0,
+            7.869999885559082
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "expectedCoordinate": 8.4
+        },
+        {
+          "ray": "left",
+          "hit": [
+            5.849999904632568,
+            -10.100000381469727,
+            7.869999885559082
+          ],
+          "normal": [
+            0.0,
+            0.9999999403953552,
+            0.0
+          ],
+          "expectedCoordinate": -10.1
+        },
+        {
+          "ray": "right",
+          "hit": [
+            5.849999904632568,
+            -3.9000003337860107,
+            7.869999885559082
+          ],
+          "normal": [
+            0.0,
+            -0.9999999403953552,
+            0.0
+          ],
+          "expectedCoordinate": -3.9
+        },
+        {
+          "ray": "floor",
+          "hit": [
+            5.849999904632568,
+            -7.0,
+            6.164999961853027
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "expectedCoordinate": 6.165
+        },
+        {
+          "ray": "ceiling",
+          "hit": [
+            5.849999904632568,
+            -7.0,
+            9.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "expectedCoordinate": 9.0
+        }
+      ],
+      "shelves": 9,
+      "cartons": 36,
+      "stockObjectsBehindOpening": 45,
+      "minimumStockBehindOpeningM": 0.6750001907348633,
+      "minimumStockSideWallGapM": 0.06999955177307138,
+      "maxCartonBottomShelfTopErrorM": 0.0,
+      "doorwayRouteSamples": 128,
+      "capsuleRadiusM": 0.35,
+      "minimumMeasuredRouteRayClearanceM": 0.1921108216047287,
+      "doorwayRouteOptions": [
+        {
+          "side": -1,
+          "status": "BLOCKED",
+          "errors": [
+            {
+              "point": [
+                2.7857142857142856,
+                -9.2,
+                6.95
+              ],
+              "object": "Scooter steering.001",
+              "distance": 0.306843638420105
+            },
+            {
+              "point": [
+                2.8833333333333337,
+                -9.2,
+                6.95
+              ],
+              "object": "Scooter steering.001",
+              "distance": 0.24361813068389893
+            },
+            {
+              "point": [
+                2.8833333333333337,
+                -9.2,
+                6.95
+              ],
+              "object": "Scooter steering.001",
+              "distance": 0.26850393414497375
+            },
+            {
+              "point": [
+                2.980952380952381,
+                -9.2,
+                6.95
+              ],
+              "object": "Scooter steering.001",
+              "distance": 0.19460326433181763
+            },
+            {
+              "point": [
+                3.0785714285714283,
+                -9.2,
+                6.95
+              ],
+              "object": "Scooter steering.001",
+              "distance": 0.19612300395965576
+            },
+            {
+              "point": [
+                3.0785714285714283,
+                -9.2,
+                6.95
+              ],
+              "object": "Scooter steering.001",
+              "distance": 0.1921108216047287
+            },
+            {
+              "point": [
+                3.1761904761904765,
+                -9.2,
+                6.95
+              ],
+              "object": "Scooter steering.001",
+              "distance": 0.21665632724761963
+            },
+            {
+              "point": [
+                3.2738095238095237,
+                -9.2,
+                6.95
+              ],
+              "object": "Scooter steering.001",
+              "distance": 0.2729903757572174
+            }
+          ]
+        },
+        {
+          "side": 1,
+          "status": "PASS",
+          "errors": []
+        }
+      ],
+      "atLeastOne035mApproachClear": true,
+      "allApproachFailuresRetained": [
+        {
+          "point": [
+            2.7857142857142856,
+            -9.2,
+            6.95
+          ],
+          "object": "Scooter steering.001",
+          "distance": 0.306843638420105
+        },
+        {
+          "point": [
+            2.8833333333333337,
+            -9.2,
+            6.95
+          ],
+          "object": "Scooter steering.001",
+          "distance": 0.24361813068389893
+        },
+        {
+          "point": [
+            2.8833333333333337,
+            -9.2,
+            6.95
+          ],
+          "object": "Scooter steering.001",
+          "distance": 0.26850393414497375
+        },
+        {
+          "point": [
+            2.980952380952381,
+            -9.2,
+            6.95
+          ],
+          "object": "Scooter steering.001",
+          "distance": 0.19460326433181763
+        },
+        {
+          "point": [
+            3.0785714285714283,
+            -9.2,
+            6.95
+          ],
+          "object": "Scooter steering.001",
+          "distance": 0.19612300395965576
+        },
+        {
+          "point": [
+            3.0785714285714283,
+            -9.2,
+            6.95
+          ],
+          "object": "Scooter steering.001",
+          "distance": 0.1921108216047287
+        },
+        {
+          "point": [
+            3.1761904761904765,
+            -9.2,
+            6.95
+          ],
+          "object": "Scooter steering.001",
+          "distance": 0.21665632724761963
+        },
+        {
+          "point": [
+            3.2738095238095237,
+            -9.2,
+            6.95
+          ],
+          "object": "Scooter steering.001",
+          "distance": 0.2729903757572174
+        }
+      ],
+      "stockObjectsVisibleFromLane": [
+        "Shop stock shelf.036",
+        "Shop stock shelf.037",
+        "Shop stock shelf.038",
+        "Dry goods carton.144",
+        "Dry goods carton.145",
+        "Dry goods carton.146",
+        "Dry goods carton.147",
+        "Dry goods carton.148",
+        "Dry goods carton.149",
+        "Dry goods carton.150",
+        "Dry goods carton.151",
+        "Dry goods carton.152",
+        "Dry goods carton.153",
+        "Dry goods carton.154",
+        "Dry goods carton.155",
+        "Shop stock shelf.039",
+        "Shop stock shelf.040",
+        "Shop stock shelf.041",
+        "Dry goods carton.156",
+        "Dry goods carton.157",
+        "Dry goods carton.158",
+        "Dry goods carton.159",
+        "Dry goods carton.160",
+        "Dry goods carton.161",
+        "Dry goods carton.162",
+        "Dry goods carton.163",
+        "Dry goods carton.164",
+        "Dry goods carton.165",
+        "Dry goods carton.166",
+        "Dry goods carton.167",
+        "Shop stock shelf.042",
+        "Shop stock shelf.043",
+        "Shop stock shelf.044",
+        "Dry goods carton.168",
+        "Dry goods carton.169",
+        "Dry goods carton.170",
+        "Dry goods carton.171",
+        "Dry goods carton.172",
+        "Dry goods carton.173",
+        "Dry goods carton.174",
+        "Dry goods carton.175",
+        "Dry goods carton.176",
+        "Dry goods carton.177",
+        "Dry goods carton.178",
+        "Dry goods carton.179"
+      ],
+      "stockObjectsVisibleFromInside": [
+        "Shop stock shelf.036",
+        "Shop stock shelf.037",
+        "Shop stock shelf.038",
+        "Dry goods carton.144",
+        "Dry goods carton.145",
+        "Dry goods carton.146",
+        "Dry goods carton.147",
+        "Dry goods carton.148",
+        "Dry goods carton.149",
+        "Dry goods carton.150",
+        "Dry goods carton.151",
+        "Dry goods carton.152",
+        "Dry goods carton.153",
+        "Dry goods carton.154",
+        "Dry goods carton.155",
+        "Shop stock shelf.039",
+        "Shop stock shelf.040",
+        "Shop stock shelf.041",
+        "Dry goods carton.156",
+        "Dry goods carton.157",
+        "Dry goods carton.158",
+        "Dry goods carton.159",
+        "Dry goods carton.160",
+        "Dry goods carton.161",
+        "Dry goods carton.162",
+        "Dry goods carton.163",
+        "Dry goods carton.164",
+        "Dry goods carton.165",
+        "Dry goods carton.166",
+        "Dry goods carton.167",
+        "Shop stock shelf.042",
+        "Shop stock shelf.043",
+        "Shop stock shelf.044",
+        "Dry goods carton.168",
+        "Dry goods carton.169",
+        "Dry goods carton.170",
+        "Dry goods carton.171",
+        "Dry goods carton.172",
+        "Dry goods carton.173",
+        "Dry goods carton.174",
+        "Dry goods carton.175",
+        "Dry goods carton.176",
+        "Dry goods carton.177",
+        "Dry goods carton.178",
+        "Dry goods carton.179"
+      ],
+      "allThreeBanksVisibleFromLane": true
+    }
+  ],
+  "all225StockObjectsMovedAsRigidAssemblies": true,
+  "counterPreservation": "See preservation-audit.json; no counter/contents/closed-store edits allowed.",
+  "scope": "Blender concept checks, not regulatory accessibility or runtime collision certification."
+}

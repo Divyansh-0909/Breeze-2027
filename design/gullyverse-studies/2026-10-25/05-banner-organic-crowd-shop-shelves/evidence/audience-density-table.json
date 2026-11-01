@@ -1,0 +1,97 @@
+{
+  "status": "MEASURED",
+  "cellSizeM": 2,
+  "cellAreaM2": 4,
+  "footCenterMapOnly": true,
+  "bodyCollisionProof": "body-overlap-validation.json",
+  "variants": [
+    {
+      "variant": "A",
+      "before": {
+        "actors": 48,
+        "occupied2mCells": 42,
+        "maxActorsIn2mCell": 2,
+        "zones": {
+          "near_screen_r_lt_9": 16,
+          "middle_r_9_to_12": 16,
+          "outer_r_ge_12": 16
+        },
+        "left": 24,
+        "right": 24,
+        "insideProtectedAisle": 0
+      },
+      "after": {
+        "actors": 144,
+        "occupied2mCells": 63,
+        "maxActorsIn2mCell": 6,
+        "zones": {
+          "near_screen_r_lt_9": 40,
+          "middle_r_9_to_12": 47,
+          "outer_r_ge_12": 57
+        },
+        "left": 70,
+        "right": 74,
+        "insideProtectedAisle": 0
+      }
+    },
+    {
+      "variant": "B",
+      "before": {
+        "actors": 56,
+        "occupied2mCells": 48,
+        "maxActorsIn2mCell": 2,
+        "zones": {
+          "near_screen_r_lt_9": 16,
+          "middle_r_9_to_12": 16,
+          "outer_r_ge_12": 24
+        },
+        "left": 28,
+        "right": 28,
+        "insideProtectedAisle": 0
+      },
+      "after": {
+        "actors": 152,
+        "occupied2mCells": 64,
+        "maxActorsIn2mCell": 6,
+        "zones": {
+          "near_screen_r_lt_9": 42,
+          "middle_r_9_to_12": 51,
+          "outer_r_ge_12": 59
+        },
+        "left": 76,
+        "right": 76,
+        "insideProtectedAisle": 0
+      }
+    },
+    {
+      "variant": "C",
+      "before": {
+        "actors": 52,
+        "occupied2mCells": 44,
+        "maxActorsIn2mCell": 2,
+        "zones": {
+          "near_screen_r_lt_9": 16,
+          "middle_r_9_to_12": 20,
+          "outer_r_ge_12": 16
+        },
+        "left": 26,
+        "right": 26,
+        "insideProtectedAisle": 0
+      },
+      "after": {
+        "actors": 148,
+        "occupied2mCells": 63,
+        "maxActorsIn2mCell": 6,
+        "zones": {
+          "near_screen_r_lt_9": 40,
+          "middle_r_9_to_12": 49,
+          "outer_r_ge_12": 59
+        },
+        "left": 73,
+        "right": 75,
+        "insideProtectedAisle": 0
+      }
+    }
+  ],
+  "fixedLaneAndCypherPeopleUnchanged": 9
+}

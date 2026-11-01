@@ -1,0 +1,12 @@
+BODIES_PASS {'A': 176, 'B': 184, 'C': 180} {'A': 16, 'B': 18, 'C': 16}
+Traceback (most recent call last):
+  File "/workspace/gullyverse-world-concept/2026-10-25/06-rev05b-open-shops-full-center-crowd/source/validate_bodies_and_shops.py", line 114, in <module>
+    assert not clear_errors,(name,clear_errors[:10])
+           ^^^^^^^^^^^^^^^^
+AssertionError: ('Building / -1 / 0', [{'point': [-4.0, -27.199999999999996, 6.8], 'object': 'Dry goods carton', 'distance': 0.3040560781955719}, {'point': [-4.1000000000000005, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.3040560781955719}, {'point': [-4.1000000000000005, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.2482607662677765}, {'point': [-4.2, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.3040560781955719}, {'point': [-4.2, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.2482607662677765}, {'point': [-4.2, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.22258450090885162}, {'point': [-4.3, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.24826079607009888}, {'point': [-4.3, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.22258448600769043}, {'point': [-4.3, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.21500013768672943}, {'point': [-4.3, -27.2, 6.8], 'object': 'Dry goods carton', 'distance': 0.22258448600769043}])
+
+Error: script failed, file: 'source/validate_bodies_and_shops.py', exiting.
+Blender 4.3.2
+Read blend: "/workspace/gullyverse-world-concept/2026-10-25/06-rev05b-open-shops-full-center-crowd/source/Gullyverse-Rev05B-Open-Shops-Full-Center-Crowd.blend"
+
+Blender quit

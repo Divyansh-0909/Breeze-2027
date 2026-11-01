@@ -1,0 +1,37 @@
+
+CODEX CORRECTION HANDOFF — WORLD-LANE-ROOFTOP-NO-COLUMN-20261023-02
+USER REQUEST: "there should be no reveal column remove that"
+
+COMPLETE: Removed the large central reveal/service-room block in all A/B/C Blender scenes, with its roof, tank/ribs and attached paste-ups (9 objects). No replacement occluder was added. Below-deck structural supports are unrelated and remain. All 1,617 surviving objects match the original master: mesh coordinates/topology/UVs, camera rig, transforms, materials, light parameters and scene exposure are unchanged. Shops, signboard, Team/right, Events/left, screen, crowd and route positions remain.
+
+The rooftop connection is now open and the screen is visible earlier. The unchanged historical zero-screen-visible landing rule consequently reports REVIEW_FAILURES: landing is now 11/15 visible rays, opening 14/15, final screen reveal 15/15. That old art requirement is superseded by this explicit removal request. No numerical geometry tolerance was relaxed. Original floor, 0.35m capsule and sampled camera-path checks still pass; earlier width/pinch-point caveats remain. This is Blender concept evidence, not runtime/device certification.
+
+NEW REVIEW EVIDENCE
+18 fresh actual Blender renders: landing, lane walk, opening, hub, overhead and mobile for A/B/C, using the original camera/FOV/settings and per-variant lighting.
+9-page before/after and matched A/B/C PDF:
+https://drive.google.com/file/d/1g7WlMRAfELe5gqoZSNxYIvwKFS-kyO3E/view?usp=drivesdk
+Updated C opening:
+https://drive.google.com/file/d/1vM1g8NQch7muUPsTpA-xzAQAAPsEmP0O/view
+Updated C landing:
+https://drive.google.com/file/d/1ID4XeHRnVeFEzLnAwpZXFM_a2ayF05Oh/view
+Review folder:
+https://drive.google.com/drive/folders/1BUOBBrEH-Q3h9C-om2je-Gf2g4DMjwh4
+Technical change report:
+https://drive.google.com/file/d/1I-9DqYOUt8kDGljXbj94B5L1JqMzo8s3/view
+
+SEPARATE VERIFIED CHECKPOINT
+New subphase: 02-No-Reveal-Column; previous phase/subphase/checkpoints remain untouched.
+https://drive.google.com/drive/folders/1Cg1uUL-c9zutrxPJZf1Mm8YJsDLGhQyV
+Full self-contained source/review ZIP, including master, 18 full-resolution PNGs, offline gallery, three contact sheets, six matched strips, updated plan/section, report, checks and hashes:
+https://drive.google.com/file/d/1O4OclWH-_S_M37Zs-VdfDeoBMgyahmL7/view?usp=drivesdk
+Archive SHA-256: f63288659c3b4c47b23daefab334cbc7712bf18f5c645507dce7f3ea45ab3cea
+Editable master:
+https://drive.google.com/file/d/1PN7Xs_1kymQK88NC2GiLKb2DshjgJwvP/view
+Verified backup receipt:
+https://drive.google.com/file/d/1jJk9Cl4WqWdgrsbY7fsjWM5eQ_Ae4je6/view?usp=drivesdk
+Receipt SHA-256: 638334df50da8b6948b5ff553c278cc7bddcc8cb989d7e308b2691fe6b6b6522
+Archive and direct review files were fully downloaded back and SHA-256 matched. Independent archive extraction checked all 68 file-hash rows, then opened the restored master successfully: three scenes, 25 packed images, no linked Blend libraries and no reveal block or floating dependents.
+
+Original master remains SHA-256 cc8c52a0a3a4106a2c94a36ec2364778ce5b2d8db6ef1ebabfbb553f38e66056. Current WIP remains work-in-progress-2027 at e638140b37045a805b23b4d406d387a8870f8486. All 1,213 protected website files and normalized Git status are unchanged. No website implementation, default promotion, commit, push, merge or deployment. This correction does not select A/B/C or start the next phase.
+
+END CODEX HANDOFF — WORLD-LANE-ROOFTOP-NO-COLUMN-20261023-02

@@ -1,0 +1,46 @@
+{
+  "tool": "image_gen.imagegen",
+  "modelVersion": "Not exposed by tool; no specific version inferred",
+  "operation": "Background-extraction trials; original JPEG RGB remains the authority. Generated RGB not substituted as artist-name artwork.",
+  "edits": [
+    {
+      "key": "chaar-diwari",
+      "file": "source/derived/chaar-diwari-extraction-trial.png",
+      "prompt": "Edit the attached original artist graffiti JPEG ONLY to remove its white/near-white paper background. Exact-source extraction for a 3D paint texture. Preserve the original CHAr DIWARI / CHAAR DIWARI word artwork exactly as supplied: every existing letter shape, black/navy extrusion, neon lime outline and spray circles, orange/yellow/silver fills, drips and all intentional white/silver highlights INSIDE the lettering. DO NOT redraw, reinterpret, respell, rearrange, add or remove artwork. Make only the surrounding paper/backdrop and white negative holes between the letters transparent. Preserve all opaque silver/white highlights bounded by the original dark letter outlines. No white rectangle, no halo. Preserve original 3:1 composition, exact image framing and source proportions; output isolated artwork on a genuinely transparent RGBA background with fine antialiased edges. This is background extraction, not a redesign.",
+      "reference": "source/originals/chaar-diwari.jpeg",
+      "bytes": 2100611,
+      "sha256": "7077113aa7db595d841b9c244b6413f01265c7bbd6cffaffa1d3bf163a9fb93c",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "usage": "Raw model extraction trial; RGB not substituted for original design. Alpha used only as one matte guide before Blender source-colour bake."
+    },
+    {
+      "key": "ritviz",
+      "file": "source/derived/ritviz-extraction-trial.png",
+      "prompt": "Background extraction edit of the supplied RITVIZ graffiti JPEG. Make the blank white/near-white paper backdrop transparent, preserving the existing exact RITVIZ lettering, every original black/navy extrusion, cyan/magenta/purple color, silver/white letter face and white highlight, drips and small overspray spots. Do NOT redraw or change typography, proportions, shapes, letter positions, color design or framing. Remove white negative spaces OUTSIDE the painted lettering, including between letters where visible, but retain opaque white highlights enclosed in letter forms. No replacement design, no restyling. Exact-source 3:1 composition, same framing and aspect ratio. Output genuinely transparent RGBA, no rectangular background or white halo. For use as a mask-aligned paint texture on actual metal shutter geometry.",
+      "reference": "source/originals/ritviz.jpeg",
+      "bytes": 2255693,
+      "sha256": "3b47ba92bebff995d6470b0fa6d877fc84a9aabd743bda1ab006b372ec8e8c05",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "usage": "Raw model extraction trial; RGB not substituted for original design. Alpha used only as one matte guide before Blender source-colour bake."
+    },
+    {
+      "key": "neha-kakkar",
+      "file": "source/derived/neha-kakkar-extraction-trial.png",
+      "prompt": "Extract only the existing NEHA KAKKAR graffiti from this supplied JPEG onto genuine transparent RGBA. Preserve the exact supplied letters, spacing, silhouette, angular black/purple 3D depth, all pink/orange/lavender fills, yellow outline, spray dots/drips and intact intentional white/silver highlights. Do not redraw, respell, recompose, alter typography, invent new strokes, or change canvas framing. Only remove blank white paper/backdrop and connected white negative gaps outside painted forms; white lines and highlights inside letters stay opaque. Original wide 3:1 composition and source proportions. No white rectangle or pale halo. Exact-source background extraction for paint texture, not a new artist-name artwork.",
+      "reference": "source/originals/neha-kakkar.jpeg",
+      "bytes": 1739158,
+      "sha256": "00655d84ca3d1f97903a108846150759037a88d88fa4f0d37840a40854f72ff9",
+      "dimensions": [
+        2172,
+        724
+      ],
+      "usage": "Raw model extraction trial; RGB not substituted for original design. Alpha used only as one matte guide before Blender source-colour bake."
+    }
+  ]
+}

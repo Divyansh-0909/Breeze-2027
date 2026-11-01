@@ -1,0 +1,33 @@
+{
+  "status": "PASS_NO_NEW_GRID_OBSTRUCTIONS",
+  "sourceFloorReferenceM2": 1088,
+  "sampledCenterGridAreaM2": 1055.25,
+  "method": "0.5m center grid and 16 horizontal clearance rays at .8/1.72m above unchanged floor; includes original crowd/props; estimate, not legal access certification. Full routes and exact crowd triangles checked separately.",
+  "newlyBlockedClearCells": 0,
+  "rows": [
+    {
+      "variant": "SQUARE BEFORE",
+      "gridSamples": 4221,
+      "gridStepM": 0.5,
+      "capsuleRadiusM": 0.35,
+      "heightsM": [
+        0.8,
+        1.72
+      ],
+      "clearCells": 3256,
+      "clearCellsApproxAreaM2": 814.0
+    },
+    {
+      "variant": "SQUARE C180",
+      "gridSamples": 4221,
+      "gridStepM": 0.5,
+      "capsuleRadiusM": 0.35,
+      "heightsM": [
+        0.8,
+        1.72
+      ],
+      "clearCells": 3342,
+      "clearCellsApproxAreaM2": 835.5
+    }
+  ]
+}

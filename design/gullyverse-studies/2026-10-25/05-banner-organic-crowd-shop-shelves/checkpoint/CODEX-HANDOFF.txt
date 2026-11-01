@@ -1,0 +1,65 @@
+
+
+CODEX HANDOFF — WORLD-BANNER-ORGANIC-CROWD-SHELVES-PENDING-20261025-05A
+25 OCTOBER 2026 — TARGETED BLENDER CORRECTION
+CODEX_STATUS: PARTIAL — BANNER / CROWD COMPLETE; SHOP INTERIOR EXCEPTION PENDING
+CODEX_HANDOFF_ID: WORLD-BANNER-ORGANIC-CROWD-SHELVES-PENDING-20261025-05A
+
+IMPLEMENTED AND VALIDATED
+Started from the exact protected Rev04 master (SHA-256 6041c26ac21fd990f14e2dae0fbe2cad15c21739f045d8cf56b7b8439a9e239a). Removed only Festival takeover banner, the large red GULLYVERSE / LANE TO CYPHER plane in B. No dedicated supports existed. The main Aftermovie screen, centered navigation board, shop signs and C's small wall poster remain.
+Replaced exact concentric arcs with seeded, reproducible loose clusters (seed 2026102505), preserving the overall semicircular viewing mass. Audience counts A 48→144, B 56→152, C 52→148; nine lane/cypher people unchanged. Added 96 shared proxy people / 768 linked body parts; changed 480 existing body-part transforms. No new external mesh source or PBR set.
+Actual whole-body checks: 156 audience instances / 1,248 parts across all variant collections, 12,090 actor pairs, zero triangle overlaps and zero crowd/prop overlaps. Bodies avoid the 3.3m central aisle. Screen-facing variation ≤11 degrees. All 960 walk frames per variant retain X=0, monotonic Y, eye height and the original 0.35m camera / 0.002m floor tolerances. Straight entry/screen, Team-right and Events-left route checks pass without relaxed numeric tolerances.
+All original cameras, 40-second action, non-target mesh/UV/material state, lights and world remain unchanged. Eight additional inspection cameras are separate diagnostics. The removed banner's now-unreferenced material retires on save; all surviving node settings, world settings and packed image bytes/color spaces compare exactly. All five counters and the DJ tabletop/legs remain exact.
+
+SHOP REQUIREMENT IS BLOCKED — NOT MARKED COMPLETE
+Actual source inspection found all five nominally open shops are solid 8-vertex / 6-face building blocks with decorative front layers, not hollow interiors. Moving the shelves inside would bury them in masonry. Sections 4–5 explicitly lock storefront architecture/other geometry. No stock or building edits were applied without a narrow exception. Five shops: left Y=-25,-7,+2; right Y=-16,-7. All 45 shelves and 180 cartons remain at their original positions.
+Concrete proposed exception: create a 3.8m-deep, 6.2m-wide, 2.85m-high recess behind each existing opening, preserve exterior dimensions/signs/shutters and every counter, then rigidly move shelves WITH their stock onto both interior side walls. A guarded script and measured diagram are delivered. Only unlinked diagnostic-copy topology has been tested; it is not implemented geometry or completed shelf validation. The explicit exception question remains pending; continuation is not treated as approval of that change.
+Exception proposal diagram:
+https://drive.google.com/file/d/16nhzZA2E4M2FRwaQ4knbkE963zLITtM4/view?usp=drivesdk
+
+REVIEW EVIDENCE
+28-page phone-friendly PDF, all A/B/C, 21 matched pairs, 15 unchanged shop views and the pending-exception diagram:
+https://drive.google.com/file/d/1BExIyJH7Tc1j3rXf2-MqPwnr_1OSkHhE/view?usp=drivesdk
+Technical report:
+https://drive.google.com/file/d/1W_3QNLC37qVl8x7G_oKfQuE3LJSw2SDa/view?usp=drivesdk
+Banner before/after:
+https://drive.google.com/file/d/18yGQtdEg3skFoVVx3vq-ZyYv8InVnQK1/view?usp=drivesdk
+Audience eye-level comparison:
+https://drive.google.com/file/d/17n5wAoOR2EsVRY5DD-kOJoCs0ulnkTDi/view?usp=drivesdk
+Audience overhead comparison:
+https://drive.google.com/file/d/17nXjN99axohRnMI06wjDczKLijHKSqug/view?usp=drivesdk
+Full review folder:
+https://drive.google.com/drive/folders/1cdx96DqpSuDXVt_DooSKouk7AQzlAlCy
+The complete gallery has 58 original full-resolution Blender PNGs: 36 before, 21 banner/crowd after, one clearly labelled unmatched preview. All 21 pair poses/lenses/sensor sizes/FOV-equivalent settings, dimensions, DPR-not-applicable offline settings, exposure, lights and quality match. Desktop 1200×750, portrait 540×960, EEVEE 16 samples. Shop views are labelled current/unchanged: no fictitious relocated after renders. These are actual Blender concepts, not browser captures, live movie playback or physical-device FPS. No new video is claimed; the exact historical 40-second action remains editable.
+
+COST AND PRESERVATION
+Evaluated triangles A 44,824→73,624; B 47,960→76,758; C 46,028→74,828. Twelve authoring lights and 24 packed images remain unchanged; estimated authoring RGBA8+mips is 95.86MiB. People are static, low-detail proxies with inherited gesture templates; more density does not constitute final art acceptance or runtime budgeting. A/B/C selection remains open.
+All 1,213 protected WIP files, Git status, branch work-in-progress-2027 and HEAD e638140b37045a805b23b4d406d387a8870f8486 match the starting baseline. Original dirty navigation worktree and all prior checkpoints preserved. No website/default changes, commit, push, merge, deployment or next look-dev stage.
+
+VERIFIED INDEPENDENT CHECKPOINT
+New dated task folder:
+https://drive.google.com/drive/folders/1omP_p-Cl2Dt_zvYghIwiI-Qf53xn0Hby
+Checkpoint folder:
+https://drive.google.com/drive/folders/1yWQdepeRqWzuvD23eWGujF2lDtI8cP25
+Packed editable partial master:
+https://drive.google.com/file/d/1s-qmCAKO7xt8-ffh_1SnVlfoYHZ4Cd72/view?usp=drivesdk
+Master SHA-256: b143dc873b9566217301119f97cf349a73db58d7fdc1591c451e2daf7000ee8c
+Download all four complementary ZIPs and extract into the SAME fresh directory:
+Rev05A-Source-and-Reports.zip: https://drive.google.com/file/d/1KSOhJ9MPJrenXdSGvSn9HcDGYu0m0rP6/view?usp=drivesdk
+SHA-256: 40f4b8cccf24a5b8d8e8339c52b227096f45a36edd62e97c4e5c6f4e1e6e9440
+Rev05A-Images-A.zip: https://drive.google.com/file/d/1Beeb-pSFz6ThBoYgUSqwrF3BK_tBIlIu/view?usp=drivesdk
+SHA-256: 4203899416c4b6f9ff281e113e481399c6a7cef5d450f441c4f937d0cbf968f7
+Rev05A-Images-B.zip: https://drive.google.com/file/d/15tHkZ60wHEHILl7WtV_1cvznF56pnQaK/view?usp=drivesdk
+SHA-256: 19348c08dd33f44483dd571ae0552a62f42d2028a33beca1a6b2380160cc8051
+Rev05A-Images-C.zip: https://drive.google.com/file/d/1UBCPD69VXaIwdMfEdykwJf4ZG18bmgST/view?usp=drivesdk
+SHA-256: 700db56ba59c3c0ba57d181d182f110ab3d06506f7e2c591f99dcc8d9db1ed07
+Archive byte sizes/member hashes and restore instructions:
+https://drive.google.com/file/d/11NoexgEWBwj3YUDtd7GB-6dnUTeKRlnk/view?usp=drivesdk
+Full authenticated download-back SHA-256 receipt:
+https://drive.google.com/file/d/1lU2ubflGuPo0iOyMFaRlPwcwbXbh8pT4/view?usp=drivesdk
+Receipt SHA-256: 7f949a494e3633baa0813eae3243bb1cde5764ee11ea62a22033effa52265d6d
+All 12 listed deliverables plus this receipt passed full download-back SHA-256 verification and parent/size checks. Independent extraction verified 127 member hashes and all 58 PNGs; restored Blender master opened with three scenes, 24 packed images, no missing external font, preserved shading and the explicit pending-shop status. Exact Rev04 baseline and deterministic authoring inputs are included unchanged. Packed review master opens without earlier archives; full website is preserved by its separate historical checkpoints.
+
+STOP — Await the specific shop-interior exception and user visual review. Do not mark the whole prompt complete, select A/B/C, launch high-fidelity look-dev or change the website automatically.
+END CODEX HANDOFF — WORLD-BANNER-ORGANIC-CROWD-SHELVES-PENDING-20261025-05A
+

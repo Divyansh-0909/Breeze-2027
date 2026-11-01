@@ -1,0 +1,33 @@
+{
+  "scope": "Serial A/B matched fresh EEVEE still wall times; no physical GPU, browser frame-time or FPS acceptance. C was partly concurrent and is excluded from this comparison. Cold cache/shader compilation can still vary.",
+  "records": [
+    {
+      "variant": "A",
+      "edition": "before",
+      "sameFreshPoses": 11,
+      "medianSoftwareStillSeconds": 16.65142810099951,
+      "p95SoftwareStillSeconds": 17.921180618000108
+    },
+    {
+      "variant": "A",
+      "edition": "after",
+      "sameFreshPoses": 11,
+      "medianSoftwareStillSeconds": 18.82037579200005,
+      "p95SoftwareStillSeconds": 23.575845427499644
+    },
+    {
+      "variant": "B",
+      "edition": "before",
+      "sameFreshPoses": 11,
+      "medianSoftwareStillSeconds": 19.5303811040003,
+      "p95SoftwareStillSeconds": 22.797031482999955
+    },
+    {
+      "variant": "B",
+      "edition": "after",
+      "sameFreshPoses": 11,
+      "medianSoftwareStillSeconds": 21.02163090400063,
+      "p95SoftwareStillSeconds": 28.374391703499896
+    }
+  ]
+}

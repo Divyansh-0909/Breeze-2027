@@ -1,0 +1,70 @@
+
+
+CODEX HANDOFF — WORLD-OPEN-SHOPS-FULL-CENTER-CROWD-20261025-05B
+COMPLETED 26 OCTOBER 2026 / TASK STARTED 25 OCTOBER 2026
+CODEX_STATUS: READY_FOR_REVIEW — PRIVATE BLENDER REV05B IMPLEMENTED; USER VISUAL APPROVAL PENDING
+CODEX_HANDOFF_ID: WORLD-OPEN-SHOPS-FULL-CENTER-CROWD-20261025-05B
+
+BASELINE AND AUTHORIZATION
+Built directly on the protected Rev05A master, SHA-256 b143dc873b9566217301119f97cf349a73db58d7fdc1591c451e2daf7000ee8c. The user explicitly approved the latest Rev05B prompt, resolving the former shop-geometry blocker. Rev05A remains a historical PARTIAL handoff; this new independent derivative implements the newly authorized correction. No A/B/C final styling choice is inferred.
+Final master: 4,035,714 bytes; SHA-256 8fbfbfb1c69bd0daefb5690c935c8317ed3516ab0e1af07e8a9bd371747ec5ff.
+
+REAL OPEN SHOPS — IMPLEMENTED
+All five identified shops now have genuine cavities: left Y=-25,-7,+2 and right Y=-16,-7. Five host meshes and five through-trim meshes are locally retopologized; external building bounds remain exact. Each final cavity is 6.2m wide × 4.4m deep × 2.85m high. The 3.8m draft failed doorway clearance, so depth/stock were repaired inside the unchanged building envelope. No Boolean union, painted portal or double-sided-material change was used.
+All 45 shelf boards and 180 cartons are preserved in 15 rigid rack assemblies, moved onto both inside side walls. Stock starts at least 0.675m behind the opening; wall clearance is about 0.07m. Relative shelf/carton offsets and original mesh/UV remain intact; carton bottoms align with shelf tops. All 45 stock objects per store are visible from the union of tested lane angles. This is not a claim that every item is simultaneously visible from one camera.
+All five counters plus DJ tabletop/legs and their contents retain exact original transforms/mesh/UV hashes. Closed stores, shutters, shop signs and other props stay unchanged. Five original wooden back linings move inward.
+Interior readability exception: one shadowed 45W area source per shop (five total), with no new visible fixture. Original street/board lights, world, sky, fog, exposure, materials and all 24 packed image payloads/color spaces remain exact. Separate same-geometry 0W/45W diagnostics isolate this intentional local change.
+
+CROWD CENTER / WINGS / BOARD FOREGROUND — IMPLEMENTED
+Seed 2026102506; actual audience A 144→176, B 152→184, C 148→180, excluding nine unchanged lane/cypher figures. Added 32 shared actors / 256 linked body parts; existing 1,248 audience-part transforms change. Neutral static low-detail proxies and inherited garment/gesture variants are reused; no new external character kit or texture set.
+The former permanent 3.3m split is removed. Actual body bounds retain a narrow |X|≥0.45m passage only until Y36.95; the unchanged 40-second camera route ends at Y36.5. Beyond it the center is populated: A16/B18/C16 spectators stand inside the former central gap above Y37. This feasible static arrangement preserves the original 0.35m camera tolerance; no collision disabling or unimplemented parting animation.
+Six sparse people beyond the board, fourteen transition viewers, thirty-six mid-zone viewers, ninety-two dense shared viewers and fourteen scattered people per wing create the low→medium→dense gradient. B has eight additional dense viewers; C has four. Wings use asymmetrical cartesian clusters, not concentric arc tails. Crowd remains in front of the screen and on the roof; board/destination access is preserved.
+
+VALIDATION AND DISCLOSED LIMITS
+PASS: 188 actual actor instances / 1,504 body parts across the stricter combined variant set, 17,578 actor pairs, zero body triangle overlaps and zero crowd/prop overlaps. Whole-body geometry/footprints are used, not foot-center maps alone. Board rays from landing/arrival cameras show no new crowd occlusion.
+PASS: all 960 frames per A/B/C preserve straight X=0, monotonically forward Y, original heading/lens/eye height and existing 0.35m camera / 0.002m floor checks. Straight entry/screen and Team-right/Events-left surveys pass. All original cameras/actions, non-target mesh/UV/material state/transforms and original lights/world are preserved. Fifteen separate diagnostic cameras are added.
+PASS: closed manifold host/trim topology, positive volumes, nonzero faces, finite UV/tangent data, valid facing normals and actual front/side/floor/ceiling cavity hits. Stock remains within cavities and clear of fixed counters.
+INHERITED APPROACH FAILURES RETAINED: negative-Y shop approaches at left Y+2 and right Y-7 hit unchanged Scooter steering.002 and Scooter steering.001. Positive-Y alternatives pass, so each store has a tested clear approach. Full failed samples/object IDs are retained. No claim that every approach option passes; no scooter/counter moved or tolerance relaxed.
+All 1,213 protected WIP hashes and Git status match work-in-progress-2027 at e638140b37045a805b23b4d406d387a8870f8486. Original dirty navigation worktree and user work remain preserved. No website/default changes, commit, push, merge or deployment.
+
+REVIEW EVIDENCE
+Phone-friendly 14-page review:
+https://drive.google.com/file/d/1JCZ_qcUPw4dg_b8G3bJt2lLaaMJv2Yhn/view?usp=drivesdk
+Full 80-page comparison / all 75 same-camera pairs:
+https://drive.google.com/file/d/1LZg28eojbtn8KnTm0jzuQO5Sx-zcKH_D/view?usp=drivesdk
+Complete technical report:
+https://drive.google.com/file/d/1-unHdlvrjpMTrztdVqQATUxb7b-xnyir/view?usp=drivesdk
+Review folder:
+https://drive.google.com/drive/folders/1sRMTPGiTS8FYTVTg8wr3dj1Ya_4__PkM
+C representative before/after plan:
+https://drive.google.com/file/d/1gRtAfn9kVuA9mYP9mry8AaKXtD79zfPf/view?usp=drivesdk
+C representative eye-level audience:
+https://drive.google.com/file/d/1Je08nwkpAxdB1SQYs5_eWSU9zB4KzbeT/view?usp=drivesdk
+C representative shop:
+https://drive.google.com/file/d/1m1ttBSto1503tE3EjqBseK8uansFf26h/view?usp=drivesdk
+All A/B/C receive five shop lane angles, five inside diagnostics, five section plans, crowd eye/plan/hub/wings/board-forward/center-approach views and portrait context. All 150 final PNGs retain exact matched pose, lens/FOV-equivalent settings, clipping, dimensions, exposure/view transform and EEVEE16 samples: desktop1200×750 / portrait540×960. Original street/world lighting is identical; the five local shop sources are the documented intentional exception. DPR does not apply to offline Blender.
+Inside-before cameras are labelled diagnostic because the old shop volume was solid. Section cameras use the same near-plane cut above local+2.7m; no mesh is hidden. Nineteen rendered diagnostics/drafts are retained separately, including four final-geometry light-only captures. Rejected drafts are excluded from final matched pairs. PDFs use compact JPEG embedding; untouched full-resolution PNGs and GALLERY.html are in the archives.
+No new video or live-browser playback is claimed. The original 40-second action stays editable. These are actual Blender renders, not generated concept art or physical-device FPS.
+
+COST / ART LIMITATIONS
+Evaluated triangles A 73,624→83,564; B 76,758→86,698; C 74,828→84,768 (+9,940 each). Twelve authoring lights become seventeen through the five interior sources. No new images: 24 packed, 95.86MiB estimated authoring RGBA8+mips. Compressed master grows 32,765 bytes; this is not a runtime GLB transfer measurement.
+People remain static low-detail proxies; shop surfaces and broad architectural masses remain concept-quality. Future browser conversion requires instancing/batching/LODs and an interior-light budget/bake. No runtime draw-call, interactive FPS or physical laptop/mobile acceptance is inferred. A/B/C art direction and final realism remain user decisions.
+
+VERIFIED INDEPENDENT CHECKPOINT
+New dated task folder:
+https://drive.google.com/drive/folders/1g807WYu5ZSlfaoLUXnQK4OFvzpHlXW7F
+Checkpoint folder:
+https://drive.google.com/drive/folders/1RBUH2fDcXWhGUn32txMNqo6ejWKwFz7p
+Packed editable master:
+https://drive.google.com/file/d/1zeEGl2vT_L0WiG0M7hEvUqddgxZfk-3q/view?usp=drivesdk
+Archive index — all nine complementary ZIPs are required, extract into the SAME fresh directory:
+https://drive.google.com/file/d/1mnnnLEUhaha4EtAdNSPSWCeGdug4eJKe/view?usp=drivesdk
+Full download-back and independent-restore receipt:
+https://drive.google.com/file/d/15SV7_cAUa80-iguiQqZiKSqVIWEVpYfI/view?usp=drivesdk
+Receipt SHA-256: 4bf8909dc32b4e724d3c02388707110f051d4f6973bcd8df42d44a0373a04456
+All 18 payload/index files plus the receipt passed authenticated complete download-back SHA-256 and remote parent/size checks. The nine-archive independent extraction verified 248 member hashes, 169 rendered PNGs (150 final plus19 diagnostics) and 310 relative gallery references. Restored master opened with three scenes, 24 packed images, no missing external font, 39 cameras, 17 lights per scene and exact counter/DJ matrices; audience counts176/184/180 and the original action remain present. All nine local archives retain their original checksums. Prior checkpoints are untouched.
+The optional earlier working-source snapshot is superseded by the final nine-archive set. The exact Rev05A input and full current authoring/review scripts/provenance are included. This is an independent Blender checkpoint; the protected full website remains in its historical backup chain.
+
+STOP FOR CHATGPT REVIEW AND USER VISUAL APPROVAL. Do not select A/B/C, begin high-fidelity look-dev, change the website or start another phase automatically.
+END CODEX HANDOFF — WORLD-OPEN-SHOPS-FULL-CENTER-CROWD-20261025-05B
+

@@ -1,0 +1,780 @@
+[
+  {
+    "path": "components/immersive/AftermovieScene.tsx",
+    "bytes": 4858,
+    "sha256": "5315c3c322748badc1f2b744c0f72c5e5579f3b951d8958c2cd5b9eb90109b41"
+  },
+  {
+    "path": "components/immersive/AftermovieEnvironment.tsx",
+    "bytes": 1645,
+    "sha256": "a2d1cba5ccd58817a0750238c11298d989a85b8fe543b8322a195142d47fd5f2"
+  },
+  {
+    "path": "components/landing-page/stage3d/Crowd.tsx",
+    "bytes": 10987,
+    "sha256": "2779d379b6d41f34855b233f856abe6135f3a8cb33c1e2882855d510cde279b8"
+  },
+  {
+    "path": "components/landing-page/stage3d/Trusses.tsx",
+    "bytes": 8295,
+    "sha256": "cb1421c1cf3edfd374f8996315577aad9340004ccd1176b6bb95ba8c206e05eb"
+  },
+  {
+    "path": "components/landing-page/stage3d/Barricades.tsx",
+    "bytes": 3601,
+    "sha256": "0e26b8467a0086473999bc272bbbeb6955afa5015d43c1073e2c8fe864ecdc3f"
+  },
+  {
+    "path": "components/landing-page/stage3d/Stage.tsx",
+    "bytes": 647,
+    "sha256": "dcfe12df70c780070ca1dc9cde42a20bf35e1ffe9a72223767ee9cec279c03c4"
+  },
+  {
+    "path": "components/landing-page/stage3d/palette.ts",
+    "bytes": 811,
+    "sha256": "2627538e7b23aa8686322fc808d7fb6ab4b18149eed50f50668615fdf19e0600"
+  },
+  {
+    "path": "components/three/BlenderAsset.tsx",
+    "bytes": 1566,
+    "sha256": "086422e89da7d6ef17d0e00a7a78305ae4f5ea83d04cb190314d1b4bc7c970e2"
+  },
+  {
+    "path": "scripts/blender/generate_breeze_assets.py",
+    "bytes": 14851,
+    "sha256": "e9cf6e286e1168028c23cba769ba1b5b67c8c5cd91f01735ccf729983b9fc933"
+  },
+  {
+    "path": "components/immersive/HubScene.tsx",
+    "bytes": 17001,
+    "sha256": "e85d2f6c2f563a65cd653bc7c4eefd37067bb6de6303b1e000ec4b80beba8290"
+  },
+  {
+    "path": "components/immersive/world.ts",
+    "bytes": 5256,
+    "sha256": "43894f5e6ccb00ed3556ed9320550f4f6f1a7bbdcfb131aae5fb09f6100ef8bb"
+  },
+  {
+    "path": "public/models/breeze/aftermovie-stage.glb",
+    "bytes": 417140,
+    "sha256": "c6ffdcaf05a7fb1f8cf47bc350fa4414615c6fbdfb38bda83cd731ff8dad2e5b",
+    "assetMetadata": {
+      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "version": "2.0"
+    },
+    "extensions": null,
+    "meshNames": [
+      "Cube.001",
+      "Cube.002",
+      "Cube.003",
+      "Cube.004",
+      "Cube.005",
+      "Cube.006",
+      "Cube.007",
+      "Cube.008",
+      "Cube.009",
+      "Cube.010",
+      "Cube.011",
+      "Cube.012",
+      "Cube.013",
+      "Cube.014",
+      "Cube.015",
+      "Cube.016",
+      "Cube.017",
+      "Cube.018",
+      "Cube.025",
+      "Cube.020",
+      "Cube.021",
+      "Cube.022",
+      "Cube.023",
+      "Cube.024",
+      "Cube.019",
+      "Cube.032",
+      "Cube.033",
+      "Cube.034",
+      "Cube.035",
+      "Cube.028",
+      "Cube.029",
+      "Cube.030",
+      "Cube.031",
+      "Cube.027",
+      "Cube.026",
+      "Cube",
+      "Cube.046",
+      "Cube.048",
+      "Cube.050",
+      "Cube.047",
+      "Cube.049",
+      "Cube.051",
+      "Cube.036",
+      "Cube.037",
+      "Cube.038",
+      "Cube.039",
+      "Cube.040",
+      "Cube.042",
+      "Cube.044",
+      "Cube.041",
+      "Cube.043",
+      "Cube.045",
+      "PROP_stage_cable_01"
+    ],
+    "materials": [
+      {
+        "doubleSided": true,
+        "name": "MAT_stage_deck_worn",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.04500000178813934,
+            0.04899999871850014,
+            0.054999999701976776,
+            1
+          ],
+          "metallicFactor": 0.18000000715255737,
+          "roughnessFactor": 0.6200000047683716
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_stage_deck",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.02800000086426735,
+            0.03400000184774399,
+            0.0430000014603138,
+            1
+          ],
+          "metallicFactor": 0.2800000011920929,
+          "roughnessFactor": 0.47999998927116394
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_black_fabric",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.00800000037997961,
+            0.008999999612569809,
+            0.012000000104308128,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.8799999952316284
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_stage_steel",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.3400000035762787,
+            0.3700000047683716,
+            0.4099999964237213,
+            1
+          ],
+          "metallicFactor": 0.8799999952316284,
+          "roughnessFactor": 0.27000001072883606
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_rubber",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.014000000432133675,
+            0.014999999664723873,
+            0.01600000075995922,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.8399999737739563
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_safety_yellow",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.6299999952316284,
+            0.3799999952316284,
+            0.03500000014901161,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.5600000023841858
+        }
+      }
+    ],
+    "animations": [],
+    "images": []
+  },
+  {
+    "path": "public/models/breeze/festival-stall.glb",
+    "bytes": 461676,
+    "sha256": "3b39ea51be3cb542383a37903730ce77af1b46f36ea83195f565ea13db7e4f1c",
+    "assetMetadata": {
+      "generator": "Khronos glTF Blender I/O v5.2.40",
+      "version": "2.0"
+    },
+    "extensions": [
+      "KHR_materials_emissive_strength"
+    ],
+    "meshNames": [
+      "Cube",
+      "Cylinder.012",
+      "Cube.001",
+      "Cube.002",
+      "Cube.003",
+      "Cylinder.009",
+      "Cylinder.007",
+      "Cylinder.005",
+      "Cylinder.003",
+      "Cylinder.001",
+      "Cylinder.008",
+      "Cylinder.010",
+      "Cylinder.006",
+      "Cylinder.004",
+      "Cylinder.002",
+      "Cylinder",
+      "Cylinder.011",
+      "LGT_front_string_cable",
+      "Sphere",
+      "Sphere.001",
+      "Sphere.002",
+      "Sphere.003",
+      "Sphere.004",
+      "Cube.008",
+      "Cube.009",
+      "Cylinder.014",
+      "Cylinder.013",
+      "Cube.005",
+      "Cube.006",
+      "Cube.007",
+      "Cube.004"
+    ],
+    "materials": [
+      {
+        "doubleSided": true,
+        "name": "MAT_stall_black_canvas",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.017999999225139618,
+            0.020999999716877937,
+            0.019999999552965164,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.9599999785423279
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_stall_aluminium",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.4000000059604645,
+            0.41999998688697815,
+            0.4099999964237213,
+            1
+          ],
+          "metallicFactor": 0.8399999737739563,
+          "roughnessFactor": 0.3100000023841858
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_stall_black_canvas_alt",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.03200000151991844,
+            0.03500000014901161,
+            0.032999999821186066,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.9300000071525574
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_stall_back_board",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.054999999701976776,
+            0.06400000303983688,
+            0.05999999865889549,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.9100000262260437
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_stall_rubber",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.009999999776482582,
+            0.010999999940395355,
+            0.010999999940395355,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.9100000262260437
+        }
+      },
+      {
+        "doubleSided": true,
+        "emissiveFactor": [
+          1,
+          0.4300000071525574,
+          0.10000000149011612
+        ],
+        "extensions": {
+          "KHR_materials_emissive_strength": {
+            "emissiveStrength": 3.5
+          }
+        },
+        "name": "MAT_stall_bulb",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            1,
+            0.6299999952316284,
+            0.25,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.20000000298023224
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_stall_cardboard",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.4300000071525574,
+            0.28999999165534973,
+            0.1599999964237213,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.9200000166893005
+        }
+      },
+      {
+        "doubleSided": true,
+        "name": "MAT_stall_table",
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.10999999940395355,
+            0.08500000089406967,
+            0.05999999865889549,
+            1
+          ],
+          "metallicFactor": 0,
+          "roughnessFactor": 0.7200000286102295
+        }
+      }
+    ],
+    "animations": [],
+    "images": []
+  },
+  {
+    "path": "public/models/Animated-Woman.glb",
+    "bytes": 1491780,
+    "sha256": "a6522fe53d15de21130a957d1bf2b8a9a58d4e4e9a12af646645b667a9bb2d17",
+    "assetMetadata": {
+      "generator": "FBX2glTF v0.9.7",
+      "version": "2.0"
+    },
+    "extensions": null,
+    "meshNames": [
+      "Formad_Head",
+      "Formal_Body",
+      "Formal_Feet",
+      "Formal_Legs"
+    ],
+    "materials": [
+      {
+        "name": "Skin",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.617206752300262,
+            0.41788512468338,
+            0.23839758336544,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.272165536880493
+        }
+      },
+      {
+        "name": "Red",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.137578219175339,
+            0.0158552378416061,
+            0.00384325627237558,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.272165536880493
+        }
+      },
+      {
+        "name": "Brown",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.0310619566589594,
+            0.0181614384055138,
+            0.0113078402355313,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.272165536880493
+        }
+      },
+      {
+        "name": "LimeGreen",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.0620633512735367,
+            0.137579813599586,
+            0.0564524307847023,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.272165536880493
+        }
+      },
+      {
+        "name": "Gold",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.428690522909164,
+            0.242281153798103,
+            0.0666259378194809,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.272165536880493
+        }
+      }
+    ],
+    "animations": [
+      {
+        "name": "CharacterArmature|Death",
+        "channels": 24
+      },
+      {
+        "name": "CharacterArmature|Gun_Shoot",
+        "channels": 29
+      },
+      {
+        "name": "CharacterArmature|HitRecieve",
+        "channels": 12
+      },
+      {
+        "name": "CharacterArmature|HitRecieve_2",
+        "channels": 12
+      },
+      {
+        "name": "CharacterArmature|Idle",
+        "channels": 21
+      },
+      {
+        "name": "CharacterArmature|Idle_Gun",
+        "channels": 34
+      },
+      {
+        "name": "CharacterArmature|Idle_Gun_Pointing",
+        "channels": 34
+      },
+      {
+        "name": "CharacterArmature|Idle_Gun_Shoot",
+        "channels": 37
+      },
+      {
+        "name": "CharacterArmature|Idle_Neutral",
+        "channels": 22
+      },
+      {
+        "name": "CharacterArmature|Idle_Sword",
+        "channels": 34
+      },
+      {
+        "name": "CharacterArmature|Interact",
+        "channels": 15
+      },
+      {
+        "name": "CharacterArmature|Kick_Left",
+        "channels": 54
+      },
+      {
+        "name": "CharacterArmature|Kick_Right",
+        "channels": 54
+      },
+      {
+        "name": "CharacterArmature|Punch_Left",
+        "channels": 55
+      },
+      {
+        "name": "CharacterArmature|Punch_Right",
+        "channels": 55
+      },
+      {
+        "name": "CharacterArmature|Roll",
+        "channels": 57
+      },
+      {
+        "name": "CharacterArmature|Run",
+        "channels": 53
+      },
+      {
+        "name": "CharacterArmature|Run_Back",
+        "channels": 53
+      },
+      {
+        "name": "CharacterArmature|Run_Left",
+        "channels": 55
+      },
+      {
+        "name": "CharacterArmature|Run_Right",
+        "channels": 55
+      },
+      {
+        "name": "CharacterArmature|Run_Shoot",
+        "channels": 53
+      },
+      {
+        "name": "CharacterArmature|Sword_Slash",
+        "channels": 34
+      },
+      {
+        "name": "CharacterArmature|Walk",
+        "channels": 29
+      },
+      {
+        "name": "CharacterArmature|Wave",
+        "channels": 22
+      }
+    ],
+    "images": []
+  },
+  {
+    "path": "public/models/Man.glb",
+    "bytes": 493196,
+    "sha256": "dad8fa3ca2bc7760892f9ff47f544941179e50acb2aa772cf9f035154a37fc58",
+    "assetMetadata": {
+      "generator": "FBX2glTF v0.9.7",
+      "version": "2.0"
+    },
+    "extensions": null,
+    "meshNames": [
+      "BaseHuman"
+    ],
+    "materials": [
+      {
+        "name": "Shirt",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.130710676312447,
+            0.171151742339134,
+            0.186409160494804,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.415087103843689
+        }
+      },
+      {
+        "name": "Skin",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.397537589073181,
+            0.254824787378311,
+            0.132921114563942,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.415087103843689
+        }
+      },
+      {
+        "name": "Pants",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.0485740415751934,
+            0.0423531495034695,
+            0.0423531495034695,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.415087103843689
+        }
+      },
+      {
+        "name": "Eyes",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.0203142147511244,
+            0.0203142147511244,
+            0.0203142147511244,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.415087103843689
+        }
+      },
+      {
+        "name": "Socks",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.405653566122055,
+            0.347834140062332,
+            0.347834140062332,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.415087103843689
+        }
+      },
+      {
+        "name": "Hair",
+        "alphaMode": "OPAQUE",
+        "extras": {
+          "fromFBX": {
+            "shadingModel": "Phong",
+            "isTruePBR": false
+          }
+        },
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.0417731106281281,
+            0.0279798302799463,
+            0.0288182888180017,
+            1.0
+          ],
+          "metallicFactor": 0.400000005960464,
+          "roughnessFactor": 0.415087103843689
+        }
+      }
+    ],
+    "animations": [
+      {
+        "name": "HumanArmature|Man_Clapping",
+        "channels": 27
+      },
+      {
+        "name": "HumanArmature|Man_Death",
+        "channels": 29
+      },
+      {
+        "name": "HumanArmature|Man_Idle",
+        "channels": 12
+      },
+      {
+        "name": "HumanArmature|Man_Jump",
+        "channels": 24
+      },
+      {
+        "name": "HumanArmature|Man_Punch",
+        "channels": 28
+      },
+      {
+        "name": "HumanArmature|Man_Run",
+        "channels": 20
+      },
+      {
+        "name": "HumanArmature|Man_RunningJump",
+        "channels": 22
+      },
+      {
+        "name": "HumanArmature|Man_Sitting",
+        "channels": 24
+      },
+      {
+        "name": "HumanArmature|Man_Standing",
+        "channels": 22
+      },
+      {
+        "name": "HumanArmature|Man_SwordSlash",
+        "channels": 27
+      },
+      {
+        "name": "HumanArmature|Man_Walk",
+        "channels": 24
+      }
+    ],
+    "images": []
+  }
+]

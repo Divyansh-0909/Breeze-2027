@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "actualAudienceCounts": {
+    "A": 144,
+    "B": 152,
+    "C": 148
+  },
+  "actualActorsChecked": 156,
+  "actualBodyPartsChecked": 1248,
+  "actorPairsChecked": 12090,
+  "AABBCandidatePairs": 17,
+  "actualTriangleOverlapPairs": [],
+  "crowdPropTriangleOverlaps": [],
+  "standingFloorContactExcludedFromPropOverlap": true,
+  "bodyFootprintsAvoidCentralAisle": true,
+  "centralClearHalfWidthM": 1.65,
+  "actualFeetWithin002mOfFloor": true,
+  "maximumViewingAngleVariationDeg": 11,
+  "noPeopleBehindScreen": true,
+  "screenAndNavigationPreserved": true,
+  "counterState": "Checked separately without modifying it.",
+  "scope": "Conservative whole-body footprints during authoring plus actual triangle BVHs here; does not rely on foot centers alone. BVHs checked across all variants combined, which is stricter than visibility of one variant."
+}

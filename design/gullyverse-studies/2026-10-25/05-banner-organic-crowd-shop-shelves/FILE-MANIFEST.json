@@ -1,0 +1,643 @@
+{
+  "phase": "Rev05A",
+  "status": "PARTIAL_SHOP_EXCEPTION_PENDING",
+  "memberCount": 127,
+  "note": "Manifest itself and archive/checkpoint receipts are sidecars, excluded from self-referential hashes. All four archives are needed for the complete gallery; packed master opens on its own.",
+  "files": [
+    {
+      "file": "GALLERY.html",
+      "bytes": 15732,
+      "sha256": "0432313c77965f88a38421d842d80df3a74dcec4370126e6f3d22746d67ba3c3"
+    },
+    {
+      "file": "REPORT.md",
+      "bytes": 12000,
+      "sha256": "a9271049bc024dcc3312142dfc7585d89c33691bde0a98f965d6d356c056724f"
+    },
+    {
+      "file": "RESTORE.md",
+      "bytes": 3653,
+      "sha256": "48f8eb014b468a3c3ccc22c6ffdc0be9b1bfa2803a21997d20eaa44dae2fa414"
+    },
+    {
+      "file": "evidence/asset-audit.log",
+      "bytes": 259,
+      "sha256": "2a6ab9960b68f9172472ed4f71066a239ad7398c2f94ec48b7cb5047d7b7ef5d"
+    },
+    {
+      "file": "evidence/audience-cost-and-density.csv",
+      "bytes": 309,
+      "sha256": "2f108845be692d7fd5a63b22d5ffbdb71b442649310fe8c313bbeb405063156f"
+    },
+    {
+      "file": "evidence/audience-density-table.json",
+      "bytes": 2215,
+      "sha256": "c64f9f9d221c819a859504fafc57bf269b70ab3893c7cf098223bfcce42d9d0a"
+    },
+    {
+      "file": "evidence/author-crowd.log",
+      "bytes": 317,
+      "sha256": "2732158056711a7c93f1d060d999da4b09818c0632e46241d8633984d242d978"
+    },
+    {
+      "file": "evidence/baseline-inventory.log",
+      "bytes": 196,
+      "sha256": "86676698482ff91d23e5c82b9688aa0224be656df94f829802677a892ea7c98f"
+    },
+    {
+      "file": "evidence/baseline-object-inventory.json",
+      "bytes": 179823,
+      "sha256": "c118a0ea733e27a6739d29bea29f321ef3d55de306c21009a433264770157105"
+    },
+    {
+      "file": "evidence/body-overlap-validation.json",
+      "bytes": 864,
+      "sha256": "5aafe49f60d84c8b57138228723ead75a44676616d23749fa697e1448a8ad9a8"
+    },
+    {
+      "file": "evidence/export-review-master.log",
+      "bytes": 303,
+      "sha256": "f3df8c19306f041567f3ea4ea557dfc113ee14a341283f5db65322821b6ad6c5"
+    },
+    {
+      "file": "evidence/layout-validation.json",
+      "bytes": 5249,
+      "sha256": "1d74fe9088cdc80fbc79dfa9f72577d136d07f1f9f2fd82439e1dc73cb513749"
+    },
+    {
+      "file": "evidence/matched-render-validation.json",
+      "bytes": 4227,
+      "sha256": "49e1ca7d495bf99b008f4acdbce2a52f7d9585663895f2b4a7eda9cb3a6c800f"
+    },
+    {
+      "file": "evidence/organic-crowd-authoring.json",
+      "bytes": 328357,
+      "sha256": "cead7dfe2228eb070529dee629b3eace10997d14524934a95e2c5a54f2047e5a"
+    },
+    {
+      "file": "evidence/preservation-audit.json",
+      "bytes": 4937,
+      "sha256": "46c51ac8b0dd97cf84b59c26174aa772a6e7803e5ffde050e9b6ef08e6bc1579"
+    },
+    {
+      "file": "evidence/preservation-audit.log",
+      "bytes": 382,
+      "sha256": "05c56e7b6471cc2591d3633a3effa3ba8a2bc53a0d97ecbd41bdc1ffc7c4b3e7"
+    },
+    {
+      "file": "evidence/proposed-recess-mesh-math-test.json",
+      "bytes": 598,
+      "sha256": "81c8344346639442811bce35ff1329afe3e8aceabce5b95df3994dcbc7946cbb"
+    },
+    {
+      "file": "evidence/proposed-recess-topology-test.log",
+      "bytes": 234,
+      "sha256": "f7ade0fde62bf3739db85e25f017b5111e50ed55082aeb46d7e9663ba9a3ecdf"
+    },
+    {
+      "file": "evidence/render-after-main.log",
+      "bytes": 7769,
+      "sha256": "4837bdd8028252e187915598712c88e3a300e15d901f35e84f14b23fe48d2ab3"
+    },
+    {
+      "file": "evidence/render-before.log",
+      "bytes": 13030,
+      "sha256": "9c20eabea53edede821775343936bbe4744c0ecf07e06a3602522bebbeeb529d"
+    },
+    {
+      "file": "evidence/render-manifest.json",
+      "bytes": 44579,
+      "sha256": "f968d26af02a8fba34b3a78e73f687817782b2aa20c39ebc44f8744b106f9237"
+    },
+    {
+      "file": "evidence/render-preview.log",
+      "bytes": 858,
+      "sha256": "75fd8a05c345135d7537f1008e8e6e9357e5a57e665d04b1119cd0eb31926c96"
+    },
+    {
+      "file": "evidence/review-build.json",
+      "bytes": 141,
+      "sha256": "eabd42ba472ac5047e2a6bc70edfde56c1ef64a6a4d5a2a5caf00fb22d9ee636"
+    },
+    {
+      "file": "evidence/scene-budget-final.json",
+      "bytes": 6182,
+      "sha256": "ffd44687635e2e6e75be02d149912909c7e00fe5a353de278c56e5fd309bb604"
+    },
+    {
+      "file": "evidence/shading-and-restored-master.json",
+      "bytes": 762,
+      "sha256": "c78804ea5f09afae925b7b49e4b611e566854cddeb97c465dfa5ab34c0ad1229"
+    },
+    {
+      "file": "evidence/shading-difference-diagnostic.json",
+      "bytes": 516,
+      "sha256": "a5816565f9666462929594e97fdd2357b11b9afd1f5cc9e0b454f3678d354a0c"
+    },
+    {
+      "file": "evidence/shading-restore.log",
+      "bytes": 392,
+      "sha256": "1b923eab42867968fe518be916d532b1c65d7d7483f22f27920ef68897cd37c6"
+    },
+    {
+      "file": "evidence/shop-host-probe.log",
+      "bytes": 201,
+      "sha256": "66197878d818b8d7bd9c6f92a2ed9c218f04aec61a1f1a6067b5f91c33a18db3"
+    },
+    {
+      "file": "evidence/shop-solid-host-and-recess-proposal.json",
+      "bytes": 2056,
+      "sha256": "9d36b0cab58ede265ee43471bfa65e6adb683c1229f0e6270568442ffc0fd23f"
+    },
+    {
+      "file": "evidence/user-banner-reference.png",
+      "bytes": 301438,
+      "sha256": "eff3a7a924c0ba34c4104bda4b34230e5aefbe6d627943a1606119dc8890736b"
+    },
+    {
+      "file": "evidence/validate-crowd.log",
+      "bytes": 251,
+      "sha256": "0af323692de8cb4908054989b7c9885ab8c2f7dc358ff359ba41e3db00b6d5eb"
+    },
+    {
+      "file": "evidence/validate-layout.log",
+      "bytes": 466,
+      "sha256": "9a2075b3c3d74cc1000ddd78d0ce1adfe06774cedf29bb3031b9695ca5ede5e8"
+    },
+    {
+      "file": "evidence/website-baseline.json",
+      "bytes": 203446,
+      "sha256": "21d84006fd9ce95e85ce852db00c2f6b4328679f4b7aaddf45fbb42142cf16f2"
+    },
+    {
+      "file": "evidence/website-final-preservation.json",
+      "bytes": 204,
+      "sha256": "b19e541f1ce77240a72f6061659fd71791f0468ebe5c953550f2fff3bd658e8b"
+    },
+    {
+      "file": "renders/after/A/01-landing.png",
+      "bytes": 1103901,
+      "sha256": "cd5650aaf3893011c8031a37adc11d0e51512a2cffbc1ff9b2190472f972dd58"
+    },
+    {
+      "file": "renders/after/A/08-crowd-middle.png",
+      "bytes": 1109695,
+      "sha256": "13066e05ae95d28218749296124b3971cc311eeb177af046ae36344ca3c5542d"
+    },
+    {
+      "file": "renders/after/A/12-mobile-landing.png",
+      "bytes": 602534,
+      "sha256": "08f52afbeb1c154127addb968cf4567f3a81a9dd3b9ecf177dfd35ba0e99674e"
+    },
+    {
+      "file": "renders/after/A/16-rooftop-plan.png",
+      "bytes": 972739,
+      "sha256": "24547e8c0d7ccbb9ee0440c98e97091e3ce89be0624f5b90831ff676aec58462"
+    },
+    {
+      "file": "renders/after/A/17-banner-frontal.png",
+      "bytes": 1143395,
+      "sha256": "ea85d7ed957fdb9e59af40fbb7cc5f5694ecf4d920ccae784ffb9f17dac70be9"
+    },
+    {
+      "file": "renders/after/A/18-banner-oblique.png",
+      "bytes": 1114368,
+      "sha256": "71c52a2993dae0a456abeb4ca0588a6a3c132cd0ada6831c7bfe81c15522e806"
+    },
+    {
+      "file": "renders/after/A/19-hub-wide.png",
+      "bytes": 1029579,
+      "sha256": "dc1ac726ccf74e3baffbb39aa98dc652b4a6623b513da14d265596d418f178dc"
+    },
+    {
+      "file": "renders/after/B/01-landing.png",
+      "bytes": 1126461,
+      "sha256": "fed07f58db96b9f893ad87c23c4c91a06a0f70391b6047c968f7714f0c30aa5c"
+    },
+    {
+      "file": "renders/after/B/08-crowd-middle.png",
+      "bytes": 1111201,
+      "sha256": "b7353179becba23512a2282afb85a26e5b2238973a60a2ef12ccaf36bc94246d"
+    },
+    {
+      "file": "renders/after/B/12-mobile-landing.png",
+      "bytes": 617408,
+      "sha256": "a0172aa2006d429dfc53978da3cebfc2d1ced26a026b03534de9412f34bbf470"
+    },
+    {
+      "file": "renders/after/B/16-rooftop-plan.png",
+      "bytes": 978753,
+      "sha256": "c0a3b06841a9854f498eb3709ac96463a5d4dc3b9b508f3bc597cda9f3953976"
+    },
+    {
+      "file": "renders/after/B/17-banner-frontal.png",
+      "bytes": 1169088,
+      "sha256": "bfe240f7de99f35b36016f8dc1e88ced587435118aacb3bb1f57c4881b16a495"
+    },
+    {
+      "file": "renders/after/B/18-banner-oblique.png",
+      "bytes": 1136988,
+      "sha256": "e362d5a27463221b3be109c2c22cd0ae5521275191d71f179c5c1f5aa9b36dc0"
+    },
+    {
+      "file": "renders/after/B/19-hub-wide.png",
+      "bytes": 1034839,
+      "sha256": "49e6653ddcc463030145a91dc8d0b1d594dbcfc9ddd00dc515f358734e4d367b"
+    },
+    {
+      "file": "renders/after/C/01-landing.png",
+      "bytes": 1124819,
+      "sha256": "9d348894be44802a6d579bf73b2f42aa07a0847ad90b00fb2b7c018bfada1221"
+    },
+    {
+      "file": "renders/after/C/08-crowd-middle.png",
+      "bytes": 1108597,
+      "sha256": "d5366496385039243f4f2968f2dbc8c303ef0f4cb316c884f1ed346ee0fdbda4"
+    },
+    {
+      "file": "renders/after/C/12-mobile-landing.png",
+      "bytes": 607969,
+      "sha256": "2a8e9ef920caa297003e50c1f606777be6b96a47affcbb5102ce0f1f298c5670"
+    },
+    {
+      "file": "renders/after/C/16-rooftop-plan.png",
+      "bytes": 974967,
+      "sha256": "9fcc3783a545309d1ef29652de2437674f1dde4723ba9fbe8e473cc3984810e5"
+    },
+    {
+      "file": "renders/after/C/17-banner-frontal.png",
+      "bytes": 1164335,
+      "sha256": "fcac997ce8fae60cebdf5f5803ee793716f21ba369ffb40c0e2a8df62c5ddc9d"
+    },
+    {
+      "file": "renders/after/C/18-banner-oblique.png",
+      "bytes": 1132282,
+      "sha256": "e091cfb57c557b349504ed648fcf8800261077817fd0a9d12f235f15ba6a5514"
+    },
+    {
+      "file": "renders/after/C/19-hub-wide.png",
+      "bytes": 1026508,
+      "sha256": "906f293f59d9d01097421faba0068352f699e4035266b05f506e10379f80e254"
+    },
+    {
+      "file": "renders/before/A/01-landing.png",
+      "bytes": 1103381,
+      "sha256": "0cf3e3911dfc17db3476eec3b78882e869d8a2904a8a1425d6d623dbcc0c792d"
+    },
+    {
+      "file": "renders/before/A/08-crowd-middle.png",
+      "bytes": 1100315,
+      "sha256": "69cb3fed99f46bbc52d4486d1b58e4e1d2e0daf0577ad7702abb3e2416469cb3"
+    },
+    {
+      "file": "renders/before/A/12-mobile-landing.png",
+      "bytes": 602342,
+      "sha256": "4cc34bb85d48a4f5d4976fc60f57b24e18a880da13597e110d5fdc5824a0fd28"
+    },
+    {
+      "file": "renders/before/A/16-rooftop-plan.png",
+      "bytes": 922326,
+      "sha256": "353d7fd7f0ac15916f5d4f2459546f2d41b10660ba6a602300588d74f27a8d08"
+    },
+    {
+      "file": "renders/before/A/17-banner-frontal.png",
+      "bytes": 1141984,
+      "sha256": "62e14df62021ecb8b2b25d2064e4f2bf6c52ddf8bb0aa329cb44c75c308e6181"
+    },
+    {
+      "file": "renders/before/A/18-banner-oblique.png",
+      "bytes": 1114370,
+      "sha256": "4a45f3b5f2576b78b6ac935d1cb521a0b2840eb3e399288fa5f3e566e8dc49dc"
+    },
+    {
+      "file": "renders/before/A/19-hub-wide.png",
+      "bytes": 1023728,
+      "sha256": "1dae20087eaaf0fb82ee98da808b405d4a43570f03b78cbdcf0d1aefdea7aa25"
+    },
+    {
+      "file": "renders/before/A/21-shop-left-25.png",
+      "bytes": 984067,
+      "sha256": "09a22e5d9531d19ec979dde7886defba56bed4302de0f2c5ece36f430f071e42"
+    },
+    {
+      "file": "renders/before/A/22-shop-left-7.png",
+      "bytes": 990521,
+      "sha256": "aeb84ab62d4d1f96dfecf651dab5e9ade3c2f5bf40fbc964997d46610915be77"
+    },
+    {
+      "file": "renders/before/A/23-shop-left2.png",
+      "bytes": 1027890,
+      "sha256": "1631127cf1965f8c92908bc827a5030b3fd06e1b10629884ab5bb769231a7e83"
+    },
+    {
+      "file": "renders/before/A/24-shop-right-16.png",
+      "bytes": 965032,
+      "sha256": "c9144b3e364005d70cbd17287c8eb43eb8691073fc6a8c4977fefbb5b68db9df"
+    },
+    {
+      "file": "renders/before/A/25-shop-right-7.png",
+      "bytes": 1014670,
+      "sha256": "b667d96fd55d04f7022855e57f4258063145515a15264a55f05b35f761ec3b43"
+    },
+    {
+      "file": "renders/before/B/01-landing.png",
+      "bytes": 1123356,
+      "sha256": "0161920183cbe36f059e41fa271fa4cd1e012dff2ded26688ab146b780d9fc19"
+    },
+    {
+      "file": "renders/before/B/08-crowd-middle.png",
+      "bytes": 1101009,
+      "sha256": "e024c60cadb75f198994123404fe05872d11108b9834f3a0d065619828559d71"
+    },
+    {
+      "file": "renders/before/B/12-mobile-landing.png",
+      "bytes": 615917,
+      "sha256": "78f1b087100f903b09090e7722b995acf2e2cb30e796b26f670059cd8f4ed30c"
+    },
+    {
+      "file": "renders/before/B/16-rooftop-plan.png",
+      "bytes": 929781,
+      "sha256": "82ece98c1a6d9525d983b3b5ed5f7979ca631bb563c1ffbacdeb39877834ef8a"
+    },
+    {
+      "file": "renders/before/B/17-banner-frontal.png",
+      "bytes": 1155293,
+      "sha256": "73030863ce023119324cd4e69e11aad01d2f45c56198089184d659cda02ca692"
+    },
+    {
+      "file": "renders/before/B/18-banner-oblique.png",
+      "bytes": 1133933,
+      "sha256": "84672c5808937530d127a29c227e6f956fc1cffc709dc49888a1e41488567556"
+    },
+    {
+      "file": "renders/before/B/19-hub-wide.png",
+      "bytes": 1029385,
+      "sha256": "cc222ef861f442932121c63d7eaf06d2e699fe7501eecbb1f5ff98688b960324"
+    },
+    {
+      "file": "renders/before/B/21-shop-left-25.png",
+      "bytes": 998357,
+      "sha256": "8642d87fc1de787026a7349b107d45cf10721c73d2f6c23dffd708831a732f84"
+    },
+    {
+      "file": "renders/before/B/22-shop-left-7.png",
+      "bytes": 1004426,
+      "sha256": "4744c05c6b6b23221d655d55f3639181638bac704b803d7a6de4eb5d26f80ccd"
+    },
+    {
+      "file": "renders/before/B/23-shop-left2.png",
+      "bytes": 1041911,
+      "sha256": "d23d2d28d35126ff1dbd0d6a18697a6414ee97b2b41c5b6f54e6f2dc7cc7530f"
+    },
+    {
+      "file": "renders/before/B/24-shop-right-16.png",
+      "bytes": 970385,
+      "sha256": "16096f127b2ff6b104c8d631990ec1eb35a1ab42ae7c2029cca4b5f2b6dfdd78"
+    },
+    {
+      "file": "renders/before/B/25-shop-right-7.png",
+      "bytes": 1027891,
+      "sha256": "5e76927950bc1fae23bf5427b8d816af44368e1023cd146fc2fe67a5347c1546"
+    },
+    {
+      "file": "renders/before/C/01-landing.png",
+      "bytes": 1124310,
+      "sha256": "19eb3ac47e7781a7879e834442d0af20fe5504f3ad682c82834fe3dfd18df69f"
+    },
+    {
+      "file": "renders/before/C/08-crowd-middle.png",
+      "bytes": 1099402,
+      "sha256": "55ed91c154f7dbe561e8b8b4a0c1b22ecbd45fc82c0beb0a5f006d333927eea9"
+    },
+    {
+      "file": "renders/before/C/12-mobile-landing.png",
+      "bytes": 607971,
+      "sha256": "d696dd4fad905a16875fd8c02e4c99fe28218f8a2aa829155504af20cc672f3b"
+    },
+    {
+      "file": "renders/before/C/16-rooftop-plan.png",
+      "bytes": 924792,
+      "sha256": "d02ac0218c7ac78cd58d0bfb970d2dd776b872edeefa0e9cae5871b16d8e416b"
+    },
+    {
+      "file": "renders/before/C/17-banner-frontal.png",
+      "bytes": 1162682,
+      "sha256": "b8f88adf4a73078191b8aa92f8641b96fbcab3cd9f4ae87619ff798fe8c6e010"
+    },
+    {
+      "file": "renders/before/C/18-banner-oblique.png",
+      "bytes": 1132278,
+      "sha256": "d54445f34e2d5c5826c6bb4094ee4a42bdb056c103007c467f77e5f33e1ffdcc"
+    },
+    {
+      "file": "renders/before/C/19-hub-wide.png",
+      "bytes": 1020048,
+      "sha256": "c266b3e0b8fed82b40a2df43ba2a5576da3132e140df6e1de68836eaa6e8c970"
+    },
+    {
+      "file": "renders/before/C/21-shop-left-25.png",
+      "bytes": 999433,
+      "sha256": "08d14e0429d9a838f7699ed390023f37c8cc2127baef864fbbbbb4549d81d054"
+    },
+    {
+      "file": "renders/before/C/22-shop-left-7.png",
+      "bytes": 1004957,
+      "sha256": "9aab6ae4c3df76b1c190987cca4b7f291bfcf6ce8e50e6986b7914d205002db5"
+    },
+    {
+      "file": "renders/before/C/23-shop-left2.png",
+      "bytes": 1039624,
+      "sha256": "28a005418faec0889b7253fb9f7c014a902c047a72b6b3ac4aa10a2077d02d26"
+    },
+    {
+      "file": "renders/before/C/24-shop-right-16.png",
+      "bytes": 972896,
+      "sha256": "08673d2d96f5534c77fa4f66869bbb17b05608c1ab4666b14a325434abf135ca"
+    },
+    {
+      "file": "renders/before/C/25-shop-right-7.png",
+      "bytes": 1032261,
+      "sha256": "79abb8330f69613f9793a1ccbba7dd0d9fc27fa8602ccfa86098321733d0a049"
+    },
+    {
+      "file": "renders/preview/C/15-semicircle-high.png",
+      "bytes": 1234313,
+      "sha256": "f779238c88791323affb5065436446aa07ef40a26e7a03e3d8555368a7576f61"
+    },
+    {
+      "file": "review/B-Banner-Removed.jpg",
+      "bytes": 256538,
+      "sha256": "71a5b7f1355717a07bfd919e8f7773329c746d83610b66503762058c18eaf98b"
+    },
+    {
+      "file": "review/C-Audience-Plan.jpg",
+      "bytes": 138751,
+      "sha256": "0644fd154f12ecd2214a27328c9b60a2c80a4fa52aaf98fbafa8c5974a8f82c7"
+    },
+    {
+      "file": "review/C-Organic-Audience.jpg",
+      "bytes": 232223,
+      "sha256": "0ed25e3e790de67a7938654a774d3dcaa008dfca6f5335a8ba98f34658b1b6df"
+    },
+    {
+      "file": "review/Gullyverse-Rev05A-Banner-Crowd-Pending-Shops.pdf",
+      "bytes": 9392255,
+      "sha256": "f999176fad111a9d8857fd3b18f5593f88d244d99ec127f2ccb9a2081d2d2d7d"
+    },
+    {
+      "file": "review/density-occupancy.png",
+      "bytes": 254206,
+      "sha256": "876e5c3f3def6cb253fc31e0f2c5ce47fe98fafb393101924597b014d48d15bb"
+    },
+    {
+      "file": "review/density-occupancy.svg",
+      "bytes": 178520,
+      "sha256": "f3b75c84b18ae9f0589c4b7e822de22bfc245b9b6ad118b6e5025e21402d89b5"
+    },
+    {
+      "file": "review/shop-interior-exception-proposal.png",
+      "bytes": 131417,
+      "sha256": "271d06f109ba58188670d7ed105f08c36226bd2cdb881f61e502f847b458e15d"
+    },
+    {
+      "file": "review/shop-interior-exception-proposal.svg",
+      "bytes": 80303,
+      "sha256": "dccdefc0d88e6e7f1c5786ba0c0a505cf5152fb19c6f4b2208c681b3d7bd7401"
+    },
+    {
+      "file": "source/Gullyverse-Organic-Crowd-No-Banner-Intermediate.blend",
+      "bytes": 4008118,
+      "sha256": "84cc65e50f005f7c851c3b8562930dd2ef5c65adcf7811166cc45397f5b56514"
+    },
+    {
+      "file": "source/Gullyverse-Rev05A-Banner-Crowd-Shelves-Pending.blend",
+      "bytes": 4002949,
+      "sha256": "b143dc873b9566217301119f97cf349a73db58d7fdc1591c451e2daf7000ee8c"
+    },
+    {
+      "file": "source/audit_scene.py",
+      "bytes": 2140,
+      "sha256": "d2ee32dffd51f405d6c81fadbf31fbcfdf6f58ee75253a080211d4019b1f60e1"
+    },
+    {
+      "file": "source/author_crowd_banner.py",
+      "bytes": 6729,
+      "sha256": "fbdecee4d5ded84635c902c07b2483027b3930c5bb2d2508cfd08b82b40cea66"
+    },
+    {
+      "file": "source/baseline/REPORT.md",
+      "bytes": 4912,
+      "sha256": "e3581019b0eca2c28ab5d20540640899671cf9c8ec35d258d4eac860de9fe30f"
+    },
+    {
+      "file": "source/baseline/RESTORE.md",
+      "bytes": 1997,
+      "sha256": "0e895a3bd187fd6ed4130bedf7ff08875efc23f9bc6b4cabc40779e9dffb604b"
+    },
+    {
+      "file": "source/baseline/evidence/crowd-composition.json",
+      "bytes": 30563,
+      "sha256": "7e9e18c363971c3e5b09349c02ba9257b018b4269d95160daab6ad5b4a856c90"
+    },
+    {
+      "file": "source/baseline/source/Gullyverse-Straight-Walk-Semicircular-Crowd.blend",
+      "bytes": 3914135,
+      "sha256": "6041c26ac21fd990f14e2dae0fbe2cad15c21739f045d8cf56b7b8439a9e239a"
+    },
+    {
+      "file": "source/build_review.py",
+      "bytes": 12977,
+      "sha256": "22f87a066454a3b5e4925d140a60599f6452e126c24755a2400755b4e81c30ec"
+    },
+    {
+      "file": "source/density_and_shop_proposal.py",
+      "bytes": 4495,
+      "sha256": "bab119d12aa9ef4144668781a2d11b853a1f1cbd573fdda9cd12b05f8b6d8aa0"
+    },
+    {
+      "file": "source/diagnostic_cameras.py",
+      "bytes": 1097,
+      "sha256": "bd2cdd74b13349e51cde07c97e125b639f117df8953f0f748ab0715774d887bf"
+    },
+    {
+      "file": "source/export_review_master.py",
+      "bytes": 504,
+      "sha256": "5ac8fc05410d7c94bbe88757eb4d96f41c9813cd74a264fc6544fa5a6ddc8630"
+    },
+    {
+      "file": "source/package_checkpoint.py",
+      "bytes": 5414,
+      "sha256": "6b67adddbdf46caa8204581f9b29cda117c2108e9dcd581b147a0e534334ad31"
+    },
+    {
+      "file": "source/prepare_shop_interior.py",
+      "bytes": 5489,
+      "sha256": "ddae4f5cdf71b1347423603690f9d7ba0ce71cfbbddf3cb81b2aa3640f24aafd"
+    },
+    {
+      "file": "source/preservation_audit.py",
+      "bytes": 3427,
+      "sha256": "7352e3a6e325fb95b72cd6791fb73016633eff5195875d949001fa0888618c36"
+    },
+    {
+      "file": "source/provenance/DejaVu-LICENSE.txt",
+      "bytes": 3859,
+      "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9"
+    },
+    {
+      "file": "source/provenance/GRAPHICS-LICENSES.txt",
+      "bytes": 349,
+      "sha256": "bcbd77fabf1ddfbfd1a1622b45e014fedf44c8543ae4cb2761739158766fd753"
+    },
+    {
+      "file": "source/provenance/Noto-OFL.txt",
+      "bytes": 5208,
+      "sha256": "075f91382875da1c4b491f1facf2586f55448705133264d98ce15cab6211b125"
+    },
+    {
+      "file": "source/provenance/Poly-Haven-CC0.txt",
+      "bytes": 219,
+      "sha256": "b1b87f1d8fc29ee8291c94b701a9fb285da67b9c14ec7e9dd5d48d03dfb92779"
+    },
+    {
+      "file": "source/provenance/REV05A-provenance.json",
+      "bytes": 1289,
+      "sha256": "06e661fe8e90f40232808aecb5878c1046ebc267566722156a1614e24e669a80"
+    },
+    {
+      "file": "source/provenance/asset-provenance.json",
+      "bytes": 13708,
+      "sha256": "f0a92c51f4fc3254267b83843808a2eda656b3b71fe19d672cbc6223f5802438"
+    },
+    {
+      "file": "source/provenance/material-provenance.json",
+      "bytes": 38314,
+      "sha256": "b2beaf671f43f2d45f46ddde7c2ff74a04bed4c51ed6741e4148fb745fca3c9c"
+    },
+    {
+      "file": "source/render_comparison.py",
+      "bytes": 2326,
+      "sha256": "d04e171fdafd35540998013b7daf99a35e0b08ec4cfc01757f3eb3a5f7b03c5a"
+    },
+    {
+      "file": "source/test_proposed_cavity.py",
+      "bytes": 830,
+      "sha256": "6175a4440aa559df2e15106b5df5c80ec34f56ba59078bd788e0eef551153ba2"
+    },
+    {
+      "file": "source/validate_crowd.py",
+      "bytes": 3902,
+      "sha256": "1828bde514ae4a9bd71b07951121121498df08c6457d0c691f352ebbd60791ee"
+    },
+    {
+      "file": "source/validate_layout.py",
+      "bytes": 4598,
+      "sha256": "97c71cf0a963c74da7c309cfe640327245c2c686324b934a23b06c7af3e852f7"
+    },
+    {
+      "file": "source/verify_shading_and_restore.py",
+      "bytes": 4608,
+      "sha256": "ea0e6ec35dcc4c5187323ca2e0178c8b7ca58008886145e8aec23e7ef76047a6"
+    }
+  ]
+}

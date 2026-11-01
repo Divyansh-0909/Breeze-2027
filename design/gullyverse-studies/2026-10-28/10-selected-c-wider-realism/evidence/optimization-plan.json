@@ -1,0 +1,114 @@
+{
+  "status": "BLENDER_PROPOSAL_ONLY_NOT_WEB_INTEGRATION",
+  "baselineAndCandidateBudgets": [
+    {
+      "variant": "A",
+      "triangles": 88748,
+      "evaluatedVertices": 55594,
+      "meshAndConvertedCurveObjects": 2451,
+      "materialDatablocks": 59,
+      "shaderNodes": 554,
+      "uniqueReferencedImages": 26,
+      "estimatedReferencedRGBA8MipMiB": 109.75740559895833,
+      "storedLights": 17,
+      "activeLights": 12
+    },
+    {
+      "variant": "B",
+      "triangles": 91882,
+      "evaluatedVertices": 57358,
+      "meshAndConvertedCurveObjects": 2546,
+      "materialDatablocks": 60,
+      "shaderNodes": 557,
+      "uniqueReferencedImages": 27,
+      "estimatedReferencedRGBA8MipMiB": 112.80916341145833,
+      "storedLights": 17,
+      "activeLights": 12
+    },
+    {
+      "variant": "C",
+      "triangles": 89952,
+      "evaluatedVertices": 56266,
+      "meshAndConvertedCurveObjects": 2485,
+      "materialDatablocks": 61,
+      "shaderNodes": 560,
+      "uniqueReferencedImages": 28,
+      "estimatedReferencedRGBA8MipMiB": 115.86092122395833,
+      "storedLights": 17,
+      "activeLights": 12
+    },
+    {
+      "variant": "C+A PILOT",
+      "triangles": 107428,
+      "evaluatedVertices": 65540,
+      "meshAndConvertedCurveObjects": 2744,
+      "materialDatablocks": 80,
+      "shaderNodes": 848,
+      "uniqueReferencedImages": 33,
+      "estimatedReferencedRGBA8MipMiB": 138.527587890625,
+      "storedLights": 17,
+      "activeLights": 12
+    },
+    {
+      "variant": "C+A WORLD",
+      "triangles": 121320,
+      "evaluatedVertices": 74728,
+      "meshAndConvertedCurveObjects": 2828,
+      "materialDatablocks": 86,
+      "shaderNodes": 883,
+      "uniqueReferencedImages": 33,
+      "estimatedReferencedRGBA8MipMiB": 138.527587890625,
+      "storedLights": 17,
+      "activeLights": 12
+    }
+  ],
+  "newTextureBytes": 0,
+  "newDecodedImagesMiB": 0,
+  "partsBeforeGrouping": 1121,
+  "actualStaticGroups": 84,
+  "drawCalls": "not measured; object owners are an upper-bound planning proxy only",
+  "GPU_VRAM": "not measured",
+  "LOD_proposals": [
+    {
+      "tier": "near",
+      "geometry": "keep architectural and protected shutter silhouettes",
+      "textures": "reuse source image owners",
+      "implemented": false
+    },
+    {
+      "tier": "mid",
+      "geometry": "bake thin service saddles, seam folds and small fixings; keep window/awning/coping returns",
+      "implemented": false
+    },
+    {
+      "tier": "far",
+      "geometry": "spatial/material facade chunks, preserve signs and artist projection",
+      "implemented": false
+    }
+  ],
+  "mobileTextureProposal": {
+    "four1KNormalRoughnessMapsTo512": true,
+    "RGBA8MipSavingMiB": 16,
+    "artistImagesUnchanged": true,
+    "implemented": false,
+    "requires": "matched phone A/B before adoption"
+  },
+  "crowdBatchingProposal": {
+    "actors": 180,
+    "preserveEachIdentityAndFootCoordinate": true,
+    "useSharedPoseAndApparelPrototypes": true,
+    "implemented": false
+  },
+  "stockBatchingProposal": {
+    "protectedItems": 225,
+    "sharedCartonShelfPrototypesOrPerBayStaticMerge": true,
+    "implemented": false
+  },
+  "animationProposal": {
+    "bonesPerActor": 12,
+    "matrixBytesFor180Actors": 138240,
+    "includesAnimationOrSkinningRuntimeCost": false,
+    "implemented": false
+  },
+  "decisionGate": "No new runtime budget invented; validate actual glTF draws, shader preparation, image residency and physical laptop/phone frame times in a separately approved phase."
+}

@@ -1,0 +1,8 @@
+{
+  "cause": "B-only objects were not in the active Blender dependency graph when the first composition read matrix_world.",
+  "fix": "Use unparented local matrix_basis transforms (not unevaluated cached matrix_world), activate the owning scene, and validate evaluated geometry and actual actor positions/orientation.",
+  "toleranceRelaxed": false,
+  "initialIncorrectBFramesRemovedFromReview": true,
+  "retainedFinalCandidates": "Only unaffected A/C stills; their authored and measured crowd transforms matched.",
+  "initialProbeEvidence": "initial-crowd-probe.json"
+}

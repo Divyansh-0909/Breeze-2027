@@ -1,0 +1,27 @@
+{
+  "status": "PASS_SCOPED_REMOVAL_AND_UNCHANGED_CLEARANCE_CHECKS",
+  "originalRevealRuleStatus": "REVIEW_FAILURES",
+  "retiredCondition": "screenVisibility[01-landing].visible == 0; removal explicitly requested by user. No geometry tolerances changed.",
+  "rayCounts": {
+    "A": {
+      "01-landing": 11,
+      "03-opening": 14,
+      "09-screen-reveal": 15
+    },
+    "B": {
+      "01-landing": 11,
+      "03-opening": 14,
+      "09-screen-reveal": 15
+    },
+    "C": {
+      "01-landing": 11,
+      "03-opening": 14,
+      "09-screen-reveal": 15
+    }
+  },
+  "floorToleranceM": 0.002,
+  "capsuleRadiusM": 0.35,
+  "allOriginalFloorAndCapsuleChecksPass": true,
+  "allSampledCameraChecksPass": true,
+  "full3mCorridorNotCertified": true
+}

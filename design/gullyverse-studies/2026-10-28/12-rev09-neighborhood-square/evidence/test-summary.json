@@ -1,0 +1,42 @@
+[
+  {
+    "test": "audit_preservation",
+    "exitCode": 0,
+    "seconds": 17.528079789000913
+  },
+  {
+    "test": "validate_houses",
+    "exitCode": 0,
+    "seconds": 7.3442841739961295
+  },
+  {
+    "test": "validate_layout",
+    "exitCode": 0,
+    "seconds": 149.65628457300045,
+    "initialExitCode": -9,
+    "finalExitCode": 0,
+    "finalLog": "test-layout-final-serial.log",
+    "rerunReason": "Initial concurrent test/render attempt exceeded cloud memory; unchanged validator passed after serialization",
+    "tolerancesChanged": false
+  },
+  {
+    "test": "validate_shutters",
+    "exitCode": 0,
+    "seconds": 6.5729889499998535
+  },
+  {
+    "test": "validate_wall_placements",
+    "exitCode": 0,
+    "seconds": 4.270999374995881
+  },
+  {
+    "test": "validate_bodies_and_shops",
+    "exitCode": 0,
+    "seconds": 10.991203988996858
+  },
+  {
+    "test": "validate_sightlines",
+    "exitCode": 0,
+    "seconds": 9.539510784001322
+  }
+]

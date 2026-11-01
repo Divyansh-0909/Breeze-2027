@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/workspace/gullyverse-world-concept/2026-10-28/10-selected-c-wider-realism/source/audit_world.py", line 25, in <module>
+    ev=o.evaluated_get(dep);m=ev.to_mesh();assert [list(v.co)for v in m.vertices]==[list(v.co)for v in cp.data.vertices];assert [list(p.vertices)for p in m.polygons]==[list(p.vertices)for p in cp.data.polygons];ev.to_mesh_clear()
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Error: script failed, file: '/workspace/gullyverse-world-concept/2026-10-28/10-selected-c-wider-realism/source/audit_world.py', exiting.
+Blender 4.3.2
+Read blend: "/workspace/gullyverse-world-concept/2026-10-28/10-selected-c-wider-realism/source/Gullyverse-Selected-C-Wider-Realism.blend"
+Read blend: "/workspace/gullyverse-world-concept/2026-10-28/10-selected-c-wider-realism/source/APPROVED-PILOT.blend"
+Read blend: "/workspace/gullyverse-world-concept/2026-10-28/10-selected-c-wider-realism/source/Gullyverse-Selected-C-Wider-Realism.blend"
+
+Blender quit

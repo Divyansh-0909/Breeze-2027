@@ -1,0 +1,16 @@
+{
+  "status": "BLOCKED_ORIGINAL_ARTWORK_NOT_ACCESSIBLE",
+  "applied": false,
+  "scope": "Measured private placement plan, not completed graffiti art",
+  "matchingAcrossVariants": ["A", "B", "C"],
+  "eligibleClosedShutters": 3,
+  "optionalAdditionalNames": [],
+  "assignments": [
+    {"artist": "CHAAR DIWARI", "host": "Closed rolling shutter.001", "side": "RIGHT", "centerYMetres": -25, "hostBoundsMetres": [[3.7300000190734863,3.8499999046325684],[-28.450000762939453,-21.549999237060547],[6,8.800000190734863]], "maximumArtworkWidthM": 6.3, "maximumArtworkHeightM": 2.1, "centerZMetres": 7.5, "sourceDriveId": null, "sourceURL": null, "sourceFileSHA256": null, "licenseStatus": "Await original user-supplied file and provenance; no public redistribution license inferred"},
+    {"artist": "RITVIZ", "host": "Closed rolling shutter", "side": "LEFT", "centerYMetres": -16, "hostBoundsMetres": [[-3.8499999046325684,-3.7300000190734863],[-19.450000762939453,-12.550000190734863],[6,8.800000190734863]], "maximumArtworkWidthM": 6.3, "maximumArtworkHeightM": 2.1, "centerZMetres": 7.5, "sourceDriveId": null, "sourceURL": null, "sourceFileSHA256": null, "licenseStatus": "Await original user-supplied file and provenance; no public redistribution license inferred"},
+    {"artist": "NEHA KAKKAR", "host": "Closed rolling shutter.002", "side": "RIGHT", "centerYMetres": 2, "hostBoundsMetres": [[3.7300000190734863,3.8499999046325684],[-1.4500000476837158,5.449999809265137],[6.599999904632568,9.399999618530273]], "maximumArtworkWidthM": 6.3, "maximumArtworkHeightM": 2.1, "centerZMetres": 8.1, "sourceDriveId": null, "sourceURL": null, "sourceFileSHA256": null, "licenseStatus": "Await original user-supplied file and provenance; no public redistribution license inferred"}
+  ],
+  "projectionPlan": "Preserve exact source aspect ratio inside the measured box; use one world Y/Z planar projection per shutter on object-local material clones of BOTH the existing shutter backing and its 18 physical slats. Reverse horizontal orientation on the opposing side. Mix nonmetallic matte paint over original material using artwork alpha, retaining host grain/bump and contact wear. No floating plane, geometry rebuild or shared-material mutation. Test front/oblique and walking views before acceptance.",
+  "latchPolicy": "Preserve existing metal latch and avoid covering it; artwork position may be adjusted inside the measured region after source aspect-ratio inspection.",
+  "validationPending": ["source authenticity and artist mapping", "alpha/background extraction using actual supplied source", "legibility and proportions", "paint on slats and backing", "front/oblique clipping and z-fighting", "mobile readability"]
+}
