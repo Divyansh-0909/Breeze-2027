@@ -33,11 +33,14 @@ export default async function Page() {
     where: { event_org: curr_club.club_name },
   });
 
-  // Fetch ALL confirmed events for this club in a single query
+  // Fetch ALL confirmed events for this club in a single query (approved transactions only)
   const allConfirmedEvents = await prisma.confirmedEvent.findMany({
     where: {
       EventItem: {
         event_org: curr_club.club_name,
+      },
+      SubmittedTransaction: {
+        approved: true,
       },
     },
     include: { SubmittedTransaction: true },
@@ -134,10 +137,8 @@ export default async function Page() {
                 {users.map((user) => (
                   <div
                     key={user.token}
-                    className="grid grid-cols-[1.5fr_1.5fr_1fr_1fr_1fr_0.8fr_0.8fr] gap-3 px-4 py-2.5 text-[13px] transition-colors duration-75"
+                    className="grid grid-cols-[1.5fr_1.5fr_1fr_1fr_1fr_0.8fr_0.8fr] gap-3 px-4 py-2.5 text-[13px] transition-colors duration-75 hover:bg-[#111]"
                     style={{ borderBottom: '1px solid #141414' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = '#111'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                   >
                     <div className="font-medium truncate" style={{ color: '#e5e5e5' }}>{user.SubmittedTransaction.name}</div>
                     <div className="truncate" style={{ color: '#888' }}>{user.SubmittedTransaction.email}</div>

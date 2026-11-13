@@ -10,6 +10,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { deleteEvent, toggleEventRegistration } from "./actions";
 import { Button } from "@/components/ui/button";
 import { useTransition } from "react";
@@ -17,7 +22,7 @@ import { useRouter } from "next/navigation";
 import { EditEventDialog } from "./edit-event-dialog";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
-import { Pencil, Trash2, Filter } from "lucide-react";
+import { Pencil, Trash2, Eye, X, Loader2 } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -41,8 +46,11 @@ export default function EventsTable({
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [eventToDelete, setEventToDelete] = useState<EventItem | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [activeTab, setActiveTab] = useState<"all" | "cultural" | "technical">("all");
   const [selectedClub, setSelectedClub] = useState<string>("all");
+  const [posterPreviewUrl, setPosterPreviewUrl] = useState<string | null>(null);
+  const [showPosterPreview, setShowPosterPreview] = useState(false);
 
   const clubList = Array.from(
     new Set(allEvents.map((e) => e.event_org).filter(Boolean))
@@ -63,12 +71,13 @@ export default function EventsTable({
     return (
       <div className="rounded-lg overflow-hidden" style={{ border: '1px solid #1e1e1e' }}>
         {/* Header */}
-        <div className="grid grid-cols-[1.8fr_1fr_0.6fr_0.8fr_0.8fr_0.8fr_100px] gap-3 px-4 py-2.5 text-[11px] font-medium uppercase tracking-wider" style={{ background: '#141414', color: '#555', borderBottom: '1px solid #1e1e1e' }}>
+        <div className="grid grid-cols-[1.8fr_1fr_0.6fr_0.8fr_0.8fr_0.5fr_0.8fr_100px] gap-3 px-4 py-2.5 text-[11px] font-medium uppercase tracking-wider" style={{ background: '#141414', color: '#555', borderBottom: '1px solid #1e1e1e' }}>
           <div>Event</div>
           <div>Club</div>
           <div>Type</div>
           <div>Price</div>
           <div>Date</div>
+          <div>Poster</div>
           <div>Status</div>
           <div className="text-right">Actions</div>
         </div>
@@ -77,7 +86,7 @@ export default function EventsTable({
         {eventsList.map((event) => (
           <div
             key={event.id}
-            className="grid grid-cols-[1.8fr_1fr_0.6fr_0.8fr_0.8fr_0.8fr_100px] gap-3 px-4 py-3 items-center transition-colors duration-75"
+            className="grid grid-cols-[1.8fr_1fr_0.6fr_0.8fr_0.8fr_0.5fr_0.8fr_100px] gap-3 px-4 py-3 items-center transition-colors duration-75"
             style={{ borderBottom: '1px solid #1a1a1a' }}
             onMouseEnter={(e) => { e.currentTarget.style.background = '#141414'; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
@@ -118,6 +127,22 @@ export default function EventsTable({
               <span className="text-[13px]" style={{ color: '#888' }}>{event.event_date}</span>
               {event.event_end_date && (
                 <span className="text-[11px] block" style={{ color: '#555' }}>→ {event.event_end_date}</span>
+              )}
+            </div>
+
+            {/* Poster Preview */}
+            <div>
+              {event.image_url ? (
+                <button
+                  onClick={() => { setPosterPreviewUrl(event.image_url); setShowPosterPreview(true); }}
+                  className="flex items-center gap-1 px-2 py-1 rounded text-[11px] font-medium transition-colors cursor-pointer"
+                  style={{ background: 'rgba(129,140,248,0.1)', color: '#818cf8', border: '1px solid rgba(129,140,248,0.2)' }}
+                >
+                  <Eye size={11} />
+                  View
+                </button>
+              ) : (
+                <span className="text-[11px]" style={{ color: '#444' }}>None</span>
               )}
             </div>
 
@@ -239,28 +264,64 @@ export default function EventsTable({
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="px-5 py-3 gap-2" style={{ borderTop: '1px solid #1e1e1e' }}>
-            <AlertDialogCancel className="h-8 text-[13px] font-medium rounded-md cursor-pointer" style={{ background: 'transparent', border: '1px solid #262626', color: '#888' }}>
+            <AlertDialogCancel disabled={isDeleting} className="h-8 text-[13px] font-medium rounded-md cursor-pointer" style={{ background: 'transparent', border: '1px solid #262626', color: '#888' }}>
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
+              disabled={isDeleting}
               className="h-8 text-[13px] font-medium rounded-md cursor-pointer"
-              style={{ background: 'rgba(239,68,68,0.9)', color: '#fff' }}
+              style={{ background: isDeleting ? '#555' : 'rgba(239,68,68,0.9)', color: '#fff' }}
               onClick={() => {
                 if (eventToDelete) {
+                  setIsDeleting(true);
                   startTransition(async () => {
                     await deleteEvent(eventToDelete.id);
                     router.refresh();
                     setDeleteDialogOpen(false);
                     setEventToDelete(null);
+                    setIsDeleting(false);
                   });
                 }
               }}
             >
-              Delete Event
+              {isDeleting ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 size={14} className="animate-spin" />
+                  Deleting…
+                </span>
+              ) : (
+                "Delete Event"
+              )}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Poster Preview Modal */}
+      {showPosterPreview && posterPreviewUrl && (
+        <Dialog open={showPosterPreview} onOpenChange={setShowPosterPreview}>
+          <DialogContent className="sm:max-w-[600px] max-h-[90vh] p-0 gap-0 overflow-hidden" style={{ background: '#141414', border: '1px solid #1e1e1e' }}>
+            <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid #1e1e1e' }}>
+              <DialogTitle className="text-[13px] font-medium" style={{ color: '#e5e5e5' }}>Poster Preview</DialogTitle>
+              <button
+                onClick={() => setShowPosterPreview(false)}
+                className="p-1 rounded transition-colors cursor-pointer"
+                style={{ color: '#888' }}
+              >
+                <X size={16} />
+              </button>
+            </div>
+            <div className="p-4 flex items-center justify-center" style={{ maxHeight: 'calc(90vh - 60px)', overflow: 'auto' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={posterPreviewUrl}
+                alt="Event poster preview"
+                style={{ maxWidth: '100%', maxHeight: '70vh', objectFit: 'contain', borderRadius: '8px' }}
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 }

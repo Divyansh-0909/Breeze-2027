@@ -5,10 +5,19 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
 import { verifyAuth } from "@/lib/auth";
 
+/**
+ * Clubs cannot create events. Only BREEZE admin can create events.
+ * This action is kept for backward compatibility but will reject non-admin requests.
+ */
 export async function createEvent(formData: FormData) {
   const auth = await verifyAuth();
   if (auth.authenticated === false) {
     return { success: false, error: "Unauthorized" };
+  }
+
+  // Only BREEZE admin can create events
+  if (!auth.isBreezeAdmin) {
+    return { success: false, error: "Only Breeze Admin can create events. Please contact the admin team." };
   }
 
   try {
@@ -28,7 +37,7 @@ export async function createEvent(formData: FormData) {
       event_price: Number(formData.get("event_price")),
       event_venue: formData.get("event_venue"),
       event_date: formData.get("event_date"),
-      event_org: auth.isBreezeAdmin ? formData.get("event_org") : auth.clubName,
+      event_org: formData.get("event_org"),
       event_type: formData.get("event_type"),
       event_end_date: formData.get("event_end_date") || null,
       event_pair_price: formData.get("event_pair_price") ? Number(formData.get("event_pair_price")) : null,
@@ -36,12 +45,12 @@ export async function createEvent(formData: FormData) {
 
     await prisma.eventItem.create({
       data: {
-        event_name: eventData.event_name.toString(),
-        event_description: eventData.event_description.toString(),
+        event_name: eventData.event_name?.toString() || "",
+        event_description: eventData.event_description?.toString() || "",
         event_price: eventData.event_price,
-        event_org: eventData.event_org.toString(),
-        event_date: eventData.event_date.toString(),
-        event_venue: eventData.event_venue.toString(),
+        event_org: eventData.event_org?.toString() || "",
+        event_date: eventData.event_date?.toString() || "",
+        event_venue: eventData.event_venue?.toString() || "",
         event_type: eventData.event_type as "Cultural" | "Technical",
         image_url: publicUrlData.publicUrl,
         registration_open: true,
@@ -56,10 +65,18 @@ export async function createEvent(formData: FormData) {
   }
 }
 
+/**
+ * Clubs cannot delete events. Only BREEZE admin can delete events.
+ */
 export async function deleteEvent(eventId: string) {
   const auth = await verifyAuth();
   if (auth.authenticated === false) {
     return { success: false, error: "Unauthorized" };
+  }
+
+  // Only BREEZE admin can delete events
+  if (!auth.isBreezeAdmin) {
+    return { success: false, error: "Only Breeze Admin can delete events. Please contact the admin team." };
   }
 
   const event = await prisma.eventItem.findUnique({
@@ -69,10 +86,6 @@ export async function deleteEvent(eventId: string) {
 
   if (!event) {
     return { success: false, error: "Event not found" };
-  }
-
-  if (!auth.isBreezeAdmin && event.event_org !== auth.clubName) {
-    return { success: false, error: "You can only delete your club's events" };
   }
 
   try {
@@ -88,10 +101,18 @@ export async function deleteEvent(eventId: string) {
   }
 }
 
+/**
+ * Clubs cannot update events. Only BREEZE admin can update events.
+ */
 export async function updateEvent(eventId: string, formData: FormData) {
   const auth = await verifyAuth();
   if (auth.authenticated === false) {
     return { success: false, error: "Unauthorized" };
+  }
+
+  // Only BREEZE admin can update events
+  if (!auth.isBreezeAdmin) {
+    return { success: false, error: "Only Breeze Admin can update events. Please contact the admin team." };
   }
 
   const event = await prisma.eventItem.findUnique({
@@ -103,10 +124,6 @@ export async function updateEvent(eventId: string, formData: FormData) {
     return { success: false, error: "Event not found" };
   }
 
-  if (!auth.isBreezeAdmin && event.event_org !== auth.clubName) {
-    return { success: false, error: "You can only modify your club's events" };
-  }
-
   try {
     const eventData = {
       event_name: formData.get("event_name"),
@@ -114,7 +131,7 @@ export async function updateEvent(eventId: string, formData: FormData) {
       event_price: Number(formData.get("event_price")),
       event_venue: formData.get("event_venue"),
       event_date: formData.get("event_date"),
-      event_org: auth.isBreezeAdmin ? formData.get("event_org") : auth.clubName,
+      event_org: formData.get("event_org"),
       event_type: formData.get("event_type") as "Cultural" | "Technical",
       event_end_date: formData.get("event_end_date") || null,
       event_pair_price: formData.get("event_pair_price") ? Number(formData.get("event_pair_price")) : null,
@@ -142,14 +159,20 @@ export async function updateEvent(eventId: string, formData: FormData) {
   }
 }
 
+/**
+ * Clubs cannot toggle event registration. Only BREEZE admin can do this.
+ */
 export async function toggleEventRegistration(eventId: string, registrationOpen: boolean) {
-  // Verify club admin is authenticated
   const auth = await verifyAuth();
   if (auth.authenticated === false) {
     return { success: false, error: "Unauthorized" };
   }
 
-  // Verify this event belongs to the user's club
+  // Only BREEZE admin can toggle registration
+  if (!auth.isBreezeAdmin) {
+    return { success: false, error: "Only Breeze Admin can modify event registration. Please contact the admin team." };
+  }
+
   const event = await prisma.eventItem.findUnique({
     where: { id: eventId },
     select: { event_org: true },
@@ -157,11 +180,6 @@ export async function toggleEventRegistration(eventId: string, registrationOpen:
 
   if (!event) {
     return { success: false, error: "Event not found" };
-  }
-
-  // Allow BREEZE admin to toggle any event, or club admin only their own
-  if (!auth.isBreezeAdmin && event.event_org !== auth.clubName) {
-    return { success: false, error: "You can only modify your club's events" };
   }
 
   try {

@@ -100,7 +100,7 @@ export default function LoginPage() {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="admin@breeze.com"
+                        placeholder="Enter your email"
                         {...field}
                         className="h-9 text-[13px] rounded-lg transition-colors duration-150"
                         style={{

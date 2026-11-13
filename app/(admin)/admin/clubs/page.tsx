@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { createClient } from "@/utils/supabase/server";
-import EventTable from "./event-table";
-import AddEvent from "./add-event";
+import ClubEventsReadOnly from "./club-events-readonly";
 
 export const dynamic = "force-dynamic";
 
@@ -31,29 +30,83 @@ export default async function Page() {
       );
     }
 
+    // Fetch club events (read-only)
     const events = await prisma.eventItem.findMany({
       where: { event_org: curr_club.club_name },
       orderBy: { created_at: "desc" },
     });
 
-    return (
-      <div className="px-8 py-6 max-w-[1200px]">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-[18px] font-semibold tracking-[-0.02em]" style={{ color: '#e5e5e5' }}>
-              {curr_club.club_name}
-            </h1>
-            <p className="text-[13px] mt-0.5" style={{ color: '#666' }}>
-              Manage your club&apos;s events and registrations
-            </p>
-          </div>
-          <AddEvent curr_club={curr_club} />
-        </div>
+    // Fetch approved transactions that contain this club's events
+    const eventIds = events.map((e) => e.id);
 
-        {/* Events Table */}
-        <EventTable curr_club={curr_club} events={events} />
-      </div>
+    // Get confirmed event entries for this club's events
+    const confirmedEntries = await prisma.confirmedEvent.findMany({
+      where: { id: { in: eventIds } },
+      include: {
+        SubmittedTransaction: true,
+        EventItem: true,
+      },
+    });
+
+    // Filter only approved transactions
+    const approvedTransactions = confirmedEntries.filter(
+      (ce) => ce.SubmittedTransaction.approved === true
+    );
+
+    // Calculate stats
+    const totalTicketsSold = approvedTransactions.reduce(
+      (sum, ce) => sum + Number(ce.quantity),
+      0
+    );
+
+    const totalRevenue = approvedTransactions.reduce((sum, ce) => {
+      const price = ce.EventItem.event_price;
+      return sum + Number(ce.quantity) * price;
+    }, 0);
+
+    // Build unique approved transaction list for display
+    const uniqueTransactionMap = new Map<string, {
+      token: string;
+      name: string;
+      email: string;
+      amount: number;
+      created_at: Date;
+      events: { name: string; quantity: number; price: number }[];
+    }>();
+
+    for (const ce of approvedTransactions) {
+      const tx = ce.SubmittedTransaction;
+      if (!uniqueTransactionMap.has(tx.token)) {
+        uniqueTransactionMap.set(tx.token, {
+          token: tx.token,
+          name: tx.name,
+          email: tx.email,
+          amount: 0,
+          created_at: tx.created_at,
+          events: [],
+        });
+      }
+      const entry = uniqueTransactionMap.get(tx.token)!;
+      const eventPrice = ce.EventItem.event_price;
+      entry.events.push({
+        name: ce.EventItem.event_name,
+        quantity: Number(ce.quantity),
+        price: eventPrice,
+      });
+      entry.amount += Number(ce.quantity) * eventPrice;
+    }
+
+    const transactionsForDisplay = Array.from(uniqueTransactionMap.values())
+      .sort((a, b) => b.created_at.getTime() - a.created_at.getTime());
+
+    return (
+      <ClubEventsReadOnly
+        clubName={curr_club.club_name}
+        events={events}
+        totalTicketsSold={totalTicketsSold}
+        totalRevenue={totalRevenue}
+        approvedTransactions={transactionsForDisplay}
+      />
     );
   } catch (error) {
     console.error("Error loading club events:", error);

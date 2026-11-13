@@ -43,7 +43,7 @@ export default function ClubLayout({
   };
 
   const navItems = [
-    { href: "/admin/clubs", label: "Manage Events", icon: Calendar, exact: true },
+    { href: "/admin/clubs", label: "My Events", icon: Calendar, exact: true },
     { href: "/admin/clubs/participants", label: "Participants", icon: Users },
   ];
 
@@ -93,7 +93,7 @@ export default function ClubLayout({
         {/* Nav */}
         <nav className="flex-1 px-2 py-3 space-y-1 overflow-y-auto">
           <div className="px-2.5 pb-1 text-[10px] font-semibold uppercase tracking-wider" style={{ color: "#555" }}>
-            Club Management
+            Dashboard
           </div>
           {navItems.map((item) => {
             const active = isActive(item.href, item.exact);

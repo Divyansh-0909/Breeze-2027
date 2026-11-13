@@ -33,6 +33,8 @@ export default function UsersPage() {
   const [isAddingUser, setIsAddingUser] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
   useEffect(() => { fetchUsers(); }, []);
 
   const fetchUsers = async () => {
@@ -46,8 +48,10 @@ export default function UsersPage() {
     }
   };
 
+  const isFormValid = Boolean(newEmail.trim() && newPassword.trim() && newRole);
+
   const handleAddUser = async () => {
-    if (!newEmail || !newPassword || !newRole) return;
+    if (!isFormValid) return;
     setIsAddingUser(true);
     try {
       const success = await addUser(newEmail, newPassword, newRole);
@@ -62,8 +66,13 @@ export default function UsersPage() {
   };
 
   const handleDeleteUser = async (userId: string) => {
-    const success = await deleteUser(userId);
-    if (success) fetchUsers();
+    setDeletingId(userId);
+    try {
+      const success = await deleteUser(userId);
+      if (success) fetchUsers();
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const inputStyle = { background: '#0a0a0a', border: '1px solid #262626', color: '#e5e5e5' };
@@ -94,15 +103,21 @@ export default function UsersPage() {
             </DialogHeader>
             <div className="p-5 space-y-4">
               <div className="space-y-1.5">
-                <Label className="text-[12px] font-medium" style={{ color: '#888' }} htmlFor="email">Email</Label>
-                <Input id="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder="user@example.com" className="h-8 text-[13px] rounded-md" style={inputStyle} />
+                <Label className="text-[12px] font-medium" style={{ color: '#888' }} htmlFor="email">
+                  Email <span style={{ color: '#f87171' }}>*</span>
+                </Label>
+                <Input id="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} placeholder="Enter email address" className="h-8 text-[13px] rounded-md" style={inputStyle} />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-[12px] font-medium" style={{ color: '#888' }} htmlFor="password">Password</Label>
-                <Input id="password" type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="h-8 text-[13px] rounded-md" style={inputStyle} />
+                <Label className="text-[12px] font-medium" style={{ color: '#888' }} htmlFor="password">
+                  Password <span style={{ color: '#f87171' }}>*</span>
+                </Label>
+                <Input id="password" type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="Enter password" className="h-8 text-[13px] rounded-md" style={inputStyle} />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-[12px] font-medium" style={{ color: '#aaa' }} htmlFor="club">Club</Label>
+                <Label className="text-[12px] font-medium" style={{ color: '#aaa' }} htmlFor="club">
+                  Club <span style={{ color: '#f87171' }}>*</span>
+                </Label>
                 <Select value={newRole} onValueChange={setNewRole}>
                   <SelectTrigger className="h-9 text-[13px] rounded-md font-medium border border-[#383842] bg-[#18181c] text-[#f4f4f5]">
                     <SelectValue placeholder="Select club" />
@@ -117,9 +132,29 @@ export default function UsersPage() {
                 </Select>
               </div>
               <div className="flex gap-2 pt-2" style={{ borderTop: '1px solid #1e1e1e' }}>
-                <Button onClick={() => setDialogOpen(false)} className="flex-1 h-8 text-[13px] font-medium rounded-md cursor-pointer" style={{ background: 'transparent', border: '1px solid #262626', color: '#888' }}>Cancel</Button>
-                <Button onClick={handleAddUser} disabled={isAddingUser || !newEmail || !newPassword || !newRole} className="flex-1 h-8 text-[13px] font-medium rounded-md cursor-pointer" style={{ background: '#e5e5e5', color: '#0a0a0a', opacity: isAddingUser ? 0.6 : 1 }}>
-                  {isAddingUser ? "Adding..." : "Add User"}
+                <Button disabled={isAddingUser} onClick={() => setDialogOpen(false)} className="flex-1 h-8 text-[13px] font-medium rounded-md cursor-pointer" style={{ background: 'transparent', border: '1px solid #262626', color: '#888' }}>Cancel</Button>
+                <Button
+                  onClick={handleAddUser}
+                  disabled={isAddingUser || !isFormValid}
+                  className="flex-1 h-8 text-[13px] font-medium rounded-md transition-all duration-150"
+                  style={{
+                    background: isFormValid ? '#e5e5e5' : '#262626',
+                    color: isFormValid ? '#0a0a0a' : '#666',
+                    cursor: isFormValid && !isAddingUser ? 'pointer' : 'not-allowed',
+                    opacity: isAddingUser ? 0.7 : 1,
+                  }}
+                >
+                  {isAddingUser ? (
+                    <span className="flex items-center justify-center gap-1.5">
+                      <svg className="animate-spin h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Adding…
+                    </span>
+                  ) : (
+                    "Add User"
+                  )}
                 </Button>
               </div>
             </div>
@@ -167,13 +202,21 @@ export default function UsersPage() {
               </div>
               <div className="flex justify-end">
                 <button
+                  disabled={deletingId === user.id}
                   onClick={() => handleDeleteUser(user.id)}
-                  className="p-1.5 rounded transition-colors duration-100 cursor-pointer"
+                  className="p-1.5 rounded transition-colors duration-100 cursor-pointer disabled:opacity-50"
                   style={{ color: '#666' }}
                   onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(248,113,113,0.1)'; e.currentTarget.style.color = '#f87171'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#666'; }}
                 >
-                  <Trash2 size={13} />
+                  {deletingId === user.id ? (
+                    <svg className="animate-spin h-3.5 w-3.5 text-[#f87171]" viewBox="0 0 24 24" fill="none">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>
+                  ) : (
+                    <Trash2 size={13} />
+                  )}
                 </button>
               </div>
             </div>
