@@ -108,7 +108,7 @@ const names = [
   "lightmap.hdr",
   "lightmap.png",
   "lightmap.ktx2",
-  ...(manifest.chunk === "contact-approach-ground" ? [] : ["contact-frontage.collision.glb", "triggers.json"]),
+  ...(manifest.collision?.uri === "contact-frontage.collision.glb" ? ["contact-frontage.collision.glb", "triggers.json"] : []),
 ];
 const rows = [];
 for (const file of names) {

@@ -5,7 +5,7 @@ import walkSpace from "./cypher-walk-space.json";
 
 type Point = { x: number; z: number };
 type Segment = readonly [number, number, number, number];
-type Limits = { start: number; end: number; halfWidth: number };
+type Limits = { start: number; end: number; halfWidth: number; spawnY: number };
 const { eyeHeight } = world;
 const radius = world.playerRadius;
 
@@ -72,7 +72,7 @@ export function createCypherSpace(limits?: Limits) {
     return { x, z };
   }
 
-  const spawnY = limits ? Math.max(first.from + 0.6, 11.9) : -27;
+  const spawnY = limits?.spawnY ?? -27;
   const spawn = () => {
     const position = { x: 0, z: -spawnY };
     const floor = grade(position);

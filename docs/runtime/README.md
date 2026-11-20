@@ -1,4 +1,4 @@
-Current integration subphase: [M2A native Contact journey](M2A-CONTACT-JOURNEY.md). The clean texture/alpha baseline remains preserved; full-world M2 integration is still in progress.
+Current integration covers the [native lane and cypher gate](M2B-CYPHER-GATE.md) and the [native Contact journey](M2A-CONTACT-JOURNEY.md). Full-world integration is in progress.
 
 # Current rendering correction
 

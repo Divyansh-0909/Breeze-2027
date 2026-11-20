@@ -18,6 +18,8 @@ def intersects(o):
  bb=[o.matrix_world@Vector(p)for p in o.bound_box];us=[p.dot(t)for p in bb];ds=[p.dot(n)for p in bb];zs=[p.z for p in bb]
  return min(us)<m['frameBoundsU'][1]+1.2 and max(us)>m['frameBoundsU'][0]-1.2 and min(ds)<-19.5 and max(ds)>-23.1 and min(zs)<13.5 and max(zs)>7.15
 def in_bounds(p):
+ if bounds := plan.get('selection', {}).get('worldFaceBounds'):
+  return all(lo <= p[i] <= hi for i, (lo, hi) in enumerate(bounds))
  depth=plan.get('selection',{}).get('depthBounds',[-23.1,-19.5])
  height=plan.get('selection',{}).get('heightBounds',[7.15,13.5])
  return m['frameBoundsU'][0]-1.2<=p.dot(t)<=m['frameBoundsU'][1]+1.2 and depth[0]<=p.dot(n)<=depth[1] and height[0]<=p.z<=height[1]
@@ -37,7 +39,7 @@ for old in sorted(native.objects,key=lambda o:o.name):
  if part=='local house light':omissions.append({'object':old.name,'reason':'Static light contribution baked; no runtime diffuse lamp'});scene.collection.objects.link(old);continue
  if old.type=='MESH'and ((old.name in plan['selection']['sourceObjects'])if plan.get('selection',{}).get('sourceObjects')else(part or intersects(old))):
   indices=None
-  if not part:
+  if not part and old.name not in plan.get('selection', {}).get('wholeObjects', []):
    indices=[p.index for p in old.data.polygons if in_bounds(old.matrix_world@p.center)]
    if not indices:scene.collection.objects.link(old);contexts.append(old.name);continue
   ob=copy_mesh(old,indices)

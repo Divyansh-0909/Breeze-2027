@@ -13,4 +13,20 @@ blender -b --python-exit-code 1 --python scripts/gullyverse/export-walk-space.py
 npm run test:immersive
 ```
 
-The tests drive the actual controller from the market lane through the gate and back. They cover grade joins, wall sliding and collision from either side of the gate. The renderer and other destination journeys are separate from this collision data.
+The tests drive the actual controller from the market lane through the gate and back. They cover grade joins, wall sliding and collision from either side of the gate. The centreline and player-radius samples also found native road geometry at all 1,248 points.
+
+## Browser preview
+
+Set `GULLYVERSE_RUNTIME_PREVIEW=1` on the local Next server and open `/runtime-preview/cypher`. The preview starts beyond the navigation stand and covers the open gate and forecourt. The geometry includes both connector houses and the adjoining asphalt faces, for 25 source objects and 15,196 triangles. It uses the existing asset pool, controller, input and shader preparation. The 1024 px, 128-sample diffuse lighting atlas has 11 denoised, linear-light mip levels. PBR remains a separate 2048 px bake, with a 1024 px mobile texture tier.
+
+```sh
+# Rebuild with the pinned toolchain from TEXTURE-ALPHA-FIX.md
+bash scripts/gullyverse/build-cypher-gate.sh /absolute/path/to/frozen-Rev15Z.blend /writable/gate-build
+CHROMIUM_BIN=/usr/bin/chromium node scripts/gullyverse/cypher-gate.browser.cjs /writable/review-folder
+```
+
+The browser test walks through and back with a keyboard, checks the same canvas remains mounted, walks through again using iPhone touch emulation, and verifies the WebGL fallback. The native source stays locked. The night preview around the gate is very dark. Full scene assembly and native-to-browser lighting comparison are pending. The market lane visual chunks, quarry handoff, outer cypher and the destination journeys remain future integration work.
+
+## Contact database
+
+The checked-in Contact migration reconciles the server's existing `ContactSubmission` model with the Prisma migration history. The disposable database test verifies creation with row-level security, form validation and persistence, and applying the migration again with a submission already present. The hosted login and admin inbox still need integration testing.
