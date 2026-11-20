@@ -88,7 +88,11 @@ export function SceneRenderer({ runtime,wallPreview }: { runtime: ImmersiveRunti
   }, 1);
   return null;
 }
-export function FrameController({ runtime, curtain }: { runtime: ImmersiveRuntime; curtain: React.RefObject<HTMLDivElement | null> }) {
+export function FrameController({ runtime, curtain, holdCurtain }: {
+  runtime: ImmersiveRuntime;
+  curtain: React.RefObject<HTMLDivElement | null>;
+  holdCurtain?: React.RefObject<boolean>;
+}) {
   const { gl, scene, setDpr } = useThree();
   const memoryAt = useRef(0);
   const windowStats = useRef({ elapsed: 0, count: 0, fast: 0, cooldown: 0 });
@@ -122,7 +126,7 @@ export function FrameController({ runtime, curtain }: { runtime: ImmersiveRuntim
     if (camera instanceof THREE.PerspectiveCamera && camera.fov !== p.fov) { camera.fov = p.fov; camera.updateProjectionMatrix(); }
     poseEuler.current.set(p.pitch, p.yaw, 0, "YXZ");
     camera.quaternion.setFromEuler(poseEuler.current);
-    if (curtain.current) curtain.current.style.opacity = String(runtime.revealOpacity);
+    if (curtain.current) curtain.current.style.opacity = holdCurtain?.current ? "1" : String(runtime.revealOpacity);
     const state = runtime.getSnapshot();
     const diagnostics = window.__gullyverse;
     if (diagnostics && !runtime.suspended) {

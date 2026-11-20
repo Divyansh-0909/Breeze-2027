@@ -1,19 +1,29 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { AgXToneMapping, Color, Euler, PerspectiveCamera } from "three";
 import { useImmersiveInput } from "../immersive/input";
 import { ReadinessGate, SceneRenderer } from "../immersive/rendering";
 import { ImmersiveRuntime } from "../immersive/runtime";
+import { world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
 import { createCypherSpace } from "./cypher-space";
 import { mountSponsorDisplay } from "./sponsor-display";
+import { mountMarketLamps } from "./market-lamps";
 import walkSpace from "./cypher-walk-space.json";
 
-const gate = createCypherSpace({ start: 1.5, end: 21.5, halfWidth: 5.5, spawnY: 2.2, spawnPitch: 0.27 });
-const assetRoot = "/models/gullyverse/locked-rev15z-cypher-";
-const zoneAt = (z: number) => z < -15.65 ? "Cypher forecourt" : z < -11.4 ? "Cypher gate" : "Navigation approach";
+const market = createCypherSpace({ start: -29.5, end: 21.5, halfWidth: 5.5, spawnY: -27.6 });
+const approach = createCypherSpace({ start: -29.5, end: 21.5, halfWidth: 5.5, spawnY: 2.2, spawnPitch: 0.27 });
+const assetRoot = "/models/gullyverse/locked-rev15z-";
+const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
+type Start = "quarry" | "market" | "approach";
+const zoneAt = (z: number) => {
+  if (z < -15.65) return "Cypher forecourt";
+  if (z < -11.4) return "Cypher gate";
+  if (z < -1.5) return "Navigation approach";
+  return "Market lane";
+};
 
 class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFailure(): void }, { failed: boolean }> {
   state = { failed: false };
@@ -31,6 +41,7 @@ function GateScene({ runtime, curtain, reportZone }: {
   const [pool] = useState(() => new BakedAssetPool(gl));
   const [assets, setAssets] = useState<BakedAsset[]>();
   const display = useRef<Awaited<ReturnType<typeof mountSponsorDisplay>> | undefined>(undefined);
+  const lamps = useRef<ReturnType<typeof mountMarketLamps> | undefined>(undefined);
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   const euler = useRef(new Euler(0, 0, 0, "YXZ"));
   const zone = useRef(zoneAt(runtime.pose.z));
@@ -39,6 +50,8 @@ function GateScene({ runtime, curtain, reportZone }: {
     const abort = new AbortController();
     const releases = new Set<() => void>();
     const releaseAll = () => {
+      lamps.current?.dispose();
+      lamps.current = undefined;
       display.current?.dispose();
       display.current = undefined;
       releases.forEach(release => release());
@@ -67,15 +80,18 @@ function GateScene({ runtime, curtain, reportZone }: {
       }
     }
     async function load() {
-      const [gateAsset, approach] = await Promise.all([
-        loadChunk(assetRoot + "gate/"),
-        loadChunk(assetRoot + "approach/"),
+      const [gateAsset, signAsset, south, north] = await Promise.all([
+        loadChunk(assetRoot + "cypher-gate/"),
+        loadChunk(assetRoot + "cypher-approach/"),
+        loadChunk(assetRoot + "market-south/"),
+        loadChunk(assetRoot + "market-north/"),
       ]);
       abort.signal.throwIfAborted();
-      const led = await mountSponsorDisplay(approach.scene, assetRoot + "approach/sponsor-led.png", abort.signal);
+      const led = await mountSponsorDisplay(signAsset.scene, assetRoot + "cypher-approach/sponsor-led.png", abort.signal);
       if (abort.signal.aborted) { led.dispose(); return; }
       display.current = led;
-      setAssets([gateAsset, approach]);
+      lamps.current = mountMarketLamps([south.scene, north.scene]);
+      setAssets([gateAsset, signAsset, south, north]);
     }
     void load().catch(() => {
       if (!abort.signal.aborted) runtime.fail("The cypher preview could not load.");
@@ -102,6 +118,7 @@ function GateScene({ runtime, curtain, reportZone }: {
   useFrame((_, delta) => {
     runtime.tick(delta);
     if (!runtime.reduced) display.current?.advance(runtime.activeFrameDelta);
+    lamps.current?.advance(runtime.activeFrameDelta, runtime.reduced);
     const view = runtime.cameraPose(size.width / size.height);
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
@@ -126,22 +143,34 @@ function GateScene({ runtime, curtain, reportZone }: {
   </>;
 }
 
-function GateWalk() {
-  const [runtime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined, gate.space));
-  const [zone, setZone] = useState(() => zoneAt(runtime.pose.z));
-  const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
+function GateWalk({ start }: { start: Start }) {
   const curtain = useRef<HTMLDivElement>(null);
+  const holdCurtain = useRef(false);
+  const [atMarket, setAtMarket] = useState(start !== "quarry");
+  const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined, (start === "approach" ? approach : market).space));
+  const [quarry] = useState(() => start === "quarry" ? new ImmersiveRuntime("hub", () => {
+    holdCurtain.current = true;
+    setAtMarket(true);
+  }, true, () => performance.now() / 1000) : null);
+  const activeQuarry = atMarket ? null : quarry;
+  const runtime = activeQuarry ?? marketRuntime;
+  const [zone, setZone] = useState(() => zoneAt(marketRuntime.pose.z));
+  const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   useImmersiveInput(runtime);
-  const ready = state.phase === "local";
+  const walking = atMarket && state.phase === "local";
+  const landing = !!activeQuarry && state.phase === "landing";
   return <>
-    <div className="native-canvas">
+    <div className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}>
       <Canvas dpr={1} gl={{ antialias: true, powerPreference: "high-performance" }}
-        camera={{ near: 0.05, far: 120 }} fallback={<p>3D is unavailable in this browser.</p>}>
-        <GateScene runtime={runtime} curtain={curtain} reportZone={setZone} />
+        camera={start === "quarry" ? world.camera : { near: 0.05, far: 120 }} fallback={<p>3D is unavailable in this browser.</p>}>
+        {activeQuarry ? <Suspense fallback={null}>
+          <QuarryArrivalScene runtime={activeQuarry} curtain={curtain} holdCurtain={holdCurtain} />
+        </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone} />}
       </Canvas>
     </div>
     <div className="native-curtain" ref={curtain} aria-hidden="true" />
-    {ready && <section className="native-controls gate-controls" aria-label="Walk through the cypher gate">
+    {landing && <div className="native-controls"><button onClick={() => runtime.enter()}>Enter Gullyverse</button></div>}
+    {walking && <section className="native-controls gate-controls" aria-label="Walk through the cypher gate">
       <div className="gate-toolbar">
         <p aria-live="polite">{zone}</p>
         <button onClick={() => runtime.setMap(!state.map)}>{state.map ? "Close map" : "Map"}</button>
@@ -158,15 +187,15 @@ function GateWalk() {
         </div>
       </>}
     </section>}
-    {!ready && <div className="native-loading" role="status">
+    {!walking && !landing && state.phase !== "entrance" && <div className="native-loading" role="status">
       <p>{state.error ?? (state.phase === "context-lost" || state.phase === "recovering"
-        ? "Restoring 3D…" : "Loading the cypher gate…")}</p>
+        ? "Restoring 3D…" : activeQuarry ? "Loading the quarry…" : "Loading the market lane…")}</p>
       {state.error && <a href="/events">Browse events</a>}
     </div>}
   </>;
 }
 
-export default function CypherGatePreview() {
+export default function CypherGatePreview({ start = "market" }: { start?: Start }) {
   const [status, setStatus] = useState<"checking" | "ready" | "unavailable">("checking");
   useEffect(() => {
     try {
@@ -180,7 +209,7 @@ export default function CypherGatePreview() {
   return <div className="native-journey">
     <header className="native-header"><a href="/">BREEZE <span>2027</span></a></header>
     {status === "ready" && <CanvasBoundary onFailure={() => setStatus("unavailable")}>
-      <GateWalk />
+      <GateWalk start={start} />
     </CanvasBoundary>}
     {status === "unavailable" && <div className="native-loading" role="status">
       <p>3D is unavailable in this browser.</p>

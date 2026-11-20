@@ -1,4 +1,4 @@
-Current integration covers the [navigation approach and sponsor display](M2C-NAVIGATION-APPROACH.md), the [native lane and cypher gate](M2B-CYPHER-GATE.md), and the [native Contact journey](M2A-CONTACT-JOURNEY.md). Full-world integration is in progress.
+Current integration covers the [market lane and quarry entry](M2D-MARKET-LANE.md), the [navigation approach and sponsor display](M2C-NAVIGATION-APPROACH.md), the [native lane and cypher gate](M2B-CYPHER-GATE.md), and the [native Contact journey](M2A-CONTACT-JOURNEY.md). Full-world integration is in progress.
 
 # Current rendering correction
 

@@ -5,7 +5,7 @@ const { chromium, devices } = require("playwright");
 
 const origin = process.env.BREEZE_PREVIEW_ORIGIN ?? "http://127.0.0.1:8898";
 const output = process.argv[2];
-const route = origin + "/runtime-preview/cypher";
+const route = origin + "/runtime-preview/cypher?start=approach";
 const approach = "Navigation approach";
 const gate = "Cypher gate";
 const forecourt = "Cypher forecourt";
@@ -100,6 +100,7 @@ async function main() {
     )));
     assert.deepEqual(errors, []);
     console.log("Laptop round trip verified on the same canvas.");
+    await desktop.close();
 
     const mobile = await browser.newPage({ ...devices["iPhone 13"] });
     await mobile.bringToFront();
@@ -121,6 +122,7 @@ async function main() {
       await session.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
     }
     assert.equal(await mobile.locator("canvas").count(), 1);
+    await mobile.close();
 
     const fallback = await browser.newPage();
     await fallback.addInitScript(() => {
