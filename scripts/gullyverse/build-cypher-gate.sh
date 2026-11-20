@@ -5,6 +5,11 @@ root=$(cd "$(dirname "$0")/../.." && pwd)
 cd "$root"
 source_path=${1:?Pass the full path to the frozen Rev15Z Blender master}
 build_dir=${2:?Pass a separate writable build directory for editable output}
+chunk=${3:-gate}
+case "$chunk" in
+  gate|approach) ;;
+  *) echo "Choose gate or approach" >&2; exit 2 ;;
+esac
 mkdir -p "$build_dir"
 export GULLYVERSE_OUT
 GULLYVERSE_OUT=$(cd "$build_dir" && pwd)
@@ -12,15 +17,15 @@ export GULLYVERSE_PLAN
 GULLYVERSE_PLAN=$(mktemp "${TMPDIR:-/tmp}/breeze-gate-plan.XXXXXX.json")
 trap 'rm -f "$GULLYVERSE_PLAN"' EXIT
 
-python - "$source_path" "$GULLYVERSE_PLAN" <<'PY'
+python - "$source_path" "$GULLYVERSE_PLAN" "$chunk" <<'PY'
 import json
 import sys
 from pathlib import Path
 
 scripts = Path("scripts/gullyverse")
 base = json.loads((scripts / "export-plan.json").read_text())
-gate = json.loads((scripts / "cypher-gate-plan.json").read_text())
-base.update(gate)
+chunk = json.loads((scripts / f"cypher-{sys.argv[3]}-plan.json").read_text())
+base.update(chunk)
 base["source"]["path"] = str(Path(sys.argv[1]).resolve(strict=True))
 Path(sys.argv[2]).write_text(json.dumps(base))
 PY

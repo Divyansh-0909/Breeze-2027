@@ -10,6 +10,22 @@ from mathutils import Vector
 import numpy as np
 ROOT=Path(__file__).resolve().parents[2];ap=argparse.ArgumentParser();ap.add_argument('--plan',default=str(Path(__file__).with_name('export-plan.json')));ap.add_argument('--out');ap.add_argument('--samples',type=int);a=ap.parse_args(sys.argv[sys.argv.index('--')+1:]if '--'in sys.argv else[]);plan=json.loads(Path(a.plan).read_text());out=Path(a.out or ROOT/plan['output']);out.mkdir(parents=True,exist_ok=True);sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();source=Path(plan['source']['path']);assert sha(source)==plan['source']['sha256'];bpy.ops.wm.open_mainfile(filepath=str(source));native=bpy.context.scene;assert native.name==plan['source']['scene'];native.frame_set(1);bpy.context.view_layer.update();sourceMembers={s.name:sorted(o.name for o in s.objects)for s in bpy.data.scenes};m=plan['contact'];n=Vector(m['normal']);t=Vector(m['tangent']);up=Vector((0,0,1));uvName=plan['bake']['uvName'];size=plan['bake']['resolution'];P=lambda u,d,z:t*u+n*d+up*z
 formOnly={'native form label','native form illustration'};omissions=[];targets=[];contexts=[];faceSelection=[];sourceRows=[];materialRows=[];timings=[]
+selection=plan.get('selection',{})
+explicit=set(selection.get('sourceObjects',[]))
+whole=set(selection.get('wholeObjects',[]))
+evaluated_parts={}
+if explicit:
+ deps=bpy.context.evaluated_depsgraph_get()
+ for old in native.objects:
+  if old.name not in explicit:continue
+  needs_evaluation=old.type in ('FONT','CURVE') or (
+   old.type=='MESH' and old.name in whole and old.modifiers and selection.get('evaluateWholeMeshes')
+  )
+  if not needs_evaluation:continue
+  assert old.name in whole, f'Keep the whole evaluated sign or cable: {old.name}'
+  evaluated=old.evaluated_get(deps)
+  mesh=bpy.data.meshes.new_from_object(evaluated,preserve_all_data_layers=True,depsgraph=deps)
+  evaluated_parts[old.name]=(mesh,evaluated.matrix_world.copy())
 scene=native.copy();scene.name='RUNTIME BUILD ONLY / contact-frontage';scene.world=native.world.copy()
 for c in list(scene.collection.children):scene.collection.children.unlink(c)
 for o in list(scene.collection.objects):scene.collection.objects.unlink(o)
@@ -24,12 +40,21 @@ def in_bounds(p):
  height=plan.get('selection',{}).get('heightBounds',[7.15,13.5])
  return m['frameBoundsU'][0]-1.2<=p.dot(t)<=m['frameBoundsU'][1]+1.2 and depth[0]<=p.dot(n)<=depth[1] and height[0]<=p.z<=height[1]
 def copy_mesh(old,indices=None):
- ob=old.copy();ob.name='Runtime / '+old.name;ob.data=old.data.copy();ob.parent=None;ob.matrix_world=old.matrix_world;collection.objects.link(ob)
+ if old.name in evaluated_parts:
+  mesh,matrix=evaluated_parts[old.name]
+  ob=bpy.data.objects.new('Runtime / '+old.name,mesh)
+  ob.matrix_world=matrix
+  for key in old.keys():ob[key]=old[key]
+ else:
+  ob=old.copy();ob.name='Runtime / '+old.name;ob.data=old.data.copy();ob.parent=None;ob.matrix_world=old.matrix_world
+ collection.objects.link(ob)
+ original_uvs=[uv.name for uv in ob.data.uv_layers]
+ original_materials=[mat.name if mat else None for mat in ob.data.materials]
  if indices is not None:
   original=[v.co.copy()for v in old.data.vertices];lo=Vector(tuple(min(v[i]for v in original)for i in range(3)));hi=Vector(tuple(max(v[i]for v in original)for i in range(3)));attr=ob.data.attributes.new('RuntimeOriginalGenerated','FLOAT_VECTOR','POINT')
   for v,dst in zip(original,attr.data):dst.vector=tuple((v[i]-lo[i])/max(hi[i]-lo[i],1e-8)for i in range(3))
   keep=set(indices);bm=bmesh.new();bm.from_mesh(ob.data);bm.faces.ensure_lookup_table();bmesh.ops.delete(bm,geom=[f for f in bm.faces if f.index not in keep],context='FACES');bm.to_mesh(ob.data);bm.free();ob.data.update()
- targets.append(ob);sourceRows.append({'node':ob.name,'sourceObject':old.name,'sourceFaces':indices if indices is not None else 'ALL','originalUVLayers':[u.name for u in old.data.uv_layers],'originalMaterials':[x.name if x else None for x in old.data.materials]});return ob
+ targets.append(ob);sourceRows.append({'node':ob.name,'sourceObject':old.name,'sourceFaces':indices if indices is not None else 'ALL','originalUVLayers':original_uvs,'originalMaterials':original_materials});return ob
 for old in sorted(native.objects,key=lambda o:o.name):
  part=old.get('contactPart')
  if old.type=='VOLUME' or (old.type=='MESH'and any(mat and mat.use_nodes and any(n.type in ['PRINCIPLED_VOLUME','VOLUME_ABSORPTION','VOLUME_SCATTER']for n in mat.node_tree.nodes)for mat in old.data.materials)):
@@ -37,9 +62,9 @@ for old in sorted(native.objects,key=lambda o:o.name):
  if old.hide_render:omissions.append({'object':old.name,'reason':'Hidden source variant; retained in whole-world inventory'});continue
  if part in formOnly:omissions.append({'object':old.name,'reason':'Authoring form illustration; replaced by accessible HTML form'});continue
  if part=='local house light':omissions.append({'object':old.name,'reason':'Static light contribution baked; no runtime diffuse lamp'});scene.collection.objects.link(old);continue
- if old.type=='MESH'and ((old.name in plan['selection']['sourceObjects'])if plan.get('selection',{}).get('sourceObjects')else(part or intersects(old))):
+ if (old.type=='MESH' or old.name in evaluated_parts) and ((old.name in explicit) if explicit else (part or intersects(old))):
   indices=None
-  if not part and old.name not in plan.get('selection', {}).get('wholeObjects', []):
+  if not part and old.name not in whole:
    indices=[p.index for p in old.data.polygons if in_bounds(old.matrix_world@p.center)]
    if not indices:scene.collection.objects.link(old);contexts.append(old.name);continue
   ob=copy_mesh(old,indices)
@@ -78,6 +103,18 @@ for ob in targets:
   mat=mat.copy();mat.name='Runtime / '+ob.name.removeprefix('Runtime / ')+' / material '+str(i);me.materials[i]=mat;nodes=mat.node_tree.nodes;links=mat.node_tree.links;p=nodes.get('Principled BSDF')
   if not p:p=next((x for x in nodes if x.type=='BSDF_PRINCIPLED'),None)
   assert p,('Unsupported surface graph',mat.name)
+  if plan.get('chunk')=='cypher-approach' and (
+   ob.get('navigationLabel') and ob.name in {f'Runtime / {name}' for name in evaluated_parts}
+   or ob.get('direction') or 'White inset border' in ob.name
+  ):
+   mat['runtimeSignInk']=True
+  if ob.get('ledScreen'):
+   # The browser shader reproduces the source dot matrix and scroll clock.
+   # Preserve mesh/UVs, and carry the actual packed grayscale strip separately.
+   strip=next(x.image for x in nodes if x.type=='TEX_IMAGE' and x.image and x.image.packed_file)
+   (out/'sponsor-strip.png').write_bytes(bytes(strip.packed_file.data))
+   for link in list(p.inputs['Emission Strength'].links):links.remove(link)
+   p.inputs['Emission Strength'].default_value=0
   if srcUV:
    for node in list(nodes):
     if node.type=='TEX_IMAGE'and not node.inputs['Vector'].is_linked:
@@ -114,7 +151,29 @@ def target_image(key,isdata=True):
   node=mat.node_tree.nodes.new('ShaderNodeTexImage');node.name='Runtime bake target';node.image=im;mat.node_tree.nodes.active=node
  return im
 def bake(key,kind):
- start=time.monotonic();print('BAKE',key,flush=True);bpy.ops.object.bake(type=kind,uv_layer=uvName);timings.append({'channel':key,'seconds':time.monotonic()-start})
+ use_scene=scene
+ if plan.get('quality',{}).get('isolateMaterialBake') and key!='lightmap':
+  # Colour and tangent-normal transfer need only selected surfaces. Do not
+  # rebuild the complete Cycles world before evaluating every sign/object.
+  use_scene=bpy.data.scenes.new('Runtime procedural channels only')
+  use_scene.render.engine='CYCLES'
+  use_scene.cycles.device='CPU'
+  use_scene.cycles.samples=scene.cycles.samples
+  use_scene.render.bake.use_clear=False
+  use_scene.render.bake.margin=scene.render.bake.margin
+  active=[ob for ob in targets if any(key in unsupported.get(m.name,[]) for m in ob.data.materials if m)]
+  for ob in active:use_scene.collection.objects.link(ob)
+  bpy.context.window.scene=use_scene
+  for ob in active:ob.select_set(True)
+  bpy.context.view_layer.objects.active=active[0]
+ start=time.monotonic()
+ print('BAKE',key,flush=True)
+ try:bpy.ops.object.bake(type=kind,uv_layer=uvName)
+ finally:
+  if use_scene!=scene:
+   bpy.context.window.scene=scene
+   bpy.data.scenes.remove(use_scene)
+ timings.append({'channel':key,'seconds':time.monotonic()-start})
 needed=set(x for v in unsupported.values()for x in v)
 for key in sorted(needed):
  im=target_image(key,key!='color');restore=[]

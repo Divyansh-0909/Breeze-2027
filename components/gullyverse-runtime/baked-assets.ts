@@ -68,12 +68,19 @@ export class BakedAssetPool {
           if (!m.lightMap) {
             const lm = light.clone(); lm.channel = channel; lm.needsUpdate = true; textures.add(lm);
             m.lightMap = lm; m.lightMapIntensity = Math.PI;
-            if (!baseline) m.onBeforeCompile = (shader: any) => {
+            const signInk = m.userData.runtimeSignInk === true;
+            if (!baseline || signInk) m.onBeforeCompile = (shader: any) => {
               const from = "vec3 lightMapIrradiance = lightMapTexel.rgb * lightMapIntensity;";
               if (!THREE.ShaderChunk.lights_fragment_maps.includes(from)) throw Error("Lighting shader contract changed");
-              shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_maps>", THREE.ShaderChunk.lights_fragment_maps.replace(from, `vec3 lightMapIrradiance = lightMapTexel.rgb * lightMapTexel.a * ${Number(bake.range).toFixed(1)} * lightMapIntensity;`));
+              const decoded = baseline ? "lightMapTexel.rgb" : `lightMapTexel.rgb * lightMapTexel.a * ${Number(bake.range).toFixed(1)}`;
+              // The sign faces share a practical light. A single diffuse
+              // value for their white ink avoids uneven atlas coverage on
+              // small letters, while the green panels retain baked shading.
+              const irradiance = signInk ? "vec3(0.25, 0.216, 0.172)" : decoded;
+              shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_maps>",
+                THREE.ShaderChunk.lights_fragment_maps.replace(from, `vec3 lightMapIrradiance = ${irradiance} * lightMapIntensity;`));
             };
-            m.customProgramCacheKey = () => `breeze-${baseline ? "hdr" : "rgbm-" + bake.range}-v1`;
+            m.customProgramCacheKey = () => `breeze-${baseline ? "hdr" : "rgbm-" + bake.range}-v1${signInk ? "-sign-ink" : ""}`;
             m.needsUpdate = true;
           }
         }

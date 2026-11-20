@@ -96,7 +96,10 @@ def main():
         role = obj.get("entryGatePart", "")
         street_hardware = obj.get("streetLampPart") == "hardware"
         base = " / Navigation base" in obj.name or " / Navigation upright" in obj.name
-        person = "Cypher character" in obj.name and min(v.y for v in world_vertices(obj)) < 23
+        person = (
+            any(label in obj.name for label in ("Cypher character", "Lane character"))
+            and min(v.y for v in world_vertices(obj)) < 23
+        )
         ground_obstacle = role.startswith(("Boundary walls", "Left and right masonry", "Single see through"))
         if not (ground_obstacle or street_hardware or base or person):
             continue

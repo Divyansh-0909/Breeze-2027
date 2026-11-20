@@ -48,3 +48,11 @@ test("diagonal motion slides along the lane and stays on the grade at joins", ()
     assert.ok(cypher.clearance({ x: 0, z: -sourceY }) > 0);
   }
 });
+
+test("the upper ramp route passes under the navigation sign while keeping clear of its base and figures", () => {
+  const p = cypher.resolve({ x: 0, z: -8.82 }, { x: 3.4, z: -8.82 });
+  assert.ok(p.x <= 2.612 - world.playerRadius);
+  const base = cypher.resolve({ x: 0, z: -11 }, { x: 3.4, z: -11 });
+  assert.ok(base.x <= 2.875 - world.playerRadius);
+  assert.ok(cypher.resolve({ x: 0, z: -4.8 }, { x: 0, z: -12 }).z < -11.99);
+});

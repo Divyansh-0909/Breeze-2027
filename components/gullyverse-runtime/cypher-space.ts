@@ -5,7 +5,7 @@ import walkSpace from "./cypher-walk-space.json";
 
 type Point = { x: number; z: number };
 type Segment = readonly [number, number, number, number];
-type Limits = { start: number; end: number; halfWidth: number; spawnY: number };
+type Limits = { start: number; end: number; halfWidth: number; spawnY: number; spawnPitch?: number };
 const { eyeHeight } = world;
 const radius = world.playerRadius;
 
@@ -78,7 +78,10 @@ export function createCypherSpace(limits?: Limits) {
     const floor = grade(position);
     if (floor === undefined || clearance(position) < 0) throw new Error("The cypher spawn is outside the walk space.");
     const eye = floor + eyeHeight;
-    return lookAtPose([0, eye, position.z], [0, eye, position.z - 1]);
+    return {
+      ...lookAtPose([0, eye, position.z], [0, eye, position.z - 1]),
+      pitch: limits?.spawnPitch ?? 0,
+    };
   };
   function constrain(pose: Pose) {
     const floor = grade(pose);
