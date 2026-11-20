@@ -1,0 +1,9 @@
+START fresh-open ['--restored']
+PASS fresh-open ['--restored']
+START render []
+PASS render []
+START render ['--before']
+PASS render ['--before']
+START render-neutral []
+PASS render-neutral []
+ALL_NATIVE_CHECKS_AND_CAPTURES_PASS

@@ -1,0 +1,70 @@
+GROUND [('REV15V2 / Lane flat / 6.8m clear / asphalt replacement', True), ('REV15V2 / Accessible ramp / 1 to 20 / asphalt replacement', True), ('REV15V2 / Flared ramp apron / asphalt replacement', True), ('REV15V2 / Rooftop slab / 32m x 40m / asphalt replacement', True)]
+{
+  "status": "PASS",
+  "sourceScenes": 58,
+  "counts": {
+    "steady": 2,
+    "flicker": 2,
+    "dead": 2
+  },
+  "placements": [
+    {
+      "id": "L01",
+      "position": [
+        -2.3499999999999996,
+        -25,
+        6.000001907348633
+      ],
+      "state": "steady"
+    },
+    {
+      "id": "L02",
+      "position": [
+        2.3499999999999996,
+        -25,
+        6.000001907348633
+      ],
+      "state": "dead"
+    },
+    {
+      "id": "L03",
+      "position": [
+        -2.3499999999999996,
+        -15.5,
+        6.0
+      ],
+      "state": "flicker"
+    },
+    {
+      "id": "L04",
+      "position": [
+        2.3499999999999996,
+        -15.5,
+        6.0
+      ],
+      "state": "steady"
+    },
+    {
+      "id": "L05",
+      "position": [
+        -2.3499999999999996,
+        -5.5,
+        6.225000381469727
+      ],
+      "state": "dead"
+    },
+    {
+      "id": "L06",
+      "position": [
+        2.3499999999999996,
+        -5.5,
+        6.224998474121094
+      ],
+      "state": "flicker"
+    }
+  ]
+}
+Blender 4.3.2
+Read blend: "/workspace/Breeze-2027/reports/streetlights-rev15w-overhead-cables-2026-11-14/restore/masters/V2.blend"
+
+Blender quit

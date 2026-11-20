@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "size": [
+    1024,
+    2048
+  ],
+  "samples": 4,
+  "seconds": 20.537009173000115,
+  "objects": [
+    {
+      "node": "WEB / REV15P / WORLD / Lane flat / 6.8m clear",
+      "bounds": [
+        [
+          -3.5999999046325684,
+          -30.0,
+          5.739999771118164
+        ],
+        [
+          3.5999999046325684,
+          -10.0,
+          6.0
+        ]
+      ],
+      "tileBlenderUV": [
+        0.015,
+        0.015,
+        0.985,
+        0.235
+      ]
+    },
+    {
+      "node": "WEB / REV15P / WORLD / Accessible ramp / 1 to 20",
+      "bounds": [
+        [
+          -3.5999999046325684,
+          -10.0,
+          5.7602996826171875
+        ],
+        [
+          3.5999999046325684,
+          5.011984825134277,
+          6.75
+        ]
+      ],
+      "tileBlenderUV": [
+        0.015,
+        0.265,
+        0.985,
+        0.485
+      ]
+    },
+    {
+      "node": "WEB / REV15P / REV15B / WORLD / Flared ramp apron",
+      "bounds": [
+        [
+          -4.25,
+          5.0,
+          6.5102996826171875
+        ],
+        [
+          4.25,
+          14.011984825134277,
+          7.199999809265137
+        ]
+      ],
+      "tileBlenderUV": [
+        0.015,
+        0.515,
+        0.985,
+        0.735
+      ]
+    },
+    {
+      "node": "WEB / REV15P / REV15 / WORLD / PILOT / Rooftop slab / 32m x 40m",
+      "bounds": [
+        [
+          -16.0,
+          14.0,
+          6.840000152587891
+        ],
+        [
+          16.0,
+          48.0,
+          7.199999809265137
+        ]
+      ],
+      "tileBlenderUV": [
+        0.015,
+        0.765,
+        0.985,
+        0.985
+      ]
+    }
+  ],
+  "sourceUV1Issue": "Two prior floor meshes had metre-scale UVs in TEXCOORD_1 rather than valid atlas coordinates. This pass creates explicit bounded, non-overlapping tiles.",
+  "sourceMasterModified": false
+}

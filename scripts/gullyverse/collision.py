@@ -1,0 +1,11 @@
+import os
+"""Separate conservative pilot collision/interaction data, never visual geometry."""
+import bpy,json,sys,argparse,hashlib
+from pathlib import Path
+from mathutils import Vector
+ROOT=Path(__file__).resolve().parents[2];out=Path(os.environ.get('GULLYVERSE_OUT',str(ROOT/'public/models/gullyverse/locked-rev15z-v1')));plan=json.loads(Path(os.environ.get('GULLYVERSE_PLAN',str(Path(__file__).with_name('export-plan.json')))).read_text());m=plan['contact'];n=Vector(m['normal']);t=Vector(m['tangent']);up=Vector((0,0,1));P=lambda u,d,z:t*u+n*d+up*z;centre=m['frameCentreU'];bpy.ops.wm.read_factory_settings(use_empty=True);s=bpy.context.scene
+def box(name,u,d,z,w,depth,h,role):
+ verts=[tuple(P(u+sx*w/2,d+sy*depth/2,z+sz*h/2))for sx,sy,sz in[(-1,-1,-1),(1,-1,-1),(1,1,-1),(-1,1,-1),(-1,-1,1),(1,-1,1),(1,1,1),(-1,1,1)]];faces=[(1,2,3,0),(5,6,7,4),(4,5,1,0),(5,6,2,1),(6,7,3,2),(7,4,0,3)];me=bpy.data.meshes.new(name);me.from_pydata(verts,[],faces);me.update();ob=bpy.data.objects.new(name,me);s.collection.objects.link(ob);ob['collisionRole']=role;return ob
+wall=box('Contact house and projecting sill / collision',centre,m['depth']+.10,9.5,7.2,.96,4.6,'solid-house-frontage');floor=box('Contact approach / floor reference',centre,-19.1,7.175,7.2,4.0,.05,'floor-reference')
+bpy.ops.export_scene.gltf(filepath=str(out/'contact-frontage.collision.glb'),export_format='GLB',use_active_scene=True,export_materials='NONE',export_extras=True,export_animations=False)
+trigger={'id':'contact-enquiry','destination':'contact','positionBlender':list(P(centre,-20.25,8.25)),'positionThree':list((lambda p:Vector((p.x,p.z,-p.y)))(P(centre,-20.25,8.25))),'radius':1.25,'action':'open-existing-contact-form','walkFloorY':7.2,'eyeHeight':1.7,'sourceSHA256':plan['source']['sha256'],'status':'Pilot proxy only; complete route/collision reconciliation remains M2','artworkOrControllerModified':False};(out/'triggers.json').write_text(json.dumps(trigger,indent=2)+'\n');manifest=json.loads((out/'manifest.json').read_text());manifest['collision']={'uri':'contact-frontage.collision.glb','triggerURI':'triggers.json','role':'Separate conservative pilot proxies; not rendered','fullNavigationValidation':'PENDING M2'};(out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print('COLLISION_AND_TRIGGER_EXPORT_PASS')

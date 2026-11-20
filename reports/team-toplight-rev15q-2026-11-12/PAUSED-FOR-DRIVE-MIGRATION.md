@@ -1,0 +1,1 @@
+Scene work paused at user request for Drive account migration. Rev15Q native draft and render evidence retained locally; review PDF and complete backup not yet delivered. Do not continue uploading to the old account. Existing master at /dev/shm/Gullyverse-Rev15Q-Team-Toplight-Detail-Review.blend. Complete and verify migration before resuming scene work.

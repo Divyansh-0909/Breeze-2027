@@ -1,0 +1,13 @@
+# Rev15R open shops — recovery
+
+The current authored scene is `REV15R / Reference-led open market shops`. The complete packed native master is `Gullyverse-Rev15R-Indian-Market-Open-Shops-Final.blend`. It retains the 46 earlier native scenes, 189 original Aftermovie crowd members, eight murals, matched Team top-light and native night atmosphere, and adds detail within the five existing open shop bays.
+
+Download every numbered native part listed in `delivery/Native-Master-Parts.json`. Place the parts together, then run `python source/restore-master.py DOWNLOADS NEW_OUTPUT.blend --index delivery/Native-Master-Parts.json` from this revision directory. The helper checks each part and the complete master SHA-256 before installing the output. Open the restored file in Blender 4.3.2. All required scene images and the new font are packed. This complete master needs no earlier archive.
+
+The smaller `delivery/Rev15R-Open-Shop-Additions-Final.blend` contains the new shop collection and materials as an asset library. It is not the complete environment. The source checkpoint additionally includes the photographic reference list, original generated package labels, review images, PDF and verification evidence.
+
+To rebuild, restore the earlier packed Rev15P source master at the path in `evidence/build-verification.json`, then run `python source/make-labels.py` and `blender -b -t 2 --python source/build.py`. The exact base master SHA-256 is `f539f05e9fe2e82d2909a79f326f6b53485d3e00832707a51ab073c269d95682`. The build writes the complete new master into `/dev/shm`; change that explicit output path to a persistent directory if restoring elsewhere. Source files remain under the normal checkout path. `source/render.py` generates the same-camera comparisons and native night views; `source/create-review.py` rebuilds the PDF. Python Pillow, ReportLab, pypdf and DejaVu fonts are used only by the review helpers.
+
+The first five comparison pairs use clearly labelled temporary inspection lighting. The final night views use the scene's actual night lights and five new 55 W shelf practicals. Existing optional Rev05B supports remain at zero. The central corridor remains clear; evaluated new geometry is beyond |X| = 2.76 m. Closed-front artist artwork and opening states are retained.
+
+Photographs in `references/` are credited visual research, including visible stock-photo watermarks. None is used as a runtime texture. The package labels are original, unbranded graphics. Public website integration and browser optimization of these new assets remain pending; this revision does not edit the production controller. The older Drive-folder migration is also still pending, with CSD361 excluded.

@@ -1,0 +1,31 @@
+import {chromium} from 'playwright';
+import {readFile,writeFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const summary=s=>{const a=[...s].sort((a,b)=>a-b),q=x=>a[Math.min(a.length-1,Math.floor(a.length*x))]??null;return{samples:a.length,p50Ms:q(.5),p95Ms:q(.95),p99Ms:q(.99),meanMs:a.reduce((a,b)=>a+b,0)/Math.max(1,a.length),sustainedFPS:a.length?1000/(a.reduce((a,b)=>a+b,0)/a.length):null};};
+const all=[];let plainStats;
+for(const profile of ['desktop','mobile-emulated']){
+ const mobile=profile!=='desktop',context=await browser.newContext(mobile?{viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true}:{viewport:{width:1440,height:900},deviceScaleFactor:1});const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon'))errors.push(m.text());});
+ const cdp=await context.newCDPSession(page);if(mobile)await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
+ const responses=[];page.on('response',async r=>{if(r.url().startsWith('http://127.0.0.1:8765'))responses.push({url:new URL(r.url()).pathname,status:r.status()});});
+ console.log('LOAD',profile);await page.goto('http://127.0.0.1:8765/'+(mobile?'?mobile':''),{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.pilot?.ready()||window.pilotError,null,{timeout:120000});if(await page.evaluate(()=>window.pilotError))throw Error(await page.evaluate(()=>window.pilotError));
+ const checks={singleCanvas:await page.locator('canvas').count()===1,htmlDirections:await page.getByText('Festival directions',{exact:true}).count()===1};
+ const measures=[];await page.evaluate(()=>{window.pilot.pause(true);window.pilot.offset(0);window.pilot.capture(true);});
+ for(const view of ['far','middle','near']){
+  await page.evaluate(view=>{window.pilot.view(view);window.pilot.fog(true);},view);await page.waitForTimeout(1000);await page.screenshot({path:path.join(root,'renders',`browser-${profile}-${view}.png`)});
+  if(!mobile){await page.evaluate(()=>window.pilot.fog(false));await page.waitForTimeout(300);await page.screenshot({path:path.join(root,'renders',`browser-clear-${view}.png`)});await page.evaluate(()=>window.pilot.fog(true));}
+  await page.evaluate(()=>window.pilot.pause(false));const data=await page.evaluate(()=>window.pilot.benchmark(3));measures.push({view,frames:summary(data.frames),cpuRenderSubmission:summary(data.cpu),gpu:data.gpu.length?summary(data.gpu):null,stats:{...data,frames:undefined,cpu:undefined,gpu:undefined}});await page.evaluate(()=>window.pilot.pause(true));console.log('MEASURED',profile,view,measures.at(-1).frames.sustainedFPS);
+ }
+ await page.evaluate(()=>window.pilot.capture(false));await page.screenshot({path:path.join(root,'renders',`browser-${profile}-with-ui.png`)});
+ await page.evaluate(()=>window.pilot.pause(false));await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>window.pilot.stats().paused,null,{timeout:30000});const a=await page.evaluate(()=>window.pilot.stats());await page.waitForTimeout(500);const b=await page.evaluate(()=>window.pilot.stats());checks.reducedMotionPaused=a.paused&&b.offset===a.offset;checks.lightmapUV1=measures[0].stats.lightmapMeshes>0&&measures[0].stats.lightmapUVFailures===0;checks.customLEDReceivesFog=measures[0].stats.ledFaces===1;
+ const resources=await page.evaluate(()=>performance.getEntriesByType('resource').map(r=>({name:new URL(r.name).pathname,encodedBodySize:r.encodedBodySize,transferSize:r.transferSize,duration:r.duration})));all.push({profile,conditions:{viewport:mobile?[390,844]:[1440,900],emulatedDPR:mobile?2:1,renderDPR:mobile?.85:1,cpuThrottle:mobile?4:1,gpu:'Chromium ANGLE SwiftShader software renderer in cloud; no physical GPU/device certification',benchmarkFramesPerView:3,method:'Synchronous GPU-completed frames with gl.finish, CPU submission and GPU queries separately measured. Conservative serialized throughput; small sample, not physical-display certification.',network:'local loopback, uncached, not an internet delivery estimate'},checks,errors,responses,resources,totalEncodedResponseBytes:resources.reduce((n,r)=>n+r.encodedBodySize,0),measures});
+ await context.close();
+}
+// Verify the uncompressed fallback independently without concurrent asset residency.
+const p=await browser.newPage({viewport:{width:1440,height:900}});await p.goto('http://127.0.0.1:8765/?draco');await p.waitForFunction(()=>window.pilot?.ready()||window.pilotError,null,{timeout:120000});if(await p.evaluate(()=>window.pilotError))throw Error(await p.evaluate(()=>window.pilotError));plainStats=await p.evaluate(()=>window.pilot.stats());await p.close();
+const reference=all[0].measures[0].stats;const compressionCheck={status:reference.totalTriangles===plainStats.totalTriangles?'PASS':'DECODED_WITH_TRIANGLE_COUNT_CHANGE',defaultViewer:'uncompressed geometry; compressed asset experimental pending fidelity review',dracoTriangles:plainStats.totalTriangles,plainTriangles:reference.totalTriangles,dracoMaterials:reference.materials,plainMaterials:plainStats.materials,oneSceneEach:reference.modelScenes===1&&plainStats.modelScenes===1};
+const result={profiles:all,geometryCompression:compressionCheck,plainStats,unmeasured:['Physical phone FPS, battery draw and thermal throttling','Hardware GPU results','Full-lane production delivery/network performance','KTX2/Basis encoder not installed; runtime compressed-format capabilities recorded only'],note:'Quantile/frame/CPU/GPU-query/memory conventions adapted from existing perf-gullyverse.mjs and immersive/diagnostics.ts. Browser clear captures remove fog only; Blender baseline captures are actual Rev15O.'};
+await writeFile(path.join(root,'evidence/browser-performance.json'),JSON.stringify(result,null,2)+'\n');await browser.close();
+if(all.some(x=>x.errors.length||Object.values(x.checks).some(v=>!v))||!compressionCheck.oneSceneEach)process.exitCode=1;

@@ -1,0 +1,210 @@
+{
+  "status": "PASS",
+  "sourceSHA256": "89e765de6bb68a58a6a2d17d4d6d7ea6c696a6750402ede19306bdddc6a71041",
+  "sourceObjects": 3230,
+  "accountedObjects": 3230,
+  "exportedSourceObjects": 18,
+  "bakeOnlyContextObjects": 2961,
+  "explicitExclusions": 265,
+  "partialMeshesMayAlsoSupplyBakeContext": true,
+  "missingObjects": [],
+  "baselineSourceImagesPreservedByteExact": [
+    {
+      "sourceImage": "REV15Z / CONTACT US colourful graffiti",
+      "image": "contact-us-graffiti",
+      "sha256": "170a6972f2484ed051528f106af9117baa8c03c39d2eea81e54bad99863f50c3"
+    },
+    {
+      "sourceImage": "sash-paint.jpg",
+      "image": "sash-paint",
+      "sha256": "553fb0a51903e913f4f1c56df57fcfe826b7d2b1a62f0527e7f6fa276fb6c3cb"
+    },
+    {
+      "sourceImage": "glass-color.jpg",
+      "image": "glass-color",
+      "sha256": "3689a3230f22f83c19f69f0162ce544f03a7a897f0d30c419d35bc5a4be9b6cf"
+    },
+    {
+      "sourceImage": "R1-color.jpg",
+      "image": "R1-color",
+      "sha256": "cac75eafce008226e0af80c14be6bd00ac6ecded766cc5e60c80eedd33a8a369"
+    },
+    {
+      "sourceImage": "R1-normal.jpg",
+      "image": "R1-normal",
+      "sha256": "05e5cb40f5ebef1be2b7a9f9c43c13e046e3a8c738fa3149002ec42874b013bc"
+    },
+    {
+      "sourceImage": "shutter-paint.jpg",
+      "image": "shutter-paint",
+      "sha256": "cc8ccedf71f4f8f1d22e0904ca9fd8c2697b2e9f12d7e8b2da262b35fc081f52"
+    },
+    {
+      "sourceImage": "aggregate-1p2m-normal.png",
+      "image": "aggregate-1p2m-normal",
+      "sha256": "60a5b74ef6fc03613a8aedcf3658110d70335798bec08b552f43aa541a8389cd"
+    }
+  ],
+  "runtimeFiles": [
+    {
+      "file": "contact-frontage.png.glb",
+      "bytes": 17032596,
+      "sha256": "57ec0c324764ef433ad1448f38a11525184be2a5c8827329cbc888cc18e708b4",
+      "triangles": 5745,
+      "meshObjects": 18,
+      "materialBindings": 24,
+      "textures": 13,
+      "images": 13,
+      "extensions": [
+        "KHR_materials_clearcoat",
+        "KHR_materials_emissive_strength",
+        "KHR_materials_ior",
+        "KHR_materials_specular"
+      ],
+      "lightmapUVBindings": [
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "file": "contact-frontage.optimized.glb",
+      "bytes": 11898268,
+      "sha256": "c76874092162065011bc11784983e7d365845070426427c38bd4db2f424b2a8c",
+      "triangles": 5745,
+      "meshObjects": 18,
+      "materialBindings": 24,
+      "textures": 13,
+      "images": 13,
+      "extensions": [
+        "EXT_meshopt_compression",
+        "KHR_materials_clearcoat",
+        "KHR_materials_emissive_strength",
+        "KHR_materials_ior",
+        "KHR_materials_specular",
+        "KHR_mesh_quantization",
+        "KHR_texture_basisu"
+      ],
+      "lightmapUVBindings": [
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "file": "contact-frontage.mobile.glb",
+      "bytes": 3952144,
+      "sha256": "70cf38117d4bf71dfd30daf7d4ed3e064537b91a99ce8d0d0a5b0e492e7b777d",
+      "triangles": 5745,
+      "meshObjects": 18,
+      "materialBindings": 24,
+      "textures": 13,
+      "images": 13,
+      "extensions": [
+        "EXT_meshopt_compression",
+        "KHR_materials_clearcoat",
+        "KHR_materials_emissive_strength",
+        "KHR_materials_ior",
+        "KHR_materials_specular",
+        "KHR_mesh_quantization",
+        "KHR_texture_basisu"
+      ],
+      "lightmapUVBindings": [
+        2,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        3,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        3,
+        3,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "file": "contact-frontage.collision.glb",
+      "bytes": 2800,
+      "sha256": "93ac53e9449906e8a20d5a56525116a0b762bebab2ebee692d262eba68def847",
+      "triangles": 24,
+      "meshObjects": 2,
+      "materialBindings": 0,
+      "textures": 0,
+      "images": 0,
+      "extensions": [],
+      "lightmapUVBindings": []
+    }
+  ],
+  "artAcceptance": "Lighting comparison remains a separate visual gate; structural correctness is not visual approval"
+}

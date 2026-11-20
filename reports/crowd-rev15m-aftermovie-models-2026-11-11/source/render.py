@@ -1,0 +1,10 @@
+import bpy,json,hashlib,time,sys
+from pathlib import Path
+from mathutils import Vector
+O=Path(__file__).resolve().parents[1];B=O.parent/'navigation-board-rev15l1-logo-spacing-2026-11-11';P=O/'delivery/Gullyverse-Rev15M-Consistent-Crowd.blend';v=json.loads((O/'evidence/blender-validation.json').read_text())
+poses=[('00-before-lane','Previous approach-lane placeholders',True,(0,13.5,8.5),(2.1,8.8,7.8),35),('01-lane-characters','Approach lane / Aftermovie character models',False,(0,13.5,8.5),(2.1,8.8,7.8),35),('02-cypher-characters','Cypher area / consistent crowd',False,(-1,16,9.4),(-6.5,23.7,8.05),35),('03-aftermovie-reference','Preserved Aftermovie audience / source style',False,(0,20.5,8.6),(0,28,8.2),38),('04-navigation-and-lane','Navigation board and approach crowd',False,(0,0,11),(0,11,11),40)]
+args=sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [];file=O/'evidence/captures.json';rows=json.loads(file.read_text()) if file.exists() else []
+for name,title,before,pos,target,lens in poses:
+ if args and name not in args:continue
+ master=B/'delivery/Gullyverse-Rev15L1-Wider-Logo-Gaps.blend' if before else P;bpy.ops.wm.open_mainfile(filepath=str(master));s=bpy.context.scene;s.frame_set(1);bpy.context.view_layer.update();s.render.engine='BLENDER_EEVEE_NEXT';s.eevee.taa_render_samples=16;s.render.image_settings.file_format='PNG';s.render.resolution_percentage=100;s.render.resolution_x=1440;s.render.resolution_y=1260 if name=='04-navigation-and-lane' else 900
+ s.camera.location=pos;s.camera.rotation_euler=(Vector(target)-s.camera.location).to_track_quat('-Z','Y').to_euler();s.camera.data.lens=lens;out=O/'renders'/f'{name}.png';s.render.filepath=str(out);t=time.monotonic();bpy.ops.render.render(write_still=True);rows=[r for r in rows if r['file']!='renders/'+out.name];rows.append({'file':'renders/'+out.name,'title':title,'before':before,'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),'seconds':time.monotonic()-t});file.write_text(json.dumps(sorted(rows,key=lambda r:r['file']),indent=2));print('CAPTURED',name,flush=True)

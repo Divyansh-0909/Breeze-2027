@@ -1,0 +1,13 @@
+# Current gully streetlights and overhead cables
+
+Implemented **14 November 2026 / Rev15W**, the final requested environment art change. All six new poles stand at the **gully lane road edges only**: two steady, two independently flickering, two dead. Twenty-four sagging cable runs connect these poles above the lane. No new fixtures or cable network are inside the cypher. The checked minimum cable-to-road clearance is 4.908 m; source geometry and navigation-stand intersection checks passed. New 11 m lamp ranges stop before the cypher.
+
+[PDF with actual night views and reference photographs](https://drive.google.com/file/d/1r8ZssnYf_nZ5O1--l5tAH4M1nhbV-ns6/view). Visual approval of W is pending. The new art preserves the road, all shops/houses, Team murals, eight Events posters, navigation/LED and crowd. No application movement files or earlier lights were edited.
+
+Latest complete edited native master: `/dev/shm/Gullyverse-Rev15W-Streetlights-and-Overhead-Cables.blend`, active scene `REV15W / Streetlights and suspended electricity cables`, 59 scenes and 143 packed images. It preserves all 58 historical scene memberships and all 3,209 original objects. The full native master is recoverable from the independently verified V2 base chain and W builder; a new source reconstruction and separate fresh opening passed. Whole-file checksums can differ after Blender serialization; active-scene fingerprints and packed resources define source restoration.
+
+[Versioned recovery checkpoint](https://drive.google.com/drive/folders/1vVIH70GeB9f1nN5ogWpThBPo1ZozL_gR), owned by losersamurai09@gmail.com. Source, runtime component, controller/manifest, reference credits, captures, PDF, reconstruction instructions and checksums are in `reports/streetlights-rev15w-overhead-cables-2026-11-14`.
+
+Native light and emission animation passed 90 sample checks. The isolated browser component passed flicker, permanently dead lamps, reduced motion, mobile overflow and browser/WebGL error checks. Its temporary floor/lights are diagnostic; actual night views in the PDF use the native scene's saved lighting. Full-world website integration, collisions and hardware performance validation remain pending. No M0/M1/M2 milestone is claimed by this art phase, and no commit, push or deployment was made.
+
+Deadline recorded: **28 November 2026, Asia/Kolkata**, two weeks from the user's 14 November instruction. No specific hour was supplied. [Current project document](https://docs.google.com/document/d/1mUE4J2QCNMHk0ryoiSSOADbkjdwi3FN5IG5GZhoIBTU) records the gully-only clarification and final art output, preserving all previous text, images and independent review notes.

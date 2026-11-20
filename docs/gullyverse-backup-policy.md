@@ -1,10 +1,12 @@
 # Gullyverse Google Drive backup policy
 
-The user explicitly requested uploads of the verified Recovery Phase 1 checkpoint and future project files to this folder on 18 October 2026:
+The current user-selected backup account is losersamurai09@gmail.com, verified on 13 November 2026. Use this destination for future project backups:
 
-https://drive.google.com/drive/folders/1ZubjkRneuOGp8x_lLN7xPAapGM3tn7av
+https://drive.google.com/drive/folders/172ptAuVAT6nwyS2RallOPAExNDQ5yaF_
 
-Folder ID: `1ZubjkRneuOGp8x_lLN7xPAapGM3tn7av`.
+Folder ID: `172ptAuVAT6nwyS2RallOPAExNDQ5yaF_`.
+
+The original 18 October 2026 authorization used folder `1ZubjkRneuOGp8x_lLN7xPAapGM3tn7av` in rcstravels.business@gmail.com. All 243 selected folders and 2,309 files now have destination-owned copies verified by direct folder/file readback, native Doc text comparisons and documented samples. CSD361 was excluded. Originals and original document revision histories remain in the old account; source cleanup is pending old-owner access. See [migration status](gullyverse-drive-migration-current.md) for checks, exclusions and complete old-to-new link maps. Do not upload new checkpoints to the old account.
 
 ## Current checkpoint
 

@@ -1,0 +1,24 @@
+import bpy, hashlib, json, re
+from array import array
+def fingerprint(scene):
+    rows=[]; cache={}
+    for o in sorted(scene.objects,key=lambda x:x.name):
+        row={'name':o.name,'type':o.type,'matrix':[list(r) for r in o.matrix_world],
+             'hidden':o.hide_render,'viewportHidden':o.hide_viewport,'parent':o.parent.name if o.parent else None}
+        if o.type=='MESH':
+            m=o.data
+            if m.as_pointer() not in cache:
+                h=hashlib.sha256()
+                for coll,field,typecode,n in [(m.vertices,'co','f',len(m.vertices)*3),(m.loops,'vertex_index','i',len(m.loops)),(m.polygons,'loop_total','i',len(m.polygons)),(m.polygons,'material_index','i',len(m.polygons))]:
+                    buf=array(typecode,[0])*n;coll.foreach_get(field,buf);h.update(buf.tobytes())
+                for uv in m.uv_layers:
+                    buf=array('f',[0])*(len(uv.data)*2);uv.data.foreach_get('uv',buf);h.update(uv.name.encode());h.update(buf.tobytes())
+                for attr in m.color_attributes:
+                    buf=array('f',[0])*(len(attr.data)*4);attr.data.foreach_get('color',buf);h.update(attr.name.encode());h.update(buf.tobytes())
+                cache[m.as_pointer()]=h.hexdigest()
+            row['meshSHA256']=cache[m.as_pointer()]
+            row['materials']=[re.sub(r'\.\d{3}$','',x.material.name) if x.material else None for x in o.material_slots]
+        if o.type=='LIGHT':row['light']=[o.data.type,o.data.energy,list(o.data.color)]
+        rows.append(row)
+    data={'objects':rows,'world':scene.world.name,'exposure':scene.view_settings.exposure,'rayReflections':scene.eevee.use_raytracing}
+    return {'sha256':hashlib.sha256(json.dumps(data,sort_keys=True).encode()).hexdigest(),'objects':len(rows),'data':data}

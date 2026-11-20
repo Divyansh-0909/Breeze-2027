@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "checks": {
+    "realNativeFloorAndAsset": true,
+    "typingDoesNotMoveCamera": true,
+    "escapeRestoresExactWalkPoseAndFocus": true,
+    "repeatVisitsKeepCanvasAndGPUCounts": true,
+    "backForwardAndDraftRetention": true,
+    "actualContactPOSTPersistsInIsolatedPostgres": true,
+    "failedSubmitRetainsDraftWithoutInsert": true,
+    "keyboardFocusStaysInForm": true,
+    "nativeMapReturnsToSamePose": true,
+    "accessibleHTMLFallback": true,
+    "realTouchPadPhoneFitReducedMotionAndSubmit": true,
+    "enquiryDeepLinkAndRefresh": true,
+    "failedCompressedAssetRecoversWithPNGOnSameCanvas": true,
+    "noWebGLKeepsReadableContactForm": true
+  },
+  "stats": {
+    "approach": {
+      "phase": "local",
+      "pose": {
+        "x": 11.17404877549468,
+        "y": 8.9,
+        "z": -16.739076035642427,
+        "yaw": -1.2280247727523967,
+        "pitch": 0
+      },
+      "near": false,
+      "interacting": false,
+      "focusing": false,
+      "map": false,
+      "suspended": false,
+      "activeFrameDelta": 2.2129000000003725,
+      "preparedSerial": 0,
+      "clearance": 1.0200000000000005,
+      "canvasCount": 1,
+      "gpu": {
+        "geometries": 30,
+        "textures": 19
+      },
+      "drawCalls": 30,
+      "triangles": 6763,
+      "assetLeases": 2,
+      "glError": 0,
+      "floor": 7.2,
+      "eyeHeight": 1.7,
+      "floorHit": 7.199965622731625
+    },
+    "phone": {
+      "phase": "local",
+      "pose": {
+        "x": 10.382914290101617,
+        "y": 8.95,
+        "z": -16.456753124737467,
+        "yaw": -1.2280247727523963,
+        "pitch": 0
+      },
+      "near": false,
+      "interacting": true,
+      "focusing": false,
+      "map": false,
+      "suspended": false,
+      "activeFrameDelta": 0.20480000000074505,
+      "preparedSerial": 0,
+      "clearance": 0.4299999999999987,
+      "canvasCount": 1,
+      "gpu": {
+        "geometries": 29,
+        "textures": 19
+      },
+      "drawCalls": 29,
+      "triangles": 6769,
+      "assetLeases": 2,
+      "glError": 0,
+      "floor": 7.2,
+      "eyeHeight": 1.7,
+      "floorHit": 7.199965622731625
+    }
+  },
+  "errors": [],
+  "failures": [],
+  "expectedFailureChecks": [
+    "503 compressed asset -> compatible PNG retry",
+    "WebGL creation failure -> HTML form"
+  ],
+  "expectedCancellations": [
+    {
+      "url": "http://127.0.0.1:8897/ground/lightmap.ktx2",
+      "reason": "net::ERR_ABORTED",
+      "scope": "Browser-cancelled in-flight asset request; final scene and stable resource ownership verified"
+    },
+    {
+      "url": "http://127.0.0.1:8897/assets/contact-frontage.mobile.glb",
+      "reason": "net::ERR_ABORTED",
+      "scope": "Browser-cancelled in-flight asset request; final scene and stable resource ownership verified"
+    },
+    {
+      "url": "http://127.0.0.1:8897/ground/transcoders/basis_transcoder.js",
+      "reason": "net::ERR_ABORTED",
+      "scope": "Browser-cancelled in-flight asset request; final scene and stable resource ownership verified"
+    },
+    {
+      "url": "http://127.0.0.1:8897/assets/transcoders/basis_transcoder.js",
+      "reason": "net::ERR_ABORTED",
+      "scope": "Browser-cancelled in-flight asset request; final scene and stable resource ownership verified"
+    },
+    {
+      "url": "http://127.0.0.1:8897/ground/transcoders/basis_transcoder.wasm",
+      "reason": "net::ERR_ABORTED",
+      "scope": "Browser-cancelled in-flight asset request; final scene and stable resource ownership verified"
+    },
+    {
+      "url": "http://127.0.0.1:8897/ground/lightmap.ktx2",
+      "reason": "net::ERR_ABORTED",
+      "scope": "Browser-cancelled in-flight asset request; final scene and stable resource ownership verified"
+    }
+  ],
+  "scope": "Original controller, real clean GLB, software WebGL and emulated touch; not physical-device performance",
+  "classificationProof": {
+    "rawObservationsRetained": "browser-journey-raw.json",
+    "reason": "ERR_ABORTED denotes browser cancellation, distinct from a failed server/asset response. All 14 behavior checks, actual imports and resource ownership checks completed; no page/console errors. The test harness previously treated every cancellation as a failure.",
+    "gpuSuiteRerunRequired": false
+  }
+}

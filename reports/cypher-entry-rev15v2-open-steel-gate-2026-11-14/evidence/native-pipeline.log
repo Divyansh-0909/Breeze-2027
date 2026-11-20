@@ -1,0 +1,9 @@
+START export []
+PASS export
+START render []
+PASS captures
+START build ['--restore', '--base', '/dev/shm/Gullyverse-Rev15V1-Events-Coloured-Plaster.blend', '--output', '/dev/shm/Gullyverse-Rev15V2-Restore-Test.blend']
+PASS restore-check
+START fresh-open ['--restored']
+PASS restored-fresh-open
+ALL_NATIVE_CHECKS_PASS

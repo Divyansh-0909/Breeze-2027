@@ -1,0 +1,9 @@
+# Rev15V1 — Events coloured house plaster
+
+The Events L2 house wall now uses dusty terracotta painted plaster instead of a brick pattern. All brick colour courses, exposed-brick patches and mortar normal relief are removed from the new finish; subtle fine render grain, damp base and sill runoff remain. Exactly 3,151 selected wall faces in three objects receive the new material. Geometry, all UVs, colours and transforms remain unchanged.
+
+The eight Events posters, artwork, frames, heading, size and placement are exact. Window details, the whole Team building and all eight mural states, other houses, navigation and sponsor LED, road, crowd, saved lighting and original movement code remain unchanged. Native fresh-open, actual reconstruction from restored V, independent restored-file opening and authored packed-image checks passed. The runtime GLB contains only the three changed wall-surface objects; it replaces their original primitives and is not a visible overlay.
+
+The packed working master is `/dev/shm/Gullyverse-Rev15V1-Events-Coloured-Plaster.blend`, 233,755,675 bytes, SHA-256 `f4c7a422176da1ea0fa00b3be8cfbb8c7eec1f375230258ae428cb4654eaec7d`. It has 57 scenes, preserving all 56 earlier memberships. The complete externally recoverable master uses the verified V source/native chain plus the V1 source and maps. See RESTORE.md and the dependency indexes.
+
+[Two-page PDF review](https://drive.google.com/file/d/1mzVJM7LoRdTnzUHDWRVWSgcG92XLlWnH/view?usp=drivesdk) includes neutral-light colour inspection and same-camera original-night-light before/after. Inspection lighting was never saved. [Versioned Drive subphase](https://drive.google.com/drive/folders/1iQDs_aQPwDNAdINGp47EpDa_hDwS7jcf). No website code, commit, push or deployment. Full-world production integration remains pending. The subsequent requested entrance gate is a separate subphase.

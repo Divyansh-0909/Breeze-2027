@@ -1,0 +1,138 @@
+[
+  {
+    "name": "REV15X / REV15C / REV15B / REV15 / Entry parapet return",
+    "materials": [
+      {
+        "name": "ART / return-left / Entry parapet return",
+        "link": "OBJECT",
+        "principled": [
+          {
+            "input": "Base Color",
+            "links": [
+              [
+                "World aligned paint mixture",
+                "MIX_RGB",
+                "Color"
+              ]
+            ]
+          },
+          {
+            "input": "Roughness",
+            "links": [
+              [
+                "World aligned paint mixture.001",
+                "MIX_RGB",
+                "Color"
+              ]
+            ]
+          },
+          {
+            "input": "Metallic",
+            "links": [
+              [
+                "MULTIPLY.016",
+                "MATH",
+                "Value"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "faces": 6,
+    "matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        -12.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        14.149999618530273
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        7.75
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  {
+    "name": "REV15X / REV15C / REV15B / REV15 / Entry parapet return.001",
+    "materials": [
+      {
+        "name": "ART / return-right / Entry parapet return.001",
+        "link": "OBJECT",
+        "principled": [
+          {
+            "input": "Base Color",
+            "links": [
+              [
+                "World aligned paint mixture",
+                "MIX_RGB",
+                "Color"
+              ]
+            ]
+          },
+          {
+            "input": "Roughness",
+            "links": [
+              [
+                "World aligned paint mixture.001",
+                "MIX_RGB",
+                "Color"
+              ]
+            ]
+          },
+          {
+            "input": "Metallic",
+            "links": [
+              [
+                "MULTIPLY.016",
+                "MATH",
+                "Value"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "faces": 6,
+    "matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        12.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        14.149999618530273
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        7.75
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  }
+]

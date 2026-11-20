@@ -1,0 +1,661 @@
+{
+  "profiles": [
+    {
+      "profile": "desktop",
+      "conditions": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "emulatedDPR": 1,
+        "renderDPR": 1,
+        "cpuThrottle": 1,
+        "gpu": "Chromium ANGLE SwiftShader software renderer in cloud; no physical GPU/device certification",
+        "benchmarkFramesPerView": 3,
+        "method": "Synchronous GPU-completed frames with gl.finish, CPU submission and GPU queries separately measured. Conservative serialized throughput; small sample, not physical-display certification.",
+        "network": "local loopback, uncached, not an internet delivery estimate"
+      },
+      "checks": {
+        "singleCanvas": true,
+        "htmlDirections": true,
+        "reducedMotionPaused": false,
+        "lightmapUV1": true,
+        "customLEDReceivesFog": true
+      },
+      "errors": [],
+      "responses": [
+        {
+          "url": "/",
+          "status": 200
+        },
+        {
+          "url": "/main.js",
+          "status": 200
+        },
+        {
+          "url": "/vendor/three/examples/jsm/loaders/GLTFLoader.js",
+          "status": 200
+        },
+        {
+          "url": "/vendor/three/examples/jsm/loaders/DRACOLoader.js",
+          "status": 200
+        },
+        {
+          "url": "/vendor/three/examples/jsm/utils/BufferGeometryUtils.js",
+          "status": 200
+        },
+        {
+          "url": "/vendor/three/build/three.module.js",
+          "status": 200
+        },
+        {
+          "url": "/cameras.json",
+          "status": 200
+        },
+        {
+          "url": "/pilot.glb",
+          "status": 200
+        },
+        {
+          "url": "/textures/ground-lightmap.png",
+          "status": 200
+        },
+        {
+          "url": "/textures/damp-roughness.png",
+          "status": 200
+        },
+        {
+          "url": "/logo-strip-0.png",
+          "status": 200
+        },
+        {
+          "url": "/logo-strip-1.png",
+          "status": 200
+        }
+      ],
+      "resources": [
+        {
+          "name": "/main.js",
+          "encodedBodySize": 10212,
+          "transferSize": 10512,
+          "duration": 83.39999999850988
+        },
+        {
+          "name": "/vendor/three/build/three.module.js",
+          "encodedBodySize": 1304820,
+          "transferSize": 1305120,
+          "duration": 58.19999999552965
+        },
+        {
+          "name": "/vendor/three/examples/jsm/loaders/GLTFLoader.js",
+          "encodedBodySize": 110029,
+          "transferSize": 110329,
+          "duration": 54.099999994039536
+        },
+        {
+          "name": "/vendor/three/examples/jsm/loaders/DRACOLoader.js",
+          "encodedBodySize": 13699,
+          "transferSize": 13999,
+          "duration": 53.100000001490116
+        },
+        {
+          "name": "/vendor/three/examples/jsm/utils/BufferGeometryUtils.js",
+          "encodedBodySize": 31768,
+          "transferSize": 32068,
+          "duration": 13.799999997019768
+        },
+        {
+          "name": "/cameras.json",
+          "encodedBodySize": 968,
+          "transferSize": 1268,
+          "duration": 6.799999997019768
+        },
+        {
+          "name": "/pilot.glb",
+          "encodedBodySize": 23776228,
+          "transferSize": 23776528,
+          "duration": 295
+        },
+        {
+          "name": "/textures/ground-lightmap.png",
+          "encodedBodySize": 1770747,
+          "transferSize": 1771047,
+          "duration": 11.599999994039536
+        },
+        {
+          "name": "/textures/damp-roughness.png",
+          "encodedBodySize": 37688,
+          "transferSize": 37988,
+          "duration": 8.5
+        },
+        {
+          "name": "/logo-strip-0.png",
+          "encodedBodySize": 254513,
+          "transferSize": 254813,
+          "duration": 6.399999998509884
+        },
+        {
+          "name": "/logo-strip-1.png",
+          "encodedBodySize": 272321,
+          "transferSize": 272621,
+          "duration": 4.299999997019768
+        }
+      ],
+      "totalEncodedResponseBytes": 27582993,
+      "measures": [
+        {
+          "view": "far",
+          "frames": {
+            "samples": 2,
+            "p50Ms": 4183.4000000059605,
+            "p95Ms": 4183.4000000059605,
+            "p99Ms": 4183.4000000059605,
+            "meanMs": 3960.650000002235,
+            "sustainedFPS": 0.25248380947557486
+          },
+          "cpuRenderSubmission": {
+            "samples": 3,
+            "p50Ms": 2.2000000029802322,
+            "p95Ms": 6.100000001490116,
+            "p99Ms": 6.100000001490116,
+            "meanMs": 3.33333333581686,
+            "sustainedFPS": 299.9999997764826
+          },
+          "gpu": null,
+          "stats": {
+            "asset": "pilot.glb",
+            "loadAndCompileMs": 15447.90000000596,
+            "compileMs": 20.899999998509884,
+            "modelScenes": 1,
+            "lightmapMeshes": 4,
+            "lightmapUVFailures": 0,
+            "ledFaces": 1,
+            "textureBytesEstimate": 261555883,
+            "geometryBytes": 18728764,
+            "totalTriangles": 447269,
+            "materials": 84,
+            "capabilities": {
+              "webgl2": true,
+              "maxTextureSize": 8192,
+              "astc": true,
+              "s3tc": true,
+              "etc": true,
+              "gpuTimer": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+            },
+            "source": "Rev15O → isolated Rev15P pilot",
+            "fogDensity": 0.024,
+            "view": "far",
+            "fogOn": true,
+            "paused": false,
+            "offset": 0,
+            "canvases": 1,
+            "drawCalls": 128,
+            "visibleTriangles": 447253,
+            "rendererTextures": 42,
+            "shaderPrograms": 11
+          }
+        },
+        {
+          "view": "middle",
+          "frames": {
+            "samples": 2,
+            "p50Ms": 4744.60000000149,
+            "p95Ms": 4744.60000000149,
+            "p99Ms": 4744.60000000149,
+            "meanMs": 4253.35000000149,
+            "sustainedFPS": 0.23510879659554226
+          },
+          "cpuRenderSubmission": {
+            "samples": 3,
+            "p50Ms": 1.2000000029802322,
+            "p95Ms": 6.100000001490116,
+            "p99Ms": 6.100000001490116,
+            "meanMs": 2.7666666681567826,
+            "sustainedFPS": 361.4457829378568
+          },
+          "gpu": null,
+          "stats": {
+            "asset": "pilot.glb",
+            "loadAndCompileMs": 15447.90000000596,
+            "compileMs": 20.899999998509884,
+            "modelScenes": 1,
+            "lightmapMeshes": 4,
+            "lightmapUVFailures": 0,
+            "ledFaces": 1,
+            "textureBytesEstimate": 261555883,
+            "geometryBytes": 18728764,
+            "totalTriangles": 447269,
+            "materials": 84,
+            "capabilities": {
+              "webgl2": true,
+              "maxTextureSize": 8192,
+              "astc": true,
+              "s3tc": true,
+              "etc": true,
+              "gpuTimer": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+            },
+            "source": "Rev15O → isolated Rev15P pilot",
+            "fogDensity": 0.024,
+            "view": "middle",
+            "fogOn": true,
+            "paused": false,
+            "offset": 0,
+            "canvases": 1,
+            "drawCalls": 107,
+            "visibleTriangles": 442891,
+            "rendererTextures": 42,
+            "shaderPrograms": 11
+          }
+        },
+        {
+          "view": "near",
+          "frames": {
+            "samples": 2,
+            "p50Ms": 1998,
+            "p95Ms": 1998,
+            "p99Ms": 1998,
+            "meanMs": 1954.3500000014901,
+            "sustainedFPS": 0.5116790748838425
+          },
+          "cpuRenderSubmission": {
+            "samples": 3,
+            "p50Ms": 2.100000001490116,
+            "p95Ms": 7.300000004470348,
+            "p99Ms": 7.300000004470348,
+            "meanMs": 3.4333333348234496,
+            "sustainedFPS": 291.26213579591814
+          },
+          "gpu": null,
+          "stats": {
+            "asset": "pilot.glb",
+            "loadAndCompileMs": 15447.90000000596,
+            "compileMs": 20.899999998509884,
+            "modelScenes": 1,
+            "lightmapMeshes": 4,
+            "lightmapUVFailures": 0,
+            "ledFaces": 1,
+            "textureBytesEstimate": 261555883,
+            "geometryBytes": 18728764,
+            "totalTriangles": 447269,
+            "materials": 84,
+            "capabilities": {
+              "webgl2": true,
+              "maxTextureSize": 8192,
+              "astc": true,
+              "s3tc": true,
+              "etc": true,
+              "gpuTimer": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+            },
+            "source": "Rev15O → isolated Rev15P pilot",
+            "fogDensity": 0.024,
+            "view": "near",
+            "fogOn": true,
+            "paused": false,
+            "offset": 0,
+            "canvases": 1,
+            "drawCalls": 95,
+            "visibleTriangles": 416023,
+            "rendererTextures": 42,
+            "shaderPrograms": 11
+          }
+        }
+      ]
+    },
+    {
+      "profile": "mobile-emulated",
+      "conditions": {
+        "viewport": [
+          390,
+          844
+        ],
+        "emulatedDPR": 2,
+        "renderDPR": 0.85,
+        "cpuThrottle": 4,
+        "gpu": "Chromium ANGLE SwiftShader software renderer in cloud; no physical GPU/device certification",
+        "benchmarkFramesPerView": 3,
+        "method": "Synchronous GPU-completed frames with gl.finish, CPU submission and GPU queries separately measured. Conservative serialized throughput; small sample, not physical-display certification.",
+        "network": "local loopback, uncached, not an internet delivery estimate"
+      },
+      "checks": {
+        "singleCanvas": true,
+        "htmlDirections": true,
+        "reducedMotionPaused": false,
+        "lightmapUV1": true,
+        "customLEDReceivesFog": true
+      },
+      "errors": [],
+      "responses": [
+        {
+          "url": "/",
+          "status": 200
+        },
+        {
+          "url": "/main.js",
+          "status": 200
+        },
+        {
+          "url": "/vendor/three/examples/jsm/loaders/DRACOLoader.js",
+          "status": 200
+        },
+        {
+          "url": "/vendor/three/examples/jsm/loaders/GLTFLoader.js",
+          "status": 200
+        },
+        {
+          "url": "/vendor/three/examples/jsm/utils/BufferGeometryUtils.js",
+          "status": 200
+        },
+        {
+          "url": "/vendor/three/build/three.module.js",
+          "status": 200
+        },
+        {
+          "url": "/cameras.json",
+          "status": 200
+        },
+        {
+          "url": "/pilot.glb",
+          "status": 200
+        },
+        {
+          "url": "/textures/ground-lightmap.png",
+          "status": 200
+        },
+        {
+          "url": "/textures/damp-roughness.png",
+          "status": 200
+        },
+        {
+          "url": "/logo-strip-0.png",
+          "status": 200
+        },
+        {
+          "url": "/logo-strip-1.png",
+          "status": 200
+        }
+      ],
+      "resources": [
+        {
+          "name": "/main.js",
+          "encodedBodySize": 10212,
+          "transferSize": 10512,
+          "duration": 25.200000002980232
+        },
+        {
+          "name": "/vendor/three/build/three.module.js",
+          "encodedBodySize": 1304820,
+          "transferSize": 1305120,
+          "duration": 48.5
+        },
+        {
+          "name": "/vendor/three/examples/jsm/loaders/GLTFLoader.js",
+          "encodedBodySize": 110029,
+          "transferSize": 110329,
+          "duration": 42.29999999701977
+        },
+        {
+          "name": "/vendor/three/examples/jsm/loaders/DRACOLoader.js",
+          "encodedBodySize": 13699,
+          "transferSize": 13999,
+          "duration": 41.69999999552965
+        },
+        {
+          "name": "/vendor/three/examples/jsm/utils/BufferGeometryUtils.js",
+          "encodedBodySize": 31768,
+          "transferSize": 32068,
+          "duration": 6.800000004470348
+        },
+        {
+          "name": "/cameras.json",
+          "encodedBodySize": 968,
+          "transferSize": 1268,
+          "duration": 5.899999998509884
+        },
+        {
+          "name": "/pilot.glb",
+          "encodedBodySize": 23776228,
+          "transferSize": 23776528,
+          "duration": 493.6000000014901
+        },
+        {
+          "name": "/textures/ground-lightmap.png",
+          "encodedBodySize": 1770747,
+          "transferSize": 1771047,
+          "duration": 6.899999998509884
+        },
+        {
+          "name": "/textures/damp-roughness.png",
+          "encodedBodySize": 37688,
+          "transferSize": 37988,
+          "duration": 4.899999998509884
+        },
+        {
+          "name": "/logo-strip-0.png",
+          "encodedBodySize": 254513,
+          "transferSize": 254813,
+          "duration": 5
+        },
+        {
+          "name": "/logo-strip-1.png",
+          "encodedBodySize": 272321,
+          "transferSize": 272621,
+          "duration": 5.899999998509884
+        }
+      ],
+      "totalEncodedResponseBytes": 27582993,
+      "measures": [
+        {
+          "view": "far",
+          "frames": {
+            "samples": 2,
+            "p50Ms": 1254.1000000014901,
+            "p95Ms": 1254.1000000014901,
+            "p99Ms": 1254.1000000014901,
+            "meanMs": 961.6499999985099,
+            "sustainedFPS": 1.0398793739942283
+          },
+          "cpuRenderSubmission": {
+            "samples": 3,
+            "p50Ms": 11.600000001490116,
+            "p95Ms": 42.29999999701977,
+            "p99Ms": 42.29999999701977,
+            "meanMs": 21.5,
+            "sustainedFPS": 46.51162790697674
+          },
+          "gpu": null,
+          "stats": {
+            "asset": "pilot.glb",
+            "loadAndCompileMs": 5670.5,
+            "compileMs": 28.600000001490116,
+            "modelScenes": 1,
+            "lightmapMeshes": 4,
+            "lightmapUVFailures": 0,
+            "ledFaces": 1,
+            "textureBytesEstimate": 261555883,
+            "geometryBytes": 18728764,
+            "totalTriangles": 447269,
+            "materials": 84,
+            "capabilities": {
+              "webgl2": true,
+              "maxTextureSize": 8192,
+              "astc": true,
+              "s3tc": true,
+              "etc": true,
+              "gpuTimer": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+            },
+            "source": "Rev15O → isolated Rev15P pilot",
+            "fogDensity": 0.024,
+            "view": "far",
+            "fogOn": true,
+            "paused": false,
+            "offset": 0,
+            "canvases": 1,
+            "drawCalls": 128,
+            "visibleTriangles": 447253,
+            "rendererTextures": 42,
+            "shaderPrograms": 11
+          }
+        },
+        {
+          "view": "middle",
+          "frames": {
+            "samples": 2,
+            "p50Ms": 1634.5,
+            "p95Ms": 1634.5,
+            "p99Ms": 1634.5,
+            "meanMs": 1093.300000000745,
+            "sustainedFPS": 0.9146620323784126
+          },
+          "cpuRenderSubmission": {
+            "samples": 3,
+            "p50Ms": 16.700000002980232,
+            "p95Ms": 35.899999998509884,
+            "p99Ms": 35.899999998509884,
+            "meanMs": 20.299999999503296,
+            "sustainedFPS": 49.26108374504769
+          },
+          "gpu": null,
+          "stats": {
+            "asset": "pilot.glb",
+            "loadAndCompileMs": 5670.5,
+            "compileMs": 28.600000001490116,
+            "modelScenes": 1,
+            "lightmapMeshes": 4,
+            "lightmapUVFailures": 0,
+            "ledFaces": 1,
+            "textureBytesEstimate": 261555883,
+            "geometryBytes": 18728764,
+            "totalTriangles": 447269,
+            "materials": 84,
+            "capabilities": {
+              "webgl2": true,
+              "maxTextureSize": 8192,
+              "astc": true,
+              "s3tc": true,
+              "etc": true,
+              "gpuTimer": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+            },
+            "source": "Rev15O → isolated Rev15P pilot",
+            "fogDensity": 0.024,
+            "view": "middle",
+            "fogOn": true,
+            "paused": false,
+            "offset": 0,
+            "canvases": 1,
+            "drawCalls": 107,
+            "visibleTriangles": 442891,
+            "rendererTextures": 42,
+            "shaderPrograms": 11
+          }
+        },
+        {
+          "view": "near",
+          "frames": {
+            "samples": 2,
+            "p50Ms": 842.6000000014901,
+            "p95Ms": 842.6000000014901,
+            "p99Ms": 842.6000000014901,
+            "meanMs": 665.8000000007451,
+            "sustainedFPS": 1.501952538298109
+          },
+          "cpuRenderSubmission": {
+            "samples": 3,
+            "p50Ms": 11.5,
+            "p95Ms": 16.600000001490116,
+            "p99Ms": 16.600000001490116,
+            "meanMs": 11.83333333581686,
+            "sustainedFPS": 84.50704223578516
+          },
+          "gpu": null,
+          "stats": {
+            "asset": "pilot.glb",
+            "loadAndCompileMs": 5670.5,
+            "compileMs": 28.600000001490116,
+            "modelScenes": 1,
+            "lightmapMeshes": 4,
+            "lightmapUVFailures": 0,
+            "ledFaces": 1,
+            "textureBytesEstimate": 261555883,
+            "geometryBytes": 18728764,
+            "totalTriangles": 447269,
+            "materials": 84,
+            "capabilities": {
+              "webgl2": true,
+              "maxTextureSize": 8192,
+              "astc": true,
+              "s3tc": true,
+              "etc": true,
+              "gpuTimer": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+            },
+            "source": "Rev15O → isolated Rev15P pilot",
+            "fogDensity": 0.024,
+            "view": "near",
+            "fogOn": true,
+            "paused": false,
+            "offset": 0,
+            "canvases": 1,
+            "drawCalls": 97,
+            "visibleTriangles": 440671,
+            "rendererTextures": 42,
+            "shaderPrograms": 11
+          }
+        }
+      ]
+    }
+  ],
+  "geometryCompression": {
+    "status": "DECODED_WITH_TRIANGLE_COUNT_CHANGE",
+    "defaultViewer": "uncompressed geometry; compressed asset experimental pending fidelity review",
+    "dracoTriangles": 447141,
+    "plainTriangles": 447269,
+    "dracoMaterials": 84,
+    "plainMaterials": 84,
+    "oneSceneEach": true
+  },
+  "plainStats": {
+    "asset": "pilot-draco.glb",
+    "loadAndCompileMs": 13825.90000000596,
+    "compileMs": 14.700000002980232,
+    "modelScenes": 1,
+    "lightmapMeshes": 4,
+    "lightmapUVFailures": 0,
+    "ledFaces": 1,
+    "textureBytesEstimate": 261555883,
+    "geometryBytes": 20852036,
+    "totalTriangles": 447141,
+    "materials": 84,
+    "capabilities": {
+      "webgl2": true,
+      "maxTextureSize": 8192,
+      "astc": true,
+      "s3tc": true,
+      "etc": true,
+      "gpuTimer": true,
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+    },
+    "source": "Rev15O → isolated Rev15P pilot",
+    "fogDensity": 0.024,
+    "view": "far",
+    "fogOn": true,
+    "paused": false,
+    "offset": 6.501000000000022,
+    "canvases": 1,
+    "drawCalls": 128,
+    "visibleTriangles": 447125,
+    "rendererTextures": 42,
+    "shaderPrograms": 11
+  },
+  "unmeasured": [
+    "Physical phone FPS, battery draw and thermal throttling",
+    "Hardware GPU results",
+    "Full-lane production delivery/network performance",
+    "KTX2/Basis encoder not installed; runtime compressed-format capabilities recorded only"
+  ],
+  "note": "Quantile/frame/CPU/GPU-query/memory conventions adapted from existing perf-gullyverse.mjs and immersive/diagnostics.ts. Browser clear captures remove fog only; Blender baseline captures are actual Rev15O."
+}

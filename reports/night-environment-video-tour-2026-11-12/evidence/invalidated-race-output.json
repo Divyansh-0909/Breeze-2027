@@ -1,0 +1,107 @@
+{
+  "status": "INVALIDATED",
+  "seconds": 34.29857412000001,
+  "sourceFrames": 1140,
+  "sourceRenderFPS": 10,
+  "deliveryFPS": 24,
+  "interpolated": true,
+  "duration": 114,
+  "frames": 2736,
+  "width": 1280,
+  "height": 720,
+  "codec": "h264",
+  "bytes": 19633355,
+  "sha256": "6cc26cfa3311193ab6a2107482ec0743608b0c9a682f085ff029d8a8064ae69c",
+  "fullDecode": "PASS",
+  "fastStart": true,
+  "probe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "width": 1280,
+        "height": 720,
+        "coded_width": 1280,
+        "coded_height": 720,
+        "closed_captions": 0,
+        "film_grain": 0,
+        "has_b_frames": 2,
+        "sample_aspect_ratio": "1:1",
+        "display_aspect_ratio": "16:9",
+        "level": -99,
+        "refs": 1,
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "24/1",
+        "avg_frame_rate": "24/1",
+        "time_base": "1/12288",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 1400832,
+        "duration": "114.000000",
+        "bit_rate": "1375516",
+        "nb_frames": "2736",
+        "extradata_size": 50,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "vendor_id": "[0][0][0][0]",
+          "encoder": "Lavc61.19.101 libx264"
+        },
+        "side_data_list": [
+          {
+            "side_data_type": "ICC Profile"
+          }
+        ]
+      }
+    ],
+    "format": {
+      "filename": "/workspace/Breeze-2027/reports/night-environment-video-tour-2026-11-12/video/Breeze-Night-Environment-Full-Tour-2026-11-12.mp4",
+      "nb_streams": 1,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "114.000000",
+      "size": "19633355",
+      "bit_rate": "1377779",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2avc1mp41",
+        "title": "Breeze 2027 - Full Night Environment Camera Tour",
+        "encoder": "Lavf61.7.103",
+        "comment": "Private scene preview. Offline 10 FPS camera renders with 24 FPS temporally interpolated delivery. Not a live website FPS measurement."
+      }
+    }
+  },
+  "reason": "Overlapping encoder shutdown corrupted shared output. Earlier exit-code-only decode check was insufficient; superseded by atomic output and ffmpeg -xerror full decode."
+}

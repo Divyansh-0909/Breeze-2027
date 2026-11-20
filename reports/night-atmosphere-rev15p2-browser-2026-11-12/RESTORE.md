@@ -1,0 +1,15 @@
+# Rev15P2 recovery
+
+This update is a private browser pilot. The original website's quarry movement, transitions and routes remain unchanged. Do not replace its movement controller when integrating later. All visual delivery is through the review PDF.
+
+Extract the checkpoint using its INDEX and SHA256SUMS. Paths are relative to the repository root. From that root, run `python reports/night-atmosphere-rev15p2-browser-2026-11-12/source/serve.py`, then open `http://127.0.0.1:8767/`. The bundled Three.js runtime is used; no Next application, credentials or Drive connection is required. `/baseline/` comparisons require the separately retained Rev15P viewer, but the updated viewer works independently.
+
+The compiled GLB uses standard unlit materials and normalized 16-bit vertex lighting. Its explicit material extra `nativeLightfieldScale=32` must be applied to material colour. The viewer performs that binding. Four ground materials are converted to a specular-only standard response, bind the atlas to UV1 and use the supplied roughness map. Do not infer a portable lightmap/brightness contract from an arbitrary glTF viewer. The supplied viewer is the tested reference.
+
+The original native source is `Gullyverse-Rev15P-Night-Atmosphere-Pilot.blend`, 171,729,972 bytes, SHA-256 `f539f05e9fe2e82d2909a79f326f6b53485d3e00832707a51ab073c269d95682`. It contains all 45 earlier scenes plus the isolated pilot, with all images packed. It is included in the complete local Rev15P base checkpoint, together with the exact baseline `pilot.glb` needed for regeneration and comparison. Base archive: `reports/night-atmosphere-rev15p-pilot-2026-11-11/checkpoint/Rev15P-Night-Pilot-Local-Checkpoint-20261111.zip`, 251,926,300 bytes, SHA-256 `df53edfb1d95dde30c3e3dfe140a730daec7a8b50d4dd79e575df7f8ba5340ac`. Extract that base and then this incremental archive into the same root. The editable/native source checkpoint remains local; only the review PDF is uploaded under the user's latest PDF permission.
+
+Rebuild from source: `source/bake-lightfield.py`, `source/bake-ground.py`, `source/bake-roughness.py`, then `source/compile.py`. These read the original packed master and exact baseline GLB in the neighbouring Rev15P directory. None saves the native file. The original baseline viewer/source scripts are backed up alongside those dependencies. Use Blender 4.3.2, Python with NumPy/Pillow/ReportLab, and the repository's Node/Playwright environment for rebuilding tests/PDFs. Opening the already compiled viewer needs only Python and a WebGL2 browser.
+
+Movement hashes, native/source hashes, primitive/image checks and test results are in `evidence/`. The checkpoint archive is verified by reading every entry and checking size, CRC and SHA-256; the Drive review PDF is downloaded back and hashed. Accompanying verification receipts are written after upload, outside the immutable archive to avoid self-reference. Earlier Rev15O/Rev15P sources and backups remain intact.
+
+Software-rendering tests show a lower render cost and closer static lighting; they do not certify real phone or hardware FPS, thermals, input latency or a full-world rollout.

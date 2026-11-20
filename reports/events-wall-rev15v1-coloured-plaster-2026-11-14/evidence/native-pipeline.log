@@ -1,0 +1,10 @@
+START fresh-open []
+PASS fresh-open
+START export []
+PASS export
+START build ['--restore', '--base', '/dev/shm/Gullyverse-Rev15V-Restore-Test.blend', '--output', '/dev/shm/Gullyverse-Rev15V1-Restore-Test.blend']
+PASS restore-check
+START fresh-open ['--restored']
+PASS restored-fresh-open
+START render []
+PASS captures

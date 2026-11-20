@@ -1,0 +1,101 @@
+# Rev15V2 consolidated project handoff / 14 November 2026
+
+# CONSOLIDATED CODEX HANDOFF / 14 NOVEMBER 2026 / REV15V2
+
+Handoff: WORLD-REV15V2-CONSOLIDATED-20261114-5fd74f84-R1 — READY_FOR_REVIEW; latest Events/gate direction accepted by the user.
+
+## Current baseline and user response
+
+The current complete native environment is Rev15V2, incorporating all changes below. The user said “great” after the combined Events-plaster/open-gate delivery and requested this document update. This records acceptance of that presented direction for continuation; it does not mark website integration or hardware performance as complete. The earlier Codex/ChatGPT history and recorded approvals are retained.
+
+Scene: REV15V2 / Narrow open steel cypher gate. Master: reports/cypher-entry-rev15v2-open-steel-gate-2026-11-14/delivery/Gullyverse-Rev15V2-Open-Steel-Cypher-Gate.blend. The packed master contains 58 scenes, retaining all 57 earlier scene memberships; 234,045,004 bytes; SHA-256 5fd74f84cd1c8d58ce99584045926288d0375eba95e6e1f9f0a5ea20714876bc.
+
+## Night atmosphere, video, Team light and crowd
+
+The cool night fill, warm shop lights, haze and original night exposure from Rev15P/P2 are retained. A 114-second, 13-chapter camera tour and PDF guide were delivered on 12 November. That tour shows the earlier P/P2 environment and predates the later shop, road, navigation, wall and gate edits; it is not a current V2 walkthrough or a live-game performance measurement.
+
+The Team top light was matched to the Events light. For native crowd review, 174 lower-detail crowd instances were restored to their original detailed LOD0 Aftermovie character meshes, keeping all 189 people, positions, standing heights and material identities. The Q draft paused for the account migration; these changes were subsequently included in the verified R master and carried forward. No new crowd design or runtime animation is claimed.
+
+## Open gully shops and realistic fascia boards — Rev15R/S
+
+Five open market-lane shops were improved using Indian kirana, chai and service-shop references: stocked racks, hanging packets, jars, sacks, counters and practical equipment, with distinct kirana, chai, household, mobile-repair and snacks/drinks layouts. Closed artist-painted shutters and the lane footprint were preserved. The follow-up S pass added original bilingual shop name boards, folded metal frames, fixings, matching interior labels and two small warm sign lamps per shop. These shop boards remain bilingual; the navigation board below is now English-only.
+
+## Drive migration and backup destination
+
+All 243 selected folders and 2,309 files have verified destination-owned copies in losersamurai09@gmail.com, approximately 15.97 GB. CSD361 and its descendants were excluded. Original files remain in rcstravels.business@gmail.com; this was a verified copy migration and did not free the old account’s storage or move its original document revision history. New checkpoints use the destination Breeze backup root. This current shared document is the migrated destination-owned copy; old links in historical entries are preserved, and the migration maps resolve them.
+
+## Continuous asphalt, wet shoulders and repaired potholes — Rev15T/T1/T2/T3
+
+The user selected A: continuous asphalt from the gully, over the existing ramp, into the cypher. The centre painted circle was removed in T1 and remains absent. T2 added stronger asphalt aggregate, muddy damp shoulders and sixteen elongated edge pools. After the user reported that the potholes had become unclear and the chips looked pointed, T3 rebuilt all sixteen depressions with fractured asphalt rims, smoother recessed mud beds and flatter irregular chips. Four contoured water pockets sit below road level. The existing ramp grade and central walking strip remain, with the saved lighting/exposure and wet-road reflection setting retained.
+
+## Final navigation board — Rev15U/U1/U2/U3
+
+The place boards and Gullyverse title use the supplied highway-sign direction: green backgrounds, white borders, white English Overpass lettering and the existing sign orientations. Destination panels are 0.68 m high. Aftermovie stays at the top with an upward arrow. Events and Accommodation use up-left diagonal arrows; Team and Contact Us use up-right diagonal arrows. Accommodation replaces Schedule. The bottom Past Sponsors plaque remains nondirectional with its LED hung closely below.
+
+Hindi was added in the intermediate bilingual version, then removed at the user’s request. Final U3 navigation is English-only, vertically centred, with all seven labels 12% larger. The digital sponsor screen, casing, hangers, original 62-logo strip, wider 72-cell gaps and 10,676-cell repeating period are unchanged. Accommodation is a sign-label change; its full website destination is not delivered. Older “Schedule unresolved” notes are historical, superseded by this explicit choice.
+
+## Cypher house walls/windows and the final Events finish — Rev15V/V1
+
+Delhi façade references informed weathered pale plaster, restrained peeling and small masonry exposures, damp bases and rain marks aligned to actual sills. Fifty-nine eligible windows received worn frames/shutters and dirt at glass edges; 45 steel grilles, 59 projecting sills and 18 small rain hoods were added. New maps were authored materials; the source photographs were used for reference only. No Firecrawl was used.
+
+The V1 correction replaces the Events L2 house’s brick pattern with dusty terracotta painted plaster. Brick colour courses, exposed-brick patches and mortar relief are removed from that Events finish. All eight Events poster artworks, frames, heading, sizes and positions are preserved. The artwork is still the existing event-art placeholder set. The whole Team building, including its black wall, upper windows and eight mural states, was excluded from the V/V1 wall and window edits. The earlier Team light remains retained.
+
+## Narrow outward-open steel entrance — Rev15V2
+
+A 1.8 m entrance is now on level asphalt beyond the existing navigation stand, between short pale boundary walls and masonry jambs. A single left-hinged 1.72 m steel leaf is open 90 degrees outward toward the gully. It uses 13 vertical 16 mm rods with roughly 10 cm clear gaps, a square-tube frame, light cross rails, hinge knuckles, wall plates and a latch. There is no opaque panel or raised threshold. The open leaf remains to the left of the walking line; the geometry audit confirms a clear 1.65 m central corridor. Six new objects were added, with no existing source object changed.
+
+## Preservation, verification and complete recovery
+
+The active Team carousel still has eight teams, Organising Committee first, with Coordinators removed. Its established full-form heading, portraits, names and roles are retained. The Events posters, navigation/LED, crowd, road, shops, upper balconies and ground-level railing removals remain preserved outside the changes specifically described above. Original quarry movement, input and transition code has not been rewritten.
+
+Native fresh opening, original geometry/UV/colour/material/transform preservation, all eight exclusive mural states, poster preservation, gate angle/direction and per-face clearance checks passed. V1 was actually rebuilt from the restored V base and reopened independently; V2 was rebuilt from verified V1 and reopened independently. The isolated gate GLB has five meshes and 1,100 triangles, loads without JavaScript/request/GL errors and retains its 90-degree/single-leaf metadata. Those component checks do not demonstrate a full-world walking or collision test.
+
+Versioned native/source/runtime/PDF checkpoints are retained on the destination Drive. Upload verification checked destination owner, parent, byte size and authenticated download-back SHA-256. The latest V2 source ZIP is 3,428,198 bytes, SHA-256 ba16833d6ff74ca2b9575be00795f946fd88c23c60ba04981e76455d03e36d6f; all 61 payloads and the actual reassembly passed. Complete native recovery uses the indexed T2 base, T3/U1 native deltas and U2/U3/V/V1/V2 source chain. The small wall and gate GLBs are components, not a substitute for the complete world. Follow the current restoration/extraction-order guide and apply the newest source archive last so older documentation cannot replace the current pointers.
+
+## Current review and restoration links
+
+[Latest combined PDF — Events plaster and open cypher gate](https://drive.google.com/file/d/1jSd3J4MQxsKdusqHXKQnIE5n3nSOFK8s/view)
+
+[Rev15V2 gate — complete checkpoint and restoration files](https://drive.google.com/drive/folders/1uo_ah4UfA0nNsrkABYBnRS6EaNEEtL_q)
+
+[Rev15V2 verified checkpoint index](https://drive.google.com/file/d/16oxXjHv_cpYa5ec6ichxT4uYJwffRY1I/view)
+
+[Rev15V2 native dependency index](https://drive.google.com/file/d/1PGVtuMT7VMBYsJt5ip50o-VWuyxCPphh/view)
+
+[Rev15V2 restoration and extraction-order guide](https://drive.google.com/file/d/1xl8pH_vp6TL8XrX-xejCn7NEvxt-jM4k/view)
+
+[Rev15V2 complete verification receipt](https://drive.google.com/file/d/1wqgKY_zvZIPirkQlgiasShyAYNEEP_va/view)
+
+[Rev15V1 coloured Events plaster — source and native recovery](https://drive.google.com/drive/folders/1iQDs_aQPwDNAdINGp47EpDa_hDwS7jcf)
+
+[Rev15V cypher house/window reference and review PDF](https://drive.google.com/file/d/1427ByDsz3Zr50pqCn9k1xvwO0Sg50bNH/view)
+
+[Rev15V house/window source checkpoint](https://drive.google.com/drive/folders/1tQAPv7-tZEQJaplmsw7VKOTIygzt95Zo)
+
+[Rev15U3 final English navigation review PDF](https://drive.google.com/file/d/1PvSA6fx4yE6tkSxsNXeKKB-SC4sMpUjY/view)
+
+[Rev15U3 final navigation source and native recovery](https://drive.google.com/drive/folders/1bIJ2F80l4YexQMEY6S0hGIuMXcfFpVsV)
+
+[Rev15T3 corrected potholes and wet-road review PDF](https://drive.google.com/file/d/1zFHlY9zRDnqO4CNiaWJSYJlluv9ZI1Mr/view)
+
+[Rev15T3 road checkpoint and complete-base recovery chain](https://drive.google.com/drive/folders/1bQNlVv5ehwfFrRIQT6NlefT0lqTT5EcS)
+
+[Rev15R open-market shop interiors checkpoint](https://drive.google.com/drive/folders/1RiVbHB6GGKrWDTSMlzjbKRB2REWAdKUG)
+
+[Rev15S realistic shop name boards checkpoint](https://drive.google.com/drive/folders/1CDLGM466e7iUmb6BI5wQRKkQJClRtL4-)
+
+[Historical 12 November night-environment video tour](https://drive.google.com/file/d/18h8tje7ggXPgIpgLwmxlnQAcX3BdPbz3/view?usp=drivesdk)
+
+[Historical video-tour PDF chapter guide](https://drive.google.com/file/d/1uid8LeuIw0HN3LP4PUDA5tKJDBzYTkeX/view?usp=drivesdk)
+
+[Drive migration evidence and old-to-new link maps](https://drive.google.com/drive/folders/1KdmRz38KSc3x9u70AhlaMWLlem6TqDax)
+
+[Current Breeze backup root — losersamurai09@gmail.com](https://drive.google.com/drive/folders/172ptAuVAT6nwyS2RallOPAExNDQ5yaF_)
+
+## Pending work and next resume point
+
+Full-world private walkable/website integration remains pending. It should reuse the original movement/input/frame controller and account for the current floor heights, wall boundaries, new gate corridor, destination placement and departure/return transitions. Full-scene browser optimization, real-device performance and hardware validation remain unverified. The earlier P/P2 camera tour and isolated component previews must not be reported as a completed interactive V2 walkthrough.
+
+Start any authorized whole-world continuation from Rev15V2 and the current dependency indexes. The latest combined PDF contains the coloured Events wall and the new entrance, with original-night and clearly labelled temporary neutral inspection views. No permanent inspection light was saved. This documentation task makes no new art, code, commit, push, merge or deployment change, and does not start another implementation phase. The last independent ChatGPT-reviewed handoff marker is preserved.
+
+END CONSOLIDATED HANDOFF / 14 NOVEMBER 2026 / WORLD-REV15V2-CONSOLIDATED-20261114-5fd74f84-R1

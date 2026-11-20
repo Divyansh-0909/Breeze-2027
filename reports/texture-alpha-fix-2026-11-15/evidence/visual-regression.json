@@ -1,0 +1,975 @@
+{
+  "status": "PASS",
+  "floorLuminance": 55.42613725333333,
+  "actualMeshTransparentTexelProbes": 58,
+  "maximumVisibleVsHiddenError": 0.0,
+  "meanWallLuminanceAtClearTexelsBefore": 16.59382068965517,
+  "meanWallLuminanceAtClearTexelsAfter": 74.64314137931034,
+  "wallScreenVariationComparison": {
+    "wallRightOfHeading": {
+      "bounds": [
+        970,
+        262,
+        1090,
+        330
+      ],
+      "beforeHighFrequencyStd": 1.2879362638010805,
+      "afterHighFrequencyStd": 1.0989687596933682,
+      "variationReductionPercent": 14.672116114660316
+    },
+    "wallBelowWindow": {
+      "bounds": [
+        700,
+        690,
+        1000,
+        760
+      ],
+      "beforeHighFrequencyStd": 0.8549254149999458,
+      "afterHighFrequencyStd": 0.4880095639699584,
+      "variationReductionPercent": 42.91787851809396
+    },
+    "upperConcrete": {
+      "bounds": [
+        650,
+        150,
+        920,
+        180
+      ],
+      "beforeHighFrequencyStd": 8.603615207189469,
+      "afterHighFrequencyStd": 4.934217317804035,
+      "variationReductionPercent": 42.649488627980034
+    }
+  },
+  "variationMetricScope": "Fixed camera; baking, denoising, mipmaps and MSAA; not universal physical noise measurement. Source PBR images unchanged.",
+  "compressedVsBaselineMeanRGBError": 0.12284105271100998,
+  "probes": [
+    {
+      "x": 507,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "afterRGB": [
+        120.0,
+        121.0,
+        103.0
+      ]
+    },
+    {
+      "x": 502,
+      "y": 349,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        71.0,
+        72.0,
+        56.0
+      ],
+      "afterRGB": [
+        121.0,
+        122.0,
+        103.0
+      ]
+    },
+    {
+      "x": 502,
+      "y": 290,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        85.0,
+        83.0,
+        67.0
+      ],
+      "afterRGB": [
+        128.0,
+        127.0,
+        109.0
+      ]
+    },
+    {
+      "x": 507,
+      "y": 277,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "afterRGB": [
+        124.0,
+        124.0,
+        105.0
+      ]
+    },
+    {
+      "x": 495,
+      "y": 247,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        32.0,
+        25.0,
+        14.0
+      ],
+      "afterRGB": [
+        60.0,
+        47.0,
+        29.0
+      ]
+    },
+    {
+      "x": 476,
+      "y": 227,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        66.0,
+        56.0,
+        40.0
+      ],
+      "afterRGB": [
+        67.0,
+        55.0,
+        39.0
+      ]
+    },
+    {
+      "x": 521,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "afterRGB": [
+        122.0,
+        123.0,
+        105.0
+      ]
+    },
+    {
+      "x": 516,
+      "y": 349,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "afterRGB": [
+        123.0,
+        123.0,
+        105.0
+      ]
+    },
+    {
+      "x": 516,
+      "y": 271,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "afterRGB": [
+        121.0,
+        121.0,
+        103.0
+      ]
+    },
+    {
+      "x": 509,
+      "y": 247,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        5.0,
+        3.0,
+        1.0
+      ],
+      "afterRGB": [
+        62.0,
+        47.0,
+        28.0
+      ]
+    },
+    {
+      "x": 491,
+      "y": 227,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        45.0,
+        36.0,
+        23.0
+      ],
+      "afterRGB": [
+        64.0,
+        52.0,
+        37.0
+      ]
+    },
+    {
+      "x": 507,
+      "y": 227,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        39.0,
+        31.0,
+        19.0
+      ],
+      "afterRGB": [
+        59.0,
+        47.0,
+        31.0
+      ]
+    },
+    {
+      "x": 549,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "afterRGB": [
+        121.0,
+        121.0,
+        102.0
+      ]
+    },
+    {
+      "x": 522,
+      "y": 227,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        21.0,
+        14.0,
+        7.0
+      ],
+      "afterRGB": [
+        53.0,
+        42.0,
+        27.0
+      ]
+    },
+    {
+      "x": 538,
+      "y": 227,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        19.0,
+        14.0,
+        6.0
+      ],
+      "afterRGB": [
+        46.0,
+        36.0,
+        22.0
+      ]
+    },
+    {
+      "x": 576,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "afterRGB": [
+        118.0,
+        118.0,
+        99.0
+      ]
+    },
+    {
+      "x": 553,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        41.0,
+        33.0,
+        18.0
+      ],
+      "afterRGB": [
+        41.0,
+        30.0,
+        17.0
+      ]
+    },
+    {
+      "x": 569,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        43.0,
+        33.0,
+        18.0
+      ],
+      "afterRGB": [
+        37.0,
+        26.0,
+        14.0
+      ]
+    },
+    {
+      "x": 604,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        2.0,
+        1.0
+      ],
+      "afterRGB": [
+        111.0,
+        112.0,
+        93.0
+      ]
+    },
+    {
+      "x": 585,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        30.0,
+        14.0,
+        5.0
+      ],
+      "afterRGB": [
+        34.0,
+        23.0,
+        12.0
+      ]
+    },
+    {
+      "x": 618,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "afterRGB": [
+        112.0,
+        112.0,
+        94.0
+      ]
+    },
+    {
+      "x": 600,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        35.0,
+        14.0,
+        8.0
+      ],
+      "afterRGB": [
+        32.0,
+        21.0,
+        10.0
+      ]
+    },
+    {
+      "x": 632,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "afterRGB": [
+        109.0,
+        109.0,
+        91.0
+      ]
+    },
+    {
+      "x": 631,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        9.0,
+        6.0,
+        2.0
+      ],
+      "afterRGB": [
+        29.0,
+        19.0,
+        8.0
+      ]
+    },
+    {
+      "x": 660,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "afterRGB": [
+        103.0,
+        103.0,
+        85.0
+      ]
+    },
+    {
+      "x": 647,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        31.0,
+        21.0,
+        7.0
+      ],
+      "afterRGB": [
+        28.0,
+        18.0,
+        8.0
+      ]
+    },
+    {
+      "x": 674,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "afterRGB": [
+        102.0,
+        103.0,
+        84.0
+      ]
+    },
+    {
+      "x": 663,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        19.0,
+        7.0,
+        2.0
+      ],
+      "afterRGB": [
+        29.0,
+        19.0,
+        8.0
+      ]
+    },
+    {
+      "x": 688,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "afterRGB": [
+        99.0,
+        100.0,
+        82.0
+      ]
+    },
+    {
+      "x": 701,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "afterRGB": [
+        98.0,
+        99.0,
+        81.0
+      ]
+    },
+    {
+      "x": 710,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        3.0,
+        2.0,
+        1.0
+      ],
+      "afterRGB": [
+        27.0,
+        17.0,
+        7.0
+      ]
+    },
+    {
+      "x": 729,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "afterRGB": [
+        100.0,
+        100.0,
+        82.0
+      ]
+    },
+    {
+      "x": 725,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        21.0,
+        10.0,
+        1.0
+      ],
+      "afterRGB": [
+        25.0,
+        16.0,
+        6.0
+      ]
+    },
+    {
+      "x": 743,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "afterRGB": [
+        98.0,
+        99.0,
+        81.0
+      ]
+    },
+    {
+      "x": 741,
+      "y": 226,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        21.0,
+        12.0,
+        3.0
+      ],
+      "afterRGB": [
+        27.0,
+        18.0,
+        7.0
+      ]
+    },
+    {
+      "x": 771,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "afterRGB": [
+        101.0,
+        102.0,
+        84.0
+      ]
+    },
+    {
+      "x": 788,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        29.0,
+        16.0,
+        7.0
+      ],
+      "afterRGB": [
+        27.0,
+        18.0,
+        8.0
+      ]
+    },
+    {
+      "x": 799,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "afterRGB": [
+        104.0,
+        105.0,
+        87.0
+      ]
+    },
+    {
+      "x": 804,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        10.0,
+        8.0,
+        3.0
+      ],
+      "afterRGB": [
+        27.0,
+        18.0,
+        8.0
+      ]
+    },
+    {
+      "x": 813,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        3.0,
+        3.0,
+        1.0
+      ],
+      "afterRGB": [
+        108.0,
+        108.0,
+        90.0
+      ]
+    },
+    {
+      "x": 827,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        3.0,
+        3.0,
+        1.0
+      ],
+      "afterRGB": [
+        109.0,
+        110.0,
+        92.0
+      ]
+    },
+    {
+      "x": 822,
+      "y": 349,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "afterRGB": [
+        109.0,
+        110.0,
+        92.0
+      ]
+    },
+    {
+      "x": 848,
+      "y": 246,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "afterRGB": [
+        47.0,
+        31.0,
+        15.0
+      ]
+    },
+    {
+      "x": 851,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        39.0,
+        26.0,
+        15.0
+      ],
+      "afterRGB": [
+        32.0,
+        22.0,
+        11.0
+      ]
+    },
+    {
+      "x": 855,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        3.0,
+        3.0,
+        2.0
+      ],
+      "afterRGB": [
+        114.0,
+        114.0,
+        96.0
+      ]
+    },
+    {
+      "x": 867,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        40.0,
+        22.0,
+        6.0
+      ],
+      "afterRGB": [
+        34.0,
+        24.0,
+        13.0
+      ]
+    },
+    {
+      "x": 882,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        34.0,
+        21.0,
+        12.0
+      ],
+      "afterRGB": [
+        36.0,
+        27.0,
+        15.0
+      ]
+    },
+    {
+      "x": 896,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        5.0,
+        5.0,
+        3.0
+      ],
+      "afterRGB": [
+        120.0,
+        120.0,
+        102.0
+      ]
+    },
+    {
+      "x": 914,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        31.0,
+        23.0,
+        11.0
+      ],
+      "afterRGB": [
+        48.0,
+        37.0,
+        23.0
+      ]
+    },
+    {
+      "x": 910,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        5.0,
+        5.0,
+        2.0
+      ],
+      "afterRGB": [
+        123.0,
+        124.0,
+        105.0
+      ]
+    },
+    {
+      "x": 930,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        29.0,
+        23.0,
+        14.0
+      ],
+      "afterRGB": [
+        53.0,
+        43.0,
+        29.0
+      ]
+    },
+    {
+      "x": 924,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        6.0,
+        6.0,
+        3.0
+      ],
+      "afterRGB": [
+        124.0,
+        125.0,
+        106.0
+      ]
+    },
+    {
+      "x": 945,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        30.0,
+        23.0,
+        13.0
+      ],
+      "afterRGB": [
+        59.0,
+        49.0,
+        33.0
+      ]
+    },
+    {
+      "x": 938,
+      "y": 355,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        81.0,
+        83.0,
+        66.0
+      ],
+      "afterRGB": [
+        124.0,
+        124.0,
+        106.0
+      ]
+    },
+    {
+      "x": 934,
+      "y": 348,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "afterRGB": [
+        126.0,
+        127.0,
+        108.0
+      ]
+    },
+    {
+      "x": 938,
+      "y": 335,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        83.0,
+        84.0,
+        67.0
+      ],
+      "afterRGB": [
+        125.0,
+        126.0,
+        108.0
+      ]
+    },
+    {
+      "x": 952,
+      "y": 245,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        58.0,
+        39.0,
+        23.0
+      ],
+      "afterRGB": [
+        59.0,
+        47.0,
+        30.0
+      ]
+    },
+    {
+      "x": 961,
+      "y": 225,
+      "sourceAlpha": 0,
+      "visibleVsHiddenMaxRGBError": 0.0,
+      "beforeRGB": [
+        50.0,
+        41.0,
+        27.0
+      ],
+      "afterRGB": [
+        65.0,
+        53.0,
+        37.0
+      ]
+    }
+  ]
+}

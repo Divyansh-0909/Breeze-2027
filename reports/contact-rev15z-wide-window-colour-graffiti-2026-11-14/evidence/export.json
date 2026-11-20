@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "native": {
+    "file": "Rev15Z-Contact-and-Accommodation-Component.blend",
+    "bytes": 4969366,
+    "sha256": "7dc9f9a394e5ef143d90074cab0cbe6272fd9866dafeb51e3b7dfe283e4db11f"
+  },
+  "runtime": {
+    "contact": {
+      "file": "Rev15Z-Wide-Contact-Window.glb",
+      "bytes": 2316344,
+      "sha256": "c6aecae8dfcf372ab2d10df24dfd5eccf2acbe294cbe33022a0003a22c5f607b"
+    },
+    "accommodation": {
+      "file": "Rev15Z-Restored-Accommodation.glb",
+      "bytes": 2925968,
+      "sha256": "47d0e633f43a0949f9672df64712d2740535a46a2aa17ce5a0ec2d7d2406e508"
+    }
+  },
+  "scope": "Contact and Accommodation are separate runtime components. Replace the entire old Y Contact collection and old Accommodation bindings; do not append duplicates. Native full-world source reconstruction is tested separately. Full-world website integration/baking remains pending."
+}

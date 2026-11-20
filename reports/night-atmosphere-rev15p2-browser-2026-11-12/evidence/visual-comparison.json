@@ -1,0 +1,29 @@
+{
+  "method": "Whole-frame RGB8 absolute error against matching native render. Descriptive, not a perceptual-fidelity guarantee.",
+  "views": [
+    {
+      "view": "far",
+      "baselineMAE_RGB8": 24.234006687242797,
+      "updatedMAE_RGB8": 12.322639660493827,
+      "baselineMeanRGB": 36.39265072016461,
+      "updatedMeanRGB": 19.088397890946503,
+      "nativeMeanRGB": 25.22048353909465
+    },
+    {
+      "view": "middle",
+      "baselineMAE_RGB8": 21.74057510288066,
+      "updatedMAE_RGB8": 12.19368492798354,
+      "baselineMeanRGB": 36.55423559670782,
+      "updatedMeanRGB": 19.113695730452676,
+      "nativeMeanRGB": 21.668151748971194
+    },
+    {
+      "view": "near",
+      "baselineMAE_RGB8": 25.99720138888889,
+      "updatedMAE_RGB8": 14.883263888888889,
+      "baselineMeanRGB": 47.865960648148146,
+      "updatedMeanRGB": 20.742576646090534,
+      "nativeMeanRGB": 27.272618827160493
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const el=id=>document.getElementById(id),config=await(await fetch('cameras.json')).json(),query=new URLSearchParams(location.search),mobile=query.has('mobile'),motion=matchMedia('(prefers-reduced-motion: reduce)');
+const fogColor=new THREE.Color().setRGB(...config.fogDisplaySRGB,THREE.SRGBColorSpace),scene=new THREE.Scene();scene.background=fogColor;scene.fog=new THREE.FogExp2(fogColor,config.fogDensity);
+const renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:false,powerPreference:'high-performance'});renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.AgXToneMapping;renderer.toneMappingExposure=2**config.nativeExposure;renderer.setPixelRatio(mobile?Math.min(devicePixelRatio,.85):Math.min(devicePixelRatio,1));el('viewport').append(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(50,1,.08,160),convert=v=>new THREE.Vector3(v[0],v[2],-v[1]);let view='far',fogOn=true,ready=false,paused=motion.matches,offset=0,last=performance.now(),benchmarking=false,led,model,stats={};
+const sheen=new THREE.PointLight(0xffad59,30,16,2);scene.add(sheen);
+function setView(key){view=key;const c=config.cameras.find(c=>c.key===key);camera.position.copy(convert(c.position));camera.lookAt(convert(c.target));camera.aspect=innerWidth/innerHeight;camera.fov=THREE.MathUtils.radToDeg(2*Math.atan(Math.tan(THREE.MathUtils.degToRad(c.fovDegrees)/2)/camera.aspect));camera.updateProjectionMatrix();document.querySelectorAll('[data-camera]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.camera===key)));setSheen();}
+const setSheen=()=>sheen.position.copy(convert(view==='far'?[3.33,-16,8.7]:view==='middle'?[-3.33,2,9.3]:[-3.33,2,9.3]));
+function resize(){renderer.setSize(innerWidth,innerHeight);setView(view);setSheen();}addEventListener('resize',resize);resize();
+function pause(on){paused=on;el('pause').textContent=on?'Play signs':'Pause signs';el('pause').setAttribute('aria-pressed',String(on));}
+function fog(on){fogOn=on;scene.fog.density=on?config.fogDensity:0;el('haze').textContent=on?'Mist on':'Mist off';el('haze').setAttribute('aria-pressed',String(on));}
+document.querySelectorAll('[data-camera]').forEach(b=>b.onclick=()=>{setView(b.dataset.camera);setSheen();});el('pause').onclick=()=>pause(!paused);el('haze').onclick=()=>fog(!fogOn);motion.addEventListener('change',e=>pause(e.matches));pause(paused);
+const frames=[],cpu=[],gpu=[],queries=[],gl=renderer.getContext(),timer=gl.getExtension('EXT_disjoint_timer_query_webgl2');let collecting=false,frameAt=null;
+function drain(){while(queries.length&&gl.getQueryParameter(queries[0],gl.QUERY_RESULT_AVAILABLE)){const q=queries.shift();if(!gl.getParameter(timer.GPU_DISJOINT_EXT))gpu.push(gl.getQueryParameter(q,gl.QUERY_RESULT)/1e6);gl.deleteQuery(q);}}
+function tick(now){requestAnimationFrame(tick);const dt=Math.min((now-last)/1000,.1);last=now;if(document.hidden||benchmarking)return;if(ready&&!paused){offset=(offset+dt*30)%10676;led.uniforms.uOffset.value=offset;}if(collecting){if(frameAt!==null)frames.push(now-frameAt);frameAt=now;}drain();const q=collecting&&timer?gl.createQuery():null;if(q)gl.beginQuery(timer.TIME_ELAPSED_EXT,q);const start=performance.now();renderer.render(scene,camera);if(collecting)cpu.push(performance.now()-start);if(q){gl.endQuery(timer.TIME_ELAPSED_EXT);queries.push(q);}}
+requestAnimationFrame(tick);
+async function init(){
+ const begin=performance.now(),gltf=await new GLTFLoader().loadAsync('pilot.glb');model=gltf.scene;scene.add(model);model.updateMatrixWorld(true);
+ const lightmap=await new THREE.TextureLoader().loadAsync('textures/ground-lightmap.png');lightmap.flipY=false;lightmap.colorSpace=THREE.NoColorSpace;lightmap.channel=1;
+ const roughness=await new THREE.TextureLoader().loadAsync('textures/ground-roughness.png');roughness.flipY=false;roughness.colorSpace=THREE.NoColorSpace;roughness.channel=1;
+ const floorMaterials=new Map();model.traverse(o=>{if(!o.isMesh)return;const source=Array.isArray(o.material)?o.material:[o.material];const replacement=source.map(m=>{if(!m.userData?.groundLightmap)return m;if(!o.geometry.getAttribute('normal'))o.geometry.computeVertexNormals();if(!floorMaterials.has(m)){const f=new THREE.MeshStandardMaterial({color:m.color.clone(),map:m.map,vertexColors:true,roughnessMap:roughness,roughness:1,metalness:0,side:m.side});f.userData={...m.userData};f.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <lights_fragment_end>','#include <lights_fragment_end>\nreflectedLight.directDiffuse=vec3(0.0);');};f.customProgramCacheKey=()=> 'baked-diffuse-specular-only-v1';floorMaterials.set(m,f);m.dispose();}return floorMaterials.get(m);});o.material=Array.isArray(o.material)?replacement:replacement[0];});
+ const atlases=await Promise.all([0,1].map(i=>new THREE.TextureLoader().loadAsync(`logo-strip-${i}.png`)));for(const t of atlases){t.flipY=false;t.colorSpace=THREE.NoColorSpace;t.wrapS=t.wrapT=THREE.ClampToEdgeWrapping;t.minFilter=t.magFilter=THREE.NearestFilter;t.generateMipmaps=false;}
+ led=new THREE.ShaderMaterial({fog:true,uniforms:{...THREE.UniformsLib.fog,uAtlas:{value:atlases[0]},uAtlas1:{value:atlases[1]},uOffset:{value:0}},vertexShader:`varying vec2 pixelUV;
+ #include <fog_pars_vertex>
+ void main(){pixelUV=uv;vec4 mvPosition=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mvPosition;
+ #include <fog_vertex>
+ }`,fragmentShader:`varying vec2 pixelUV;uniform sampler2D uAtlas;uniform sampler2D uAtlas1;uniform float uOffset;
+ #include <fog_pars_fragment>
+ void main(){vec2 grid=pixelUV*vec2(384.,64.);vec2 centre=floor(grid)+.5;float cell=mod(centre.x+uOffset,10676.);float ink=cell<5338.?texture2D(uAtlas,vec2(cell/5338.,centre.y/64.)).r:texture2D(uAtlas1,vec2((cell-5338.)/5338.,centre.y/64.)).r;float diode=1.-smoothstep(.29,.43,length(fract(grid)-.5));gl_FragColor=vec4(vec3(1.,.035,.002)*((ink*5.+.008)*diode),1.);
+ #include <tonemapping_fragment>
+ #include <colorspace_fragment>
+ #include <fog_fragment>
+ }`});
+ let ledFaces=0,floorMeshes=0,uvFailures=0,triangles=0;const geometries=new Set(),materials=new Set(),textureSources=new Map();let geometryBytes=0;
+ model.traverse(o=>{if(!o.isMesh)return;o.frustumCulled=true;o.castShadow=o.receiveShadow=false;if(o.userData.ledScreen){o.material.dispose();o.material=led;ledFaces++;}
+  if(!geometries.has(o.geometry)){geometries.add(o.geometry);for(const a of Object.values(o.geometry.attributes))geometryBytes+=a.array.byteLength;if(o.geometry.index)geometryBytes+=o.geometry.index.array.byteLength;triangles+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;}
+  for(const m of Array.isArray(o.material)?o.material:[o.material]){if(!materials.has(m)&&(m.isMeshBasicMaterial||m.isMeshStandardMaterial))m.color.multiplyScalar(m.userData.nativeLightfieldScale??1);materials.add(m);if(m.userData?.groundLightmap){if(!o.geometry.getAttribute('uv1'))uvFailures++;m.lightMap=lightmap;m.lightMapIntensity=Math.PI*1.5;floorMeshes++;}m.fog=true;m.needsUpdate=true;for(const t of Object.values(m))if(t?.isTexture)textureSources.set(t.source.uuid+':'+t.colorSpace,t);if(m.isShaderMaterial)for(const u of Object.values(m.uniforms))if(u.value?.isTexture)textureSources.set(u.value.source.uuid+':'+u.value.colorSpace,u.value);}
+ });
+ if(ledFaces!==1||uvFailures||floorMeshes!==4)throw Error(`Binding failure: LED ${ledFaces}, ground ${floorMeshes}, UV failures ${uvFailures}`);
+ let textureBytes=0;for(const t of textureSources.values()){const im=t.image;if(im?.width)textureBytes+=im.width*im.height*4*(t.generateMipmaps?4/3:1);}
+ const at=performance.now();await renderer.compileAsync(scene,camera);const compileMs=performance.now()-at;renderer.render(scene,camera);
+ stats={modelScenes:gltf.scenes.length,totalTriangles:triangles,geometryBytes,materials:materials.size,uniqueTextureSourceVariants:textureSources.size,textureBytesEstimate:Math.round(textureBytes),lightmapMeshes:floorMeshes,lightmapUVFailures:uvFailures,ledFaces,runtimeLights:1,runtimeLightPurpose:'Specular-only on four ground meshes; static diffuse/shadows baked',compileMs,loadAndCompileMs:performance.now()-begin,shaderPrograms:renderer.info.programs?.length,maxTextureSize:renderer.capabilities.maxTextureSize,gpuTimer:!!timer,renderer:gl.getParameter(gl.getExtension('WEBGL_debug_renderer_info')?.UNMASKED_RENDERER_WEBGL??gl.RENDERER),nativeExposure:config.nativeExposure};ready=true;el('status').hidden=true;
+}
+window.pilot={ready:()=>ready,view:setView,fog,pause,offset:n=>{offset=((n%10676)+10676)%10676;if(led)led.uniforms.uOffset.value=offset;},capture:on=>document.body.classList.toggle('capture',on),stats:()=>({...stats,view,fogOn,paused,offset,canvases:document.querySelectorAll('canvas').length,drawCalls:renderer.info.render.calls,visibleTriangles:renderer.info.render.triangles,rendererTextures:renderer.info.memory.textures}),measureStart:()=>{frames.length=cpu.length=gpu.length=0;frameAt=null;collecting=true;},measureStop:()=>{collecting=false;frameAt=null;drain();return{frames:[...frames],cpu:[...cpu],gpu:[...gpu],...window.pilot.stats()};}};
+// Read-only diagnostics for matching cameras, profiling and regression checks.
+window.__comparison={renderer,scene,camera,setBenchmarkMode:on=>{benchmarking=on;},stats:window.pilot.stats};
+init().catch(e=>{window.pilotError=String(e);console.error(e);el('status').textContent='The view could not load. Festival directions remain available below.';});

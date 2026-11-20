@@ -1,3 +1,5 @@
+Private runtime progress: native Contact walking/form integration is documented in `docs/runtime/M2A-CONTACT-JOURNEY.md`. Original public routes remain unchanged.
+
 # Breeze 2027
 
 Next.js application on `work-in-progress-2027`. Cart checkout supports direct UPI payments into configurable receiving accounts, order-specific QR codes, and bank statement reconciliation.
@@ -126,6 +128,10 @@ Integration tests start an isolated PostgreSQL cluster bound to localhost with g
 Test clusters, screenshots, and OCR caches are ignored. Payment account/statement/credit/audit/email tables have row-level security with no browser-role access policies. Admin payment APIs check authentication, the BREEZE role, and request origin.
 
 ## Gullyverse vertical slice
+
+Current full 3D scene: [Rev15O — clear ground-level house fronts with upper balcony railings retained; includes current Events wall, crowds, navigation and murals](docs/gullyverse-house-railings-current.md).
+
+Current Team mural art checkpoint: [Rev15K — black-painted brick, overlapping portraits, foreground team titles and handwritten names/roles](docs/gullyverse-team-mural-current.md).
 
 `/` and `/aftermovie` share one persistent immersive renderer in the public
 layout. Enter the tunnel, walk with WASD/arrows (or the basic touch pad), and

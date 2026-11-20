@@ -1,0 +1,87 @@
+Contact API Error: ZodError: [
+  {
+    "code": "too_small",
+    "minimum": 2,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 2 character(s)",
+    "path": [
+      "name"
+    ]
+  },
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email",
+    "path": [
+      "email"
+    ]
+  },
+  {
+    "code": "too_small",
+    "minimum": 10,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 10 character(s)",
+    "path": [
+      "phone"
+    ]
+  },
+  {
+    "code": "too_small",
+    "minimum": 10,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 10 character(s)",
+    "path": [
+      "message"
+    ]
+  }
+]
+    at get error (/workspace/Breeze-2027/node_modules/zod/lib/types.js:55:31)
+    at ZodObject.parse (/workspace/Breeze-2027/node_modules/zod/lib/types.js:160:22)
+    at POST (/dev/shm/Breeze-2027-runtime/app/api/contact/route.ts:16:45)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/dev/shm/Breeze-2027-runtime/scripts/gullyverse/isolated-backend.ts:71:21) {
+  issues: [
+    {
+      code: 'too_small',
+      minimum: 2,
+      type: 'string',
+      inclusive: true,
+      exact: false,
+      message: 'String must contain at least 2 character(s)',
+      path: [Array]
+    },
+    {
+      validation: 'email',
+      code: 'invalid_string',
+      message: 'Invalid email',
+      path: [Array]
+    },
+    {
+      code: 'too_small',
+      minimum: 10,
+      type: 'string',
+      inclusive: true,
+      exact: false,
+      message: 'String must contain at least 10 character(s)',
+      path: [Array]
+    },
+    {
+      code: 'too_small',
+      minimum: 10,
+      type: 'string',
+      inclusive: true,
+      exact: false,
+      message: 'String must contain at least 10 character(s)',
+      path: [Array]
+    }
+  ],
+  addIssue: [Function (anonymous)],
+  addIssues: [Function (anonymous)]
+}
+{"scope":"Disposable local PostgreSQL; auth placeholder only, no hosted Supabase or live account tests","contactValidationRejectsWithoutInsert":true,"existingContactHandlerPersistsInIsolatedPostgres":true,"variableCatalogAndMissingPosterFixturesRead":true,"nextBuildExitCode":0,"status":"PASS"}

@@ -1,0 +1,7 @@
+import bpy,json,re,collections
+from pathlib import Path
+O=Path(__file__).resolve().parents[1];P=O.parent/'navigation-board-rev15l1-logo-spacing-2026-11-11/delivery/Gullyverse-Rev15L1-Wider-Logo-Gaps.blend';bpy.ops.wm.open_mainfile(filepath=str(P));s=bpy.context.scene;s.frame_set(1);bpy.context.view_layer.update();rows=[]
+for o in s.objects:
+ if re.search('crowd|human|person|people|audience|spectator|bystander|dancer|guest',o.name,re.I):
+  rows.append({'name':o.name,'type':o.type,'data':o.data.name if o.data else None,'loc':list(o.matrix_world.translation),'dim':list(o.dimensions),'parent':o.parent.name if o.parent else None,'collections':[c.name for c in o.users_collection],'props':dict(o.items()),'verts':len(o.data.vertices) if o.type=='MESH' else None,'materials':[m.name for m in o.data.materials] if o.type=='MESH' else []})
+collectionsCount=collections.Counter(c.name for o in s.objects for c in o.users_collection);data=collections.Counter(r['data'] for r in rows);result={'scene':s.name,'sceneVariant':s.get('variant'),'objects':len(s.objects),'collections':dict(collectionsCount),'crowdCandidates':rows,'sceneNames':[x.name for x in bpy.data.scenes]};(O/'evidence/crowd-catalogue.json').write_text(json.dumps(result,indent=2,default=str));print(json.dumps({'scene':s.name,'crowdCandidates':len(rows),'data':dict(data),'sample':rows[:12],'collections':dict(collectionsCount)},default=str),flush=True)

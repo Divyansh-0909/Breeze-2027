@@ -1,0 +1,15 @@
+import bpy,json,hashlib,time,sys,argparse,math
+from pathlib import Path
+from mathutils import Vector
+R=Path(__file__).resolve().parents[1];proof=json.loads((R/'evidence/build-verification.json').read_text());sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();assert sha(proof['editedMaster'])==proof['editedSHA256'];ap=argparse.ArgumentParser();ap.add_argument('--keys');a=ap.parse_args(sys.argv[sys.argv.index('--')+1:]if '--'in sys.argv else[]);bpy.ops.wm.open_mainfile(filepath=proof['editedMaster']);s=bpy.context.scene;s.frame_set(1);bpy.context.view_layer.update();world=s.world;exposure=s.view_settings.exposure;lights={o.name:(o.data.energy,list(o.data.color))for o in s.objects if o.type=='LIGHT'};shots=[('01-accommodation-night',(-12.015,18.6,9.0),(-12.015,14,9.0),29,False),('02-accommodation-inspection',(-12.015,18.6,9.0),(-12.015,14,9.0),29,True),('03-accommodation-context',(-7,22,9.4),(-12.015,14,8.9),27,True)];rows=json.loads((R/'evidence/captures.json').read_text())['captures']if(R/'evidence/captures.json').exists()else[]
+if a.keys:shots=[x for x in shots if x[0]in a.keys.split(',')]
+for key,pos,target,lens,inspection in shots:
+ temp=[]
+ if inspection:
+  w=bpy.data.worlds.new('TEMPORARY REVIEW ONLY / Neutral house inspection');w.use_nodes=True;w.node_tree.nodes['Background'].inputs['Color'].default_value=(.28,.32,.37,1);w.node_tree.nodes['Background'].inputs['Strength'].default_value=.45;s.world=w
+  for suffix,power,color,rot in [('key',1.7,(1,.94,.84),(.5,-.4,-.6)),('fill',.7,(.72,.82,1),(.7,.3,2))]:
+   d=bpy.data.lights.new('TEMPORARY REVIEW ONLY / '+suffix,'SUN');d.energy=power;d.color=color;d.angle=.4;o=bpy.data.objects.new(d.name,d);s.collection.objects.link(o);o.rotation_euler=rot;temp.append(o)
+ data=bpy.data.cameras.new('REVIEW / '+key);cam=bpy.data.objects.new(data.name,data);s.collection.objects.link(cam);cam.location=pos;cam.rotation_euler=(Vector(target)-cam.location).to_track_quat('-Z','Y').to_euler();data.lens=lens;s.camera=cam;s.render.resolution_x=1280;s.render.resolution_y=800;s.render.resolution_percentage=100;s.eevee.taa_render_samples=12;s.render.image_settings.file_format='JPEG';s.render.image_settings.quality=94;s.render.filepath=str(R/'renders'/(key+'.jpg'));print('RENDER',key,flush=True);start=time.monotonic();bpy.ops.render.render(write_still=True);rows=[x for x in rows if x['key']!=key]+[{'key':key,'file':'renders/'+key+'.jpg','sha256':sha(R/'renders'/(key+'.jpg')),'masterSHA256':proof['editedSHA256'],'lighting':'TEMPORARY NEUTRAL INSPECTION; NOT SAVED'if inspection else'ACTUAL SAVED NIGHT LIGHTING','camera':pos,'target':target,'seconds':time.monotonic()-start}];s.world=world
+ for o in temp:bpy.data.objects.remove(o,do_unlink=True)
+ assert s.view_settings.exposure==exposure and all((s.objects[n].data.energy,list(s.objects[n].data.color))==v for n,v in lights.items());(R/'evidence/captures.json').write_text(json.dumps({'status':'PASS','masterUnchanged':True,'captures':rows},indent=2)+'\n')
+assert sha(proof['editedMaster'])==proof['editedSHA256'];print('RENDERS_PASS')

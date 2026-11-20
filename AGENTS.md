@@ -2,7 +2,8 @@
 
 The user authorized Google Drive backups on 18 October 2026 for the current recovery checkpoint and future project work.
 
-- Backup folder: https://drive.google.com/drive/folders/1ZubjkRneuOGp8x_lLN7xPAapGM3tn7av
+- Current backup folder: https://drive.google.com/drive/folders/172ptAuVAT6nwyS2RallOPAExNDQ5yaF_ — owned by losersamurai09@gmail.com, verified 13 November 2026. The user requested this destination account for future work.
+- Previous backup folder: https://drive.google.com/drive/folders/1ZubjkRneuOGp8x_lLN7xPAapGM3tn7av — owned by rcstravels.business@gmail.com. All 243 selected folders and 2,309 files now have verified destination-owned copies (13 November 2026); CSD361 and its contents were excluded. Original files remain in the old account, so source storage has not been freed. Source cleanup needs old-owner access. See `docs/gullyverse-drive-migration-current.md` and the complete old-to-new ID maps under `reports/drive-migration-2026-11-12`. Do not resume new backup uploads to the old account.
 - Policy and machine-readable destination: `docs/gullyverse-backup-policy.md` and `docs/gullyverse-backup-target.json`.
 - At the end of each substantial recovery or implementation phase, prepare a versioned, independently restorable checkpoint and upload it to this folder through authenticated Drive access. Include required new, modified and untracked source, original/edited Blender masters, source materials, runtime assets, reports, visual evidence, restoration instructions and checksums.
 - Routine backup uploads to this exact folder are already authorized; do not ask for upload approval again. Authentication or unavailable upload capabilities can still require the user's action.

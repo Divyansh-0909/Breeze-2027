@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "scope": "Restorer behaviour with small two-archive fixtures; real source archive integrity separately checked for every payload and authenticated remote part",
+  "checks": {
+    "two_archive_nested_payload_restore": true,
+    "existing_directory_preserved": true,
+    "corrupt_part_rejected": true,
+    "archive_path_escape_rejected": true
+  }
+}

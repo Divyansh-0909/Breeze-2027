@@ -1,0 +1,10 @@
+{
+  "initialOutputFPS": 3,
+  "initialMethod": "16-pixel blocks, search16, medium encoding",
+  "selectedMethod": "Full-resolution temporal frame interpolation with scene-cut detection; no motion-compensated warping",
+  "reason": "Motion-compensated filters ran at ~3 FPS on the two-core host. Linear temporal interpolation preserves full-resolution source frames and avoids synthesized geometry warping.",
+  "stoppedEncoderPids": [
+    4237
+  ],
+  "unsupportedTrial": "32-pixel blocks were rejected by FFmpeg before any render (supported range 4..16)"
+}

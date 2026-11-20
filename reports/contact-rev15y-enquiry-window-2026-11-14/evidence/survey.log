@@ -1,0 +1,31 @@
+/workspace/Breeze-2027/reports/contact-rev15y-enquiry-window-2026-11-14/source/survey.py:8: SyntaxWarning: invalid decimal literal
+  if any(k in o.name for k in ['/ R1 /','R1 window detail batch','Entry parapet return','jointed parapet coping'])or(bounds[0][0]<-8.2and bounds[0][1]>-15.8and bounds[1][0]>13.7and bounds[1][1]<14.7and bounds[2][0]>6.9and bounds[2][1]<8.6):rows.append({'name':o.name,'bounds':bounds,'faces':len(o.data.polygons),'vertices':len(o.data.vertices),'materials':[m.material.name if m.material else None for m in o.material_slots],'props':dict(o.items())})
+/workspace/Breeze-2027/reports/contact-rev15y-enquiry-window-2026-11-14/source/survey.py:8: SyntaxWarning: invalid decimal literal
+  if any(k in o.name for k in ['/ R1 /','R1 window detail batch','Entry parapet return','jointed parapet coping'])or(bounds[0][0]<-8.2and bounds[0][1]>-15.8and bounds[1][0]>13.7and bounds[1][1]<14.7and bounds[2][0]>6.9and bounds[2][1]<8.6):rows.append({'name':o.name,'bounds':bounds,'faces':len(o.data.polygons),'vertices':len(o.data.vertices),'materials':[m.material.name if m.material else None for m in o.material_slots],'props':dict(o.items())})
+/workspace/Breeze-2027/reports/contact-rev15y-enquiry-window-2026-11-14/source/survey.py:8: SyntaxWarning: invalid decimal literal
+  if any(k in o.name for k in ['/ R1 /','R1 window detail batch','Entry parapet return','jointed parapet coping'])or(bounds[0][0]<-8.2and bounds[0][1]>-15.8and bounds[1][0]>13.7and bounds[1][1]<14.7and bounds[2][0]>6.9and bounds[2][1]<8.6):rows.append({'name':o.name,'bounds':bounds,'faces':len(o.data.polygons),'vertices':len(o.data.vertices),'materials':[m.material.name if m.material else None for m in o.material_slots],'props':dict(o.items())})
+/workspace/Breeze-2027/reports/contact-rev15y-enquiry-window-2026-11-14/source/survey.py:8: SyntaxWarning: invalid decimal literal
+  if any(k in o.name for k in ['/ R1 /','R1 window detail batch','Entry parapet return','jointed parapet coping'])or(bounds[0][0]<-8.2and bounds[0][1]>-15.8and bounds[1][0]>13.7and bounds[1][1]<14.7and bounds[2][0]>6.9and bounds[2][1]<8.6):rows.append({'name':o.name,'bounds':bounds,'faces':len(o.data.polygons),'vertices':len(o.data.vertices),'materials':[m.material.name if m.material else None for m in o.material_slots],'props':dict(o.items())})
+/workspace/Breeze-2027/reports/contact-rev15y-enquiry-window-2026-11-14/source/survey.py:8: SyntaxWarning: invalid decimal literal
+  if any(k in o.name for k in ['/ R1 /','R1 window detail batch','Entry parapet return','jointed parapet coping'])or(bounds[0][0]<-8.2and bounds[0][1]>-15.8and bounds[1][0]>13.7and bounds[1][1]<14.7and bounds[2][0]>6.9and bounds[2][1]<8.6):rows.append({'name':o.name,'bounds':bounds,'faces':len(o.data.polygons),'vertices':len(o.data.vertices),'materials':[m.material.name if m.material else None for m in o.material_slots],'props':dict(o.items())})
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027/reports/contact-rev15y-enquiry-window-2026-11-14/source/survey.py", line 15, in <module>
+    out={'objects':rows,'actors':actors,'R1Rays':rays};(R/'evidence/survey.json').write_text(json.dumps(out,indent=2,default=str)+'\n');print(json.dumps({'objects':len(rows),'actors':actors[:2]}))
+                                                                                                                                              ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type IDPropertyArray is not JSON serializable
+
+Error: script failed, file: 'reports/contact-rev15y-enquiry-window-2026-11-14/source/survey.py', exiting.
+Blender 4.3.2
+Read blend: "/dev/shm/Gullyverse-Rev15X1-Accommodation-Clean-Wall.blend"
+
+Blender quit

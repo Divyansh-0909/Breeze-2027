@@ -1,0 +1,129 @@
+{
+  "status": "PROPOSAL_FOR_EVENTS_AND_CONTACT; ACCOMMODATION_ART_IMPLEMENTED",
+  "mainCommitInspected": "a8ebff2d2f2c13ba7c3ee22029e6459199a9ce1a",
+  "events": {
+    "preserve": "Current Events house, terracotta plaster, windows, heading and eight safe poster positions",
+    "dataSource": "Existing EventItem records and Supabase assets image_url uploaded through the admin panel; no duplicated poster database",
+    "mainReality": "Only Breeze Admin can create, update, delete or toggle registrations. Club dashboard is read-only. Club submissions require a separately agreed permission/moderation workflow.",
+    "currentFields": [
+      "id",
+      "event_name",
+      "event_description",
+      "event_org",
+      "event_venue",
+      "event_date",
+      "event_end_date",
+      "image_url",
+      "event_type",
+      "event_price",
+      "registration_open"
+    ],
+    "maxPostersPerWallPage": 8,
+    "fillOrderByCount": {
+      "1": [
+        5
+      ],
+      "2": [
+        5,
+        6
+      ],
+      "3": [
+        5,
+        6,
+        1
+      ],
+      "4": [
+        5,
+        6,
+        1,
+        2
+      ],
+      "5": [
+        4,
+        5,
+        6,
+        1,
+        2
+      ],
+      "6": [
+        4,
+        5,
+        6,
+        7,
+        1,
+        2
+      ],
+      "7": [
+        4,
+        5,
+        6,
+        7,
+        0,
+        1,
+        2
+      ],
+      "8": [
+        4,
+        5,
+        6,
+        7,
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "slotIds": "Match the existing native placeholder indices. Slots 0-3 are lower; 4-7 upper. Two mounting groups avoid the central house opening.",
+    "fewerEvents": "Use balanced safe positions and hide unused poster/frame meshes. Preserve natural visible plaster; no empty placeholders or duplicates.",
+    "moreEvents": "Manual previous/next page controls with page/count labels; 17 events = pages of 8, 8 and 1. No shrinking, overlap, automatic rotation or added wall area.",
+    "filters": [
+      "All",
+      "Cultural",
+      "Technical",
+      "Club"
+    ],
+    "imageFit": "Preserve source aspect ratio using contain within the existing poster area; no crop or stretch. Missing/broken image uses a readable title/club fallback card for that same event.",
+    "selection": "Click, tap or keyboard selection opens readable HTML event details and existing registration flow. Existing /events/[id] remains a direct-link fallback.",
+    "sort": "Ongoing events first, then nearest upcoming start; stable event ID breaks ties. Keep an active interaction snapshot until the detail panel closes so targets do not move under selection.",
+    "expiry": "Use typed starts_at / ends_at with explicit Asia/Kolkata input and UTC storage. Expire at the end of the event, not when registration closes. Multi-day events stay through their last day. Date-only legacy events use the next local midnight after the final day; unparseable or missing dates need admin review, never silently guessed or expired.",
+    "proposedFields": [
+      "starts_at",
+      "ends_at",
+      "publication_status (draft/published/cancelled/archived)",
+      "updated_at"
+    ],
+    "registrationClosed": "Remain on the wall while the event is upcoming/ongoing, with registration closed clearly labelled and registration action disabled. Backend still enforces registration eligibility.",
+    "retention": "Expired events leave active pages and remain archived in admin. Do not delete event or booking records to hide a poster.",
+    "zeroEvents": "Empty plaster plus a clear 'Events announced soon' state and full events navigation. A data-loading failure is a distinct retry message, not zero events.",
+    "refresh": "Shared catalog invalidation after admin saves, short cache/poll while this destination is active, refresh on return/focus and a local expiry timer. Clamp the page after removals; preserve open detail context.",
+    "implementationBoundary": "This phase proposes the policy and examples only. No admin permissions, database migration, live feed or production Events route has been changed. The existing main Events page takes only five events per category, so it is not a complete wall feed.",
+    "rendering": "Export the static house wall once. Keep poster images and optional frames as separate runtime surfaces bound to event IDs and slot metadata. Changing admin event data, images, page count or expiry does not require re-exporting Blender or baking posters into wall lightmaps."
+  },
+  "accommodation": {
+    "locationAssumption": "Blank bay of F1 on the left cypher entrance return wall, consistent with the navigation arrow. Optional user location question was left open while preparing the artwork.",
+    "surface": "Normal faded warm-grey painted plaster, without brick pattern or a black wall",
+    "artwork": "Transparent orange/gold/magenta hip-hop graffiti inspired by the existing Team title treatment",
+    "textLines": [
+      "COMING",
+      "SOON"
+    ],
+    "booking": "Coming-soon destination only; no booking or payment interaction",
+    "localLight": "One compact shaded wall-mounted light, 90 W native Spot, 3.2 m cutoff, for night legibility. Existing lights unchanged; all six streetlight poles remain in the gully only."
+  },
+  "contact": {
+    "recommendation": "Small help-desk frontage integrated with a normal house wall on the right entrance side; painted CONTACT US heading, worn noticeboard, compact enquiry panel and optional shallow letterbox/counter",
+    "quickContacts": "Show only confirmed current official email/phone/role details. Do not reuse previous-year people or invent contact details.",
+    "primaryAction": "Leave a message",
+    "form": "Open readable HTML form over the existing world. Desktop side panel; phone bottom/full-height sheet. Keep current camera position, pause movement, release pointer lock and restore input/focus when closing. Do not create another canvas.",
+    "existingIntegration": "POST /api/contact -> ContactSubmission -> /admin/breeze-admin/contact inbox. Main branch already has this submission and admin viewing flow; local WIP also contains HelpDeskExperience.tsx.",
+    "fields": [
+      "name",
+      "email",
+      "phone",
+      "message"
+    ],
+    "requiredFinish": "Align browser/server validation, preserve messages on failure, show sending/error/success states, prevent duplicate sends and announce status accessibly. The old main UI allows a two-character message while the server requires ten.",
+    "implementationBoundary": "Contact appearance and integration are a proposal for the user to choose; no new Contact native geometry, public contact details, submission or live application change was made."
+  },
+  "artFreeze": "Reopened by the user's explicit new destination request. Do not mark an art freeze or whole-website milestone complete."
+}

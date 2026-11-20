@@ -1,0 +1,58 @@
+{
+  "status": "PASS_WITH_DECLARED_PILOT_LIMITS",
+  "sourceMasterUnchanged": true,
+  "baselineGLBUnchanged": true,
+  "sourceGeometryIndicesUV0AndArtworkUnchanged": true,
+  "groundUV1Corrected": true,
+  "movementAndTransitionFilesUnchanged": true,
+  "productionAppDiffEmpty": true,
+  "gitHEAD": "0e1e23dd2f5181df202d862d147067249bc55a41",
+  "browserFunctionalTests": "PASS",
+  "performanceComparison": [
+    {
+      "profile": "desktop",
+      "view": "far",
+      "beforeMs": 4538.339999999106,
+      "afterMs": 1303.5,
+      "reductionPercent": 71.27804439508154
+    },
+    {
+      "profile": "desktop",
+      "view": "middle",
+      "beforeMs": 4605,
+      "afterMs": 1448.379999999702,
+      "reductionPercent": 68.5476655808968
+    },
+    {
+      "profile": "desktop",
+      "view": "near",
+      "beforeMs": 1957.7800000026823,
+      "afterMs": 771.9999999985099,
+      "reductionPercent": 60.56758164873213
+    },
+    {
+      "profile": "mobile-emulated",
+      "view": "far",
+      "beforeMs": 537.2400000020862,
+      "afterMs": 285.9199999988079,
+      "reductionPercent": 46.77983768935715
+    },
+    {
+      "profile": "mobile-emulated",
+      "view": "middle",
+      "beforeMs": 643.3999999985099,
+      "afterMs": 328.020000000298,
+      "reductionPercent": 49.01771837098885
+    },
+    {
+      "profile": "mobile-emulated",
+      "view": "near",
+      "beforeMs": 538.6999999970197,
+      "afterMs": 235.11999999582767,
+      "reductionPercent": 56.35418600387443
+    }
+  ],
+  "GPUResults": "See raw completed-query samples; unavailable timings are not inferred",
+  "productionIntegration": false,
+  "physicalDeviceCertification": false
+}

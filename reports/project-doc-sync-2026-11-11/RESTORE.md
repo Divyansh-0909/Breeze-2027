@@ -1,0 +1,11 @@
+# Restore this documentation checkpoint
+
+This phase edits documentation only. The Blender source is reused from the verified Rev15O art checkpoint; its eight parts are not duplicated here.
+
+1. Verify `Rev15O-Documentation-Sync-20261111.zip` against the accompanying SHA256SUMS.txt and INDEX.json. Extract into an empty folder. Check every payload against INDEX.json. Paths are relative to the Breeze-2027 repository root. Do not automatically replay the Google Docs update plan: its indices and revision guard describe the original edit only.
+2. The shared Google Doc remains the live control document: https://docs.google.com/document/d/1ynihhc-k0aSRGVY6oJttLY8MD1AhKPahCcqheL-g56k/edit . Its current handoff is `WORLD-REV15O-CONSOLIDATED-20261111-2c78b57e-R1`.
+3. Native before copy: https://docs.google.com/document/d/1f0luyT9CAotI2iP79qWW_XxdJWpHM8fSWZXDtgyNJnI/edit . Native after copy: https://docs.google.com/document/d/1aHEyUtEZSA4ANHs5kpa_nQ_KlxY8C8FMJCHUxg2S02o/edit . These preserve native document layout and all five embedded images. Retain the live document and its history; use a native copy for recovery review before replacing anything.
+4. Sanitized before/after native JSON and complete plain text are in `reports/project-doc-sync-2026-11-11/evidence`. JSON omits only expiring image content/thumbnail URLs; image bytes are preserved by the native copies. Readback and native-copy proof files record the verified state.
+5. For the current Blender environment, download all eight ZIP parts and the INDEX.json, SHA256SUMS.txt and restore.py from https://drive.google.com/drive/folders/1imTZqxSENLLjQczVOLzOHQc4dJgIAH17 . Follow that checkpoint's restoration instructions. Expected master: `Gullyverse-Rev15O-Clear-Ground-House-Fronts.blend`, 171,581,117 bytes, SHA-256 `2c78b57e97a5a97683f946d60ad265b22a1eb88ae12abed6220ec268ce473657`. Open `REV15O / Clear Ground-Level House Fronts`; carousel controller `REV15O / Team Carousel Controller`, `team_index` 0–7.
+
+The documentation checkpoint is under https://drive.google.com/drive/folders/1O53SmUTm-zgZWD_pMu5emcUgR-Dt_mML . Its remote verification receipt is generated after archive upload and therefore is an accompanying file rather than a self-referential archive payload. No credentials, live environment files, dependencies or art masters are included in this documentation ZIP.

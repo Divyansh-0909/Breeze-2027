@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "profile": "desktop",
+      "reducedMotionPaused": true,
+      "htmlDirectionsVisible": true,
+      "oneCanvas": true,
+      "secondUV": true,
+      "shaderLEDCount": 1,
+      "errors": [],
+      "standaloneBundledVendor": true,
+      "viewport": [
+        640,
+        400
+      ]
+    },
+    {
+      "profile": "mobile-emulated",
+      "reducedMotionPaused": true,
+      "htmlDirectionsVisible": true,
+      "oneCanvas": true,
+      "secondUV": true,
+      "shaderLEDCount": 1,
+      "errors": [],
+      "standaloneBundledVendor": true,
+      "viewport": [
+        640,
+        400
+      ]
+    }
+  ],
+  "note": "Final targeted functional/standalone check after retaining the media-query object and awaiting its change event; performance measurements precede that event-handling-only fix."
+}

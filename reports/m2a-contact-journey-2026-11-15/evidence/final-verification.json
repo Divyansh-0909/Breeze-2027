@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "checks": [
+    "browser-journey",
+    "phone-final",
+    "ground-preservation",
+    "controller-equivalence",
+    "isolated-backend",
+    "next-route-gate",
+    "pdf-check"
+  ],
+  "unitTestsPassed": 111,
+  "browserBehaviorChecksPassed": 14,
+  "browserConsoleOrPageErrors": 0,
+  "observedBrowserRequestCancellations": 6,
+  "cancellationClassificationAndRawEventsRetained": true,
+  "sourceMasterStillExact": true,
+  "originalRepositoryMovementFilesAllExact": true,
+  "originalDefaultControllerFrameTraceBitExact": 16800,
+  "privateControllerFiles": [
+    {
+      "file": "components/immersive/runtime.ts",
+      "originalRepositorySHA256": "9727bed97151b1c78d5cf8d66a9dfb6c70d0ae760132a8ec33337f99cf662ec4",
+      "privateImplementationSHA256": "0170f817ddb74a8f1ba8f34ca5327d97a09babaf792765135b6f5618731da642",
+      "optionalNativeIntegrationAdded": true
+    },
+    {
+      "file": "components/immersive/navigation.ts",
+      "originalRepositorySHA256": "a0dec899d70a5079ac9c93befd5fabf72918bc3b5852e6f94a1a9f59b7b9fea8",
+      "privateImplementationSHA256": "a0dec899d70a5079ac9c93befd5fabf72918bc3b5852e6f94a1a9f59b7b9fea8",
+      "optionalNativeIntegrationAdded": false
+    },
+    {
+      "file": "components/immersive/input.ts",
+      "originalRepositorySHA256": "41979c36c721e49bc75a9430ce97dd59bdc13993a30b582fef92ba6566c95c5e",
+      "privateImplementationSHA256": "dee194e2badab7adce2ba7a6f7fdcb983d9f56472eb2529d258f61758992af2d",
+      "optionalNativeIntegrationAdded": true
+    },
+    {
+      "file": "components/immersive/rendering.tsx",
+      "originalRepositorySHA256": "908aab3cfa5542b91d6fac7efdc07a8f17c0f258a4434dd4080ea15303e23968",
+      "privateImplementationSHA256": "908aab3cfa5542b91d6fac7efdc07a8f17c0f258a4434dd4080ea15303e23968",
+      "optionalNativeIntegrationAdded": false
+    },
+    {
+      "file": "components/immersive/ImmersiveShell.tsx",
+      "originalRepositorySHA256": "dfe2bcd9fa8f2a14ac048868ae47d7fa0bd7f5f2009af7b955d375887f5e2d8e",
+      "privateImplementationSHA256": "dfe2bcd9fa8f2a14ac048868ae47d7fa0bd7f5f2009af7b955d375887f5e2d8e",
+      "optionalNativeIntegrationAdded": false
+    },
+    {
+      "file": "components/immersive/HubScene.tsx",
+      "originalRepositorySHA256": "e85d2f6c2f563a65cd653bc7c4eefd37067bb6de6303b1e000ec4b80beba8290",
+      "privateImplementationSHA256": "e85d2f6c2f563a65cd653bc7c4eefd37067bb6de6303b1e000ec4b80beba8290",
+      "optionalNativeIntegrationAdded": false
+    },
+    {
+      "file": "components/immersive/CaveEntrance.tsx",
+      "originalRepositorySHA256": "d1821b6774a3ea15ebd19c5579ba7a6cb57f319c121b71951e6b00921c5b1276",
+      "privateImplementationSHA256": "d1821b6774a3ea15ebd19c5579ba7a6cb57f319c121b71951e6b00921c5b1276",
+      "optionalNativeIntegrationAdded": false
+    },
+    {
+      "file": "components/immersive/world.ts",
+      "originalRepositorySHA256": "43894f5e6ccb00ed3556ed9320550f4f6f1a7bbdcfb131aae5fb09f6100ef8bb",
+      "privateImplementationSHA256": "43894f5e6ccb00ed3556ed9320550f4f6f1a7bbdcfb131aae5fb09f6100ef8bb",
+      "optionalNativeIntegrationAdded": false
+    }
+  ],
+  "HEADUnchanged": true,
+  "noTemporaryAuthenticationDescriptorsRetained": true,
+  "scope": "M2A bounded native Contact journey, not full-world completion or physical-device performance"
+}

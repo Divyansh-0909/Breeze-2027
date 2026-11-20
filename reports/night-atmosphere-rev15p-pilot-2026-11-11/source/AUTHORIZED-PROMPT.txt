@@ -1,0 +1,38 @@
+NEXT CODEX PROMPT — REV15P NIGHT ATMOSPHERE PILOT (2026-11-11)
+STATUS: READY TO RUN — NOT EXECUTED. Rev15O remains authoritative. This prompt is a proposed next task, not evidence that Rev15P exists.
+
+OBJECTIVE
+Build a reversible, isolated night-atmosphere pilot from the latest Rev15O Blender master. Target: believable late-night Indian gully (around 1–2 AM), mostly closed shops, two or three selectively open storefronts, warm sodium/stall lights, subtle cool ambient fill, damp rough concrete in places, restrained festival lighting, and moderate localized mist. From far away the Gullyverse logo and navigation board lose contrast/detail; close up every navigation label is legible. Mood is inhabited and cinematic, NOT horror, neon cyberpunk, or fully deserted.
+
+AUTHORITATIVE INPUTS
+Repository: Divyansh-0909/Breeze-2027; intended branch work-in-progress-2027. Prior handoff recorded HEAD 0e1e23dd2f5181df202d862d147067249bc55a41; verify current HEAD before any action and do not assume unchanged. Blender source (verify existence locally): reports/house-railings-rev15o-ground-level-2026-11-11/delivery/Gullyverse-Rev15O-Clear-Ground-House-Fronts.blend. Rev15O visual review: https://drive.google.com/file/d/1bBdRd61w1ryrXt-7-8h8C0mYhks4o95w/view . Consolidated handoff: https://drive.google.com/file/d/1Gmb2grZHEg8fktyHioxyeZS3c6xmU-MZ/view . Current website is NOT the detailed Rev15O Blender lane/cypher. Do not confuse the existing web hub/blockout with the latest Blender environment.
+
+MANDATORY FIRST GATE — READ-ONLY INVENTORY
+Before changing anything, inspect the actual .blend using Blender scripting or UI in read-only fashion and record: scene/object hierarchy; cameras and far/mid/near views; meshes/triangles and instances; materials, shader-node graphs and procedural-only shaders; image texture resolutions and packed sizes; lights and shadow settings; UV channels and lightmap feasibility; animations and crowd rigging; emissive mural/sign/LED materials; missing assets; and likely glTF incompatibilities. Inventory the website's renderer, quality presets, scene loading and existing diagnostics. The prior preliminary audit confirmed package.json React 19.0.8, R3F 9.6.1, Three.js 0.169.0 and scripts/perf-gullyverse.mjs. Do not rely on earlier assumptions that React is 18. If source .blend cannot be opened, STOP and report exact blocker; do not fabricate audit findings.
+
+PRESERVATION / PERMISSIONS
+Never overwrite or modify Rev15O master. Work only in a new clearly named Rev15P pilot copy and separate pilot output directory. Preserve all 45 source scenes, 11 houses, 189 people, cypher placement, Team mural slides and portraits, Events façade, sponsor LED, navigation board positions, house geometry and upper balconies. No changes to approved art, walking routes, text or logos. Do NOT commit, push, merge, open PR, deploy, or change live website. Do not upload to Drive without separate approval. If environment has no safe writable workspace, stop after inventory and propose plan. Before substantial visual edits, produce an inventory and exact proposed file change list; proceed only within the explicitly isolated pilot copy. Keep an audit log of changes and hashes of master source.
+
+PILOT LOOK DEVELOPMENT
+Use one representative section containing closed shutter shops, at least one open shop, the approach toward Gullyverse sign, and nearby cypher context. Establish plausible night exposure, cool low-intensity ambient light, warm localized shop/street lamps, restrained LED accents, varied roughness/normal detail and occasional damp patches. Prefer PBR materials, baked static lighting and shadows. Avoid large numbers of runtime shadow-casting lights, screen-space reflections and expensive volumetric fog. Blender procedural shaders must be baked or otherwise converted for glTF. Keep existing portraits and navigation text crisp at near distance.
+
+FOG / REVEAL
+Prototype exponential distance fog or equivalent inexpensive browser material fog, with optional minimal low-overdraw ground-mist cards only if needed. Test fog on custom shaders, emissive materials, LED and sign text: no distant sign should remain unnaturally crisp; no near sign should become unreadable. Maintain an always-accessible navigation alternative, reduced-motion compatibility and safe route visibility. Use three matching fixed cameras: far, middle, near. Capture screenshots at each.
+
+WEB EXPORT / PERFORMANCE
+Produce a representative isolated glTF/GLB pilot and private local Three.js/R3F test viewer only; do not integrate into public production routes. Test texture compression KTX2/Basis where supported, geometry compression Meshopt or Draco, sensible LODs/instancing/culling, and baked lighting. Remember glTF does not guarantee a portable lightmap workflow; explicitly verify second UV and Three.js material/lightMap binding or use an approved baked alternative. Use one WebGL canvas in viewer; avoid duplicate scene asset residency. Reuse existing performance instrumentation where possible. Report downloaded bytes, GPU/CPU frame time p50/p95/p99, draw calls, triangles, texture memory estimate, shader compilation, sustained FPS and mobile thermal caveats. Target desktop ~60 FPS and mobile stable >=30 FPS as goals, not claims. Mobile emulation is NOT physical phone certification; do not assert real-device results without measurements.
+
+REQUIRED DELIVERABLES
+1. Read-only inventory and findings with verified counts and paths.
+2. Rev15P pilot Blender copy and exported web test asset, if feasible.
+3. Far/mid/near comparison captures from Blender and browser, with identical camera framing.
+4. Performance report with desktop and emulated-mobile numbers, test conditions, and explicit unmeasured items.
+5. Clear preservation diff, source hash, output locations, blockers, and recommendations for scaling to full lane/cypher.
+6. No commits, pushes, deployments or Drive edits. Stop and ask for approval before scaling beyond pilot or touching existing website.
+
+SUCCESS CRITERIA
+Realistic late-night Indian gully; mostly shut shops and a few open; readable near navigation; mist softens distant Gullyverse logo/board; existing artwork/geometry preserved; measured browser cost acceptable or honestly reported; all work reversible. If any success criterion fails, report failure and alternatives rather than silently broadening scope.
+
+END NEXT PROMPT
+
+

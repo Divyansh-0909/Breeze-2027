@@ -1,0 +1,10 @@
+START fresh-open []
+PASS fresh-open []
+START build ['--restore', '--base', '/dev/shm/Gullyverse-Rev15U3-Restore-Test.blend', '--output', '/dev/shm/Gullyverse-Rev15V-Restore-Test.blend']
+PASS build ['--restore', '--base', '/dev/shm/Gullyverse-Rev15U3-Restore-Test.blend', '--output', '/dev/shm/Gullyverse-Rev15V-Restore-Test.blend']
+START fresh-open ['--restored']
+Traceback (most recent call last):
+  File "/workspace/Breeze-2027/reports/cypher-houses-rev15v-walls-windows-2026-11-14/source/run-validation.py", line 8, in <module>
+    key={0:'fresh-open',1:'restore-check',2:'restored-fresh-open',3:'lighting-verification',4:'before-lighting',5:'neutral-captures'}[i];p=R/f'evidence/{key}.json';assert p.exists() and json.loads(p.read_text())['status']=='PASS',key
+                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: restored-fresh-open

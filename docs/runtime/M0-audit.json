@@ -1,0 +1,251 @@
+{
+  "sourceArtLock": "Rev15Z locked by user 14 November 2026",
+  "deadline": "28 November 2026 Asia/Kolkata; hour unspecified",
+  "originalBranch": "work-in-progress-2027",
+  "originalHEAD": "0e1e23dd2f5181df202d862d147067249bc55a41",
+  "privateBranch": "codex/locked-world-runtime-20261114",
+  "routes": [
+    {
+      "url": "/admin/breeze-admin/approved",
+      "file": "app/(admin)/admin/breeze-admin/approved/page.tsx"
+    },
+    {
+      "url": "/admin/breeze-admin/contact",
+      "file": "app/(admin)/admin/breeze-admin/contact/page.tsx"
+    },
+    {
+      "url": "/admin/breeze-admin/download",
+      "file": "app/(admin)/admin/breeze-admin/download/page.tsx"
+    },
+    {
+      "url": "/admin/breeze-admin/events",
+      "file": "app/(admin)/admin/breeze-admin/events/page.tsx"
+    },
+    {
+      "url": "/admin/breeze-admin",
+      "file": "app/(admin)/admin/breeze-admin/page.tsx"
+    },
+    {
+      "url": "/admin/breeze-admin/payments",
+      "file": "app/(admin)/admin/breeze-admin/payments/page.tsx"
+    },
+    {
+      "url": "/admin/breeze-admin/users",
+      "file": "app/(admin)/admin/breeze-admin/users/page.tsx"
+    },
+    {
+      "url": "/admin/clubs",
+      "file": "app/(admin)/admin/clubs/page.tsx"
+    },
+    {
+      "url": "/admin/clubs/participants",
+      "file": "app/(admin)/admin/clubs/participants/page.tsx"
+    },
+    {
+      "url": "/admin/login",
+      "file": "app/(admin)/admin/login/page.tsx"
+    },
+    {
+      "url": "/aftermovie",
+      "file": "app/(user)/aftermovie/page.tsx"
+    },
+    {
+      "url": "/cart",
+      "file": "app/(user)/cart/page.tsx"
+    },
+    {
+      "url": "/checkout",
+      "file": "app/(user)/checkout/page.tsx"
+    },
+    {
+      "url": "/events/[id]",
+      "file": "app/(user)/events/[id]/page.tsx"
+    },
+    {
+      "url": "/events/cultural",
+      "file": "app/(user)/events/cultural/page.tsx"
+    },
+    {
+      "url": "/events",
+      "file": "app/(user)/events/page.tsx"
+    },
+    {
+      "url": "/events/technical",
+      "file": "app/(user)/events/technical/page.tsx"
+    },
+    {
+      "url": "/flythrough-rec",
+      "file": "app/(user)/flythrough-rec/page.tsx"
+    },
+    {
+      "url": "/get-in-touch",
+      "file": "app/(user)/get-in-touch/page.tsx"
+    },
+    {
+      "url": "/merch/[id]",
+      "file": "app/(user)/merch/[id]/page.tsx"
+    },
+    {
+      "url": "/merch/all",
+      "file": "app/(user)/merch/all/page.tsx"
+    },
+    {
+      "url": "/merch",
+      "file": "app/(user)/merch/page.tsx"
+    },
+    {
+      "url": "/",
+      "file": "app/(user)/page.tsx"
+    },
+    {
+      "url": "/past-performers",
+      "file": "app/(user)/past-performers/page.tsx"
+    },
+    {
+      "url": "/payments/admin-preview",
+      "file": "app/(user)/payments/admin-preview/page.tsx"
+    },
+    {
+      "url": "/payments/preview",
+      "file": "app/(user)/payments/preview/page.tsx"
+    },
+    {
+      "url": "/reciept/[token]",
+      "file": "app/(user)/reciept/[token]/page.tsx"
+    },
+    {
+      "url": "/sponsors",
+      "file": "app/(user)/sponsors/page.tsx"
+    },
+    {
+      "url": "/team",
+      "file": "app/(user)/team/page.tsx"
+    },
+    {
+      "url": "/thank-you",
+      "file": "app/(user)/thank-you/page.tsx"
+    }
+  ],
+  "journeys": [
+    {
+      "id": "landing-hub",
+      "href": "/",
+      "current": "Original persistent canvas, quarry/cave, landing and movement coordinator",
+      "next": "Integrate native chunks behind private flag and reconcile coordinate/floor registry",
+      "priority": "P0",
+      "owner": "Implementation",
+      "depends": [
+        "versioned M1 assets",
+        "collision/route mapping"
+      ]
+    },
+    {
+      "id": "main-stage-aftermovie",
+      "href": "/aftermovie",
+      "current": "Existing stage/video experience shares immersive shell with /",
+      "next": "Retain player, playback and departure/return lifecycle; no invented separate finished stage",
+      "priority": "P0",
+      "owner": "Implementation",
+      "depends": [
+        "single-canvas registry"
+      ]
+    },
+    {
+      "id": "events",
+      "href": "/events",
+      "current": "Existing live catalog/categories/details; landing takes five per type",
+      "next": "Complete wall feed, stable poster paging, missing/loading states; typed expiry contract needed before automatic expiry",
+      "priority": "P0",
+      "owner": "Implementation + festival admin",
+      "depends": [
+        "catalog contract",
+        "event-date data",
+        "existing role permissions"
+      ]
+    },
+    {
+      "id": "team",
+      "href": "/team",
+      "current": "Existing separate team scene; eight locked native mural states not mounted",
+      "next": "Mount native variants in shared canvas and retain text/portraits",
+      "priority": "P1",
+      "owner": "Implementation",
+      "depends": [
+        "team chunk export",
+        "shared scene lifecycle"
+      ]
+    },
+    {
+      "id": "contact",
+      "href": "/get-in-touch",
+      "current": "Existing HelpDeskExperience, /api/contact and admin inbox",
+      "next": "Mount locked window and form, pointer-lock/focus/input suspension, connect existing endpoint",
+      "priority": "P0",
+      "owner": "Implementation",
+      "depends": [
+        "validated representative chunk",
+        "single-canvas lifecycle"
+      ]
+    },
+    {
+      "id": "accommodation",
+      "href": null,
+      "current": "Locked COMING/SOON art, no completed booking destination",
+      "next": "In-world coming-soon and accessible HTML fallback; do not fabricate booking",
+      "priority": "P1",
+      "owner": "Implementation",
+      "depends": [
+        "accommodation chunk export"
+      ]
+    },
+    {
+      "id": "past-sponsors",
+      "href": "/sponsors",
+      "current": "Route redirects home; native LED is a display rather than destination",
+      "next": "Preserve close-hung logo loop, spacing and current route policy",
+      "priority": "P1",
+      "owner": "Implementation",
+      "depends": [
+        "navigation chunk export"
+      ]
+    }
+  ],
+  "baselineTests": {
+    "immersive": {
+      "passed": 106,
+      "failed": 0
+    },
+    "typescript": "PASS after generated Next type references; no original application change",
+    "productionBuild": "PASS with disposable loopback PostgreSQL and anonymous local auth placeholder, after user selected isolated backend",
+    "isolatedBackend": {
+      "actualContactPOST": "Invalid400/no insert and valid200/persisted",
+      "eventCatalog": "Seven fixture events incl missing posters",
+      "liveAuthAndAdminInbox": "Not tested",
+      "schemaSetup": "prisma db push in disposable DB; checked-in ContactSubmission migration absent"
+    }
+  },
+  "coordinateGap": "Original quarry registry and current native lane/cypher have different footprints and floor levels. Preserve movement class/input/camera choreography; add explicit mapping and collision data in M2.",
+  "criticalPathDays": {
+    "M1-representative-pipeline": [
+      1,
+      2
+    ],
+    "M2-full-journey-and-content": [
+      3,
+      5
+    ],
+    "M3-night-match-and-quality-tiers": [
+      2,
+      3
+    ],
+    "M4-profiling-real-devices": [
+      1,
+      2
+    ],
+    "M5-fixes-and-release-preview": [
+      2,
+      3
+    ]
+  },
+  "workRemaining": "M2\u2013M5 not completed by a representative M1 export; production deployment still requires user approval"
+}

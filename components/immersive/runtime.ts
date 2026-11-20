@@ -5,6 +5,16 @@ import { composeCamera, mapCamera } from "./aerial";
 export type Phase = "boot" | "landing" | "entrance" | "local" | "departure" | "covered" | "arrival" | "context-lost" | "recovering" | "error";
 export type Snapshot = { phase: Phase; scene: LocationId; destination: LocationId; serial: number; map: boolean; mapStage: "ascent" | "open" | "descent" | null; destinationMenu: boolean; unavailableDestination: TravelId | null; error: string | null; quality: number; movie: boolean; reduced: boolean; inspection: string | null };
 export type Input = { forward: number; strafe: number; lookX: number; lookY: number };
+/** Optional native-space contract; existing quarry behavior remains the default. */
+export interface RuntimeSpace {
+  spawn(id: LocationId, approaching: boolean): Pose;
+  constrain(id: LocationId, pose: Pose): void;
+  constrainInterior(id: LocationId, pose: Pose): void;
+  boundaryClearance(id: LocationId, pose: Pose): number;
+  boundaryCrossings(id: LocationId, before: Pick<Pose, "x" | "z">, attempted: Pick<Pose, "x" | "z">): ReturnType<typeof boundaryCrossings>;
+  composeCamera(base: Pose & { fov: number }, aspect: number): Pose & { fov: number };
+  mapCamera(aspect: number): Pose & { fov: number };
+}
 const smooth = (t: number) => t * t * (3 - 2 * t);
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 function blendPose(out: Pose, a: Pose, b: Pose, t: number) {
@@ -51,6 +61,9 @@ export class ImmersiveRuntime {
   private ready = false;
   private focusFrom: Pose | null = null;
   private focusTime = 0;
+  private interactionSaved: Pose | null = null;
+  get interacting() { return this.interactionSaved !== null; }
+  get focusing() { return this.focusFrom !== null; }
   private mapSaved: Pose | null = null;
   private departureMap: { saved: Pose; progress: number; scene: LocationId } | null = null;
   private boundaryArmed = true;
@@ -60,13 +73,14 @@ export class ImmersiveRuntime {
   private recovery: { phase: Phase; elapsed: number; opacity: number } | null = null;
   private pendingNavigation: { id: TravelId; source: RequestSource } | null = null;
 
-  constructor(initial: LocationId, onArrival?: (id: LocationId, source: RequestSource, entrance?: boolean) => void, private intro = true, private clock?: () => number) {
+  constructor(initial: LocationId, onArrival?: (id: LocationId, source: RequestSource, entrance?: boolean) => void, private intro = true, private clock?: () => number, private space?: RuntimeSpace) {
     this.state = { phase: "boot", scene: initial, destination: initial, serial: 0, map: false, mapStage: null, destinationMenu: false, unavailableDestination: null, error: null, quality: 0, movie: false, reduced: false, inspection: null };
-    this.pose = initial === "hub" && intro ? landingPose() : spawnPose(initial, true);
-    this.from = { ...this.pose }; this.to = spawnPose(initial);
+    this.pose = initial === "hub" && intro ? landingPose() : this.spawn(initial, true);
+    this.from = { ...this.pose }; this.to = this.spawn(initial, false);
     this.onArrival = onArrival;
   }
   getSnapshot = () => this.state;
+  private spawn(id: LocationId, approaching = false) { return this.space?.spawn(id, approaching) ?? spawnPose(id, approaching); }
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
   private publish(update: Partial<Snapshot>) {
     if (this.clock && (update.phase !== undefined || update.movie !== undefined || update.mapStage !== undefined)) this.activatedAt = this.clock();
@@ -74,7 +88,7 @@ export class ImmersiveRuntime {
   clearInput() { this.input.forward = this.input.strafe = this.input.lookX = this.input.lookY = 0; this.vx = this.vz = 0; }
   setMap(map: boolean) {
     if (map) {
-      if (this.state.phase !== "local" || this.state.movie || this.state.destinationMenu || this.state.inspection) return;
+      if (this.state.phase !== "local" || this.state.movie || this.interacting || this.state.destinationMenu || this.state.inspection) return;
       if (this.state.mapStage === "open" || this.state.mapStage === "ascent") return;
       this.mapSaved ??= { ...this.pose };
       this.clearInput(); this.publish({ map: true, mapStage: "ascent" });
@@ -89,6 +103,7 @@ export class ImmersiveRuntime {
   }
   dismissUnavailableDestination() { if (this.state.unavailableDestination) this.publish({ unavailableDestination: null }); }
   handleEscape(): boolean {
+    if (this.interacting) { this.focusInteraction(null); return true; }
     if (this.state.destinationMenu) { this.dismissDestinationMenu(); return true; }
     if (this.state.map) { this.setMap(false); return true; }
     if (this.state.movie) { this.movieActions?.stop(); return true; }
@@ -101,13 +116,13 @@ export class ImmersiveRuntime {
   }
   cameraPose(aspect = 16/9) {
     const base = this.state.inspection ? inspectionCamera(this.state.inspection)! : { ...this.pose, fov: world.camera.fov };
-    const camera = composeCamera(base, aspect, this.state.scene, this.state.inspection, this.state.phase);
+    const camera = this.space ? this.space.composeCamera(base, aspect) : composeCamera(base, aspect, this.state.scene, this.state.inspection, this.state.phase);
     const departing = this.state.phase === "departure" ? this.departureMap : null;
     const saved = departing?.saved ?? this.mapSaved;
     if ((!this.state.map && !departing) || !saved) return camera;
     const progress = departing?.progress ?? this.mapProgress;
-    const from = composeCamera({ ...saved, fov: world.camera.fov }, aspect, departing?.scene ?? this.state.scene, null, "local");
-    const to = mapCamera(aspect), t = smooth(progress);
+    const from = this.space ? this.space.composeCamera({ ...saved, fov: world.camera.fov }, aspect) : composeCamera({ ...saved, fov: world.camera.fov }, aspect, departing?.scene ?? this.state.scene, null, "local");
+    const to = this.space?.mapCamera(aspect) ?? mapCamera(aspect), t = smooth(progress);
     blendPose(camera, from, to, t);
     // Altitude leads the lateral move: rise above the same world before
     // centering it, rather than cutting to an unrelated overview camera.
@@ -120,7 +135,19 @@ export class ImmersiveRuntime {
     return this.arrivalPose(false);
   }
   private arrivalPose(approaching: boolean): Pose {
-    return this.targetEntrance ? landingPose() : spawnPose(this.state.destination, approaching);
+    return this.targetEntrance ? landingPose() : this.spawn(this.state.destination, approaching);
+  }
+  /** Reuse the existing focus/return choreography for a readable HTML interaction. */
+  focusInteraction(target: Pose | null): boolean {
+    if (target) {
+      if (this.state.phase !== "local" || this.state.movie || this.state.map || this.state.destinationMenu || this.interacting || this.focusFrom) return false;
+      this.interactionSaved = { ...this.pose };
+    } else if (!this.interactionSaved) return false;
+    this.clearInput(); this.focusFrom = { ...this.pose }; this.focusTime = 0;
+    this.to = target ? { ...target } : { ...this.interactionSaved! };
+    if (!target) this.interactionSaved = null;
+    this.publish({});
+    return true;
   }
   setMovie(movie: boolean) {
     if (movie === this.state.movie) return;
@@ -162,7 +189,7 @@ export class ImmersiveRuntime {
     // Nearby travel thresholds retain the current view while it fades. The
     // distant arrival pose changes only after the curtain becomes opaque.
     this.to = { ...this.pose };
-    this.clearInput(); this.focusFrom = null;
+    this.clearInput(); this.focusFrom = null; this.interactionSaved = null;
     this.departureMap = this.state.map && this.mapSaved ? { saved: { ...this.mapSaved }, progress: this.mapProgress, scene: this.state.scene } : null;
     this.resetMap(); this.boundaryArmed = true;
     this.publish({ destination: localId, phase: "departure", serial: this.state.serial + 1, map: false, mapStage: null, movie: false, destinationMenu: false, unavailableDestination: null });
@@ -199,6 +226,11 @@ export class ImmersiveRuntime {
     if (this.state.phase === "context-lost") this.publish({ phase: "recovering" });
   }
   fail(message: string) { this.opacity = 1; this.clearInput(); this.resetMap(); this.departureMap = null; this.publish({ phase: "error", error: message, map: false, mapStage: null, movie: false, destinationMenu: false }); }
+  retryFromError() {
+    if (this.state.phase !== "error") return;
+    this.ready = false; this.preparedSerial = -1; this.focusFrom = null; this.interactionSaved = null;
+    this.recovery = null; this.clearInput(); this.publish({ phase: "boot", error: null, serial: this.state.serial + 1 });
+  }
   private beginArrival() {
     this.elapsed = 0; this.from = { ...this.pose }; this.to = this.arrivalPose(false);
     this.publish({ phase: "arrival" });
@@ -288,8 +320,8 @@ export class ImmersiveRuntime {
         if (u === 1) { Object.assign(this.pose, this.to); this.focusFrom = null; }
         return;
       }
-      if (this.state.movie || this.state.destinationMenu) return;
-      if (!this.boundaryArmed && boundaryClearance(this.state.scene,this.pose) > 0.65) {
+      if (this.state.movie || this.interacting || this.state.destinationMenu) return;
+      if (!this.boundaryArmed && (this.space?.boundaryClearance(this.state.scene,this.pose) ?? boundaryClearance(this.state.scene,this.pose)) > 0.65) {
         this.boundaryArmed = true;
         if (this.state.unavailableDestination) this.publish({ unavailableDestination: null });
       }
@@ -303,9 +335,9 @@ export class ImmersiveRuntime {
       this.vz += ((-f * Math.cos(this.pose.yaw) - s * Math.sin(this.pose.yaw)) * speed - this.vz) * damping;
       const before = { x: this.pose.x, z: this.pose.z };
       this.pose.x += this.vx * dt; this.pose.z += this.vz * dt;
-      constrainInterior(this.state.scene,this.pose);
-      const crossings = boundaryCrossings(this.state.scene,before,this.pose);
-      constrain(this.state.scene, this.pose);
+      if (this.space) this.space.constrainInterior(this.state.scene, this.pose); else constrainInterior(this.state.scene,this.pose);
+      const crossings = this.space ? this.space.boundaryCrossings(this.state.scene,before,this.pose) : boundaryCrossings(this.state.scene,before,this.pose);
+      if (this.space) this.space.constrain(this.state.scene, this.pose); else constrain(this.state.scene, this.pose);
       if (!this.boundaryArmed || crossings.length === 0) return;
       if (this.state.scene === "aftermovie") {
         this.boundaryArmed = false; this.clearInput(); this.publish({ destinationMenu: true });

@@ -1,0 +1,9 @@
+# Shop name boards based on Indian signage references
+
+The user approved the Rev15R open-shop interiors and requested more realistic shop name boards using further references. Rev15S follows real photographs of Indian sign painting, a Panvel chai storefront, Delhi mobile repair signage and a Bundi kirana frontage. The BLAG article by Pooja Saxena supplies documented examples of lettering hierarchy, bilingual names, shadows, metal frames and restrained ageing. References and credits are in `references/sources.json` and the PDF.
+
+All five open shops have original Hindi/English fascia artwork with legible product descriptors, painted borders, subtle fade and wear around fixings. Folded metal frames, screws, curved lamp brackets and two 10 W local lights provide physical context. The small rear category labels use matching artwork. No actual shop logo, contact number, address or reference photograph was copied into the texture artwork.
+
+The first render identified the existing lintel obstructing the lower English lettering. The final board assemblies sit 16 cm farther forward, ahead of that lintel face. The same-camera comparisons show the accepted interiors before and after; additional native night views show reflected light on the sign surfaces. Comparison inspection lights are explicitly labelled. The accepted shop goods and counter geometry, all 189 crowd members, eight murals, closed fronts and 47 historical scenes are retained. The new master contains 92 packed images.
+
+The full native master, a smaller board asset library, source, texture artwork, photographs, rendered review and restoration instructions are stored under a distinct phase in the new Drive account. Upload receipts record authenticated download-back checksums, parent, size and destination ownership. Public website integration and browser optimization remain pending. No commit, push or deployment occurred. Drive account migration is tracked separately with CSD361 excluded.

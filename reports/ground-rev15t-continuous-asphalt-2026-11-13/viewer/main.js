@@ -1,0 +1,13 @@
+import * as THREE from 'three';
+import { GLTFLoader } from './vendor/three/examples/jsm/loaders/GLTFLoader.js';
+const scene=new THREE.Scene();scene.background=new THREE.Color('#9a9da0');
+const renderer=new THREE.WebGLRenderer({canvas:document.querySelector('canvas'),antialias:true});renderer.setPixelRatio(1);renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.04,220);
+scene.add(new THREE.HemisphereLight(0xe2eaf1,0x665a44,1.25));
+const key=new THREE.DirectionalLight(0xffedcf,2.25);key.position.set(-6,18,8);scene.add(key);
+const poses={lane:[[0,7.72,28.8],[.15,6.2,13.5]],cypher:[[2.7,8.92,-17.5],[-5.1,7.2,-25]],overview:[[0,65,10],[0,6.7,-9]]};
+const gltf=await new GLTFLoader().loadAsync('../delivery/Rev15T-Continuous-Asphalt-Ground.glb');scene.add(gltf.scene);const ground=[];gltf.scene.traverse(o=>{if(o.isMesh&&o.material.name.includes('Reference-authored worn asphalt'))ground.push(o);});
+const ray=new THREE.Raycaster();const raySamples=[];for(const y of [-29,-10,-5,0,5,9,14,20,25,35,47]){ray.set(new THREE.Vector3(0,25,-y),new THREE.Vector3(0,-1,0));const r=ray.intersectObjects(ground,false);if(!r.length)throw new Error('Road route has a gap at '+y);const expected=y<=-10?6:y<14?6+.05*(y+10):7.2;if(Math.abs(r[0].point.y-expected)>.001)throw new Error('Road grade mismatch');raySamples.push({y,height:r[0].point.y});}
+const stats={meshes:0,triangles:0,normalChannels:[],errors:[]};gltf.scene.traverse(o=>{if(o.isMesh){stats.meshes++;stats.triangles+=o.geometry.index?o.geometry.index.count/3:o.geometry.attributes.position.count/3;if(o.material.name.includes('Reference-authored worn asphalt')){stats.normalChannels.push(o.material.normalMap.channel);if(o.material.normalMap.channel!==1||o.material.map.channel!==0)throw new Error('Road UV binding mismatch');}}});
+function show(name){const p=poses[name];if(!p)throw new Error('Unknown view');camera.position.fromArray(p[0]);camera.lookAt(...p[1]);camera.updateProjectionMatrix();renderer.render(scene,camera);stats.view=name;stats.glError=renderer.getContext().getError();stats.drawCalls=renderer.info.render.calls;return {...stats,raySamples};}
+window.roadReview={show,stats,raySamples};document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);show(stats.view||'lane');});show('lane');window.roadReady=true;

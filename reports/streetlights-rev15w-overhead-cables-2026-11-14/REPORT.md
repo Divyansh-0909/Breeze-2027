@@ -1,0 +1,15 @@
+# Rev15W / Gully road-edge streetlights and overhead cables
+
+Requested final environment addition, implemented 14 November 2026. All six poles are at the gully lane road edges only, before the navigation stand. Two are steady, two flicker independently, two remain dead. Twenty-four suspended cable runs, service loops, junction boxes, bent arms and boxed lamps follow real Indian market-lane photo references. No new cypher/courtyard fixture, cable network or unrelated environment change was added.
+
+The 59-scene native master retains all 58 historical scene memberships and 143 packed images. Preservation checks cover all 3,209 original objects: mesh geometry, materials including node graphs/packed images, UVs, vertex colours, transforms, old lights, world and exposure. Eight exclusive Team mural states, eight Events posters and the gate/walking corridor are retained. Eight application/controller source hashes remain unchanged.
+
+Geometry clearance checks found no cable intersections with the source buildings or navigation stand. Lowest checked road clearance is 4.908 m. New lamp cutoff ranges end before the cypher. The native 8.4-second pattern animates both light output and lens emission; 90 samples passed. The isolated browser controller is shadowless, limits active local lights to four, and supports reduced motion. Browser states, visible flicker change, dead lamps, mobile overflow and console/WebGL errors passed. These checks do not establish whole-world performance or production integration.
+
+The PDF's five native captures use the saved world, existing light powers and exposure, with only the authorized new lamps added. No diagnostic lamps or post-capture brightening were used. Review framing and render samples are temporary and do not modify the master. Real reference photographs and credits are included; none became scene textures. Browser captures use a separate temporary floor and diagnostic illumination and are labelled accordingly.
+
+Full source reconstruction from V2 and separate fresh opening passed. V2 itself was restored from the authenticated exact T2 full master and verified incremental source/native chain, with the expected V2 scene fingerprint. Whole-file Blender serialization hashes can differ; matching active-scene fingerprints, preservation checks and packed resources define successful reconstruction.
+
+Deadline recorded: **28 November 2026, Asia/Kolkata**. This is two weeks from 14 November; no exact hour was supplied. W user visual review is pending. Whole-website M0/M1/M2 delivery, runtime world integration, collision registry changes, hardware benchmarks and deployment are not claimed by this art phase. No commit, push, merge or PR was made.
+
+The shared project document has the W handoff, gully-only clarification, deadline, PDF and recovery folder. Every previous paragraph object/style, earlier text and all five inline images were preserved. See evidence/document-final-verification.json. The checkpoint uses a verified unchanged native/source dependency chain rather than duplicating every historical full master.

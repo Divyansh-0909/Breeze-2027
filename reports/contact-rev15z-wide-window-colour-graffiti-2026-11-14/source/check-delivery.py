@@ -1,0 +1,10 @@
+from pathlib import Path
+import json,hashlib,struct
+R=Path(__file__).resolve().parents[1];repo=R.parents[1];read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();old=read(repo/'reports/contact-rev15y-enquiry-window-2026-11-14/evidence/movement-recheck.json');rows=[dict(path=r['path'],sha256=sha(repo/r['path']),unchanged=sha(repo/r['path'])==r['sha256'])for r in old['files']];assert all(r['unchanged']for r in rows);(R/'evidence/movement-recheck.json').write_text(json.dumps({'status':'UNCHANGED','files':rows,'integration':'No production application controller or world changes in this art phase'},indent=2)+'\n')
+results={}
+for key,file,lightCount in [('contact','Rev15Z-Wide-Contact-Window.glb',2),('accommodation','Rev15Z-Restored-Accommodation.glb',1)]:
+ p=R/'delivery'/file;data=p.read_bytes();magic,version,size=struct.unpack('<III',data[:12]);assert magic==0x46546c67 and version==2 and size==len(data);length,kind=struct.unpack('<II',data[12:20]);assert kind==0x4e4f534a;g=json.loads(data[20:20+length]);lights=g['extensions']['KHR_lights_punctual']['lights'];assert len(lights)==lightCount;assert all('uri'not in i for i in g.get('images',[]));tags=[n.get('extras',{}).get('contactPart')for n in g['nodes']]
+ if key=='contact':assert tags.count('attendant')==0 and tags.count('message panel')==1 and tags.count('contact heading')==1 and any(n.get('extras',{}).get('singleOpening')for n in g['nodes'])
+ else:assert any(n.get('extras',{}).get('accommodationPart')=='COMING above SOON graffiti'for n in g['nodes'])
+ results[key]={'sha256':sha(p),'bytes':len(data),'meshes':len(g['meshes']),'images':len(g.get('images',[])),'lights':len(lights),'texturesEmbedded':True}
+result={'status':'PASS','components':results,'noContactPerson':True,'singleFullWidthFormWindow':True,'scope':'Two isolated components; full-world website integration/baking remains pending.'};(R/'evidence/glb-structure.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

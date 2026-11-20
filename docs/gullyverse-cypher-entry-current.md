@@ -1,0 +1,7 @@
+# Current cypher entrance
+
+**Rev15V2 / 14 November 2026** adds a narrow 1.8 m opening on level asphalt beyond the navigation stand. One left-hinged see-through steel-rod gate opens 90 degrees outward toward the gully. Short boundary walls frame the entrance; no raised threshold or ground railing is added. Per-face checks confirm a clear 1.65 m central walking corridor.
+
+The latest full native master is [Rev15V2](../reports/cypher-entry-rev15v2-open-steel-gate-2026-11-14/delivery/Gullyverse-Rev15V2-Open-Steel-Cypher-Gate.blend), with 58 scenes and all packed resources. It retains V1's coloured plaster Events wall, all eight Events posters, the whole protected Team building and its eight mural states, navigation and digital sponsors, road, crowd, saved lighting and original movement code.
+
+[Combined PDF review](https://drive.google.com/file/d/1jSd3J4MQxsKdusqHXKQnIE5n3nSOFK8s/view?usp=drivesdk) · [Verified Drive phase](https://drive.google.com/drive/folders/1uo_ah4UfA0nNsrkABYBnRS6EaNEEtL_q) · [Report](../reports/cypher-entry-rev15v2-open-steel-gate-2026-11-14/REPORT.md) · [Native reconstruction](../reports/cypher-entry-rev15v2-open-steel-gate-2026-11-14/RESTORE.md). Native fresh-open, actual source reconstruction, independent restored-file opening, gate geometry/clearance audit and isolated browser GLB checks pass. The user accepted the latest presented Events-plaster/open-gate direction with “great” on 14 November 2026. Full-world production website integration and collision/navigation registry update remain pending.

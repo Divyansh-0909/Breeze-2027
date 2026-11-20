@@ -43,3 +43,7 @@ design/gullyverse-studies/**/*.webm filter=lfs diff=lfs merge=lfs -text
 design/gullyverse-studies/**/*.exr filter=lfs diff=lfs merge=lfs -text
 design/gullyverse-studies/**/*.zip filter=lfs diff=lfs merge=lfs -text
 "design/gullyverse-studies/2026-10-31/15-rev12-three-storeys/evidence/source-signatures.json" filter=lfs diff=lfs merge=lfs -text
+
+# Raw authored lighting belongs with the other LFS review/source payloads.
+reports/**/*.pfm filter=lfs diff=lfs merge=lfs -text
+reports/**/*.hdr filter=lfs diff=lfs merge=lfs -text

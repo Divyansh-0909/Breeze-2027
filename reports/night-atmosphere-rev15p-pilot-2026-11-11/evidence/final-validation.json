@@ -1,0 +1,62 @@
+{
+  "status": "PASS_WITH_REPORTED_PILOT_LIMITS",
+  "sourceAndPilotHashUnchanged": true,
+  "freshBlenderOpen": "PASS",
+  "browserFunctionalChecks": "Final targeted desktop/mobile checks PASS after reduced-motion listener/check timing correction; original performance-run failure remains recorded",
+  "comparisonImageDimensions": {
+    "blender-baseline-far.png": true,
+    "blender-pilot-far.png": true,
+    "browser-desktop-far.png": true,
+    "browser-clear-far.png": true,
+    "blender-baseline-middle.png": true,
+    "blender-pilot-middle.png": true,
+    "browser-desktop-middle.png": true,
+    "browser-clear-middle.png": true,
+    "blender-baseline-near.png": true,
+    "blender-pilot-near.png": true,
+    "browser-desktop-near.png": true,
+    "browser-clear-near.png": true
+  },
+  "signFogContrastMeasurements": [
+    {
+      "camera": "far",
+      "region": [
+        640,
+        335,
+        810,
+        487
+      ],
+      "clearStd": 58.64705433513512,
+      "fogStd": 24.77973914767362,
+      "contrastRatio": 0.4225231672518669
+    },
+    {
+      "camera": "middle",
+      "region": [
+        510,
+        130,
+        930,
+        650
+      ],
+      "clearStd": 49.70304394209816,
+      "fogStd": 39.62895217375522,
+      "contrastRatio": 0.7973143902397848
+    },
+    {
+      "camera": "near",
+      "region": [
+        220,
+        240,
+        1220,
+        680
+      ],
+      "clearStd": 34.01449874907165,
+      "fogStd": 30.043830343210573,
+      "contrastRatio": 0.8832654146940958
+    }
+  ],
+  "visualInspection": "Native far/near and corrected browser far/near inspected. Browser is visibly flatter/brighter than Blender; no pixel-match claim. Original world graffiti projection corrected. Near navigation labels remain legible.",
+  "performanceGoals": "NOT MET in cloud software rendering",
+  "draco": "Experimental: decoded triangle count differs; plain GLB is default",
+  "ktx2": "NOT ENCODED: no local encoder; runtime format capabilities recorded"
+}

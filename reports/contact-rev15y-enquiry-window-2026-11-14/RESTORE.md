@@ -1,0 +1,21 @@
+# Restore Rev15Y
+
+Use Blender 4.3.2 and new output filenames. Preserve older backups. The source archive includes authored scripts, the new transparent brush atlas, editable native component, Contact GLB, deletion/replacement manifest, private HTML form/viewer, vendored Three.js/license, review fonts/license, captures, PDF, document audits and evidence. It excludes dependencies, credentials and caches. The component alone is not the complete world.
+
+1. Download the four X1 source parts by the observed Drive IDs in source/Base-X1-Checkpoint-Index.json. Reassemble with source/restore-checkpoint.py, passing that base index. Expected X1 ZIP: 10,385,547 bytes; SHA-256 7ce0759d2a0a4ac2c429a413512e0c933868cea5f6dbe8273fa32f665e8c32c5. Verify each part, the complete ZIP and every payload hash.
+2. Follow X1 RESTORE.md and its complete dependency index to obtain W source, the original 19 native/source dependencies, X and X1. Rebuild T2 -> T3 -> U1 -> U2 -> U3 -> V -> V1 -> V2 -> W -> X -> X1 with the fingerprint guards. X1 has 61 scenes and 144 packed images. Its scene fingerprint is 4852c39dc337c366fe2be41bac4b34b4f1f8019a29a9a20bac6d8350bd51f6b7.
+3. Reassemble Y from the parts in its external Checkpoint-Index.json using source/restore-checkpoint.py. Verify ZIP CRC and PAYLOAD-SHA256.json before extraction. Extract older W, X, X1 source first and Y last so current documentation is not replaced by history. New source assets and the vendored browser libraries must be present at their original relative paths.
+4. Reconstruct and reopen the edited full world:
+
+```bash
+blender -b --python-exit-code 1 --python reports/contact-rev15y-enquiry-window-2026-11-14/source/build.py -- --restore --base /output/Gullyverse-Rev15X1.blend --output /output/Gullyverse-Rev15Y.blend
+blender -b --python-exit-code 1 --python reports/contact-rev15y-enquiry-window-2026-11-14/source/fresh-open.py -- --restored --base /output/Gullyverse-Rev15X1.blend
+```
+
+The builder refuses overwrite and checks the exact base and edited scene fingerprints. Fresh opening uses the output path written by the restore builder. Expect 62 scenes, 145 packed images, all 61 historical memberships and protected original data unchanged. Blender serialization bytes may vary across rebuilds; the canonical authored scene fingerprint and preservation/resource checks must match. Actual source reconstruction from the independently restored X1 file and fresh opening are recorded in evidence/restore-check.json and restored-fresh-open.json. To recover the original world, stop at verified X1; Y contains all those historical scenes as well.
+
+For manual component reuse, inspect delivery/window-manifest.json first. Remove all 16 named Accommodation barrier/coping/trim objects; replace the old Accommodation COMING/SOON mesh binding; replace the three locally edited window meshes; add the new Contact collection. Names are phase-prefixed, so match the listed original names/suffixes deliberately. Never append duplicates onto the old pane, grille, mural or barrier. The component .blend contains revised Accommodation art and the three window edits as well as Contact. The GLB contains Contact only; it does not remove source-world objects or carry the Accommodation change. Use the complete rebuilt native world for full-world export/baking.
+
+For the private browser review, serve viewer/ over localhost and open index.html. The packaged contact.glb and window-manifest.json are real payload files, not dependencies on the original temporary workspace symlinks. The form's default preview adapter rejects with an explicit no-message-sent status. The reusable contact-form.js can target the existing /api/contact when deliberately mounted into the production world later. Browser tests use injected local submit stubs and send nothing externally. The production mounting/movement lifecycle remains pending.
+
+The original native Google Doc preserves embedded image bytes; document-snapshots before/after preserve the content/formatting audit. New Drive IDs, owner/parent verification, sizes and authenticated download-back SHA-256 receipts are in the external index and final verification. Current backup destination is the Breeze root owned by losersamurai09@gmail.com; no sharing changes were made.
