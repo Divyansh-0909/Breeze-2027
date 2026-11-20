@@ -65,7 +65,13 @@ for old in sorted(native.objects,key=lambda o:o.name):
  if (old.type=='MESH' or old.name in evaluated_parts) and ((old.name in explicit) if explicit else (part or intersects(old))):
   indices=None
   if not part and old.name not in whole:
-   indices=[p.index for p in old.data.polygons if in_bounds(old.matrix_world@p.center)]
+   excluded_faces=selection.get('excludedFaces',{}).get(old.name)
+   if excluded_faces is not None:
+    excluded=set(excluded_faces)
+    assert excluded <= set(range(len(old.data.polygons))), old.name
+    indices=[p.index for p in old.data.polygons if p.index not in excluded]
+   else:
+    indices=[p.index for p in old.data.polygons if in_bounds(old.matrix_world@p.center)]
    if not indices:scene.collection.objects.link(old);contexts.append(old.name);continue
   ob=copy_mesh(old,indices)
   if indices is not None:
@@ -85,6 +91,31 @@ for ob in targets:
  if ob.get('contactPart')=='contact heading':
   bm=bmesh.new();bm.from_mesh(me);bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=1e-7);bm.to_mesh(me);bm.free();me.update()
 assert not any(o.get('contactPart')=='attendant'for o in targets)
+if selection.get('batchStaticProps'):
+ from collections import defaultdict
+ sys.path.insert(0,str(Path(__file__).resolve().parent))
+ from market_batches import batch_key
+ batches=defaultdict(list)
+ rows_by_object=dict(zip(targets,sourceRows))
+ for ob in targets:
+  key=batch_key(ob,rows_by_object[ob])
+  if key is not None:batches[key].append(ob)
+ for selected in bpy.context.selected_objects:selected.select_set(False)
+ removed=set()
+ for members in batches.values():
+  if len(members)<2:continue
+  lead,*rest=members
+  expected_faces=sum(len(ob.data.polygons) for ob in members)
+  rows_by_object[lead]['batchedSourceObjects']=[rows_by_object[ob]['sourceObject'] for ob in rest]
+  removed.update(ob.name for ob in rest)
+  for ob in members:ob.select_set(True)
+  bpy.context.view_layer.objects.active=lead
+  bpy.ops.object.join()
+  assert len(lead.data.polygons)==expected_faces,lead.name
+  lead.select_set(False)
+ remaining=[(ob,row) for ob,row in zip(targets,sourceRows) if row['node'] not in removed]
+ targets,sourceRows=map(list,zip(*remaining))
+ print('BATCHED_STATIC_PROPS',len(removed), 'remaining meshes',len(targets),flush=True)
 # Independent materials retain source references. Default UV reads are pinned
 # before the bake UV is added, preserving existing image sampling.
 unsupported={};maps={'color':'Base Color','roughness':'Roughness','metallic':'Metallic','normal':'Normal'}
@@ -130,10 +161,12 @@ for ob in targets:
    graph=list(upstream(p.inputs[socket]));types={x.type for x in graph}
    if p.inputs[socket].is_linked and (types-{'TEX_IMAGE','UVMAP','NORMAL_MAP','SEPRGB','SEPARATE_COLOR','COMBRGB','COMBINE_COLOR','RGB','VALUE','TEX_COORD'}):needed.append(key)
   unsupported[mat.name]=needed;materialRows.append({'name':mat.name,'sourceImages':[{'name':x.image.name,'sha256':hashlib.sha256(x.image.packed_file.data).hexdigest()}for x in nodes if x.type=='TEX_IMAGE'and x.image and x.image.packed_file],'bakedChannels':needed})
- me.uv_layers.new(name=uvName);me.uv_layers.active=me.uv_layers[uvName]
+ if not plan.get('quality',{}).get('proceduralUVOnly') or any(unsupported.get(m.name) for m in me.materials if m):
+  me.uv_layers.new(name=uvName);me.uv_layers.active=me.uv_layers[uvName]
 # Explicit disjoint object tiles avoid cross-object UV packing ambiguity.
-tiles=[];columns=math.ceil(math.sqrt(len(targets)));pad=8/size
-for index,ob in enumerate(targets):
+uv_targets=[ob for ob in targets if ob.data.uv_layers.get(uvName)]
+tiles=[];columns=max(1,math.ceil(math.sqrt(len(uv_targets))));pad=8/size
+for index,ob in enumerate(uv_targets):
  for o in scene.objects:o.select_set(o==ob)
  bpy.context.view_layer.objects.active=ob;ob.data.uv_layers.active=ob.data.uv_layers[uvName]
  for uv in ob.data.uv_layers:uv.active_render=(uv.name==uvName)
@@ -141,6 +174,8 @@ for index,ob in enumerate(targets):
  left=(index%columns)/columns+pad;bottom=(index//columns)/columns+pad;span=1/columns-2*pad
  for v in ob.data.uv_layers[uvName].data:v.uv=(left+v.uv.x*span,bottom+v.uv.y*span)
  tiles.append({'node':ob.name,'rect':[left,bottom,left+span,bottom+span]});ob['runtimeLightmapChannel']=list(ob.data.uv_layers).index(ob.data.uv_layers[uvName])
+for ob in targets:
+ if not ob.data.uv_layers.get(uvName):ob['runtimeLightmapChannel']=0
 for o in scene.objects:o.select_set(o in targets)
 bpy.context.view_layer.objects.active=targets[0]
 scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=a.samples or plan['bake']['samples'];scene.cycles.seed=plan['bake']['seed'];scene.cycles.use_denoising=False;scene.cycles.max_bounces=plan['bake']['bounces'];scene.cycles.diffuse_bounces=3;scene.render.threads_mode='FIXED';scene.render.threads=4;scene.render.bake.target='IMAGE_TEXTURES';scene.render.bake.use_selected_to_active=False;scene.render.bake.use_clear=False;scene.render.bake.margin=plan['bake']['margin'];scene.render.bake.normal_space='TANGENT'

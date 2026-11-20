@@ -45,7 +45,10 @@ mesh.normals_split_custom_set(normals);receiver=bpy.data.objects.new(mesh.name,m
 for prop in ['visible_shadow','visible_diffuse','visible_glossy','visible_transmission']:setattr(receiver,prop,False)
 mat=bpy.data.materials.new('Build-only neutral diffuse receiver');mat.use_nodes=True;p=mat.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(1,1,1,1);p.inputs['Roughness'].default_value=1;p.inputs['Metallic'].default_value=0;p.inputs['Specular IOR Level'].default_value=0;mesh.materials.append(mat)
 image=bpy.data.images.new('Clean irradiance',width=size,height=size,alpha=False,float_buffer=True,is_data=True);image.colorspace_settings.name='Non-Color';tex=mat.node_tree.nodes.new('ShaderNodeTexImage');tex.image=image;mat.node_tree.nodes.active=tex
-targetNames={o['runtimeOriginalSource']for o in targets};faces={r['sourceObject']:r['sourceFaces']for r in manifest['objects']};contextMats={};overrides=[]
+faces={r['sourceObject']:r['sourceFaces']for r in manifest['objects']}
+for row in manifest['objects']:
+ for member in row.get('batchedSourceObjects',[]):faces[member]='ALL'
+targetNames=set(faces);contextMats={};overrides=[]
 def neutral_emission(m):
  if m.as_pointer()in contextMats:return contextMats[m.as_pointer()]
  c=m.copy();contextMats[m.as_pointer()]=c

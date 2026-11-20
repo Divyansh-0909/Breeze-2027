@@ -13,7 +13,7 @@ model_root = root / "public/models/gullyverse"
 baseline = model_root / "locked-rev15z-clean-v2"
 manifest = json.loads((build / "manifest.json").read_text())
 chunk = manifest["chunk"]
-assert chunk in {"cypher-gate", "cypher-approach"}
+assert chunk in {"cypher-gate", "cypher-approach", "market-south", "market-north"}
 output = model_root / ("locked-rev15z-" + chunk)
 subprocess.run([
     sys.executable, str(Path(__file__).with_name("validate-output.py")),
