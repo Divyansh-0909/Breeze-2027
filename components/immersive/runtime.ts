@@ -9,7 +9,7 @@ export type Input = { forward: number; strafe: number; lookX: number; lookY: num
 export interface RuntimeSpace {
   spawn(id: LocationId, approaching: boolean): Pose;
   constrain(id: LocationId, pose: Pose): void;
-  constrainInterior(id: LocationId, pose: Pose): void;
+  constrainInterior(id: LocationId, pose: Pose, before: Pick<Pose, "x" | "z">): void;
   boundaryClearance(id: LocationId, pose: Pose): number;
   boundaryCrossings(id: LocationId, before: Pick<Pose, "x" | "z">, attempted: Pick<Pose, "x" | "z">): ReturnType<typeof boundaryCrossings>;
   composeCamera(base: Pose & { fov: number }, aspect: number): Pose & { fov: number };
@@ -335,7 +335,7 @@ export class ImmersiveRuntime {
       this.vz += ((-f * Math.cos(this.pose.yaw) - s * Math.sin(this.pose.yaw)) * speed - this.vz) * damping;
       const before = { x: this.pose.x, z: this.pose.z };
       this.pose.x += this.vx * dt; this.pose.z += this.vz * dt;
-      if (this.space) this.space.constrainInterior(this.state.scene, this.pose); else constrainInterior(this.state.scene,this.pose);
+      if (this.space) this.space.constrainInterior(this.state.scene, this.pose, before); else constrainInterior(this.state.scene,this.pose);
       const crossings = this.space ? this.space.boundaryCrossings(this.state.scene,before,this.pose) : boundaryCrossings(this.state.scene,before,this.pose);
       if (this.space) this.space.constrain(this.state.scene, this.pose); else constrain(this.state.scene, this.pose);
       if (!this.boundaryArmed || crossings.length === 0) return;
