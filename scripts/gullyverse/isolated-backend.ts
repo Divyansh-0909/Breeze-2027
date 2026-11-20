@@ -61,6 +61,24 @@ async function main() {
     );
     assert.equal(push.status, 0, "Disposable schema push failed");
     ({ prisma } = await import("../../lib/prisma"));
+    const contactMigration = await fs.readFile(path.join(
+      "prisma", "migrations", "20261120152500_contact_submissions", "migration.sql",
+    ), "utf8");
+    async function applyContactMigration() {
+      // Execute the checked-in SQL through the same Prisma connection.
+      const result = spawnSync(process.execPath, [
+        "node_modules/prisma/build/index.js", "db", "execute", "--schema", "prisma/schema.prisma", "--stdin",
+      ], { env: process.env, input: contactMigration, encoding: "utf8" });
+      assert.equal(result.status, 0, "Contact migration failed on the disposable database");
+    }
+    // Test a pre-Contact schema, then test a database that already has data.
+    await prisma.$executeRaw`DROP TABLE "ContactSubmission"`;
+    applyContactMigration();
+    const [security] = await prisma.$queryRaw<{ relrowsecurity: boolean }[]>`
+      SELECT relrowsecurity FROM pg_class WHERE oid = 'public."ContactSubmission"'::regclass
+    `;
+    assert.equal(security.relrowsecurity, true);
+    checks.contactMigrationCreatesTableAndEnablesRLS = true;
     const { POST } = await import("../../app/api/contact/route");
     const request = (body: unknown) =>
       new NextRequest("http://127.0.0.1/api/contact", {
@@ -88,6 +106,9 @@ async function main() {
     assert.equal(rows.length, 1);
     assert.equal(rows[0].message, "Isolated local integration test only.");
     checks.existingContactHandlerPersistsInIsolatedPostgres = true;
+    applyContactMigration();
+    assert.equal((await prisma.contactSubmission.findUnique({ where: { id: rows[0].id } }))?.message, rows[0].message);
+    checks.contactMigrationPreservesExistingRows = true;
     await prisma.eventItem.createMany({
       data: Array.from({ length: 7 }, (_, i) => ({
         id: randomUUID(),
