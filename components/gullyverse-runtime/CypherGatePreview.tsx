@@ -165,11 +165,15 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
       if (sheet) {
         const heading = artwork.current?.centre ?? cypherContact.headingCentre;
         const position = [view.x, view.y, view.z] as const;
-        const aim = lookAtPose(position, heading);
-        const distance = Math.hypot(view.x - heading[0], view.y - heading[1], view.z - heading[2]);
-        const fov = cypherContact.artworkFov(aspect, artwork.current?.width ?? 2.6, artwork.current?.height ?? 0.6, Math.max(distance, 1));
+        const edge = cypherContact.windowTop;
+        const aim = lookAtPose(position, edge);
+        const distance = Math.hypot(view.x - edge[0], view.z - edge[2]);
+        const headingTop = heading[1] + (artwork.current?.height ?? 0.6) / 2;
+        const fov = cypherContact.artworkFov(aspect, artwork.current?.width ?? 2.6,
+          headingTop - edge[1], Math.max(distance, 1));
+        // The sheet starts at the bottom of the canvas. Put the top of the window opening on that edge.
         view.yaw = MathUtils.lerp(view.yaw, aim.yaw, zoom.current);
-        view.pitch = MathUtils.lerp(view.pitch, aim.pitch, zoom.current);
+        view.pitch = MathUtils.lerp(view.pitch, aim.pitch + MathUtils.degToRad(fov / 2), zoom.current);
         view.fov = MathUtils.lerp(view.fov, fov, zoom.current);
       } else {
         view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);

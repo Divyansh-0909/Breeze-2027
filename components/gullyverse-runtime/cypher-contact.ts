@@ -21,6 +21,7 @@ export const cypherContact = {
   spawn: lookAtPose(point(centreU, depth + 4.85, config.floor + world.eyeHeight), target),
   focus: lookAtPose(point(centreU, depth + focusDistance, frameCentreY), point(centreU, depth, frameCentreY)),
   topLeft: point(left, depth, top),
+  windowTop: point(centreU, depth, top),
   bottomRight: point(right, depth, bottom),
   headingCentre: point(frontage.headingCentreU, frontage.depth, frontage.headingCentreZ),
   near(pose: { x: number; z: number }) {

@@ -146,12 +146,14 @@ async function main() {
       await mobile.waitForFunction(({ width, height }) => {
         const canvas = document.querySelector(".native-canvas").getBoundingClientRect();
         const form = document.querySelector(".cypher-contact-form").getBoundingClientRect();
+        const landscape = width > height;
         return innerWidth === width && innerHeight === height && canvas.height >= 100 &&
-          form.top >= canvas.bottom + 6 && form.height <= 269 && form.bottom <= height;
+          Math.abs(form.top - canvas.bottom) <= 1 && form.height <= (landscape ? 221 : 269) &&
+          (!landscape || form.width <= 481) && form.bottom <= height;
       }, { width, height }, { timeout: 30_000, polling: 100 });
       assert.equal(await mobile.locator(".cypher-contact-fallback-heading").count(), 0);
       await mobile.screenshot({ path: path.join(output, file), timeout: 120_000 });
-      console.log(`Compact form and clear wall area verified at ${width}x${height}.`);
+      console.log(`Compact form joined to the window view at ${width}x${height}.`);
     }
     await mobile.setViewportSize(phoneViewport);
     await fill(sheet, "Cypher Phone Fixture");
