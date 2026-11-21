@@ -28,6 +28,7 @@ async function exited(process: ChildProcess) {
 async function main() {
   const output = process.argv[2];
   if (!output) throw new Error("Pass a directory for the Contact browser captures.");
+  const events = process.argv[3] === "events";
   await mkdir(output, { recursive: true });
   const [dbPort, port] = await Promise.all([freePort(), freePort()]);
   const directory = await mkdtemp(path.join(tmpdir(), "breeze-cypher-contact-"));
@@ -51,11 +52,37 @@ async function main() {
     await db.start();
     await db.createDatabase(database);
     Object.assign(process.env, settings);
-    const migration = await readFile("prisma/migrations/20261120152500_contact_submissions/migration.sql", "utf8");
-    const migrated = spawnSync(process.execPath, [
-      "node_modules/prisma/build/index.js", "db", "execute", "--schema", "prisma/schema.prisma", "--stdin",
-    ], { input: migration, encoding: "utf8" });
-    assert.equal(migrated.status, 0, "The Contact migration failed on disposable PostgreSQL");
+    const setup = spawnSync(process.execPath, [
+      "node_modules/prisma/build/index.js", "db", "push", "--skip-generate",
+    ], { encoding: "utf8" });
+    assert.equal(setup.status, 0, "The disposable preview schema setup failed");
+    ({ prisma } = await import("../../lib/prisma"));
+    if (events) {
+      const { readCypherEvents } = await import("../../lib/events/cypher-catalog");
+      assert.deepEqual(await readCypherEvents(), { available: true, data: [] });
+      await prisma.eventItem.createMany({ data: [
+        ...Array.from({ length: 17 }, (_, index) => ({
+          event_name: `Fixture event ${String(index + 1).padStart(2, "0")}`,
+          event_description: "Disposable catalog fixture",
+          event_date: `2099-01-${String(index + 1).padStart(2, "0")}`,
+          event_venue: "Cypher", event_org: "Fixture club", event_type: "Cultural" as const,
+          image_url: index === 0 ? "/events-header.png" : null,
+          registration_open: index !== 16, event_price: 0,
+        })),
+        { event_name: "Expired fixture", event_date: "Jan 1st 2000", event_price: 0 },
+      ] });
+      const catalog = await readCypherEvents();
+      assert.ok(catalog.available);
+      assert.equal(catalog.data.length, 17);
+      assert.equal(await prisma.eventItem.count(), 18);
+    } else {
+      await prisma.$executeRaw`DROP TABLE "ContactSubmission"`;
+      const migration = await readFile("prisma/migrations/20261120152500_contact_submissions/migration.sql", "utf8");
+      const migrated = spawnSync(process.execPath, [
+        "node_modules/prisma/build/index.js", "db", "execute", "--schema", "prisma/schema.prisma", "--stdin",
+      ], { input: migration, encoding: "utf8" });
+      assert.equal(migrated.status, 0, "The Contact migration failed on disposable PostgreSQL");
+    }
     next = spawn(process.execPath, [
       "node_modules/next/dist/bin/next", "dev", "--hostname", "127.0.0.1", "--port", String(port),
     ], { stdio: "inherit" });
@@ -69,8 +96,14 @@ async function main() {
       await delay(500);
     }
     assert.ok(ready, "The isolated Next preview could not start");
-    const browser = spawn(process.execPath, ["scripts/gullyverse/cypher-contact.browser.cjs", output], { stdio: "inherit" });
-    assert.equal(await exited(browser), 0, "The Contact browser checks failed");
+    const browserScript = events ? "cypher-events.browser.cjs" : "cypher-contact.browser.cjs";
+    const browser = spawn(process.execPath, ["scripts/gullyverse/" + browserScript, output], { stdio: "inherit" });
+    assert.equal(await exited(browser), 0, "The cypher browser checks failed");
+    if (events) {
+      assert.equal(await prisma!.eventItem.count(), 18);
+      console.log(JSON.stringify({ status: "PASS", isolatedEvents: 18, activePosters: 17, expiredRowsPreserved: 1 }));
+      return;
+    }
     ({ prisma } = await import("../../lib/prisma"));
     const submissions = await prisma.contactSubmission.findMany({
       select: { name: true, email: true, message: true }, orderBy: { name: "asc" },
