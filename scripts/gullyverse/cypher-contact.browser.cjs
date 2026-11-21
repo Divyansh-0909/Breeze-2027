@@ -19,11 +19,17 @@ async function ready(page, start) {
   await page.bringToFront();
   assert.equal((await page.goto(route(start), { timeout: 90_000 }))?.status(), 200);
   await page.addStyleTag({ content: "nextjs-portal { display: none !important; }" });
-  await page.getByRole("region", { name: regionName }).waitFor({ timeout: 180_000 });
+  await page.locator(".native-canvas canvas").waitFor({ timeout: 60_000 });
   await page.evaluate(() => {
     window.contactCanvas = document.querySelector("canvas");
     window.dispatchEvent(new Event("focus"));
   });
+  try {
+    await page.getByRole("region", { name: regionName }).waitFor({ timeout: 180_000 });
+  } catch (error) {
+    console.error("Preview state:", await page.locator("body").innerText({ timeout: 15_000 }));
+    throw error;
+  }
   await page.waitForFunction(() => Number(getComputedStyle(document.querySelector(".native-curtain")).opacity) < 0.02,
     null, { timeout: 120_000, polling: 100 });
 }
@@ -48,25 +54,31 @@ async function main() {
   });
   const errors = [];
   const watch = page => {
-    page.on("pageerror", error => errors.push(String(error)));
+    page.on("pageerror", error => { errors.push(String(error)); console.error(error); });
     page.on("response", response => {
       if (response.status() >= 400 && /\/models\/gullyverse\//.test(response.url())) errors.push(response.url());
     });
   };
   try {
-    const desktop = await browser.newPage({ viewport: { width: 720, height: 360 }, reducedMotion: "reduce" });
+    const desktop = await browser.newPage({ viewport: { width: 720, height: 400 }, reducedMotion: "reduce" });
     watch(desktop);
     const invalid = await desktop.request.post(endpoint, { data: { ...fixture("A"), email: "invalid" } });
     assert.equal(invalid.status(), 400);
-    await ready(desktop, "plaza");
-    console.log("Desktop plaza ready.");
+    await ready(desktop, "contact");
+    console.log("Desktop Contact approach ready.");
     const enter = desktop.getByRole("button", { name: openName, exact: true });
-    assert.equal(await enter.count(), 0);
-    await desktop.keyboard.down("d");
+    await enter.waitFor({ timeout: 75_000 });
+    await desktop.keyboard.down("s");
+    try {
+      await enter.waitFor({ state: "hidden", timeout: 75_000 });
+    } finally {
+      await desktop.keyboard.up("s");
+    }
+    await desktop.keyboard.down("w");
     try {
       await enter.waitFor({ timeout: 180_000 });
     } finally {
-      await desktop.keyboard.up("d");
+      await desktop.keyboard.up("w");
     }
     await desktop.setViewportSize({ width: 1120, height: 700 });
     await enter.click();

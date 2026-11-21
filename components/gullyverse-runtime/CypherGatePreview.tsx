@@ -146,7 +146,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
     const desktop = size.width >= 700;
     const zoomTarget = Number(phase === "local" && runtime.interacting && desktop);
     zoom.current = runtime.reduced ? zoomTarget : MathUtils.damp(zoom.current, zoomTarget, 12, Math.min(delta, 0.2));
-    view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
+    if (zoom.current > 0.001) view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
     if (camera instanceof PerspectiveCamera && camera.fov !== view.fov) {
