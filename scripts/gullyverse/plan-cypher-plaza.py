@@ -38,6 +38,9 @@ def main():
     assert scene.name == plan["source"]["scene"]
     scene.frame_set(1)
     bpy.context.view_layer.update()
+    inventory = {"sourceSHA256": plan["source"]["sha256"],
+                 "objects": [{"name": obj.name, "type": obj.type, "hidden": obj.hide_render} for obj in scene.objects]}
+    args.output.with_name("cypher-source-inventory.json").write_text(json.dumps(inventory, indent=2) + "\n")
 
     existing = {}
     for zone in PRIOR:
@@ -91,7 +94,7 @@ def main():
         quality={
             "uvName": "RuntimeIrradianceUV", "resolution": 1024, "samples": 96,
             "skipLegacyIrradiance": True, "isolateMaterialBake": True,
-            "proceduralUVOnly": True, "rayBiasM": 0.001,
+            "proceduralUVOnly": True, "isolatedIrradianceTiles": True, "rayBiasM": 0.001,
         },
     )
     plan["bake"].update(resolution=2048, margin=4)

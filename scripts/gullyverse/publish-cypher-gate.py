@@ -1,6 +1,7 @@
 """Copy validated runtime payloads from an editable cypher chunk build."""
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -11,13 +12,14 @@ build = Path(sys.argv[1])
 root = Path(__file__).resolve().parents[2]
 model_root = root / "public/models/gullyverse"
 baseline = model_root / "locked-rev15z-clean-v2"
+inventory = Path(os.environ.get("GULLYVERSE_SOURCE_INVENTORY", baseline / "source-inventory.json"))
 manifest = json.loads((build / "manifest.json").read_text())
 chunk = manifest["chunk"]
 assert chunk in {"cypher-gate", "cypher-approach", "market-south", "market-north", "cypher-plaza", "cypher-audience"}
 output = model_root / ("locked-rev15z-" + chunk)
 subprocess.run([
     sys.executable, str(Path(__file__).with_name("validate-output.py")),
-    str(build), str(baseline / "source-inventory.json"), str(build / "validation"), "--ground",
+    str(build), str(inventory), str(build / "validation"), "--ground",
 ], check=True)
 
 output.mkdir(parents=True, exist_ok=True)

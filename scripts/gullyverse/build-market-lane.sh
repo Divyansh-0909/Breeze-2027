@@ -18,6 +18,9 @@ export GULLYVERSE_PLAN="$build_root/plan-$zone.json"
 mkdir -p "$GULLYVERSE_OUT"
 
 blender -b -t 2 --python-exit-code 1 --python "scripts/gullyverse/$planner" -- "$source_path" "$zone" "$GULLYVERSE_PLAN"
+if [[ "$planner" == "plan-cypher-plaza.py" ]]; then
+  export GULLYVERSE_SOURCE_INVENTORY="$build_root/cypher-source-inventory.json"
+fi
 blender -b -t 2 --python-exit-code 1 --python scripts/gullyverse/export_locked.py -- --plan "$GULLYVERSE_PLAN" --out "$GULLYVERSE_OUT" --samples 2
 for step in bake_lighting.py finish_lightmap.py reexport.py verify-uv.py; do
   blender -b -t 2 --python-exit-code 1 --python "scripts/gullyverse/$step"

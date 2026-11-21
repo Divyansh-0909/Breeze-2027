@@ -27,8 +27,13 @@ for ob in targets:
   mat['runtimeLightmapChannel']=list(me.uv_layers).index(me.uv_layers[uvName]);mat['runtimeDecal']=is_decal(ob)
  ob['runtimeLightmapChannel']=list(me.uv_layers).index(me.uv_layers[uvName]);ob['runtimeLightmapUV']=uvName
  if is_decal(ob):ob.visible_shadow=False
-for ob in scene.objects:ob.select_set(ob in targets)
-bpy.context.view_layer.objects.active=targets[0];bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT');bpy.ops.uv.smart_project(angle_limit=math.radians(66),island_margin=.004,area_weight=0,correct_aspect=False);bpy.ops.uv.select_all(action='SELECT');bpy.ops.uv.average_islands_scale();bpy.ops.uv.pack_islands(rotate=True,margin=.004,margin_method='FRACTION');bpy.ops.object.mode_set(mode='OBJECT')
+if quality.get('isolatedIrradianceTiles'):
+ sys.path.insert(0,str(Path(__file__).resolve().parent))
+ from irradiance_tiles import pack_light_tiles
+ pack_light_tiles(targets,uvName,size)
+else:
+ for ob in scene.objects:ob.select_set(ob in targets)
+ bpy.context.view_layer.objects.active=targets[0];bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT');bpy.ops.uv.smart_project(angle_limit=math.radians(66),island_margin=.004,area_weight=0,correct_aspect=False);bpy.ops.uv.select_all(action='SELECT');bpy.ops.uv.average_islands_scale();bpy.ops.uv.pack_islands(rotate=True,margin=.004,margin_method='FRACTION');bpy.ops.object.mode_set(mode='OBJECT')
 channelRows=[{'node':o.name,'channel':o['runtimeLightmapChannel'],'uvLayers':[u.name for u in o.data.uv_layers]}for o in targets]
 vertices=[];polygons=[];uvs=[];normals=[];smooth=[]
 for ob in targets:
@@ -84,7 +89,8 @@ for old in native.objects:
   if is_decal(c):c.visible_shadow=False
 for ob in scene.objects:ob.select_set(ob==receiver)
 bpy.context.view_layer.objects.active=receiver;scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=samples;scene.cycles.seed=plan['bake']['seed'];scene.cycles.max_bounces=3;scene.cycles.diffuse_bounces=2;scene.cycles.use_light_tree=True;scene.render.threads_mode='FIXED';scene.render.threads=4;scene.render.bake.use_clear=True;scene.render.bake.margin=12;scene.render.bake.use_pass_color=False;scene.render.bake.use_pass_direct=True;scene.render.bake.use_pass_indirect=True
-print('QUALITY_BAKE_START',samples,len(vertices),len(polygons),flush=True);start=time.monotonic();bpy.ops.object.bake(type='DIFFUSE',uv_layer=uvName);values=np.empty(size*size*4,np.float32);image.pixels.foreach_get(values);assert np.isfinite(values).all();rgb=values.reshape(size,size,4)[...,:3];pfm=out/'irradiance.raw.pfm';pfm.write_bytes(f'PF\n{size} {size}\n-1.0\n'.encode()+np.asarray(rgb,dtype='<f4').tobytes());image.filepath_raw=str(out/'lightmap.raw.hdr');image.file_format='HDR';image.save()
+if quality.get('isolatedIrradianceTiles'):scene.render.bake.margin=2
+print('QUALITY_BAKE_START',samples,len(vertices),len(polygons),flush=True);start=time.monotonic();bpy.ops.object.bake(type='DIFFUSE',uv_layer=uvName);values=np.empty(size*size*4,np.float32);image.pixels.foreach_get(values);assert np.isfinite(values).all();rgb=values.reshape(size,size,4)[...,:3];lit_fraction=float((rgb.max(axis=2)>1e-6).mean());assert lit_fraction>0,'The raw irradiance atlas is empty';print('RAW_IRRADIANCE_COVERAGE',lit_fraction,flush=True);pfm=out/'irradiance.raw.pfm';pfm.write_bytes(f'PF\n{size} {size}\n-1.0\n'.encode()+np.asarray(rgb,dtype='<f4').tobytes());image.filepath_raw=str(out/'lightmap.raw.hdr');image.file_format='HDR';image.save()
 for slot,link,original in overrides:
  slot.link=link
  if link=='OBJECT':slot.material=original
