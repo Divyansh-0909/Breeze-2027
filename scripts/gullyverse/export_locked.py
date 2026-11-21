@@ -13,6 +13,7 @@ formOnly={'native form label','native form illustration'};omissions=[];targets=[
 selection=plan.get('selection',{})
 explicit=set(selection.get('sourceObjects',[]))
 whole=set(selection.get('wholeObjects',[]))
+mesh_overrides=selection.get('meshOverrides',{})
 evaluated_parts={}
 if explicit:
  deps=bpy.context.evaluated_depsgraph_get()
@@ -46,7 +47,9 @@ def copy_mesh(old,indices=None):
   ob.matrix_world=matrix
   for key in old.keys():ob[key]=old[key]
  else:
-  ob=old.copy();ob.name='Runtime / '+old.name;ob.data=old.data.copy();ob.parent=None;ob.matrix_world=old.matrix_world
+  ob=old.copy();ob.name='Runtime / '+old.name
+  mesh=bpy.data.meshes[mesh_overrides[old.name]] if old.name in mesh_overrides else old.data
+  ob.data=mesh.copy();ob.parent=None;ob.matrix_world=old.matrix_world
  collection.objects.link(ob)
  original_uvs=[uv.name for uv in ob.data.uv_layers]
  original_materials=[mat.name if mat else None for mat in ob.data.materials]
@@ -54,7 +57,9 @@ def copy_mesh(old,indices=None):
   original=[v.co.copy()for v in old.data.vertices];lo=Vector(tuple(min(v[i]for v in original)for i in range(3)));hi=Vector(tuple(max(v[i]for v in original)for i in range(3)));attr=ob.data.attributes.new('RuntimeOriginalGenerated','FLOAT_VECTOR','POINT')
   for v,dst in zip(original,attr.data):dst.vector=tuple((v[i]-lo[i])/max(hi[i]-lo[i],1e-8)for i in range(3))
   keep=set(indices);bm=bmesh.new();bm.from_mesh(ob.data);bm.faces.ensure_lookup_table();bmesh.ops.delete(bm,geom=[f for f in bm.faces if f.index not in keep],context='FACES');bm.to_mesh(ob.data);bm.free();ob.data.update()
- targets.append(ob);sourceRows.append({'node':ob.name,'sourceObject':old.name,'sourceFaces':indices if indices is not None else 'ALL','originalUVLayers':original_uvs,'originalMaterials':original_materials});return ob
+ row={'node':ob.name,'sourceObject':old.name,'sourceFaces':indices if indices is not None else 'ALL','originalUVLayers':original_uvs,'originalMaterials':original_materials}
+ if old.name in mesh_overrides:row.update(sourceMesh=old.data.name,runtimeMesh=mesh_overrides[old.name])
+ targets.append(ob);sourceRows.append(row);return ob
 for old in sorted(native.objects,key=lambda o:o.name):
  part=old.get('contactPart')
  if old.type=='VOLUME' or (old.type=='MESH'and any(mat and mat.use_nodes and any(n.type in ['PRINCIPLED_VOLUME','VOLUME_ABSORPTION','VOLUME_SCATTER']for n in mat.node_tree.nodes)for mat in old.data.materials)):

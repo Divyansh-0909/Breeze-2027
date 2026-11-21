@@ -3,6 +3,7 @@ import { test } from "node:test";
 import { createCypherSpace } from "../../components/gullyverse-runtime/cypher-space";
 import { ImmersiveRuntime } from "../../components/immersive/runtime";
 import { world } from "../../components/immersive/world";
+import plazaFootprint from "../../components/gullyverse-runtime/plaza-walk-space.json";
 
 const cypher = createCypherSpace();
 const advance = (runtime: ImmersiveRuntime, frames: number) => {
@@ -55,4 +56,24 @@ test("the upper ramp route passes under the navigation sign while keeping clear 
   const base = cypher.resolve({ x: 0, z: -11 }, { x: 3.4, z: -11 });
   assert.ok(base.x <= 2.875 - world.playerRadius);
   assert.ok(cypher.resolve({ x: 0, z: -4.8 }, { x: 0, z: -12 }).z < -11.99);
+});
+
+test("the extended cypher keeps the gate approach and both sides of the plaza walkable", () => {
+  const plaza = createCypherSpace({ start: -29.5, end: 47.6, halfWidth: 16, spawnY: 19.3, plaza: true });
+  const centre = plaza.resolve({ x: 0, z: -10 }, { x: 0, z: -21 });
+  assert.ok(centre.z < -20.99);
+  for (const side of [-1, 1]) {
+    const alongEdge = plaza.resolve(centre, { x: side * 13, z: -21 });
+    assert.ok(alongEdge.x * side > 12.98);
+    const rear = plaza.resolve(alongEdge, { x: side * 13, z: -44.6 });
+    assert.ok(rear.z < -44.58);
+    assert.ok(plaza.resolve(rear, { x: side * 15, z: rear.z }).x * side < 13.23);
+    assert.equal(plaza.grade(rear), 7.2);
+  }
+  assert.ok(plaza.resolve({ x: 0, z: -44.6 }, { x: 0, z: -47 }).z > -45.39);
+  for (const [x, y] of plazaFootprint.people) {
+    assert.ok(plaza.clearance({ x, z: -y }) < 0);
+  }
+  const returned = plaza.resolve(centre, { x: 0, z: 3 });
+  assert.ok(returned.z > 2.98);
 });

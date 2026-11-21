@@ -12,10 +12,12 @@ for name in ['contact-frontage.png.glb','contact-frontage.optimized.glb','contac
   for mesh in g['meshes']:
    for p in mesh['primitives']:
     mat=g['materials'][p['material']];channel=mat['extras']['runtimeLightmapChannel'];assert f'TEXCOORD_{channel}'in p['attributes'];bindings.append(channel)
-  if name!='contact-frontage.png.glb':assert 'KHR_texture_basisu'in g['extensionsUsed']and'EXT_meshopt_compression'in g['extensionsUsed']
+  if name!='contact-frontage.png.glb':
+   assert 'EXT_meshopt_compression'in g['extensionsUsed']
+   if g.get('images'):assert 'KHR_texture_basisu'in g['extensionsUsed']
  rows.append({'file':name,'bytes':(out/name).stat().st_size,'sha256':sha((out/name).read_bytes()),'triangles':triangles,'meshObjects':len(g.get('meshes',[])),'materialBindings':len(g.get('materials',[])),'textures':len(g.get('textures',[])),'images':len(g.get('images',[])),'extensions':g.get('extensionsUsed',[]),'lightmapUVBindings':bindings})
 g,b=glb(out/'contact-frontage.png.glb');embedded=[]
-for image in g['images']:
+for image in g.get('images',[]):
  v=g['bufferViews'][image['bufferView']];start=v.get('byteOffset',0);embedded.append({'image':image.get('name'),'sha256':sha(b[start:start+v['byteLength']])})
 expected={v['name']:v['sha256']for mat in m['materials']for v in mat['sourceImages']};preserved=[{'sourceImage':name,**row}for name,digest in expected.items()for row in embedded if row['sha256']==digest]
 if not a.ground:assert any('graffiti'in r['sourceImage'].lower()for r in preserved),'Source heading image must survive byte-exact in baseline'
