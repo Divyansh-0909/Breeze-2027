@@ -39,6 +39,24 @@ export function CypherContactDialog({ host, placement, canSend, onClose }: {
   useEffect(() => {
     if (visible) form.current?.focus();
   }, [visible]);
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    const journey = host.current?.closest<HTMLElement>(".native-journey");
+    if (placement !== "sheet" || !viewport || !journey) return;
+    const update = () => {
+      journey.style.setProperty("--contact-view-height", `${viewport.height}px`);
+      journey.style.setProperty("--contact-view-top", `${viewport.offsetTop}px`);
+    };
+    update();
+    viewport.addEventListener("resize", update);
+    viewport.addEventListener("scroll", update);
+    return () => {
+      viewport.removeEventListener("resize", update);
+      viewport.removeEventListener("scroll", update);
+      journey.style.removeProperty("--contact-view-height");
+      journey.style.removeProperty("--contact-view-top");
+    };
+  }, [host, placement]);
 
   function handleKeys(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key === "Escape") {
@@ -58,8 +76,8 @@ export function CypherContactDialog({ host, placement, canSend, onClose }: {
   }
 
   return <>
-    <div ref={host} className="native-form" role="dialog" aria-modal="true" aria-label="Contact enquiry"
+    <div ref={host} className="native-form cypher-contact-form" role="dialog" aria-modal="true" aria-label="Contact enquiry"
       hidden={!visible} data-flat={placement === "sheet"} onKeyDown={handleKeys} />
-    {visible && <p className="native-test-note">{canSend ? "Private test database" : "Private preview · sending is unavailable"}</p>}
+    {visible && <p className="native-test-note cypher-contact-note">{canSend ? "Private test database" : "Private preview · sending is unavailable"}</p>}
   </>;
 }

@@ -19,7 +19,16 @@ async function ready(page, start) {
   await page.bringToFront();
   assert.equal((await page.goto(route(start), { timeout: 90_000 }))?.status(), 200);
   await page.addStyleTag({ content: "nextjs-portal { display: none !important; }" });
-  await page.locator(".native-canvas canvas").waitFor({ timeout: 60_000 });
+  try {
+    await page.locator(".native-canvas canvas").waitFor({ timeout: 90_000 });
+  } catch (error) {
+    const state = await page.evaluate(() => {
+      const canvas = document.querySelector(".native-canvas canvas");
+      return { text: document.body.innerText, canvas: canvas?.getBoundingClientRect().toJSON() };
+    });
+    console.error("Canvas startup:", state);
+    throw error;
+  }
   await page.evaluate(() => {
     window.contactCanvas = document.querySelector("canvas");
     window.dispatchEvent(new Event("focus"));
@@ -87,6 +96,7 @@ async function main() {
     assert.equal(await dialog.getAttribute("data-flat"), "false");
     const rect = await dialog.boundingBox();
     assert.ok(rect && rect.width > 850 && rect.height > 180 && rect.x > 30);
+    assert.equal(await desktop.locator(".cypher-contact-fallback-heading").count(), 0);
     await desktop.screenshot({ path: path.join(output, "01-contact-laptop.png"), timeout: 120_000 });
     assert.equal(await desktop.evaluate(() => document.activeElement?.getAttribute("name")), "name");
     await fill(dialog, "Cypher Desktop Fixture");
@@ -126,7 +136,24 @@ async function main() {
     await sheet.waitFor({ timeout: 120_000 });
     assert.equal(await sheet.getAttribute("data-flat"), "true");
     assert.ok(await sheet.evaluate(element => element.clientWidth <= innerWidth && element.scrollWidth <= element.clientWidth));
-    await mobile.screenshot({ path: path.join(output, "02-contact-phone.png"), timeout: 120_000 });
+    const phoneViewport = mobile.viewportSize();
+    for (const { width, height, file } of [
+      { ...phoneViewport, file: "02-contact-phone.png" },
+      { width: 320, height: 568, file: "03-contact-compact-phone.png" },
+      { width: 844, height: 390, file: "04-contact-landscape-phone.png" },
+    ]) {
+      await mobile.setViewportSize({ width, height });
+      await mobile.waitForFunction(({ width, height }) => {
+        const canvas = document.querySelector(".native-canvas").getBoundingClientRect();
+        const form = document.querySelector(".cypher-contact-form").getBoundingClientRect();
+        return innerWidth === width && innerHeight === height && canvas.height >= 100 &&
+          form.top >= canvas.bottom + 6 && form.height <= 269 && form.bottom <= height;
+      }, { width, height }, { timeout: 30_000, polling: 100 });
+      assert.equal(await mobile.locator(".cypher-contact-fallback-heading").count(), 0);
+      await mobile.screenshot({ path: path.join(output, file), timeout: 120_000 });
+      console.log(`Compact form and clear wall area verified at ${width}x${height}.`);
+    }
+    await mobile.setViewportSize(phoneViewport);
     await fill(sheet, "Cypher Phone Fixture");
     await sheet.getByRole("button", { name: "Send message" }).tap();
     await sheet.getByText("Message received. We’ll get back to you.").waitFor({ timeout: 75_000 });

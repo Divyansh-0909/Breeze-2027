@@ -2,11 +2,11 @@
 
 import React, { lazy, Suspense, useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { AgXToneMapping, Color, Euler, MathUtils, PerspectiveCamera, Vector3 } from "three";
+import { AgXToneMapping, Box3, Color, Euler, MathUtils, PerspectiveCamera, Vector3 } from "three";
 import { useImmersiveInput } from "../immersive/input";
 import { ReadinessGate, SceneRenderer } from "../immersive/rendering";
 import { ImmersiveRuntime } from "../immersive/runtime";
-import { world } from "../immersive/world";
+import { lookAtPose, world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
 import { createCypherSpace } from "./cypher-space";
 import { cypherContact } from "./cypher-contact";
@@ -24,8 +24,9 @@ const contactStart = createCypherSpace({ ...routeBounds, spawnY: -cypherContact.
 const assetRoot = "/models/gullyverse/locked-rev15z-";
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
 type Start = "quarry" | "market" | "approach" | "plaza" | "contact";
-type ContactUI = { available: boolean; placement: ContactPlacement };
-const closedContact: ContactUI = { available: false, placement: null };
+type ContactUI = { available: boolean; placement: ContactPlacement; needsHeading: boolean };
+const closedContact: ContactUI = { available: false, placement: null, needsHeading: false };
+const compactContactQuery = "(max-width: 699px), (max-height: 519px), (pointer: coarse)";
 function canOpenContact(pose: { x: number; z: number }) {
   if (!cypherContact.near(pose)) return false;
   const reached = plaza.resolve(pose, cypherContact.focus);
@@ -64,6 +65,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
   const zoom = useRef(0);
   const contact = useRef(closedContact);
   const corners = useRef([new Vector3(), new Vector3()]);
+  const artwork = useRef<{ centre: [number, number, number]; width: number; height: number } | null>(null);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -112,6 +114,17 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
       if (abort.signal.aborted) { led.dispose(); return; }
       display.current = led;
       lamps.current = mountMarketLamps([south.scene, north.scene]);
+      const bounds = new Box3();
+      plazaAsset.scene.updateMatrixWorld(true);
+      plazaAsset.scene.traverse(object => {
+        if (object.visible && object.userData.contactPart === "contact heading") bounds.expandByObject(object, true);
+      });
+      if (bounds.isEmpty()) {
+        artwork.current = null;
+      } else {
+        const extent = bounds.getSize(new Vector3());
+        artwork.current = { centre: bounds.getCenter(new Vector3()).toArray(), width: Math.hypot(extent.x, extent.z), height: extent.y };
+      }
       setAssets([gateAsset, signAsset, south, north, plazaAsset, audience]);
     }
     void load().catch(() => {
@@ -140,13 +153,28 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
     runtime.tick(delta);
     if (!runtime.reduced) display.current?.advance(runtime.activeFrameDelta);
     lamps.current?.advance(runtime.activeFrameDelta, runtime.reduced);
-    const aspect = size.width / size.height;
+    const aspect = Math.max(size.width / Math.max(1, size.height), 0.01);
     const view = runtime.cameraPose(aspect);
     const { phase, map } = runtime.getSnapshot();
-    const desktop = size.width >= 700;
-    const zoomTarget = Number(phase === "local" && runtime.interacting && desktop);
+    const editing = phase === "local" && runtime.interacting;
+    const sheet = editing && (window.matchMedia(compactContactQuery).matches ||
+      !cypherContact.windowFits(window.innerWidth, window.innerHeight));
+    const zoomTarget = Number(editing);
     zoom.current = runtime.reduced ? zoomTarget : MathUtils.damp(zoom.current, zoomTarget, 12, Math.min(delta, 0.2));
-    if (zoom.current > 0.001) view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
+    if (zoom.current > 0.001) {
+      if (sheet) {
+        const heading = artwork.current?.centre ?? cypherContact.headingCentre;
+        const position = [view.x, view.y, view.z] as const;
+        const aim = lookAtPose(position, heading);
+        const distance = Math.hypot(view.x - heading[0], view.y - heading[1], view.z - heading[2]);
+        const fov = cypherContact.artworkFov(aspect, artwork.current?.width ?? 2.6, artwork.current?.height ?? 0.6, Math.max(distance, 1));
+        view.yaw = MathUtils.lerp(view.yaw, aim.yaw, zoom.current);
+        view.pitch = MathUtils.lerp(view.pitch, aim.pitch, zoom.current);
+        view.fov = MathUtils.lerp(view.fov, fov, zoom.current);
+      } else {
+        view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
+      }
+    }
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
     if (camera instanceof PerspectiveCamera && camera.fov !== view.fov) {
@@ -161,24 +189,24 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
     }
     const settled = phase === "local" && !runtime.focusing && runtime.revealOpacity < 0.02;
     const available = settled && !map && !runtime.interacting && canOpenContact(runtime.pose);
-    let placement: ContactPlacement = settled && runtime.interacting ? "sheet" : null;
-    if (placement && desktop && form.current) {
+    let placement: ContactPlacement = settled && editing && sheet ? "sheet" : null;
+    if (settled && editing && !sheet && form.current) {
       camera.updateMatrixWorld();
       const [a, b] = corners.current;
       a.set(...cypherContact.topLeft).project(camera);
       b.set(...cypherContact.bottomRight).project(camera);
       const width = (b.x - a.x) * size.width / 2;
       const height = (a.y - b.y) * size.height / 2;
-      if (width >= 520 && height >= 145 && a.x > -1 && b.x < 1 && a.y < 1 && b.y > -1) {
-        placement = "window";
-        Object.assign(form.current.style, {
-          left: `${(a.x + 1) * size.width / 2}px`, top: `${(1 - a.y) * size.height / 2}px`,
-          width: `${width}px`, height: `${height}px`,
-        });
-      }
+      placement = "window";
+      Object.assign(form.current.style, {
+        left: `${(a.x + 1) * size.width / 2}px`, top: `${(1 - a.y) * size.height / 2}px`,
+        width: `${width}px`, height: `${height}px`,
+      });
     }
-    if (available !== contact.current.available || placement !== contact.current.placement) {
-      contact.current = { available, placement };
+    const needsHeading = placement !== null && artwork.current === null;
+    if (available !== contact.current.available || placement !== contact.current.placement ||
+        needsHeading !== contact.current.needsHeading) {
+      contact.current = { available, placement, needsHeading };
       reportContact(contact.current);
     }
   }, -1);
@@ -221,7 +249,8 @@ function GateWalk({ start, canSendContact }: { start: Start; canSendContact: boo
   const walking = atMarket && state.phase === "local";
   const landing = !!activeQuarry && state.phase === "landing";
   return <>
-    <div className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}>
+    <div className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}
+      data-contact-placement={contact.placement ?? undefined}>
       <Canvas dpr={1} gl={{ antialias: true, powerPreference: "high-performance" }}
         camera={start === "quarry" ? world.camera : { near: 0.05, far: 120 }} fallback={<p>3D is unavailable in this browser.</p>}>
         {activeQuarry ? <Suspense fallback={null}>
@@ -229,6 +258,8 @@ function GateWalk({ start, canSendContact }: { start: Start; canSendContact: boo
         </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone}
           form={form} reportContact={setContact} />}
       </Canvas>
+      {walking && runtime.interacting && contact.needsHeading &&
+        <h2 className="cypher-contact-fallback-heading">Contact us</h2>}
     </div>
     <div className="native-curtain" ref={curtain} aria-hidden="true" />
     {landing && <div className="native-controls"><button onClick={() => runtime.enter()}>Enter Gullyverse</button></div>}
