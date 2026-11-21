@@ -1,14 +1,16 @@
 "use client";
 
-import React, { lazy, Suspense, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import React, { lazy, Suspense, useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { AgXToneMapping, Color, Euler, PerspectiveCamera } from "three";
+import { AgXToneMapping, Color, Euler, MathUtils, PerspectiveCamera, Vector3 } from "three";
 import { useImmersiveInput } from "../immersive/input";
 import { ReadinessGate, SceneRenderer } from "../immersive/rendering";
 import { ImmersiveRuntime } from "../immersive/runtime";
 import { world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
 import { createCypherSpace } from "./cypher-space";
+import { cypherContact } from "./cypher-contact";
+import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialog";
 import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
 import walkSpace from "./cypher-walk-space.json";
@@ -17,9 +19,18 @@ const routeBounds = { start: -29.5, end: 47.6, halfWidth: 16, plaza: true };
 const market = createCypherSpace({ ...routeBounds, spawnY: -27.6 });
 const approach = createCypherSpace({ ...routeBounds, spawnY: 2.2, spawnPitch: 0.27 });
 const plaza = createCypherSpace({ ...routeBounds, spawnY: 19.3, spawnPitch: 0.08 });
+const contactStart = createCypherSpace({ ...routeBounds, spawnY: -cypherContact.spawn.z, spawnX: cypherContact.spawn.x,
+  spawnYaw: cypherContact.spawn.yaw, spawnPitch: cypherContact.spawn.pitch });
 const assetRoot = "/models/gullyverse/locked-rev15z-";
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
-type Start = "quarry" | "market" | "approach" | "plaza";
+type Start = "quarry" | "market" | "approach" | "plaza" | "contact";
+type ContactUI = { available: boolean; placement: ContactPlacement };
+const closedContact: ContactUI = { available: false, placement: null };
+function canOpenContact(pose: { x: number; z: number }) {
+  if (!cypherContact.near(pose)) return false;
+  const reached = plaza.resolve(pose, cypherContact.focus);
+  return Math.hypot(reached.x - cypherContact.focus.x, reached.z - cypherContact.focus.z) < 0.01;
+}
 const zoneAt = (z: number) => {
   if (z < -22) return "Cypher plaza";
   if (z < -15.65) return "Cypher forecourt";
@@ -35,10 +46,12 @@ class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFail
   render() { return this.state.failed ? null : this.props.children; }
 }
 
-function GateScene({ runtime, curtain, reportZone }: {
+function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
   runtime: ImmersiveRuntime;
   curtain: React.RefObject<HTMLDivElement | null>;
   reportZone(zone: ReturnType<typeof zoneAt>): void;
+  form: React.RefObject<HTMLDivElement | null>;
+  reportContact(contact: ContactUI): void;
 }) {
   const { gl, scene, camera, size } = useThree();
   const [pool] = useState(() => new BakedAssetPool(gl, 1));
@@ -48,6 +61,9 @@ function GateScene({ runtime, curtain, reportZone }: {
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   const euler = useRef(new Euler(0, 0, 0, "YXZ"));
   const zone = useRef(zoneAt(runtime.pose.z));
+  const zoom = useRef(0);
+  const contact = useRef(closedContact);
+  const corners = useRef([new Vector3(), new Vector3()]);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -124,7 +140,13 @@ function GateScene({ runtime, curtain, reportZone }: {
     runtime.tick(delta);
     if (!runtime.reduced) display.current?.advance(runtime.activeFrameDelta);
     lamps.current?.advance(runtime.activeFrameDelta, runtime.reduced);
-    const view = runtime.cameraPose(size.width / size.height);
+    const aspect = size.width / size.height;
+    const view = runtime.cameraPose(aspect);
+    const { phase, map } = runtime.getSnapshot();
+    const desktop = size.width >= 700;
+    const zoomTarget = Number(phase === "local" && runtime.interacting && desktop);
+    zoom.current = runtime.reduced ? zoomTarget : MathUtils.damp(zoom.current, zoomTarget, 12, Math.min(delta, 0.2));
+    view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
     if (camera instanceof PerspectiveCamera && camera.fov !== view.fov) {
@@ -137,6 +159,28 @@ function GateScene({ runtime, curtain, reportZone }: {
       zone.current = current;
       reportZone(current);
     }
+    const settled = phase === "local" && !runtime.focusing && runtime.revealOpacity < 0.02;
+    const available = settled && !map && !runtime.interacting && canOpenContact(runtime.pose);
+    let placement: ContactPlacement = settled && runtime.interacting ? "sheet" : null;
+    if (placement && desktop && form.current) {
+      camera.updateMatrixWorld();
+      const [a, b] = corners.current;
+      a.set(...cypherContact.topLeft).project(camera);
+      b.set(...cypherContact.bottomRight).project(camera);
+      const width = (b.x - a.x) * size.width / 2;
+      const height = (a.y - b.y) * size.height / 2;
+      if (width >= 520 && height >= 145 && a.x > -1 && b.x < 1 && a.y < 1 && b.y > -1) {
+        placement = "window";
+        Object.assign(form.current.style, {
+          left: `${(a.x + 1) * size.width / 2}px`, top: `${(1 - a.y) * size.height / 2}px`,
+          width: `${width}px`, height: `${height}px`,
+        });
+      }
+    }
+    if (available !== contact.current.available || placement !== contact.current.placement) {
+      contact.current = { available, placement };
+      reportContact(contact.current);
+    }
   }, -1);
 
   return <>
@@ -148,12 +192,16 @@ function GateScene({ runtime, curtain, reportZone }: {
   </>;
 }
 
-function GateWalk({ start }: { start: Start }) {
+function GateWalk({ start, canSendContact }: { start: Start; canSendContact: boolean }) {
   const curtain = useRef<HTMLDivElement>(null);
+  const form = useRef<HTMLDivElement>(null);
+  const enquiry = useRef<HTMLButtonElement>(null);
+  const restoreContactFocus = useRef(false);
   const holdCurtain = useRef(false);
+  const [contact, setContact] = useState(closedContact);
   const [atMarket, setAtMarket] = useState(start !== "quarry");
   const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined,
-    (start === "approach" ? approach : start === "plaza" ? plaza : market).space));
+    (start === "approach" ? approach : start === "plaza" ? plaza : start === "contact" ? contactStart : market).space));
   const [quarry] = useState(() => start === "quarry" ? new ImmersiveRuntime("hub", () => {
     holdCurtain.current = true;
     setAtMarket(true);
@@ -163,6 +211,13 @@ function GateWalk({ start }: { start: Start }) {
   const [zone, setZone] = useState(() => zoneAt(marketRuntime.pose.z));
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   useImmersiveInput(runtime);
+  const closeContact = useCallback(() => { marketRuntime.focusInteraction(null); }, [marketRuntime]);
+  useEffect(() => {
+    if (contact.available && restoreContactFocus.current && enquiry.current) {
+      restoreContactFocus.current = false;
+      enquiry.current.focus();
+    }
+  }, [contact.available]);
   const walking = atMarket && state.phase === "local";
   const landing = !!activeQuarry && state.phase === "landing";
   return <>
@@ -171,14 +226,20 @@ function GateWalk({ start }: { start: Start }) {
         camera={start === "quarry" ? world.camera : { near: 0.05, far: 120 }} fallback={<p>3D is unavailable in this browser.</p>}>
         {activeQuarry ? <Suspense fallback={null}>
           <QuarryArrivalScene runtime={activeQuarry} curtain={curtain} holdCurtain={holdCurtain} />
-        </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone} />}
+        </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone}
+          form={form} reportContact={setContact} />}
       </Canvas>
     </div>
     <div className="native-curtain" ref={curtain} aria-hidden="true" />
     {landing && <div className="native-controls"><button onClick={() => runtime.enter()}>Enter Gullyverse</button></div>}
-    {walking && <section className="native-controls gate-controls" aria-label="Walk through the cypher gate">
+    {walking && !runtime.interacting && <section className="native-controls gate-controls" aria-label="Walk through the cypher gate">
       <div className="gate-toolbar">
         <p aria-live="polite">{zone}</p>
+        {contact.available && !state.map && <button ref={enquiry} onClick={() => {
+          if (canOpenContact(marketRuntime.pose) && marketRuntime.focusInteraction(cypherContact.focus)) {
+            restoreContactFocus.current = true;
+          }
+        }}>Leave a message</button>}
         <button onClick={() => runtime.setMap(!state.map)}>{state.map ? "Close map" : "Map"}</button>
       </div>
       {!state.map && <>
@@ -193,15 +254,17 @@ function GateWalk({ start }: { start: Start }) {
         </div>
       </>}
     </section>}
+    <CypherContactDialog host={form} placement={walking && runtime.interacting ? contact.placement : null}
+      canSend={canSendContact} onClose={closeContact} />
     {!walking && !landing && state.phase !== "entrance" && <div className="native-loading" role="status">
       <p>{state.error ?? (state.phase === "context-lost" || state.phase === "recovering"
         ? "Restoring 3D…" : activeQuarry ? "Loading the quarry…" : "Loading the market lane…")}</p>
-      {state.error && <a href="/events">Browse events</a>}
+      {state.error && <><a href="/events">Browse events</a><br /><a href="/get-in-touch">Contact us</a></>}
     </div>}
   </>;
 }
 
-export default function CypherGatePreview({ start = "market" }: { start?: Start }) {
+export default function CypherGatePreview({ start = "market", canSendContact = false }: { start?: Start; canSendContact?: boolean }) {
   const [status, setStatus] = useState<"checking" | "ready" | "unavailable">("checking");
   useEffect(() => {
     try {
@@ -215,11 +278,12 @@ export default function CypherGatePreview({ start = "market" }: { start?: Start 
   return <div className="native-journey">
     <header className="native-header"><a href="/">BREEZE <span>2027</span></a></header>
     {status === "ready" && <CanvasBoundary onFailure={() => setStatus("unavailable")}>
-      <GateWalk start={start} />
+      <GateWalk start={start} canSendContact={canSendContact} />
     </CanvasBoundary>}
     {status === "unavailable" && <div className="native-loading" role="status">
       <p>3D is unavailable in this browser.</p>
       <a href="/events">Browse events</a>
+      <br /><a href="/get-in-touch">Contact us</a>
     </div>}
   </div>;
 }

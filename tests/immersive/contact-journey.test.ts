@@ -3,6 +3,9 @@ import { test } from "node:test";
 import { ImmersiveRuntime } from "../../components/immersive/runtime";
 import { contactSpace } from "../../components/gullyverse-runtime/native-space";
 import config from "../../components/gullyverse-runtime/contact-space.json";
+import { cypherContact } from "../../components/gullyverse-runtime/cypher-contact";
+import { createCypherSpace } from "../../components/gullyverse-runtime/cypher-space";
+import { hasIsolatedPreviewBackend } from "../../lib/preview-backend";
 const native=contactSpace(config);
 const advance=(runtime:ImmersiveRuntime,seconds:number,hz=60)=>{for(let i=0;i<seconds*hz;i++)runtime.tick(1/hz);};
 function ready(){const runtime=new ImmersiveRuntime("hub",undefined,false,undefined,native.space);runtime.markReady(0);advance(runtime,1);return runtime;}
@@ -32,4 +35,35 @@ test("map returns to native position and reduced motion still restores interacti
 });
 test("context recovery retains focused enquiry and rejects stale readiness",()=>{
   const r=ready();r.focusInteraction(native.focus());advance(r,1);const focused={...r.pose};r.loseContext();const serial=r.getSnapshot().serial;r.restoreContext();r.markReady(serial-1);assert.equal(r.getSnapshot().phase,"recovering");r.markReady(serial);advance(r,.1);assert.deepEqual(r.pose,focused);assert.equal(r.interacting,true);
+});
+
+test("the plaza enquiry is reachable on the original deck and returns the route pose", () => {
+  const plaza = createCypherSpace({ start: -29.5, end: 47.6, halfWidth: 16, plaza: true, spawnY: 19.3 });
+  const runtime = new ImmersiveRuntime("hub", undefined, false, undefined, plaza.space);
+  runtime.markReady(0);
+  advance(runtime, 2);
+  runtime.input.strafe = 1;
+  for (let i = 0; i < 240 && !cypherContact.near(runtime.pose); i++) runtime.tick(1 / 60);
+  assert.ok(cypherContact.near(runtime.pose));
+  const saved = { ...runtime.pose };
+  assert.ok(plaza.clearance(saved) > 0 && plaza.clearance(cypherContact.focus) > 0);
+  assert.ok(plaza.clearance(cypherContact.spawn) > 0 && cypherContact.near(cypherContact.spawn));
+  const via = plaza.resolve(saved, cypherContact.focus);
+  assert.ok(Math.hypot(via.x - cypherContact.focus.x, via.z - cypherContact.focus.z) < 0.01);
+  assert.equal(runtime.focusInteraction(cypherContact.focus), true);
+  runtime.input.strafe = 1;
+  advance(runtime, 1.2);
+  assert.deepEqual(runtime.pose, cypherContact.focus);
+  assert.equal(runtime.handleEscape(), true);
+  advance(runtime, 0.95);
+  assert.deepEqual(runtime.pose, saved);
+});
+
+test("preview submissions require an explicitly enabled disposable loopback database", () => {
+  const env = { GULLYVERSE_RUNTIME_PREVIEW: "1", GULLYVERSE_ISOLATED_TEST_BACKEND: "1" };
+  assert.equal(hasIsolatedPreviewBackend({ ...env, DATABASE_URL: "postgresql://127.0.0.1:55432/breeze_runtime_tests_cypher" }), true);
+  assert.equal(hasIsolatedPreviewBackend({ ...env, DATABASE_URL: "postgresql://db.example.invalid/breeze_runtime_tests" }), false);
+  assert.equal(hasIsolatedPreviewBackend({ ...env, DATABASE_URL: "postgresql://localhost/breeze" }), false);
+  assert.equal(hasIsolatedPreviewBackend({ ...env, DATABASE_URL: "https://localhost/breeze_runtime_tests" }), false);
+  assert.equal(hasIsolatedPreviewBackend({ ...env, GULLYVERSE_ISOLATED_TEST_BACKEND: "0", DATABASE_URL: "postgresql://localhost/breeze_runtime_tests" }), false);
 });

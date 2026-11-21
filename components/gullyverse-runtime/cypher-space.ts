@@ -6,7 +6,7 @@ import plazaSpace from "./plaza-walk-space.json";
 
 type Point = { x: number; z: number };
 type Segment = readonly [number, number, number, number];
-type Limits = { start: number; end: number; halfWidth: number; spawnY: number; spawnPitch?: number; plaza?: boolean };
+type Limits = { start: number; end: number; halfWidth: number; spawnY: number; spawnX?: number; spawnPitch?: number; spawnYaw?: number; plaza?: boolean };
 type Strip = typeof walkSpace.strips[number] & { endHalfWidth?: number };
 const { eyeHeight } = world;
 const radius = world.playerRadius;
@@ -97,12 +97,13 @@ export function createCypherSpace(limits?: Limits) {
 
   const spawnY = limits?.spawnY ?? -27;
   const spawn = () => {
-    const position = { x: 0, z: -spawnY };
+    const position = { x: limits?.spawnX ?? 0, z: -spawnY };
     const floor = grade(position);
     if (floor === undefined || clearance(position) < 0) throw new Error("The cypher spawn is outside the walk space.");
     const eye = floor + eyeHeight;
     return {
-      ...lookAtPose([0, eye, position.z], [0, eye, position.z - 1]),
+      ...lookAtPose([position.x, eye, position.z], [position.x, eye, position.z - 1]),
+      yaw: limits?.spawnYaw ?? 0,
       pitch: limits?.spawnPitch ?? 0,
     };
   };
