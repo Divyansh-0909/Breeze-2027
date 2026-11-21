@@ -13,12 +13,15 @@ import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
 import walkSpace from "./cypher-walk-space.json";
 
-const market = createCypherSpace({ start: -29.5, end: 21.5, halfWidth: 5.5, spawnY: -27.6 });
-const approach = createCypherSpace({ start: -29.5, end: 21.5, halfWidth: 5.5, spawnY: 2.2, spawnPitch: 0.27 });
+const routeBounds = { start: -29.5, end: 47.6, halfWidth: 16, plaza: true };
+const market = createCypherSpace({ ...routeBounds, spawnY: -27.6 });
+const approach = createCypherSpace({ ...routeBounds, spawnY: 2.2, spawnPitch: 0.27 });
+const plaza = createCypherSpace({ ...routeBounds, spawnY: 19.3, spawnPitch: 0.08 });
 const assetRoot = "/models/gullyverse/locked-rev15z-";
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
-type Start = "quarry" | "market" | "approach";
+type Start = "quarry" | "market" | "approach" | "plaza";
 const zoneAt = (z: number) => {
+  if (z < -22) return "Cypher plaza";
   if (z < -15.65) return "Cypher forecourt";
   if (z < -11.4) return "Cypher gate";
   if (z < -1.5) return "Navigation approach";
@@ -38,7 +41,7 @@ function GateScene({ runtime, curtain, reportZone }: {
   reportZone(zone: ReturnType<typeof zoneAt>): void;
 }) {
   const { gl, scene, camera, size } = useThree();
-  const [pool] = useState(() => new BakedAssetPool(gl));
+  const [pool] = useState(() => new BakedAssetPool(gl, 1));
   const [assets, setAssets] = useState<BakedAsset[]>();
   const display = useRef<Awaited<ReturnType<typeof mountSponsorDisplay>> | undefined>(undefined);
   const lamps = useRef<ReturnType<typeof mountMarketLamps> | undefined>(undefined);
@@ -80,18 +83,20 @@ function GateScene({ runtime, curtain, reportZone }: {
       }
     }
     async function load() {
-      const [gateAsset, signAsset, south, north] = await Promise.all([
+      const [gateAsset, signAsset, south, north, plazaAsset, audience] = await Promise.all([
         loadChunk(assetRoot + "cypher-gate/"),
         loadChunk(assetRoot + "cypher-approach/"),
         loadChunk(assetRoot + "market-south/"),
         loadChunk(assetRoot + "market-north/"),
+        loadChunk(assetRoot + "cypher-plaza/"),
+        loadChunk(assetRoot + "cypher-audience/"),
       ]);
       abort.signal.throwIfAborted();
       const led = await mountSponsorDisplay(signAsset.scene, assetRoot + "cypher-approach/sponsor-led.png", abort.signal);
       if (abort.signal.aborted) { led.dispose(); return; }
       display.current = led;
       lamps.current = mountMarketLamps([south.scene, north.scene]);
-      setAssets([gateAsset, signAsset, south, north]);
+      setAssets([gateAsset, signAsset, south, north, plazaAsset, audience]);
     }
     void load().catch(() => {
       if (!abort.signal.aborted) runtime.fail("The cypher preview could not load.");
@@ -147,7 +152,8 @@ function GateWalk({ start }: { start: Start }) {
   const curtain = useRef<HTMLDivElement>(null);
   const holdCurtain = useRef(false);
   const [atMarket, setAtMarket] = useState(start !== "quarry");
-  const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined, (start === "approach" ? approach : market).space));
+  const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined,
+    (start === "approach" ? approach : start === "plaza" ? plaza : market).space));
   const [quarry] = useState(() => start === "quarry" ? new ImmersiveRuntime("hub", () => {
     holdCurtain.current = true;
     setAtMarket(true);

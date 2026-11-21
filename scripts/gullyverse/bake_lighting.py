@@ -47,6 +47,11 @@ mesh=bpy.data.meshes.new('Build-only shared irradiance receiver');mesh.from_pyda
 for d,p in zip(uv.data,uvs):d.uv=p
 for f,s in zip(mesh.polygons,smooth):f.use_smooth=s
 mesh.normals_split_custom_set(normals);receiver=bpy.data.objects.new(mesh.name,mesh);scene.collection.objects.link(receiver)
+lo=Vector(tuple(min(p[i]for p in vertices)for i in range(3)))
+hi=Vector(tuple(max(p[i]for p in vertices)for i in range(3)))
+# The mesh now owns these arrays. Release the Python copies before Cycles
+# allocates its BVH and textures, especially for the audience receiver.
+del vertices,polygons,uvs,normals,smooth
 for prop in ['visible_shadow','visible_diffuse','visible_glossy','visible_transmission']:setattr(receiver,prop,False)
 mat=bpy.data.materials.new('Build-only neutral diffuse receiver');mat.use_nodes=True;p=mat.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(1,1,1,1);p.inputs['Roughness'].default_value=1;p.inputs['Metallic'].default_value=0;p.inputs['Specular IOR Level'].default_value=0;mesh.materials.append(mat)
 image=bpy.data.images.new('Clean irradiance',width=size,height=size,alpha=False,float_buffer=True,is_data=True);image.colorspace_settings.name='Non-Color';tex=mat.node_tree.nodes.new('ShaderNodeTexImage');tex.image=image;mat.node_tree.nodes.active=tex
@@ -71,7 +76,7 @@ def suppress_emission(ob,restore=False):
   if restore:overrides.append((slot,link,original))
   slot.link='OBJECT';slot.material=neutral_emission(original)
 for ob in targets:suppress_emission(ob,True)
-bb=[Vector(p)for p in vertices];lo=Vector(tuple(min(p[i]for p in bb)for i in range(3)));hi=Vector(tuple(max(p[i]for p in bb)for i in range(3)));lights=[];excluded=[]
+lights=[];excluded=[]
 for old in native.objects:
  if old.hide_render or old.get('contactPart')in ['native form label','native form illustration']:continue
  if old.type=='VOLUME'or(old.type=='MESH'and any(m and m.use_nodes and any(n.type in ['PRINCIPLED_VOLUME','VOLUME_ABSORPTION','VOLUME_SCATTER']for n in m.node_tree.nodes)for m in old.data.materials)):
@@ -90,7 +95,7 @@ for old in native.objects:
 for ob in scene.objects:ob.select_set(ob==receiver)
 bpy.context.view_layer.objects.active=receiver;scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=samples;scene.cycles.seed=plan['bake']['seed'];scene.cycles.max_bounces=3;scene.cycles.diffuse_bounces=2;scene.cycles.use_light_tree=True;scene.render.threads_mode='FIXED';scene.render.threads=4;scene.render.bake.use_clear=True;scene.render.bake.margin=12;scene.render.bake.use_pass_color=False;scene.render.bake.use_pass_direct=True;scene.render.bake.use_pass_indirect=True
 if quality.get('isolatedIrradianceTiles'):scene.render.bake.margin=2
-print('QUALITY_BAKE_START',samples,len(vertices),len(polygons),flush=True);start=time.monotonic();bpy.ops.object.bake(type='DIFFUSE',uv_layer=uvName);values=np.empty(size*size*4,np.float32);image.pixels.foreach_get(values);assert np.isfinite(values).all();rgb=values.reshape(size,size,4)[...,:3];lit_fraction=float((rgb.max(axis=2)>1e-6).mean());assert lit_fraction>0,'The raw irradiance atlas is empty';print('RAW_IRRADIANCE_COVERAGE',lit_fraction,flush=True);pfm=out/'irradiance.raw.pfm';pfm.write_bytes(f'PF\n{size} {size}\n-1.0\n'.encode()+np.asarray(rgb,dtype='<f4').tobytes());image.filepath_raw=str(out/'lightmap.raw.hdr');image.file_format='HDR';image.save()
+print('QUALITY_BAKE_START',samples,len(mesh.vertices),len(mesh.polygons),flush=True);start=time.monotonic();bpy.ops.object.bake(type='DIFFUSE',uv_layer=uvName);values=np.empty(size*size*4,np.float32);image.pixels.foreach_get(values);assert np.isfinite(values).all();rgb=values.reshape(size,size,4)[...,:3];lit_fraction=float((rgb.max(axis=2)>1e-6).mean());assert lit_fraction>0,'The raw irradiance atlas is empty';print('RAW_IRRADIANCE_COVERAGE',lit_fraction,flush=True);pfm=out/'irradiance.raw.pfm';pfm.write_bytes(f'PF\n{size} {size}\n-1.0\n'.encode()+np.asarray(rgb,dtype='<f4').tobytes());image.filepath_raw=str(out/'lightmap.raw.hdr');image.file_format='HDR';image.save()
 for slot,link,original in overrides:
  slot.link=link
  if link=='OBJECT':slot.material=original

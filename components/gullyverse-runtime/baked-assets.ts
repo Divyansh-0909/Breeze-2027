@@ -8,7 +8,7 @@ export type BakedAsset = { scene: THREE.Group; dispose(): void };
 /** Leases cancel ownership immediately and dispose late results after the last release. */
 export class BakedAssetPool {
   private entries = new Map<string, { users: number; promise: Promise<BakedAsset> }>();
-  constructor(private renderer: THREE.WebGLRenderer) {}
+  constructor(private renderer: THREE.WebGLRenderer, private workerLimit = 4) {}
   get size() { return this.entries.size; }
   acquire(base: string, mobile: boolean, bake: { range: number }, baseline = false) {
     const url = base + (baseline ? "contact-frontage.png.glb" : mobile ? "contact-frontage.mobile.glb" : "contact-frontage.optimized.glb");
@@ -34,7 +34,7 @@ export class BakedAssetPool {
     };
   }
   private async load(url: string, base: string, bake: { range: number }, baseline: boolean): Promise<BakedAsset> {
-    const ktx = new KTX2Loader().setTranscoderPath(base + "transcoders/").detectSupport(this.renderer);
+    const ktx = new KTX2Loader().setTranscoderPath(base + "transcoders/").setWorkerLimit(this.workerLimit).detectSupport(this.renderer);
     const loader = new GLTFLoader().setKTX2Loader(ktx).setMeshoptDecoder(MeshoptDecoder);
     const geometries = new Set<THREE.BufferGeometry>(), materials = new Set<THREE.Material>(), textures = new Set<THREE.Texture>();
     const dispose = () => { geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); textures.forEach(t => t.dispose()); ktx.dispose(); };

@@ -30,7 +30,7 @@ export function createCypherSpace(limits?: Limits) {
       strip.halfWidth + ((strip.endHalfWidth ?? strip.halfWidth) - strip.halfWidth) * (y - strip.start) / (strip.end - strip.start),
       limits?.halfWidth ?? Infinity,
     );
-    return [{ ...strip, from, to, leftWidth: widthAt(from), rightWidth: widthAt(to), widthAt }];
+    return [{ ...strip, from, to, startWidth: widthAt(from), endWidth: widthAt(to), widthAt }];
   });
   if (!strips.length) {
     throw new Error("The cypher walk space needs a continuous road section.");
@@ -40,13 +40,13 @@ export function createCypherSpace(limits?: Limits) {
   // traversable, including the ramp/apron join where the width changes.
   const edges: Segment[] = [];
   const first = strips[0], last = strips[strips.length - 1];
-  edges.push([-first.leftWidth, first.from, first.leftWidth, first.from], [-last.rightWidth, last.to, last.rightWidth, last.to]);
+  edges.push([-first.startWidth, first.from, first.startWidth, first.from], [-last.endWidth, last.to, last.endWidth, last.to]);
   strips.forEach((strip, index) => {
     for (const side of [-1, 1]) {
-      const xEnd = side * strip.rightWidth;
-      edges.push([side * strip.leftWidth, strip.from, xEnd, strip.to]);
+      const xEnd = side * strip.endWidth;
+      edges.push([side * strip.startWidth, strip.from, xEnd, strip.to]);
       const next = strips[index + 1];
-      if (next && strip.rightWidth !== next.leftWidth) edges.push([xEnd, strip.to, side * next.leftWidth, strip.to]);
+      if (next && strip.endWidth !== next.startWidth) edges.push([xEnd, strip.to, side * next.startWidth, strip.to]);
     }
   });
 
