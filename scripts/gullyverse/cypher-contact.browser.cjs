@@ -147,8 +147,10 @@ async function main() {
         const canvas = document.querySelector(".native-canvas").getBoundingClientRect();
         const form = document.querySelector(".cypher-contact-form").getBoundingClientRect();
         const landscape = width > height;
-        return innerWidth === width && innerHeight === height && canvas.height >= 100 &&
-          Math.abs(form.top - canvas.bottom) <= 1 && form.height <= (landscape ? 221 : 269) &&
+        const projectedOpening = parseFloat(document.querySelector(".cypher-contact-form").style.getPropertyValue("--contact-opening-top"));
+        return innerWidth === width && innerHeight === height && Math.abs(canvas.height - height) <= 1 &&
+          Math.abs(form.top - canvas.top - projectedOpening) <= 1 &&
+          Math.abs(projectedOpening - height * 0.34) <= 3 && form.height <= (landscape ? 221 : 269) &&
           (!landscape || form.width <= 481) && form.bottom <= height;
       }, { width, height }, { timeout: 30_000, polling: 100 });
       assert.equal(await mobile.locator(".cypher-contact-fallback-heading").count(), 0);

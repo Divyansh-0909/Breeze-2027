@@ -114,14 +114,20 @@ export class ImmersiveRuntime {
     if (!this.inspectionEnabled || (id !== null && !inspectionCamera(id))) return false;
     this.clearInput(); this.publish({ inspection: id }); return true;
   }
-  cameraPose(aspect = 16/9) {
+  cameraPose(aspect = 16/9, phone = false) {
     const base = this.state.inspection ? inspectionCamera(this.state.inspection)! : { ...this.pose, fov: world.camera.fov };
-    const camera = this.space ? this.space.composeCamera(base, aspect) : composeCamera(base, aspect, this.state.scene, this.state.inspection, this.state.phase);
+    const lowerPitch = phone && !this.state.inspection && !this.state.movie ? (aspect < 1 ? 14 : 10) * Math.PI / 180 : 0;
+    const frame = (view: typeof base) => {
+      view.pitch = Math.max(-Math.PI / 2, view.pitch - lowerPitch);
+      return view;
+    };
+    const camera = frame(this.space ? this.space.composeCamera(base, aspect) : composeCamera(base, aspect, this.state.scene, this.state.inspection, this.state.phase));
     const departing = this.state.phase === "departure" ? this.departureMap : null;
     const saved = departing?.saved ?? this.mapSaved;
     if ((!this.state.map && !departing) || !saved) return camera;
     const progress = departing?.progress ?? this.mapProgress;
-    const from = this.space ? this.space.composeCamera({ ...saved, fov: world.camera.fov }, aspect) : composeCamera({ ...saved, fov: world.camera.fov }, aspect, departing?.scene ?? this.state.scene, null, "local");
+    const formerView = { ...saved, fov: world.camera.fov };
+    const from = frame(this.space ? this.space.composeCamera(formerView, aspect) : composeCamera(formerView, aspect, departing?.scene ?? this.state.scene, null, "local"));
     const to = this.space?.mapCamera(aspect) ?? mapCamera(aspect), t = smooth(progress);
     blendPose(camera, from, to, t);
     // Altitude leads the lateral move: rise above the same world before

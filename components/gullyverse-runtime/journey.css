@@ -20,19 +20,19 @@ html,body,#root{margin:0;width:100%;height:100%;background:#010303}
 .gate-controls .gate-toolbar p { margin: 0; }
 .native-journey:has(.cypher-contact-form[data-flat="true"]:not([hidden])) {
   --contact-footer: max(24px, calc(env(safe-area-inset-bottom, 0px) + 20px));
-  --contact-sheet-height: clamp(76px, calc(var(--contact-view-height, 100dvh) - var(--contact-footer) - 124px), var(--contact-sheet-max-height, 268px));
   --contact-viewport-bottom: calc(100% - var(--contact-view-height, 100dvh) - var(--contact-view-top, 0px));
 }
 .native-journey:has(.cypher-contact-form[data-flat="true"]:not([hidden])) .native-canvas {
   top: var(--contact-view-top, 0px);
   bottom: auto;
-  height: max(24px, calc(var(--contact-view-height, 100dvh) - var(--contact-footer) - var(--contact-sheet-height)));
+  height: var(--contact-view-height, 100dvh);
 }
 .native-journey .cypher-contact-form[data-flat="true"] {
-  top: auto !important;
-  bottom: calc(var(--contact-viewport-bottom) + var(--contact-footer));
+  --contact-opening: var(--contact-opening-top, 34dvh);
+  top: calc(var(--contact-view-top, 0px) + var(--contact-opening)) !important;
   width: min(var(--contact-sheet-max-width, 540px), calc(100% - 20px)) !important;
-  height: var(--contact-sheet-height) !important;
+  height: clamp(48px, calc(var(--contact-view-height, 100dvh) - var(--contact-opening) - var(--contact-footer)),
+    var(--contact-sheet-max-height, 268px)) !important;
   transform: translateX(-50%);
   box-shadow: 0 5px 20px #0008;
   overflow: auto;
@@ -74,7 +74,7 @@ html,body,#root{margin:0;width:100%;height:100%;background:#010303}
   pointer-events: none;
   text-shadow: 0 1px 5px #000;
 }
-.native-canvas[data-contact-placement="sheet"] .cypher-contact-fallback-heading { top: 50%; }
+.native-canvas[data-contact-placement="sheet"] .cypher-contact-fallback-heading { top: 18%; }
 @media (orientation: landscape) and (max-height: 519px) {
   .native-journey:has(.cypher-contact-form[data-flat="true"]:not([hidden])) {
     --contact-sheet-max-width: 480px;

@@ -7,6 +7,11 @@ import { installDiagnostics, recordPreparation, sampleMemory, type FrameSample }
 import { world } from "./world";
 import type { WallPreviewSession } from "./wallSection";
 
+let touchScreens: MediaQueryList | undefined;
+export function phoneCamera(width: number) {
+  return width < 700 || (touchScreens ??= window.matchMedia("(pointer: coarse)")).matches;
+}
+
 /** The whole critical scene must instantiate before this gate mounts. */
 export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; serial: number }) {
   const { gl, scene, camera } = useThree();
@@ -118,10 +123,10 @@ export function FrameController({ runtime, curtain, holdCurtain }: {
       gl.domElement.removeEventListener("webglcontextrestored", restored);
     };
   }, [runtime, gl, curtain]);
-  useFrame(({ camera }, delta) => {
+  useFrame(({ camera, size }, delta) => {
     const updateStart = performance.now();
     runtime.tick(delta);
-    const p = runtime.cameraPose(camera instanceof THREE.PerspectiveCamera ? camera.aspect : 16/9);
+    const p = runtime.cameraPose(camera instanceof THREE.PerspectiveCamera ? camera.aspect : 16/9, phoneCamera(size.width));
     camera.position.set(p.x, p.y, p.z);
     if (camera instanceof THREE.PerspectiveCamera && camera.fov !== p.fov) { camera.fov = p.fov; camera.updateProjectionMatrix(); }
     poseEuler.current.set(p.pitch, p.yaw, 0, "YXZ");

@@ -4,7 +4,7 @@ import React, { lazy, Suspense, useCallback, useEffect, useRef, useState, useSyn
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { AgXToneMapping, Box3, Color, Euler, MathUtils, PerspectiveCamera, Vector3 } from "three";
 import { useImmersiveInput } from "../immersive/input";
-import { ReadinessGate, SceneRenderer } from "../immersive/rendering";
+import { phoneCamera, ReadinessGate, SceneRenderer } from "../immersive/rendering";
 import { ImmersiveRuntime } from "../immersive/runtime";
 import { lookAtPose, world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
@@ -27,6 +27,7 @@ type Start = "quarry" | "market" | "approach" | "plaza" | "contact";
 type ContactUI = { available: boolean; placement: ContactPlacement; needsHeading: boolean };
 const closedContact: ContactUI = { available: false, placement: null, needsHeading: false };
 const compactContactQuery = "(max-width: 699px), (max-height: 519px), (pointer: coarse)";
+const phoneWindowLine = 0.34;
 function canOpenContact(pose: { x: number; z: number }) {
   if (!cypherContact.near(pose)) return false;
   const reached = plaza.resolve(pose, cypherContact.focus);
@@ -154,7 +155,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
     if (!runtime.reduced) display.current?.advance(runtime.activeFrameDelta);
     lamps.current?.advance(runtime.activeFrameDelta, runtime.reduced);
     const aspect = Math.max(size.width / Math.max(1, size.height), 0.01);
-    const view = runtime.cameraPose(aspect);
+    const view = runtime.cameraPose(aspect, phoneCamera(size.width));
     const { phase, map } = runtime.getSnapshot();
     const editing = phase === "local" && runtime.interacting;
     const sheet = editing && (window.matchMedia(compactContactQuery).matches ||
@@ -169,12 +170,13 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
         const aim = lookAtPose(position, edge);
         const distance = Math.hypot(view.x - edge[0], view.z - edge[2]);
         const headingTop = heading[1] + (artwork.current?.height ?? 0.6) / 2;
-        const fov = cypherContact.artworkFov(aspect, artwork.current?.width ?? 2.6,
+        const upperFov = cypherContact.artworkFov(aspect / phoneWindowLine, artwork.current?.width ?? 2.6,
           headingTop - edge[1], Math.max(distance, 1));
-        // The sheet starts at the bottom of the canvas. Put the top of the window opening on that edge.
+        // Keep enough room above the opening for the original graffiti.
+        const halfView = Math.tan(MathUtils.degToRad(upperFov / 2)) / phoneWindowLine;
         view.yaw = MathUtils.lerp(view.yaw, aim.yaw, zoom.current);
-        view.pitch = MathUtils.lerp(view.pitch, aim.pitch + MathUtils.degToRad(fov / 2), zoom.current);
-        view.fov = MathUtils.lerp(view.fov, fov, zoom.current);
+        view.pitch = MathUtils.lerp(view.pitch, aim.pitch - Math.atan((1 - 2 * phoneWindowLine) * halfView), zoom.current);
+        view.fov = MathUtils.lerp(view.fov, MathUtils.radToDeg(2 * Math.atan(halfView)), zoom.current);
       } else {
         view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
       }
@@ -194,6 +196,11 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact }: {
     const settled = phase === "local" && !runtime.focusing && runtime.revealOpacity < 0.02;
     const available = settled && !map && !runtime.interacting && canOpenContact(runtime.pose);
     let placement: ContactPlacement = settled && editing && sheet ? "sheet" : null;
+    if (placement === "sheet" && form.current) {
+      camera.updateMatrixWorld();
+      const opening = corners.current[0].set(...cypherContact.windowTop).project(camera);
+      form.current.style.setProperty("--contact-opening-top", `${(1 - opening.y) * size.height / 2}px`);
+    }
     if (settled && editing && !sheet && form.current) {
       camera.updateMatrixWorld();
       const [a, b] = corners.current;

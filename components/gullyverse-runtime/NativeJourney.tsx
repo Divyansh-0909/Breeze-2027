@@ -4,7 +4,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { ImmersiveRuntime, type Snapshot } from "../immersive/runtime";
 import { useImmersiveInput } from "../immersive/input";
-import { ReadinessGate } from "../immersive/rendering";
+import { phoneCamera, ReadinessGate } from "../immersive/rendering";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
 import { contactSpace } from "./native-space";
 import config from "./contact-space.json";
@@ -66,7 +66,7 @@ function NativeView({ runtime, data, base, groundBase, attempt, baseline, curtai
   useEffect(()=>{if(state.error)onError(state.error);},[state.error,onError]);
   useFrame((_, delta) => {
     runtime.tick(delta);
-    const view = runtime.cameraPose(size.width / size.height);
+    const view = runtime.cameraPose(size.width / size.height, !runtime.interacting && phoneCamera(size.width));
     camera.position.set(view.x, view.y, view.z);
     euler.current.set(view.pitch, view.yaw, 0, "YXZ"); camera.quaternion.setFromEuler(euler.current);
     if (camera instanceof THREE.PerspectiveCamera && camera.fov !== view.fov) { camera.fov = view.fov; camera.updateProjectionMatrix(); }

@@ -13,6 +13,18 @@ const advance = (runtime: ImmersiveRuntime, frames: number) => {
   }
 };
 
+test("phone framing lowers the view without changing the walking pose or lens", () => {
+  for (const space of [undefined, cypher.space]) {
+    const runtime = new ImmersiveRuntime("hub", undefined, false, undefined, space);
+    for (const [aspect, degrees] of [[0.6, 14], [2, 10]]) {
+      const pose = { ...runtime.pose };
+      const desktop = runtime.cameraPose(aspect);
+      assert.deepEqual(runtime.cameraPose(aspect, true), { ...desktop, pitch: desktop.pitch - degrees * Math.PI / 180 });
+      assert.deepEqual(runtime.pose, pose);
+    }
+  }
+});
+
 test("the original controller walks both ways through a continuous native lane and ramp", () => {
   const runtime = new ImmersiveRuntime("hub", undefined, false, undefined, cypher.space);
   runtime.markReady(0);
