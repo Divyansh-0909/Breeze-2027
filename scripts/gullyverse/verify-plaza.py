@@ -63,17 +63,25 @@ assert len(manifest["objects"]) == 180 and all(
     row["sourceMesh"].endswith("/ LOD0") and row["runtimeMesh"].endswith("/ LOD1")
     for row in manifest["objects"]
 )
-with (audience / "contact-frontage.optimized.glb").open("rb") as f:
-    assert f.read(4) == b"glTF"
-    f.seek(12)
-    size, _ = struct.unpack("<II", f.read(8))
-    payload = json.loads(f.read(size))
+def glb_json(file):
+    with file.open("rb") as f:
+        assert f.read(4) == b"glTF"
+        f.seek(12)
+        size, _ = struct.unpack("<II", f.read(8))
+        return json.loads(f.read(size))
+
+
+payload = glb_json(audience / "contact-frontage.png.glb")
 actors = [node["extras"]["originalActorID"] for node in payload["nodes"] if "originalActorID" in node.get("extras", {})]
 assert len(set(actors)) == len(actors) == 180
+optimized = glb_json(audience / "contact-frontage.optimized.glb")
+primitives = {key: sum(len(mesh["primitives"]) for mesh in data["meshes"])
+              for key, data in (("sourceNodes", payload), ("optimized", optimized))}
+assert primitives["optimized"] < primitives["sourceNodes"] / 4
 result = {
     "status": "PASS", "roofRaySamples": samples, "deckFaceOwnership": {key: len(value) for key, value in owners.items()},
     "footprintSamples": space["footprintSamples"], "surfaceOpeningCells": space["surfaceOpeningCells"],
-    "authoredLOD1Audience": len(actors),
+    "authoredLOD1Audience": len(actors), "audiencePrimitives": primitives,
 }
 output.write_text(json.dumps(result, indent=2) + "\n")
 print(json.dumps(result))

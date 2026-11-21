@@ -19,7 +19,7 @@ async function openRoute(page) {
   });
   await page.waitForFunction(() => (
     Number(getComputedStyle(document.querySelector(".native-curtain")).opacity) < 0.02
-  ), null, { timeout: 120_000 });
+  ), null, { timeout: 120_000, polling: 100 });
 }
 
 async function walkTo(page, key, label) {
@@ -61,10 +61,12 @@ async function main() {
     args: ["--enable-webgl", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--no-sandbox"],
   });
   try {
-    const desktop = await browser.newPage({ viewport: { width: 720, height: 450 } });
+    const desktop = await browser.newPage({ viewport: { width: 720, height: 400 } });
     const loaded = watchAssets(desktop);
     const capture = name => desktop.screenshot({ path: path.join(output, name + ".png"), timeout: 120_000 });
     await openRoute(desktop);
+    console.log("Desktop approach ready.");
+    await desktop.setViewportSize({ width: 640, height: 400 });
     await walkTo(desktop, "w", plaza);
     console.log("The gate led into the expanded plaza.");
     for (const zone of ["plaza", "audience"]) {
@@ -79,7 +81,7 @@ async function main() {
     await look(desktop, 325);
     await capture("03-team-frontage");
     await look(desktop, -325);
-    await desktop.setViewportSize({ width: 720, height: 450 });
+    await desktop.setViewportSize({ width: 640, height: 400 });
     await walkTo(desktop, "s", approach);
     assert.ok(await desktop.evaluate(() => document.querySelectorAll("canvas").length === 1 &&
       document.querySelector("canvas") === window.plazaCanvas));
@@ -90,6 +92,7 @@ async function main() {
     const mobile = await browser.newPage({ ...devices["iPhone 13"] });
     const phone = watchAssets(mobile);
     await openRoute(mobile);
+    console.log("Emulated phone approach ready.");
     const forward = await mobile.getByRole("button", { name: "Walk forward" }).boundingBox();
     assert.ok(forward);
     const input = await mobile.context().newCDPSession(mobile);

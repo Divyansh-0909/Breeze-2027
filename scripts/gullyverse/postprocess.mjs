@@ -36,9 +36,18 @@ if (!process.argv.includes("--finish-only")) {
     path.join(out, "contact-frontage.dedup.glb"),
     path.join(out, "contact-frontage.png.glb"),
   );
+  const descriptor = JSON.parse(await fs.readFile(path.join(out, "manifest.json"), "utf8"));
+  let geometry = path.join(out, "contact-frontage.png.glb");
+  if (descriptor.chunk === "cypher-audience") {
+    // Each opaque actor already has its own baked world-space UV chart.
+    // Combining compatible primitives preserves those UVs and cuts draw calls.
+    const joined = path.join(out, "contact-frontage.audience-joined.glb");
+    run(cli, ["join", geometry, joined, "--keepNamed", "false", "--keepMeshes", "false"]);
+    geometry = joined;
+  }
   run(cli, [
     "uastc",
-    path.join(out, "contact-frontage.png.glb"),
+    geometry,
     path.join(out, "contact-frontage.ktx.glb"),
     "--level",
     "2",
@@ -62,7 +71,7 @@ if (!process.argv.includes("--finish-only")) {
   ]);
   run(cli, [
     "resize",
-    path.join(out, "contact-frontage.png.glb"),
+    geometry,
     path.join(out, "contact-frontage.mobile.png.glb"),
     "--width",
     "1024",
