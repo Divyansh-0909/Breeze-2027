@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { AgXToneMapping, Box3, Color, Euler, MathUtils, PerspectiveCamera, Vector3, type VideoTexture } from "three";
@@ -549,7 +550,7 @@ function GateWalk({ start, team, canSendContact, catalog }:
         ? "Restoring 3D…" : activeQuarry ? "Loading the quarry…" : "Loading the market lane…")}</p>
       {state.error && <>
         {start === "accommodation" && <AccommodationStatus />}
-        <a href="/events">Browse events</a><br /><a href="/get-in-touch">Contact us</a>
+        <Link href="/events">Browse events</Link><br /><a href="/get-in-touch">Contact us</a>
       </>}
     </div>}
   </>;
@@ -568,14 +569,14 @@ export default function CypherGatePreview({ start = "market", team, canSendConta
     }
   }, []);
   return <div className="native-journey">
-    <header className="native-header"><a href="/">BREEZE <span>2027</span></a></header>
+    <header className="native-header"><Link href="/">BREEZE <span>2027</span></Link></header>
     {status === "ready" && <CanvasBoundary onFailure={() => setStatus("unavailable")}>
       <GateWalk start={start} team={team} canSendContact={canSendContact} catalog={catalog} />
     </CanvasBoundary>}
     {status === "unavailable" && <div className="native-loading" role="status">
       <p>3D is unavailable in this browser.</p>
       {start === "accommodation" && <AccommodationStatus />}
-      <a href="/events">Browse events</a>
+      <Link href="/events">Browse events</Link>
       <br /><a href="/get-in-touch">Contact us</a>
       {start === "aftermovie" && <><br /><a href={stageVideoSource}>Watch the Aftermovie</a></>}
     </div>}

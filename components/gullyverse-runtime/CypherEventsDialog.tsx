@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, type KeyboardEvent } from "react";
 import type { CypherCatalog, CypherEvent } from "../../lib/events/cypher-catalog";
 
@@ -56,7 +57,7 @@ export function CypherEventsDialog({ catalog, visibleEvents, page, pages, event,
         <span aria-live="polite">{page + 1} / {pages}</span>
         <button type="button" onClick={() => changePage(page + 1)} disabled={page + 1 === pages}>Next</button>
       </nav>}
-      {!catalog.available && <a href="/events">Browse events</a>}
+      {!catalog.available && <Link href="/events">Browse events</Link>}
     </>}
   </section>;
 }
