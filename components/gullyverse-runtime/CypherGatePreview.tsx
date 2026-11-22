@@ -14,6 +14,8 @@ import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialo
 import { CypherEventsDialog } from "./CypherEventsDialog";
 import { eventPosterSlots, eventsPerPage, paintEventPage } from "./event-poster-wall";
 import type { CypherCatalog, CypherEvent } from "../../lib/events/cypher-catalog";
+import { CypherTeamDialog } from "./CypherTeamDialog";
+import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
 import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
 import walkSpace from "./cypher-walk-space.json";
@@ -26,10 +28,13 @@ const contactStart = createCypherSpace({ ...routeBounds, spawnY: -cypherContact.
   spawnYaw: cypherContact.spawn.yaw, spawnPitch: cypherContact.spawn.pitch });
 const eventsStart = createCypherSpace({ ...routeBounds, spawnY: 31.05, spawnX: -10.7, spawnYaw: Math.PI / 2 });
 const eventsFocus = lookAtPose([-9.7, 8.9, -31.05], [-15.85, 8.15, -31.05]);
+const teamStart = createCypherSpace({ ...routeBounds, spawnY: -teamFocus.z, spawnX: teamFocus.x, spawnYaw: teamFocus.yaw });
 const assetRoot = "/models/gullyverse/locked-rev15z-";
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
-type Start = "quarry" | "market" | "approach" | "plaza" | "contact" | "events";
-type EventsUI = "hidden" | "near" | "active";
+type Start = "quarry" | "market" | "approach" | "plaza" | "contact" | "events" | "team";
+type WallPanel = "events" | "team";
+type WallUI = WallPanel | "active" | null;
+const wallFocus = { events: eventsFocus, team: teamFocus };
 type ContactUI = { available: boolean; placement: ContactPlacement; needsHeading: boolean };
 const closedContact: ContactUI = { available: false, placement: null, needsHeading: false };
 const compactContactQuery = "(max-width: 699px), (max-height: 519px), (pointer: coarse)";
@@ -39,10 +44,10 @@ function canOpenContact(pose: { x: number; z: number }) {
   const reached = plaza.resolve(pose, cypherContact.focus);
   return Math.hypot(reached.x - cypherContact.focus.x, reached.z - cypherContact.focus.z) < 0.01;
 }
-function canOpenEvents(pose: { x: number; z: number }) {
-  if (Math.hypot(pose.x - eventsFocus.x, pose.z - eventsFocus.z) > 4) return false;
-  const reached = plaza.resolve(pose, eventsFocus);
-  return Math.hypot(reached.x - eventsFocus.x, reached.z - eventsFocus.z) < 0.01;
+function canOpenWall(pose: { x: number; z: number }, focus: { x: number; z: number }) {
+  if (Math.hypot(pose.x - focus.x, pose.z - focus.z) > 4) return false;
+  const reached = plaza.resolve(pose, focus);
+  return Math.hypot(reached.x - focus.x, reached.z - focus.z) < 0.01;
 }
 const zoneAt = (z: number) => {
   if (z < -22) return "Cypher plaza";
@@ -59,16 +64,19 @@ class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFail
   render() { return this.state.failed ? null : this.props.children; }
 }
 
-function GateScene({ runtime, curtain, reportZone, form, reportContact, eventsOpen, eventPage, reportEvents, chooseEvent }: {
+function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, eventPage, reportWall, chooseEvent,
+  teamRequest, reportTeam }: {
   runtime: ImmersiveRuntime;
   curtain: React.RefObject<HTMLDivElement | null>;
   reportZone(zone: ReturnType<typeof zoneAt>): void;
   form: React.RefObject<HTMLDivElement | null>;
   reportContact(contact: ContactUI): void;
-  eventsOpen: boolean;
+  panel: WallPanel | null;
   eventPage: CypherEvent[] | null;
-  reportEvents(state: EventsUI): void;
+  reportWall(state: WallUI): void;
   chooseEvent(id: string): void;
+  teamRequest: { index: number };
+  reportTeam(display: TeamDisplay): void;
 }) {
   const { gl, scene, camera, size } = useThree();
   const [pool] = useState(() => new BakedAssetPool(gl, 1));
@@ -79,8 +87,10 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, eventsOp
   const euler = useRef(new Euler(0, 0, 0, "YXZ"));
   const zone = useRef(zoneAt(runtime.pose.z));
   const zoom = useRef(0);
+  const teamZoom = useRef(0);
   const contact = useRef(closedContact);
-  const eventsState = useRef<EventsUI>("hidden");
+  const wallState = useRef<WallUI>(null);
+  const carousel = useRef<ReturnType<typeof mountTeamCarousel>>(null);
   const corners = useRef([new Vector3(), new Vector3()]);
   const artwork = useRef<{ centre: [number, number, number]; width: number; height: number } | null>(null);
 
@@ -172,15 +182,39 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, eventsOp
     const slots = eventPosterSlots(plazaScene);
     if (slots.every(slot => slot !== undefined)) return paintEventPage(slots, eventPage);
   }, [plazaScene, eventPage]);
+  useEffect(() => {
+    if (!plazaScene) return;
+    const mounted = mountTeamCarousel(plazaScene);
+    carousel.current = mounted;
+    return () => {
+      mounted?.dispose();
+      carousel.current = null;
+    };
+  }, [plazaScene]);
+  useEffect(() => {
+    const mounted = carousel.current;
+    if (!mounted || mounted.index === teamRequest.index) {
+      reportTeam({ index: mounted?.index ?? 0, status: "ready" });
+      return;
+    }
+    const abort = new AbortController();
+    reportTeam({ index: mounted.index, status: "loading" });
+    void mounted.show(teamRequest.index, abort.signal).then(() => {
+      if (!abort.signal.aborted) reportTeam({ index: mounted.index, status: "ready" });
+    }, () => {
+      if (!abort.signal.aborted) reportTeam({ index: mounted.index, status: "error" });
+    });
+    return () => abort.abort();
+  }, [plazaScene, teamRequest, reportTeam]);
 
   useFrame((_, delta) => {
     runtime.tick(delta);
     if (!runtime.reduced) display.current?.advance(runtime.activeFrameDelta);
     lamps.current?.advance(runtime.activeFrameDelta, runtime.reduced);
     const aspect = Math.max(size.width / Math.max(1, size.height), 0.01);
-    const view = runtime.cameraPose(aspect, !eventsOpen && phoneCamera(size.width));
+    const view = runtime.cameraPose(aspect, panel === null && phoneCamera(size.width));
     const { phase, map } = runtime.getSnapshot();
-    const editing = phase === "local" && runtime.interacting && !eventsOpen;
+    const editing = phase === "local" && runtime.interacting && panel === null;
     const sheet = editing && (window.matchMedia(compactContactQuery).matches ||
       !cypherContact.windowFits(window.innerWidth, window.innerHeight));
     const zoomTarget = Number(editing);
@@ -204,6 +238,13 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, eventsOp
         view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
       }
     }
+    const teamTarget = Number(phase === "local" && runtime.interacting && panel === "team");
+    teamZoom.current = runtime.reduced ? teamTarget : MathUtils.damp(teamZoom.current, teamTarget, 12, Math.min(delta, 0.2));
+    if (teamZoom.current > 0.001) {
+      const frame = teamView(aspect, [view.x, view.y, view.z]);
+      view.pitch = MathUtils.lerp(view.pitch, frame.pitch, teamZoom.current);
+      view.fov = MathUtils.lerp(view.fov, frame.fov, teamZoom.current);
+    }
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
     if (camera instanceof PerspectiveCamera && camera.fov !== view.fov) {
@@ -217,12 +258,15 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, eventsOp
       reportZone(current);
     }
     const settled = phase === "local" && !runtime.focusing && runtime.revealOpacity < 0.02;
-    const nextEvents = !eventPage || !settled || map ? "hidden" :
-      eventsOpen && runtime.interacting ? "active" :
-        !runtime.interacting && canOpenEvents(runtime.pose) ? "near" : "hidden";
-    if (nextEvents !== eventsState.current) {
-      eventsState.current = nextEvents;
-      reportEvents(nextEvents);
+    let nextWall: WallUI = null;
+    if (settled && !map) {
+      if (runtime.interacting) nextWall = panel === null ? null : "active";
+      else if (carousel.current && canOpenWall(runtime.pose, teamFocus)) nextWall = "team";
+      else if (eventPage && canOpenWall(runtime.pose, eventsFocus)) nextWall = "events";
+    }
+    if (nextWall !== wallState.current) {
+      wallState.current = nextWall;
+      reportWall(nextWall);
     }
     const available = settled && !map && !runtime.interacting && canOpenContact(runtime.pose);
     let placement: ContactPlacement = settled && editing && sheet ? "sheet" : null;
@@ -255,7 +299,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, eventsOp
   return <>
     {assets && <>
       {assets.map((asset, index) => <primitive key={index} object={asset.scene}
-        onClick={index === 4 && eventsOpen ? event => {
+        onClick={index === 4 && panel === "events" ? event => {
           const eventId = event.object.userData.wallEventId;
           if (typeof eventId === "string") chooseEvent(eventId);
         } : undefined} />)}
@@ -265,17 +309,21 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, eventsOp
   </>;
 }
 
-function GateWalk({ start, canSendContact, catalog }: { start: Start; canSendContact: boolean; catalog: CypherCatalog | null }) {
+function GateWalk({ start, team, canSendContact, catalog }:
+  { start: Start; team?: string; canSendContact: boolean; catalog: CypherCatalog | null }) {
   const curtain = useRef<HTMLDivElement>(null);
+  const canvas = useRef<HTMLDivElement>(null);
   const form = useRef<HTMLDivElement>(null);
   const enquiry = useRef<HTMLButtonElement>(null);
   const restoreContactFocus = useRef(false);
   const browse = useRef<HTMLButtonElement>(null);
-  const restoreEventsFocus = useRef(false);
+  const restoreWallFocus = useRef<WallPanel | null>(null);
   const holdCurtain = useRef(false);
   const [contact, setContact] = useState(closedContact);
-  const [eventsUI, setEventsUI] = useState<EventsUI>("hidden");
-  const [eventsOpen, setEventsOpen] = useState(false);
+  const [wallUI, setWallUI] = useState<WallUI>(null);
+  const [panel, setPanel] = useState<WallPanel | null>(null);
+  const [teamRequest, requestTeam] = useState(() => ({ index: teamIndex(team) }));
+  const [teamDisplay, setTeamDisplay] = useState(defaultTeam);
   const [page, setPage] = useState(0);
   const [eventId, chooseEvent] = useState<string | null>(null);
   const pages = Math.ceil((catalog?.data?.length ?? 0) / eventsPerPage);
@@ -283,7 +331,8 @@ function GateWalk({ start, canSendContact, catalog }: { start: Start; canSendCon
     catalog.data?.slice(page * eventsPerPage, (page + 1) * eventsPerPage) ?? [], [catalog, page]);
   const [atMarket, setAtMarket] = useState(start !== "quarry");
   const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined,
-    (start === "approach" ? approach : start === "plaza" ? plaza : start === "contact" ? contactStart : start === "events" ? eventsStart : market).space));
+    (start === "approach" ? approach : start === "plaza" ? plaza : start === "contact" ? contactStart :
+      start === "events" ? eventsStart : start === "team" ? teamStart : market).space));
   const [quarry] = useState(() => start === "quarry" ? new ImmersiveRuntime("hub", () => {
     holdCurtain.current = true;
     setAtMarket(true);
@@ -294,11 +343,22 @@ function GateWalk({ start, canSendContact, catalog }: { start: Start; canSendCon
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   useImmersiveInput(runtime);
   const closeContact = useCallback(() => { marketRuntime.focusInteraction(null); }, [marketRuntime]);
-  const closeEvents = useCallback(() => {
+  const closeWall = useCallback(() => {
     marketRuntime.focusInteraction(null);
     chooseEvent(null);
-    setEventsOpen(false);
+    setPanel(null);
   }, [marketRuntime]);
+  const advanceTeam = useCallback((direction: -1 | 1) => {
+    requestTeam(current => ({ index: nextTeam(current.index, direction) }));
+  }, []);
+  const reportTeam = useCallback((display: TeamDisplay) => {
+    setTeamDisplay(display);
+    if (display.status !== "ready" || display.index !== teamRequest.index) return;
+    const url = new URL(window.location.href);
+    if (display.index === 0) url.searchParams.delete("team");
+    else url.searchParams.set("team", String(display.index));
+    if (url.href !== window.location.href) window.history.replaceState(null, "", url);
+  }, [teamRequest.index]);
   useEffect(() => {
     if (contact.available && restoreContactFocus.current && enquiry.current) {
       restoreContactFocus.current = false;
@@ -306,24 +366,29 @@ function GateWalk({ start, canSendContact, catalog }: { start: Start; canSendCon
     }
   }, [contact.available]);
   useEffect(() => {
-    if (eventsUI === "near" && restoreEventsFocus.current && browse.current) {
-      restoreEventsFocus.current = false;
+    if (restoreWallFocus.current && wallUI === restoreWallFocus.current && browse.current) {
+      restoreWallFocus.current = null;
       browse.current.focus();
     }
-  }, [eventsUI]);
-  useEffect(() => { if (!runtime.interacting) setEventsOpen(false); }, [state, runtime]);
+  }, [wallUI]);
+  useEffect(() => {
+    if (!runtime.interacting) {
+      setPanel(null);
+      chooseEvent(null);
+    }
+  }, [state, runtime]);
   const walking = atMarket && state.phase === "local";
   const landing = !!activeQuarry && state.phase === "landing";
   return <>
-    <div className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}
+    <div ref={canvas} className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}
       data-contact-placement={contact.placement ?? undefined}>
       <Canvas dpr={1} gl={{ antialias: true, powerPreference: "high-performance" }}
         camera={start === "quarry" ? world.camera : { near: 0.05, far: 120 }} fallback={<p>3D is unavailable in this browser.</p>}>
         {activeQuarry ? <Suspense fallback={null}>
           <QuarryArrivalScene runtime={activeQuarry} curtain={curtain} holdCurtain={holdCurtain} />
         </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone}
-          form={form} reportContact={setContact} eventsOpen={eventsOpen} eventPage={eventPage}
-          reportEvents={setEventsUI} chooseEvent={chooseEvent} />}
+          form={form} reportContact={setContact} panel={panel} eventPage={eventPage}
+          reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam} />}
       </Canvas>
       {walking && runtime.interacting && contact.needsHeading &&
         <h2 className="cypher-contact-fallback-heading">Contact us</h2>}
@@ -338,12 +403,13 @@ function GateWalk({ start, canSendContact, catalog }: { start: Start; canSendCon
             restoreContactFocus.current = true;
           }
         }}>Leave a message</button>}
-        {eventsUI === "near" && <button ref={browse} onClick={() => {
-          if (canOpenEvents(marketRuntime.pose) && marketRuntime.focusInteraction(eventsFocus)) {
-            setEventsOpen(true);
-            restoreEventsFocus.current = true;
+        {(wallUI === "events" || wallUI === "team") && <button ref={browse} onClick={() => {
+          const focus = wallFocus[wallUI];
+          if (canOpenWall(marketRuntime.pose, focus) && marketRuntime.focusInteraction(focus)) {
+            setPanel(wallUI);
+            restoreWallFocus.current = wallUI;
           }
-        }}>Browse event posters</button>}
+        }}>{wallUI === "team" ? "View team murals" : "Browse event posters"}</button>}
         <button onClick={() => runtime.setMap(!state.map)}>{state.map ? "Close map" : "Map"}</button>
       </div>
       {!state.map && <>
@@ -360,9 +426,11 @@ function GateWalk({ start, canSendContact, catalog }: { start: Start; canSendCon
     </section>}
     <CypherContactDialog host={form} placement={walking && runtime.interacting ? contact.placement : null}
       canSend={canSendContact} onClose={closeContact} />
-    {eventsOpen && eventsUI === "active" && catalog && eventPage && <CypherEventsDialog
+    {panel === "events" && wallUI === "active" && catalog && eventPage && <CypherEventsDialog
       catalog={catalog} visibleEvents={eventPage} page={page} pages={pages}
-      event={eventPage.find(item => item.id === eventId)} changePage={setPage} choose={chooseEvent} close={closeEvents} />}
+      event={eventPage.find(item => item.id === eventId)} changePage={setPage} choose={chooseEvent} close={closeWall} />}
+    {panel === "team" && wallUI === "active" && <CypherTeamDialog canvas={canvas} display={teamDisplay}
+      advance={advanceTeam} retry={() => requestTeam(current => ({ ...current }))} close={closeWall} />}
     {!walking && !landing && state.phase !== "entrance" && <div className="native-loading" role="status">
       <p>{state.error ?? (state.phase === "context-lost" || state.phase === "recovering"
         ? "Restoring 3D…" : activeQuarry ? "Loading the quarry…" : "Loading the market lane…")}</p>
@@ -371,8 +439,8 @@ function GateWalk({ start, canSendContact, catalog }: { start: Start; canSendCon
   </>;
 }
 
-export default function CypherGatePreview({ start = "market", canSendContact = false, catalog = null }:
-  { start?: Start; canSendContact?: boolean; catalog?: CypherCatalog | null }) {
+export default function CypherGatePreview({ start = "market", team, canSendContact = false, catalog = null }:
+  { start?: Start; team?: string; canSendContact?: boolean; catalog?: CypherCatalog | null }) {
   const [status, setStatus] = useState<"checking" | "ready" | "unavailable">("checking");
   useEffect(() => {
     try {
@@ -386,7 +454,7 @@ export default function CypherGatePreview({ start = "market", canSendContact = f
   return <div className="native-journey">
     <header className="native-header"><a href="/">BREEZE <span>2027</span></a></header>
     {status === "ready" && <CanvasBoundary onFailure={() => setStatus("unavailable")}>
-      <GateWalk start={start} canSendContact={canSendContact} catalog={catalog} />
+      <GateWalk start={start} team={team} canSendContact={canSendContact} catalog={catalog} />
     </CanvasBoundary>}
     {status === "unavailable" && <div className="native-loading" role="status">
       <p>3D is unavailable in this browser.</p>

@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { Euler, PerspectiveCamera, Vector3 } from "three";
 import { createCypherSpace } from "../../components/gullyverse-runtime/cypher-space";
+import { nextTeam, teamFocus, teamIndex, teamSlides, teamView } from "../../components/gullyverse-runtime/team-carousel";
 import { ImmersiveRuntime } from "../../components/immersive/runtime";
 import { world } from "../../components/immersive/world";
 import plazaFootprint from "../../components/gullyverse-runtime/plaza-walk-space.json";
@@ -21,6 +23,32 @@ test("phone framing lowers the view without changing the walking pose or lens", 
       const desktop = runtime.cameraPose(aspect);
       assert.deepEqual(runtime.cameraPose(aspect, true), { ...desktop, pitch: desktop.pitch - degrees * Math.PI / 180 });
       assert.deepEqual(runtime.pose, pose);
+    }
+  }
+});
+
+test("the authored team carousel wraps and the complete mural fits on a phone", () => {
+  assert.equal(teamSlides.length, 8);
+  assert.equal(teamSlides[0].team, "Organising Committee");
+  assert.equal(teamSlides.reduce((people, slide) => people + slide.people.length, 0), 19);
+  assert.equal(nextTeam(0, -1), 7);
+  assert.equal(nextTeam(7, 1), 0);
+  assert.equal(teamIndex("7"), 7);
+  assert.equal(teamIndex("-1"), 0);
+  assert.equal(teamIndex("8"), 0);
+  const position = [teamFocus.x, teamFocus.y, teamFocus.z] as const;
+  for (const aspect of [320 / 568, 390 / 664, 844 / 390, 1120 / 700]) {
+    const frame = teamView(aspect, position);
+    const camera = new PerspectiveCamera(frame.fov, aspect, 0.05, 120);
+    camera.position.set(...position);
+    camera.quaternion.setFromEuler(new Euler(frame.pitch, teamFocus.yaw, 0, "YXZ"));
+    camera.updateMatrixWorld();
+    for (const slide of teamSlides) {
+      const [x, y, z] = slide.centre;
+      for (const dx of [-0.5, 0.5]) for (const dy of [-0.5, 0.5]) {
+        const corner = new Vector3(x, y + dy * slide.heightM, z + dx * slide.widthM).project(camera);
+        assert.ok(Math.abs(corner.x) < 0.96 && Math.abs(corner.y) < 0.96);
+      }
     }
   }
 });
