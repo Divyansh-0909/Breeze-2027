@@ -3,12 +3,13 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
+import { specularOnlyEnvironment, type Fidelity } from "./fidelity";
 
 export type BakedAsset = { scene: THREE.Group; rgbmRange?: number; dispose(): void };
 /** Leases cancel ownership immediately and dispose late results after the last release. */
 export class BakedAssetPool {
   private entries = new Map<string, { users: number; promise: Promise<BakedAsset> }>();
-  constructor(private renderer: THREE.WebGLRenderer, private workerLimit = 4) {}
+  constructor(private renderer: THREE.WebGLRenderer, private workerLimit = 4, private fidelity?: Fidelity) {}
   get size() { return this.entries.size; }
   acquire(base: string, mobile: boolean, bake: { range: number }, baseline = false) {
     const url = base + (baseline ? "contact-frontage.png.glb" : mobile ? "contact-frontage.mobile.glb" : "contact-frontage.optimized.glb");
@@ -49,6 +50,9 @@ export class BakedAssetPool {
           for (const value of Object.values(m)) if (value instanceof THREE.Texture) textures.add(value);
         }
       });
+      // Surface restoration is optional: without it the chunk still renders as exported.
+      const fidelity = this.fidelity && await this.fidelity.ready.then(() => this.fidelity, () => undefined);
+      fidelity?.prepare(gltf.scene);
       const light = baseline ? await new RGBELoader().loadAsync(base + "lightmap.hdr") : await ktx.loadAsync(base + "lightmap.ktx2");
       textures.add(light);
       light.flipY = false; light.generateMipmaps = baseline; light.minFilter = THREE.LinearMipmapLinearFilter;
@@ -69,7 +73,7 @@ export class BakedAssetPool {
             const lm = light.clone(); lm.channel = channel; lm.needsUpdate = true; textures.add(lm);
             m.lightMap = lm; m.lightMapIntensity = Math.PI;
             const signInk = m.userData.runtimeSignInk === true;
-            if (!baseline || signInk) m.onBeforeCompile = (shader: any) => {
+            if (!baseline || signInk || fidelity) m.onBeforeCompile = (shader: any) => {
               const from = "vec3 lightMapIrradiance = lightMapTexel.rgb * lightMapIntensity;";
               if (!THREE.ShaderChunk.lights_fragment_maps.includes(from)) throw Error("Lighting shader contract changed");
               const decoded = baseline ? "lightMapTexel.rgb" : `lightMapTexel.rgb * lightMapTexel.a * ${Number(bake.range).toFixed(1)}`;
@@ -78,9 +82,10 @@ export class BakedAssetPool {
               // small letters, while the green panels retain baked shading.
               const irradiance = signInk ? "vec3(0.25, 0.216, 0.172)" : decoded;
               shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_maps>",
-                THREE.ShaderChunk.lights_fragment_maps.replace(from, `vec3 lightMapIrradiance = ${irradiance} * lightMapIntensity;`));
+                specularOnlyEnvironment(THREE.ShaderChunk.lights_fragment_maps.replace(from, `vec3 lightMapIrradiance = ${irradiance} * lightMapIntensity;`)));
+              fidelity?.patch(shader, m);
             };
-            m.customProgramCacheKey = () => `breeze-${baseline ? "hdr" : "rgbm-" + bake.range}-v1${signInk ? "-sign-ink" : ""}`;
+            m.customProgramCacheKey = () => `breeze-${baseline ? "hdr" : "rgbm-" + bake.range}-v2${signInk ? "-sign-ink" : ""}${fidelity ? "-" + fidelity.key(m) : ""}`;
             m.needsUpdate = true;
           }
         }

@@ -9,6 +9,7 @@ import { phoneCamera, ReadinessGate, SceneRenderer } from "../immersive/renderin
 import { ImmersiveRuntime } from "../immersive/runtime";
 import { lookAtPose, world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
+import { Fidelity } from "./fidelity";
 import { cypherContact } from "./cypher-contact";
 import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialog";
 import { CypherEventsDialog } from "./CypherEventsDialog";
@@ -29,6 +30,13 @@ import { cypherStarts, startHref, type CypherStart } from "./cypher-map";
 import { createCypherMapDOM, CypherMap, CypherMapProjection } from "./CypherMap";
 
 const { plaza } = cypherStarts;
+// Review only: `/runtime-preview/cypher?reviewCamera=px,py,pz,qx,qy,qz,qw,fov` pins the camera to an exact
+// Three.js pose so browser frames can be compared with renders from the Blender cameras.
+const reviewCamera = (() => {
+  if (typeof window === "undefined" || !window.location.pathname.startsWith("/runtime-preview")) return null;
+  const values = new URLSearchParams(window.location.search).get("reviewCamera")?.split(",").map(Number);
+  return values?.length === 8 && values.every(Number.isFinite) ? values : null;
+})();
 const eventsFocus = lookAtPose([-9.7, 8.9, -31.05], [-15.85, 8.15, -31.05]);
 const assetRoot = "/models/gullyverse/locked-rev15z-";
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
@@ -88,7 +96,10 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   stopAftermovie(): void;
 }) {
   const { gl, scene, camera, size } = useThree();
-  const [pool] = useState(() => new BakedAssetPool(gl, 1));
+  const [fidelity] = useState(() => new Fidelity(gl, window.matchMedia("(max-width: 699px)").matches,
+    assetRoot + "market-south/transcoders/"));
+  const [pool] = useState(() => new BakedAssetPool(gl, 1, fidelity));
+  useEffect(() => () => fidelity.dispose(), [fidelity]);
   const [assets, setAssets] = useState<BakedAsset[]>();
   const display = useRef<Awaited<ReturnType<typeof mountSponsorDisplay>> | undefined>(undefined);
   const lamps = useRef<ReturnType<typeof mountMarketLamps> | undefined>(undefined);
@@ -266,6 +277,13 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     }
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
+    if (reviewCamera) {
+      const [px, py, pz, qx, qy, qz, qw, fov] = reviewCamera;
+      camera.position.set(px, py, pz);
+      camera.quaternion.set(qx, qy, qz, qw);
+      view.fov = fov;
+      wallOffset = 0;
+    }
     if (camera instanceof PerspectiveCamera) {
       const changedFov = camera.fov !== view.fov;
       camera.fov = view.fov;
@@ -279,6 +297,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
         camera.updateProjectionMatrix();
       }
     }
+    if (assets) fidelity.updateEnvironment(scene, camera);
     if (curtain.current) curtain.current.style.opacity = String(runtime.revealOpacity);
     const current = zoneAt(runtime.pose.z);
     if (current !== zone.current) {

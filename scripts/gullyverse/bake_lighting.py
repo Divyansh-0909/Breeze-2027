@@ -11,7 +11,7 @@ plan=json.loads(Path(os.environ.get('GULLYVERSE_PLAN',str(Path(__file__).with_na
 source=Path(plan['source']['path']);sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();assert sha(source)==plan['source']['sha256']
 cached=Path(args.input or out/'contact-frontage-baked.blend');manifest=json.loads(Path(args.manifest or out/'manifest.json').read_text());assert manifest['source']['sha256']==plan['source']['sha256'];cacheSHA=sha(cached)
 quality=plan.get('quality',{});uvName=quality.get('uvName','RuntimeIrradianceUV');size=quality.get('resolution',2048);samples=quality.get('samples',256);rayBias=quality.get('rayBiasM',.001)
-bpy.ops.wm.open_mainfile(filepath=str(source));native=bpy.context.scene;assert native.name==plan['source']['scene'];native.frame_set(1);bpy.context.view_layer.update()
+bpy.ops.wm.open_mainfile(filepath=str(source));native=bpy.context.scene;assert native.name==plan['source']['scene'];native.frame_set(1);bpy.context.view_layer.update();sys.path.insert(0,str(Path(__file__).resolve().parent));import scene_overrides;scene_overrides.apply(native,plan)
 with bpy.data.libraries.load(str(cached))as(a,b):b.collections=['Runtime / contact-frontage']
 collection=b.collections[0];targets=list(collection.objects);scene=bpy.data.scenes.new('Runtime / clean lighting build only');scene.world=native.world.copy();scene.collection.children.link(collection);bpy.context.window.scene=scene
 def is_decal(ob):

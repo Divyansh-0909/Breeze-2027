@@ -3,12 +3,38 @@
   "version": "locked-rev15z-cypher-approach",
   "chunk": "cypher-approach",
   "source": {
-    "path": "/dev/shm/breeze-push-2026-11-20/recovery/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
+    "path": "/home/user/Breeze-2027/assets-source/gullyverse/locked-rev15z/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
     "sha256": "89e765de6bb68a58a6a2d17d4d6d7ea6c696a6750402ede19306bdddc6a71041",
     "scene": "REV15Z / Wide Contact window and restored graffiti",
     "sceneFingerprint": "2058dbdba49815ac4493ebd59d2023ebab26edce79d1e2afea143a98f1c1c590",
     "lockedBy": "User explicit art lock, 14 November 2026"
   },
+  "sceneOverrides": [
+    {
+      "id": "accommodation-left-wall",
+      "objects": [
+        "REV15Z / COMING above SOON graffiti",
+        "REV15Z / Accommodation shaded wall-lamp fixture",
+        "REV15Z / Accommodation local wall illumination"
+      ],
+      "from": [
+        -12.015,
+        14.009,
+        9.12
+      ],
+      "to": [
+        -16.884,
+        17.546,
+        8.97
+      ],
+      "facing": [
+        0.947,
+        -0.3214,
+        0
+      ],
+      "rotationDegrees": -108.75
+    }
+  ],
   "bake": {
     "engine": "Cycles CPU; combined bake-only receiver",
     "samples": 96,
@@ -676,13 +702,13 @@
         ]
       }
     ],
-    "rawPFMSHA256": "a5265f38284fc8478b94c736ed7d8fe7b23038d2f3d44d1741e90ff01b547db8",
-    "seconds": 6.7993416439985594,
+    "rawPFMSHA256": "16fce745c164df17961312df02f4ffdb0655dde8b23fc310fda6709d4e17e2e7",
+    "seconds": 5.36784012499993,
     "sampleBiasM": 0.001,
-    "previousBakedComponentSHA256": "62794abd57ebbead22c3b0a91b395a10f6d3ce8f24b2d7a4a42bb8b22e25a09e",
+    "previousBakedComponentSHA256": "732a19860a778eceed26257363e50c385d9f1395f5b5741efafbb57a93aea58c",
     "decalsWithoutShadow": [],
     "denoising": "Intel Open Image Denoise 2.5.1 RTLightmap high CPU; irradiance only",
-    "denoiseMAE": 0.00039912216016091406,
+    "denoiseMAE": 0.0003885075857397169,
     "range": 8,
     "encoding": "RGBM-linear; independent numeric alpha",
     "baselineURI": "lightmap.hdr",
@@ -700,8 +726,9 @@
       "lightmap.mip10.png"
     ],
     "mipFiltering": "Average denoised linear HDR before RGBM packing",
-    "RGBMRoundtripLitPixelMAE": 0.00020747146329483238,
-    "RGBMRoundtripMaxError": 0.01255613751981599
+    "RGBMRoundtripLitPixelMAE": 0.0002083770105382906,
+    "RGBMRoundtripMaxError": 0.013041557746866772,
+    "rawPositiveTexelFraction": 0.0677633285522461
   },
   "objects": [
     {
@@ -7012,33 +7039,33 @@
   "files": [
     {
       "file": "contact-frontage.png.glb",
-      "bytes": 10449024,
-      "sha256": "925547901279c93f4a82fb8a7a2b3f12379fcf9cd67f1c0c30fd043cc63e5d4f"
+      "bytes": 10449072,
+      "sha256": "1050c4f737e40b54550242a84fc7921bc18834bb5ab59c382ae6c3f1291768de"
     },
     {
       "file": "contact-frontage.optimized.glb",
-      "bytes": 6589056,
-      "sha256": "01614d3e35738f8a36fc946ef252e8ad1e99201df0865d4405e2f066fe265555"
+      "bytes": 6589156,
+      "sha256": "1cf8e1ffe27516a688f83919d402309d2e5827cd91e05416f2fd22e204337741"
     },
     {
       "file": "contact-frontage.mobile.glb",
-      "bytes": 2461880,
-      "sha256": "85e6dad4ec6390c59af1692ba46e003b16541ce310ee98a5768c3f144342244f"
+      "bytes": 2461964,
+      "sha256": "185a33cc1f856e137e4f3e2f2ab3fd5cff0bc4fbd6e8130fda001a32bcc9dcfb"
     },
     {
       "file": "lightmap.hdr",
-      "bytes": 1366268,
-      "sha256": "4683bc65a9bf4198613d25ba3f5cac6103e6dcd0a73f9c00ebd479349d452b24"
+      "bytes": 1381134,
+      "sha256": "157430eda77a048361fa7708dfe6e547bcac212f5b19d509de0671f312f862ca"
     },
     {
       "file": "lightmap.png",
-      "bytes": 306097,
-      "sha256": "c6bbbdf3c40b20268488f10560327bfe2f0fd39b09ac816b990f263b465c5fec"
+      "bytes": 306788,
+      "sha256": "94774a64accece53fc4388cb6ba57a4693a0bc21a28c35f7afe50bf1a29b477d"
     },
     {
       "file": "lightmap.ktx2",
-      "bytes": 396555,
-      "sha256": "449e714f3672e8b6750123a89935a2909dd617448961225e7e869477563cf9c1"
+      "bytes": 397348,
+      "sha256": "d6a6faf5cbfdcb05724f18d12f634257b239ec654ec2482038d587f303f68fde"
     },
     {
       "file": "transcoders/LICENSE-three",
@@ -7057,8 +7084,8 @@
     },
     {
       "file": "sponsor-led.png",
-      "bytes": 253393,
-      "sha256": "05ef28c268e74c3773d4c502a86df755efbdd9da4bfeebb6f198a8ccd4c147c7"
+      "bytes": 122361,
+      "sha256": "fe7e07f81c1a95617e821a93272f2b2f717aa36f52244cc8710ee41f99b8d47d"
     }
   ],
   "chunks": [
@@ -7073,8 +7100,8 @@
   "fullWorldIntegration": "PENDING",
   "sourceBakedDerivative": {
     "file": "contact-frontage-baked.blend",
-    "sha256": "971f94270f61f3de68ddfdbced31781a831bd2b96a9cacf56d4f8d6e0500bacb",
-    "bytes": 12917783
+    "sha256": "9fb0fc6799c864c3a70079c71d9c985d55744cabcec42db2deeebb01ce54c897",
+    "bytes": 13029563
   },
   "runtime": {
     "baseline": "contact-frontage.png.glb",
@@ -7085,44 +7112,45 @@
     "files": [
       {
         "file": "contact-frontage.png.glb",
-        "bytes": 10449024,
-        "sha256": "925547901279c93f4a82fb8a7a2b3f12379fcf9cd67f1c0c30fd043cc63e5d4f"
+        "bytes": 10449072,
+        "sha256": "1050c4f737e40b54550242a84fc7921bc18834bb5ab59c382ae6c3f1291768de"
       },
       {
         "file": "contact-frontage.optimized.glb",
-        "bytes": 6589056,
-        "sha256": "01614d3e35738f8a36fc946ef252e8ad1e99201df0865d4405e2f066fe265555"
+        "bytes": 6589156,
+        "sha256": "1cf8e1ffe27516a688f83919d402309d2e5827cd91e05416f2fd22e204337741"
       },
       {
         "file": "contact-frontage.mobile.glb",
-        "bytes": 2461880,
-        "sha256": "85e6dad4ec6390c59af1692ba46e003b16541ce310ee98a5768c3f144342244f"
+        "bytes": 2461964,
+        "sha256": "185a33cc1f856e137e4f3e2f2ab3fd5cff0bc4fbd6e8130fda001a32bcc9dcfb"
       },
       {
         "file": "lightmap.hdr",
-        "bytes": 1366268,
-        "sha256": "4683bc65a9bf4198613d25ba3f5cac6103e6dcd0a73f9c00ebd479349d452b24"
+        "bytes": 1381134,
+        "sha256": "157430eda77a048361fa7708dfe6e547bcac212f5b19d509de0671f312f862ca"
       },
       {
         "file": "lightmap.png",
-        "bytes": 306097,
-        "sha256": "c6bbbdf3c40b20268488f10560327bfe2f0fd39b09ac816b990f263b465c5fec"
+        "bytes": 306788,
+        "sha256": "94774a64accece53fc4388cb6ba57a4693a0bc21a28c35f7afe50bf1a29b477d"
       },
       {
         "file": "lightmap.ktx2",
-        "bytes": 396555,
-        "sha256": "449e714f3672e8b6750123a89935a2909dd617448961225e7e869477563cf9c1"
+        "bytes": 397348,
+        "sha256": "d6a6faf5cbfdcb05724f18d12f634257b239ec654ec2482038d587f303f68fde"
       }
     ]
   },
   "sponsorDisplay": {
-    "sourceStripSHA256": "f494f57a816b8fa8ab5ee52fc2e90408922706dd3336575a29a619cb5de390d3",
+    "sourceStripSHA256": "79bac0f3c87b8f13ab8d24996ee490f34f3784562cb1a6d12de88b3f63cc5ab3",
     "logoCount": 62,
-    "minimumGapCells": 72,
+    "minimumGapCells": 69,
     "periodCells": 10676,
     "cellsPerSecond": 30,
     "pixelsPreserved": true,
-    "atlas": "sponsor-led.png"
+    "atlas": "sponsor-led.png",
+    "inkExtraction": "scripts/gullyverse/build-sponsor-strip.py: ground-aware ink, no solid tiles"
   },
   "collision": {
     "adapter": "cypher-space.ts",

@@ -1,0 +1,1195 @@
+{
+ "version": "rev15z-fidelity-1",
+ "source": {
+  "path": "/dev/shm/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
+  "sha256": "89e765de6bb68a58a6a2d17d4d6d7ea6c696a6750402ede19306bdddc6a71041",
+  "scene": "REV15Z / Wide Contact window and restored graffiti",
+  "sceneFingerprint": "2058dbdba49815ac4493ebd59d2023ebab26edce79d1e2afea143a98f1c1c590",
+  "lockedBy": "User explicit art lock, 14 November 2026"
+ },
+ "road": {
+  "materials": {
+   "Runtime / REV15Z / Rooftop slab / 32m x 40m / asphalt repla": "mud",
+   "Runtime / REV15Z / Accessible ramp / 1 to 20 / asphalt replacem": "aggregate",
+   "Runtime / REV15Z / Accessible ramp / 1 to 20 / asphalt repl.001": "mud",
+   "Runtime / REV15Z / Accessible ramp / 1 to 20 / asphalt repl.002": "aggregate",
+   "Runtime / REV15Z / Accessible ramp / 1 to 20 / asphalt repl.003": "aggregate",
+   "Runtime / REV15Z / Accessible ramp / 1 to 20 / asphalt repl.004": "aggregate",
+   "Runtime / REV15Z / Flared ramp apron / asphalt replacement / ma": "aggregate",
+   "Runtime / REV15Z / Flared ramp apron / asphalt replacement .001": "mud",
+   "Runtime / REV15Z / Flared ramp apron / asphalt replacement .002": "aggregate",
+   "Runtime / REV15Z / Flared ramp apron / asphalt replacement .003": "aggregate",
+   "Runtime / REV15Z / Flared ramp apron / asphalt replacement .004": "aggregate",
+   "Runtime / REV15Z / Rooftop slab / 32m x 40m / asphalt replaceme": "aggregate",
+   "Runtime / REV15Z / Rooftop slab / 32m x 40m / asphalt repla.001": "mud",
+   "Runtime / REV15Z / Rooftop slab / 32m x 40m / asphalt repla.002": "aggregate",
+   "Runtime / REV15Z / Rooftop slab / 32m x 40m / asphalt repla.003": "aggregate",
+   "Runtime / REV15Z / Rooftop slab / 32m x 40m / asphalt repla.004": "aggregate",
+   "Runtime / REV15Z / Lane flat / 6.8m clear / asphalt replacement": "aggregate",
+   "Runtime / REV15Z / Lane flat / 6.8m clear / asphalt replace.001": "mud",
+   "Runtime / REV15Z / Lane flat / 6.8m clear / asphalt replace.002": "aggregate",
+   "Runtime / REV15Z / Lane flat / 6.8m clear / asphalt replace.003": "aggregate",
+   "Runtime / REV15Z / Lane flat / 6.8m clear / asphalt replace.004": "aggregate"
+  },
+  "mud": [
+   0.1845,
+   0.1811,
+   0.1715
+  ]
+ },
+ "textures": {
+  "chaar-diwari": {
+   "file": "chaar-diwari.ktx2",
+   "mobileFile": "chaar-diwari.mobile.ktx2"
+  },
+  "neha-kakkar": {
+   "file": "neha-kakkar.ktx2",
+   "mobileFile": "neha-kakkar.mobile.ktx2"
+  },
+  "ritviz": {
+   "file": "ritviz.ktx2",
+   "mobileFile": "ritviz.mobile.ktx2"
+  },
+  "supporting-atlas": {
+   "file": "supporting-atlas.ktx2",
+   "mobileFile": "supporting-atlas.mobile.ktx2"
+  },
+  "aggregate": {
+   "file": "aggregate-color.ktx2",
+   "mobileFile": "aggregate-color.mobile.ktx2"
+  }
+ },
+ "arts": [
+  {
+   "material": "ART / CHAAR DIWARI / painted rolled steel",
+   "texture": "chaar-diwari",
+   "kind": "shutter",
+   "lo": [
+    3.628,
+    -28.5,
+    5.95
+   ],
+   "hi": [
+    3.9,
+    -21.5,
+    8.85
+   ],
+   "objects": 19,
+   "u": {
+    "axis": "Y",
+    "ops": [
+     [
+      "SUBTRACT",
+      -25.0,
+      true
+     ],
+     [
+      "MULTIPLY",
+      -0.15873,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "v": {
+    "axis": "Z",
+    "ops": [
+     [
+      "SUBTRACT",
+      7.43,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.47619,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "normal": {
+    "axis": "X",
+    "ops": [
+     [
+      "MULTIPLY",
+      -1.0,
+      true
+     ]
+    ],
+    "threshold": 0.001
+   },
+   "rect": null,
+   "paint": [
+    0.185,
+    0.2125,
+    0.1925
+   ],
+   "id": "art-chaar-diwari-painted-rolled-steel",
+   "target": "Shutter slat"
+  },
+  {
+   "material": "ART / NEHA KAKKAR / painted rolled steel",
+   "texture": "neha-kakkar",
+   "kind": "shutter",
+   "lo": [
+    3.628,
+    -1.5,
+    6.55
+   ],
+   "hi": [
+    3.9,
+    5.5,
+    9.45
+   ],
+   "objects": 19,
+   "u": {
+    "axis": "Y",
+    "ops": [
+     [
+      "SUBTRACT",
+      2.0,
+      true
+     ],
+     [
+      "MULTIPLY",
+      -0.15873,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "v": {
+    "axis": "Z",
+    "ops": [
+     [
+      "SUBTRACT",
+      8.03,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.47619,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "normal": {
+    "axis": "X",
+    "ops": [
+     [
+      "MULTIPLY",
+      -1.0,
+      true
+     ]
+    ],
+    "threshold": 0.001
+   },
+   "rect": null,
+   "paint": [
+    0.185,
+    0.2125,
+    0.1925
+   ],
+   "id": "art-neha-kakkar-painted-rolled-steel",
+   "target": "Shutter slat"
+  },
+  {
+   "material": "ART / RITVIZ / painted rolled steel",
+   "texture": "ritviz",
+   "kind": "shutter",
+   "lo": [
+    -3.9,
+    -19.5,
+    5.95
+   ],
+   "hi": [
+    -3.628,
+    -12.5,
+    8.85
+   ],
+   "objects": 19,
+   "u": {
+    "axis": "Y",
+    "ops": [
+     [
+      "SUBTRACT",
+      -16.0,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.15873,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "v": {
+    "axis": "Z",
+    "ops": [
+     [
+      "SUBTRACT",
+      7.43,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.47619,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "normal": {
+    "axis": "X",
+    "ops": [
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ]
+    ],
+    "threshold": 0.001
+   },
+   "rect": null,
+   "paint": [
+    0.185,
+    0.2125,
+    0.1925
+   ],
+   "id": "art-ritviz-painted-rolled-steel",
+   "target": "Shutter slat"
+  },
+  {
+   "material": "ART / lane-pier-left / Shop pier.001",
+   "texture": "supporting-atlas",
+   "kind": "wall",
+   "lo": [
+    -4.28,
+    -21.625,
+    5.95
+   ],
+   "hi": [
+    -3.48,
+    -21.075,
+    9.65
+   ],
+   "objects": 1,
+   "u": {
+    "axis": "Z",
+    "ops": [
+     [
+      "SUBTRACT",
+      7.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.641026,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "v": {
+    "axis": "Y",
+    "ops": [
+     [
+      "SUBTRACT",
+      -21.15,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.923077,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ]
+    ]
+   },
+   "normal": {
+    "axis": "X",
+    "ops": [
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ]
+    ],
+    "threshold": 0.001
+   },
+   "rect": {
+    "u": {
+     "axis": "Z",
+     "ops": [
+      [
+       "SUBTRACT",
+       7.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       0.641026,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    },
+    "v": {
+     "axis": "Y",
+     "ops": [
+      [
+       "SUBTRACT",
+       -21.15,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.923077,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    }
+   },
+   "paint": null,
+   "id": "art-lane-pier-left-shop-pier-001",
+   "target": "Shop pier"
+  },
+  {
+   "material": "ART / lane-pier-right / Building / 1 / 1",
+   "texture": "supporting-atlas",
+   "kind": "wall",
+   "lo": [
+    3.95,
+    -20.3,
+    5.95
+   ],
+   "hi": [
+    11.25,
+    -11.7,
+    16.55
+   ],
+   "objects": 1,
+   "u": {
+    "axis": "Z",
+    "ops": [
+     [
+      "SUBTRACT",
+      7.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.641026,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ]
+    ]
+   },
+   "v": {
+    "axis": "Y",
+    "ops": [
+     [
+      "SUBTRACT",
+      -12.15,
+      true
+     ],
+     [
+      "MULTIPLY",
+      -1.923077,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ]
+    ]
+   },
+   "normal": {
+    "axis": "X",
+    "ops": [
+     [
+      "MULTIPLY",
+      -1.0,
+      true
+     ]
+    ],
+    "threshold": 0.001
+   },
+   "rect": {
+    "u": {
+     "axis": "Z",
+     "ops": [
+      [
+       "SUBTRACT",
+       7.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       0.641026,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    },
+    "v": {
+     "axis": "Y",
+     "ops": [
+      [
+       "SUBTRACT",
+       -12.15,
+       true
+      ],
+      [
+       "MULTIPLY",
+       -1.923077,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    }
+   },
+   "paint": null,
+   "id": "art-lane-pier-right-building-1-1",
+   "target": "Building / 1 / 1"
+  },
+  {
+   "material": "ART / lane-pier-right / Shop pier.011",
+   "texture": "supporting-atlas",
+   "kind": "wall",
+   "lo": [
+    3.48,
+    -12.625,
+    5.95
+   ],
+   "hi": [
+    4.28,
+    -12.075,
+    9.65
+   ],
+   "objects": 1,
+   "u": {
+    "axis": "Z",
+    "ops": [
+     [
+      "SUBTRACT",
+      7.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.641026,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ]
+    ]
+   },
+   "v": {
+    "axis": "Y",
+    "ops": [
+     [
+      "SUBTRACT",
+      -12.15,
+      true
+     ],
+     [
+      "MULTIPLY",
+      -1.923077,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ]
+    ]
+   },
+   "normal": {
+    "axis": "X",
+    "ops": [
+     [
+      "MULTIPLY",
+      -1.0,
+      true
+     ]
+    ],
+    "threshold": 0.001
+   },
+   "rect": {
+    "u": {
+     "axis": "Z",
+     "ops": [
+      [
+       "SUBTRACT",
+       7.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       0.641026,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    },
+    "v": {
+     "axis": "Y",
+     "ops": [
+      [
+       "SUBTRACT",
+       -12.15,
+       true
+      ],
+      [
+       "MULTIPLY",
+       -1.923077,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    }
+   },
+   "paint": null,
+   "id": "art-lane-pier-right-shop-pier-011",
+   "target": "Shop pier"
+  },
+  {
+   "material": "ART / return-right / Entry parapet return.001",
+   "texture": "supporting-atlas",
+   "kind": "wall",
+   "lo": [
+    8.75,
+    13.95,
+    7.15
+   ],
+   "hi": [
+    15.75,
+    14.35,
+    8.35
+   ],
+   "objects": 1,
+   "u": {
+    "axis": "X",
+    "ops": [
+     [
+      "SUBTRACT",
+      11.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.384615,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ]
+    ]
+   },
+   "v": {
+    "axis": "Z",
+    "ops": [
+     [
+      "SUBTRACT",
+      7.75,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.153846,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "normal": {
+    "axis": "Y",
+    "ops": [
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ]
+    ],
+    "threshold": 0.001
+   },
+   "rect": {
+    "u": {
+     "axis": "X",
+     "ops": [
+      [
+       "SUBTRACT",
+       11.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       0.384615,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    },
+    "v": {
+     "axis": "Z",
+     "ops": [
+      [
+       "SUBTRACT",
+       7.75,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.153846,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    }
+   },
+   "paint": null,
+   "id": "art-return-right-entry-parapet-return-001",
+   "target": "Entry parapet return"
+  },
+  {
+   "material": "PILOT / ART / lane-pier-left / Building / -1 / 0",
+   "texture": "supporting-atlas",
+   "kind": "wall",
+   "lo": [
+    -11.25,
+    -29.3,
+    5.95
+   ],
+   "hi": [
+    -3.95,
+    -20.7,
+    15.25
+   ],
+   "objects": 1,
+   "u": {
+    "axis": "Z",
+    "ops": [
+     [
+      "SUBTRACT",
+      7.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.641026,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.0,
+      true
+     ]
+    ]
+   },
+   "v": {
+    "axis": "Y",
+    "ops": [
+     [
+      "SUBTRACT",
+      -21.15,
+      true
+     ],
+     [
+      "MULTIPLY",
+      1.923077,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ],
+     [
+      "MULTIPLY",
+      0.5,
+      true
+     ],
+     [
+      "ADD",
+      0.5,
+      true
+     ]
+    ]
+   },
+   "normal": {
+    "axis": "X",
+    "ops": [
+     [
+      "MULTIPLY",
+      1.0,
+      true
+     ]
+    ],
+    "threshold": 0.001
+   },
+   "rect": {
+    "u": {
+     "axis": "Z",
+     "ops": [
+      [
+       "SUBTRACT",
+       7.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       0.641026,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    },
+    "v": {
+     "axis": "Y",
+     "ops": [
+      [
+       "SUBTRACT",
+       -21.15,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.923077,
+       true
+      ],
+      [
+       "ADD",
+       0.5,
+       true
+      ],
+      [
+       "MULTIPLY",
+       1.0,
+       true
+      ],
+      [
+       "ADD",
+       0.0,
+       true
+      ]
+     ]
+    }
+   },
+   "paint": null,
+   "id": "pilot-art-lane-pier-left-building-1-0",
+   "target": "Building / -1 / 0"
+  }
+ ],
+ "probes": [
+  {
+   "id": "market-south",
+   "position": [
+    0.0,
+    7.6,
+    21.0
+   ],
+   "intensity": 1.0,
+   "file": "probe-market-south.hdr",
+   "mobileFile": "probe-market-south.mobile.hdr"
+  },
+  {
+   "id": "market-north",
+   "position": [
+    0.0,
+    7.8,
+    6.0
+   ],
+   "intensity": 1.0,
+   "file": "probe-market-north.hdr",
+   "mobileFile": "probe-market-north.mobile.hdr"
+  },
+  {
+   "id": "approach",
+   "position": [
+    0.0,
+    8.35,
+    -5.0
+   ],
+   "intensity": 1.0,
+   "file": "probe-approach.hdr",
+   "mobileFile": "probe-approach.mobile.hdr"
+  },
+  {
+   "id": "gate",
+   "position": [
+    0.0,
+    8.78,
+    -13.5
+   ],
+   "intensity": 1.0,
+   "file": "probe-gate.hdr",
+   "mobileFile": "probe-gate.mobile.hdr"
+  },
+  {
+   "id": "forecourt",
+   "position": [
+    0.0,
+    8.8,
+    -19.0
+   ],
+   "intensity": 1.0,
+   "file": "probe-forecourt.hdr",
+   "mobileFile": "probe-forecourt.mobile.hdr"
+  },
+  {
+   "id": "plaza",
+   "position": [
+    0.0,
+    8.8,
+    -27.0
+   ],
+   "intensity": 1.0,
+   "file": "probe-plaza.hdr",
+   "mobileFile": "probe-plaza.mobile.hdr"
+  },
+  {
+   "id": "screen",
+   "position": [
+    0.0,
+    8.8,
+    -35.0
+   ],
+   "intensity": 1.0,
+   "file": "probe-screen.hdr",
+   "mobileFile": "probe-screen.mobile.hdr"
+  }
+ ],
+ "sky": {
+  "color": [
+   0.0063,
+   0.0094,
+   0.0153
+  ]
+ }
+}
