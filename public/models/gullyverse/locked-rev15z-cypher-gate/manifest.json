@@ -3,12 +3,38 @@
   "version": "locked-rev15z-cypher-gate",
   "chunk": "cypher-gate",
   "source": {
-    "path": "/dev/shm/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
+    "path": "/home/user/Breeze-2027/assets-source/gullyverse/locked-rev15z/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
     "sha256": "89e765de6bb68a58a6a2d17d4d6d7ea6c696a6750402ede19306bdddc6a71041",
     "scene": "REV15Z / Wide Contact window and restored graffiti",
     "sceneFingerprint": "2058dbdba49815ac4493ebd59d2023ebab26edce79d1e2afea143a98f1c1c590",
     "lockedBy": "User explicit art lock, 14 November 2026"
   },
+  "sceneOverrides": [
+    {
+      "id": "accommodation-left-wall",
+      "objects": [
+        "REV15Z / COMING above SOON graffiti",
+        "REV15Z / Accommodation shaded wall-lamp fixture",
+        "REV15Z / Accommodation local wall illumination"
+      ],
+      "from": [
+        -12.015,
+        14.009,
+        9.12
+      ],
+      "to": [
+        -16.884,
+        17.546,
+        8.97
+      ],
+      "facing": [
+        0.947,
+        -0.3214,
+        0
+      ],
+      "rotationDegrees": -108.75
+    }
+  ],
   "bake": {
     "engine": "Cycles CPU; combined bake-only receiver",
     "samples": 128,
@@ -502,13 +528,13 @@
         ]
       }
     ],
-    "rawPFMSHA256": "8e4082c10052a710aeac546ec99e6788d201476e61416697737252f78eb1236f",
-    "seconds": 115.52592167300008,
+    "rawPFMSHA256": "9462d28ded4fbb34090f8f3c0139af8b5f6881a9201cc7a033612135a279fba9",
+    "seconds": 111.42874156700054,
     "sampleBiasM": 0.001,
-    "previousBakedComponentSHA256": "88cfdd3ff3113974ac0e3786e4ac844b89962a73d77356d771b456d058425aae",
+    "previousBakedComponentSHA256": "9a7524d8f4537205a647650ee1ae451458ffb09aa540aa79db426696988d3f3d",
     "decalsWithoutShadow": [],
     "denoising": "Intel Open Image Denoise 2.5.1 RTLightmap high CPU; irradiance only",
-    "denoiseMAE": 0.000562325760256499,
+    "denoiseMAE": 0.0005628912476822734,
     "range": 8,
     "encoding": "RGBM-linear; independent numeric alpha",
     "baselineURI": "lightmap.hdr",
@@ -526,8 +552,9 @@
       "lightmap.mip10.png"
     ],
     "mipFiltering": "Average denoised linear HDR before RGBM packing",
-    "RGBMRoundtripLitPixelMAE": 8.440052825771314e-05,
-    "RGBMRoundtripMaxError": 0.010407355351431447
+    "RGBMRoundtripLitPixelMAE": 8.442415049483523e-05,
+    "RGBMRoundtripMaxError": 0.009832549888965758,
+    "rawPositiveTexelFraction": 0.4689292907714844
   },
   "objects": [
     {
@@ -10159,33 +10186,33 @@
   "files": [
     {
       "file": "contact-frontage.png.glb",
-      "bytes": 16695676,
-      "sha256": "8c7a70b8b73a1828e72b324aa35cd21d12382e3aa9acfce205d082d698cdd6d1"
+      "bytes": 16695004,
+      "sha256": "42545e387a2883e0c2538effcff4285db5215dd9116f662538762e7152bd32b4"
     },
     {
       "file": "contact-frontage.optimized.glb",
-      "bytes": 7587248,
-      "sha256": "5ac91c59592ae91242b8b45cc100b197dbb2c0051970c6e32bd5cd6c9d6c82dc"
+      "bytes": 7587216,
+      "sha256": "644f24f9ab8203ebcfd3cabc2e18961253be398e027a72014d952c91990406ee"
     },
     {
       "file": "contact-frontage.mobile.glb",
-      "bytes": 2523048,
-      "sha256": "b22ea5c0eed93d8ccf03b0a61f04c768ca53fe7d03f3d7eff03df3c32dbd22b2"
+      "bytes": 2523200,
+      "sha256": "4208087be31b53c5450b25b4aa16904401229289652982d8bb1840e5a65b2395"
     },
     {
       "file": "lightmap.hdr",
-      "bytes": 3228908,
-      "sha256": "799b60ec9835868328d32e919520e028772290b1e1042ee65c15ccff76210d00"
+      "bytes": 3228871,
+      "sha256": "8263c3153a35547548ff0e83ed62a2a1d3e68805d4ce3a94baf23d9a72a91b9a"
     },
     {
       "file": "lightmap.png",
-      "bytes": 1376083,
-      "sha256": "431effdac27133e0f59187f479e788a844d8168308b8325a9cb55c577c9a391d"
+      "bytes": 1378961,
+      "sha256": "6b4544ae54d57d051402ac1ee6c5468dedb82eca36ea5c3505f9bd48ff0511f9"
     },
     {
       "file": "lightmap.ktx2",
-      "bytes": 1794490,
-      "sha256": "7540b5c45f8a7ea7247cc8aa0cc0c687be6739651ed0dcfa2610f92f2b7b3cec"
+      "bytes": 1797423,
+      "sha256": "6e102238e7c83ed9597d143346ab3b908a3e2d0a5ac680155a4cce7575b25d6d"
     },
     {
       "file": "transcoders/LICENSE-three",
@@ -10215,8 +10242,8 @@
   "fullWorldIntegration": "PENDING",
   "sourceBakedDerivative": {
     "file": "contact-frontage-baked.blend",
-    "sha256": "790bc03707e0e92abd86c615572decdcbe0e16abf9ffcf968750ece76f24a0de",
-    "bytes": 24748395
+    "sha256": "39eb6a606b87de7121749599a5d13e93f21807c687c3aaac7eba7ddb51cb1215",
+    "bytes": 24787474
   },
   "runtime": {
     "baseline": "contact-frontage.png.glb",
@@ -10227,33 +10254,33 @@
     "files": [
       {
         "file": "contact-frontage.png.glb",
-        "bytes": 16695676,
-        "sha256": "8c7a70b8b73a1828e72b324aa35cd21d12382e3aa9acfce205d082d698cdd6d1"
+        "bytes": 16695004,
+        "sha256": "42545e387a2883e0c2538effcff4285db5215dd9116f662538762e7152bd32b4"
       },
       {
         "file": "contact-frontage.optimized.glb",
-        "bytes": 7587248,
-        "sha256": "5ac91c59592ae91242b8b45cc100b197dbb2c0051970c6e32bd5cd6c9d6c82dc"
+        "bytes": 7587216,
+        "sha256": "644f24f9ab8203ebcfd3cabc2e18961253be398e027a72014d952c91990406ee"
       },
       {
         "file": "contact-frontage.mobile.glb",
-        "bytes": 2523048,
-        "sha256": "b22ea5c0eed93d8ccf03b0a61f04c768ca53fe7d03f3d7eff03df3c32dbd22b2"
+        "bytes": 2523200,
+        "sha256": "4208087be31b53c5450b25b4aa16904401229289652982d8bb1840e5a65b2395"
       },
       {
         "file": "lightmap.hdr",
-        "bytes": 3228908,
-        "sha256": "799b60ec9835868328d32e919520e028772290b1e1042ee65c15ccff76210d00"
+        "bytes": 3228871,
+        "sha256": "8263c3153a35547548ff0e83ed62a2a1d3e68805d4ce3a94baf23d9a72a91b9a"
       },
       {
         "file": "lightmap.png",
-        "bytes": 1376083,
-        "sha256": "431effdac27133e0f59187f479e788a844d8168308b8325a9cb55c577c9a391d"
+        "bytes": 1378961,
+        "sha256": "6b4544ae54d57d051402ac1ee6c5468dedb82eca36ea5c3505f9bd48ff0511f9"
       },
       {
         "file": "lightmap.ktx2",
-        "bytes": 1794490,
-        "sha256": "7540b5c45f8a7ea7247cc8aa0cc0c687be6739651ed0dcfa2610f92f2b7b3cec"
+        "bytes": 1797423,
+        "sha256": "6e102238e7c83ed9597d143346ab3b908a3e2d0a5ac680155a4cce7575b25d6d"
       }
     ]
   },
