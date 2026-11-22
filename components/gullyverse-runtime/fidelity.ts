@@ -15,6 +15,9 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
  * - Reflection probes: Cycles panoramas rendered from the master at street level provide the specular
  *   environment the baked diffuse lightmaps cannot (wet road, galvanised metal, glass) and the night sky.
  *   Lightmapped surfaces keep their baked diffuse light and take only specular from the probe.
+ * - Lamp highlights: Blender light objects are invisible to camera rays, so the probes lack them. The
+ *   nearest source lights drive a fixed pool of spot lights that add specular only on lightmapped
+ *   surfaces (the baked lightmap already holds their diffuse light, so it is not counted twice).
  */
 
 type Op = [string, number, boolean];
@@ -26,12 +29,17 @@ export type ArtSpec = {
   paint: [number, number, number] | null;
 };
 export type Probe = { id: string; position: [number, number, number]; file: string; mobileFile: string; intensity: number };
+export type SourceLight = {
+  name: string; type: string; position: [number, number, number]; direction: [number, number, number];
+  color: [number, number, number]; intensity: number; angle: number; penumbra: number;
+};
 export type FidelityData = {
   version: string;
   road: { materials: Record<string, "aggregate" | "mud">; mud: [number, number, number] };
   textures: Record<string, { file: string; mobileFile: string }>;
   arts: ArtSpec[];
   probes: Probe[];
+  lights: SourceLight[];
   sky: { color: [number, number, number] };
 };
 
@@ -98,8 +106,46 @@ export class Fidelity {
     } finally { pmrem.dispose(); }
   }
 
+  private lightPool: THREE.SpotLight[] = [];
+  private lightOrder: SourceLight[] = [];
+  private lightCheck = new THREE.Vector3(Infinity, 0, 0);
+
+  /** Keeps a fixed number of spot lights (no shader recompiles) on the source lights nearest the camera. */
+  private updateLights(scene: THREE.Scene, camera: THREE.Camera) {
+    if (!this.data?.lights?.length) return;
+    if (!this.lightPool.length) {
+      const count = this.mobile ? 4 : 8;
+      for (let i = 0; i < count; i++) {
+        const light = new THREE.SpotLight(0xffffff, 0, 0, Math.PI / 2, 0.5, 2);
+        light.castShadow = false;
+        scene.add(light, light.target);
+        this.lightPool.push(light);
+      }
+    }
+    // Re-sort only after the camera moves half a metre.
+    if (camera.position.distanceToSquared(this.lightCheck) < 0.25) return;
+    this.lightCheck.copy(camera.position);
+    const { x, y, z } = camera.position;
+    this.lightOrder = [...this.data.lights].sort((a, b) =>
+      (a.position[0] - x) ** 2 + (a.position[1] - y) ** 2 + (a.position[2] - z) ** 2 -
+      ((b.position[0] - x) ** 2 + (b.position[1] - y) ** 2 + (b.position[2] - z) ** 2));
+    this.lightPool.forEach((light, i) => {
+      const source = this.lightOrder[i];
+      if (!source) { light.intensity = 0; return; }
+      light.position.set(...source.position);
+      light.target.position.set(source.position[0] + source.direction[0], source.position[1] + source.direction[1],
+        source.position[2] + source.direction[2]);
+      light.target.updateMatrixWorld();
+      light.color.setRGB(...source.color);
+      light.intensity = source.intensity;
+      light.angle = Math.min(source.angle, Math.PI / 2);
+      light.penumbra = source.penumbra;
+    });
+  }
+
   /** Chooses the nearest street-level probe for reflections and sky. Call each frame with the camera. */
   updateEnvironment(scene: THREE.Scene, camera: THREE.Camera) {
+    this.updateLights(scene, camera);
     if (!this.probeEnvs.length) return;
     let best = 0, bestDistance = Infinity;
     this.probeEnvs.forEach(({ probe }, i) => {
@@ -170,6 +216,9 @@ export class Fidelity {
 
   /** Adds artwork projection to a standard-material shader. */
   patch(shader: { vertexShader: string; fragmentShader: string; uniforms: Record<string, { value: unknown }> }, m: THREE.Material) {
+    // Baked lightmaps already hold every source light's diffuse contribution; runtime lights add specular.
+    shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_end>",
+      "#include <lights_fragment_end>\nreflectedLight.directDiffuse = vec3(0.0);");
     const arts = ((m.userData.breezeArts as string[] | undefined) ?? [])
       .map(id => this.data.arts.find(a => a.id === id)!).filter(Boolean);
     if (!arts.length) return;
@@ -221,6 +270,7 @@ metalnessFactor *= 1.0 - breezePaint * (1.0 - breezeShutter);`);
 
   dispose() {
     this.disposed = true;
+    this.lightPool.forEach(light => { light.removeFromParent(); light.target.removeFromParent(); light.dispose(); });
     this.textures.forEach(t => t.dispose());
     this.probeEnvs.forEach(p => p.env.dispose());
   }

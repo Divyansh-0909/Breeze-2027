@@ -31,6 +31,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("artspecs", type=Path)
     parser.add_argument("probes", type=Path)
+    parser.add_argument("lights", type=Path)
     args = parser.parse_args()
     road = {}
     for manifest in sorted(glob.glob(str(ROOT / "public/models/gullyverse/locked-rev15z-*/manifest.json"))):
@@ -56,11 +57,14 @@ def main():
     textures = {name: {"file": f"{name}.ktx2", "mobileFile": f"{name}.mobile.ktx2"}
                 for name in sorted({a["texture"] for a in arts})}
     textures["aggregate"] = {"file": "aggregate-color.ktx2", "mobileFile": "aggregate-color.mobile.ktx2"}
+    # Broad ambient fills read as one sharp false highlight from a point source: diffuse-only (baked).
+    broad = ("Moon /", "Rooftop ambient spill", "Soft screen spill", "Poster wall gentle spill")
+    lights = [light for light in json.loads(args.lights.read_text()) if not any(b in light["name"] for b in broad)]
     manifest = {
-        "version": "rev15z-fidelity-1",
+        "version": "rev15z-fidelity-2",
         "source": json.loads((ROOT / "scripts/gullyverse/export-plan.json").read_text())["source"],
         "road": {"materials": road, "mud": [round(srgb_to_linear(c), 4) for c in MUD_MEAN]},
-        "textures": textures, "arts": arts, "probes": probes,
+        "textures": textures, "arts": arts, "probes": probes, "lights": lights,
         # World shader "REV15P / Low cool night ambient": a constant linear colour (Cycles, geometry hidden).
         "sky": {"color": [0.0063, 0.0094, 0.0153]},
     }

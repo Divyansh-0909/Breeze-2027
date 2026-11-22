@@ -3,12 +3,38 @@
   "version": "locked-rev15z-market-south",
   "chunk": "market-south",
   "source": {
-    "path": "/dev/shm/breeze-push-2026-11-20/recovery/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
+    "path": "/home/user/Breeze-2027/assets-source/gullyverse/locked-rev15z/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
     "sha256": "89e765de6bb68a58a6a2d17d4d6d7ea6c696a6750402ede19306bdddc6a71041",
     "scene": "REV15Z / Wide Contact window and restored graffiti",
     "sceneFingerprint": "2058dbdba49815ac4493ebd59d2023ebab26edce79d1e2afea143a98f1c1c590",
     "lockedBy": "User explicit art lock, 14 November 2026"
   },
+  "sceneOverrides": [
+    {
+      "id": "accommodation-left-wall",
+      "objects": [
+        "REV15Z / COMING above SOON graffiti",
+        "REV15Z / Accommodation shaded wall-lamp fixture",
+        "REV15Z / Accommodation local wall illumination"
+      ],
+      "from": [
+        -12.015,
+        14.009,
+        9.12
+      ],
+      "to": [
+        -16.884,
+        17.546,
+        8.97
+      ],
+      "facing": [
+        0.947,
+        -0.3214,
+        0
+      ],
+      "rotationDegrees": -108.75
+    }
+  ],
   "bake": {
     "engine": "Cycles CPU; combined bake-only receiver",
     "samples": 96,
@@ -402,17 +428,19 @@
       },
       {
         "node": "Runtime / REV15Z / Closed rolling shutter",
-        "channel": 1,
+        "channel": 2,
         "uvLayers": [
           "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
       {
         "node": "Runtime / REV15Z / Closed rolling shutter.001",
-        "channel": 1,
+        "channel": 2,
         "uvLayers": [
           "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
@@ -999,20 +1027,20 @@
       },
       {
         "node": "Runtime / REV15Z / PILOT / Counter",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / PILOT / Shop canopy",
         "channel": 3,
         "uvLayers": [
           "UVMap",
           "PILOT_world_metres",
           "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / PILOT / Shop canopy",
+        "channel": 2,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
           "RuntimeIrradianceUV"
         ]
       },
@@ -1095,19 +1123,91 @@
       },
       {
         "node": "Runtime / REV15Z / PILOT / Shop stock shelf",
-        "channel": 2,
+        "channel": 3,
         "uvLayers": [
           "UVMap",
           "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / PILOT / Shop stock shelf.001",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / PILOT / Shop stock shelf.002",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / PILOT / Shop stock shelf.003",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / PILOT / Shop stock shelf.004",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / PILOT / Shop stock shelf.005",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
       {
         "node": "Runtime / REV15Z / PILOT / Shop stock shelf.006",
-        "channel": 2,
+        "channel": 3,
         "uvLayers": [
           "UVMap",
           "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / PILOT / Shop stock shelf.007",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / PILOT / Shop stock shelf.008",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
@@ -1131,24 +1231,6 @@
       },
       {
         "node": "Runtime / REV15Z / PILOT / awning standing seam",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / PILOT / awning standing seam.001",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / PILOT / awning standing seam.005",
         "channel": 2,
         "uvLayers": [
           "UVMap",
@@ -1217,24 +1299,6 @@
         "node": "Runtime / REV15Z / PILOT / gutter silt channel.001",
         "channel": 1,
         "uvLayers": [
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / PILOT / jamb bolt.003",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / PILOT / jamb bolt.009",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
           "PILOT_world_metres",
           "RuntimeIrradianceUV"
         ]
@@ -1579,33 +1643,351 @@
       },
       {
         "node": "Runtime / REV15Z / Shop warm interior",
-        "channel": 1,
+        "channel": 2,
         "uvLayers": [
           "UVMap",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
       {
         "node": "Runtime / REV15Z / Shop warm interior.003",
-        "channel": 1,
+        "channel": 2,
         "uvLayers": [
           "UVMap",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
       {
         "node": "Runtime / REV15Z / Shutter slat",
-        "channel": 1,
+        "channel": 2,
         "uvLayers": [
           "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.001",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.002",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.003",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.004",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.005",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.006",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.007",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.008",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.009",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.010",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.011",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.012",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.013",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.014",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.015",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.016",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.017",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
       {
         "node": "Runtime / REV15Z / Shutter slat.018",
-        "channel": 1,
+        "channel": 2,
         "uvLayers": [
           "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.019",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.020",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.021",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.022",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.023",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.024",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.025",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.026",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.027",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.028",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.029",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.030",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.031",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.032",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.033",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.034",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Shutter slat.035",
+        "channel": 2,
+        "uvLayers": [
+          "Local_metal_tangent_UV",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Store-edge crate",
+        "channel": 1,
+        "uvLayers": [
+          "UVMap",
           "RuntimeIrradianceUV"
         ]
       },
@@ -1619,6 +2001,14 @@
       },
       {
         "node": "Runtime / REV15Z / Store-edge crate.008",
+        "channel": 1,
+        "uvLayers": [
+          "UVMap",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / Store-edge crate.010",
         "channel": 1,
         "uvLayers": [
           "UVMap",
@@ -1644,56 +2034,60 @@
       },
       {
         "node": "Runtime / REV15Z / WORLD / Cantilever balcony",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / WORLD / Cantilever balcony.001",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / WORLD / Cantilever balcony.004",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / WORLD / Cantilever balcony.005",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / WORLD / Counter.003",
-        "channel": 2,
-        "uvLayers": [
-          "UVMap",
-          "PILOT_world_metres",
-          "RuntimeIrradianceUV"
-        ]
-      },
-      {
-        "node": "Runtime / REV15Z / WORLD / Shop canopy.004",
         "channel": 3,
         "uvLayers": [
           "UVMap",
           "PILOT_world_metres",
           "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Cantilever balcony.001",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Cantilever balcony.004",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Cantilever balcony.005",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Counter.003",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Shop canopy.004",
+        "channel": 2,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
           "RuntimeIrradianceUV"
         ]
       },
@@ -1796,19 +2190,91 @@
       },
       {
         "node": "Runtime / REV15Z / WORLD / Shop stock shelf.027",
-        "channel": 2,
+        "channel": 3,
         "uvLayers": [
           "UVMap",
           "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Shop stock shelf.028",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Shop stock shelf.029",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Shop stock shelf.030",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Shop stock shelf.031",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Shop stock shelf.032",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
       {
         "node": "Runtime / REV15Z / WORLD / Shop stock shelf.033",
-        "channel": 2,
+        "channel": 3,
         "uvLayers": [
           "UVMap",
           "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Shop stock shelf.034",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Shop stock shelf.035",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
@@ -1868,19 +2334,161 @@
       },
       {
         "node": "Runtime / REV15Z / WORLD / Window sill",
-        "channel": 2,
+        "channel": 3,
         "uvLayers": [
           "UVMap",
           "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.001",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.002",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.003",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.004",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.005",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.006",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.007",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
       {
         "node": "Runtime / REV15Z / WORLD / Window sill.016",
-        "channel": 2,
+        "channel": 3,
         "uvLayers": [
           "UVMap",
           "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.017",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.018",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.019",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.020",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.021",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.022",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
+          "RuntimeIrradianceUV"
+        ]
+      },
+      {
+        "node": "Runtime / REV15Z / WORLD / Window sill.023",
+        "channel": 3,
+        "uvLayers": [
+          "UVMap",
+          "PILOT_world_metres",
+          "RuntimeLightmapUV",
           "RuntimeIrradianceUV"
         ]
       },
@@ -2038,14 +2646,14 @@
         ]
       }
     ],
-    "rawPFMSHA256": "62635e0d03d73c0447eaf89ea6c9492ca1fb83a24b3f454dad26f8a97926b25e",
-    "seconds": 39.055737715996656,
+    "rawPFMSHA256": "5d7801b2da37c47001801aca9e74c9fd1e1f1a832f76b453130864dc772a579e",
+    "seconds": 11.146307332000106,
     "sampleBiasM": 0.001,
-    "previousBakedComponentSHA256": "51d2dad3b18cd911b651fd32da3ad671b1f525489f242e042dc50cd28599777f",
+    "previousBakedComponentSHA256": "fee78dc62b626fd7db425ba02fa2742ee78d110dce45473b1be23a70ee76f33c",
     "decalsWithoutShadow": [],
     "denoising": "Intel Open Image Denoise 2.5.1 RTLightmap high CPU; irradiance only",
-    "denoiseMAE": 0.0003786727029364556,
-    "range": 8,
+    "denoiseMAE": 0.0005341063952073455,
+    "range": 16,
     "encoding": "RGBM-linear; independent numeric alpha",
     "baselineURI": "lightmap.hdr",
     "mipmaps": [
@@ -2062,8 +2670,9 @@
       "lightmap.mip10.png"
     ],
     "mipFiltering": "Average denoised linear HDR before RGBM packing",
-    "RGBMRoundtripLitPixelMAE": 9.134238780539608e-05,
-    "RGBMRoundtripMaxError": 0.01428066156864638
+    "RGBMRoundtripLitPixelMAE": 0.00013953955118791667,
+    "RGBMRoundtripMaxError": 0.02069895018709822,
+    "rawPositiveTexelFraction": 0.36263370513916016
   },
   "objects": [
     {
@@ -2340,7 +2949,7 @@
         "UVMap"
       ],
       "originalMaterials": [
-        "CC0 / scuffed cement / matte structural concrete"
+        "ART / lane-pier-right / Building / 1 / 1"
       ]
     },
     {
@@ -2351,7 +2960,7 @@
         "Local_metal_tangent_UV"
       ],
       "originalMaterials": [
-        "Galvanised faded shutter"
+        "ART / RITVIZ / painted rolled steel"
       ]
     },
     {
@@ -2362,7 +2971,7 @@
         "Local_metal_tangent_UV"
       ],
       "originalMaterials": [
-        "Galvanised faded shutter"
+        "ART / CHAAR DIWARI / painted rolled steel"
       ]
     },
     {
@@ -3483,7 +4092,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / muted limewash"
+        "PILOT / ART / lane-pier-left / Building / -1 / 0"
       ]
     },
     {
@@ -3495,7 +4104,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "PILOT / CC0 / worn plaster / aged petrol paint"
       ]
     },
     {
@@ -3507,7 +4116,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Worn wood"
+        "PILOT / worn plywood edge"
       ]
     },
     {
@@ -3519,7 +4128,21 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "PILOT / folded galvanised sheet"
+      ],
+      "batchedSourceObjects": [
+        "REV15Z / PILOT / awning standing seam.001",
+        "REV15Z / PILOT / awning standing seam.002",
+        "REV15Z / PILOT / awning standing seam.003",
+        "REV15Z / PILOT / awning standing seam.004",
+        "REV15Z / PILOT / conduit saddle.003",
+        "REV15Z / PILOT / conduit saddle.004",
+        "REV15Z / PILOT / conduit saddle.005",
+        "REV15Z / PILOT / rolled head housing",
+        "REV15Z / PILOT / sign bracket plate.001",
+        "REV15Z / PILOT / sign bracket plate.002",
+        "REV15Z / PILOT / steel jamb angle.001",
+        "REV15Z / PILOT / steel jamb angle.002"
       ]
     },
     {
@@ -3531,7 +4154,15 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Muted rust paint"
+        "PILOT / folded galvanised sheet"
+      ],
+      "batchedSourceObjects": [
+        "REV15Z / PILOT / awning standing seam.005",
+        "REV15Z / PILOT / awning standing seam.006",
+        "REV15Z / PILOT / awning standing seam.007",
+        "REV15Z / PILOT / rolled head housing.001",
+        "REV15Z / PILOT / sign bracket plate.003",
+        "REV15Z / PILOT / steel jamb angle.003"
       ]
     },
     {
@@ -3543,7 +4174,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / muted limewash"
+        "PILOT / CC0 / worn plaster / muted limewash.001"
       ]
     },
     {
@@ -3555,7 +4186,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "PILOT / CC0 / worn plaster / aged petrol paint.003"
       ]
     },
     {
@@ -3567,7 +4198,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / muted limewash"
+        "PILOT / CC0 / worn plaster / muted limewash"
       ]
     },
     {
@@ -3579,7 +4210,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "PILOT / CC0 / worn plaster / aged petrol paint.001"
       ]
     },
     {
@@ -3591,7 +4222,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "PILOT / CC0 / worn plaster / aged petrol paint.002"
       ]
     },
     {
@@ -3603,7 +4234,22 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Shutter charcoal"
+        "PILOT / blackened zinc and aged fixings"
+      ],
+      "batchedSourceObjects": [
+        "REV15Z / PILOT / jamb bolt.003",
+        "REV15Z / PILOT / jamb bolt.004",
+        "REV15Z / PILOT / jamb bolt.005",
+        "REV15Z / PILOT / jamb bolt.006",
+        "REV15Z / PILOT / jamb bolt.007",
+        "REV15Z / PILOT / jamb bolt.008",
+        "REV15Z / PILOT / shop sign folded backing",
+        "REV15Z / PILOT / sign fixing bolt.002",
+        "REV15Z / PILOT / sign fixing bolt.003",
+        "REV15Z / PILOT / sign fixing bolt.004",
+        "REV15Z / PILOT / sign fixing bolt.005",
+        "REV15Z / PILOT / sign stand-off.001",
+        "REV15Z / PILOT / sign stand-off.002"
       ]
     },
     {
@@ -3615,7 +4261,16 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Shutter charcoal"
+        "PILOT / blackened zinc and aged fixings"
+      ],
+      "batchedSourceObjects": [
+        "REV15Z / PILOT / jamb bolt.009",
+        "REV15Z / PILOT / jamb bolt.010",
+        "REV15Z / PILOT / jamb bolt.011",
+        "REV15Z / PILOT / shop sign folded backing.001",
+        "REV15Z / PILOT / sign fixing bolt.006",
+        "REV15Z / PILOT / sign fixing bolt.007",
+        "REV15Z / PILOT / sign stand-off.003"
       ]
     },
     {
@@ -3627,14 +4282,67 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Paper backing"
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / PILOT / Shop stock shelf.001",
+      "sourceObject": "REV15Z / PILOT / Shop stock shelf.001",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
       ],
-      "batchedSourceObjects": [
-        "REV15Z / PILOT / Shop stock shelf.001",
-        "REV15Z / PILOT / Shop stock shelf.002",
-        "REV15Z / PILOT / Shop stock shelf.003",
-        "REV15Z / PILOT / Shop stock shelf.004",
-        "REV15Z / PILOT / Shop stock shelf.005"
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / PILOT / Shop stock shelf.002",
+      "sourceObject": "REV15Z / PILOT / Shop stock shelf.002",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / PILOT / Shop stock shelf.003",
+      "sourceObject": "REV15Z / PILOT / Shop stock shelf.003",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / PILOT / Shop stock shelf.004",
+      "sourceObject": "REV15Z / PILOT / Shop stock shelf.004",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / PILOT / Shop stock shelf.005",
+      "sourceObject": "REV15Z / PILOT / Shop stock shelf.005",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
       ]
     },
     {
@@ -3646,11 +4354,31 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Paper backing"
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / PILOT / Shop stock shelf.007",
+      "sourceObject": "REV15Z / PILOT / Shop stock shelf.007",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
       ],
-      "batchedSourceObjects": [
-        "REV15Z / PILOT / Shop stock shelf.007",
-        "REV15Z / PILOT / Shop stock shelf.008"
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / PILOT / Shop stock shelf.008",
+      "sourceObject": "REV15Z / PILOT / Shop stock shelf.008",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
       ]
     },
     {
@@ -3704,50 +4432,6 @@
         "REV15Z / PILOT / junction cover seam",
         "REV15Z / PILOT / sign bracket plate",
         "REV15Z / PILOT / steel jamb angle"
-      ]
-    },
-    {
-      "node": "Runtime / REV15Z / PILOT / awning standing seam.001",
-      "sourceObject": "REV15Z / PILOT / awning standing seam.001",
-      "sourceFaces": "ALL",
-      "originalUVLayers": [
-        "UVMap",
-        "PILOT_world_metres"
-      ],
-      "originalMaterials": [
-        "PILOT / folded galvanised sheet"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / PILOT / awning standing seam.002",
-        "REV15Z / PILOT / awning standing seam.003",
-        "REV15Z / PILOT / awning standing seam.004",
-        "REV15Z / PILOT / conduit saddle.003",
-        "REV15Z / PILOT / conduit saddle.004",
-        "REV15Z / PILOT / conduit saddle.005",
-        "REV15Z / PILOT / rolled head housing",
-        "REV15Z / PILOT / sign bracket plate.001",
-        "REV15Z / PILOT / sign bracket plate.002",
-        "REV15Z / PILOT / steel jamb angle.001",
-        "REV15Z / PILOT / steel jamb angle.002"
-      ]
-    },
-    {
-      "node": "Runtime / REV15Z / PILOT / awning standing seam.005",
-      "sourceObject": "REV15Z / PILOT / awning standing seam.005",
-      "sourceFaces": "ALL",
-      "originalUVLayers": [
-        "UVMap",
-        "PILOT_world_metres"
-      ],
-      "originalMaterials": [
-        "PILOT / folded galvanised sheet"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / PILOT / awning standing seam.006",
-        "REV15Z / PILOT / awning standing seam.007",
-        "REV15Z / PILOT / rolled head housing.001",
-        "REV15Z / PILOT / sign bracket plate.003",
-        "REV15Z / PILOT / steel jamb angle.003"
       ]
     },
     {
@@ -3847,52 +4531,6 @@
       "batchedSourceObjects": [
         "REV15Z / PILOT / gutter silt channel.002",
         "REV15Z / PILOT / gutter silt channel.003"
-      ]
-    },
-    {
-      "node": "Runtime / REV15Z / PILOT / jamb bolt.003",
-      "sourceObject": "REV15Z / PILOT / jamb bolt.003",
-      "sourceFaces": "ALL",
-      "originalUVLayers": [
-        "UVMap",
-        "PILOT_world_metres"
-      ],
-      "originalMaterials": [
-        "PILOT / blackened zinc and aged fixings"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / PILOT / jamb bolt.004",
-        "REV15Z / PILOT / jamb bolt.005",
-        "REV15Z / PILOT / jamb bolt.006",
-        "REV15Z / PILOT / jamb bolt.007",
-        "REV15Z / PILOT / jamb bolt.008",
-        "REV15Z / PILOT / shop sign folded backing",
-        "REV15Z / PILOT / sign fixing bolt.002",
-        "REV15Z / PILOT / sign fixing bolt.003",
-        "REV15Z / PILOT / sign fixing bolt.004",
-        "REV15Z / PILOT / sign fixing bolt.005",
-        "REV15Z / PILOT / sign stand-off.001",
-        "REV15Z / PILOT / sign stand-off.002"
-      ]
-    },
-    {
-      "node": "Runtime / REV15Z / PILOT / jamb bolt.009",
-      "sourceObject": "REV15Z / PILOT / jamb bolt.009",
-      "sourceFaces": "ALL",
-      "originalUVLayers": [
-        "UVMap",
-        "PILOT_world_metres"
-      ],
-      "originalMaterials": [
-        "PILOT / blackened zinc and aged fixings"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / PILOT / jamb bolt.010",
-        "REV15Z / PILOT / jamb bolt.011",
-        "REV15Z / PILOT / shop sign folded backing.001",
-        "REV15Z / PILOT / sign fixing bolt.006",
-        "REV15Z / PILOT / sign fixing bolt.007",
-        "REV15Z / PILOT / sign stand-off.003"
       ]
     },
     {
@@ -4517,7 +5155,7 @@
         "UVMap"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / muted limewash"
+        "ART / lane-pier-left / Shop pier.001"
       ]
     },
     {
@@ -4528,7 +5166,7 @@
         "UVMap"
       ],
       "originalMaterials": [
-        "CC0 / scuffed cement / matte structural concrete"
+        "ART / lane-pier-right / Shop pier.011"
       ]
     },
     {
@@ -4539,11 +5177,7 @@
         "UVMap"
       ],
       "originalMaterials": [
-        "Worn wood"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / Store-edge crate",
-        "REV15Z / Store-edge crate.001"
+        "REV15R / worn petrol enamel"
       ]
     },
     {
@@ -4554,11 +5188,7 @@
         "UVMap"
       ],
       "originalMaterials": [
-        "Worn wood"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / Store-edge crate.010",
-        "REV15Z / Store-edge crate.011"
+        "REV15R / worn petrol enamel"
       ]
     },
     {
@@ -4569,26 +5199,194 @@
         "Local_metal_tangent_UV"
       ],
       "originalMaterials": [
-        "Shutter charcoal"
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.001",
+      "sourceObject": "REV15Z / Shutter slat.001",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
       ],
-      "batchedSourceObjects": [
-        "REV15Z / Shutter slat.001",
-        "REV15Z / Shutter slat.002",
-        "REV15Z / Shutter slat.003",
-        "REV15Z / Shutter slat.004",
-        "REV15Z / Shutter slat.005",
-        "REV15Z / Shutter slat.006",
-        "REV15Z / Shutter slat.007",
-        "REV15Z / Shutter slat.008",
-        "REV15Z / Shutter slat.009",
-        "REV15Z / Shutter slat.010",
-        "REV15Z / Shutter slat.011",
-        "REV15Z / Shutter slat.012",
-        "REV15Z / Shutter slat.013",
-        "REV15Z / Shutter slat.014",
-        "REV15Z / Shutter slat.015",
-        "REV15Z / Shutter slat.016",
-        "REV15Z / Shutter slat.017"
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.002",
+      "sourceObject": "REV15Z / Shutter slat.002",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.003",
+      "sourceObject": "REV15Z / Shutter slat.003",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.004",
+      "sourceObject": "REV15Z / Shutter slat.004",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.005",
+      "sourceObject": "REV15Z / Shutter slat.005",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.006",
+      "sourceObject": "REV15Z / Shutter slat.006",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.007",
+      "sourceObject": "REV15Z / Shutter slat.007",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.008",
+      "sourceObject": "REV15Z / Shutter slat.008",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.009",
+      "sourceObject": "REV15Z / Shutter slat.009",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.010",
+      "sourceObject": "REV15Z / Shutter slat.010",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.011",
+      "sourceObject": "REV15Z / Shutter slat.011",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.012",
+      "sourceObject": "REV15Z / Shutter slat.012",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.013",
+      "sourceObject": "REV15Z / Shutter slat.013",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.014",
+      "sourceObject": "REV15Z / Shutter slat.014",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.015",
+      "sourceObject": "REV15Z / Shutter slat.015",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.016",
+      "sourceObject": "REV15Z / Shutter slat.016",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.017",
+      "sourceObject": "REV15Z / Shutter slat.017",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / RITVIZ / painted rolled steel"
       ]
     },
     {
@@ -4599,26 +5397,208 @@
         "Local_metal_tangent_UV"
       ],
       "originalMaterials": [
-        "Shutter charcoal"
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.019",
+      "sourceObject": "REV15Z / Shutter slat.019",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.020",
+      "sourceObject": "REV15Z / Shutter slat.020",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.021",
+      "sourceObject": "REV15Z / Shutter slat.021",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.022",
+      "sourceObject": "REV15Z / Shutter slat.022",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.023",
+      "sourceObject": "REV15Z / Shutter slat.023",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.024",
+      "sourceObject": "REV15Z / Shutter slat.024",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.025",
+      "sourceObject": "REV15Z / Shutter slat.025",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.026",
+      "sourceObject": "REV15Z / Shutter slat.026",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.027",
+      "sourceObject": "REV15Z / Shutter slat.027",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.028",
+      "sourceObject": "REV15Z / Shutter slat.028",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.029",
+      "sourceObject": "REV15Z / Shutter slat.029",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.030",
+      "sourceObject": "REV15Z / Shutter slat.030",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.031",
+      "sourceObject": "REV15Z / Shutter slat.031",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.032",
+      "sourceObject": "REV15Z / Shutter slat.032",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.033",
+      "sourceObject": "REV15Z / Shutter slat.033",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.034",
+      "sourceObject": "REV15Z / Shutter slat.034",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Shutter slat.035",
+      "sourceObject": "REV15Z / Shutter slat.035",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "Local_metal_tangent_UV"
+      ],
+      "originalMaterials": [
+        "ART / CHAAR DIWARI / painted rolled steel"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / Store-edge crate",
+      "sourceObject": "REV15Z / Store-edge crate",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap"
+      ],
+      "originalMaterials": [
+        "Worn wood"
       ],
       "batchedSourceObjects": [
-        "REV15Z / Shutter slat.019",
-        "REV15Z / Shutter slat.020",
-        "REV15Z / Shutter slat.021",
-        "REV15Z / Shutter slat.022",
-        "REV15Z / Shutter slat.023",
-        "REV15Z / Shutter slat.024",
-        "REV15Z / Shutter slat.025",
-        "REV15Z / Shutter slat.026",
-        "REV15Z / Shutter slat.027",
-        "REV15Z / Shutter slat.028",
-        "REV15Z / Shutter slat.029",
-        "REV15Z / Shutter slat.030",
-        "REV15Z / Shutter slat.031",
-        "REV15Z / Shutter slat.032",
-        "REV15Z / Shutter slat.033",
-        "REV15Z / Shutter slat.034",
-        "REV15Z / Shutter slat.035"
+        "REV15Z / Store-edge crate.001"
       ]
     },
     {
@@ -4650,6 +5630,20 @@
       ]
     },
     {
+      "node": "Runtime / REV15Z / Store-edge crate.010",
+      "sourceObject": "REV15Z / Store-edge crate.010",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap"
+      ],
+      "originalMaterials": [
+        "Worn wood"
+      ],
+      "batchedSourceObjects": [
+        "REV15Z / Store-edge crate.011"
+      ]
+    },
+    {
       "node": "Runtime / REV15Z / Suspended electricity cable network",
       "sourceObject": "REV15Z / Suspended electricity cable network",
       "sourceFaces": "ALL",
@@ -4667,7 +5661,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "WORLD / faded blue-green plaster"
       ]
     },
     {
@@ -4679,13 +5673,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Deck concrete"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / WORLD / Window sill.001",
-        "REV15Z / WORLD / Window sill.002",
-        "REV15Z / WORLD / Window sill.003",
-        "REV15Z / WORLD / Window sill.004"
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -4697,12 +5685,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Deck concrete"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / WORLD / Window sill.005",
-        "REV15Z / WORLD / Window sill.006",
-        "REV15Z / WORLD / Window sill.007"
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -4714,13 +5697,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Deck concrete"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / WORLD / Window sill.017",
-        "REV15Z / WORLD / Window sill.018",
-        "REV15Z / WORLD / Window sill.019",
-        "REV15Z / WORLD / Window sill.020"
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -4732,12 +5709,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Deck concrete"
-      ],
-      "batchedSourceObjects": [
-        "REV15Z / WORLD / Window sill.021",
-        "REV15Z / WORLD / Window sill.022",
-        "REV15Z / WORLD / Window sill.023"
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -4749,7 +5721,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Worn wood"
+        "PILOT / worn plywood edge"
       ]
     },
     {
@@ -4761,7 +5733,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "PILOT / folded galvanised sheet"
       ]
     },
     {
@@ -4773,7 +5745,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Muted rust paint"
+        "PILOT / folded galvanised sheet"
       ]
     },
     {
@@ -4785,7 +5757,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "WORLD / faded blue-green plaster"
       ]
     },
     {
@@ -4797,7 +5769,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / scuffed cement / matte structural concrete"
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -4809,7 +5781,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / scuffed cement / matte structural concrete"
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -4821,7 +5793,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "WORLD / faded blue-green plaster"
       ]
     },
     {
@@ -4833,7 +5805,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / aged petrol paint"
+        "WORLD / faded blue-green plaster"
       ]
     },
     {
@@ -4845,7 +5817,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / scuffed cement / matte structural concrete"
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -4857,7 +5829,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / worn plaster / muted limewash"
+        "WORLD / warm grey limewash"
       ]
     },
     {
@@ -4869,7 +5841,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Shutter charcoal"
+        "PILOT / blackened zinc and aged fixings"
       ]
     },
     {
@@ -4881,7 +5853,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Shutter charcoal"
+        "PILOT / blackened zinc and aged fixings"
       ]
     },
     {
@@ -4893,14 +5865,67 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Paper backing"
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Shop stock shelf.028",
+      "sourceObject": "REV15Z / WORLD / Shop stock shelf.028",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
       ],
-      "batchedSourceObjects": [
-        "REV15Z / WORLD / Shop stock shelf.028",
-        "REV15Z / WORLD / Shop stock shelf.029",
-        "REV15Z / WORLD / Shop stock shelf.030",
-        "REV15Z / WORLD / Shop stock shelf.031",
-        "REV15Z / WORLD / Shop stock shelf.032"
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Shop stock shelf.029",
+      "sourceObject": "REV15Z / WORLD / Shop stock shelf.029",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Shop stock shelf.030",
+      "sourceObject": "REV15Z / WORLD / Shop stock shelf.030",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Shop stock shelf.031",
+      "sourceObject": "REV15Z / WORLD / Shop stock shelf.031",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Shop stock shelf.032",
+      "sourceObject": "REV15Z / WORLD / Shop stock shelf.032",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
       ]
     },
     {
@@ -4912,11 +5937,31 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Paper backing"
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Shop stock shelf.034",
+      "sourceObject": "REV15Z / WORLD / Shop stock shelf.034",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
       ],
-      "batchedSourceObjects": [
-        "REV15Z / WORLD / Shop stock shelf.034",
-        "REV15Z / WORLD / Shop stock shelf.035"
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Shop stock shelf.035",
+      "sourceObject": "REV15Z / WORLD / Shop stock shelf.035",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "PILOT / worn plywood edge"
       ]
     },
     {
@@ -4928,7 +5973,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Dark blue window"
+        "WORLD / dusty non-emissive glazing"
       ]
     },
     {
@@ -4940,7 +5985,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Dark blue window"
+        "WORLD / dusty non-emissive glazing"
       ],
       "batchedSourceObjects": [
         "REV15Z / WORLD / Window opening.002",
@@ -4957,7 +6002,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Dark blue window"
+        "WORLD / dusty non-emissive glazing"
       ],
       "batchedSourceObjects": [
         "REV15Z / WORLD / Window opening.006",
@@ -4973,7 +6018,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Dark blue window"
+        "WORLD / dusty non-emissive glazing"
       ]
     },
     {
@@ -4985,7 +6030,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Dark blue window"
+        "WORLD / dusty non-emissive glazing"
       ],
       "batchedSourceObjects": [
         "REV15Z / WORLD / Window opening.018",
@@ -5002,7 +6047,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Dark blue window"
+        "WORLD / dusty non-emissive glazing"
       ],
       "batchedSourceObjects": [
         "REV15Z / WORLD / Window opening.022",
@@ -5018,7 +6063,91 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Deck concrete"
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.001",
+      "sourceObject": "REV15Z / WORLD / Window sill.001",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.002",
+      "sourceObject": "REV15Z / WORLD / Window sill.002",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.003",
+      "sourceObject": "REV15Z / WORLD / Window sill.003",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.004",
+      "sourceObject": "REV15Z / WORLD / Window sill.004",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.005",
+      "sourceObject": "REV15Z / WORLD / Window sill.005",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.006",
+      "sourceObject": "REV15Z / WORLD / Window sill.006",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.007",
+      "sourceObject": "REV15Z / WORLD / Window sill.007",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -5030,7 +6159,91 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "Deck concrete"
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.017",
+      "sourceObject": "REV15Z / WORLD / Window sill.017",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.018",
+      "sourceObject": "REV15Z / WORLD / Window sill.018",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.019",
+      "sourceObject": "REV15Z / WORLD / Window sill.019",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.020",
+      "sourceObject": "REV15Z / WORLD / Window sill.020",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.021",
+      "sourceObject": "REV15Z / WORLD / Window sill.021",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.022",
+      "sourceObject": "REV15Z / WORLD / Window sill.022",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
+      ]
+    },
+    {
+      "node": "Runtime / REV15Z / WORLD / Window sill.023",
+      "sourceObject": "REV15Z / WORLD / Window sill.023",
+      "sourceFaces": "ALL",
+      "originalUVLayers": [
+        "UVMap",
+        "PILOT_world_metres"
+      ],
+      "originalMaterials": [
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -5338,21 +6551,47 @@
         {
           "name": "scuffed_cement-basecolor.jpg",
           "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "ART / generated supporting pieces / shared atlas",
+          "sha256": "84556b2c77c727618f15e3cab8de98b73306075c39470664067c0bc9ccd73b46"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "metallic"
       ]
     },
     {
       "name": "Runtime / REV15Z / Closed rolling shutter / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / Closed rolling shutter.001 / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / Drain pipe / material 0",
@@ -6037,10 +7276,25 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "ART / generated supporting pieces / shared atlas",
+          "sha256": "84556b2c77c727618f15e3cab8de98b73306075c39470664067c0bc9ccd73b46"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
       ]
     },
     {
@@ -6049,28 +7303,34 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
       "name": "Runtime / REV15Z / PILOT / Counter / material 0",
       "sourceImages": [],
-      "bakedChannels": []
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / PILOT / Shop canopy / material 0",
-      "sourceImages": [
-        {
-          "name": "worn_plaster_wall-basecolor.jpg",
-          "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
-        }
-      ],
-      "bakedChannels": [
-        "color"
-      ]
+      "sourceImages": [],
+      "bakedChannels": []
     },
     {
       "name": "Runtime / REV15Z / PILOT / Shop canopy.001 / material 0",
@@ -6083,10 +7343,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6095,10 +7365,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6107,10 +7387,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6119,10 +7409,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6131,10 +7431,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6150,12 +7460,74 @@
     {
       "name": "Runtime / REV15Z / PILOT / Shop stock shelf / material 0",
       "sourceImages": [],
-      "bakedChannels": []
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / PILOT / Shop stock shelf.001 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / PILOT / Shop stock shelf.002 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / PILOT / Shop stock shelf.003 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / PILOT / Shop stock shelf.004 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / PILOT / Shop stock shelf.005 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / PILOT / Shop stock shelf.006 / material 0",
       "sourceImages": [],
-      "bakedChannels": []
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / PILOT / Shop stock shelf.007 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / PILOT / Shop stock shelf.008 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / PILOT / awning folded drip fascia / material",
@@ -6169,16 +7541,6 @@
     },
     {
       "name": "Runtime / REV15Z / PILOT / awning standing seam / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
-    },
-    {
-      "name": "Runtime / REV15Z / PILOT / awning standing seam.001 / material ",
-      "sourceImages": [],
-      "bakedChannels": []
-    },
-    {
-      "name": "Runtime / REV15Z / PILOT / awning standing seam.005 / material ",
       "sourceImages": [],
       "bakedChannels": []
     },
@@ -6282,16 +7644,6 @@
     },
     {
       "name": "Runtime / REV15Z / PILOT / gutter silt channel.001 / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
-    },
-    {
-      "name": "Runtime / REV15Z / PILOT / jamb bolt.003 / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
-    },
-    {
-      "name": "Runtime / REV15Z / PILOT / jamb bolt.009 / material 0",
       "sourceImages": [],
       "bakedChannels": []
     },
@@ -6618,10 +7970,16 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "ART / generated supporting pieces / shared atlas",
+          "sha256": "84556b2c77c727618f15e3cab8de98b73306075c39470664067c0bc9ccd73b46"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "metallic"
       ]
     },
     {
@@ -6630,29 +7988,576 @@
         {
           "name": "scuffed_cement-basecolor.jpg",
           "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "ART / generated supporting pieces / shared atlas",
+          "sha256": "84556b2c77c727618f15e3cab8de98b73306075c39470664067c0bc9ccd73b46"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "metallic"
       ]
     },
     {
       "name": "Runtime / REV15Z / Shop warm interior / material 0",
       "sourceImages": [],
-      "bakedChannels": []
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / Shop warm interior.003 / material 0",
       "sourceImages": [],
-      "bakedChannels": []
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / Shutter slat / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.001 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.002 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.003 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.004 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.005 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.006 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.007 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.008 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.009 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.010 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.011 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.012 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.013 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.014 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.015 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.016 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.017 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original RITVIZ / RGBA",
+          "sha256": "0d5916342e438188c2d8636ea3efc35e6604b0914dafecbad9095e420d479320"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / Shutter slat.018 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.019 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.020 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.021 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.022 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.023 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.024 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.025 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.026 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.027 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.028 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.029 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.030 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.031 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.032 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.033 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.034 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Shutter slat.035 / material 0",
+      "sourceImages": [
+        {
+          "name": "ART / original CHAAR DIWARI / RGBA",
+          "sha256": "253ceaf216ccf3823f555eaea4c1458c7e74742124d1e9eb5ed0fc48081e6266"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "metallic",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / Store-edge crate / material 0",
       "sourceImages": [],
       "bakedChannels": []
     },
@@ -6667,6 +8572,11 @@
       "bakedChannels": []
     },
     {
+      "name": "Runtime / REV15Z / Store-edge crate.010 / material 0",
+      "sourceImages": [],
+      "bakedChannels": []
+    },
+    {
       "name": "Runtime / REV15Z / Suspended electricity cable network / materi",
       "sourceImages": [],
       "bakedChannels": []
@@ -6677,48 +8587,122 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Cantilever balcony / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Cantilever balcony.001 / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Cantilever balcony.004 / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Cantilever balcony.005 / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Counter.003 / material 0",
       "sourceImages": [],
-      "bakedChannels": []
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Shop canopy.004 / material 0",
-      "sourceImages": [
-        {
-          "name": "worn_plaster_wall-basecolor.jpg",
-          "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
-        }
-      ],
-      "bakedChannels": [
-        "color"
-      ]
+      "sourceImages": [],
+      "bakedChannels": []
     },
     {
       "name": "Runtime / REV15Z / WORLD / Shop canopy.005 / material 0",
@@ -6731,10 +8715,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6743,10 +8737,20 @@
         {
           "name": "scuffed_cement-basecolor.jpg",
           "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6755,10 +8759,20 @@
         {
           "name": "scuffed_cement-basecolor.jpg",
           "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6767,10 +8781,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6779,10 +8803,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6791,10 +8825,20 @@
         {
           "name": "scuffed_cement-basecolor.jpg",
           "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6803,10 +8847,20 @@
         {
           "name": "worn_plaster_wall-basecolor.jpg",
           "sha256": "b8ade854f3db64b4ac9c35e5a8619886b92c8704acbe84caaf83b876e5116261"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / normal 1024",
+          "sha256": "2e1a14974bd4dae53446a853cb5df9716e1817a34f6b1a5bffc390865f5bb435"
+        },
+        {
+          "name": "PILOT / worn_plaster_wall / roughness 1024",
+          "sha256": "5ed11e3dfe2f8a33a3cdd51e872a3db1a2fbbdab553aeea946ef9273a9f3e3f3"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -6822,12 +8876,74 @@
     {
       "name": "Runtime / REV15Z / WORLD / Shop stock shelf.027 / material 0",
       "sourceImages": [],
-      "bakedChannels": []
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Shop stock shelf.028 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Shop stock shelf.029 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Shop stock shelf.030 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Shop stock shelf.031 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Shop stock shelf.032 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Shop stock shelf.033 / material 0",
       "sourceImages": [],
-      "bakedChannels": []
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Shop stock shelf.034 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Shop stock shelf.035 / material 0",
+      "sourceImages": [],
+      "bakedChannels": [
+        "color",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Window opening / material 0",
@@ -6861,13 +8977,355 @@
     },
     {
       "name": "Runtime / REV15Z / WORLD / Window sill / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.001 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.002 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.003 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.004 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.005 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.006 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.007 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD / Window sill.016 / material 0",
-      "sourceImages": [],
-      "bakedChannels": []
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.017 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.018 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.019 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.020 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.021 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.022 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
+    },
+    {
+      "name": "Runtime / REV15Z / WORLD / Window sill.023 / material 0",
+      "sourceImages": [
+        {
+          "name": "scuffed_cement-basecolor.jpg",
+          "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
+        }
+      ],
+      "bakedChannels": [
+        "color",
+        "roughness",
+        "normal"
+      ]
     },
     {
       "name": "Runtime / REV15Z / WORLD static / bay +1 Y-16 / blackened zinc ",
@@ -10206,41 +12664,41 @@
   ],
   "partialSourceMeshes": [],
   "counts": {
-    "objects": 214,
+    "objects": 274,
     "triangles": 105396,
-    "materialBindings": 223,
+    "materialBindings": 283,
     "runtimeDynamicLights": 0
   },
   "files": [
     {
       "file": "contact-frontage.png.glb",
-      "bytes": 32159060,
-      "sha256": "a0b06232187bdefa11d50f34f9546c488f7dc1ee5cccb9513420e4cc5fbb7b4b"
+      "bytes": 33563132,
+      "sha256": "f65a054ecddb652b7cfdd5d864265ffabfcbe4dbae73a1652ddabf8a17ebb32d"
     },
     {
       "file": "contact-frontage.optimized.glb",
-      "bytes": 14202968,
-      "sha256": "7c52b5e023ba23ce5c78e1d78aa0888b2c18e9d69ddbc69e5fd91e69ae27bdb5"
+      "bytes": 14485264,
+      "sha256": "c80d92c8acc82f2e6e42c25e0a5a017eb12b0e2906976153d4d841cf0ccc3156"
     },
     {
       "file": "contact-frontage.mobile.glb",
-      "bytes": 5290044,
-      "sha256": "969db3020fbd7dce190b30ca71f34720572ba3552647f0de217d4c2a7049b024"
+      "bytes": 5553952,
+      "sha256": "24f405252b0d2a8c0cc09c599017b47f0050713e9949ce7e107e8f85e44903b5"
     },
     {
       "file": "lightmap.hdr",
-      "bytes": 3178226,
-      "sha256": "d61f5649ea5245774afa329096c3499e9e08d456435fdbdcbb133d07d55c54f2"
+      "bytes": 3184913,
+      "sha256": "d7b5954e0e4b2e6b7023dc0810cd3ccf42caacf5523aed00593572f2d95f7b15"
     },
     {
       "file": "lightmap.png",
-      "bytes": 1121549,
-      "sha256": "c9ea11ddbb17fa8e777250f02dec7793887fe1f3c9fe676b43eb57e782a3b1c1"
+      "bytes": 981715,
+      "sha256": "343583a571239ffb2290c32b773ffd7e3752ece310ff017838ce9492e7b53bfe"
     },
     {
       "file": "lightmap.ktx2",
-      "bytes": 1487843,
-      "sha256": "255afb65085f4d390bb6d5f2eac0f64cf917e4339a531cc0f3d5d638606e6d06"
+      "bytes": 1301836,
+      "sha256": "87633f8eaff7484e3e3f27cfd0a20200bb55c069ccdbce6be7fc63613cd7f2c9"
     },
     {
       "file": "transcoders/LICENSE-three",
@@ -10273,8 +12731,8 @@
   "fullWorldIntegration": "PENDING",
   "sourceBakedDerivative": {
     "file": "contact-frontage-baked.blend",
-    "sha256": "da04888631961ed00f54a544c859f63491660c2a7e5a298c4d5b801e698ffcfd",
-    "bytes": 35491514
+    "sha256": "a2050e010200d86cf719c00266fe7b581bf414743f6d1785c8e82c5786ab2a18",
+    "bytes": 43733036
   },
   "runtime": {
     "baseline": "contact-frontage.png.glb",
@@ -10285,33 +12743,33 @@
     "files": [
       {
         "file": "contact-frontage.png.glb",
-        "bytes": 32159060,
-        "sha256": "a0b06232187bdefa11d50f34f9546c488f7dc1ee5cccb9513420e4cc5fbb7b4b"
+        "bytes": 33563132,
+        "sha256": "f65a054ecddb652b7cfdd5d864265ffabfcbe4dbae73a1652ddabf8a17ebb32d"
       },
       {
         "file": "contact-frontage.optimized.glb",
-        "bytes": 14202968,
-        "sha256": "7c52b5e023ba23ce5c78e1d78aa0888b2c18e9d69ddbc69e5fd91e69ae27bdb5"
+        "bytes": 14485264,
+        "sha256": "c80d92c8acc82f2e6e42c25e0a5a017eb12b0e2906976153d4d841cf0ccc3156"
       },
       {
         "file": "contact-frontage.mobile.glb",
-        "bytes": 5290044,
-        "sha256": "969db3020fbd7dce190b30ca71f34720572ba3552647f0de217d4c2a7049b024"
+        "bytes": 5553952,
+        "sha256": "24f405252b0d2a8c0cc09c599017b47f0050713e9949ce7e107e8f85e44903b5"
       },
       {
         "file": "lightmap.hdr",
-        "bytes": 3178226,
-        "sha256": "d61f5649ea5245774afa329096c3499e9e08d456435fdbdcbb133d07d55c54f2"
+        "bytes": 3184913,
+        "sha256": "d7b5954e0e4b2e6b7023dc0810cd3ccf42caacf5523aed00593572f2d95f7b15"
       },
       {
         "file": "lightmap.png",
-        "bytes": 1121549,
-        "sha256": "c9ea11ddbb17fa8e777250f02dec7793887fe1f3c9fe676b43eb57e782a3b1c1"
+        "bytes": 981715,
+        "sha256": "343583a571239ffb2290c32b773ffd7e3752ece310ff017838ce9492e7b53bfe"
       },
       {
         "file": "lightmap.ktx2",
-        "bytes": 1487843,
-        "sha256": "255afb65085f4d390bb6d5f2eac0f64cf917e4339a531cc0f3d5d638606e6d06"
+        "bytes": 1301836,
+        "sha256": "87633f8eaff7484e3e3f27cfd0a20200bb55c069ccdbce6be7fc63613cd7f2c9"
       }
     ]
   },
