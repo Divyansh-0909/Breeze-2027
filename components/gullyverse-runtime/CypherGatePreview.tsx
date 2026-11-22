@@ -240,16 +240,27 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     }
     const teamTarget = Number(phase === "local" && runtime.interacting && panel === "team");
     teamZoom.current = runtime.reduced ? teamTarget : MathUtils.damp(teamZoom.current, teamTarget, 12, Math.min(delta, 0.2));
-    if (teamZoom.current > 0.001) {
-      const frame = teamView(aspect, [view.x, view.y, view.z]);
-      view.pitch = MathUtils.lerp(view.pitch, frame.pitch, teamZoom.current);
+    let teamOffset = 0;
+    if (teamZoom.current > 0.001 && size.width > 0 && size.height > 0) {
+      const frame = teamView(size.width, size.height, [view.x, view.y, view.z]);
+      view.pitch = MathUtils.lerp(view.pitch, teamFocus.pitch, teamZoom.current);
       view.fov = MathUtils.lerp(view.fov, frame.fov, teamZoom.current);
+      teamOffset = frame.offsetY * teamZoom.current;
     }
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
-    if (camera instanceof PerspectiveCamera && camera.fov !== view.fov) {
+    if (camera instanceof PerspectiveCamera) {
+      const changedFov = camera.fov !== view.fov;
       camera.fov = view.fov;
-      camera.updateProjectionMatrix();
+      const offset = camera.view;
+      if (teamOffset !== 0 && (!offset?.enabled || offset.offsetY !== teamOffset ||
+          offset.fullWidth !== size.width || offset.fullHeight !== size.height)) {
+        camera.setViewOffset(size.width, size.height, 0, teamOffset, size.width, size.height);
+      } else if (teamOffset === 0 && offset?.enabled) {
+        camera.clearViewOffset();
+      } else if (changedFov) {
+        camera.updateProjectionMatrix();
+      }
     }
     if (curtain.current) curtain.current.style.opacity = String(runtime.revealOpacity);
     const current = zoneAt(runtime.pose.z);

@@ -37,17 +37,23 @@ test("the authored team carousel wraps and the complete mural fits on a phone", 
   assert.equal(teamIndex("-1"), 0);
   assert.equal(teamIndex("8"), 0);
   const position = [teamFocus.x, teamFocus.y, teamFocus.z] as const;
-  for (const aspect of [320 / 568, 390 / 664, 844 / 390, 1120 / 700]) {
-    const frame = teamView(aspect, position);
-    const camera = new PerspectiveCamera(frame.fov, aspect, 0.05, 120);
+  assert.equal(teamFocus.pitch, 0);
+  const floor = createCypherSpace({ start: -29.5, end: 47.6, halfWidth: 16, spawnY: 19.3, plaza: true }).grade(teamFocus);
+  assert.ok(floor !== undefined && teamFocus.y > floor + world.eyeHeight + 0.4);
+  for (const [width, height] of [[320, 568], [390, 664], [844, 390], [1120, 700]]) {
+    const frame = teamView(width, height, position);
+    const camera = new PerspectiveCamera(frame.fov, width / height, 0.05, 120);
     camera.position.set(...position);
-    camera.quaternion.setFromEuler(new Euler(frame.pitch, teamFocus.yaw, 0, "YXZ"));
+    camera.quaternion.setFromEuler(new Euler(teamFocus.pitch, teamFocus.yaw, 0, "YXZ"));
+    camera.setViewOffset(width, height, 0, frame.offsetY, width, height);
     camera.updateMatrixWorld();
     for (const slide of teamSlides) {
       const [x, y, z] = slide.centre;
-      for (const dx of [-0.5, 0.5]) for (const dy of [-0.5, 0.5]) {
-        const corner = new Vector3(x, y + dy * slide.heightM, z + dx * slide.widthM).project(camera);
-        assert.ok(Math.abs(corner.x) < 0.96 && Math.abs(corner.y) < 0.96);
+      for (const side of [-0.5, 0.5]) {
+        const top = new Vector3(x, y + slide.heightM / 2, z + side * slide.widthM).project(camera);
+        const bottom = new Vector3(x, y - slide.heightM / 2, z + side * slide.widthM).project(camera);
+        assert.ok(Math.abs(top.x) < 0.96 && top.y < 0.96 && bottom.y > -0.96);
+        assert.ok(Math.abs(top.x - bottom.x) < 1e-8);
       }
     }
   }

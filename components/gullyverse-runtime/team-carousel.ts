@@ -1,6 +1,6 @@
 import { Box3, Mesh, MeshStandardMaterial, TextureLoader, Vector3, type Object3D, type Texture } from "three";
 import source from "@/public/models/gullyverse/locked-rev15z-team/manifest.json";
-import { lookAtPose, world } from "../immersive/world";
+import { lookAtPose } from "../immersive/world";
 import walkSpace from "./cypher-walk-space.json";
 
 const assetPath = "/models/gullyverse/locked-rev15z-team/";
@@ -9,23 +9,18 @@ const first = teamSlides[0];
 const centre = first.centre as [number, number, number];
 const maxWidth = Math.max(...teamSlides.map(slide => slide.widthM));
 const distance = 5.726;
-const viewingPosition = [centre[0] - distance, 7.2 + world.eyeHeight, centre[2]] as const;
-export const teamFocus = lookAtPose(viewingPosition, [centre[0], centre[1] - 0.75, centre[2]]);
+const viewingPosition = [centre[0] - distance, centre[1] + 0.23, centre[2]] as const;
+export const teamFocus = lookAtPose(viewingPosition, [centre[0], viewingPosition[1], centre[2]]);
 
-export function teamView(aspect: number, position: readonly number[]) {
-  const aim = lookAtPose(position, centre);
+export function teamView(width: number, height: number, position: readonly number[]) {
   const metres = Math.hypot(centre[0] - position[0], centre[2] - position[2]);
-  const frameHeight = Math.max(first.heightM / 0.66, maxWidth / (0.90 * aspect));
-  const initialLens = frameHeight / (2 * Math.max(metres, 1));
-  const pitch = aim.pitch - Math.atan(0.22 * initialLens);
-  // With downward pitch the upper mural corners sit closer to the camera.
-  const sine = Math.sin(pitch);
-  const nearestEdge = metres * Math.cos(pitch) + (centre[1] - position[1]) * sine -
-    first.heightM / 2 * Math.abs(sine);
-  const halfLens = Math.max(initialLens, maxWidth / (2 * 0.92 * aspect * Math.max(nearestEdge, 1)));
+  const muralArea = Math.max(height - 112, height * 0.65);
+  const frameHeight = Math.max(first.heightM * height / (0.84 * muralArea), maxWidth * height / (0.90 * width));
+  const halfLens = frameHeight / (2 * Math.max(metres, 1));
   return {
-    pitch,
     fov: 2 * Math.atan(halfLens) * 180 / Math.PI,
+    // Shift the frame above the controls while keeping the optical axis level.
+    offsetY: (height - muralArea) / 2 + (position[1] - centre[1]) * height / frameHeight,
   };
 }
 

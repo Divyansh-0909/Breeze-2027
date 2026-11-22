@@ -107,6 +107,8 @@ async function main() {
     await mobileDialog.getByRole("button", { name: "Next mural" }).tap();
     await select(mobileDialog, 1);
     await capture(phone, "10-phone-content.png");
+    await phone.setViewportSize({ width: 844, height: 390 });
+    await capture(phone, "11-landscape-content.png");
     await mobileDialog.getByRole("button", { name: "Close team murals" }).tap();
     await mobileOpen.waitFor({ timeout: 90_000 });
     assert.ok(await phone.evaluate(() => document.querySelector("canvas") === window.teamTestCanvas));

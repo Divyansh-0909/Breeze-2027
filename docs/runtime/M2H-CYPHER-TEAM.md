@@ -4,6 +4,8 @@ Walk to the black-painted brick Team wall and choose **View team murals**. The g
 
 The carousel opens on Organising Committee and wraps through eight murals. Use the buttons, arrow keys or a horizontal touch swipe on the wall. A successful selection is kept in the preview URL for reload. The previous mural remains visible during loading or a failed request. Retry loads the requested artwork again.
 
+The mural camera sits half a metre above the walking eye. It faces the wall straight on and shifts the lens vertically to fit the complete mural above the controls, including on narrow and landscape phones.
+
 The Organising Committee texture already shipped with the lit plaza. Seven alternatives come from the sealed Rev15Z scene and match its decoded RGBA pixels. Each replaces the paint on the authored mural mesh at that team's original width. The wall mesh, normals, brick and baked illumination carry through each image. The original names and roles are available to screen readers. Regenerate the seven textures and the manifest with the following command.
 
 ```sh
