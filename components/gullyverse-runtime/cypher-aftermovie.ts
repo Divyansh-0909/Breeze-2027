@@ -1,5 +1,5 @@
 import { DoubleSide, Mesh, MeshBasicMaterial, type Object3D, type VideoTexture } from "three";
-import { retainVideoTexture } from "../landing-page/stage3d/videoTextureOwnership";
+import { isRetiredVideoTexture, retainVideoTexture } from "../landing-page/stage3d/videoTextureOwnership";
 import { lookAtPose } from "../immersive/world";
 import { fitWallView } from "./cypher-wall-view";
 
@@ -27,6 +27,9 @@ export function findAftermoviePanels(scene: Object3D) {
 }
 
 export function bindAftermovie(panels: Mesh[], video: VideoTexture) {
+  // The 3D scene commits after the page. A film that ended or failed in that
+  // gap is already retired; the panels keep their still instead of crashing.
+  if (isRetiredVideoTexture(video)) return () => {};
   const original = panels.map(panel => panel.material);
   const release = retainVideoTexture(video);
   // The still already uses the film's authored UV crop on each panel.

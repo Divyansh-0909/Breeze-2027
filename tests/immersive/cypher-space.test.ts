@@ -150,6 +150,14 @@ test("the three Aftermovie panels share one video lease and restore the authored
   unbind();
   assert.ok(panels.every(panel => panel.material === original));
   assert.equal(retired, 1);
+  // A film that ends before the scene commits leaves the still in place.
+  const late = new VideoTexture({} as HTMLVideoElement);
+  ownVideoTexture(late);
+  retireVideoTexture(late);
+  const skipped = bindAftermovie(panels, late);
+  assert.ok(panels.every(panel => panel.material === original));
+  skipped();
+  assert.ok(panels.every(panel => panel.material === original));
   group.remove(group.children[0]);
   assert.equal(findAftermoviePanels(group), null);
 });

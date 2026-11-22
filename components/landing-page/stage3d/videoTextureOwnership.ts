@@ -13,6 +13,11 @@ export function retainVideoTexture(texture: VideoTexture): () => void {
   owner.consumers++; let released = false;
   return () => { if (released) return; released = true; owner.consumers--; collect(texture, owner); };
 }
+/** True once a stopped film's texture may no longer be bound. */
+export function isRetiredVideoTexture(texture: VideoTexture) {
+  const owner = owners.get(texture);
+  return !!owner && (owner.stopped || owner.disposed);
+}
 export function retireVideoTexture(texture: VideoTexture) {
   const owner = owners.get(texture);
   if (!owner) return;
