@@ -13,7 +13,7 @@ export default async function CypherPreviewPage({ searchParams }: { searchParams
   const events = isolated ? await readCypherEvents() : null;
   return <CypherGatePreview
     start={start === "quarry" || start === "approach" || start === "plaza" || start === "contact" ||
-      start === "events" || start === "team" || start === "aftermovie" ? start : "market"}
+      start === "events" || start === "team" || start === "aftermovie" || start === "accommodation" ? start : "market"}
     team={team}
     canSendContact={isolated}
     catalog={events}

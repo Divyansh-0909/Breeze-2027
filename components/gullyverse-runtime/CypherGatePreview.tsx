@@ -16,6 +16,7 @@ import { eventPosterSlots, eventsPerPage, paintEventPage } from "./event-poster-
 import type { CypherCatalog, CypherEvent } from "../../lib/events/cypher-catalog";
 import { CypherTeamDialog } from "./CypherTeamDialog";
 import { CypherAftermovieControls } from "./CypherAftermovieControls";
+import { accommodationApproach, accommodationFocus, accommodationView, isAccommodationArtwork } from "./cypher-accommodation";
 import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels, isAftermoviePanel } from "./cypher-aftermovie";
 import { stageVideoSource, useStageVideo } from "../landing-page/stage3d/useStageVideo";
 import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
@@ -33,13 +34,21 @@ const eventsStart = createCypherSpace({ ...routeBounds, spawnY: 31.05, spawnX: -
 const eventsFocus = lookAtPose([-9.7, 8.9, -31.05], [-15.85, 8.15, -31.05]);
 const teamStart = createCypherSpace({ ...routeBounds, spawnY: -teamFocus.z, spawnX: teamFocus.x, spawnYaw: teamFocus.yaw });
 const aftermovieStart = createCypherSpace({ ...routeBounds, spawnY: 33.5, spawnPitch: 0.17 });
+const accommodationStart = createCypherSpace({
+  ...routeBounds, spawnY: -accommodationApproach.z, spawnX: accommodationApproach.x,
+  spawnYaw: accommodationApproach.yaw, spawnPitch: accommodationApproach.pitch,
+});
 const assetRoot = "/models/gullyverse/locked-rev15z-";
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
-type Start = "quarry" | "market" | "approach" | "plaza" | "contact" | "events" | "team" | "aftermovie";
-type WallPanel = "events" | "team" | "aftermovie";
+type Start = "quarry" | "market" | "approach" | "plaza" | "contact" | WallPanel;
+type WallPanel = "events" | "team" | "aftermovie" | "accommodation";
 type WallUI = WallPanel | "active" | null;
-const wallFocus = { events: eventsFocus, team: teamFocus, aftermovie: aftermovieFocus };
-const wallLabel = { events: "Browse event posters", team: "View team murals", aftermovie: "Play Aftermovie" };
+const wallFocus = { events: eventsFocus, team: teamFocus, aftermovie: aftermovieFocus, accommodation: accommodationFocus };
+const wallViews = { team: teamView, aftermovie: aftermovieView, accommodation: accommodationView };
+const wallLabel = {
+  events: "Browse event posters", team: "View team murals", aftermovie: "Play Aftermovie",
+  accommodation: "View accommodation",
+};
 type ContactUI = { available: boolean; placement: ContactPlacement; needsHeading: boolean };
 const closedContact: ContactUI = { available: false, placement: null, needsHeading: false };
 const compactContactQuery = "(max-width: 699px), (max-height: 519px), (pointer: coarse)";
@@ -96,7 +105,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   const zone = useRef(zoneAt(runtime.pose.z));
   const zoom = useRef(0);
   const wallZoom = useRef(0);
-  const framedWall = useRef<"team" | "aftermovie">("team");
+  const framedWall = useRef<keyof typeof wallViews>("team");
   const contact = useRef(closedContact);
   const wallState = useRef<WallUI>(null);
   const carousel = useRef<ReturnType<typeof mountTeamCarousel>>(null);
@@ -251,12 +260,13 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
         view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
       }
     }
-    const wallTarget = Number(phase === "local" && runtime.interacting && (panel === "team" || panel === "aftermovie"));
-    if (wallTarget && (panel === "team" || panel === "aftermovie")) framedWall.current = panel;
+    const focusedWall = phase === "local" && runtime.interacting && panel !== "events" ? panel : null;
+    const wallTarget = Number(focusedWall !== null);
+    if (focusedWall) framedWall.current = focusedWall;
     wallZoom.current = runtime.reduced ? wallTarget : MathUtils.damp(wallZoom.current, wallTarget, 12, Math.min(delta, 0.2));
     let wallOffset = 0;
     if (wallZoom.current > 0.001 && size.width > 0 && size.height > 0) {
-      const frame = (framedWall.current === "team" ? teamView : aftermovieView)(size.width, size.height, [view.x, view.y, view.z]);
+      const frame = wallViews[framedWall.current](size.width, size.height, [view.x, view.y, view.z]);
       view.pitch = MathUtils.lerp(view.pitch, wallFocus[framedWall.current].pitch, wallZoom.current);
       view.fov = MathUtils.lerp(view.fov, frame.fov, wallZoom.current);
       wallOffset = frame.offsetY * wallZoom.current;
@@ -289,6 +299,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       else if (screenPanels && canOpenWall(runtime.pose, aftermovieFocus)) nextWall = "aftermovie";
       else if (carousel.current && canOpenWall(runtime.pose, teamFocus)) nextWall = "team";
       else if (eventPage && canOpenWall(runtime.pose, eventsFocus)) nextWall = "events";
+      else if (canOpenWall(runtime.pose, accommodationFocus)) nextWall = "accommodation";
     }
     if (nextWall !== wallState.current) {
       wallState.current = nextWall;
@@ -325,15 +336,33 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   return <>
     {assets && <>
       {assets.map((asset, index) => <primitive key={index} object={asset.scene}
-        onClick={index === 4 && (panel === "events" || wallState.current === "aftermovie") ? event => {
+        onClick={index === 4 && (panel === "events" || wallState.current === "aftermovie" ||
+          wallState.current === "accommodation") ? event => {
           const eventId = event.object.userData.wallEventId;
           if (panel === "events" && typeof eventId === "string") chooseEvent(eventId);
           else if (wallState.current === "aftermovie" && isAftermoviePanel(event.object)) openWall("aftermovie");
+          else if (wallState.current === "accommodation" && isAccommodationArtwork(event.object)) openWall("accommodation");
         } : undefined} />)}
       <ReadinessGate key={state.serial} runtime={runtime} serial={state.serial} />
     </>}
     <SceneRenderer runtime={runtime} />
   </>;
+}
+
+function AccommodationControls({ close }: { close(): void }) {
+  const back = useRef<HTMLButtonElement>(null);
+  useEffect(() => { back.current?.focus({ preventScroll: true }); }, []);
+  return <section className="cypher-accommodation-controls" aria-label="Accommodation" aria-describedby="accommodation-status">
+    <p className="sr-only" id="accommodation-status">Coming soon</p>
+    <button type="button" ref={back} onClick={close}>Back to walking</button>
+  </section>;
+}
+
+function AccommodationStatus() {
+  return <section className="cypher-accommodation-status" aria-label="Accommodation">
+    <h2>Accommodation</h2>
+    <p>Coming soon</p>
+  </section>;
 }
 
 function GateWalk({ start, team, canSendContact, catalog }:
@@ -363,7 +392,7 @@ function GateWalk({ start, team, canSendContact, catalog }:
   const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined,
     (start === "approach" ? approach : start === "plaza" ? plaza : start === "contact" ? contactStart :
       start === "events" ? eventsStart : start === "team" ? teamStart :
-        start === "aftermovie" ? aftermovieStart : market).space));
+        start === "aftermovie" ? aftermovieStart : start === "accommodation" ? accommodationStart : market).space));
   const [quarry] = useState(() => start === "quarry" ? new ImmersiveRuntime("hub", () => {
     holdCurtain.current = true;
     setAtMarket(true);
@@ -493,6 +522,7 @@ function GateWalk({ start, team, canSendContact, catalog }:
       event={eventPage.find(item => item.id === eventId)} changePage={setPage} choose={chooseEvent} close={closeWall} />}
     {panel === "team" && wallUI === "active" && <CypherTeamDialog canvas={canvas} display={teamDisplay}
       advance={advanceTeam} retry={() => requestTeam(current => ({ ...current }))} close={closeWall} />}
+    {panel === "accommodation" && wallUI === "active" && <AccommodationControls close={closeWall} />}
     {walking && panel === "aftermovie" && runtime.interacting && <CypherAftermovieControls
       loading={video.phase !== "playing"} muted={movieMuted} toggleSound={() => {
         video.setMuted(!movieMuted);
@@ -501,7 +531,10 @@ function GateWalk({ start, team, canSendContact, catalog }:
     {!walking && !landing && state.phase !== "entrance" && <div className="native-loading" role="status">
       <p>{state.error ?? (state.phase === "context-lost" || state.phase === "recovering"
         ? "Restoring 3D…" : activeQuarry ? "Loading the quarry…" : "Loading the market lane…")}</p>
-      {state.error && <><a href="/events">Browse events</a><br /><a href="/get-in-touch">Contact us</a></>}
+      {state.error && <>
+        {start === "accommodation" && <AccommodationStatus />}
+        <a href="/events">Browse events</a><br /><a href="/get-in-touch">Contact us</a>
+      </>}
     </div>}
   </>;
 }
@@ -525,6 +558,7 @@ export default function CypherGatePreview({ start = "market", team, canSendConta
     </CanvasBoundary>}
     {status === "unavailable" && <div className="native-loading" role="status">
       <p>3D is unavailable in this browser.</p>
+      {start === "accommodation" && <AccommodationStatus />}
       <a href="/events">Browse events</a>
       <br /><a href="/get-in-touch">Contact us</a>
       {start === "aftermovie" && <><br /><a href={stageVideoSource}>Watch the Aftermovie</a></>}

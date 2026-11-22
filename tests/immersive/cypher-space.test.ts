@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { Euler, Group, Mesh, MeshBasicMaterial, PerspectiveCamera, Vector3, VideoTexture } from "three";
+import { accommodationApproach, accommodationFocus, accommodationView } from "../../components/gullyverse-runtime/cypher-accommodation";
 import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels } from "../../components/gullyverse-runtime/cypher-aftermovie";
 import { createCypherSpace } from "../../components/gullyverse-runtime/cypher-space";
 import { nextTeam, teamFocus, teamIndex, teamSlides, teamView } from "../../components/gullyverse-runtime/team-carousel";
@@ -57,6 +58,31 @@ test("the authored team carousel wraps and the complete mural fits on a phone", 
         assert.ok(Math.abs(top.x) < 0.96 && top.y < 0.96 && bottom.y > -0.96);
         assert.ok(Math.abs(top.x - bottom.x) < 1e-8);
       }
+    }
+  }
+});
+
+test("the accommodation graffiti is reached from the gate and fits without tilting the view", () => {
+  const plaza = createCypherSpace({ start: -29.5, end: 47.6, halfWidth: 16, spawnY: 19.3, plaza: true });
+  const distance = (a: { x: number; z: number }, b: { x: number; z: number }) => Math.hypot(a.x - b.x, a.z - b.z);
+  const gate = { x: 0, z: -17.1 };
+  const approached = plaza.resolve(gate, accommodationApproach);
+  assert.ok(distance(approached, accommodationApproach) < 0.01);
+  assert.ok(plaza.clearance(accommodationFocus) > 0);
+  assert.ok(distance(plaza.resolve(approached, accommodationFocus), accommodationFocus) < 0.01);
+  assert.equal(accommodationFocus.pitch, 0);
+  const eye = [accommodationFocus.x, accommodationFocus.y, accommodationFocus.z] as const;
+  for (const [width, height] of [[320, 568], [390, 664], [844, 390], [1120, 700]]) {
+    const frame = accommodationView(width, height, eye);
+    const camera = new PerspectiveCamera(frame.fov, width / height, 0.05, 120);
+    camera.position.set(...eye);
+    camera.quaternion.setFromEuler(new Euler(0, accommodationFocus.yaw, 0, "YXZ"));
+    camera.setViewOffset(width, height, 0, frame.offsetY, width, height);
+    camera.updateMatrixWorld();
+    for (const x of [-13.165, -10.865]) for (const y of [8.353333, 9.886667]) {
+      const corner = new Vector3(x, y, -14.009).project(camera);
+      assert.ok(Math.abs(corner.x) < 0.96 && corner.y < 0.96);
+      assert.ok((1 - corner.y) * height / 2 < height - 76);
     }
   }
 });
