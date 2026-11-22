@@ -358,8 +358,8 @@ function AccommodationStatus() {
   </section>;
 }
 
-function GateWalk({ start, team, canSendContact, catalog }:
-  { start: Start; team?: string; canSendContact: boolean; catalog: CypherCatalog | null }) {
+function GateWalk({ start, team, canSendContact, catalog, live }:
+  { start: Start; team?: string; canSendContact: boolean; catalog: CypherCatalog | null; live: boolean }) {
   const curtain = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLDivElement>(null);
   const form = useRef<HTMLDivElement>(null);
@@ -533,7 +533,7 @@ function GateWalk({ start, team, canSendContact, catalog }:
       </>}
     </section>}
     <CypherContactDialog host={form} placement={walking && runtime.interacting ? contact.placement : null}
-      canSend={canSendContact} onClose={closeContact} />
+      canSend={canSendContact} onClose={closeContact} live={live} />
     {panel === "events" && wallUI === "active" && catalog && eventPage && <CypherEventsDialog
       catalog={catalog} visibleEvents={eventPage} page={page} pages={pages}
       event={eventPage.find(item => item.id === eventId)} changePage={setPage} choose={chooseEvent} close={closeWall} />}
@@ -556,8 +556,8 @@ function GateWalk({ start, team, canSendContact, catalog }:
   </>;
 }
 
-export default function CypherGatePreview({ start = "market", team, canSendContact = false, catalog = null }:
-  { start?: Start; team?: string; canSendContact?: boolean; catalog?: CypherCatalog | null }) {
+export default function CypherGatePreview({ start = "market", team, canSendContact = false, catalog = null, live = false }:
+  { start?: Start; team?: string; canSendContact?: boolean; catalog?: CypherCatalog | null; live?: boolean }) {
   const [status, setStatus] = useState<"checking" | "ready" | "unavailable">("checking");
   useEffect(() => {
     try {
@@ -571,7 +571,7 @@ export default function CypherGatePreview({ start = "market", team, canSendConta
   return <div className="native-journey">
     <header className="native-header"><Link href="/">BREEZE <span>2027</span></Link></header>
     {status === "ready" && <CanvasBoundary onFailure={() => setStatus("unavailable")}>
-      <GateWalk start={start} team={team} canSendContact={canSendContact} catalog={catalog} />
+      <GateWalk start={start} team={team} canSendContact={canSendContact} catalog={catalog} live={live} />
     </CanvasBoundary>}
     {status === "unavailable" && <div className="native-loading" role="status">
       <p>3D is unavailable in this browser.</p>

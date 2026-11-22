@@ -5,11 +5,13 @@ import { mountContactForm } from "./contact-form.js";
 
 export type ContactPlacement = "window" | "sheet" | null;
 
-export function CypherContactDialog({ host, placement, canSend, onClose }: {
+export function CypherContactDialog({ host, placement, canSend, onClose, live = false }: {
   host: RefObject<HTMLDivElement | null>;
   placement: ContactPlacement;
   canSend: boolean;
   onClose: () => void;
+  /** The public site saves enquiries through the existing Contact API. */
+  live?: boolean;
 }) {
   const form = useRef<ReturnType<typeof mountContactForm> | null>(null);
   const visible = placement !== null;
@@ -20,7 +22,7 @@ export function CypherContactDialog({ host, placement, canSend, onClose }: {
       onClose,
       submit: async fields => {
         if (!canSend) throw new Error("Sending is unavailable in this preview.");
-        const response = await fetch("/api/preview-contact", {
+        const response = await fetch(live ? "/api/contact" : "/api/preview-contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(fields),
@@ -35,7 +37,7 @@ export function CypherContactDialog({ host, placement, canSend, onClose }: {
     if (!canSend) element.querySelector<HTMLButtonElement>(".send-message")!.disabled = true;
     form.current = mounted;
     return () => { form.current = null; mounted.dispose(); };
-  }, [host, canSend, onClose]);
+  }, [host, canSend, onClose, live]);
   useEffect(() => {
     if (visible) form.current?.focus();
   }, [visible]);
@@ -78,6 +80,6 @@ export function CypherContactDialog({ host, placement, canSend, onClose }: {
   return <>
     <div ref={host} className="native-form cypher-contact-form" role="dialog" aria-modal="true" aria-label="Contact enquiry"
       hidden={!visible} data-flat={placement === "sheet"} onKeyDown={handleKeys} />
-    {visible && <p className="native-test-note cypher-contact-note">{canSend ? "Private test database" : "Private preview · sending is unavailable"}</p>}
+    {visible && !live && <p className="native-test-note cypher-contact-note">{canSend ? "Private test database" : "Private preview · sending is unavailable"}</p>}
   </>;
 }
