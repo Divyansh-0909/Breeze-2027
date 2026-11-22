@@ -16,7 +16,9 @@ import { eventPosterSlots, eventsPerPage, paintEventPage } from "./event-poster-
 import type { CypherCatalog, CypherEvent } from "../../lib/events/cypher-catalog";
 import { CypherTeamDialog } from "./CypherTeamDialog";
 import { CypherAftermovieControls } from "./CypherAftermovieControls";
-import { accommodationApproach, accommodationFocus, accommodationView, isAccommodationArtwork } from "./cypher-accommodation";
+import {
+  accommodationApproach, accommodationFocus, accommodationView, isAccommodationArtwork, revealAccommodationHouseWall,
+} from "./cypher-accommodation";
 import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels, isAftermoviePanel } from "./cypher-aftermovie";
 import { stageVideoSource, useStageVideo } from "../landing-page/stage3d/useStageVideo";
 import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
@@ -159,6 +161,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       if (abort.signal.aborted) { led.dispose(); return; }
       display.current = led;
       lamps.current = mountMarketLamps([south.scene, north.scene]);
+      revealAccommodationHouseWall(plazaAsset.scene, plazaAsset.rgbmRange);
       const bounds = new Box3();
       plazaAsset.scene.updateMatrixWorld(true);
       plazaAsset.scene.traverse(object => {

@@ -4,7 +4,7 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
 
-export type BakedAsset = { scene: THREE.Group; dispose(): void };
+export type BakedAsset = { scene: THREE.Group; rgbmRange?: number; dispose(): void };
 /** Leases cancel ownership immediately and dispose late results after the last release. */
 export class BakedAssetPool {
   private entries = new Map<string, { users: number; promise: Promise<BakedAsset> }>();
@@ -85,7 +85,7 @@ export class BakedAssetPool {
           }
         }
       });
-      return { scene: gltf.scene, dispose };
+      return { scene: gltf.scene, rgbmRange: baseline ? undefined : bake.range, dispose };
     } catch (error) { dispose(); throw error; }
   }
 }

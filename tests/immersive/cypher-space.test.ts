@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { Euler, Group, Mesh, MeshBasicMaterial, PerspectiveCamera, Vector3, VideoTexture } from "three";
-import { accommodationApproach, accommodationFocus, accommodationView } from "../../components/gullyverse-runtime/cypher-accommodation";
+import {
+  accommodationApproach, accommodationFocus, accommodationView, revealAccommodationHouseWall,
+} from "../../components/gullyverse-runtime/cypher-accommodation";
 import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels } from "../../components/gullyverse-runtime/cypher-aftermovie";
 import { createCypherSpace } from "../../components/gullyverse-runtime/cypher-space";
 import { nextTeam, teamFocus, teamIndex, teamSlides, teamView } from "../../components/gullyverse-runtime/team-carousel";
@@ -84,7 +86,25 @@ test("the accommodation graffiti is reached from the gate and fits without tilti
       assert.ok(Math.abs(corner.x) < 0.96 && corner.y < 0.96);
       assert.ok((1 - corner.y) * height / 2 < height - 76);
     }
+    const lamp = new Vector3(-12.015, 10.38, -14.46).project(camera);
+    assert.ok(Math.abs(lamp.x) < 0.96 && lamp.y < 0.96);
   }
+});
+
+test("accommodation uses the house facade behind the separate baked plaster overlay", () => {
+  const plaza = new Group();
+  const [overlay, graffiti, house, lamp] = [
+    "Normal house plaster finish", "COMING above SOON graffiti", "REV15N / Existing Events house shell",
+    "Accommodation shaded wall-lamp fixture",
+  ].map(name => {
+    const object = new Group();
+    object.userData.runtimeOriginalSource = "REV15Z / " + name;
+    plaza.add(object);
+    return object;
+  });
+  revealAccommodationHouseWall(plaza);
+  assert.equal(overlay.visible, false);
+  assert.ok(graffiti.visible && house.visible && lamp.visible);
 });
 
 test("the Aftermovie view is reachable and fits the authored screen on phones", () => {
