@@ -1,8 +1,8 @@
 "use client";
 
-import React, { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import React, { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { AgXToneMapping, Box3, Color, Euler, MathUtils, PerspectiveCamera, Vector3 } from "three";
+import { AgXToneMapping, Box3, Color, Euler, MathUtils, PerspectiveCamera, Vector3, type VideoTexture } from "three";
 import { useImmersiveInput } from "../immersive/input";
 import { phoneCamera, ReadinessGate, SceneRenderer } from "../immersive/rendering";
 import { ImmersiveRuntime } from "../immersive/runtime";
@@ -15,6 +15,9 @@ import { CypherEventsDialog } from "./CypherEventsDialog";
 import { eventPosterSlots, eventsPerPage, paintEventPage } from "./event-poster-wall";
 import type { CypherCatalog, CypherEvent } from "../../lib/events/cypher-catalog";
 import { CypherTeamDialog } from "./CypherTeamDialog";
+import { CypherAftermovieControls } from "./CypherAftermovieControls";
+import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels, isAftermoviePanel } from "./cypher-aftermovie";
+import { stageVideoSource, useStageVideo } from "../landing-page/stage3d/useStageVideo";
 import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
 import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
@@ -29,12 +32,14 @@ const contactStart = createCypherSpace({ ...routeBounds, spawnY: -cypherContact.
 const eventsStart = createCypherSpace({ ...routeBounds, spawnY: 31.05, spawnX: -10.7, spawnYaw: Math.PI / 2 });
 const eventsFocus = lookAtPose([-9.7, 8.9, -31.05], [-15.85, 8.15, -31.05]);
 const teamStart = createCypherSpace({ ...routeBounds, spawnY: -teamFocus.z, spawnX: teamFocus.x, spawnYaw: teamFocus.yaw });
+const aftermovieStart = createCypherSpace({ ...routeBounds, spawnY: 33.5, spawnPitch: 0.17 });
 const assetRoot = "/models/gullyverse/locked-rev15z-";
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
-type Start = "quarry" | "market" | "approach" | "plaza" | "contact" | "events" | "team";
-type WallPanel = "events" | "team";
+type Start = "quarry" | "market" | "approach" | "plaza" | "contact" | "events" | "team" | "aftermovie";
+type WallPanel = "events" | "team" | "aftermovie";
 type WallUI = WallPanel | "active" | null;
-const wallFocus = { events: eventsFocus, team: teamFocus };
+const wallFocus = { events: eventsFocus, team: teamFocus, aftermovie: aftermovieFocus };
+const wallLabel = { events: "Browse event posters", team: "View team murals", aftermovie: "Play Aftermovie" };
 type ContactUI = { available: boolean; placement: ContactPlacement; needsHeading: boolean };
 const closedContact: ContactUI = { available: false, placement: null, needsHeading: false };
 const compactContactQuery = "(max-width: 699px), (max-height: 519px), (pointer: coarse)";
@@ -65,7 +70,7 @@ class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFail
 }
 
 function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, eventPage, reportWall, chooseEvent,
-  teamRequest, reportTeam }: {
+  teamRequest, reportTeam, film, openWall, stopAftermovie }: {
   runtime: ImmersiveRuntime;
   curtain: React.RefObject<HTMLDivElement | null>;
   reportZone(zone: ReturnType<typeof zoneAt>): void;
@@ -77,6 +82,9 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   chooseEvent(id: string): void;
   teamRequest: { index: number };
   reportTeam(display: TeamDisplay): void;
+  film: VideoTexture | null;
+  openWall(panel: WallPanel): void;
+  stopAftermovie(): void;
 }) {
   const { gl, scene, camera, size } = useThree();
   const [pool] = useState(() => new BakedAssetPool(gl, 1));
@@ -87,7 +95,8 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   const euler = useRef(new Euler(0, 0, 0, "YXZ"));
   const zone = useRef(zoneAt(runtime.pose.z));
   const zoom = useRef(0);
-  const teamZoom = useRef(0);
+  const wallZoom = useRef(0);
+  const framedWall = useRef<"team" | "aftermovie">("team");
   const contact = useRef(closedContact);
   const wallState = useRef<WallUI>(null);
   const carousel = useRef<ReturnType<typeof mountTeamCarousel>>(null);
@@ -166,7 +175,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     gl.toneMapping = AgXToneMapping;
     gl.toneMappingExposure = Math.pow(2, 0.25);
     scene.background = new Color("#010303");
-    const lost = (event: Event) => { event.preventDefault(); runtime.loseContext(); };
+    const lost = (event: Event) => { event.preventDefault(); stopAftermovie(); runtime.loseContext(); };
     const restored = () => runtime.restoreContext();
     gl.domElement.addEventListener("webglcontextlost", lost);
     gl.domElement.addEventListener("webglcontextrestored", restored);
@@ -174,9 +183,13 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       gl.domElement.removeEventListener("webglcontextlost", lost);
       gl.domElement.removeEventListener("webglcontextrestored", restored);
     };
-  }, [gl, scene, runtime]);
+  }, [gl, scene, runtime, stopAftermovie]);
 
   const plazaScene = assets?.[4].scene;
+  const screenPanels = useMemo(() => plazaScene ? findAftermoviePanels(plazaScene) : null, [plazaScene]);
+  useLayoutEffect(() => {
+    if (screenPanels && film) return bindAftermovie(screenPanels, film);
+  }, [screenPanels, film]);
   useEffect(() => {
     if (!plazaScene || !eventPage) return;
     const slots = eventPosterSlots(plazaScene);
@@ -238,14 +251,15 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
         view.fov = MathUtils.lerp(view.fov, cypherContact.windowFov(aspect), zoom.current);
       }
     }
-    const teamTarget = Number(phase === "local" && runtime.interacting && panel === "team");
-    teamZoom.current = runtime.reduced ? teamTarget : MathUtils.damp(teamZoom.current, teamTarget, 12, Math.min(delta, 0.2));
-    let teamOffset = 0;
-    if (teamZoom.current > 0.001 && size.width > 0 && size.height > 0) {
-      const frame = teamView(size.width, size.height, [view.x, view.y, view.z]);
-      view.pitch = MathUtils.lerp(view.pitch, teamFocus.pitch, teamZoom.current);
-      view.fov = MathUtils.lerp(view.fov, frame.fov, teamZoom.current);
-      teamOffset = frame.offsetY * teamZoom.current;
+    const wallTarget = Number(phase === "local" && runtime.interacting && (panel === "team" || panel === "aftermovie"));
+    if (wallTarget && (panel === "team" || panel === "aftermovie")) framedWall.current = panel;
+    wallZoom.current = runtime.reduced ? wallTarget : MathUtils.damp(wallZoom.current, wallTarget, 12, Math.min(delta, 0.2));
+    let wallOffset = 0;
+    if (wallZoom.current > 0.001 && size.width > 0 && size.height > 0) {
+      const frame = (framedWall.current === "team" ? teamView : aftermovieView)(size.width, size.height, [view.x, view.y, view.z]);
+      view.pitch = MathUtils.lerp(view.pitch, wallFocus[framedWall.current].pitch, wallZoom.current);
+      view.fov = MathUtils.lerp(view.fov, frame.fov, wallZoom.current);
+      wallOffset = frame.offsetY * wallZoom.current;
     }
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
@@ -253,10 +267,10 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       const changedFov = camera.fov !== view.fov;
       camera.fov = view.fov;
       const offset = camera.view;
-      if (teamOffset !== 0 && (!offset?.enabled || offset.offsetY !== teamOffset ||
+      if (wallOffset !== 0 && (!offset?.enabled || offset.offsetY !== wallOffset ||
           offset.fullWidth !== size.width || offset.fullHeight !== size.height)) {
-        camera.setViewOffset(size.width, size.height, 0, teamOffset, size.width, size.height);
-      } else if (teamOffset === 0 && offset?.enabled) {
+        camera.setViewOffset(size.width, size.height, 0, wallOffset, size.width, size.height);
+      } else if (wallOffset === 0 && offset?.enabled) {
         camera.clearViewOffset();
       } else if (changedFov) {
         camera.updateProjectionMatrix();
@@ -272,6 +286,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     let nextWall: WallUI = null;
     if (settled && !map) {
       if (runtime.interacting) nextWall = panel === null ? null : "active";
+      else if (screenPanels && canOpenWall(runtime.pose, aftermovieFocus)) nextWall = "aftermovie";
       else if (carousel.current && canOpenWall(runtime.pose, teamFocus)) nextWall = "team";
       else if (eventPage && canOpenWall(runtime.pose, eventsFocus)) nextWall = "events";
     }
@@ -310,9 +325,10 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   return <>
     {assets && <>
       {assets.map((asset, index) => <primitive key={index} object={asset.scene}
-        onClick={index === 4 && panel === "events" ? event => {
+        onClick={index === 4 && (panel === "events" || wallState.current === "aftermovie") ? event => {
           const eventId = event.object.userData.wallEventId;
-          if (typeof eventId === "string") chooseEvent(eventId);
+          if (panel === "events" && typeof eventId === "string") chooseEvent(eventId);
+          else if (wallState.current === "aftermovie" && isAftermoviePanel(event.object)) openWall("aftermovie");
         } : undefined} />)}
       <ReadinessGate key={state.serial} runtime={runtime} serial={state.serial} />
     </>}
@@ -329,10 +345,13 @@ function GateWalk({ start, team, canSendContact, catalog }:
   const restoreContactFocus = useRef(false);
   const browse = useRef<HTMLButtonElement>(null);
   const restoreWallFocus = useRef<WallPanel | null>(null);
+  const watchingMovie = useRef(false);
   const holdCurtain = useRef(false);
   const [contact, setContact] = useState(closedContact);
   const [wallUI, setWallUI] = useState<WallUI>(null);
   const [panel, setPanel] = useState<WallPanel | null>(null);
+  const [movieMuted, setMovieMuted] = useState(true);
+  const [movieFailed, setMovieFailed] = useState(false);
   const [teamRequest, requestTeam] = useState(() => ({ index: teamIndex(team) }));
   const [teamDisplay, setTeamDisplay] = useState(defaultTeam);
   const [page, setPage] = useState(0);
@@ -343,7 +362,8 @@ function GateWalk({ start, team, canSendContact, catalog }:
   const [atMarket, setAtMarket] = useState(start !== "quarry");
   const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined,
     (start === "approach" ? approach : start === "plaza" ? plaza : start === "contact" ? contactStart :
-      start === "events" ? eventsStart : start === "team" ? teamStart : market).space));
+      start === "events" ? eventsStart : start === "team" ? teamStart :
+        start === "aftermovie" ? aftermovieStart : market).space));
   const [quarry] = useState(() => start === "quarry" ? new ImmersiveRuntime("hub", () => {
     holdCurtain.current = true;
     setAtMarket(true);
@@ -353,6 +373,28 @@ function GateWalk({ start, team, canSendContact, catalog }:
   const [zone, setZone] = useState(() => zoneAt(marketRuntime.pose.z));
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   useImmersiveInput(runtime);
+  const playbackOwnership = useCallback((active: boolean) => {
+    if (active || !watchingMovie.current) return;
+    watchingMovie.current = false;
+    marketRuntime.focusInteraction(null);
+    setPanel(null);
+  }, [marketRuntime]);
+  const video = useStageVideo(playbackOwnership, { startMuted: true, onError: () => setMovieFailed(true) });
+  const stopAftermovie = useCallback(() => {
+    if (watchingMovie.current) video.stopMovie();
+  }, [video.stopMovie]);
+  const openWall = useCallback((target: WallPanel) => {
+    const focus = wallFocus[target];
+    if (!canOpenWall(marketRuntime.pose, focus) || !marketRuntime.focusInteraction(focus)) return;
+    setPanel(target);
+    restoreWallFocus.current = target;
+    if (target === "aftermovie") {
+      setMovieFailed(false);
+      setMovieMuted(true);
+      watchingMovie.current = true;
+      video.startMovie();
+    }
+  }, [marketRuntime, video.startMovie]);
   const closeContact = useCallback(() => { marketRuntime.focusInteraction(null); }, [marketRuntime]);
   const closeWall = useCallback(() => {
     marketRuntime.focusInteraction(null);
@@ -384,10 +426,21 @@ function GateWalk({ start, team, canSendContact, catalog }:
   }, [wallUI]);
   useEffect(() => {
     if (!runtime.interacting) {
+      stopAftermovie();
       setPanel(null);
       chooseEvent(null);
     }
-  }, [state, runtime]);
+  }, [state, runtime, stopAftermovie]);
+  useEffect(() => {
+    if (video.phase === "idle") return;
+    const hide = () => { if (document.hidden) stopAftermovie(); };
+    document.addEventListener("visibilitychange", hide);
+    window.addEventListener("pagehide", stopAftermovie);
+    return () => {
+      document.removeEventListener("visibilitychange", hide);
+      window.removeEventListener("pagehide", stopAftermovie);
+    };
+  }, [video.phase, stopAftermovie]);
   const walking = atMarket && state.phase === "local";
   const landing = !!activeQuarry && state.phase === "landing";
   return <>
@@ -399,7 +452,8 @@ function GateWalk({ start, team, canSendContact, catalog }:
           <QuarryArrivalScene runtime={activeQuarry} curtain={curtain} holdCurtain={holdCurtain} />
         </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone}
           form={form} reportContact={setContact} panel={panel} eventPage={eventPage}
-          reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam} />}
+          reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam}
+          film={video.phase === "playing" ? video.texture : null} openWall={openWall} stopAftermovie={stopAftermovie} />}
       </Canvas>
       {walking && runtime.interacting && contact.needsHeading &&
         <h2 className="cypher-contact-fallback-heading">Contact us</h2>}
@@ -414,15 +468,12 @@ function GateWalk({ start, team, canSendContact, catalog }:
             restoreContactFocus.current = true;
           }
         }}>Leave a message</button>}
-        {(wallUI === "events" || wallUI === "team") && <button ref={browse} onClick={() => {
-          const focus = wallFocus[wallUI];
-          if (canOpenWall(marketRuntime.pose, focus) && marketRuntime.focusInteraction(focus)) {
-            setPanel(wallUI);
-            restoreWallFocus.current = wallUI;
-          }
-        }}>{wallUI === "team" ? "View team murals" : "Browse event posters"}</button>}
+        {wallUI && wallUI !== "active" && <button ref={browse} onClick={() => openWall(wallUI)}>{wallLabel[wallUI]}</button>}
         <button onClick={() => runtime.setMap(!state.map)}>{state.map ? "Close map" : "Map"}</button>
       </div>
+      {wallUI === "aftermovie" && movieFailed && <p role="status" className="cypher-aftermovie-error">
+        The Aftermovie could not play. Try again or <a href={stageVideoSource}>open the video</a>.
+      </p>}
       {!state.map && <>
         <small>WASD or arrows to walk. Drag to look.</small>
         <div className="native-touch" aria-label="Movement controls">
@@ -442,6 +493,11 @@ function GateWalk({ start, team, canSendContact, catalog }:
       event={eventPage.find(item => item.id === eventId)} changePage={setPage} choose={chooseEvent} close={closeWall} />}
     {panel === "team" && wallUI === "active" && <CypherTeamDialog canvas={canvas} display={teamDisplay}
       advance={advanceTeam} retry={() => requestTeam(current => ({ ...current }))} close={closeWall} />}
+    {walking && panel === "aftermovie" && runtime.interacting && <CypherAftermovieControls
+      loading={video.phase !== "playing"} muted={movieMuted} toggleSound={() => {
+        video.setMuted(!movieMuted);
+        setMovieMuted(!movieMuted);
+      }} close={stopAftermovie} />}
     {!walking && !landing && state.phase !== "entrance" && <div className="native-loading" role="status">
       <p>{state.error ?? (state.phase === "context-lost" || state.phase === "recovering"
         ? "Restoring 3D…" : activeQuarry ? "Loading the quarry…" : "Loading the market lane…")}</p>
@@ -471,6 +527,7 @@ export default function CypherGatePreview({ start = "market", team, canSendConta
       <p>3D is unavailable in this browser.</p>
       <a href="/events">Browse events</a>
       <br /><a href="/get-in-touch">Contact us</a>
+      {start === "aftermovie" && <><br /><a href={stageVideoSource}>Watch the Aftermovie</a></>}
     </div>}
   </div>;
 }

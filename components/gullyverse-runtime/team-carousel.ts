@@ -1,6 +1,7 @@
 import { Box3, Mesh, MeshStandardMaterial, TextureLoader, Vector3, type Object3D, type Texture } from "three";
 import source from "@/public/models/gullyverse/locked-rev15z-team/manifest.json";
 import { lookAtPose } from "../immersive/world";
+import { fitWallView } from "./cypher-wall-view";
 import walkSpace from "./cypher-walk-space.json";
 
 const assetPath = "/models/gullyverse/locked-rev15z-team/";
@@ -13,15 +14,7 @@ const viewingPosition = [centre[0] - distance, centre[1] + 0.23, centre[2]] as c
 export const teamFocus = lookAtPose(viewingPosition, [centre[0], viewingPosition[1], centre[2]]);
 
 export function teamView(width: number, height: number, position: readonly number[]) {
-  const metres = Math.hypot(centre[0] - position[0], centre[2] - position[2]);
-  const muralArea = Math.max(height - 112, height * 0.65);
-  const frameHeight = Math.max(first.heightM * height / (0.84 * muralArea), maxWidth * height / (0.90 * width));
-  const halfLens = frameHeight / (2 * Math.max(metres, 1));
-  return {
-    fov: 2 * Math.atan(halfLens) * 180 / Math.PI,
-    // Shift the frame above the controls while keeping the optical axis level.
-    offsetY: (height - muralArea) / 2 + (position[1] - centre[1]) * height / frameHeight,
-  };
+  return fitWallView(width, height, position, centre, maxWidth, first.heightM);
 }
 
 export function teamIndex(value: string | undefined) {

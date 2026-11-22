@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { Euler, PerspectiveCamera, Vector3 } from "three";
+import { Euler, Group, Mesh, MeshBasicMaterial, PerspectiveCamera, Vector3, VideoTexture } from "three";
+import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels } from "../../components/gullyverse-runtime/cypher-aftermovie";
 import { createCypherSpace } from "../../components/gullyverse-runtime/cypher-space";
 import { nextTeam, teamFocus, teamIndex, teamSlides, teamView } from "../../components/gullyverse-runtime/team-carousel";
 import { ImmersiveRuntime } from "../../components/immersive/runtime";
 import { world } from "../../components/immersive/world";
+import { ownVideoTexture, retireVideoTexture } from "../../components/landing-page/stage3d/videoTextureOwnership";
 import plazaFootprint from "../../components/gullyverse-runtime/plaza-walk-space.json";
 
 const cypher = createCypherSpace();
@@ -57,6 +59,53 @@ test("the authored team carousel wraps and the complete mural fits on a phone", 
       }
     }
   }
+});
+
+test("the Aftermovie view is reachable and fits the authored screen on phones", () => {
+  const plaza = createCypherSpace({ start: -29.5, end: 47.6, halfWidth: 16, spawnY: 33.5, plaza: true });
+  const reached = plaza.resolve({ x: 0, z: -33.5 }, aftermovieFocus);
+  assert.ok(Math.hypot(reached.x - aftermovieFocus.x, reached.z - aftermovieFocus.z) < 0.01);
+  for (const [width, height] of [[320, 568], [390, 664], [844, 390], [1120, 700]]) {
+    const position = [aftermovieFocus.x, aftermovieFocus.y, aftermovieFocus.z] as const;
+    const frame = aftermovieView(width, height, position);
+    const camera = new PerspectiveCamera(frame.fov, width / height, 0.05, 120);
+    camera.position.set(...position);
+    camera.setViewOffset(width, height, 0, frame.offsetY, width, height);
+    camera.updateMatrixWorld();
+    for (const x of [-7.28, 7.28]) for (const y of [8.6, 14.58]) {
+      const corner = new Vector3(x, y, -45.72).project(camera);
+      assert.ok(Math.abs(corner.x) < 0.96 && corner.y < 0.96);
+      assert.ok((1 - corner.y) * height / 2 < Math.max(height - 112, height * 0.65));
+    }
+  }
+});
+
+test("the three Aftermovie panels share one video lease and restore the authored still", () => {
+  const group = new Group();
+  const original = new MeshBasicMaterial();
+  for (const side of ["left", "center", "right"]) {
+    const mesh = new Mesh(undefined, original);
+    mesh.userData.runtimeOriginalSource = "REV15Z / Existing Aftermovie / " + side;
+    group.add(mesh);
+  }
+  const panels = findAftermoviePanels(group);
+  assert.ok(panels);
+  const video = new VideoTexture({} as HTMLVideoElement);
+  let retired = 0;
+  video.addEventListener("dispose", () => retired++);
+  ownVideoTexture(video);
+  const unbind = bindAftermovie(panels, video);
+  const material = panels[0].material;
+  assert.ok(material instanceof MeshBasicMaterial && material.map === video && material !== original);
+  assert.ok(panels.every(panel => panel.material === material));
+  assert.equal(video.flipY, false);
+  retireVideoTexture(video);
+  assert.equal(retired, 0);
+  unbind();
+  assert.ok(panels.every(panel => panel.material === original));
+  assert.equal(retired, 1);
+  group.remove(group.children[0]);
+  assert.equal(findAftermoviePanels(group), null);
 });
 
 test("the original controller walks both ways through a continuous native lane and ramp", () => {

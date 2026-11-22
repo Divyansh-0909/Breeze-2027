@@ -155,6 +155,35 @@ html,body,#root{margin:0;width:100%;height:100%;background:#010303}
 }
 .native-journey .cypher-team-navigation button { font-size: 22px; line-height: 1; }
 .cypher-team-dialog p { margin: 5px 0 0; }
+.cypher-aftermovie-controls {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  width: min(360px, calc(100% - 24px));
+  padding: 8px 10px 10px;
+  background: #101c17f5;
+  border: 1px solid #617a6b;
+}
+.cypher-aftermovie-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.cypher-aftermovie-title h2 {
+  margin: 0;
+  font-size: 16px;
+}
+.native-journey .cypher-aftermovie-controls button {
+  min-height: 36px;
+  padding: 4px 12px;
+}
+.cypher-aftermovie-controls p { margin: 6px 0; }
+.cypher-aftermovie-error { margin: 8px 0 0; }
+.cypher-aftermovie-error a { color: #ece1bd; }
 @media (orientation: landscape) and (max-height: 519px) {
   .native-journey:has(.cypher-contact-form[data-flat="true"]:not([hidden])) {
     --contact-sheet-max-width: 480px;
