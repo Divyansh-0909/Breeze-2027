@@ -24,6 +24,7 @@ import {CaveEntranceSession} from "./CaveEntranceSession";
 import {carryCaveReview,naturalCaveReview} from "./caveReview";
 import {CaveMaterialStudySession,CAVE_STUDY_MATERIALS,caveStudyMaterial} from "./caveMaterialStudy";
 import {CanalMaterialSession,CANAL_MATERIALS,canalMaterial} from "./canalMaterialStudy";
+import {keepClassicHub} from "@/lib/classic-hub";
 const wipEnvironmentDefault=process.env.NEXT_PUBLIC_GULLYVERSE_WIP_DEFAULT==="1";
 const reviewAllowed=process.env.NODE_ENV==="development"||process.env.NEXT_PUBLIC_GULLYVERSE_WALL_PREVIEW==="1"||wipEnvironmentDefault;
 const noWallSubscribe=()=>()=>{};
@@ -58,8 +59,8 @@ export default function ImmersiveShell() {
     return new ImmersiveRuntime(entry.location, (id, source, entrance) => {
       if (!entrance) rememberGullyverseEntry();
       if (source !== "url" && (locationFromPath(window.location.pathname) !== id || entrance)) {
-        const href = carryCaveReview(immersiveHref(id, entrance), window.location.search,
-          reviewAllowed);
+        const href = keepClassicHub(carryCaveReview(immersiveHref(id, entrance), window.location.search,
+          reviewAllowed), window.location.search);
         const diagnostic = new URLSearchParams(window.location.search).has("diagnostics");
         window.history.pushState({ ...window.history.state, breezeArrival: entrance ? "entrance" : id }, "", href + (diagnostic ? (href.includes("?") ? "&" : "?") + "diagnostics" : ""));
       } else if (id === "hub" && !entrance) {
