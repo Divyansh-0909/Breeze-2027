@@ -218,3 +218,36 @@ html,body,#root{margin:0;width:100%;height:100%;background:#010303}
     justify-content: center;
   }
 }
+
+/* Aerial cypher map: markers are positioned by the canvas every frame. */
+.cypher-map { position: absolute; inset: 0; z-index: 3; pointer-events: none; color: #f4f0e2; }
+.cypher-map-header { position: absolute; top: max(52px, calc(env(safe-area-inset-top) + 44px)); left: 20px; right: 20px; text-shadow: 0 2px 12px #000; }
+.cypher-map-header p { margin: 0 0 4px; font-size: 10px; letter-spacing: .2em; color: #dfc995; }
+.cypher-map-header h2 { margin: 0; font-size: clamp(20px, 2.4vw, 30px); font-weight: 700; letter-spacing: -.02em; }
+.cypher-map-markers { position: absolute; inset: 0; opacity: 0; }
+.cypher-map-markers svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.cypher-map-markers line { stroke: #ead9af; stroke-opacity: .65; stroke-width: 1; }
+.cypher-map-dot { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; border: 1px solid #fff0c7; background: #c4a76c; box-shadow: 0 0 0 3px #15171990; }
+.cypher-map-dot[data-kind="place"] { background: #7f9e8e; }
+.cypher-map-dot[data-kind="here"] { left: -6px; top: -6px; width: 12px; height: 12px; background: #4fd1a5; border-color: #e9fff6; animation: cypher-map-pulse 1.6s ease-in-out infinite; }
+.cypher-map .cypher-map-stop, .cypher-map-here { position: absolute; top: 0; left: 0; white-space: nowrap; box-shadow: 0 2px 12px #0008; }
+.cypher-map .cypher-map-stop { pointer-events: auto; min-height: 44px; padding: 10px 14px; border: 1px solid #decc9980; border-radius: 0; background: #1d211bee; color: #f7f1df; font-size: 13px; cursor: pointer; }
+.cypher-map .cypher-map-stop[data-kind="place"] { background: #142520ee; border-color: #7fae9a80; }
+.cypher-map .cypher-map-stop:hover, .cypher-map .cypher-map-stop:focus-visible { background: #e0c78f; color: #151914; outline: 2px solid #fff3cf; outline-offset: 2px; }
+.cypher-map .cypher-map-stop:disabled { cursor: default; }
+.cypher-map-here { padding: 4px 8px; font-size: 11px; background: #0d2a21e0; color: #d6fff0; border: 1px solid #4fd1a580; }
+.cypher-map-hint { position: absolute; left: 0; right: 0; bottom: 96px; margin: 0; padding: 0 12px; text-align: center; font-size: 12px; letter-spacing: .04em; text-shadow: 0 2px 8px #000; }
+@keyframes cypher-map-pulse { 50% { box-shadow: 0 0 0 7px #4fd1a533; } }
+@media (prefers-reduced-motion: reduce) { .cypher-map-dot[data-kind="here"] { animation: none; } }
+/* Small screens keep the hint for screen readers only; the toolbar already shows Close map. */
+@media (max-width: 699px), (max-height: 519px) {
+  .cypher-map .cypher-map-stop { min-height: 40px; padding: 8px 10px; font-size: 12px; }
+  .cypher-map-hint { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (max-width: 699px) {
+  .cypher-map-header { top: max(46px, calc(env(safe-area-inset-top) + 40px)); left: 12px; right: 12px; }
+}
+@media (max-height: 519px) {
+  .cypher-map-header { top: auto; bottom: auto; left: auto; right: 20px; top: 16px; text-align: right; }
+  .cypher-map-header h2 { font-size: 16px; }
+}

@@ -10,6 +10,11 @@ type Limits = { start: number; end: number; halfWidth: number; spawnY: number; s
 type Strip = typeof walkSpace.strips[number] & { endHalfWidth?: number };
 const { eyeHeight } = world;
 const radius = world.playerRadius;
+// Aerial map: a border around the route, framed between the map header and
+// the walking toolbar (fractions of the screen height).
+const mapMargin = 2.5;
+// Very wide views are short phones in landscape, where the toolbar is a larger share.
+const mapBand = (aspect: number) => aspect > 1.9 ? { top: 0.2, bottom: 0.28 } : { top: 0.17, bottom: 0.21 };
 
 export function createCypherSpace(limits?: Limits) {
   const rooftop = walkSpace.strips.at(-1)!;
@@ -49,6 +54,9 @@ export function createCypherSpace(limits?: Limits) {
       if (next && strip.endWidth !== next.startWidth) edges.push([xEnd, strip.to, side * next.startWidth, strip.to]);
     }
   });
+
+  const mapHalfWidth = Math.max(...strips.map(strip => Math.max(strip.startWidth, strip.endWidth)));
+  const mapFloor = Math.max(...strips.map(strip => Math.max(strip.startHeight, strip.endHeight)));
 
   const stripAt = (x: number, y: number) => strips.find(s => y >= s.from && y <= s.to && Math.abs(x) <= s.widthAt(y));
   function grade(p: Point) {
@@ -126,11 +134,24 @@ export function createCypherSpace(limits?: Limits) {
       ...base,
       fov: Math.min(85, Math.max(world.camera.fov, 2 * Math.atan(Math.tan(world.camera.fov * Math.PI / 360) / aspect) * 180 / Math.PI)),
     }),
-    mapCamera: aspect => ({
-      ...lookAtPose([0, 38, -(first.from + last.to) / 2], [0, 7.2, -(first.from + last.to) / 2 - 0.01]),
-      pitch: -Math.PI / 2,
-      fov: aspect < 1 ? 80 : 68,
-    }),
+    mapCamera: aspect => {
+      // Frame the whole walkable route from the market to the screen. Landscape
+      // views run it left to right, so the cypher sits on the right.
+      const landscape = aspect >= 1;
+      const fov = landscape ? 68 : 80;
+      const tanV = Math.tan(fov * Math.PI / 360), tanH = tanV * aspect;
+      const band = mapBand(aspect);
+      const usable = 1 - band.top - band.bottom;
+      const length = (last.to - first.from) / 2 + mapMargin, width = mapHalfWidth + mapMargin;
+      const height = landscape ? Math.max(length / tanH, width / (tanV * usable))
+        : Math.max(length / (tanV * usable), width / tanH);
+      // The route centre should appear this far below the screen centre. Screen
+      // up is -x in landscape and -z in portrait; the camera moves the other way.
+      const lower = (band.top - band.bottom) / 2 * 2 * tanV * height;
+      const centreZ = -(first.from + last.to) / 2;
+      return { x: landscape ? -lower : 0, y: mapFloor + height, z: landscape ? centreZ : centreZ - lower,
+        yaw: landscape ? Math.PI / 2 : 0, pitch: -Math.PI / 2, fov };
+    },
   };
   return { space, grade, clearance, resolve };
 }

@@ -96,6 +96,14 @@ export class ImmersiveRuntime {
       this.clearInput(); this.publish({ mapStage: "descent" });
     }
   }
+  /** Lands the open map at another walkable pose through the same descent, without a cut. */
+  travelFromMap(target: Pose): boolean {
+    if (!this.state.map || this.state.mapStage !== "open" || !this.mapSaved) return false;
+    if (![target.x, target.y, target.z, target.yaw, target.pitch].every(Number.isFinite)) return false;
+    Object.assign(this.mapSaved, target);
+    this.clearInput(); this.publish({ mapStage: "descent" });
+    return true;
+  }
   private resetMap() { this.mapProgress = 0; this.mapSaved = null; }
   dismissDestinationMenu() {
     if (!this.state.destinationMenu) return;

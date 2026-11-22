@@ -8,7 +8,6 @@ import { phoneCamera, ReadinessGate, SceneRenderer } from "../immersive/renderin
 import { ImmersiveRuntime } from "../immersive/runtime";
 import { lookAtPose, world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
-import { createCypherSpace } from "./cypher-space";
 import { cypherContact } from "./cypher-contact";
 import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialog";
 import { CypherEventsDialog } from "./CypherEventsDialog";
@@ -25,24 +24,14 @@ import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamVie
 import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
 import walkSpace from "./cypher-walk-space.json";
+import { cypherStarts, startHref, type CypherStart } from "./cypher-map";
+import { createCypherMapDOM, CypherMap, CypherMapProjection } from "./CypherMap";
 
-const routeBounds = { start: -29.5, end: 47.6, halfWidth: 16, plaza: true };
-const market = createCypherSpace({ ...routeBounds, spawnY: -27.6 });
-const approach = createCypherSpace({ ...routeBounds, spawnY: 2.2, spawnPitch: 0.27 });
-const plaza = createCypherSpace({ ...routeBounds, spawnY: 19.3, spawnPitch: 0.08 });
-const contactStart = createCypherSpace({ ...routeBounds, spawnY: -cypherContact.spawn.z, spawnX: cypherContact.spawn.x,
-  spawnYaw: cypherContact.spawn.yaw, spawnPitch: cypherContact.spawn.pitch });
-const eventsStart = createCypherSpace({ ...routeBounds, spawnY: 31.05, spawnX: -10.7, spawnYaw: Math.PI / 2 });
+const { plaza } = cypherStarts;
 const eventsFocus = lookAtPose([-9.7, 8.9, -31.05], [-15.85, 8.15, -31.05]);
-const teamStart = createCypherSpace({ ...routeBounds, spawnY: -teamFocus.z, spawnX: teamFocus.x, spawnYaw: teamFocus.yaw });
-const aftermovieStart = createCypherSpace({ ...routeBounds, spawnY: 33.5, spawnPitch: 0.17 });
-const accommodationStart = createCypherSpace({
-  ...routeBounds, spawnY: -accommodationApproach.z, spawnX: accommodationApproach.x,
-  spawnYaw: accommodationApproach.yaw, spawnPitch: accommodationApproach.pitch,
-});
 const assetRoot = "/models/gullyverse/locked-rev15z-";
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
-type Start = "quarry" | "market" | "approach" | "plaza" | "contact" | WallPanel;
+type Start = "quarry" | CypherStart;
 type WallPanel = "events" | "team" | "aftermovie" | "accommodation";
 type WallUI = WallPanel | "active" | null;
 const wallFocus = { events: eventsFocus, team: teamFocus, aftermovie: aftermovieFocus, accommodation: accommodationFocus };
@@ -379,6 +368,9 @@ function GateWalk({ start, team, canSendContact, catalog }:
   const restoreWallFocus = useRef<WallPanel | null>(null);
   const watchingMovie = useRef(false);
   const holdCurtain = useRef(false);
+  const mapButton = useRef<HTMLButtonElement>(null);
+  const [mapDom] = useState(createCypherMapDOM);
+  const travelled = useRef(false);
   const [contact, setContact] = useState(closedContact);
   const [wallUI, setWallUI] = useState<WallUI>(null);
   const [panel, setPanel] = useState<WallPanel | null>(null);
@@ -393,9 +385,7 @@ function GateWalk({ start, team, canSendContact, catalog }:
     catalog.data?.slice(page * eventsPerPage, (page + 1) * eventsPerPage) ?? [], [catalog, page]);
   const [atMarket, setAtMarket] = useState(start !== "quarry");
   const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined,
-    (start === "approach" ? approach : start === "plaza" ? plaza : start === "contact" ? contactStart :
-      start === "events" ? eventsStart : start === "team" ? teamStart :
-        start === "aftermovie" ? aftermovieStart : start === "accommodation" ? accommodationStart : market).space));
+    cypherStarts[start === "quarry" ? "market" : start].space));
   const [quarry] = useState(() => start === "quarry" ? new ImmersiveRuntime("hub", () => {
     holdCurtain.current = true;
     setAtMarket(true);
@@ -473,6 +463,25 @@ function GateWalk({ start, team, canSendContact, catalog }:
       window.removeEventListener("pagehide", stopAftermovie);
     };
   }, [video.phase, stopAftermovie]);
+  const travel = useCallback((stop: CypherStart) => {
+    travelled.current = true;
+    restoreContactFocus.current = stop === "contact";
+    restoreWallFocus.current = stop === "events" || stop === "team" || stop === "aftermovie" || stop === "accommodation"
+      ? stop : null;
+    const href = startHref(window.location.href, stop);
+    if (href !== window.location.href) window.history.replaceState(null, "", href);
+  }, []);
+  const mapOpen = state.map;
+  useEffect(() => {
+    if (mapOpen) {
+      travelled.current = false;
+      return;
+    }
+    // A plain close returns focus to the Map button; travel hands it to the destination.
+    if (!travelled.current && (document.activeElement === null || document.activeElement === document.body)) {
+      mapButton.current?.focus({ preventScroll: true });
+    }
+  }, [mapOpen]);
   const walking = atMarket && state.phase === "local";
   const landing = !!activeQuarry && state.phase === "landing";
   return <>
@@ -486,11 +495,13 @@ function GateWalk({ start, team, canSendContact, catalog }:
           form={form} reportContact={setContact} panel={panel} eventPage={eventPage}
           reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam}
           film={video.phase === "playing" ? video.texture : null} openWall={openWall} stopAftermovie={stopAftermovie} />}
+        {!activeQuarry && <CypherMapProjection runtime={marketRuntime} elements={mapDom} />}
       </Canvas>
       {walking && runtime.interacting && contact.needsHeading &&
         <h2 className="cypher-contact-fallback-heading">Contact us</h2>}
     </div>
     <div className="native-curtain" ref={curtain} aria-hidden="true" />
+    {walking && state.map && <CypherMap runtime={marketRuntime} state={state} elements={mapDom} travel={travel} />}
     {landing && <div className="native-controls"><button onClick={() => runtime.enter()}>Enter Gullyverse</button></div>}
     {walking && !runtime.interacting && <section className="native-controls gate-controls" aria-label="Walk through the cypher gate">
       <div className="gate-toolbar">
@@ -501,7 +512,9 @@ function GateWalk({ start, team, canSendContact, catalog }:
           }
         }}>Leave a message</button>}
         {wallUI && wallUI !== "active" && <button ref={browse} onClick={() => openWall(wallUI)}>{wallLabel[wallUI]}</button>}
-        <button onClick={() => runtime.setMap(!state.map)}>{state.map ? "Close map" : "Map"}</button>
+        <button ref={mapButton} aria-keyshortcuts="M" onClick={() => runtime.setMap(!state.map || state.mapStage === "descent")}>
+          {state.map && state.mapStage !== "descent" ? "Close map" : "Map"}
+        </button>
       </div>
       {wallUI === "aftermovie" && movieFailed && <p role="status" className="cypher-aftermovie-error">
         The Aftermovie could not play. Try again or <a href={stageVideoSource}>open the video</a>.

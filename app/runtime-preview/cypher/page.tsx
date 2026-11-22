@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import CypherGatePreview from "@/components/gullyverse-runtime/CypherGatePreview";
 import { hasIsolatedPreviewBackend } from "@/lib/preview-backend";
 import { readCypherEvents } from "@/lib/events/cypher-catalog";
+import { isCypherStart } from "@/components/gullyverse-runtime/cypher-map";
 import "@/components/gullyverse-runtime/journey.css";
 
 export const dynamic = "force-dynamic";
@@ -12,8 +13,7 @@ export default async function CypherPreviewPage({ searchParams }: { searchParams
   const isolated = hasIsolatedPreviewBackend();
   const events = isolated ? await readCypherEvents() : null;
   return <CypherGatePreview
-    start={start === "quarry" || start === "approach" || start === "plaza" || start === "contact" ||
-      start === "events" || start === "team" || start === "aftermovie" || start === "accommodation" ? start : "market"}
+    start={start === "quarry" || isCypherStart(start) ? start : "market"}
     team={team}
     canSendContact={isolated}
     catalog={events}
