@@ -13,7 +13,8 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
  *   the exporter only read mesh-level materials, so these per-object materials were dropped. Each
  *   projection is evaluated here with the exact Blender node constants, only on its own surface.
  * - Reflection probes: Cycles panoramas rendered from the master at street level provide the specular
- *   environment the baked diffuse lightmaps cannot (wet road, galvanised metal, glass) and the night sky.
+ *   environment the baked diffuse lightmaps cannot (wet road, galvanised metal, glass). The background
+ *   stays near-black so unbuilt space fades to darkness.
  *   Lightmapped surfaces keep their baked diffuse light and take only specular from the probe.
  * - Lamp highlights: Blender light objects are invisible to camera rays, so the probes lack them. The
  *   nearest source lights drive a fixed pool of spot lights that add specular only on lightmapped
@@ -158,9 +159,8 @@ export class Fidelity {
     const { env, probe } = this.probeEnvs[best];
     scene.environment = env;
     scene.environmentIntensity = probe.intensity;
-    // The panoramas include nearby geometry, so the background uses the world colour alone.
-    if (!(scene.background instanceof THREE.Color)) scene.background = new THREE.Color();
-    (scene.background as THREE.Color).setRGB(...this.data.sky.color);
+    // The background stays the near-black void (set by the scene): beyond the lane ends and around the
+    // map's edges the world fades into darkness, which the night-sky colour washed out (user preference).
   }
 
   /** Review diagnostics: which materials took road colour or artwork (private preview only). */
