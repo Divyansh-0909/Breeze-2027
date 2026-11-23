@@ -176,6 +176,11 @@ export class Fidelity {
     sceneRoot.traverse((o: any) => {
       if (!o.isMesh) return;
       for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
+        // Matte by default: the export left many surfaces fairly smooth, which mirrored the probes as
+        // faceted chrome on the cypher balconies and polished the road. Water keeps a soft glint.
+        const water = /water/i.test(m.name);
+        m.userData.breezeMinRoughness = water ? 0.35 : 0.75;
+        if (!water && "clearcoat" in m && m.clearcoat > 0) { m.clearcoat = 0; m.needsUpdate = true; }
         const road = this.data.road.materials[m.name];
         if (road) {
           const tint = o.geometry.getAttribute("color_1");
@@ -211,7 +216,7 @@ export class Fidelity {
   /** Program cache key suffix for a prepared material. */
   key(m: THREE.Material) {
     const arts = (m.userData.breezeArts as string[] | undefined)?.join("+") ?? "";
-    return `fid-${this.data.version}-${arts}-${m.userData.breezeRoad ?? ""}`;
+    return `fid-${this.data.version}-rough${m.userData.breezeMinRoughness ?? 0.75}-${arts}-${m.userData.breezeRoad ?? ""}`;
   }
 
   /** Adds artwork projection to a standard-material shader. */
@@ -219,6 +224,11 @@ export class Fidelity {
     // Baked lightmaps already hold every source light's diffuse contribution; runtime lights add specular.
     shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_end>",
       "#include <lights_fragment_end>\nreflectedLight.directDiffuse = vec3(0.0);");
+    // Roughness floor (after any artwork adjustments): plaster, concrete and asphalt stay matte, metal
+    // reads as brushed rather than mirrored, water keeps a soft glint.
+    const floor = Number(m.userData.breezeMinRoughness ?? 0.75).toFixed(2);
+    shader.fragmentShader = shader.fragmentShader.replace("#include <normal_fragment_begin>",
+      `roughnessFactor = max(roughnessFactor, mix(${floor}, min(${floor}, 0.5), step(0.5, metalnessFactor)));\n#include <normal_fragment_begin>`);
     const arts = ((m.userData.breezeArts as string[] | undefined) ?? [])
       .map(id => this.data.arts.find(a => a.id === id)!).filter(Boolean);
     if (!arts.length) return;
