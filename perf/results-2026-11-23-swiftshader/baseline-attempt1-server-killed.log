@@ -1,0 +1,39 @@
+load desktop #0 cold walking 259891 ms, 171.9 MB; warm 290381 ms
+load desktop #1 TimeoutError: page.waitForSelector: Timeout 300000ms exceeded.
+Call log:
+[2m  - waiting for locator('.gully-controls') to be visible[22m
+[2m    - locator resolved to visible <section aria-label="Controls" class="gully-controls">…</section>[22m
+
+load desktop #2 Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/?diagnostics
+Call log:
+[2m  - navigating to "http://127.0.0.1:43992/?diagnostics", waiting until "domcontentloaded"[22m
+
+journey desktop #0 Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics
+Call log:
+[2m  - navigating to "http://127.0.0.1:43992/runtime-preview/cypher?diagnostics", waiting until "domcontentloaded"[22m
+
+journey desktop #1 Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics
+Call log:
+[2m  - navigating to "http://127.0.0.1:43992/runtime-preview/cypher?diagnostics", waiting until "domcontentloaded"[22m
+
+journey desktop #2 Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics
+Call log:
+[2m  - navigating to "http://127.0.0.1:43992/runtime-preview/cypher?diagnostics", waiting until "domcontentloaded"[22m
+
+cycles failed Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics
+Call log:
+[2m  - navigating to "http://127.0.0.1:43992/runtime-preview/cypher?diagnostics", waiting until "domcontentloaded"[22m
+
+load mobile-emulated #0 Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/?diagnostics
+Call log:
+[2m  - navigating to "http://127.0.0.1:43992/?diagnostics", waiting until "domcontentloaded"[22m
+
+load mobile-emulated #1 Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/?diagnostics
+Call log:
+[2m  - navigating to "http://127.0.0.1:43992/?diagnostics", waiting until "domcontentloaded"[22m
+
+load mobile-emulated #2 Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/?diagnostics
+Call log:
+[2m  - navigating to "http://127.0.0.1:43992/?diagnostics", waiting until "domcontentloaded"[22m
+
+wrote /home/user/Breeze-2027/perf-results/baseline.json

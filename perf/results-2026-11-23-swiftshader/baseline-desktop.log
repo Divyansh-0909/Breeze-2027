@@ -1,0 +1,97 @@
+load desktop #0 cold walking 197905 ms (127.9 MB), world 233264 ms (127.9 MB); warm walking 217093 ms
+load desktop #1 cold walking 202041 ms (127.9 MB), world 237348 ms (150.4 MB); warm walking 219425 ms
+load desktop #2 cold walking 204804 ms (127.9 MB), world 238321 ms (127.9 MB); warm walking 198089 ms
+pose desktop market #0 p50 8466.3 p95 8616.3 p99 8616.3 ms, 3 frames, calls 912, tris 1095830, programs 132
+pose desktop approach #0 TimeoutError: page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="approach"]')[22m
+[2m    - locator resolved to <button type="button" data-kind="place" class="cypher-map-stop" data-map-stop="approach">Navigation board</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+pose desktop plaza #0 TimeoutError: page.waitForSelector: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="plaza"]') to be visible[22m
+
+pose desktop events #0 TimeoutError: page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="events"]')[22m
+[2m    - locator resolved to <button type="button" data-map-stop="events" class="cypher-map-stop" data-kind="destination">Events</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+pose desktop team #0 TimeoutError: page.waitForSelector: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="team"]') to be visible[22m
+
+pose desktop aftermovie #0 TimeoutError: page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="aftermovie"]')[22m
+[2m    - locator resolved to <button type="button" class="cypher-map-stop" data-kind="destination" data-map-stop="aftermovie">Aftermovie</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+pose desktop market #1 p50 8916.2 p95 9433.0 p99 9433.0 ms, 3 frames, calls 912, tris 1095830, programs 132
+pose desktop approach #1 TimeoutError: page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="approach"]')[22m
+[2m    - locator resolved to <button type="button" data-kind="place" class="cypher-map-stop" data-map-stop="approach">Navigation board</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+pose desktop plaza #1 TimeoutError: page.waitForSelector: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="plaza"]') to be visible[22m
+
+pose desktop events #1 TimeoutError: page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="events"]')[22m
+[2m    - locator resolved to <button type="button" data-map-stop="events" class="cypher-map-stop" data-kind="destination">Events</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+pose desktop team #1 TimeoutError: page.waitForSelector: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="team"]') to be visible[22m
+
+pose desktop aftermovie #1 TimeoutError: page.waitForSelector: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="aftermovie"]') to be visible[22m
+[2m    - locator resolved to visible <button type="button" class="cypher-map-stop" data-kind="destination" data-map-stop="aftermovie">Aftermovie</button>[22m
+
+pose desktop market #2 p50 8066.4 p95 8383.0 p99 8383.0 ms, 3 frames, calls 912, tris 1095830, programs 132
+pose desktop approach #2 TimeoutError: page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="approach"]')[22m
+[2m    - locator resolved to <button type="button" data-kind="place" class="cypher-map-stop" data-map-stop="approach">Navigation board</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+pose desktop plaza #2 TimeoutError: page.waitForSelector: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="plaza"]') to be visible[22m
+
+pose desktop events #2 TimeoutError: page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="events"]')[22m
+[2m    - locator resolved to <button type="button" data-map-stop="events" class="cypher-map-stop" data-kind="destination">Events</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+pose desktop team #2 TimeoutError: page.waitForSelector: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="team"]') to be visible[22m
+
+pose desktop aftermovie #2 TimeoutError: page.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="aftermovie"]')[22m
+[2m    - locator resolved to <button type="button" class="cypher-map-stop" data-kind="destination" data-map-stop="aftermovie">Aftermovie</button>[22m
+[2m  - attempting click action[22m
+[2m    - waiting for element to be visible, enabled and stable[22m
+
+cycles failed TimeoutError: page.waitForSelector: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-map-stop="events"]') to be visible[22m
+[2m    - locator resolved to visible <button type="button" data-map-stop="events" class="cypher-map-stop" data-kind="destination">Events</button>[22m
+
+wrote /home/user/Breeze-2027/perf-results/baseline-desktop.json

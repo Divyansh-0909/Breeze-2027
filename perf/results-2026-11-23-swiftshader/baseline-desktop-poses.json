@@ -1,0 +1,4599 @@
+{
+ "environment": {
+  "label": "baseline-desktop-poses",
+  "startedAt": "2026-11-23T16:09:36.892Z",
+  "base": "http://127.0.0.1:43992",
+  "browser": "153.0.8010.12",
+  "os": "Linux 6.18.44-fc-v726",
+  "cpus": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "cpuCount": 4,
+  "sampleSeconds": 30,
+  "runs": 3,
+  "finishedAt": "2026-11-23T17:24:34.911Z"
+ },
+ "load": [],
+ "poses": [
+  {
+   "profile": "desktop",
+   "run": 0,
+   "stop": "market",
+   "summary": {
+    "presentation": {
+     "frames": 3,
+     "meanMs": 8544.133333333322,
+     "effectiveFps": 0.11703937204475601,
+     "p50Ms": 8616.400000000023,
+     "p95Ms": 8966.299999999988,
+     "p99Ms": 8966.299999999988,
+     "maxMs": 8966.299999999988,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 3
+    },
+    "cpuRender": {
+     "frames": 3,
+     "meanMs": 44.73333333308498,
+     "effectiveFps": 22.35469448596614,
+     "p50Ms": 44.399999998509884,
+     "p95Ms": 48.20000000111759,
+     "p99Ms": 48.20000000111759,
+     "maxMs": 48.20000000111759,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 296141.19999999925,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 912,
+     "triangles": 1095830,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 912,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 485091671,
+     "total": 522824667
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 387.40000000037253,
+       "ready": 3901.4000000003725,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 388,
+       "ready": 3624.699999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 388.90000000037253,
+       "ready": 4795.4000000003725,
+       "failed": false
+      },
+      "market-north": {
+       "started": 390,
+       "ready": 4608.9000000003725,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 390.5,
+       "ready": 5976,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 391.40000000037253,
+       "ready": 3145.5,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 7.72,
+     "z": 27.6,
+     "yaw": 0,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 386.59999999962747
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 387.40000000037253
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 388
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 388.90000000037253
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 390
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 390.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 391.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3145.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3624.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3901.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 4608.9000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 4795.4000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 5976.0999999996275
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 5985.799999998882
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 140480.19999999925
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 148531.19999999925
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 5,
+      "meanMs": 8622.999999999995,
+      "effectiveFps": 0.11596892032935181,
+      "p50Ms": 8682.900000000023,
+      "p95Ms": 8966.299999999988,
+      "p99Ms": 8966.299999999988,
+      "maxMs": 8966.299999999988,
+      "over16_7": 5,
+      "over33_3": 5,
+      "over50": 5
+     },
+     "cpuRender": {
+      "frames": 5,
+      "meanMs": 43.83999999985099,
+      "effectiveFps": 22.810218978179723,
+      "p50Ms": 44.399999998509884,
+      "p95Ms": 48.20000000111759,
+      "p99Ms": 48.20000000111759,
+      "maxMs": 48.20000000111759,
+      "over16_7": 5,
+      "over33_3": 5,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 0,
+   "stop": "approach",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.33,
+    "z": -2.2,
+    "yaw": 0,
+    "pitch": 0.27
+   },
+   "summary": {
+    "presentation": {
+     "frames": 3,
+     "meanMs": 9294.066666666671,
+     "effectiveFps": 0.10759552689529515,
+     "p50Ms": 9233,
+     "p95Ms": 9499.600000000035,
+     "p99Ms": 9499.600000000035,
+     "maxMs": 9499.600000000035,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 3
+    },
+    "cpuRender": {
+     "frames": 3,
+     "meanMs": 38.933333333581686,
+     "effectiveFps": 25.684931506685473,
+     "p50Ms": 39.80000000074506,
+     "p95Ms": 40.70000000111759,
+     "p99Ms": 40.70000000111759,
+     "maxMs": 40.70000000111759,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 487217.4000000004,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 433,
+     "triangles": 942065,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 355482461,
+     "total": 361144261
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 387.40000000037253,
+       "ready": 3901.4000000003725,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 388,
+       "ready": 3624.699999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 388.90000000037253,
+       "ready": 4795.4000000003725,
+       "failed": false
+      },
+      "market-north": {
+       "started": 390,
+       "ready": 4608.9000000003725,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 390.5,
+       "ready": 5976,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 391.40000000037253,
+       "ready": 3145.5,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.33,
+     "z": -2.2,
+     "yaw": 0,
+     "pitch": 0.27
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 386.59999999962747
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 387.40000000037253
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 388
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 388.90000000037253
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 390
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 390.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 391.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3145.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3624.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3901.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 4608.9000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 4795.4000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 5976.0999999996275
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 5985.799999998882
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 140480.19999999925
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 148531.19999999925
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 5,
+      "meanMs": 9399.619999999995,
+      "effectiveFps": 0.1063872794857665,
+      "p50Ms": 9499.600000000035,
+      "p95Ms": 9599.5,
+      "p99Ms": 9599.5,
+      "maxMs": 9599.5,
+      "over16_7": 5,
+      "over33_3": 5,
+      "over50": 5
+     },
+     "cpuRender": {
+      "frames": 5,
+      "meanMs": 39.419999999925494,
+      "effectiveFps": 25.367833587059614,
+      "p50Ms": 39.80000000074506,
+      "p95Ms": 40.70000000111759,
+      "p99Ms": 40.70000000111759,
+      "maxMs": 40.70000000111759,
+      "over16_7": 5,
+      "over33_3": 5,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 0,
+   "stop": "plaza",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -19.3,
+    "yaw": 0,
+    "pitch": 0.08
+   },
+   "summary": {
+    "presentation": {
+     "frames": 4,
+     "meanMs": 7103.875,
+     "effectiveFps": 0.1407682426844504,
+     "p50Ms": 7216.5,
+     "p95Ms": 7249.699999999953,
+     "p99Ms": 7249.699999999953,
+     "maxMs": 7249.699999999953,
+     "over16_7": 4,
+     "over33_3": 4,
+     "over50": 4
+    },
+    "cpuRender": {
+     "frames": 4,
+     "meanMs": 36.97500000009313,
+     "effectiveFps": 27.045300878904158,
+     "p50Ms": 38,
+     "p95Ms": 44.29999999888241,
+     "p99Ms": 44.29999999888241,
+     "maxMs": 44.29999999888241,
+     "over16_7": 4,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 662685,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 173,
+     "triangles": 806683,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 356379392,
+     "total": 361146560
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 387.40000000037253,
+       "ready": 3901.4000000003725,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 388,
+       "ready": 3624.699999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 388.90000000037253,
+       "ready": 4795.4000000003725,
+       "failed": false
+      },
+      "market-north": {
+       "started": 390,
+       "ready": 4608.9000000003725,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 390.5,
+       "ready": 5976,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 391.40000000037253,
+       "ready": 3145.5,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -19.3,
+     "yaw": 0,
+     "pitch": 0.08
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 386.59999999962747
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 387.40000000037253
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 388
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 388.90000000037253
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 390
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 390.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 391.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3145.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3624.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3901.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 4608.9000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 4795.4000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 5976.0999999996275
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 5985.799999998882
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 140480.19999999925
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 148531.19999999925
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 6,
+      "meanMs": 7149.716666666674,
+      "effectiveFps": 0.13986568232307559,
+      "p50Ms": 7216.5,
+      "p95Ms": 7566.300000000047,
+      "p99Ms": 7566.300000000047,
+      "maxMs": 7566.300000000047,
+      "over16_7": 6,
+      "over33_3": 6,
+      "over50": 6
+     },
+     "cpuRender": {
+      "frames": 6,
+      "meanMs": 35.68333333389213,
+      "effectiveFps": 28.024287715581696,
+      "p50Ms": 36.600000001490116,
+      "p95Ms": 44.29999999888241,
+      "p99Ms": 44.29999999888241,
+      "maxMs": 44.29999999888241,
+      "over16_7": 6,
+      "over33_3": 4,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 0,
+   "stop": "events",
+   "arrivedAt": {
+    "x": -10.7,
+    "y": 8.92,
+    "z": -31.05,
+    "yaw": 1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 6,
+     "meanMs": 4505.366666666679,
+     "effectiveFps": 0.2219575173311822,
+     "p50Ms": 4516.5,
+     "p95Ms": 4933.099999999977,
+     "p99Ms": 4933.099999999977,
+     "maxMs": 4933.099999999977,
+     "over16_7": 6,
+     "over33_3": 6,
+     "over50": 6
+    },
+    "cpuRender": {
+     "frames": 6,
+     "meanMs": 3.1666666672875485,
+     "effectiveFps": 315.78947362229434,
+     "p50Ms": 3.100000001490116,
+     "p95Ms": 4.900000000372529,
+     "p99Ms": 4.900000000372529,
+     "maxMs": 4.900000000372529,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 817071.2999999989,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 104,
+     "triangles": 640914,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 356380916,
+     "total": 361148820
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 387.40000000037253,
+       "ready": 3901.4000000003725,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 388,
+       "ready": 3624.699999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 388.90000000037253,
+       "ready": 4795.4000000003725,
+       "failed": false
+      },
+      "market-north": {
+       "started": 390,
+       "ready": 4608.9000000003725,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 390.5,
+       "ready": 5976,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 391.40000000037253,
+       "ready": 3145.5,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": -10.7,
+     "y": 8.92,
+     "z": -31.05,
+     "yaw": 1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 386.59999999962747
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 387.40000000037253
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 388
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 388.90000000037253
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 390
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 390.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 391.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3145.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3624.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3901.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 4608.9000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 4795.4000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 5976.0999999996275
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 5985.799999998882
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 140480.19999999925
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 148531.19999999925
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 8,
+      "meanMs": 4383.150000000009,
+      "effectiveFps": 0.22814642437516353,
+      "p50Ms": 4383.099999999977,
+      "p95Ms": 4933.099999999977,
+      "p99Ms": 4933.099999999977,
+      "maxMs": 4933.099999999977,
+      "over16_7": 8,
+      "over33_3": 8,
+      "over50": 8
+     },
+     "cpuRender": {
+      "frames": 8,
+      "meanMs": 3.275000000372529,
+      "effectiveFps": 305.34351141564906,
+      "p50Ms": 3.100000001490116,
+      "p95Ms": 4.900000000372529,
+      "p99Ms": 4.900000000372529,
+      "maxMs": 4.900000000372529,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 0,
+   "stop": "team",
+   "arrivedAt": {
+    "x": 9.399999999999999,
+    "y": 8.92,
+    "z": -31.445,
+    "yaw": -1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 6,
+     "meanMs": 4583.166666666667,
+     "effectiveFps": 0.21818975235463106,
+     "p50Ms": 4699.900000000023,
+     "p95Ms": 4949.79999999993,
+     "p99Ms": 4949.79999999993,
+     "maxMs": 4949.79999999993,
+     "over16_7": 6,
+     "over33_3": 6,
+     "over50": 6
+    },
+    "cpuRender": {
+     "frames": 6,
+     "meanMs": 3.1833333329608045,
+     "effectiveFps": 314.136125691212,
+     "p50Ms": 3.599999999627471,
+     "p95Ms": 3.900000000372529,
+     "p99Ms": 3.900000000372529,
+     "maxMs": 3.900000000372529,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 956706.7999999989,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 93,
+     "triangles": 708890,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 357250722,
+     "total": 361675590
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 387.40000000037253,
+       "ready": 3901.4000000003725,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 388,
+       "ready": 3624.699999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 388.90000000037253,
+       "ready": 4795.4000000003725,
+       "failed": false
+      },
+      "market-north": {
+       "started": 390,
+       "ready": 4608.9000000003725,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 390.5,
+       "ready": 5976,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 391.40000000037253,
+       "ready": 3145.5,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 9.399999999999999,
+     "y": 8.92,
+     "z": -31.445,
+     "yaw": -1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 386.59999999962747
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 387.40000000037253
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 388
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 388.90000000037253
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 390
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 390.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 391.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3145.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3624.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3901.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 4608.9000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 4795.4000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 5976.0999999996275
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 5985.799999998882
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 140480.19999999925
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 148531.19999999925
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 8,
+      "meanMs": 4585.237500000003,
+      "effectiveFps": 0.21809121119680264,
+      "p50Ms": 4599.800000000047,
+      "p95Ms": 4949.79999999993,
+      "p99Ms": 4949.79999999993,
+      "maxMs": 4949.79999999993,
+      "over16_7": 8,
+      "over33_3": 8,
+      "over50": 8
+     },
+     "cpuRender": {
+      "frames": 8,
+      "meanMs": 3.174999999580905,
+      "effectiveFps": 314.96062996283416,
+      "p50Ms": 3.299999998882413,
+      "p95Ms": 3.900000000372529,
+      "p99Ms": 3.900000000372529,
+      "maxMs": 3.900000000372529,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 0,
+   "stop": "aftermovie",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -33.5,
+    "yaw": 0,
+    "pitch": 0.17
+   },
+   "summary": {
+    "presentation": {
+     "frames": 4,
+     "meanMs": 7345.525000000023,
+     "effectiveFps": 0.13613730808893806,
+     "p50Ms": 7299.699999999953,
+     "p95Ms": 7716.300000000047,
+     "p99Ms": 7716.300000000047,
+     "maxMs": 7716.300000000047,
+     "over16_7": 4,
+     "over33_3": 4,
+     "over50": 4
+    },
+    "cpuRender": {
+     "frames": 4,
+     "meanMs": 37.25000000046566,
+     "effectiveFps": 26.84563758355702,
+     "p50Ms": 37.90000000037253,
+     "p95Ms": 40.40000000037253,
+     "p99Ms": 40.40000000037253,
+     "maxMs": 40.40000000037253,
+     "over16_7": 4,
+     "over33_3": 4,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 1105856.0999999996,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 130,
+     "triangles": 765005,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 353975278,
+     "total": 357593054
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 387.40000000037253,
+       "ready": 3901.4000000003725,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 388,
+       "ready": 3624.699999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 388.90000000037253,
+       "ready": 4795.4000000003725,
+       "failed": false
+      },
+      "market-north": {
+       "started": 390,
+       "ready": 4608.9000000003725,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 390.5,
+       "ready": 5976,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 391.40000000037253,
+       "ready": 3145.5,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -33.5,
+     "yaw": 0,
+     "pitch": 0.17
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 386.59999999962747
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 387.40000000037253
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 388
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 388.90000000037253
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 390
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 390.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 391.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3145.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3624.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3901.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 4608.9000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 4795.4000000003725
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 5976.0999999996275
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 5985.799999998882
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 140480.19999999925
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 148531.19999999925
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 6,
+      "meanMs": 7241.383333333341,
+      "effectiveFps": 0.13809516137570385,
+      "p50Ms": 7299.699999999953,
+      "p95Ms": 7716.300000000047,
+      "p99Ms": 7716.300000000047,
+      "maxMs": 7716.300000000047,
+      "over16_7": 6,
+      "over33_3": 6,
+      "over50": 6
+     },
+     "cpuRender": {
+      "frames": 6,
+      "meanMs": 37.50000000062088,
+      "effectiveFps": 26.66666666622515,
+      "p50Ms": 37.90000000037253,
+      "p95Ms": 44.80000000074506,
+      "p99Ms": 44.80000000074506,
+      "maxMs": 44.80000000074506,
+      "over16_7": 6,
+      "over33_3": 5,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "stop": "market",
+   "summary": {
+    "presentation": {
+     "frames": 3,
+     "meanMs": 9355.199999999992,
+     "effectiveFps": 0.1068924234650249,
+     "p50Ms": 9349.700000000012,
+     "p95Ms": 9482.899999999965,
+     "p99Ms": 9482.899999999965,
+     "maxMs": 9482.899999999965,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 3
+    },
+    "cpuRender": {
+     "frames": 3,
+     "meanMs": 38.533333333830036,
+     "effectiveFps": 25.951557093091083,
+     "p50Ms": 38.5,
+     "p95Ms": 39.40000000037253,
+     "p99Ms": 39.40000000037253,
+     "maxMs": 39.40000000037253,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 338031.7999999989,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 912,
+     "triangles": 1095830,
+     "points": 0,
+     "lines": 0,
+     "programs": 66,
+     "geometries": 912,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 504582341,
+     "total": 531046341
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 6124.39999999851,
+       "ready": 9333.5,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 6125.299999998882,
+       "ready": 8944.199999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 6125.799999998882,
+       "ready": 10618.89999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 6126.199999999255,
+       "ready": 10509.599999999627,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 6126.5999999996275,
+       "ready": 11819.199999999255,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 6127,
+       "ready": 8801.599999999627,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 7.72,
+     "z": 27.6,
+     "yaw": 0,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 6123.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 6124.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 6125.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 6125.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 6126.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 6126.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 6127
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8801.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8944.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 9333.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 10509.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 10619
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 11819.199999999255
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 11829
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 160333.29999999888
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 169720.5
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 5,
+      "meanMs": 9356.3,
+      "effectiveFps": 0.10687985635347307,
+      "p50Ms": 9349.700000000012,
+      "p95Ms": 9482.899999999965,
+      "p99Ms": 9482.899999999965,
+      "maxMs": 9482.899999999965,
+      "over16_7": 5,
+      "over33_3": 5,
+      "over50": 5
+     },
+     "cpuRender": {
+      "frames": 5,
+      "meanMs": 48.920000000298025,
+      "effectiveFps": 20.441537203473178,
+      "p50Ms": 39.40000000037253,
+      "p95Ms": 84.40000000037253,
+      "p99Ms": 84.40000000037253,
+      "maxMs": 84.40000000037253,
+      "over16_7": 5,
+      "over33_3": 5,
+      "over50": 1
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "stop": "approach",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.33,
+    "z": -2.2,
+    "yaw": 0,
+    "pitch": 0.27
+   },
+   "summary": {
+    "presentation": {
+     "frames": 2,
+     "meanMs": 10241.25,
+     "effectiveFps": 0.09764433052605884,
+     "p50Ms": 10549.599999999977,
+     "p95Ms": 10549.599999999977,
+     "p99Ms": 10549.599999999977,
+     "maxMs": 10549.599999999977,
+     "over16_7": 2,
+     "over33_3": 2,
+     "over50": 2
+    },
+    "cpuRender": {
+     "frames": 2,
+     "meanMs": 37.90000000037253,
+     "effectiveFps": 26.385224274146985,
+     "p50Ms": 38.59999999962747,
+     "p95Ms": 38.59999999962747,
+     "p99Ms": 38.59999999962747,
+     "maxMs": 38.59999999962747,
+     "over16_7": 2,
+     "over33_3": 2,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 464165.0999999996,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 433,
+     "triangles": 942065,
+     "points": 0,
+     "lines": 0,
+     "programs": 66,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 355524850,
+     "total": 360095598
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 6124.39999999851,
+       "ready": 9333.5,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 6125.299999998882,
+       "ready": 8944.199999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 6125.799999998882,
+       "ready": 10618.89999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 6126.199999999255,
+       "ready": 10509.599999999627,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 6126.5999999996275,
+       "ready": 11819.199999999255,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 6127,
+       "ready": 8801.599999999627,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.33,
+     "z": -2.2,
+     "yaw": 0,
+     "pitch": 0.27
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 6123.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 6124.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 6125.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 6125.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 6126.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 6126.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 6127
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8801.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8944.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 9333.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 10509.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 10619
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 11819.199999999255
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 11829
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 160333.29999999888
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 169720.5
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 3,
+      "meanMs": 10177.366666666678,
+      "effectiveFps": 0.09825724401531492,
+      "p50Ms": 10049.600000000035,
+      "p95Ms": 10549.599999999977,
+      "p99Ms": 10549.599999999977,
+      "maxMs": 10549.599999999977,
+      "over16_7": 3,
+      "over33_3": 3,
+      "over50": 3
+     },
+     "cpuRender": {
+      "frames": 3,
+      "meanMs": 38.20000000049671,
+      "effectiveFps": 26.1780104708638,
+      "p50Ms": 38.59999999962747,
+      "p95Ms": 38.80000000074506,
+      "p99Ms": 38.80000000074506,
+      "maxMs": 38.80000000074506,
+      "over16_7": 3,
+      "over33_3": 3,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "stop": "plaza",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -19.3,
+    "yaw": 0,
+    "pitch": 0.08
+   },
+   "summary": {
+    "presentation": {
+     "frames": 4,
+     "meanMs": 6699.75,
+     "effectiveFps": 0.14925930072017612,
+     "p50Ms": 6716.400000000023,
+     "p95Ms": 7049.800000000047,
+     "p99Ms": 7049.800000000047,
+     "maxMs": 7049.800000000047,
+     "over16_7": 4,
+     "over33_3": 4,
+     "over50": 4
+    },
+    "cpuRender": {
+     "frames": 4,
+     "meanMs": 33.375,
+     "effectiveFps": 29.9625468164794,
+     "p50Ms": 34.30000000074506,
+     "p95Ms": 41.40000000037253,
+     "p99Ms": 41.40000000037253,
+     "maxMs": 41.40000000037253,
+     "over16_7": 4,
+     "over33_3": 2,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 590408.8999999985,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 173,
+     "triangles": 806683,
+     "points": 0,
+     "lines": 0,
+     "programs": 66,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 356260870,
+     "total": 359835962
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 6124.39999999851,
+       "ready": 9333.5,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 6125.299999998882,
+       "ready": 8944.199999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 6125.799999998882,
+       "ready": 10618.89999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 6126.199999999255,
+       "ready": 10509.599999999627,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 6126.5999999996275,
+       "ready": 11819.199999999255,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 6127,
+       "ready": 8801.599999999627,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -19.3,
+     "yaw": 0,
+     "pitch": 0.08
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 6123.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 6124.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 6125.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 6125.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 6126.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 6126.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 6127
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8801.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8944.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 9333.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 10509.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 10619
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 11819.199999999255
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 11829
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 160333.29999999888
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 169720.5
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 6,
+      "meanMs": 6805.283333333326,
+      "effectiveFps": 0.1469446532963361,
+      "p50Ms": 6899.699999999953,
+      "p95Ms": 7133,
+      "p99Ms": 7133,
+      "maxMs": 7133,
+      "over16_7": 6,
+      "over33_3": 6,
+      "over50": 6
+     },
+     "cpuRender": {
+      "frames": 6,
+      "meanMs": 34.24999999968956,
+      "effectiveFps": 29.197080292235448,
+      "p50Ms": 34.30000000074506,
+      "p95Ms": 41.40000000037253,
+      "p99Ms": 41.40000000037253,
+      "maxMs": 41.40000000037253,
+      "over16_7": 6,
+      "over33_3": 3,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "stop": "events",
+   "arrivedAt": {
+    "x": -10.7,
+    "y": 8.92,
+    "z": -31.05,
+    "yaw": 1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 6,
+     "meanMs": 4624.799999999988,
+     "effectiveFps": 0.2162255665109848,
+     "p50Ms": 4649.79999999993,
+     "p95Ms": 4849.79999999993,
+     "p99Ms": 4849.79999999993,
+     "maxMs": 4849.79999999993,
+     "over16_7": 6,
+     "over33_3": 6,
+     "over50": 6
+    },
+    "cpuRender": {
+     "frames": 6,
+     "meanMs": 5.2333333333954215,
+     "effectiveFps": 191.0828025455037,
+     "p50Ms": 4,
+     "p95Ms": 11.600000001490116,
+     "p99Ms": 11.600000001490116,
+     "maxMs": 11.600000001490116,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 698889.5999999996,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 104,
+     "triangles": 640914,
+     "points": 0,
+     "lines": 0,
+     "programs": 66,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 356823430,
+     "total": 359838222
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 6124.39999999851,
+       "ready": 9333.5,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 6125.299999998882,
+       "ready": 8944.199999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 6125.799999998882,
+       "ready": 10618.89999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 6126.199999999255,
+       "ready": 10509.599999999627,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 6126.5999999996275,
+       "ready": 11819.199999999255,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 6127,
+       "ready": 8801.599999999627,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": -10.7,
+     "y": 8.92,
+     "z": -31.05,
+     "yaw": 1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 6123.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 6124.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 6125.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 6125.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 6126.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 6126.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 6127
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8801.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8944.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 9333.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 10509.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 10619
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 11819.199999999255
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 11829
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 160333.29999999888
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 169720.5
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 8,
+      "meanMs": 4670.637499999997,
+      "effectiveFps": 0.21410353511699434,
+      "p50Ms": 4716.5,
+      "p95Ms": 4866.5,
+      "p99Ms": 4866.5,
+      "maxMs": 4866.5,
+      "over16_7": 8,
+      "over33_3": 8,
+      "over50": 8
+     },
+     "cpuRender": {
+      "frames": 8,
+      "meanMs": 5.025000000139698,
+      "effectiveFps": 199.00497511884564,
+      "p50Ms": 4.300000000745058,
+      "p95Ms": 11.600000001490116,
+      "p99Ms": 11.600000001490116,
+      "maxMs": 11.600000001490116,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "stop": "team",
+   "arrivedAt": {
+    "x": 9.399999999999999,
+    "y": 8.92,
+    "z": -31.445,
+    "yaw": -1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 6,
+     "meanMs": 4469.25,
+     "effectiveFps": 0.22375118867818986,
+     "p50Ms": 4483.099999999977,
+     "p95Ms": 4833.099999999977,
+     "p99Ms": 4833.099999999977,
+     "maxMs": 4833.099999999977,
+     "over16_7": 6,
+     "over33_3": 6,
+     "over50": 6
+    },
+    "cpuRender": {
+     "frames": 6,
+     "meanMs": 5.333333332712452,
+     "effectiveFps": 187.50000002182787,
+     "p50Ms": 4.299999998882413,
+     "p95Ms": 9.800000000745058,
+     "p99Ms": 9.800000000745058,
+     "maxMs": 9.800000000745058,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 805860.2999999989,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 93,
+     "triangles": 708890,
+     "points": 0,
+     "lines": 0,
+     "programs": 66,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 353096348,
+     "total": 356393092
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 6124.39999999851,
+       "ready": 9333.5,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 6125.299999998882,
+       "ready": 8944.199999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 6125.799999998882,
+       "ready": 10618.89999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 6126.199999999255,
+       "ready": 10509.599999999627,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 6126.5999999996275,
+       "ready": 11819.199999999255,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 6127,
+       "ready": 8801.599999999627,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 9.399999999999999,
+     "y": 8.92,
+     "z": -31.445,
+     "yaw": -1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 6123.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 6124.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 6125.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 6125.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 6126.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 6126.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 6127
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8801.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8944.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 9333.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 10509.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 10619
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 11819.199999999255
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 11829
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 160333.29999999888
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 169720.5
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 8,
+      "meanMs": 4451.900000000009,
+      "effectiveFps": 0.22462319459107302,
+      "p50Ms": 4416.5,
+      "p95Ms": 4833.099999999977,
+      "p99Ms": 4833.099999999977,
+      "maxMs": 4833.099999999977,
+      "over16_7": 8,
+      "over33_3": 8,
+      "over50": 8
+     },
+     "cpuRender": {
+      "frames": 8,
+      "meanMs": 4.749999999534339,
+      "effectiveFps": 210.5263158101124,
+      "p50Ms": 4.299999998882413,
+      "p95Ms": 9.800000000745058,
+      "p99Ms": 9.800000000745058,
+      "maxMs": 9.800000000745058,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "stop": "aftermovie",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -33.5,
+    "yaw": 0,
+    "pitch": 0.17
+   },
+   "summary": {
+    "presentation": {
+     "frames": 4,
+     "meanMs": 6158.100000000006,
+     "effectiveFps": 0.16238774946817996,
+     "p50Ms": 6166.399999999907,
+     "p95Ms": 6399.800000000047,
+     "p99Ms": 6399.800000000047,
+     "maxMs": 6399.800000000047,
+     "over16_7": 4,
+     "over33_3": 4,
+     "over50": 4
+    },
+    "cpuRender": {
+     "frames": 4,
+     "meanMs": 37.825000000186265,
+     "effectiveFps": 26.437541308528107,
+     "p50Ms": 34.20000000111759,
+     "p95Ms": 55.5,
+     "p99Ms": 55.5,
+     "maxMs": 55.5,
+     "over16_7": 4,
+     "over33_3": 2,
+     "over50": 1
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 909604.6999999993,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 130,
+     "triangles": 765005,
+     "points": 0,
+     "lines": 0,
+     "programs": 66,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 353754546,
+     "total": 357608714
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 6124.39999999851,
+       "ready": 9333.5,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 6125.299999998882,
+       "ready": 8944.199999999255,
+       "failed": false
+      },
+      "market-south": {
+       "started": 6125.799999998882,
+       "ready": 10618.89999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 6126.199999999255,
+       "ready": 10509.599999999627,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 6126.5999999996275,
+       "ready": 11819.199999999255,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 6127,
+       "ready": 8801.599999999627,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -33.5,
+     "yaw": 0,
+     "pitch": 0.17
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 6123.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 6124.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 6125.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 6125.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 6126.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 6126.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 6127
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8801.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8944.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 9333.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 10509.699999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 10619
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 11819.199999999255
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 11829
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 160333.29999999888
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 169720.5
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 6,
+      "meanMs": 6155.299999999988,
+      "effectiveFps": 0.16246161844264323,
+      "p50Ms": 6166.399999999907,
+      "p95Ms": 6399.800000000047,
+      "p99Ms": 6399.800000000047,
+      "maxMs": 6399.800000000047,
+      "over16_7": 6,
+      "over33_3": 6,
+      "over50": 6
+     },
+     "cpuRender": {
+      "frames": 6,
+      "meanMs": 37.61666666654249,
+      "effectiveFps": 26.583961010278273,
+      "p50Ms": 34.20000000111759,
+      "p95Ms": 55.5,
+      "p99Ms": 55.5,
+      "maxMs": 55.5,
+      "over16_7": 6,
+      "over33_3": 4,
+      "over50": 1
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "stop": "market",
+   "summary": {
+    "presentation": {
+     "frames": 3,
+     "meanMs": 8305.233333333337,
+     "effectiveFps": 0.1204060090625589,
+     "p50Ms": 8232.899999999965,
+     "p95Ms": 8499.700000000012,
+     "p99Ms": 8499.700000000012,
+     "maxMs": 8499.700000000012,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 3
+    },
+    "cpuRender": {
+     "frames": 3,
+     "meanMs": 41.26666666691502,
+     "effectiveFps": 24.232633279337197,
+     "p50Ms": 39.40000000037253,
+     "p95Ms": 45.40000000037253,
+     "p99Ms": 45.40000000037253,
+     "maxMs": 45.40000000037253,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 291368.5999999996,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 912,
+     "triangles": 1095830,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 912,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 485896545,
+     "total": 523098929
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 5348.799999998882,
+       "ready": 8170.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 5349.199999999255,
+       "ready": 8029.799999998882,
+       "failed": false
+      },
+      "market-south": {
+       "started": 5349.5999999996275,
+       "ready": 9545.299999998882,
+       "failed": false
+      },
+      "market-north": {
+       "started": 5349.699999999255,
+       "ready": 9466.299999998882,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 5349.89999999851,
+       "ready": 10784.39999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 5350.0999999996275,
+       "ready": 8029.799999998882,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 7.72,
+     "z": 27.6,
+     "yaw": 0,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 5348.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 5348.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 5349.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 5349.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 5349.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 5349.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 5350.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 8170.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 9466.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 9545.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 10784.39999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 10793.599999999627
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 142568.59999999963
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 150379.79999999888
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 5,
+      "meanMs": 8309.679999999998,
+      "effectiveFps": 0.1203415775336716,
+      "p50Ms": 8232.899999999965,
+      "p95Ms": 8499.700000000012,
+      "p99Ms": 8499.700000000012,
+      "maxMs": 8499.700000000012,
+      "over16_7": 5,
+      "over33_3": 5,
+      "over50": 5
+     },
+     "cpuRender": {
+      "frames": 5,
+      "meanMs": 36.8,
+      "effectiveFps": 27.17391304347826,
+      "p50Ms": 39.40000000037253,
+      "p95Ms": 46.5,
+      "p99Ms": 46.5,
+      "maxMs": 46.5,
+      "over16_7": 4,
+      "over33_3": 4,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "stop": "approach",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.33,
+    "z": -2.2,
+    "yaw": 0,
+    "pitch": 0.27
+   },
+   "summary": {
+    "presentation": {
+     "frames": 3,
+     "meanMs": 8855.200000000012,
+     "effectiveFps": 0.11292799710904312,
+     "p50Ms": 8966.299999999988,
+     "p95Ms": 9132.900000000023,
+     "p99Ms": 9132.900000000023,
+     "maxMs": 9132.900000000023,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 3
+    },
+    "cpuRender": {
+     "frames": 3,
+     "meanMs": 39.166666666666664,
+     "effectiveFps": 25.531914893617024,
+     "p50Ms": 38.5,
+     "p95Ms": 43.59999999962747,
+     "p99Ms": 43.59999999962747,
+     "maxMs": 43.59999999962747,
+     "over16_7": 3,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 412621.5,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 433,
+     "triangles": 942065,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 354535889,
+     "total": 361406157
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 5348.799999998882,
+       "ready": 8170.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 5349.199999999255,
+       "ready": 8029.799999998882,
+       "failed": false
+      },
+      "market-south": {
+       "started": 5349.5999999996275,
+       "ready": 9545.299999998882,
+       "failed": false
+      },
+      "market-north": {
+       "started": 5349.699999999255,
+       "ready": 9466.299999998882,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 5349.89999999851,
+       "ready": 10784.39999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 5350.0999999996275,
+       "ready": 8029.799999998882,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.33,
+     "z": -2.2,
+     "yaw": 0,
+     "pitch": 0.27
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 5348.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 5348.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 5349.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 5349.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 5349.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 5349.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 5350.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 8170.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 9466.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 9545.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 10784.39999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 10793.599999999627
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 142568.59999999963
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 150379.79999999888
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 5,
+      "meanMs": 8766.320000000007,
+      "effectiveFps": 0.11407295193422089,
+      "p50Ms": 8649.700000000012,
+      "p95Ms": 9132.900000000023,
+      "p99Ms": 9132.900000000023,
+      "maxMs": 9132.900000000023,
+      "over16_7": 5,
+      "over33_3": 5,
+      "over50": 5
+     },
+     "cpuRender": {
+      "frames": 5,
+      "meanMs": 36.959999999776485,
+      "effectiveFps": 27.056277056440678,
+      "p50Ms": 35.40000000037253,
+      "p95Ms": 43.59999999962747,
+      "p99Ms": 43.59999999962747,
+      "maxMs": 43.59999999962747,
+      "over16_7": 5,
+      "over33_3": 4,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "stop": "plaza",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -19.3,
+    "yaw": 0,
+    "pitch": 0.08
+   },
+   "summary": {
+    "presentation": {
+     "frames": 4,
+     "meanMs": 6924.724999999991,
+     "effectiveFps": 0.1444100668257586,
+     "p50Ms": 6899.700000000012,
+     "p95Ms": 7166.399999999965,
+     "p99Ms": 7166.399999999965,
+     "maxMs": 7166.399999999965,
+     "over16_7": 4,
+     "over33_3": 4,
+     "over50": 4
+    },
+    "cpuRender": {
+     "frames": 4,
+     "meanMs": 36.52500000083819,
+     "effectiveFps": 27.37850787069272,
+     "p50Ms": 34.40000000037253,
+     "p95Ms": 45.600000001490116,
+     "p99Ms": 45.600000001490116,
+     "maxMs": 45.600000001490116,
+     "over16_7": 4,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 525577.5,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 173,
+     "triangles": 806683,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 356082092,
+     "total": 362194888
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 5348.799999998882,
+       "ready": 8170.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 5349.199999999255,
+       "ready": 8029.799999998882,
+       "failed": false
+      },
+      "market-south": {
+       "started": 5349.5999999996275,
+       "ready": 9545.299999998882,
+       "failed": false
+      },
+      "market-north": {
+       "started": 5349.699999999255,
+       "ready": 9466.299999998882,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 5349.89999999851,
+       "ready": 10784.39999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 5350.0999999996275,
+       "ready": 8029.799999998882,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -19.3,
+     "yaw": 0,
+     "pitch": 0.08
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 5348.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 5348.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 5349.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 5349.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 5349.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 5349.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 5350.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 8170.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 9466.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 9545.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 10784.39999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 10793.599999999627
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 142568.59999999963
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 150379.79999999888
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 6,
+      "meanMs": 6777.516666666663,
+      "effectiveFps": 0.1475466677814638,
+      "p50Ms": 6816.400000000023,
+      "p95Ms": 7166.399999999965,
+      "p99Ms": 7166.399999999965,
+      "maxMs": 7166.399999999965,
+      "over16_7": 6,
+      "over33_3": 6,
+      "over50": 6
+     },
+     "cpuRender": {
+      "frames": 6,
+      "meanMs": 35.43333333389213,
+      "effectiveFps": 28.222013169827743,
+      "p50Ms": 34.40000000037253,
+      "p95Ms": 45.600000001490116,
+      "p99Ms": 45.600000001490116,
+      "maxMs": 45.600000001490116,
+      "over16_7": 6,
+      "over33_3": 4,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "stop": "events",
+   "arrivedAt": {
+    "x": -10.7,
+    "y": 8.92,
+    "z": -31.05,
+    "yaw": 1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 7,
+     "meanMs": 3995.0857142857108,
+     "effectiveFps": 0.2503075206682498,
+     "p50Ms": 3949.9000000000233,
+     "p95Ms": 4099.800000000047,
+     "p99Ms": 4099.800000000047,
+     "maxMs": 4099.800000000047,
+     "over16_7": 7,
+     "over33_3": 7,
+     "over50": 7
+    },
+    "cpuRender": {
+     "frames": 7,
+     "meanMs": 4.528571428731084,
+     "effectiveFps": 220.8201892666629,
+     "p50Ms": 4.800000000745058,
+     "p95Ms": 7.900000000372529,
+     "p99Ms": 7.900000000372529,
+     "maxMs": 7.900000000372529,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 629839.3999999985,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 104,
+     "triangles": 640914,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 354950153,
+     "total": 356848113
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 5348.799999998882,
+       "ready": 8170.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 5349.199999999255,
+       "ready": 8029.799999998882,
+       "failed": false
+      },
+      "market-south": {
+       "started": 5349.5999999996275,
+       "ready": 9545.299999998882,
+       "failed": false
+      },
+      "market-north": {
+       "started": 5349.699999999255,
+       "ready": 9466.299999998882,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 5349.89999999851,
+       "ready": 10784.39999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 5350.0999999996275,
+       "ready": 8029.799999998882,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": -10.7,
+     "y": 8.92,
+     "z": -31.05,
+     "yaw": 1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 5348.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 5348.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 5349.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 5349.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 5349.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 5349.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 5350.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 8170.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 9466.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 9545.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 10784.39999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 10793.599999999627
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 142568.59999999963
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 150379.79999999888
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 9,
+      "meanMs": 3964.6666666666665,
+      "effectiveFps": 0.2522280141247688,
+      "p50Ms": 3949.8000000000466,
+      "p95Ms": 4099.800000000047,
+      "p99Ms": 4099.800000000047,
+      "maxMs": 4099.800000000047,
+      "over16_7": 9,
+      "over33_3": 9,
+      "over50": 9
+     },
+     "cpuRender": {
+      "frames": 9,
+      "meanMs": 4.766666666708058,
+      "effectiveFps": 209.79020978838807,
+      "p50Ms": 4.800000000745058,
+      "p95Ms": 7.900000000372529,
+      "p99Ms": 7.900000000372529,
+      "maxMs": 7.900000000372529,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "stop": "team",
+   "arrivedAt": {
+    "x": 9.399999999999999,
+    "y": 8.92,
+    "z": -31.445,
+    "yaw": -1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 6,
+     "meanMs": 4619.266666666663,
+     "effectiveFps": 0.21648457908181692,
+     "p50Ms": 4616.400000000023,
+     "p95Ms": 4916.599999999977,
+     "p99Ms": 4916.599999999977,
+     "maxMs": 4916.599999999977,
+     "over16_7": 6,
+     "over33_3": 6,
+     "over50": 6
+    },
+    "cpuRender": {
+     "frames": 6,
+     "meanMs": 3.3666666659216085,
+     "effectiveFps": 297.02970303603104,
+     "p50Ms": 3.299999998882413,
+     "p95Ms": 4.599999999627471,
+     "p99Ms": 4.599999999627471,
+     "maxMs": 4.599999999627471,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 732653.0999999996,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 93,
+     "triangles": 708890,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 354846560,
+     "total": 356412532
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 5348.799999998882,
+       "ready": 8170.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 5349.199999999255,
+       "ready": 8029.799999998882,
+       "failed": false
+      },
+      "market-south": {
+       "started": 5349.5999999996275,
+       "ready": 9545.299999998882,
+       "failed": false
+      },
+      "market-north": {
+       "started": 5349.699999999255,
+       "ready": 9466.299999998882,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 5349.89999999851,
+       "ready": 10784.39999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 5350.0999999996275,
+       "ready": 8029.799999998882,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 9.399999999999999,
+     "y": 8.92,
+     "z": -31.445,
+     "yaw": -1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 5348.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 5348.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 5349.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 5349.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 5349.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 5349.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 5350.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 8170.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 9466.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 9545.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 10784.39999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 10793.599999999627
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 142568.59999999963
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 150379.79999999888
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 8,
+      "meanMs": 4610.237500000003,
+      "effectiveFps": 0.2169085649058209,
+      "p50Ms": 4616.400000000023,
+      "p95Ms": 4916.599999999977,
+      "p99Ms": 4916.599999999977,
+      "maxMs": 4916.599999999977,
+      "over16_7": 8,
+      "over33_3": 8,
+      "over50": 8
+     },
+     "cpuRender": {
+      "frames": 8,
+      "meanMs": 3.362499999580905,
+      "effectiveFps": 297.3977695537957,
+      "p50Ms": 3.299999998882413,
+      "p95Ms": 4.599999999627471,
+      "p99Ms": 4.599999999627471,
+      "maxMs": 4.599999999627471,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "stop": "aftermovie",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -33.5,
+    "yaw": 0,
+    "pitch": 0.17
+   },
+   "summary": {
+    "presentation": {
+     "frames": 4,
+     "meanMs": 7228.875,
+     "effectiveFps": 0.13833411146271032,
+     "p50Ms": 7449.699999999953,
+     "p95Ms": 7899.699999999953,
+     "p99Ms": 7899.699999999953,
+     "maxMs": 7899.699999999953,
+     "over16_7": 4,
+     "over33_3": 4,
+     "over50": 4
+    },
+    "cpuRender": {
+     "frames": 4,
+     "meanMs": 39.325000000186265,
+     "effectiveFps": 25.4291163380868,
+     "p50Ms": 43.19999999925494,
+     "p95Ms": 46.100000001490116,
+     "p99Ms": 46.100000001490116,
+     "maxMs": 46.100000001490116,
+     "over16_7": 4,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 845375.5,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "viewport": [
+     1280,
+     720
+    ],
+    "stats": {
+     "calls": 130,
+     "triangles": 765005,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      1280,
+      720
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 1,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1058,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 277955840,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 355750996,
+     "total": 357463396
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 5348.799999998882,
+       "ready": 8170.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 5349.199999999255,
+       "ready": 8029.799999998882,
+       "failed": false
+      },
+      "market-south": {
+       "started": 5349.5999999996275,
+       "ready": 9545.299999998882,
+       "failed": false
+      },
+      "market-north": {
+       "started": 5349.699999999255,
+       "ready": 9466.299999998882,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 5349.89999999851,
+       "ready": 10784.39999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 5350.0999999996275,
+       "ready": 8029.799999998882,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -33.5,
+     "yaw": 0,
+     "pitch": 0.17
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 5348.299999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 5348.799999998882
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 5349.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 5349.5999999996275
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 5349.699999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 5349.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 5350.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 8029.799999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 8170.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 9466.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 9545.299999998882
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 10784.39999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 10793.599999999627
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 142568.59999999963
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 150379.79999999888
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 6,
+      "meanMs": 6896.9499999999925,
+      "effectiveFps": 0.14499162673355628,
+      "p50Ms": 6949.800000000047,
+      "p95Ms": 7899.699999999953,
+      "p99Ms": 7899.699999999953,
+      "maxMs": 7899.699999999953,
+      "over16_7": 6,
+      "over33_3": 6,
+      "over50": 6
+     },
+     "cpuRender": {
+      "frames": 6,
+      "meanMs": 28.083333333333332,
+      "effectiveFps": 35.60830860534125,
+      "p50Ms": 37.30000000074506,
+      "p95Ms": 46.100000001490116,
+      "p99Ms": 46.100000001490116,
+      "maxMs": 46.100000001490116,
+      "over16_7": 4,
+      "over33_3": 3,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  }
+ ],
+ "journey": [],
+ "cycles": [
+  {
+   "profile": "desktop",
+   "snapshots": [
+    {
+     "cycle": 0,
+     "jsHeap": {
+      "used": 468823900,
+      "total": 490214364
+     },
+     "stats": {
+      "calls": 912,
+      "triangles": 1095830,
+      "points": 0,
+      "lines": 0,
+      "programs": 66,
+      "geometries": 912,
+      "textures": 131,
+      "drawingBuffer": [
+       1280,
+       720
+      ],
+      "dpr": 1,
+      "devicePixelRatio": 1,
+      "tier": "fixed"
+     },
+     "scene": {
+      "nodes": 1058,
+      "meshes": 975,
+      "uniqueTextureSources": 114,
+      "textureBytesEstimate": 277955840,
+      "geometryBytes": 42581186
+     }
+    },
+    {
+     "cycle": 1,
+     "jsHeap": {
+      "used": 356998176,
+      "total": 358798372
+     },
+     "stats": {
+      "calls": 912,
+      "triangles": 1095830,
+      "points": 0,
+      "lines": 0,
+      "programs": 66,
+      "geometries": 974,
+      "textures": 131,
+      "drawingBuffer": [
+       1280,
+       720
+      ],
+      "dpr": 1,
+      "devicePixelRatio": 1,
+      "tier": "fixed"
+     },
+     "scene": {
+      "nodes": 1058,
+      "meshes": 975,
+      "uniqueTextureSources": 114,
+      "textureBytesEstimate": 277955840,
+      "geometryBytes": 42581186
+     }
+    },
+    {
+     "cycle": 2,
+     "jsHeap": {
+      "used": 353393416,
+      "total": 360886248
+     },
+     "stats": {
+      "calls": 912,
+      "triangles": 1095830,
+      "points": 0,
+      "lines": 0,
+      "programs": 66,
+      "geometries": 974,
+      "textures": 131,
+      "drawingBuffer": [
+       1280,
+       720
+      ],
+      "dpr": 1,
+      "devicePixelRatio": 1,
+      "tier": "fixed"
+     },
+     "scene": {
+      "nodes": 1058,
+      "meshes": 975,
+      "uniqueTextureSources": 114,
+      "textureBytesEstimate": 277955840,
+      "geometryBytes": 42581186
+     }
+    },
+    {
+     "cycle": 3,
+     "jsHeap": {
+      "used": 356136728,
+      "total": 361946032
+     },
+     "stats": {
+      "calls": 912,
+      "triangles": 1095830,
+      "points": 0,
+      "lines": 0,
+      "programs": 66,
+      "geometries": 974,
+      "textures": 131,
+      "drawingBuffer": [
+       1280,
+       720
+      ],
+      "dpr": 1,
+      "devicePixelRatio": 1,
+      "tier": "fixed"
+     },
+     "scene": {
+      "nodes": 1058,
+      "meshes": 975,
+      "uniqueTextureSources": 114,
+      "textureBytesEstimate": 277955840,
+      "geometryBytes": 42581186
+     }
+    },
+    {
+     "cycle": 4,
+     "jsHeap": {
+      "used": 357733790,
+      "total": 361956442
+     },
+     "stats": {
+      "calls": 912,
+      "triangles": 1095830,
+      "points": 0,
+      "lines": 0,
+      "programs": 66,
+      "geometries": 974,
+      "textures": 131,
+      "drawingBuffer": [
+       1280,
+       720
+      ],
+      "dpr": 1,
+      "devicePixelRatio": 1,
+      "tier": "fixed"
+     },
+     "scene": {
+      "nodes": 1058,
+      "meshes": 975,
+      "uniqueTextureSources": 114,
+      "textureBytesEstimate": 277955840,
+      "geometryBytes": 42581186
+     }
+    },
+    {
+     "cycle": 5,
+     "jsHeap": {
+      "used": 359220659,
+      "total": 361704679
+     },
+     "stats": {
+      "calls": 912,
+      "triangles": 1095830,
+      "points": 0,
+      "lines": 0,
+      "programs": 66,
+      "geometries": 974,
+      "textures": 131,
+      "drawingBuffer": [
+       1280,
+       720
+      ],
+      "dpr": 1,
+      "devicePixelRatio": 1,
+      "tier": "fixed"
+     },
+     "scene": {
+      "nodes": 1058,
+      "meshes": 975,
+      "uniqueTextureSources": 114,
+      "textureBytesEstimate": 277955840,
+      "geometryBytes": 42581186
+     }
+    }
+   ],
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  }
+ ],
+ "errors": []
+}

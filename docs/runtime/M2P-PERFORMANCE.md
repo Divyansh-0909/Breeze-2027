@@ -63,3 +63,33 @@ See the results section for the numbers. In order of impact:
 ## Results
 
 Filled in from `perf-results/` (baseline-*.json and candidate-*.json); see below.
+
+## Status at hand-over (23 November 2026)
+
+Work moves to a machine with a GPU. Everything is pushed; the last two changes are **untested in the browser**:
+
+- `1a39ddb` market batches split into 10 m cells (unit-tested; not yet re-measured);
+- `86421b7` the Rocketbox crowd (189 people, 15 avatars chosen by the user, `rocketbox-crowd.ts`). Unit-tested and built, but not yet viewed in the scene: check facing, scale, foot height and lighting first.
+
+Raw results so far (SwiftShader, Chromium headless, 4 vCPU, no GPU; frame times are not device performance) are in `perf/results-2026-11-23-swiftshader/`: baseline = commit 66a7f69 (instrumentation only), candidate = 73cbe36 (before the 10 m cells and the Rocketbox crowd). Load numbers (desktop 1280 x 720, DPR 1, cold):
+
+| | Baseline | Candidate |
+|---|---|---|
+| Transferred before walking | 127.9 MB | 38.6-38.9 MB |
+| Walking unlocked (SwiftShader) | 198-205 s | 94-104 s |
+| Draw calls, market arrival, whole world loaded | 912 | 711 |
+| Shader programs | 132 | ~102 |
+| Memory over 5 map round trips | flat (974 geometries, 131 textures) | flat (739 geometries, 113 textures) |
+
+The navigation-board pose drew slightly more with whole-chunk batches (449 vs 433 calls); `1a39ddb` addresses it.
+
+### Running the measurements on the GPU machine
+
+```bash
+npm run build
+GULLYVERSE_RUNTIME_PREVIEW=1 npm start
+BREEZE_BASE_URL=http://127.0.0.1:3000 CHROME_PATH="<path to Chrome>" npm run perf:breeze -- --label gpu-candidate
+BREEZE_BASE_URL=http://127.0.0.1:3000 node scripts/perf-functional.mjs
+```
+
+For a baseline, check out 66a7f69 in a separate worktree, start it on another port, and run `perf:breeze` against it with the same settings. Use real Chrome (`CHROME_PATH`) so H.264 video and the GPU are used; record the GPU in the report. `?perf=overlay` shows live FPS, frame percentiles, draw calls and the quality tier on any device. `perf/results-2026-11-23-swiftshader/people-shots.mjs` captures fixed-camera before/after screenshots of the people (`SHOTS=crowd` for the crowd views).

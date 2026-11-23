@@ -1,0 +1,829 @@
+{
+ "environment": {
+  "label": "baseline",
+  "startedAt": "2026-11-23T13:43:43.880Z",
+  "base": "http://127.0.0.1:43992",
+  "browser": "153.0.8010.12",
+  "os": "Linux 6.18.44-fc-v726",
+  "cpus": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "cpuCount": 4,
+  "sampleSeconds": 30,
+  "runs": 3,
+  "finishedAt": "2026-11-23T14:04:09.990Z"
+ },
+ "load": [
+  {
+   "profile": "desktop",
+   "run": 0,
+   "cold": {
+    "htmlMs": 136,
+    "walkingMs": 259891,
+    "marks": {
+     "breeze:phase:boot": 575,
+     "breeze:chunk-start:cypher-gate": 575,
+     "breeze:chunk-start:cypher-approach": 576,
+     "breeze:chunk-start:market-south": 576,
+     "breeze:chunk-start:market-north": 576,
+     "breeze:chunk-start:cypher-plaza": 576,
+     "breeze:chunk-start:cypher-audience": 577,
+     "breeze:chunk-ready:cypher-approach": 3904,
+     "breeze:chunk-ready:cypher-audience": 3904,
+     "breeze:chunk-ready:cypher-gate": 3904,
+     "breeze:chunk-ready:market-north": 5570,
+     "breeze:chunk-ready:market-south": 5702,
+     "breeze:chunk-ready:cypher-plaza": 6825,
+     "breeze:world-ready": 6872,
+     "breeze:phase:arrival": 182971,
+     "breeze:phase:local": 196415
+    },
+    "navigation": {
+     "domContentLoaded": 125,
+     "load": 346,
+     "transferSize": 4208
+    },
+    "bytesAtWalking": {
+     "html": {
+      "requests": 1,
+      "bytes": 4675,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 48732,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 24239,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 487362,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 515546,
+      "cached": 1
+     },
+     "video": {
+      "requests": 11,
+      "bytes": 43968366,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 16462475,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 99681219,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1241044,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 9361141,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 202,
+      "bytes": 171917443,
+      "cached": 1
+     }
+    },
+    "bytesAfter5s": {
+     "html": {
+      "requests": 1,
+      "bytes": 4675,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 48732,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 24239,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 487362,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 515546,
+      "cached": 1
+     },
+     "video": {
+      "requests": 12,
+      "bytes": 43968366,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 16462475,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 99681219,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1241044,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 9361141,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 203,
+      "bytes": 171917443,
+      "cached": 1
+     }
+    },
+    "failed": [],
+    "largest": [
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.optimized.glb",
+      "bytes": 47667584,
+      "cached": false
+     },
+     {
+      "url": "/after-movie.mp4",
+      "bytes": 43968366,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.optimized.glb",
+      "bytes": 14925994,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.optimized.glb",
+      "bytes": 13045108,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.optimized.glb",
+      "bytes": 10395989,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.optimized.glb",
+      "bytes": 7373081,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/contact-frontage.optimized.glb",
+      "bytes": 6273463,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/lightmap.ktx2",
+      "bytes": 4538700,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/lightmap.ktx2",
+      "bytes": 2070834,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/lightmap.ktx2",
+      "bytes": 1893944,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/lightmap.ktx2",
+      "bytes": 1797723,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.hdr",
+      "bytes": 1474272,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.hdr",
+      "bytes": 1446518,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.hdr",
+      "bytes": 1414556,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-gate.hdr",
+      "bytes": 1363872,
+      "cached": false
+     }
+    ]
+   },
+   "warm": {
+    "htmlMs": 13378,
+    "walkingMs": 290381,
+    "marks": {
+     "breeze:phase:boot": 13579,
+     "breeze:chunk-start:cypher-gate": 13580,
+     "breeze:chunk-start:cypher-approach": 13580,
+     "breeze:chunk-start:market-south": 13581,
+     "breeze:chunk-start:market-north": 13581,
+     "breeze:chunk-start:cypher-plaza": 13581,
+     "breeze:chunk-start:cypher-audience": 13581,
+     "breeze:chunk-ready:cypher-approach": 17423,
+     "breeze:chunk-ready:cypher-audience": 17424,
+     "breeze:chunk-ready:cypher-gate": 17618,
+     "breeze:chunk-ready:market-south": 19609,
+     "breeze:chunk-ready:market-north": 19958,
+     "breeze:chunk-ready:cypher-plaza": 21289,
+     "breeze:world-ready": 21312,
+     "breeze:phase:arrival": 211910,
+     "breeze:phase:local": 224744
+    },
+    "navigation": {
+     "domContentLoaded": 13371,
+     "load": 13372,
+     "transferSize": 4208
+    },
+    "bytesAtWalking": {
+     "video": {
+      "requests": 12,
+      "bytes": 0,
+      "cached": 0
+     },
+     "html": {
+      "requests": 1,
+      "bytes": 4675,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 0,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 0,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 78312,
+      "cached": 2
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 12002205,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 93408001,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 745212,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 9361141,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 244,
+      "cached": 0
+     },
+     "total": {
+      "requests": 203,
+      "bytes": 115599790,
+      "cached": 2
+     }
+    },
+    "bytesAfter5s": {
+     "video": {
+      "requests": 13,
+      "bytes": 0,
+      "cached": 0
+     },
+     "html": {
+      "requests": 1,
+      "bytes": 4675,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 0,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 0,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 78312,
+      "cached": 2
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 12002205,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 93408001,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 745212,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 9361141,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 244,
+      "cached": 0
+     },
+     "total": {
+      "requests": 204,
+      "bytes": 115599790,
+      "cached": 2
+     }
+    },
+    "failed": [],
+    "largest": [
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.optimized.glb",
+      "bytes": 47667584,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.optimized.glb",
+      "bytes": 14925994,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.optimized.glb",
+      "bytes": 13045108,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.optimized.glb",
+      "bytes": 10395989,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.optimized.glb",
+      "bytes": 7373081,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/lightmap.ktx2",
+      "bytes": 4538700,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/lightmap.ktx2",
+      "bytes": 2070834,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/lightmap.ktx2",
+      "bytes": 1893944,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/lightmap.ktx2",
+      "bytes": 1797723,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.hdr",
+      "bytes": 1474272,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.hdr",
+      "bytes": 1446518,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.hdr",
+      "bytes": 1414556,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-gate.hdr",
+      "bytes": 1363872,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/lightmap.ktx2",
+      "bytes": 1302136,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-screen.hdr",
+      "bytes": 1241074,
+      "cached": false
+     }
+    ]
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "cold": {
+    "htmlMs": 161,
+    "walkingMs": 242296,
+    "marks": {
+     "breeze:phase:boot": 12549,
+     "breeze:chunk-start:cypher-gate": 12549,
+     "breeze:chunk-start:cypher-approach": 12550,
+     "breeze:chunk-start:market-south": 12550,
+     "breeze:chunk-start:market-north": 12551,
+     "breeze:chunk-start:cypher-plaza": 12551,
+     "breeze:chunk-start:cypher-audience": 12552,
+     "breeze:chunk-ready:cypher-audience": 16231,
+     "breeze:chunk-ready:cypher-approach": 17225,
+     "breeze:chunk-ready:cypher-gate": 17500,
+     "breeze:chunk-ready:market-north": 18113,
+     "breeze:chunk-ready:market-south": 18179,
+     "breeze:chunk-ready:cypher-plaza": 19479,
+     "breeze:world-ready": 19498,
+     "breeze:phase:arrival": 177700,
+     "breeze:phase:local": 185635
+    },
+    "navigation": {
+     "domContentLoaded": 156,
+     "load": 424,
+     "transferSize": 4207
+    },
+    "bytesAtWalking": {
+     "html": {
+      "requests": 1,
+      "bytes": 4674,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 48732,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 24239,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 487362,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 515546,
+      "cached": 1
+     },
+     "video": {
+      "requests": 11,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 16462475,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 99681219,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1241044,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 9361141,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 202,
+      "bytes": 127949076,
+      "cached": 1
+     }
+    },
+    "bytesAfter5s": {
+     "html": {
+      "requests": 1,
+      "bytes": 4674,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 48732,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 24239,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 487362,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 515546,
+      "cached": 1
+     },
+     "video": {
+      "requests": 13,
+      "bytes": 22407023,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 16462475,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 99681219,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1241044,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 9361141,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 204,
+      "bytes": 150356099,
+      "cached": 1
+     }
+    },
+    "failed": [],
+    "largest": [
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.optimized.glb",
+      "bytes": 47667584,
+      "cached": false
+     },
+     {
+      "url": "/after-movie.mp4",
+      "bytes": 22407023,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.optimized.glb",
+      "bytes": 14925994,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.optimized.glb",
+      "bytes": 13045108,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.optimized.glb",
+      "bytes": 10395989,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.optimized.glb",
+      "bytes": 7373081,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/contact-frontage.optimized.glb",
+      "bytes": 6273463,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/lightmap.ktx2",
+      "bytes": 4538700,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/lightmap.ktx2",
+      "bytes": 2070834,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/lightmap.ktx2",
+      "bytes": 1893944,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/lightmap.ktx2",
+      "bytes": 1797723,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.hdr",
+      "bytes": 1474272,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.hdr",
+      "bytes": 1446518,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.hdr",
+      "bytes": 1414556,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-gate.hdr",
+      "bytes": 1363872,
+      "cached": false
+     }
+    ]
+   },
+   "warm": null,
+   "error": "TimeoutError: page.waitForSelector: Timeout 300000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.gully-controls') to be visible\u001b[22m\n\u001b[2m    - locator resolved to visible <section aria-label=\"Controls\" class=\"gully-controls\">…</section>\u001b[22m\n",
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+    "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+    "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+    "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+    "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+   ]
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "cold": null,
+   "warm": null,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "cold": null,
+   "warm": null,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "cold": null,
+   "warm": null,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 2,
+   "cold": null,
+   "warm": null,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  }
+ ],
+ "poses": [
+  {
+   "profile": "desktop",
+   "run": 0,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 2,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  }
+ ],
+ "journey": [
+  {
+   "profile": "desktop",
+   "run": 0,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "desktop",
+   "run": 1,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  },
+  {
+   "profile": "desktop",
+   "run": 2,
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  }
+ ],
+ "cycles": [
+  {
+   "profile": "desktop",
+   "snapshots": [],
+   "error": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:43992/runtime-preview/cypher?diagnostics\", waiting until \"domcontentloaded\"\u001b[22m\n",
+   "errors": []
+  }
+ ],
+ "errors": []
+}

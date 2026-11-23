@@ -1,0 +1,78 @@
+{
+ "environment": {
+  "label": "candidate-journey",
+  "startedAt": "2026-11-23T20:23:35.729Z",
+  "base": "http://127.0.0.1:43991",
+  "browser": "153.0.8010.12",
+  "os": "Linux 6.18.44-fc-v726",
+  "cpus": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "cpuCount": 4,
+  "sampleSeconds": 30,
+  "runs": 1,
+  "finishedAt": "2026-11-23T20:35:59.147Z"
+ },
+ "load": [],
+ "poses": [],
+ "journey": [
+  {
+   "profile": "desktop",
+   "run": 0,
+   "walk": {
+    "frames": 2,
+    "meanMs": 13091.099999999977,
+    "effectiveFps": 0.07638777490050506,
+    "p50Ms": 14466.099999999977,
+    "p95Ms": 14466.099999999977,
+    "p99Ms": 14466.099999999977,
+    "maxMs": 14466.099999999977,
+    "over50": 2
+   },
+   "sprint": {
+    "presentation": {
+     "frames": 5,
+     "meanMs": 14256.1,
+     "effectiveFps": 0.07014541143791078,
+     "p50Ms": 14149.399999999907,
+     "p95Ms": 14766.100000000093,
+     "p99Ms": 14766.100000000093,
+     "maxMs": 14766.100000000093,
+     "over16_7": 5,
+     "over33_3": 5,
+     "over50": 5
+    },
+    "cpuRender": {
+     "frames": 5,
+     "meanMs": 16.66000000089407,
+     "effectiveFps": 60.02400960062031,
+     "p50Ms": 16.400000002235174,
+     "p95Ms": 22.199999999254942,
+     "p99Ms": 22.199999999254942,
+     "maxMs": 22.199999999254942,
+     "over16_7": 2,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "endZ": 26.6123704216095,
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  }
+ ],
+ "cycles": [],
+ "errors": []
+}

@@ -1,0 +1,3887 @@
+{
+ "environment": {
+  "label": "baseline-mobile",
+  "startedAt": "2026-11-23T19:16:32.100Z",
+  "base": "http://127.0.0.1:43992",
+  "browser": "153.0.8010.12",
+  "os": "Linux 6.18.44-fc-v726",
+  "cpus": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "cpuCount": 4,
+  "sampleSeconds": 30,
+  "runs": 2,
+  "finishedAt": "2026-11-23T19:42:47.710Z"
+ },
+ "load": [
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "cold": {
+    "htmlMs": 92,
+    "walkingMs": 84892,
+    "worldMs": 99245,
+    "marks": {
+     "breeze:phase:boot": 398,
+     "breeze:chunk-start:cypher-gate": 399,
+     "breeze:chunk-start:cypher-approach": 399,
+     "breeze:chunk-start:market-south": 399,
+     "breeze:chunk-start:market-north": 400,
+     "breeze:chunk-start:cypher-plaza": 400,
+     "breeze:chunk-start:cypher-audience": 400,
+     "breeze:chunk-ready:cypher-audience": 2420,
+     "breeze:chunk-ready:cypher-approach": 2420,
+     "breeze:chunk-ready:cypher-gate": 2439,
+     "breeze:chunk-ready:market-north": 2650,
+     "breeze:chunk-ready:market-south": 2739,
+     "breeze:chunk-ready:cypher-plaza": 3156,
+     "breeze:world-ready": 3165,
+     "breeze:phase:arrival": 63472,
+     "breeze:phase:local": 67151
+    },
+    "navigation": {
+     "domContentLoaded": 85,
+     "load": 235,
+     "transferSize": 4232
+    },
+    "bytesAtWalking": {
+     "html": {
+      "requests": 1,
+      "bytes": 4699,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 48732,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 24239,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 487362,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 515546,
+      "cached": 1
+     },
+     "video": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 13224396,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 41340643,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1241044,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 2607311,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 194,
+      "bytes": 59616616,
+      "cached": 1
+     }
+    },
+    "bytesAfter5s": {
+     "html": {
+      "requests": 1,
+      "bytes": 4699,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 48732,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 24239,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 487362,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 515546,
+      "cached": 1
+     },
+     "video": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 13224396,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 41340643,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1241044,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 2607311,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 194,
+      "bytes": 59616616,
+      "cached": 1
+     }
+    },
+    "failed": [],
+    "largest": [
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.mobile.glb",
+      "bytes": 18091137,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.mobile.glb",
+      "bytes": 10395989,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/lightmap.ktx2",
+      "bytes": 4538700,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.mobile.glb",
+      "bytes": 4295606,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.mobile.glb",
+      "bytes": 4109525,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.mobile.glb",
+      "bytes": 2305417,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/contact-frontage.mobile.glb",
+      "bytes": 2142969,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/lightmap.ktx2",
+      "bytes": 2070834,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/lightmap.ktx2",
+      "bytes": 1893944,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/lightmap.ktx2",
+      "bytes": 1797723,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/lightmap.ktx2",
+      "bytes": 1302136,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/lightmap.ktx2",
+      "bytes": 397646,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.mobile.hdr",
+      "bytes": 391008,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.mobile.hdr",
+      "bytes": 388386,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.mobile.hdr",
+      "bytes": 385825,
+      "cached": false
+     }
+    ]
+   },
+   "warm": {
+    "htmlMs": 4258,
+    "walkingMs": 85610,
+    "worldMs": 99513,
+    "marks": {
+     "breeze:phase:boot": 4422,
+     "breeze:chunk-start:cypher-gate": 4423,
+     "breeze:chunk-start:cypher-approach": 4423,
+     "breeze:chunk-start:market-south": 4423,
+     "breeze:chunk-start:market-north": 4424,
+     "breeze:chunk-start:cypher-plaza": 4424,
+     "breeze:chunk-start:cypher-audience": 4425,
+     "breeze:chunk-ready:cypher-audience": 6184,
+     "breeze:chunk-ready:cypher-approach": 6203,
+     "breeze:chunk-ready:cypher-gate": 6284,
+     "breeze:chunk-ready:market-north": 6419,
+     "breeze:chunk-ready:market-south": 6471,
+     "breeze:chunk-ready:cypher-plaza": 6928,
+     "breeze:world-ready": 6934,
+     "breeze:phase:arrival": 64463,
+     "breeze:phase:local": 68239
+    },
+    "navigation": {
+     "domContentLoaded": 4251,
+     "load": 4251,
+     "transferSize": 4231
+    },
+    "bytesAtWalking": {
+     "html": {
+      "requests": 1,
+      "bytes": 4698,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 0,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 0,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 530851,
+      "cached": 1
+     },
+     "video": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 13224396,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 41340643,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1488960,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 2607311,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 194,
+      "bytes": 59319503,
+      "cached": 1
+     }
+    },
+    "bytesAfter5s": {
+     "html": {
+      "requests": 1,
+      "bytes": 4698,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 0,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 0,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 530851,
+      "cached": 1
+     },
+     "video": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 13224396,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 41340643,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1488960,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 2607311,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 194,
+      "bytes": 59319503,
+      "cached": 1
+     }
+    },
+    "failed": [],
+    "largest": [
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.mobile.glb",
+      "bytes": 18091137,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.mobile.glb",
+      "bytes": 10395989,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/lightmap.ktx2",
+      "bytes": 4538700,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.mobile.glb",
+      "bytes": 4295606,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.mobile.glb",
+      "bytes": 4109525,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.mobile.glb",
+      "bytes": 2305417,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/contact-frontage.mobile.glb",
+      "bytes": 2142969,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/lightmap.ktx2",
+      "bytes": 2070834,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/lightmap.ktx2",
+      "bytes": 1893944,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/lightmap.ktx2",
+      "bytes": 1797723,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/lightmap.ktx2",
+      "bytes": 1302136,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/lightmap.ktx2",
+      "bytes": 397646,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.mobile.hdr",
+      "bytes": 391008,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.mobile.hdr",
+      "bytes": 388386,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.mobile.hdr",
+      "bytes": 385825,
+      "cached": false
+     }
+    ]
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "cold": {
+    "htmlMs": 101,
+    "walkingMs": 88011,
+    "worldMs": 103991,
+    "marks": {
+     "breeze:phase:boot": 3351,
+     "breeze:chunk-start:cypher-gate": 3352,
+     "breeze:chunk-start:cypher-approach": 3352,
+     "breeze:chunk-start:market-south": 3353,
+     "breeze:chunk-start:market-north": 3353,
+     "breeze:chunk-start:cypher-plaza": 3354,
+     "breeze:chunk-start:cypher-audience": 3354,
+     "breeze:chunk-ready:cypher-audience": 4925,
+     "breeze:chunk-ready:cypher-approach": 5392,
+     "breeze:chunk-ready:cypher-gate": 5509,
+     "breeze:chunk-ready:market-north": 5653,
+     "breeze:chunk-ready:market-south": 5718,
+     "breeze:chunk-ready:cypher-plaza": 6414,
+     "breeze:world-ready": 6424,
+     "breeze:phase:arrival": 66092,
+     "breeze:phase:local": 69643
+    },
+    "navigation": {
+     "domContentLoaded": 95,
+     "load": 277,
+     "transferSize": 4229
+    },
+    "bytesAtWalking": {
+     "html": {
+      "requests": 1,
+      "bytes": 4696,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 48732,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 24239,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 487362,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 515546,
+      "cached": 1
+     },
+     "video": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 13224396,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 41340643,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1241044,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 2607311,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 194,
+      "bytes": 59616613,
+      "cached": 1
+     }
+    },
+    "bytesAfter5s": {
+     "html": {
+      "requests": 1,
+      "bytes": 4696,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 48732,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 24239,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 487362,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 515546,
+      "cached": 1
+     },
+     "video": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 13224396,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 41340643,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1241044,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 2607311,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 194,
+      "bytes": 59616613,
+      "cached": 1
+     }
+    },
+    "failed": [],
+    "largest": [
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.mobile.glb",
+      "bytes": 18091137,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.mobile.glb",
+      "bytes": 10395989,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/lightmap.ktx2",
+      "bytes": 4538700,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.mobile.glb",
+      "bytes": 4295606,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.mobile.glb",
+      "bytes": 4109525,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.mobile.glb",
+      "bytes": 2305417,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/contact-frontage.mobile.glb",
+      "bytes": 2142969,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/lightmap.ktx2",
+      "bytes": 2070834,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/lightmap.ktx2",
+      "bytes": 1893944,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/lightmap.ktx2",
+      "bytes": 1797723,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/lightmap.ktx2",
+      "bytes": 1302136,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/lightmap.ktx2",
+      "bytes": 397646,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.mobile.hdr",
+      "bytes": 391008,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.mobile.hdr",
+      "bytes": 388386,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.mobile.hdr",
+      "bytes": 385825,
+      "cached": false
+     }
+    ]
+   },
+   "warm": {
+    "htmlMs": 4085,
+    "walkingMs": 89109,
+    "worldMs": 103896,
+    "marks": {
+     "breeze:phase:boot": 4318,
+     "breeze:chunk-start:cypher-gate": 4318,
+     "breeze:chunk-start:cypher-approach": 4319,
+     "breeze:chunk-start:market-south": 4323,
+     "breeze:chunk-start:market-north": 4324,
+     "breeze:chunk-start:cypher-plaza": 4324,
+     "breeze:chunk-start:cypher-audience": 4325,
+     "breeze:chunk-ready:cypher-approach": 6159,
+     "breeze:chunk-ready:cypher-audience": 6223,
+     "breeze:chunk-ready:cypher-gate": 6430,
+     "breeze:chunk-ready:market-north": 6773,
+     "breeze:chunk-ready:market-south": 6796,
+     "breeze:chunk-ready:cypher-plaza": 7459,
+     "breeze:world-ready": 7467,
+     "breeze:phase:arrival": 66181,
+     "breeze:phase:local": 69746
+    },
+    "navigation": {
+     "domContentLoaded": 4078,
+     "load": 4079,
+     "transferSize": 4230
+    },
+    "bytesAtWalking": {
+     "html": {
+      "requests": 1,
+      "bytes": 4697,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 0,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 0,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 530851,
+      "cached": 1
+     },
+     "video": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 13224396,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 41340643,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1488960,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 2607311,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 194,
+      "bytes": 59319502,
+      "cached": 1
+     }
+    },
+    "bytesAfter5s": {
+     "html": {
+      "requests": 1,
+      "bytes": 4697,
+      "cached": 0
+     },
+     "font": {
+      "requests": 1,
+      "bytes": 0,
+      "cached": 0
+     },
+     "css": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "js": {
+      "requests": 32,
+      "bytes": 0,
+      "cached": 0
+     },
+     "other": {
+      "requests": 123,
+      "bytes": 530851,
+      "cached": 1
+     },
+     "video": {
+      "requests": 3,
+      "bytes": 0,
+      "cached": 0
+     },
+     "ktx2": {
+      "requests": 11,
+      "bytes": 13224396,
+      "cached": 0
+     },
+     "glb": {
+      "requests": 6,
+      "bytes": 41340643,
+      "cached": 0
+     },
+     "wasm": {
+      "requests": 6,
+      "bytes": 1488960,
+      "cached": 0
+     },
+     "hdr": {
+      "requests": 7,
+      "bytes": 2607311,
+      "cached": 0
+     },
+     "image": {
+      "requests": 1,
+      "bytes": 122644,
+      "cached": 0
+     },
+     "total": {
+      "requests": 194,
+      "bytes": 59319502,
+      "cached": 1
+     }
+    },
+    "failed": [],
+    "largest": [
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.mobile.glb",
+      "bytes": 18091137,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.mobile.glb",
+      "bytes": 10395989,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-audience/lightmap.ktx2",
+      "bytes": 4538700,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.mobile.glb",
+      "bytes": 4295606,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.mobile.glb",
+      "bytes": 4109525,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.mobile.glb",
+      "bytes": 2305417,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/contact-frontage.mobile.glb",
+      "bytes": 2142969,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-plaza/lightmap.ktx2",
+      "bytes": 2070834,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-north/lightmap.ktx2",
+      "bytes": 1893944,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-gate/lightmap.ktx2",
+      "bytes": 1797723,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-market-south/lightmap.ktx2",
+      "bytes": 1302136,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-cypher-approach/lightmap.ktx2",
+      "bytes": 397646,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.mobile.hdr",
+      "bytes": 391008,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.mobile.hdr",
+      "bytes": 388386,
+      "cached": false
+     },
+     {
+      "url": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.mobile.hdr",
+      "bytes": 385825,
+      "cached": false
+     }
+    ]
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  }
+ ],
+ "poses": [
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "stop": "market",
+   "summary": {
+    "presentation": {
+     "frames": 8,
+     "meanMs": 3706.112500000001,
+     "effectiveFps": 0.26982451288243403,
+     "p50Ms": 3783.2000000000116,
+     "p95Ms": 3833.2000000000116,
+     "p99Ms": 3833.2000000000116,
+     "maxMs": 3833.2000000000116,
+     "over16_7": 8,
+     "over33_3": 8,
+     "over50": 8
+    },
+    "cpuRender": {
+     "frames": 8,
+     "meanMs": 40.325000000186265,
+     "effectiveFps": 24.7985120891601,
+     "p50Ms": 39.30000000074506,
+     "p95Ms": 47.400000002235174,
+     "p99Ms": 47.400000002235174,
+     "maxMs": 47.400000002235174,
+     "over16_7": 8,
+     "over33_3": 7,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 156928.3999999985,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 863,
+     "triangles": 1084008,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 866,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 175200259,
+     "total": 181657267
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 3434.300000000745,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 3435,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "market-south": {
+       "started": 3435.300000000745,
+       "ready": 5662.39999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 3435.5,
+       "ready": 5697.5,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 3435.800000000745,
+       "ready": 6265.599999997765,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 3436.099999997765,
+       "ready": 5408.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 7.72,
+     "z": 27.6,
+     "yaw": 0,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 3433.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 3434.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 3435
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 3435.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 3435.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 3435.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 3436.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 5408.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 5408.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 5408.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 5662.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 5697.599999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 6265.599999997765
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 6285.199999999255
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64348.699999999255
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 67801.89999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 10,
+      "meanMs": 3713.190000000001,
+      "effectiveFps": 0.2693102157444138,
+      "p50Ms": 3783.2000000000116,
+      "p95Ms": 3933.199999999997,
+      "p99Ms": 3933.199999999997,
+      "maxMs": 3933.199999999997,
+      "over16_7": 10,
+      "over33_3": 10,
+      "over50": 10
+     },
+     "cpuRender": {
+      "frames": 10,
+      "meanMs": 41.44999999962747,
+      "effectiveFps": 24.12545235244843,
+      "p50Ms": 44.29999999701977,
+      "p95Ms": 47.400000002235174,
+      "p99Ms": 47.400000002235174,
+      "maxMs": 47.400000002235174,
+      "over16_7": 10,
+      "over33_3": 9,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "stop": "approach",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.33,
+    "z": -2.2,
+    "yaw": 0,
+    "pitch": 0.27
+   },
+   "summary": {
+    "presentation": {
+     "frames": 10,
+     "meanMs": 2841.5599999999977,
+     "effectiveFps": 0.35191936823435044,
+     "p50Ms": 2833.2000000000116,
+     "p95Ms": 3433.2000000000116,
+     "p99Ms": 3433.2000000000116,
+     "maxMs": 3433.2000000000116,
+     "over16_7": 10,
+     "over33_3": 10,
+     "over50": 10
+    },
+    "cpuRender": {
+     "frames": 10,
+     "meanMs": 39.35999999940395,
+     "effectiveFps": 25.40650406542539,
+     "p50Ms": 38.899999998509884,
+     "p95Ms": 55.5,
+     "p99Ms": 55.5,
+     "maxMs": 55.5,
+     "over16_7": 10,
+     "over33_3": 9,
+     "over50": 1
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 258710.80000000075,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 357,
+     "triangles": 922125,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 178677898,
+     "total": 183333538
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 3434.300000000745,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 3435,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "market-south": {
+       "started": 3435.300000000745,
+       "ready": 5662.39999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 3435.5,
+       "ready": 5697.5,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 3435.800000000745,
+       "ready": 6265.599999997765,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 3436.099999997765,
+       "ready": 5408.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.33,
+     "z": -2.2,
+     "yaw": 0,
+     "pitch": 0.27
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 3433.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 3434.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 3435
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 3435.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 3435.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 3435.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 3436.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 5408.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 5408.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 5408.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 5662.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 5697.599999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 6265.599999997765
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 6285.199999999255
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64348.699999999255
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 67801.89999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 12,
+      "meanMs": 2823.5,
+      "effectiveFps": 0.3541703559412077,
+      "p50Ms": 2833.2000000000116,
+      "p95Ms": 3433.2000000000116,
+      "p99Ms": 3433.2000000000116,
+      "maxMs": 3433.2000000000116,
+      "over16_7": 12,
+      "over33_3": 12,
+      "over50": 12
+     },
+     "cpuRender": {
+      "frames": 12,
+      "meanMs": 38.908333332898714,
+      "effectiveFps": 25.701434997074415,
+      "p50Ms": 38.899999998509884,
+      "p95Ms": 55.5,
+      "p99Ms": 55.5,
+      "maxMs": 55.5,
+      "over16_7": 12,
+      "over33_3": 10,
+      "over50": 1
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "stop": "plaza",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -19.3,
+    "yaw": 0,
+    "pitch": 0.08
+   },
+   "summary": {
+    "presentation": {
+     "frames": 14,
+     "meanMs": 2027.307142857142,
+     "effectiveFps": 0.493265168784771,
+     "p50Ms": 2016.5999999999767,
+     "p95Ms": 2116.7000000000116,
+     "p99Ms": 2116.7000000000116,
+     "maxMs": 2116.7000000000116,
+     "over16_7": 14,
+     "over33_3": 14,
+     "over50": 14
+    },
+    "cpuRender": {
+     "frames": 14,
+     "meanMs": 30.649999999840343,
+     "effectiveFps": 32.626427406368975,
+     "p50Ms": 28.800000000745058,
+     "p95Ms": 38.80000000074506,
+     "p99Ms": 38.80000000074506,
+     "maxMs": 38.80000000074506,
+     "over16_7": 14,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 353342.80000000075,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 140,
+     "triangles": 773809,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 179298170,
+     "total": 183334862
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 3434.300000000745,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 3435,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "market-south": {
+       "started": 3435.300000000745,
+       "ready": 5662.39999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 3435.5,
+       "ready": 5697.5,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 3435.800000000745,
+       "ready": 6265.599999997765,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 3436.099999997765,
+       "ready": 5408.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -19.3,
+     "yaw": 0,
+     "pitch": 0.08
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 3433.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 3434.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 3435
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 3435.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 3435.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 3435.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 3436.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 5408.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 5408.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 5408.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 5662.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 5697.599999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 6265.599999997765
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 6285.199999999255
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64348.699999999255
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 67801.89999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 16,
+      "meanMs": 2020.7562499999985,
+      "effectiveFps": 0.49486423708945637,
+      "p50Ms": 1999.9000000000233,
+      "p95Ms": 2116.7000000000116,
+      "p99Ms": 2116.7000000000116,
+      "maxMs": 2116.7000000000116,
+      "over16_7": 16,
+      "over33_3": 16,
+      "over50": 16
+     },
+     "cpuRender": {
+      "frames": 16,
+      "meanMs": 30.5687499998603,
+      "effectiveFps": 32.71314659593768,
+      "p50Ms": 28.800000000745058,
+      "p95Ms": 38.80000000074506,
+      "p99Ms": 38.80000000074506,
+      "maxMs": 38.80000000074506,
+      "over16_7": 16,
+      "over33_3": 3,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "stop": "events",
+   "arrivedAt": {
+    "x": -10.7,
+    "y": 8.92,
+    "z": -31.05,
+    "yaw": 1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 22,
+     "meanMs": 1310.554545454546,
+     "effectiveFps": 0.7630357725043524,
+     "p50Ms": 1316.5999999999767,
+     "p95Ms": 1383.2999999999884,
+     "p99Ms": 1399.9000000000233,
+     "maxMs": 1399.9000000000233,
+     "over16_7": 22,
+     "over33_3": 22,
+     "over50": 22
+    },
+    "cpuRender": {
+     "frames": 22,
+     "meanMs": 3.545454545285214,
+     "effectiveFps": 282.05128206475285,
+     "p50Ms": 3.300000000745058,
+     "p95Ms": 5.300000000745058,
+     "p99Ms": 5.399999998509884,
+     "maxMs": 5.399999998509884,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 434599.5,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 92,
+     "triangles": 647049,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 177133724,
+     "total": 179189868
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 3434.300000000745,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 3435,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "market-south": {
+       "started": 3435.300000000745,
+       "ready": 5662.39999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 3435.5,
+       "ready": 5697.5,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 3435.800000000745,
+       "ready": 6265.599999997765,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 3436.099999997765,
+       "ready": 5408.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": -10.7,
+     "y": 8.92,
+     "z": -31.05,
+     "yaw": 1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 3433.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 3434.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 3435
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 3435.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 3435.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 3435.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 3436.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 5408.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 5408.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 5408.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 5662.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 5697.599999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 6265.599999997765
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 6285.199999999255
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64348.699999999255
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 67801.89999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 24,
+      "meanMs": 1311.0583333333318,
+      "effectiveFps": 0.7627425680271037,
+      "p50Ms": 1316.5999999999767,
+      "p95Ms": 1383.2999999999884,
+      "p99Ms": 1399.9000000000233,
+      "maxMs": 1399.9000000000233,
+      "over16_7": 24,
+      "over33_3": 24,
+      "over50": 24
+     },
+     "cpuRender": {
+      "frames": 24,
+      "meanMs": 3.4833333330849805,
+      "effectiveFps": 287.0813397333868,
+      "p50Ms": 3.2999999970197678,
+      "p95Ms": 5.300000000745058,
+      "p99Ms": 5.399999998509884,
+      "maxMs": 5.399999998509884,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "stop": "team",
+   "arrivedAt": {
+    "x": 9.399999999999999,
+    "y": 8.92,
+    "z": -31.445,
+    "yaw": -1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 23,
+     "meanMs": 1278.9347826086957,
+     "effectiveFps": 0.7819006986112763,
+     "p50Ms": 1283.2000000000116,
+     "p95Ms": 1366.5999999999767,
+     "p99Ms": 1383.2999999999884,
+     "maxMs": 1383.2999999999884,
+     "over16_7": 23,
+     "over33_3": 23,
+     "over50": 23
+    },
+    "cpuRender": {
+     "frames": 23,
+     "meanMs": 3.252173912751934,
+     "effectiveFps": 307.4866310436077,
+     "p50Ms": 2.599999997764826,
+     "p95Ms": 7.699999999254942,
+     "p99Ms": 8.699999999254942,
+     "maxMs": 8.699999999254942,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 510881.59999999776,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 86,
+     "triangles": 735798,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 178195264,
+     "total": 180174992
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 3434.300000000745,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 3435,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "market-south": {
+       "started": 3435.300000000745,
+       "ready": 5662.39999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 3435.5,
+       "ready": 5697.5,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 3435.800000000745,
+       "ready": 6265.599999997765,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 3436.099999997765,
+       "ready": 5408.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 9.399999999999999,
+     "y": 8.92,
+     "z": -31.445,
+     "yaw": -1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 3433.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 3434.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 3435
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 3435.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 3435.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 3435.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 3436.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 5408.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 5408.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 5408.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 5662.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 5697.599999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 6265.599999997765
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 6285.199999999255
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64348.699999999255
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 67801.89999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 25,
+      "meanMs": 1276.616000000001,
+      "effectiveFps": 0.7833209046416458,
+      "p50Ms": 1266.7000000000116,
+      "p95Ms": 1366.5999999999767,
+      "p99Ms": 1383.2999999999884,
+      "maxMs": 1383.2999999999884,
+      "over16_7": 25,
+      "over33_3": 25,
+      "over50": 25
+     },
+     "cpuRender": {
+      "frames": 25,
+      "meanMs": 3.471999999731779,
+      "effectiveFps": 288.01843320197366,
+      "p50Ms": 2.699999999254942,
+      "p95Ms": 8.400000002235174,
+      "p99Ms": 8.699999999254942,
+      "maxMs": 8.699999999254942,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 0,
+   "stop": "aftermovie",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -33.5,
+    "yaw": 0,
+    "pitch": 0.17
+   },
+   "summary": {
+    "presentation": {
+     "frames": 16,
+     "meanMs": 1810.3499999999985,
+     "effectiveFps": 0.5523793741541695,
+     "p50Ms": 1799.9000000000233,
+     "p95Ms": 1966.5999999999767,
+     "p99Ms": 1966.5999999999767,
+     "maxMs": 1966.5999999999767,
+     "over16_7": 16,
+     "over33_3": 16,
+     "over50": 16
+    },
+    "cpuRender": {
+     "frames": 16,
+     "meanMs": 31.662500000093132,
+     "effectiveFps": 31.58310303978077,
+     "p50Ms": 30.399999998509884,
+     "p95Ms": 48.69999999925494,
+     "p99Ms": 48.69999999925494,
+     "maxMs": 48.69999999925494,
+     "over16_7": 16,
+     "over33_3": 3,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 589385,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 110,
+     "triangles": 747644,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 179454704,
+     "total": 181229584
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 3434.300000000745,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 3435,
+       "ready": 5408.39999999851,
+       "failed": false
+      },
+      "market-south": {
+       "started": 3435.300000000745,
+       "ready": 5662.39999999851,
+       "failed": false
+      },
+      "market-north": {
+       "started": 3435.5,
+       "ready": 5697.5,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 3435.800000000745,
+       "ready": 6265.599999997765,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 3436.099999997765,
+       "ready": 5408.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -33.5,
+     "yaw": 0,
+     "pitch": 0.17
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 3433.89999999851
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 3434.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 3435
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 3435.300000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 3435.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 3435.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 3436.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 5408.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 5408.39999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 5408.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 5662.5
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 5697.599999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 6265.599999997765
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 6285.199999999255
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64348.699999999255
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 67801.89999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 18,
+      "meanMs": 1811.966666666668,
+      "effectiveFps": 0.5518865321289939,
+      "p50Ms": 1816.5,
+      "p95Ms": 1966.5999999999767,
+      "p99Ms": 1966.5999999999767,
+      "maxMs": 1966.5999999999767,
+      "over16_7": 18,
+      "over33_3": 18,
+      "over50": 18
+     },
+     "cpuRender": {
+      "frames": 18,
+      "meanMs": 31.544444444692797,
+      "effectiveFps": 31.70130327555175,
+      "p50Ms": 30.399999998509884,
+      "p95Ms": 48.69999999925494,
+      "p99Ms": 48.69999999925494,
+      "maxMs": 48.69999999925494,
+      "over16_7": 18,
+      "over33_3": 3,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "stop": "market",
+   "summary": {
+    "presentation": {
+     "frames": 7,
+     "meanMs": 3971.2714285714296,
+     "effectiveFps": 0.25180852479774374,
+     "p50Ms": 4033.1999999999825,
+     "p95Ms": 4233.200000000012,
+     "p99Ms": 4233.200000000012,
+     "maxMs": 4233.200000000012,
+     "over16_7": 7,
+     "over33_3": 7,
+     "over50": 7
+    },
+    "cpuRender": {
+     "frames": 7,
+     "meanMs": 47.88571428667222,
+     "effectiveFps": 20.883054892183676,
+     "p50Ms": 46.80000000074506,
+     "p95Ms": 62.20000000298023,
+     "p99Ms": 62.20000000298023,
+     "maxMs": 62.20000000298023,
+     "over16_7": 7,
+     "over33_3": 7,
+     "over50": 3
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 159291.8999999985,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 863,
+     "triangles": 1084008,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 866,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 174954873,
+     "total": 181133561
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 1537.699999999255,
+       "ready": 3598.199999999255,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 1538.3999999985099,
+       "ready": 3533.099999997765,
+       "failed": false
+      },
+      "market-south": {
+       "started": 1538.800000000745,
+       "ready": 3795.300000000745,
+       "failed": false
+      },
+      "market-north": {
+       "started": 1539.5,
+       "ready": 3853,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 1540,
+       "ready": 4341.89999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 1540.5,
+       "ready": 3532.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 7.72,
+     "z": 27.6,
+     "yaw": 0,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 1537.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 1537.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 1538.5
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 1538.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 1539.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 1540
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 1540.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3532.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3533.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3598.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 3795.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 3853
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 4341.89999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 4353.39999999851
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64890.800000000745
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 68436.39999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 9,
+      "meanMs": 3920.222222222222,
+      "effectiveFps": 0.2550875800691571,
+      "p50Ms": 3899.800000000003,
+      "p95Ms": 4233.200000000012,
+      "p99Ms": 4233.200000000012,
+      "maxMs": 4233.200000000012,
+      "over16_7": 9,
+      "over33_3": 9,
+      "over50": 9
+     },
+     "cpuRender": {
+      "frames": 9,
+      "meanMs": 49.3222222228845,
+      "effectiveFps": 20.274836674654544,
+      "p50Ms": 49.5,
+      "p95Ms": 62.20000000298023,
+      "p99Ms": 62.20000000298023,
+      "maxMs": 62.20000000298023,
+      "over16_7": 9,
+      "over33_3": 9,
+      "over50": 4
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "stop": "approach",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.33,
+    "z": -2.2,
+    "yaw": 0,
+    "pitch": 0.27
+   },
+   "summary": {
+    "presentation": {
+     "frames": 10,
+     "meanMs": 2851.5600000000004,
+     "effectiveFps": 0.3506852389569218,
+     "p50Ms": 2849.899999999994,
+     "p95Ms": 3283.2000000000116,
+     "p99Ms": 3283.2000000000116,
+     "maxMs": 3283.2000000000116,
+     "over16_7": 10,
+     "over33_3": 10,
+     "over50": 10
+    },
+    "cpuRender": {
+     "frames": 10,
+     "meanMs": 26.499999998882412,
+     "effectiveFps": 37.735849058195214,
+     "p50Ms": 33.19999999925494,
+     "p95Ms": 38.399999998509884,
+     "p99Ms": 38.399999998509884,
+     "maxMs": 38.399999998509884,
+     "over16_7": 7,
+     "over33_3": 4,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 237380.69999999925,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 357,
+     "triangles": 922125,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 177248328,
+     "total": 178836064
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 1537.699999999255,
+       "ready": 3598.199999999255,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 1538.3999999985099,
+       "ready": 3533.099999997765,
+       "failed": false
+      },
+      "market-south": {
+       "started": 1538.800000000745,
+       "ready": 3795.300000000745,
+       "failed": false
+      },
+      "market-north": {
+       "started": 1539.5,
+       "ready": 3853,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 1540,
+       "ready": 4341.89999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 1540.5,
+       "ready": 3532.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.33,
+     "z": -2.2,
+     "yaw": 0,
+     "pitch": 0.27
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 1537.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 1537.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 1538.5
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 1538.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 1539.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 1540
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 1540.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3532.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3533.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3598.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 3795.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 3853
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 4341.89999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 4353.39999999851
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64890.800000000745
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 68436.39999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 12,
+      "meanMs": 2869.3333333333335,
+      "effectiveFps": 0.34851301115241634,
+      "p50Ms": 2866.5,
+      "p95Ms": 3283.2000000000116,
+      "p99Ms": 3283.2000000000116,
+      "maxMs": 3283.2000000000116,
+      "over16_7": 12,
+      "over33_3": 12,
+      "over50": 12
+     },
+     "cpuRender": {
+      "frames": 12,
+      "meanMs": 27.824999999254942,
+      "effectiveFps": 35.93890386439448,
+      "p50Ms": 33.599999997764826,
+      "p95Ms": 38.399999998509884,
+      "p99Ms": 38.399999998509884,
+      "maxMs": 38.399999998509884,
+      "over16_7": 9,
+      "over33_3": 6,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "stop": "plaza",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -19.3,
+    "yaw": 0,
+    "pitch": 0.08
+   },
+   "summary": {
+    "presentation": {
+     "frames": 14,
+     "meanMs": 2068.964285714286,
+     "effectiveFps": 0.4833336210319173,
+     "p50Ms": 2066.6999999999534,
+     "p95Ms": 2166.600000000035,
+     "p99Ms": 2166.600000000035,
+     "maxMs": 2166.600000000035,
+     "over16_7": 14,
+     "over33_3": 14,
+     "over50": 14
+    },
+    "cpuRender": {
+     "frames": 14,
+     "meanMs": 34.15714285762182,
+     "effectiveFps": 29.276453366381613,
+     "p50Ms": 35.100000001490116,
+     "p95Ms": 44.19999999925494,
+     "p99Ms": 44.19999999925494,
+     "maxMs": 44.19999999925494,
+     "over16_7": 14,
+     "over33_3": 7,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 310894.80000000075,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 140,
+     "triangles": 773809,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 178049888,
+     "total": 180189120
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 1537.699999999255,
+       "ready": 3598.199999999255,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 1538.3999999985099,
+       "ready": 3533.099999997765,
+       "failed": false
+      },
+      "market-south": {
+       "started": 1538.800000000745,
+       "ready": 3795.300000000745,
+       "failed": false
+      },
+      "market-north": {
+       "started": 1539.5,
+       "ready": 3853,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 1540,
+       "ready": 4341.89999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 1540.5,
+       "ready": 3532.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -19.3,
+     "yaw": 0,
+     "pitch": 0.08
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 1537.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 1537.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 1538.5
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 1538.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 1539.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 1540
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 1540.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3532.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3533.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3598.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 3795.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 3853
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 4341.89999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 4353.39999999851
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64890.800000000745
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 68436.39999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 16,
+      "meanMs": 2094.712499999998,
+      "effectiveFps": 0.4773924822618861,
+      "p50Ms": 2083.2000000000116,
+      "p95Ms": 2283.2999999999884,
+      "p99Ms": 2283.2999999999884,
+      "maxMs": 2283.2999999999884,
+      "over16_7": 16,
+      "over33_3": 16,
+      "over50": 16
+     },
+     "cpuRender": {
+      "frames": 16,
+      "meanMs": 33.8687500001397,
+      "effectiveFps": 29.525742756844444,
+      "p50Ms": 34.29999999701977,
+      "p95Ms": 44.19999999925494,
+      "p99Ms": 44.19999999925494,
+      "maxMs": 44.19999999925494,
+      "over16_7": 16,
+      "over33_3": 8,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "stop": "events",
+   "arrivedAt": {
+    "x": -10.7,
+    "y": 8.92,
+    "z": -31.05,
+    "yaw": 1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 21,
+     "meanMs": 1365.0238095238096,
+     "effectiveFps": 0.7325879541609251,
+     "p50Ms": 1366.5,
+     "p95Ms": 1450,
+     "p99Ms": 1516.5999999999767,
+     "maxMs": 1516.5999999999767,
+     "over16_7": 21,
+     "over33_3": 21,
+     "over50": 21
+    },
+    "cpuRender": {
+     "frames": 21,
+     "meanMs": 3.438095238059759,
+     "effectiveFps": 290.8587257647743,
+     "p50Ms": 3.100000001490116,
+     "p95Ms": 6.299999997019768,
+     "p99Ms": 6.5,
+     "maxMs": 6.5,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 378504.80000000075,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 92,
+     "triangles": 647049,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 176666110,
+     "total": 179328590
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 1537.699999999255,
+       "ready": 3598.199999999255,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 1538.3999999985099,
+       "ready": 3533.099999997765,
+       "failed": false
+      },
+      "market-south": {
+       "started": 1538.800000000745,
+       "ready": 3795.300000000745,
+       "failed": false
+      },
+      "market-north": {
+       "started": 1539.5,
+       "ready": 3853,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 1540,
+       "ready": 4341.89999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 1540.5,
+       "ready": 3532.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": -10.7,
+     "y": 8.92,
+     "z": -31.05,
+     "yaw": 1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 1537.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 1537.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 1538.5
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 1538.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 1539.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 1540
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 1540.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3532.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3533.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3598.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 3795.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 3853
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 4341.89999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 4353.39999999851
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64890.800000000745
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 68436.39999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 23,
+      "meanMs": 1360.8173913043472,
+      "effectiveFps": 0.734852454407198,
+      "p50Ms": 1350,
+      "p95Ms": 1450,
+      "p99Ms": 1516.5999999999767,
+      "maxMs": 1516.5999999999767,
+      "over16_7": 23,
+      "over33_3": 23,
+      "over50": 23
+     },
+     "cpuRender": {
+      "frames": 23,
+      "meanMs": 3.408695652109125,
+      "effectiveFps": 293.3673469443514,
+      "p50Ms": 3.100000001490116,
+      "p95Ms": 6.299999997019768,
+      "p99Ms": 6.5,
+      "maxMs": 6.5,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "stop": "team",
+   "arrivedAt": {
+    "x": 9.399999999999999,
+    "y": 8.92,
+    "z": -31.445,
+    "yaw": -1.5707963267948966,
+    "pitch": 0
+   },
+   "summary": {
+    "presentation": {
+     "frames": 22,
+     "meanMs": 1322.6772727272712,
+     "effectiveFps": 0.7560423246239557,
+     "p50Ms": 1316.600000000035,
+     "p95Ms": 1416.5999999999767,
+     "p99Ms": 1433.2999999999884,
+     "maxMs": 1433.2999999999884,
+     "over16_7": 22,
+     "over33_3": 22,
+     "over50": 22
+    },
+    "cpuRender": {
+     "frames": 22,
+     "meanMs": 3.1954545456577432,
+     "effectiveFps": 312.94452345093924,
+     "p50Ms": 2.899999998509884,
+     "p95Ms": 4.5,
+     "p99Ms": 7.300000000745058,
+     "maxMs": 7.300000000745058,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 447035.80000000075,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 86,
+     "triangles": 735798,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 177387321,
+     "total": 179675509
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 1537.699999999255,
+       "ready": 3598.199999999255,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 1538.3999999985099,
+       "ready": 3533.099999997765,
+       "failed": false
+      },
+      "market-south": {
+       "started": 1538.800000000745,
+       "ready": 3795.300000000745,
+       "failed": false
+      },
+      "market-north": {
+       "started": 1539.5,
+       "ready": 3853,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 1540,
+       "ready": 4341.89999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 1540.5,
+       "ready": 3532.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 9.399999999999999,
+     "y": 8.92,
+     "z": -31.445,
+     "yaw": -1.5707963267948966,
+     "pitch": 0
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 1537.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 1537.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 1538.5
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 1538.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 1539.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 1540
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 1540.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3532.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3533.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3598.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 3795.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 3853
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 4341.89999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 4353.39999999851
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64890.800000000745
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 68436.39999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 24,
+      "meanMs": 1333.2791666666647,
+      "effectiveFps": 0.7500304699878444,
+      "p50Ms": 1333.2000000000116,
+      "p95Ms": 1433.2999999999884,
+      "p99Ms": 1516.600000000035,
+      "maxMs": 1516.600000000035,
+      "over16_7": 24,
+      "over33_3": 24,
+      "over50": 24
+     },
+     "cpuRender": {
+      "frames": 24,
+      "meanMs": 3.379166666728755,
+      "effectiveFps": 295.9309494396921,
+      "p50Ms": 3,
+      "p95Ms": 7.300000000745058,
+      "p99Ms": 7.699999999254942,
+      "maxMs": 7.699999999254942,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  },
+  {
+   "profile": "mobile-emulated",
+   "run": 1,
+   "stop": "aftermovie",
+   "arrivedAt": {
+    "x": 0,
+    "y": 8.92,
+    "z": -33.5,
+    "yaw": 0,
+    "pitch": 0.17
+   },
+   "summary": {
+    "presentation": {
+     "frames": 16,
+     "meanMs": 1845.7562499999985,
+     "effectiveFps": 0.5417833476115824,
+     "p50Ms": 1833.2999999999884,
+     "p95Ms": 2016.5999999999767,
+     "p99Ms": 2016.5999999999767,
+     "maxMs": 2016.5999999999767,
+     "over16_7": 16,
+     "over33_3": 16,
+     "over50": 16
+    },
+    "cpuRender": {
+     "frames": 16,
+     "meanMs": 31.512500000186265,
+     "effectiveFps": 31.733439111276134,
+     "p50Ms": 31.900000002235174,
+     "p95Ms": 36.19999999925494,
+     "p99Ms": 36.19999999925494,
+     "maxMs": 36.19999999925494,
+     "over16_7": 16,
+     "over33_3": 6,
+     "over50": 0
+    },
+    "gpu": {
+     "frames": 0,
+     "meanMs": 0,
+     "effectiveFps": 0,
+     "p50Ms": 0,
+     "p95Ms": 0,
+     "p99Ms": 0,
+     "maxMs": 0,
+     "over16_7": 0,
+     "over33_3": 0,
+     "over50": 0
+    },
+    "discardedGpu": 0
+   },
+   "snapshot": {
+    "at": 517219.80000000075,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "gpuTimer": "unavailable",
+    "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Mobile Safari/537.36",
+    "viewport": [
+     412,
+     839
+    ],
+    "stats": {
+     "calls": 110,
+     "triangles": 747644,
+     "points": 0,
+     "lines": 0,
+     "programs": 132,
+     "geometries": 974,
+     "textures": 131,
+     "drawingBuffer": [
+      412,
+      839
+     ],
+     "dpr": 1,
+     "devicePixelRatio": 2.625,
+     "tier": "fixed"
+    },
+    "scene": {
+     "nodes": 1050,
+     "meshes": 975,
+     "uniqueTextureSources": 114,
+     "textureBytesEstimate": 105305808,
+     "geometryBytes": 42581186
+    },
+    "jsHeap": {
+     "used": 177665320,
+     "total": 179423472
+    },
+    "loads": {
+     "pending": 0,
+     "chunks": {
+      "cypher-gate": {
+       "started": 1537.699999999255,
+       "ready": 3598.199999999255,
+       "failed": false
+      },
+      "cypher-approach": {
+       "started": 1538.3999999985099,
+       "ready": 3533.099999997765,
+       "failed": false
+      },
+      "market-south": {
+       "started": 1538.800000000745,
+       "ready": 3795.300000000745,
+       "failed": false
+      },
+      "market-north": {
+       "started": 1539.5,
+       "ready": 3853,
+       "failed": false
+      },
+      "cypher-plaza": {
+       "started": 1540,
+       "ready": 4341.89999999851,
+       "failed": false
+      },
+      "cypher-audience": {
+       "started": 1540.5,
+       "ready": 3532.300000000745,
+       "failed": false
+      }
+     }
+    },
+    "tier": {
+     "name": "fixed",
+     "dpr": 1,
+     "changes": []
+    },
+    "pose": {
+     "x": 0,
+     "y": 8.92,
+     "z": -33.5,
+     "yaw": 0,
+     "pitch": 0.17
+    },
+    "phase": "local",
+    "marks": [
+     {
+      "name": "breeze:phase:boot",
+      "at": 1537.199999999255
+     },
+     {
+      "name": "breeze:chunk-start:cypher-gate",
+      "at": 1537.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:cypher-approach",
+      "at": 1538.5
+     },
+     {
+      "name": "breeze:chunk-start:market-south",
+      "at": 1538.800000000745
+     },
+     {
+      "name": "breeze:chunk-start:market-north",
+      "at": 1539.5
+     },
+     {
+      "name": "breeze:chunk-start:cypher-plaza",
+      "at": 1540
+     },
+     {
+      "name": "breeze:chunk-start:cypher-audience",
+      "at": 1540.5
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-audience",
+      "at": 3532.89999999851
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-approach",
+      "at": 3533.099999997765
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-gate",
+      "at": 3598.199999999255
+     },
+     {
+      "name": "breeze:chunk-ready:market-south",
+      "at": 3795.300000000745
+     },
+     {
+      "name": "breeze:chunk-ready:market-north",
+      "at": 3853
+     },
+     {
+      "name": "breeze:chunk-ready:cypher-plaza",
+      "at": 4341.89999999851
+     },
+     {
+      "name": "breeze:world-ready",
+      "at": 4353.39999999851
+     },
+     {
+      "name": "breeze:phase:arrival",
+      "at": 64890.800000000745
+     },
+     {
+      "name": "breeze:phase:local",
+      "at": 68436.39999999851
+     }
+    ],
+    "summary": {
+     "presentation": {
+      "frames": 18,
+      "meanMs": 1846.2222222222222,
+      "effectiveFps": 0.5416466056812711,
+      "p50Ms": 1833.2999999999884,
+      "p95Ms": 2016.5999999999767,
+      "p99Ms": 2016.5999999999767,
+      "maxMs": 2016.5999999999767,
+      "over16_7": 18,
+      "over33_3": 18,
+      "over50": 18
+     },
+     "cpuRender": {
+      "frames": 18,
+      "meanMs": 31.394444444527227,
+      "effectiveFps": 31.852769421257364,
+      "p50Ms": 31.900000002235174,
+      "p95Ms": 36.19999999925494,
+      "p99Ms": 36.19999999925494,
+      "maxMs": 36.19999999925494,
+      "over16_7": 18,
+      "over33_3": 6,
+      "over50": 0
+     },
+     "gpu": {
+      "frames": 0,
+      "meanMs": 0,
+      "effectiveFps": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "p99Ms": 0,
+      "maxMs": 0,
+      "over16_7": 0,
+      "over33_3": 0,
+      "over50": 0
+     },
+     "discardedGpu": 0
+    }
+   },
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   ]
+  }
+ ],
+ "journey": [],
+ "cycles": [],
+ "errors": []
+}
