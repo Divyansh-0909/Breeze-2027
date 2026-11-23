@@ -62,3 +62,19 @@ test("the arrival half of the gully loads first and every chunk loads exactly on
   assert.deepEqual(plaza.later, ["market-south", "market-north"]);
   for (const order of [lane, plaza]) assert.equal(new Set([...order.near, ...order.later]).size, 6);
 });
+
+test("people are identified by their archetype and seam normals average only across soft angles", async () => {
+  const { isPerson, smoothSeams } = await import("../../components/gullyverse-runtime/person-shading");
+  const { BufferAttribute, BufferGeometry, Object3D } = await import("three");
+  const person = new Object3D(); person.userData = { archetype: "box-tee-straight-jeans" };
+  assert.ok(isPerson(person) && !isPerson(new Object3D()));
+  // Vertices 0-1 share a position (a UV seam) 30 degrees apart; 2-3 share one 90 degrees apart (a real edge).
+  const g = new BufferGeometry();
+  g.setAttribute("position", new BufferAttribute(new Float32Array([0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0]), 3));
+  const n30 = [Math.sin(Math.PI / 6), Math.cos(Math.PI / 6), 0];
+  g.setAttribute("normal", new BufferAttribute(new Float32Array([0, 1, 0, ...n30, 0, 1, 0, 1, 0, 0]), 3));
+  assert.equal(smoothSeams(g, 60), 2);
+  const n = g.getAttribute("normal");
+  assert.ok(Math.abs(n.getX(0) - n.getX(1)) < 1e-6 && Math.abs(n.getY(0) - n.getY(1)) < 1e-6);
+  assert.deepEqual([n.getX(2), n.getY(2), n.getX(3), n.getY(3)], [0, 1, 1, 0]);
+});

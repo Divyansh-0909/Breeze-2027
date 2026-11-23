@@ -223,6 +223,13 @@ export class Fidelity {
   }
 
   /** Adds artwork projection to a standard-material shader. */
+  /** People (see person-shading.ts): full runtime lighting, only the matte roughness floor. */
+  patchPerson(shader: { vertexShader: string; fragmentShader: string; uniforms: Record<string, { value: unknown }> }, m: THREE.Material) {
+    const floor = Number(m.userData.breezeMinRoughness ?? 0.75).toFixed(2);
+    shader.fragmentShader = shader.fragmentShader.replace("#include <normal_fragment_begin>",
+      `roughnessFactor = max(roughnessFactor, mix(${floor}, min(${floor}, 0.5), step(0.5, metalnessFactor)));\n#include <normal_fragment_begin>`);
+  }
+
   patch(shader: { vertexShader: string; fragmentShader: string; uniforms: Record<string, { value: unknown }> }, m: THREE.Material) {
     // Baked lightmaps already hold every source light's diffuse contribution; runtime lights add specular.
     shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_end>",

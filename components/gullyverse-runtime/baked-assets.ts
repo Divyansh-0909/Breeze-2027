@@ -5,6 +5,7 @@ import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
 import { specularOnlyEnvironment, type Fidelity } from "./fidelity";
 import { batchStatic } from "./static-batching";
+import { isPerson, smoothSeams } from "./person-shading";
 
 export type BakedAsset = { scene: THREE.Group; rgbmRange?: number; dispose(): void };
 /** Leases cancel ownership immediately and dispose late results after the last release. */
@@ -86,6 +87,21 @@ export class BakedAssetPool {
       gltf.scene.traverse((o: any) => {
         if (!o.isMesh) return;
         o.castShadow = false;
+        if (isPerson(o)) {
+          // People: smooth runtime lighting (probe + lamps) instead of the starved lightmap; see person-shading.ts.
+          smoothSeams(o.geometry);
+          for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
+            if (m.userData.breezePerson) continue;
+            m.userData.breezePerson = true;
+            for (const value of Object.values(m)) if (value instanceof THREE.Texture) value.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
+            if (fidelity) {
+              m.onBeforeCompile = (shader: any) => fidelity.patchPerson(shader, m);
+              m.customProgramCacheKey = () => `breeze-person-v1-${fidelity.key(m)}`;
+            }
+            m.needsUpdate = true;
+          }
+          return;
+        }
         for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
           for (const value of Object.values(m)) if (value instanceof THREE.Texture) value.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
           if (m.userData.runtimeDecal) {
