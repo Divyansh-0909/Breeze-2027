@@ -131,7 +131,7 @@ async function poseSuite(profile) {
     for (const stop of stops) {
       const entry = { profile, run, stop };
       try {
-        if (stop !== "market") await travel(page, stop);
+        if (stop !== "market") entry.arrivedAt = await travel(page, stop);
         await page.waitForTimeout(5000);
         Object.assign(entry, await sample(page, sampleSeconds));
         if (run === 0) await page.screenshot({ path: `${out}/${label}-${profile}-${stop}.png`, timeout: 120000 }).catch(e => { entry.screenshotError = String(e).slice(0, 200); });
@@ -180,12 +180,15 @@ function summ(ms) {
 }
 
 async function travel(page, stop) {
+  // Direct DOM clicks: at software-rendering frame rates the projected map labels never look "stable"
+  // to Playwright's actionability checks, though they are on screen and clickable.
   await page.keyboard.press("KeyM");
-  await page.waitForSelector(`[data-map-stop="${stop}"]`, { timeout: 60000 });
-  await page.waitForTimeout(1500);
-  await page.click(`[data-map-stop="${stop}"]`);
-  await page.waitForSelector(".cypher-map", { state: "detached", timeout: 120000 }).catch(() => {});
+  await page.waitForSelector(`[data-map-stop="${stop}"]`, { state: "attached", timeout: 180000 });
+  await page.waitForTimeout(2000);
+  await page.evaluate(id => document.querySelector(`[data-map-stop="${id}"]`).click(), stop);
+  await page.waitForSelector(".cypher-map", { state: "detached", timeout: 300000 });
   await page.waitForTimeout(3000);
+  return page.evaluate(() => window.__breezePerf.snapshot().pose);
 }
 async function cycleSuite(profile) {
   if (profile !== "desktop") return;
