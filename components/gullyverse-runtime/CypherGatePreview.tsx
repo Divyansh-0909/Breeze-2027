@@ -10,6 +10,7 @@ import { ImmersiveRuntime } from "../immersive/runtime";
 import { lookAtPose, world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
 import { Fidelity } from "./fidelity";
+import { GullyAudio, isWet, soundPreference } from "./gully-audio";
 import { cypherContact } from "./cypher-contact";
 import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialog";
 import { CypherEventsDialog } from "./CypherEventsDialog";
@@ -79,7 +80,7 @@ class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFail
 }
 
 function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, eventPage, reportWall, chooseEvent,
-  teamRequest, reportTeam, film, openWall, stopAftermovie }: {
+  teamRequest, reportTeam, film, openWall, stopAftermovie, audio, ducked }: {
   runtime: ImmersiveRuntime;
   curtain: React.RefObject<HTMLDivElement | null>;
   reportZone(zone: ReturnType<typeof zoneAt>): void;
@@ -94,6 +95,8 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   film: VideoTexture | null;
   openWall(panel: WallPanel): void;
   stopAftermovie(): void;
+  audio: GullyAudio;
+  ducked: boolean;
 }) {
   const { gl, scene, camera, size } = useThree();
   const [fidelity] = useState(() => new Fidelity(gl, window.matchMedia("(max-width: 699px)").matches,
@@ -109,6 +112,9 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   const zoom = useRef(0);
   const wallZoom = useRef(0);
   const framedWall = useRef<keyof typeof wallViews>("team");
+  // Walking feel: a stride clock drives a small head bob and the footsteps.
+  const stride = useRef({ x: NaN, z: NaN, steps: 0, amplitude: 0 });
+  const listenerForward = useRef(new Vector3());
   const contact = useRef(closedContact);
   const wallState = useRef<WallUI>(null);
   const carousel = useRef<ReturnType<typeof mountTeamCarousel>>(null);
@@ -277,6 +283,34 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     }
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
+    {
+      // Stride-driven head bob (about 2 cm vertical, 1 cm sway, a quarter-degree roll) with a footstep at
+      // each footfall. Off in focused views, the map, review captures and for reduced motion.
+      const gait = stride.current;
+      const dt = Math.min(delta, 0.1);
+      const moved = Number.isFinite(gait.x) ? Math.hypot(runtime.pose.x - gait.x, runtime.pose.z - gait.z) : 0;
+      gait.x = runtime.pose.x; gait.z = runtime.pose.z;
+      const walkingNow = phase === "local" && !map && !runtime.interacting && !reviewCamera && dt > 0;
+      const speed = walkingNow ? moved / dt : 0;
+      const pace = speed > 7 ? 0 : Math.min(1, speed / 4.2);
+      gait.amplitude = MathUtils.damp(gait.amplitude, pace, 8, dt);
+      const before = Math.floor(gait.steps);
+      gait.steps += (speed > 7 ? 0 : speed) * dt / 0.72;
+      if (Math.floor(gait.steps) !== before && gait.amplitude > 0.25) {
+        audio.footstep(isWet(runtime.pose.x, runtime.pose.z), gait.amplitude);
+      }
+      if (!runtime.reduced && gait.amplitude > 0.001) {
+        const a = gait.amplitude, cycle = gait.steps;
+        camera.position.y += 0.011 * a - 0.022 * a * (0.5 + 0.5 * Math.cos(2 * Math.PI * cycle));
+        const sway = 0.012 * a * Math.sin(Math.PI * cycle);
+        camera.position.x += Math.cos(view.yaw) * sway;
+        camera.position.z -= Math.sin(view.yaw) * sway;
+        camera.rotateZ(0.0045 * a * Math.sin(Math.PI * cycle));
+      }
+      camera.getWorldDirection(listenerForward.current);
+      const f = listenerForward.current;
+      audio.update([camera.position.x, camera.position.y, camera.position.z], [f.x, f.y, f.z], ducked);
+    }
     if (reviewCamera) {
       const [px, py, pz, qx, qy, qz, qw, fov] = reviewCamera;
       camera.position.set(px, py, pz);
@@ -395,6 +429,10 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   const [wallUI, setWallUI] = useState<WallUI>(null);
   const [panel, setPanel] = useState<WallPanel | null>(null);
   const [movieMuted, setMovieMuted] = useState(true);
+  const [audio] = useState(() => new GullyAudio());
+  const [sound, setSound] = useState(soundPreference);
+  useEffect(() => { audio.arm(); return () => audio.dispose(); }, [audio]);
+  const toggleSound = useCallback(() => setSound(on => { audio.setEnabled(!on); return !on; }), [audio]);
   const [movieFailed, setMovieFailed] = useState(false);
   const [teamRequest, requestTeam] = useState(() => ({ index: teamIndex(team) }));
   const [teamDisplay, setTeamDisplay] = useState(defaultTeam);
@@ -503,6 +541,20 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
     }
   }, [mapOpen]);
   const walking = atMarket && state.phase === "local";
+  useEffect(() => {
+    const keys = (event: KeyboardEvent) => {
+      if (event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("input, textarea, select, [contenteditable=true], form")) return;
+      if (event.code === "KeyV") { event.preventDefault(); toggleSound(); return; }
+      if (event.code === "KeyE" && walking && !marketRuntime.interacting && !marketRuntime.getSnapshot().map) {
+        const action = enquiry.current ?? browse.current;
+        if (action) { event.preventDefault(); action.click(); }
+      }
+    };
+    window.addEventListener("keydown", keys);
+    return () => window.removeEventListener("keydown", keys);
+  }, [walking, marketRuntime, toggleSound]);
   const landing = !!activeQuarry && state.phase === "landing";
   return <>
     <div ref={canvas} className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}
@@ -514,7 +566,8 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
         </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone}
           form={form} reportContact={setContact} panel={panel} eventPage={eventPage}
           reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam}
-          film={video.phase === "playing" ? video.texture : null} openWall={openWall} stopAftermovie={stopAftermovie} />}
+          film={video.phase === "playing" ? video.texture : null} openWall={openWall} stopAftermovie={stopAftermovie}
+          audio={audio} ducked={video.phase === "playing" && !movieMuted} />}
         {!activeQuarry && <CypherMapProjection runtime={marketRuntime} elements={mapDom} />}
       </Canvas>
       {walking && runtime.interacting && contact.needsHeading &&
@@ -523,34 +576,43 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
     <div className="native-curtain" ref={curtain} aria-hidden="true" />
     {walking && state.map && <CypherMap runtime={marketRuntime} state={state} elements={mapDom} travel={travel} />}
     {landing && <div className="native-controls"><button onClick={() => runtime.enter()}>Enter Gullyverse</button></div>}
-    {walking && !runtime.interacting && <section className="native-controls gate-controls" aria-label="Walk through the cypher gate">
-      <div className="gate-toolbar">
-        <p aria-live="polite">{zone}</p>
-        {contact.available && !state.map && <button ref={enquiry} onClick={() => {
-          if (canOpenContact(marketRuntime.pose) && marketRuntime.focusInteraction(cypherContact.focus)) {
-            restoreContactFocus.current = true;
-          }
-        }}>Leave a message</button>}
-        {wallUI && wallUI !== "active" && <button ref={browse} onClick={() => openWall(wallUI)}>{wallLabel[wallUI]}</button>}
-        <button ref={mapButton} aria-keyshortcuts="M" onClick={() => runtime.setMap(!state.map || state.mapStage === "descent")}>
-          {state.map && state.mapStage !== "descent" ? "Close map" : "Map"}
-        </button>
-      </div>
+    {walking && !state.map && <p className="gully-location" aria-live="polite"><span className="gully-chip">{zone}</span></p>}
+    {walking && !runtime.interacting && <section className="gully-controls" aria-label="Controls">
+      <p className="gully-controls-title" aria-hidden="true">Controls</p>
+      <ul>
+        {!state.map && <>
+          <li className="gully-keyboard-only"><span className="gully-keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
+            <span className="gully-label">Move</span></li>
+          <li className="gully-keyboard-only"><span className="gully-keys"><kbd>Drag</kbd></span><span className="gully-label">Look</span></li>
+          {contact.available && <li><button ref={enquiry} aria-keyshortcuts="E" aria-label="Leave a message" onClick={() => {
+            if (canOpenContact(marketRuntime.pose) && marketRuntime.focusInteraction(cypherContact.focus)) {
+              restoreContactFocus.current = true;
+            }
+          }}><kbd>E</kbd><span className="gully-label">Leave a message</span></button></li>}
+          {!contact.available && wallUI && wallUI !== "active" && <li><button ref={browse} aria-keyshortcuts="E"
+            aria-label={wallLabel[wallUI]} onClick={() => openWall(wallUI)}>
+            <kbd>E</kbd><span className="gully-label">{wallLabel[wallUI]}</span></button></li>}
+        </>}
+        <li><button ref={mapButton} aria-keyshortcuts="M"
+          aria-label={state.map && state.mapStage !== "descent" ? "Close map" : "Map"}
+          onClick={() => runtime.setMap(!state.map || state.mapStage === "descent")}>
+          <kbd>M</kbd><span className="gully-label">{state.map && state.mapStage !== "descent" ? "Close map" : "Map"}</span>
+        </button></li>
+        {!state.map && <li><button aria-keyshortcuts="V" aria-pressed={sound} aria-label="Sound" onClick={toggleSound}>
+          <kbd>V</kbd><span className="gully-label">{sound ? "Sound on" : "Sound off"}</span></button></li>}
+      </ul>
       {wallUI === "aftermovie" && movieFailed && <p role="status" className="cypher-aftermovie-error">
         The Aftermovie could not play. Try again or <a href={stageVideoSource}>open the video</a>.
       </p>}
-      {!state.map && <>
-        <small>WASD or arrows to walk. Drag to look.</small>
-        <div className="native-touch" aria-label="Movement controls">
-          <button data-move="forward" aria-label="Walk forward">↑</button>
-          <div>
-            <button data-move="left" aria-label="Walk left">←</button>
-            <button data-move="back" aria-label="Walk backward">↓</button>
-            <button data-move="right" aria-label="Walk right">→</button>
-          </div>
-        </div>
-      </>}
     </section>}
+    {walking && !runtime.interacting && !state.map && <div className="native-touch gully-touch" aria-label="Movement controls">
+      <button data-move="forward" aria-label="Walk forward">↑</button>
+      <div>
+        <button data-move="left" aria-label="Walk left">←</button>
+        <button data-move="back" aria-label="Walk backward">↓</button>
+        <button data-move="right" aria-label="Walk right">→</button>
+      </div>
+    </div>}
     <CypherContactDialog host={form} placement={walking && runtime.interacting ? contact.placement : null}
       canSend={canSendContact} onClose={closeContact} live={live} />
     {panel === "events" && wallUI === "active" && catalog && eventPage && <CypherEventsDialog

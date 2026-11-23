@@ -44,7 +44,7 @@ export function CypherMapProjection({ runtime, elements }: { runtime: ImmersiveR
     // Keep labels between the map header and the walking toolbar.
     const frame = elements.container.getBoundingClientRect();
     const header = elements.container.parentElement?.querySelector(".cypher-map-header")?.getBoundingClientRect();
-    const toolbar = elements.container.closest(".native-journey")?.querySelector(".gate-controls")?.getBoundingClientRect();
+    const toolbar = elements.container.closest(".native-journey")?.querySelector(".gully-controls")?.getBoundingClientRect();
     const top = header ? header.bottom - frame.top + 8 : 96;
     const bottom = (toolbar ? toolbar.top - frame.top : size.height - 110) - 8;
     const projected = points.map(point => {
@@ -100,7 +100,7 @@ export function CypherMap({ runtime, state, elements, travel }: {
   const ids = [...mapStops.map(stop => stop.id as string), here];
   return <section ref={ref} className="cypher-map" aria-label="Cypher map" data-stage={state.mapStage}>
     <header className="cypher-map-header">
-      <p>BREEZE 2027 / GULLYVERSE</p>
+      <p>Map</p>
       <h2>Gullyverse from above</h2>
     </header>
     <div ref={node => { elements.container = node; }} className="cypher-map-markers">
@@ -120,7 +120,7 @@ export function CypherMap({ runtime, state, elements, travel }: {
       </div>
     </div>
     <p className="cypher-map-hint" aria-live="polite">{open
-      ? "Choose a place to go · M or Esc returns to your view"
+      ? <>Choose a place · <kbd>M</kbd> <kbd>Esc</kbd> back to your view</>
       : state.mapStage === "descent" ? "Landing" : "Rising above the gully"}</p>
   </section>;
 }

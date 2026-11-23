@@ -251,3 +251,68 @@ html,body,#root{margin:0;width:100%;height:100%;background:#010303}
   .cypher-map-header { top: auto; bottom: auto; left: auto; right: 20px; top: 16px; text-align: right; }
   .cypher-map-header h2 { font-size: 16px; }
 }
+
+/* Walking UI (23 Nov 2026): reference-style controls bottom-left; keys and place names are kbd chips
+   with a dark grey fill and a light white outline (after ui.shadcn.com/docs/components/kbd). */
+.native-journey kbd, .gully-chip {
+  display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box;
+  min-width: 30px; height: 30px; padding: 0 8px; border-radius: 7px;
+  background: rgba(38, 40, 43, 0.88); border: 1.5px solid rgba(255, 255, 255, 0.78);
+  color: #f5f5f3; font: 700 14px/1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: 0; box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+.native-journey kbd { text-transform: uppercase; }
+.gully-chip { height: auto; min-height: 30px; padding: 6px 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
+.gully-location { position: absolute; z-index: 4; top: 54px; left: 20px; margin: 0; pointer-events: none; }
+.gully-controls {
+  position: absolute; z-index: 4; left: 20px; bottom: 22px; padding: 14px 18px 12px 14px; border-radius: 10px;
+  background: linear-gradient(to top right, rgba(6, 8, 9, 0.62), rgba(6, 8, 9, 0.18)); text-shadow: 0 1px 3px #000;
+}
+.gully-controls-title { margin: 0 0 10px 2px; color: rgba(236, 238, 240, 0.62); font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; }
+.gully-controls ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.gully-controls li { display: flex; align-items: center; gap: 12px; }
+.gully-keys { display: inline-flex; gap: 6px; }
+.gully-label { color: #eceae5; font-size: 13px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; }
+.native-journey .gully-controls button {
+  display: inline-flex; align-items: center; gap: 12px; min-height: 34px; padding: 0; margin: 0;
+  background: transparent; border: 0; color: inherit; cursor: pointer; text-align: left;
+}
+.native-journey .gully-controls button:hover kbd, .native-journey .gully-controls button:focus-visible kbd {
+  background: #f5f5f3; color: #16181a; border-color: #fff;
+}
+.native-journey .gully-controls button[aria-pressed="false"] .gully-label { color: rgba(236, 234, 229, 0.55); }
+.gully-controls .cypher-aftermovie-error { margin: 10px 0 0; max-width: 260px; font-size: 12px; }
+.native-touch.gully-touch { position: absolute; z-index: 4; right: 16px; bottom: 24px; }
+.native-touch.gully-touch button {
+  background: rgba(38, 40, 43, 0.88); border: 1.5px solid rgba(255, 255, 255, 0.78); border-radius: 9px; color: #f5f5f3;
+}
+@media (max-width: 699px), (pointer: coarse) {
+  .gully-keyboard-only { display: none !important; }
+  .native-touch.gully-touch { display: flex !important; flex-direction: column; align-items: center; gap: 6px; }
+  .native-touch.gully-touch > div { display: flex; gap: 6px; }
+  .native-touch.gully-touch button { width: 48px; height: 48px; padding: 0; font-size: 20px; touch-action: none; }
+}
+@media (max-width: 699px) {
+  .gully-location { top: 44px; left: 12px; }
+  .gully-controls { left: 10px; bottom: 16px; padding: 10px 12px 8px 10px; }
+  .gully-controls-title { margin-bottom: 7px; font-size: 10px; }
+  .gully-controls ul { gap: 6px; }
+  .gully-label { font-size: 11px; letter-spacing: 0.22em; }
+  .native-journey kbd { min-width: 26px; height: 26px; font-size: 12px; }
+}
+
+/* Map in the same style: place names are kbd chips. */
+.cypher-map-header p { color: rgba(236, 238, 240, 0.62); font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; }
+.cypher-map-header h2 { font-size: clamp(16px, 1.8vw, 22px); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; }
+.cypher-map .cypher-map-stop, .cypher-map-here {
+  border-radius: 8px; background: rgba(38, 40, 43, 0.92); border: 1.5px solid rgba(255, 255, 255, 0.78);
+  color: #f5f5f3; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.1), 0 2px 12px #0009;
+}
+.cypher-map .cypher-map-stop { min-height: 40px; padding: 9px 14px; font-size: 12px; }
+.cypher-map .cypher-map-stop[data-kind="place"] { background: rgba(38, 40, 43, 0.92); border-color: rgba(255, 255, 255, 0.5); color: #d9dbdc; }
+.cypher-map .cypher-map-stop:hover, .cypher-map .cypher-map-stop:focus-visible { background: #f5f5f3; color: #16181a; border-color: #fff; outline: none; }
+.cypher-map-here { padding: 5px 10px; font-size: 10px; border-color: #4fd1a5; color: #d6fff0; }
+.cypher-map-markers line { stroke: rgba(255, 255, 255, 0.55); }
+.cypher-map-hint { letter-spacing: 0.18em; text-transform: uppercase; font-size: 11px; color: #e8e8e4; }
+.cypher-map-hint kbd { min-width: 24px; height: 24px; padding: 0 6px; font-size: 11px; margin: 0 2px; vertical-align: middle; }
+@media (max-width: 699px) { .cypher-map .cypher-map-stop { min-height: 36px; padding: 7px 10px; font-size: 10px; letter-spacing: 0.14em; } }
