@@ -78,3 +78,24 @@ test("people are identified by their archetype and seam normals average only acr
   assert.ok(Math.abs(n.getX(0) - n.getX(1)) < 1e-6 && Math.abs(n.getY(0) - n.getY(1)) < 1e-6);
   assert.deepEqual([n.getX(2), n.getY(2), n.getX(3), n.getY(3)], [0, 1, 1, 0]);
 });
+
+test("people masks match the published chunks and hide only skin under clothing", async () => {
+  for (const chunk of ["cypher-approach", "cypher-plaza", "cypher-audience"]) {
+    const mask = JSON.parse(readFileSync(`${root}locked-rev15z-${chunk}/people-mask.json`, "utf8"));
+    const json = glbJson(`${root}locked-rev15z-${chunk}/contact-frontage.optimized.glb`);
+    const bySource = new Map(json.nodes.filter((n: { extras?: { archetype?: string } }) => n.extras?.archetype).map((n: { extras: { runtimeOriginalSource: string }; mesh: number }) => [n.extras.runtimeOriginalSource, n]));
+    let hidden = 0, total = 0;
+    for (const [key, entry] of Object.entries(mask.skins) as [string, { triangles: number; hidden: string }][]) {
+      const [source, index] = key.split("#");
+      const node = bySource.get(source) as { mesh: number } | undefined;
+      assert.ok(node, `${chunk}: ${key}`);
+      const primitive = json.meshes[node!.mesh].primitives[Number(index)];
+      assert.match(json.materials[primitive.material].name, / material 0$/);
+      assert.equal(json.accessors[primitive.indices].count / 3, entry.triangles);
+      const bits = Buffer.from(entry.hidden, "base64");
+      for (let t = 0; t < entry.triangles; t++) if (bits[t >> 3] & (1 << (t & 7))) hidden++;
+      total += entry.triangles;
+    }
+    assert.ok(hidden / total > 0.02 && hidden / total < 0.1, `${chunk}: ${hidden}/${total}`);
+  }
+});

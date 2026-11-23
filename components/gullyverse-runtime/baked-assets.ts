@@ -5,7 +5,7 @@ import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
 import { specularOnlyEnvironment, type Fidelity } from "./fidelity";
 import { batchStatic } from "./static-batching";
-import { isPerson, smoothSeams } from "./person-shading";
+import { applyPeopleMask, isPerson, smoothSeams, type PeopleMask } from "./person-shading";
 
 export type BakedAsset = { scene: THREE.Group; rgbmRange?: number; dispose(): void };
 /** Leases cancel ownership immediately and dispose late results after the last release. */
@@ -67,6 +67,9 @@ export class BakedAssetPool {
     const geometries = new Set<THREE.BufferGeometry>(), materials = new Set<THREE.Material>(), textures = new Set<THREE.Texture>();
     const dispose = () => { geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); textures.forEach(t => t.dispose()); };
     try {
+      // Optional: chunks without people have no mask file.
+      const peopleMaskRequest = /locked-rev15z-cypher-(approach|plaza|audience)\//.test(base)
+        ? fetch(base + "people-mask.json").then(r => r.ok ? r.json() as Promise<PeopleMask> : null, () => null) : Promise.resolve(null);
       const gltf = await loader.loadAsync(url);
       // Collect ownership before the second asynchronous load, including failure paths.
       gltf.scene.traverse((o: any) => {
@@ -80,17 +83,19 @@ export class BakedAssetPool {
       // Surface restoration is optional: without it the chunk still renders as exported.
       const fidelity = this.fidelity && await this.fidelity.ready.then(() => this.fidelity, () => undefined);
       fidelity?.prepare(gltf.scene);
-      const light = baseline ? await new RGBELoader().loadAsync(base + "lightmap.hdr") : await ktx.loadAsync(base + "lightmap.ktx2");
-      textures.add(light);
-      light.flipY = false; light.generateMipmaps = baseline; light.minFilter = THREE.LinearMipmapLinearFilter;
-      light.magFilter = THREE.LinearFilter; light.colorSpace = THREE.NoColorSpace;
-      gltf.scene.traverse((o: any) => {
-        if (!o.isMesh) return;
-        o.castShadow = false;
-        if (isPerson(o)) {
-          // People: smooth runtime lighting (probe + lamps) instead of the starved lightmap; see person-shading.ts.
-          smoothSeams(o.geometry);
-          for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
+      // People: skin hidden under clothing, smoothed seams, and smooth runtime lighting (probe + lamps)
+      // instead of the starved lightmap; see person-shading.ts.
+      const peopleMask: PeopleMask | null = await peopleMaskRequest;
+      const people: THREE.Object3D[] = [];
+      gltf.scene.traverse(o => { if (isPerson(o)) people.push(o); });
+      for (const person of people) {
+        const meshes: THREE.Mesh[] = [];
+        person.traverse(o => { if ((o as THREE.Mesh).isMesh) meshes.push(o as THREE.Mesh); });
+        applyPeopleMask(person, meshes, peopleMask);
+        for (const mesh of meshes) {
+          mesh.userData.breezePersonMesh = true;
+          smoothSeams(mesh.geometry);
+          for (const m of (Array.isArray(mesh.material) ? mesh.material : [mesh.material]) as any[]) {
             if (m.userData.breezePerson) continue;
             m.userData.breezePerson = true;
             for (const value of Object.values(m)) if (value instanceof THREE.Texture) value.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
@@ -100,8 +105,16 @@ export class BakedAssetPool {
             }
             m.needsUpdate = true;
           }
-          return;
         }
+      }
+      const light = baseline ? await new RGBELoader().loadAsync(base + "lightmap.hdr") : await ktx.loadAsync(base + "lightmap.ktx2");
+      textures.add(light);
+      light.flipY = false; light.generateMipmaps = baseline; light.minFilter = THREE.LinearMipmapLinearFilter;
+      light.magFilter = THREE.LinearFilter; light.colorSpace = THREE.NoColorSpace;
+      gltf.scene.traverse((o: any) => {
+        if (!o.isMesh) return;
+        o.castShadow = false;
+        if (o.userData.breezePersonMesh) return; // people are prepared below
         for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
           for (const value of Object.values(m)) if (value instanceof THREE.Texture) value.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
           if (m.userData.runtimeDecal) {
