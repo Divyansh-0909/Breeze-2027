@@ -290,12 +290,13 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       const dt = Math.min(delta, 0.1);
       const moved = Number.isFinite(gait.x) ? Math.hypot(runtime.pose.x - gait.x, runtime.pose.z - gait.z) : 0;
       gait.x = runtime.pose.x; gait.z = runtime.pose.z;
-      const walkingNow = phase === "local" && !map && !runtime.interacting && !reviewCamera && dt > 0;
-      const speed = walkingNow ? moved / dt : 0;
-      const pace = speed > 7 ? 0 : Math.min(1, speed / 4.2);
-      gait.amplitude = MathUtils.damp(gait.amplitude, pace, 8, dt);
+      const walkingNow = phase === "local" && !map && !runtime.interacting && !reviewCamera;
+      // Distance-based, so slow frames on weak devices still step; faster than 7 m/s is a map jump.
+      const speed = walkingNow ? moved / Math.max(delta, 1e-3) : 0;
+      const stepping = walkingNow && speed <= 7;
+      gait.amplitude = MathUtils.damp(gait.amplitude, stepping ? Math.min(1, speed / 4.2) : 0, 8, dt);
       const before = Math.floor(gait.steps);
-      gait.steps += (speed > 7 ? 0 : speed) * dt / 0.72;
+      if (stepping) gait.steps += moved / 0.72;
       if (Math.floor(gait.steps) !== before && gait.amplitude > 0.25) {
         audio.footstep(isWet(runtime.pose.x, runtime.pose.z), gait.amplitude);
       }
