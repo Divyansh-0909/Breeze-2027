@@ -1,0 +1,2923 @@
+{
+ "generatedAt": "2026-11-23T14:19:56.748Z",
+ "totals": {
+  "video:undefined": 82521058,
+  "glb:optimized": 80171644,
+  "glb:mobile": 42533592,
+  "lightmap:all": 11999185,
+  "shared-texture:optimized": 5745471,
+  "probe-hdr:optimized (no longer loaded)": 9359041,
+  "fidelity-texture:optimized": 4459998,
+  "shared-texture:mobile": 1605025,
+  "probe-hdr:all": 2605225,
+  "fidelity-texture:mobile": 1221923
+ },
+ "assets": [
+  {
+   "file": "/after-movie.mp4",
+   "kind": "video",
+   "bytes": 52291090,
+   "usedBy": "Watch Aftermovie (full quality, from the start)",
+   "loads": "streamed (range requests)",
+   "gpuEstimateBytes": 8294400
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.optimized.glb",
+   "chunk": "cypher-plaza",
+   "variant": "optimized",
+   "kind": "glb",
+   "bytes": 45091528,
+   "gzipBytes": 42094621,
+   "usedBy": "plaza: houses, Events, Team, Contact, Accommodation, Aftermovie screen",
+   "loads": "streamed after walking starts (initial for plaza arrivals)",
+   "meshes": 135,
+   "materials": 93,
+   "triangles": 288268,
+   "vertices": 350134,
+   "decodedGeometryBytes": 10921128,
+   "embeddedTextureBytes": 39284870,
+   "textures": [
+    {
+     "name": "normal",
+     "bytes": 1404670,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "c325c6389f5e"
+    },
+    {
+     "name": "coming-soon-graffiti",
+     "bytes": 1688894,
+     "width": 1536,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "842425dfc8e9"
+    },
+    {
+     "name": "contact-us-graffiti",
+     "bytes": 1045259,
+     "width": 2172,
+     "height": 724,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2102480,
+     "sha": "5c3bb89aa78e"
+    },
+    {
+     "name": "existing-aftermovie-frame",
+     "bytes": 557345,
+     "width": 1280,
+     "height": 720,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1229520,
+     "sha": "58a6a290fb4c"
+    },
+    {
+     "name": "color",
+     "bytes": 2366810,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "e31ceadff899"
+    },
+    {
+     "name": "roughness",
+     "bytes": 589962,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "ebda5cc7547a"
+    },
+    {
+     "name": "sash-paint",
+     "bytes": 215731,
+     "width": 512,
+     "height": 512,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349552,
+     "sha": "9726c47d04e3"
+    },
+    {
+     "name": "glass-color",
+     "bytes": 46820,
+     "width": 512,
+     "height": 512,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349552,
+     "sha": "5912f41f0c8e"
+    },
+    {
+     "name": "glass-rough",
+     "bytes": 52717,
+     "width": 512,
+     "height": 512,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349552,
+     "sha": "f039069f0e0a",
+     "duplicateOf": 2
+    },
+    {
+     "name": "B1-normal",
+     "bytes": 1238232,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "84fdaddde60f"
+    },
+    {
+     "name": "B1-color",
+     "bytes": 1128403,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "6e7bb612d208"
+    },
+    {
+     "name": "B1-rough",
+     "bytes": 706748,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "7dde47ff02ca"
+    },
+    {
+     "name": "L3-normal",
+     "bytes": 1385428,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "5ff623f4d750"
+    },
+    {
+     "name": "L3-color",
+     "bytes": 1174905,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "11272d77b28e"
+    },
+    {
+     "name": "L3-rough",
+     "bytes": 708711,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "90d708c223a3"
+    },
+    {
+     "name": "shutter-paint",
+     "bytes": 213788,
+     "width": 512,
+     "height": 512,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349552,
+     "sha": "ec76ba24a09c"
+    },
+    {
+     "name": "B2-normal",
+     "bytes": 1241476,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "7aa7fe57fdbd"
+    },
+    {
+     "name": "B2-color",
+     "bytes": 1138270,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "97a83c820337"
+    },
+    {
+     "name": "B2-rough",
+     "bytes": 710336,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "1fda629eb33c"
+    },
+    {
+     "name": "F2-normal",
+     "bytes": 1334329,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "d80635e40ae5"
+    },
+    {
+     "name": "F2-color",
+     "bytes": 1194397,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "f3abdcd9d2b6"
+    },
+    {
+     "name": "F2-rough",
+     "bytes": 709069,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "2a5308fec743"
+    },
+    {
+     "name": "R1-normal",
+     "bytes": 1383648,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "93dfd7804a5d"
+    },
+    {
+     "name": "R1-color",
+     "bytes": 1162481,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "902016b398b4"
+    },
+    {
+     "name": "R1-rough",
+     "bytes": 708145,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "868d5a80c11f"
+    },
+    {
+     "name": "L1-normal",
+     "bytes": 1442325,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "f6b0db74240d"
+    },
+    {
+     "name": "L1-color",
+     "bytes": 1208689,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "062059e918f8"
+    },
+    {
+     "name": "L1-rough",
+     "bytes": 704614,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "59a831e1a4a5"
+    },
+    {
+     "name": "events-plaster-normal",
+     "bytes": 1075935,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "9190096730a7"
+    },
+    {
+     "name": "events-plaster-color",
+     "bytes": 948357,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "96e37f6c2b00"
+    },
+    {
+     "name": "events-plaster-rough",
+     "bytes": 676857,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "c23f103940bc"
+    },
+    {
+     "name": "R3-normal",
+     "bytes": 1356285,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "cf6e4bc85e21"
+    },
+    {
+     "name": "R3-color",
+     "bytes": 1172922,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "4b5bde30eea1"
+    },
+    {
+     "name": "R3-rough",
+     "bytes": 708514,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "44ac76bf673f"
+    },
+    {
+     "name": "graphic-cypher",
+     "bytes": 90603,
+     "width": 1200,
+     "height": 500,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 802656,
+     "sha": "847f0762d403"
+    },
+    {
+     "name": "Runtime / contact / metallic-Runtime / contact / roughness",
+     "bytes": 554256,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "8acd8ad3aae2"
+    },
+    {
+     "name": "event-00",
+     "bytes": 189754,
+     "width": 600,
+     "height": 820,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 657968,
+     "sha": "a10f2b66e47a"
+    },
+    {
+     "name": "event-01",
+     "bytes": 184935,
+     "width": 600,
+     "height": 820,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 657968,
+     "sha": "86ed68e12672"
+    },
+    {
+     "name": "event-02",
+     "bytes": 176694,
+     "width": 600,
+     "height": 820,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 657968,
+     "sha": "0721e0f60f1f"
+    },
+    {
+     "name": "event-03",
+     "bytes": 182562,
+     "width": 600,
+     "height": 820,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 657968,
+     "sha": "46fb5bcf771d"
+    },
+    {
+     "name": "F1-normal",
+     "bytes": 1333523,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "3ce9ae3177e0"
+    },
+    {
+     "name": "F1-color",
+     "bytes": 1170554,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "cf35d3229481"
+    },
+    {
+     "name": "F1-rough",
+     "bytes": 709301,
+     "width": 1024,
+     "height": 1536,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2097184,
+     "sha": "2050cafac4f6"
+    },
+    {
+     "name": "Organising-Committee",
+     "bytes": 1291616,
+     "width": 1796,
+     "height": 876,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 2102304,
+     "sha": "30b2e161bc3b"
+    },
+    {
+     "name": "edge-water-normal",
+     "external": "../locked-rev15z-shared/edge-water-normal.optimized.c3c3c7d115f2.ktx2"
+    },
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.optimized.93389e779a72.ktx2"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.optimized.bec7b39002ad.ktx2"
+    }
+   ],
+   "gpuEstimateBytes": 102279048
+  },
+  {
+   "file": "/after-movie-720.mp4",
+   "kind": "video",
+   "bytes": 30229968,
+   "usedBy": "plaza screen loop (starts after the world has streamed)",
+   "loads": "streamed (range requests)",
+   "gpuEstimateBytes": 3686400
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-plaza/contact-frontage.mobile.glb",
+   "chunk": "cypher-plaza",
+   "variant": "mobile",
+   "kind": "glb",
+   "bytes": 19664052,
+   "gzipBytes": 16663017,
+   "usedBy": "plaza: houses, Events, Team, Contact, Accommodation, Aftermovie screen",
+   "loads": "streamed after walking starts (initial for plaza arrivals)",
+   "meshes": 135,
+   "materials": 93,
+   "triangles": 288268,
+   "vertices": 350134,
+   "decodedGeometryBytes": 10921128,
+   "embeddedTextureBytes": 13857510,
+   "textures": [
+    {
+     "name": "normal",
+     "bytes": 475637,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "3139b447e3f0"
+    },
+    {
+     "name": "coming-soon-graffiti",
+     "bytes": 558812,
+     "width": 1024,
+     "height": 684,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "7f78cbc05344"
+    },
+    {
+     "name": "contact-us-graffiti",
+     "bytes": 248717,
+     "width": 1024,
+     "height": 344,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 470608,
+     "sha": "e9e5dc40836b"
+    },
+    {
+     "name": "existing-aftermovie-frame",
+     "bytes": 455003,
+     "width": 1024,
+     "height": 576,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 786576,
+     "sha": "2a8d23cac6bb"
+    },
+    {
+     "name": "color",
+     "bytes": 692343,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "026a54b2fed3"
+    },
+    {
+     "name": "roughness",
+     "bytes": 276429,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "aab7241076ba"
+    },
+    {
+     "name": "sash-paint",
+     "bytes": 173802,
+     "width": 512,
+     "height": 512,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349552,
+     "sha": "b948dc71d5a9"
+    },
+    {
+     "name": "glass-color",
+     "bytes": 25964,
+     "width": 512,
+     "height": 512,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349552,
+     "sha": "ef73fa33c02e"
+    },
+    {
+     "name": "glass-rough",
+     "bytes": 52717,
+     "width": 512,
+     "height": 512,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349552,
+     "sha": "f039069f0e0a",
+     "duplicateOf": 2
+    },
+    {
+     "name": "B1-normal",
+     "bytes": 117668,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "d210b7670a91"
+    },
+    {
+     "name": "B1-color",
+     "bytes": 401885,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "960a3bcefb2f"
+    },
+    {
+     "name": "B1-rough",
+     "bytes": 447706,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "8ccc547944ce"
+    },
+    {
+     "name": "L3-normal",
+     "bytes": 200527,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "7af005758d9a"
+    },
+    {
+     "name": "L3-color",
+     "bytes": 429757,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "75a103165381"
+    },
+    {
+     "name": "L3-rough",
+     "bytes": 447692,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "3de7009971c7"
+    },
+    {
+     "name": "shutter-paint",
+     "bytes": 179179,
+     "width": 512,
+     "height": 512,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349552,
+     "sha": "aa3ed2522b05"
+    },
+    {
+     "name": "B2-normal",
+     "bytes": 119268,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "0c0baefbea4b"
+    },
+    {
+     "name": "B2-color",
+     "bytes": 406813,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "6af1c4b3b826"
+    },
+    {
+     "name": "B2-rough",
+     "bytes": 448822,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "c8e1cae924de"
+    },
+    {
+     "name": "F2-normal",
+     "bytes": 176791,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "64d694d77bd6"
+    },
+    {
+     "name": "F2-color",
+     "bytes": 433698,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "50d6ed668d46"
+    },
+    {
+     "name": "F2-rough",
+     "bytes": 448613,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "9e9b7f2dae65"
+    },
+    {
+     "name": "R1-normal",
+     "bytes": 194782,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "b115a80fa6e5"
+    },
+    {
+     "name": "R1-color",
+     "bytes": 418379,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "8a111c059b2e"
+    },
+    {
+     "name": "R1-rough",
+     "bytes": 448239,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "4d7f7c93abfd"
+    },
+    {
+     "name": "L1-normal",
+     "bytes": 272346,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "3f7ba080f2d5"
+    },
+    {
+     "name": "L1-color",
+     "bytes": 440394,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "f2b64c5e32ee"
+    },
+    {
+     "name": "L1-rough",
+     "bytes": 446525,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "ce5a773e8994"
+    },
+    {
+     "name": "events-plaster-normal",
+     "bytes": 55555,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "41bc7eed6bf8"
+    },
+    {
+     "name": "events-plaster-color",
+     "bytes": 309764,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "7de5e3c34259"
+    },
+    {
+     "name": "events-plaster-rough",
+     "bytes": 430589,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "15ebe1add091"
+    },
+    {
+     "name": "R3-normal",
+     "bytes": 154551,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "de52b061a7e1"
+    },
+    {
+     "name": "R3-color",
+     "bytes": 441160,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "d8c0c47a5c39"
+    },
+    {
+     "name": "R3-rough",
+     "bytes": 448731,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "b286cdc24d97"
+    },
+    {
+     "name": "graphic-cypher",
+     "bytes": 82432,
+     "width": 1024,
+     "height": 428,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 586192,
+     "sha": "feed1b633cce"
+    },
+    {
+     "name": "Runtime / contact / metallic-Runtime / contact / roughness",
+     "bytes": 262519,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "3c98013c77a5"
+    },
+    {
+     "name": "event-00",
+     "bytes": 188180,
+     "width": 600,
+     "height": 820,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 657968,
+     "sha": "beb45aafcef7"
+    },
+    {
+     "name": "event-01",
+     "bytes": 182332,
+     "width": 600,
+     "height": 820,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 657968,
+     "sha": "508adbf9afd2"
+    },
+    {
+     "name": "event-02",
+     "bytes": 174283,
+     "width": 600,
+     "height": 820,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 657968,
+     "sha": "4070a4689c83"
+    },
+    {
+     "name": "event-03",
+     "bytes": 179292,
+     "width": 600,
+     "height": 820,
+     "levels": 10,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 657968,
+     "sha": "ccdf001db86a"
+    },
+    {
+     "name": "F1-normal",
+     "bytes": 177839,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "0731821e0659"
+    },
+    {
+     "name": "F1-color",
+     "bytes": 443343,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "3dec81d4a818"
+    },
+    {
+     "name": "F1-rough",
+     "bytes": 449282,
+     "width": 684,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 935728,
+     "sha": "1828102e0ffd"
+    },
+    {
+     "name": "Organising-Committee",
+     "bytes": 439150,
+     "width": 1024,
+     "height": 500,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 684752,
+     "sha": "99d1c8f19332"
+    },
+    {
+     "name": "edge-water-normal",
+     "external": "../locked-rev15z-shared/edge-water-normal.mobile.c3c3c7d115f2.ktx2"
+    },
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.mobile.1a6bb4a44191.ktx2"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.mobile.59e0a49828fe.ktx2"
+    }
+   ],
+   "gpuEstimateBytes": 49272232
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.optimized.glb",
+   "chunk": "cypher-audience",
+   "variant": "optimized",
+   "kind": "glb",
+   "bytes": 12856288,
+   "gzipBytes": 10389101,
+   "usedBy": "plaza crowd",
+   "loads": "streamed after walking starts (initial for plaza arrivals)",
+   "meshes": 14,
+   "materials": 34,
+   "triangles": 572267,
+   "vertices": 679866,
+   "decodedGeometryBytes": 18679686,
+   "embeddedTextureBytes": 0,
+   "textures": [],
+   "gpuEstimateBytes": 18679686
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-audience/contact-frontage.mobile.glb",
+   "chunk": "cypher-audience",
+   "variant": "mobile",
+   "kind": "glb",
+   "bytes": 12856288,
+   "gzipBytes": 10389101,
+   "usedBy": "plaza crowd",
+   "loads": "streamed after walking starts (initial for plaza arrivals)",
+   "meshes": 14,
+   "materials": 34,
+   "triangles": 572267,
+   "vertices": 679866,
+   "decodedGeometryBytes": 18679686,
+   "embeddedTextureBytes": 0,
+   "textures": [],
+   "gpuEstimateBytes": 18679686
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.optimized.glb",
+   "chunk": "market-north",
+   "variant": "optimized",
+   "kind": "glb",
+   "bytes": 10381256,
+   "gzipBytes": 9179524,
+   "usedBy": "market lane (north)",
+   "loads": "initial (lane arrival); later for plaza arrivals",
+   "meshes": 306,
+   "materials": 78,
+   "triangles": 72924,
+   "vertices": 117382,
+   "decodedGeometryBytes": 2298168,
+   "embeddedTextureBytes": 8689101,
+   "textures": [
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.optimized.93389e779a72.ktx2"
+    },
+    {
+     "name": "color",
+     "bytes": 1984581,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "126b38a876a8"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.optimized.bec7b39002ad.ktx2"
+    },
+    {
+     "name": "normal",
+     "bytes": 1301845,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "025c5924cfcf"
+    },
+    {
+     "name": "Runtime / contact / metallic-Runtime / contact / roughness",
+     "bytes": 137293,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "6dbdcff140ad"
+    },
+    {
+     "name": "shop-books",
+     "bytes": 94078,
+     "width": 1200,
+     "height": 300,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 482256,
+     "sha": "cd52cb2823ff"
+    },
+    {
+     "name": "shop-chai",
+     "external": "../locked-rev15z-shared/shop-chai.optimized.0dac5c22432f.ktx2"
+    },
+    {
+     "name": "shop-repair",
+     "bytes": 96729,
+     "width": 1200,
+     "height": 300,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 482256,
+     "sha": "8c5bd9c98bf8"
+    },
+    {
+     "name": "shop-tailor",
+     "external": "../locked-rev15z-shared/shop-tailor.optimized.3734d1836476.ktx2"
+    },
+    {
+     "name": "L02-face",
+     "bytes": 782641,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "6ea24dbe2ffa"
+    },
+    {
+     "name": "L02-roughness",
+     "bytes": 808905,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "bddd3f2dc22c"
+    },
+    {
+     "name": "L02-inside",
+     "bytes": 29197,
+     "width": 1200,
+     "height": 168,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 270256,
+     "sha": "c66694ab68d8"
+    },
+    {
+     "name": "pack-3",
+     "external": "../locked-rev15z-shared/pack-3.optimized.5b7ee280f4ff.ktx2"
+    },
+    {
+     "name": "pack-4",
+     "external": "../locked-rev15z-shared/pack-4.optimized.f662b210dc6a.ktx2"
+    },
+    {
+     "name": "pack-5",
+     "external": "../locked-rev15z-shared/pack-5.optimized.061574cdad21.ktx2"
+    },
+    {
+     "name": "pack-6",
+     "external": "../locked-rev15z-shared/pack-6.optimized.89876c88ea5d.ktx2"
+    },
+    {
+     "name": "pack-1",
+     "external": "../locked-rev15z-shared/pack-1.optimized.0ea796346c32.ktx2"
+    },
+    {
+     "name": "pack-2",
+     "external": "../locked-rev15z-shared/pack-2.optimized.bb8b4d80a20e.ktx2"
+    },
+    {
+     "name": "pack-0",
+     "external": "../locked-rev15z-shared/pack-0.optimized.eaccbbf55b95.ktx2"
+    },
+    {
+     "name": "L07-face",
+     "bytes": 789748,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "17d7482b548c"
+    },
+    {
+     "name": "L07-roughness",
+     "bytes": 809468,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "2c3e660950f1"
+    },
+    {
+     "name": "L07-inside",
+     "bytes": 21874,
+     "width": 1200,
+     "height": 168,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 270256,
+     "sha": "0228e03202d1"
+    },
+    {
+     "name": "R07-face",
+     "bytes": 785308,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "0cc629440440"
+    },
+    {
+     "name": "R07-roughness",
+     "bytes": 809145,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "3a045ddabdea"
+    },
+    {
+     "name": "R07-inside",
+     "bytes": 27700,
+     "width": 1200,
+     "height": 168,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 270256,
+     "sha": "9d19a0a703ae"
+    },
+    {
+     "name": "graphic-festival",
+     "bytes": 70262,
+     "width": 1200,
+     "height": 500,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 802656,
+     "sha": "476cdcb2bad0"
+    },
+    {
+     "name": "roughness",
+     "bytes": 140327,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "4b1a8e1b574f"
+    }
+   ],
+   "gpuEstimateBytes": 35111304
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.optimized.glb",
+   "chunk": "market-south",
+   "variant": "optimized",
+   "kind": "glb",
+   "bytes": 8744312,
+   "gzipBytes": 7295653,
+   "usedBy": "market lane (south)",
+   "loads": "initial (lane arrival); later for plaza arrivals",
+   "meshes": 274,
+   "materials": 86,
+   "triangles": 105396,
+   "vertices": 140997,
+   "decodedGeometryBytes": 3456628,
+   "embeddedTextureBytes": 6541467,
+   "textures": [
+    {
+     "name": "color",
+     "bytes": 1726722,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "48dc3000bf5a"
+    },
+    {
+     "name": "Runtime / contact / metallic-Runtime / contact / roughness",
+     "bytes": 206338,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "23f63f84f00e"
+    },
+    {
+     "name": "normal",
+     "bytes": 975961,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "e5fa2d1c12ef"
+    },
+    {
+     "name": "shop-chai",
+     "external": "../locked-rev15z-shared/shop-chai.optimized.0dac5c22432f.ktx2"
+    },
+    {
+     "name": "shop-general",
+     "bytes": 76225,
+     "width": 1200,
+     "height": 300,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 482256,
+     "sha": "5124774c78b9"
+    },
+    {
+     "name": "shop-kirana",
+     "bytes": 88196,
+     "width": 1200,
+     "height": 300,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 482256,
+     "sha": "2d319fe7dd9e"
+    },
+    {
+     "name": "shop-tailor",
+     "external": "../locked-rev15z-shared/shop-tailor.optimized.3734d1836476.ktx2"
+    },
+    {
+     "name": "L25-face",
+     "bytes": 795074,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "c83de15208d0"
+    },
+    {
+     "name": "L25-roughness",
+     "bytes": 809751,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "37d0bbaef24a"
+    },
+    {
+     "name": "L25-inside",
+     "bytes": 26348,
+     "width": 1200,
+     "height": 168,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 270256,
+     "sha": "5f91942cf2fa"
+    },
+    {
+     "name": "pack-1",
+     "external": "../locked-rev15z-shared/pack-1.optimized.0ea796346c32.ktx2"
+    },
+    {
+     "name": "pack-2",
+     "external": "../locked-rev15z-shared/pack-2.optimized.bb8b4d80a20e.ktx2"
+    },
+    {
+     "name": "pack-3",
+     "external": "../locked-rev15z-shared/pack-3.optimized.5b7ee280f4ff.ktx2"
+    },
+    {
+     "name": "pack-4",
+     "external": "../locked-rev15z-shared/pack-4.optimized.f662b210dc6a.ktx2"
+    },
+    {
+     "name": "pack-6",
+     "external": "../locked-rev15z-shared/pack-6.optimized.89876c88ea5d.ktx2"
+    },
+    {
+     "name": "pack-0",
+     "external": "../locked-rev15z-shared/pack-0.optimized.eaccbbf55b95.ktx2"
+    },
+    {
+     "name": "pack-5",
+     "external": "../locked-rev15z-shared/pack-5.optimized.061574cdad21.ktx2"
+    },
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.optimized.93389e779a72.ktx2"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.optimized.bec7b39002ad.ktx2"
+    },
+    {
+     "name": "roughness",
+     "bytes": 211192,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "dbbfee0d2d10"
+    },
+    {
+     "name": "R16-face",
+     "bytes": 788891,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "3f54c6dd904f"
+    },
+    {
+     "name": "R16-roughness",
+     "bytes": 808689,
+     "width": 2560,
+     "height": 384,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1310912,
+     "sha": "eb3747c8b002"
+    },
+    {
+     "name": "R16-inside",
+     "bytes": 17855,
+     "width": 1200,
+     "height": 168,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 270256,
+     "sha": "22f53d149b50"
+    },
+    {
+     "name": "pack-7",
+     "bytes": 10225,
+     "width": 192,
+     "height": 256,
+     "levels": 9,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 65584,
+     "sha": "9113f9c4c767",
+     "duplicateOf": 2
+    },
+    {
+     "name": "edge-water-normal",
+     "external": "../locked-rev15z-shared/edge-water-normal.optimized.c3c3c7d115f2.ktx2"
+    }
+   ],
+   "gpuEstimateBytes": 32640612
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-audience/lightmap.ktx2",
+   "chunk": "cypher-audience",
+   "variant": "all",
+   "kind": "lightmap",
+   "bytes": 4538400,
+   "width": 1024,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 37,
+   "supercompression": 2,
+   "gpuEstimateBytes": 4194304,
+   "usedBy": "plaza crowd",
+   "loads": "with its chunk"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-market-south/contact-frontage.mobile.glb",
+   "chunk": "market-south",
+   "variant": "mobile",
+   "kind": "glb",
+   "bytes": 3954304,
+   "gzipBytes": 2506901,
+   "usedBy": "market lane (south)",
+   "loads": "initial (lane arrival); later for plaza arrivals",
+   "meshes": 274,
+   "materials": 86,
+   "triangles": 105396,
+   "vertices": 140997,
+   "decodedGeometryBytes": 3456628,
+   "embeddedTextureBytes": 1751519,
+   "textures": [
+    {
+     "name": "color",
+     "bytes": 490246,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "0f8a661f7d4a"
+    },
+    {
+     "name": "Runtime / contact / metallic-Runtime / contact / roughness",
+     "bytes": 93537,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "dc4fd68b2bce"
+    },
+    {
+     "name": "normal",
+     "bytes": 355562,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "f4da91a27e88"
+    },
+    {
+     "name": "shop-chai",
+     "external": "../locked-rev15z-shared/shop-chai.mobile.4acdaa2d25ec.ktx2"
+    },
+    {
+     "name": "shop-general",
+     "bytes": 65073,
+     "width": 1024,
+     "height": 256,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349584,
+     "sha": "74906c0abbbe"
+    },
+    {
+     "name": "shop-kirana",
+     "bytes": 77694,
+     "width": 1024,
+     "height": 256,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349584,
+     "sha": "d03cf35ce5f2"
+    },
+    {
+     "name": "shop-tailor",
+     "external": "../locked-rev15z-shared/shop-tailor.mobile.32aa85998407.ktx2"
+    },
+    {
+     "name": "L25-face",
+     "bytes": 139410,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "9557ab7d180f"
+    },
+    {
+     "name": "L25-roughness",
+     "bytes": 116259,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "c09d2f8921c7"
+    },
+    {
+     "name": "L25-inside",
+     "bytes": 32464,
+     "width": 1024,
+     "height": 144,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 197136,
+     "sha": "76300f9928d4"
+    },
+    {
+     "name": "pack-1",
+     "external": "../locked-rev15z-shared/pack-1.mobile.0ea796346c32.ktx2"
+    },
+    {
+     "name": "pack-2",
+     "external": "../locked-rev15z-shared/pack-2.mobile.bb8b4d80a20e.ktx2"
+    },
+    {
+     "name": "pack-3",
+     "external": "../locked-rev15z-shared/pack-3.mobile.5b7ee280f4ff.ktx2"
+    },
+    {
+     "name": "pack-4",
+     "external": "../locked-rev15z-shared/pack-4.mobile.f662b210dc6a.ktx2"
+    },
+    {
+     "name": "pack-6",
+     "external": "../locked-rev15z-shared/pack-6.mobile.89876c88ea5d.ktx2"
+    },
+    {
+     "name": "pack-0",
+     "external": "../locked-rev15z-shared/pack-0.mobile.eaccbbf55b95.ktx2"
+    },
+    {
+     "name": "pack-5",
+     "external": "../locked-rev15z-shared/pack-5.mobile.061574cdad21.ktx2"
+    },
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.mobile.1a6bb4a44191.ktx2"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.mobile.59e0a49828fe.ktx2"
+    },
+    {
+     "name": "roughness",
+     "bytes": 93744,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "d09884e25c21"
+    },
+    {
+     "name": "R16-face",
+     "bytes": 138363,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "5388669b1144"
+    },
+    {
+     "name": "R16-roughness",
+     "bytes": 115757,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "39716a6e3d07"
+    },
+    {
+     "name": "R16-inside",
+     "bytes": 23185,
+     "width": 1024,
+     "height": 144,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 197136,
+     "sha": "fd007bff3280"
+    },
+    {
+     "name": "pack-7",
+     "bytes": 10225,
+     "width": 192,
+     "height": 256,
+     "levels": 9,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 65584,
+     "sha": "9113f9c4c767",
+     "duplicateOf": 2
+    },
+    {
+     "name": "edge-water-normal",
+     "external": "../locked-rev15z-shared/edge-water-normal.mobile.c3c3c7d115f2.ktx2"
+    }
+   ],
+   "gpuEstimateBytes": 11066340
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-market-north/contact-frontage.mobile.glb",
+   "chunk": "market-north",
+   "variant": "mobile",
+   "kind": "glb",
+   "bytes": 3897620,
+   "gzipBytes": 2696580,
+   "usedBy": "market lane (north)",
+   "loads": "initial (lane arrival); later for plaza arrivals",
+   "meshes": 306,
+   "materials": 78,
+   "triangles": 72924,
+   "vertices": 117382,
+   "decodedGeometryBytes": 2298168,
+   "embeddedTextureBytes": 2205527,
+   "textures": [
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.mobile.1a6bb4a44191.ktx2"
+    },
+    {
+     "name": "color",
+     "bytes": 550750,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "c88ddf901171"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.mobile.59e0a49828fe.ktx2"
+    },
+    {
+     "name": "normal",
+     "bytes": 452423,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "8aad79bf8e83"
+    },
+    {
+     "name": "Runtime / contact / metallic-Runtime / contact / roughness",
+     "bytes": 65429,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "3972e5672a14"
+    },
+    {
+     "name": "shop-books",
+     "bytes": 81488,
+     "width": 1024,
+     "height": 256,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349584,
+     "sha": "1da0afef3308"
+    },
+    {
+     "name": "shop-chai",
+     "external": "../locked-rev15z-shared/shop-chai.mobile.4acdaa2d25ec.ktx2"
+    },
+    {
+     "name": "shop-repair",
+     "bytes": 82640,
+     "width": 1024,
+     "height": 256,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 349584,
+     "sha": "7d2a826521ac"
+    },
+    {
+     "name": "shop-tailor",
+     "external": "../locked-rev15z-shared/shop-tailor.mobile.32aa85998407.ktx2"
+    },
+    {
+     "name": "L02-face",
+     "bytes": 130915,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "266ef0723400"
+    },
+    {
+     "name": "L02-roughness",
+     "bytes": 115852,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "3309924528df"
+    },
+    {
+     "name": "L02-inside",
+     "bytes": 35069,
+     "width": 1024,
+     "height": 144,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 197136,
+     "sha": "24bb7826d8d9"
+    },
+    {
+     "name": "pack-3",
+     "external": "../locked-rev15z-shared/pack-3.mobile.5b7ee280f4ff.ktx2"
+    },
+    {
+     "name": "pack-4",
+     "external": "../locked-rev15z-shared/pack-4.mobile.f662b210dc6a.ktx2"
+    },
+    {
+     "name": "pack-5",
+     "external": "../locked-rev15z-shared/pack-5.mobile.061574cdad21.ktx2"
+    },
+    {
+     "name": "pack-6",
+     "external": "../locked-rev15z-shared/pack-6.mobile.89876c88ea5d.ktx2"
+    },
+    {
+     "name": "pack-1",
+     "external": "../locked-rev15z-shared/pack-1.mobile.0ea796346c32.ktx2"
+    },
+    {
+     "name": "pack-2",
+     "external": "../locked-rev15z-shared/pack-2.mobile.bb8b4d80a20e.ktx2"
+    },
+    {
+     "name": "pack-0",
+     "external": "../locked-rev15z-shared/pack-0.mobile.eaccbbf55b95.ktx2"
+    },
+    {
+     "name": "L07-face",
+     "bytes": 132587,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "1b64082d44d5"
+    },
+    {
+     "name": "L07-roughness",
+     "bytes": 116081,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "1fe31d98776a"
+    },
+    {
+     "name": "L07-inside",
+     "bytes": 24525,
+     "width": 1024,
+     "height": 144,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 197136,
+     "sha": "e44c7edffa3d"
+    },
+    {
+     "name": "R07-face",
+     "bytes": 134565,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "b1f93ad850bb"
+    },
+    {
+     "name": "R07-roughness",
+     "bytes": 115943,
+     "width": 1024,
+     "height": 156,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 214544,
+     "sha": "563ffd53e426"
+    },
+    {
+     "name": "R07-inside",
+     "bytes": 34988,
+     "width": 1024,
+     "height": 144,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 197136,
+     "sha": "71663249b605"
+    },
+    {
+     "name": "graphic-festival",
+     "bytes": 66166,
+     "width": 1024,
+     "height": 428,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 586192,
+     "sha": "3505dc8ce272"
+    },
+    {
+     "name": "roughness",
+     "bytes": 66106,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "c33995827e5f"
+    }
+   ],
+   "gpuEstimateBytes": 11054712
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/aggregate-1p2m-normal.optimized.93389e779a72.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 3506439,
+   "width": 2048,
+   "height": 2048,
+   "levels": 12,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 5592432,
+   "usedBy": "market-south, market-north, cypher-approach, cypher-gate, cypher-plaza",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-plaza/lightmap.ktx2",
+   "chunk": "cypher-plaza",
+   "variant": "all",
+   "kind": "lightmap",
+   "bytes": 2070534,
+   "width": 1024,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 37,
+   "supercompression": 2,
+   "gpuEstimateBytes": 4194304,
+   "usedBy": "plaza: houses, Events, Team, Contact, Accommodation, Aftermovie screen",
+   "loads": "with its chunk"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.optimized.glb",
+   "chunk": "cypher-gate",
+   "variant": "optimized",
+   "kind": "glb",
+   "bytes": 2047872,
+   "gzipBytes": 1827675,
+   "usedBy": "cypher gate",
+   "loads": "initial (lane arrival); later for plaza arrivals",
+   "meshes": 25,
+   "materials": 18,
+   "triangles": 15196,
+   "vertices": 16616,
+   "decodedGeometryBytes": 582008,
+   "embeddedTextureBytes": 1686727,
+   "textures": [
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.optimized.93389e779a72.ktx2"
+    },
+    {
+     "name": "color",
+     "bytes": 896926,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "f00b1eda0fd5"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.optimized.bec7b39002ad.ktx2"
+    },
+    {
+     "name": "normal",
+     "bytes": 469382,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "de3617bf7866"
+    },
+    {
+     "name": "roughness",
+     "bytes": 320419,
+     "width": 2048,
+     "height": 2048,
+     "levels": 12,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 5592432,
+     "sha": "15fdbff5dcd2"
+    }
+   ],
+   "gpuEstimateBytes": 17359304
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/wet-road-world-roughness.optimized.bec7b39002ad.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 2033882,
+   "width": 1536,
+   "height": 4096,
+   "levels": 13,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 8388688,
+   "usedBy": "market-south, market-north, cypher-approach, cypher-gate, cypher-plaza",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-market-north/lightmap.ktx2",
+   "chunk": "market-north",
+   "variant": "all",
+   "kind": "lightmap",
+   "bytes": 1893644,
+   "width": 1024,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 37,
+   "supercompression": 2,
+   "gpuEstimateBytes": 4194304,
+   "usedBy": "market lane (north)",
+   "loads": "with its chunk"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-gate/lightmap.ktx2",
+   "chunk": "cypher-gate",
+   "variant": "all",
+   "kind": "lightmap",
+   "bytes": 1797423,
+   "width": 1024,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 37,
+   "supercompression": 2,
+   "gpuEstimateBytes": 4194304,
+   "usedBy": "cypher gate",
+   "loads": "with its chunk"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.hdr",
+   "kind": "probe-hdr",
+   "variant": "optimized (no longer loaded)",
+   "bytes": 1473972,
+   "gpuEstimateBytes": 0,
+   "usedBy": "reflections near market-south",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.hdr",
+   "kind": "probe-hdr",
+   "variant": "optimized (no longer loaded)",
+   "bytes": 1446218,
+   "gpuEstimateBytes": 0,
+   "usedBy": "reflections near market-north",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.hdr",
+   "kind": "probe-hdr",
+   "variant": "optimized (no longer loaded)",
+   "bytes": 1414256,
+   "gpuEstimateBytes": 0,
+   "usedBy": "reflections near approach",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-gate.hdr",
+   "kind": "probe-hdr",
+   "variant": "optimized (no longer loaded)",
+   "bytes": 1363572,
+   "gpuEstimateBytes": 0,
+   "usedBy": "reflections near gate",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-market-south/lightmap.ktx2",
+   "chunk": "market-south",
+   "variant": "all",
+   "kind": "lightmap",
+   "bytes": 1301836,
+   "width": 1024,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 37,
+   "supercompression": 2,
+   "gpuEstimateBytes": 4194304,
+   "usedBy": "market lane (south)",
+   "loads": "with its chunk"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/supporting-atlas.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "optimized",
+   "name": "supporting-atlas",
+   "bytes": 1295512,
+   "width": 2172,
+   "height": 724,
+   "levels": 12,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 2102480,
+   "usedBy": "shutter murals / supporting graffiti",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-screen.hdr",
+   "kind": "probe-hdr",
+   "variant": "optimized (no longer loaded)",
+   "bytes": 1240774,
+   "gpuEstimateBytes": 0,
+   "usedBy": "reflections near screen",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-forecourt.hdr",
+   "kind": "probe-hdr",
+   "variant": "optimized (no longer loaded)",
+   "bytes": 1210927,
+   "gpuEstimateBytes": 0,
+   "usedBy": "reflections near forecourt",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-plaza.hdr",
+   "kind": "probe-hdr",
+   "variant": "optimized (no longer loaded)",
+   "bytes": 1209322,
+   "gpuEstimateBytes": 0,
+   "usedBy": "reflections near plaza",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/aggregate-color.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "optimized",
+   "name": "aggregate",
+   "bytes": 1167154,
+   "width": 1024,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 1398128,
+   "usedBy": "road colour (all chunks)",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-gate/contact-frontage.mobile.glb",
+   "chunk": "cypher-gate",
+   "variant": "mobile",
+   "kind": "glb",
+   "bytes": 1110916,
+   "gzipBytes": 890834,
+   "usedBy": "cypher gate",
+   "loads": "initial (lane arrival); later for plaza arrivals",
+   "meshes": 25,
+   "materials": 18,
+   "triangles": 15196,
+   "vertices": 16616,
+   "decodedGeometryBytes": 582008,
+   "embeddedTextureBytes": 749916,
+   "textures": [
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.mobile.1a6bb4a44191.ktx2"
+    },
+    {
+     "name": "color",
+     "bytes": 306217,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "60ffcfeef529"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.mobile.59e0a49828fe.ktx2"
+    },
+    {
+     "name": "normal",
+     "bytes": 258849,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "339e5a2c98cc"
+    },
+    {
+     "name": "roughness",
+     "bytes": 184850,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "17a7a4597367"
+    }
+   ],
+   "gpuEstimateBytes": 4776392
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/aggregate-1p2m-normal.mobile.1a6bb4a44191.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 1105775,
+   "width": 1024,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 1398128,
+   "usedBy": "market-south, market-north, cypher-approach, cypher-gate, cypher-plaza",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-approach/contact-frontage.mobile.glb",
+   "chunk": "cypher-approach",
+   "variant": "mobile",
+   "kind": "glb",
+   "bytes": 1050412,
+   "gzipBytes": 729061,
+   "usedBy": "navigation board / sponsor LEDs",
+   "loads": "initial (lane arrival); later for plaza arrivals",
+   "meshes": 46,
+   "materials": 32,
+   "triangles": 49643,
+   "vertices": 50352,
+   "decodedGeometryBytes": 1526482,
+   "embeddedTextureBytes": 50341,
+   "textures": [
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.mobile.1a6bb4a44191.ktx2"
+    },
+    {
+     "name": "color",
+     "bytes": 50341,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "fe1ddfd443a4"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.mobile.59e0a49828fe.ktx2"
+    }
+   ],
+   "gpuEstimateBytes": 2924610
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-approach/contact-frontage.optimized.glb",
+   "chunk": "cypher-approach",
+   "variant": "optimized",
+   "kind": "glb",
+   "bytes": 1050388,
+   "gzipBytes": 729033,
+   "usedBy": "navigation board / sponsor LEDs",
+   "loads": "initial (lane arrival); later for plaza arrivals",
+   "meshes": 46,
+   "materials": 32,
+   "triangles": 49643,
+   "vertices": 50352,
+   "decodedGeometryBytes": 1526482,
+   "embeddedTextureBytes": 50319,
+   "textures": [
+    {
+     "name": "aggregate-1p2m-normal",
+     "external": "../locked-rev15z-shared/aggregate-1p2m-normal.optimized.93389e779a72.ktx2"
+    },
+    {
+     "name": "color",
+     "bytes": 50319,
+     "width": 1024,
+     "height": 1024,
+     "levels": 11,
+     "vkFormat": 0,
+     "supercompression": 2,
+     "gpuBlockBytes": 1398128,
+     "sha": "a73b8e02430a"
+    },
+    {
+     "name": "wet-road-world-roughness",
+     "external": "../locked-rev15z-shared/wet-road-world-roughness.optimized.bec7b39002ad.ktx2"
+    }
+   ],
+   "gpuEstimateBytes": 2924610
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/ritviz.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "optimized",
+   "name": "ritviz",
+   "bytes": 722355,
+   "width": 1536,
+   "height": 512,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 1048624,
+   "usedBy": "shutter murals / supporting graffiti",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/chaar-diwari.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "optimized",
+   "name": "chaar-diwari",
+   "bytes": 652239,
+   "width": 1536,
+   "height": 512,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 1048624,
+   "usedBy": "shutter murals / supporting graffiti",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/neha-kakkar.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "optimized",
+   "name": "neha-kakkar",
+   "bytes": 622738,
+   "width": 1536,
+   "height": 512,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 1048624,
+   "usedBy": "shutter murals / supporting graffiti",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-cypher-approach/lightmap.ktx2",
+   "chunk": "cypher-approach",
+   "variant": "all",
+   "kind": "lightmap",
+   "bytes": 397348,
+   "width": 1024,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 37,
+   "supercompression": 2,
+   "gpuEstimateBytes": 4194304,
+   "usedBy": "navigation board / sponsor LEDs",
+   "loads": "with its chunk"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-market-south.mobile.hdr",
+   "kind": "probe-hdr",
+   "variant": "all",
+   "bytes": 390710,
+   "gpuEstimateBytes": 3145728,
+   "usedBy": "reflections near market-south",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-market-north.mobile.hdr",
+   "kind": "probe-hdr",
+   "variant": "all",
+   "bytes": 388088,
+   "gpuEstimateBytes": 3145728,
+   "usedBy": "reflections near market-north",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-approach.mobile.hdr",
+   "kind": "probe-hdr",
+   "variant": "all",
+   "bytes": 385527,
+   "gpuEstimateBytes": 3145728,
+   "usedBy": "reflections near approach",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-gate.mobile.hdr",
+   "kind": "probe-hdr",
+   "variant": "all",
+   "bytes": 379027,
+   "gpuEstimateBytes": 3145728,
+   "usedBy": "reflections near gate",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/supporting-atlas.mobile.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "mobile",
+   "name": "supporting-atlas",
+   "bytes": 369810,
+   "width": 1086,
+   "height": 362,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 529952,
+   "usedBy": "shutter murals / supporting graffiti",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-screen.mobile.hdr",
+   "kind": "probe-hdr",
+   "variant": "all",
+   "bytes": 360106,
+   "gpuEstimateBytes": 3145728,
+   "usedBy": "reflections near screen",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-plaza.mobile.hdr",
+   "kind": "probe-hdr",
+   "variant": "all",
+   "bytes": 352787,
+   "gpuEstimateBytes": 3145728,
+   "usedBy": "reflections near plaza",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/probe-forecourt.mobile.hdr",
+   "kind": "probe-hdr",
+   "variant": "all",
+   "bytes": 348980,
+   "gpuEstimateBytes": 3145728,
+   "usedBy": "reflections near forecourt",
+   "loads": "background, after chunks"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/wet-road-world-roughness.mobile.59e0a49828fe.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 307336,
+   "width": 384,
+   "height": 1024,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 524368,
+   "usedBy": "market-south, market-north, cypher-approach, cypher-gate, cypher-plaza",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/aggregate-color.mobile.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "mobile",
+   "name": "aggregate",
+   "bytes": 303565,
+   "width": 512,
+   "height": 512,
+   "levels": 10,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 349552,
+   "usedBy": "road colour (all chunks)",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/ritviz.mobile.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "mobile",
+   "name": "ritviz",
+   "bytes": 195060,
+   "width": 768,
+   "height": 256,
+   "levels": 10,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 262192,
+   "usedBy": "shutter murals / supporting graffiti",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/chaar-diwari.mobile.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "mobile",
+   "name": "chaar-diwari",
+   "bytes": 179319,
+   "width": 768,
+   "height": 256,
+   "levels": 10,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 262192,
+   "usedBy": "shutter murals / supporting graffiti",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-fidelity/neha-kakkar.mobile.ktx2",
+   "kind": "fidelity-texture",
+   "variant": "mobile",
+   "name": "neha-kakkar",
+   "bytes": 174169,
+   "width": 768,
+   "height": 256,
+   "levels": 10,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 262192,
+   "usedBy": "shutter murals / supporting graffiti",
+   "loads": "initial"
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/shop-tailor.optimized.3734d1836476.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 74594,
+   "width": 1200,
+   "height": 300,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 482256,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/shop-tailor.mobile.32aa85998407.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 66468,
+   "width": 1024,
+   "height": 256,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 349584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/shop-chai.optimized.0dac5c22432f.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 64498,
+   "width": 1200,
+   "height": 300,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 482256,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/shop-chai.mobile.4acdaa2d25ec.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 59388,
+   "width": 1024,
+   "height": 256,
+   "levels": 11,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 349584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-2.optimized.bb8b4d80a20e.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 9565,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-2.mobile.bb8b4d80a20e.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 9565,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-0.optimized.eaccbbf55b95.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 9510,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-0.mobile.eaccbbf55b95.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 9510,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-1.optimized.0ea796346c32.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 9390,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-1.mobile.0ea796346c32.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 9390,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-4.optimized.f662b210dc6a.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 8816,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-4.mobile.f662b210dc6a.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 8816,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-3.optimized.5b7ee280f4ff.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 8540,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-3.mobile.5b7ee280f4ff.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 8540,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-6.optimized.89876c88ea5d.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 8313,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-6.mobile.89876c88ea5d.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 8313,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-5.optimized.061574cdad21.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 8132,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/pack-5.mobile.061574cdad21.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 8132,
+   "width": 192,
+   "height": 256,
+   "levels": 9,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 65584,
+   "usedBy": "market-south, market-north",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/edge-water-normal.optimized.c3c3c7d115f2.ktx2",
+   "kind": "shared-texture",
+   "variant": "optimized",
+   "bytes": 3792,
+   "width": 128,
+   "height": 128,
+   "levels": 8,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 21872,
+   "usedBy": "market-south, cypher-plaza",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  },
+  {
+   "file": "/models/gullyverse/locked-rev15z-shared/edge-water-normal.mobile.c3c3c7d115f2.ktx2",
+   "kind": "shared-texture",
+   "variant": "mobile",
+   "bytes": 3792,
+   "width": 128,
+   "height": 128,
+   "levels": 8,
+   "vkFormat": 0,
+   "supercompression": 2,
+   "gpuEstimateBytes": 21872,
+   "usedBy": "market-south, cypher-plaza",
+   "loads": "once, with the first chunk that needs it",
+   "shared": true
+  }
+ ]
+}
