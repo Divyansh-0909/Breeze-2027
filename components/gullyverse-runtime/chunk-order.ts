@@ -1,7 +1,8 @@
 export type Chunk = "cypher-gate" | "cypher-approach" | "market-south" | "market-north" | "cypher-plaza" | "cypher-audience";
 export const laneChunks: Chunk[] = ["market-south", "market-north", "cypher-approach", "cypher-gate"];
-export const plazaChunks: Chunk[] = ["cypher-gate", "cypher-approach", "cypher-plaza", "cypher-audience"];
-const all: Chunk[] = ["cypher-gate", "cypher-approach", "market-south", "market-north", "cypher-plaza", "cypher-audience"];
+export const plazaChunks: Chunk[] = ["cypher-gate", "cypher-approach", "cypher-plaza"];
+// The Rev13A crowd chunk (cypher-audience) is no longer loaded: the Rocketbox crowd replaces it.
+const all: Chunk[] = ["cypher-gate", "cypher-approach", "market-south", "market-north", "cypher-plaza"];
 
 /** The chunks around the arrival pose load first (the plaza begins at about z = -8); the rest stream after. */
 export function chunkOrder(z: number) {

@@ -60,9 +60,13 @@ test("the arrival half of the gully loads first and every chunk loads exactly on
   const { chunkOrder } = await import("../../components/gullyverse-runtime/chunk-order");
   const lane = chunkOrder(24), plaza = chunkOrder(-30);
   assert.deepEqual(lane.near, ["market-south", "market-north", "cypher-approach", "cypher-gate"]);
-  assert.deepEqual(lane.later, ["cypher-plaza", "cypher-audience"]);
+  assert.deepEqual(lane.later, ["cypher-plaza"]);
   assert.deepEqual(plaza.later, ["market-south", "market-north"]);
-  for (const order of [lane, plaza]) assert.equal(new Set([...order.near, ...order.later]).size, 6);
+  // The Rev13A crowd chunk is replaced by the Rocketbox crowd and never loaded.
+  for (const order of [lane, plaza]) {
+    assert.equal(new Set([...order.near, ...order.later]).size, 5);
+    assert.ok(![...order.near, ...order.later].includes("cypher-audience" as never));
+  }
 });
 
 test("people are identified by their archetype and seam normals average only across soft angles", async () => {
@@ -99,5 +103,20 @@ test("people masks match the published chunks and hide only skin under clothing"
       total += entry.triangles;
     }
     assert.ok(hidden / total > 0.02 && hidden / total < 0.1, `${chunk}: ${hidden}/${total}`);
+  }
+});
+
+test("the Rocketbox crowd fills every Rev15Z crowd position with a published avatar and pose", () => {
+  const crowd = JSON.parse(readFileSync(root + "crowd-rocketbox/crowd.json", "utf8"));
+  assert.equal(crowd.placements.length, 189);
+  for (const p of crowd.placements) {
+    const avatar = crowd.avatars[p.avatar];
+    assert.ok(avatar && existsSync(root + "crowd-rocketbox/" + avatar.file) && existsSync(root + "crowd-rocketbox/" + avatar.mobileFile), p.avatar);
+    assert.ok(["idle", "cheer", "clap", "dance"].includes(p.pose));
+    assert.ok(p.height > 1.5 && p.height < 2);
+  }
+  for (const file of new Set(Object.values(crowd.avatars).map((a: any) => a.file))) {
+    const names = glbJson(root + "crowd-rocketbox/" + file).nodes.map((n: { name: string }) => n.name);
+    for (const pose of ["idle", "cheer", "clap", "dance"]) for (const lod of ["lod0", "lod1", "lod2"]) assert.ok(names.includes(`${pose}|${lod}`), `${file} ${pose}|${lod}`);
   }
 });

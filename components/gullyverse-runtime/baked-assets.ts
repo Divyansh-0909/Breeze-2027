@@ -16,7 +16,9 @@ export class BakedAssetPool {
   /** Releases the shared transcoder workers (after every lease has been released). */
   dispose() { this.ktx?.dispose(); this.ktx = undefined; this.sharedImages.clear(); }
   /** `batch`: chunk URLs whose plain static meshes are merged per material (see static-batching.ts). */
-  constructor(private renderer: THREE.WebGLRenderer, private workerLimit = 4, private fidelity?: Fidelity, private batch?: RegExp) {}
+  /** `hidePeople`: hide the exported Rev13A people (the Rocketbox crowd stands in their places). */
+  constructor(private renderer: THREE.WebGLRenderer, private workerLimit = 4, private fidelity?: Fidelity, private batch?: RegExp,
+    private hidePeople = false) {}
   get size() { return this.entries.size; }
   acquire(base: string, mobile: boolean, bake: { range: number }, baseline = false) {
     const url = base + (baseline ? "contact-frontage.png.glb" : mobile ? "contact-frontage.mobile.glb" : "contact-frontage.optimized.glb");
@@ -68,7 +70,7 @@ export class BakedAssetPool {
     const dispose = () => { geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); textures.forEach(t => t.dispose()); };
     try {
       // Optional: chunks without people have no mask file.
-      const peopleMaskRequest = /locked-rev15z-cypher-(approach|plaza|audience)\//.test(base)
+      const peopleMaskRequest = !this.hidePeople && /locked-rev15z-cypher-(approach|plaza|audience)\//.test(base)
         ? fetch(base + "people-mask.json").then(r => r.ok ? r.json() as Promise<PeopleMask> : null, () => null) : Promise.resolve(null);
       const gltf = await loader.loadAsync(url);
       // Collect ownership before the second asynchronous load, including failure paths.
@@ -91,6 +93,12 @@ export class BakedAssetPool {
       for (const person of people) {
         const meshes: THREE.Mesh[] = [];
         person.traverse(o => { if ((o as THREE.Mesh).isMesh) meshes.push(o as THREE.Mesh); });
+        if (this.hidePeople) {
+          // Replaced by the Rocketbox crowd (rocketbox-crowd.ts).
+          person.visible = false;
+          meshes.forEach(mesh => { mesh.userData.breezePersonMesh = true; });
+          continue;
+        }
         applyPeopleMask(person, meshes, peopleMask);
         for (const mesh of meshes) {
           mesh.userData.breezePersonMesh = true;

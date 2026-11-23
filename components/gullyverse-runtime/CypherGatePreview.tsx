@@ -28,6 +28,7 @@ import { useScreenFilm } from "./cypher-screen-film";
 import { GullyDiagnostics, markLoad } from "./gully-diagnostics";
 import { QualityGovernor } from "./quality-governor";
 import { chunkOrder, laneChunks, type Chunk } from "./chunk-order";
+import { loadRocketboxCrowd, type Crowd } from "./rocketbox-crowd";
 import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
 import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
@@ -144,7 +145,8 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   const [fidelity] = useState(() => new Fidelity(gl, window.matchMedia("(max-width: 699px)").matches,
     assetRoot + "market-south/transcoders/"));
   // The market chunks hold most of the small static meshes (shops, frontages): merged per material.
-  const [pool] = useState(() => new BakedAssetPool(gl, 2, fidelity, /locked-rev15z-market-(south|north)\//));
+  const [pool] = useState(() => new BakedAssetPool(gl, 2, fidelity, /locked-rev15z-market-(south|north)\//, true));
+  const crowd = useRef<Crowd | null>(null);
   useEffect(() => () => pool.dispose(), [pool]);
   useEffect(() => () => fidelity.dispose(), [fidelity]);
   // Chunks stream in: the visitor's half of the gully first, the other half once walking has started.
@@ -170,6 +172,8 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     const abort = new AbortController();
     const releases = new Set<() => void>();
     const releaseAll = () => {
+      crowd.current?.dispose();
+      crowd.current = null;
       lamps.current?.dispose();
       lamps.current = undefined;
       display.current?.dispose();
@@ -249,8 +253,27 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       // so it appears without a compile hitch.
       await walkingStarted(runtime, abort.signal);
       await laterAllowed(runtime, near, abort.signal);
-      reportStreaming(later.length);
-      let remaining = later.length;
+      reportStreaming(later.length + 1);
+      let remaining = later.length + 1;
+      // The Rocketbox crowd streams alongside the other half; a failure leaves the gully without people.
+      const crowdLoad = (async () => {
+        markLoad("rocketbox-crowd", "start");
+        try {
+          const loaded = await loadRocketboxCrowd(gl, mobile, assetRoot + "market-south/transcoders/", abort.signal);
+          if (abort.signal.aborted) { loaded.dispose(); return; }
+          loaded.update(camera);
+          await prepareLate(gl, loaded.group, camera, scene);
+          if (abort.signal.aborted) { loaded.dispose(); return; }
+          scene.add(loaded.group);
+          crowd.current = loaded;
+          markLoad("rocketbox-crowd", "ready");
+        } catch (error) {
+          markLoad("rocketbox-crowd", "failed");
+          if (!abort.signal.aborted) console.warn("The crowd could not load", error);
+        } finally {
+          if (!abort.signal.aborted) reportStreaming(--remaining);
+        }
+      })();
       await Promise.all(later.map(async name => {
         try {
           const asset = await loadChunk(assetRoot + name + "/");
@@ -269,6 +292,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
           if (!abort.signal.aborted) reportStreaming(--remaining);
         }
       }));
+      await crowdLoad;
       performance.mark("breeze:world-ready");
       reportWorld(true);
     }
@@ -426,6 +450,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       }
     }
     if (assets) fidelity.updateEnvironment(scene, camera);
+    crowd.current?.update(camera);
     if (curtain.current) curtain.current.style.opacity = String(runtime.revealOpacity);
     const current = zoneAt(runtime.pose.z);
     if (current !== zone.current) {
