@@ -24,8 +24,8 @@ function NoScript() {
   return <noscript>Gullyverse requires JavaScript. <a href="/after-movie.mp4">Watch the Aftermovie</a> or <Link href="/events">browse festival information</Link>.</noscript>;
 }
 
-// Visitors enter through the original quarry, then walk the gully and cypher on
-// the same canvas. `?start=` reopens a map stop; `?hub=classic` keeps the old hub.
+// Visitors start in the walkable gully (market lane); `?start=quarry` keeps the original quarry intro.
+// `?start=<stop>` opens a map stop; `?hub=classic` keeps the old hub.
 export default async function Home({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const params = await searchParams;
   // The layout mounts the original hub for these URLs.
@@ -33,7 +33,8 @@ export default async function Home({ searchParams }: { searchParams: Promise<Rec
   const start = params.start, team = typeof params.team === "string" ? params.team : undefined;
   const catalog = await liveCatalog();
   return <>
-    <CypherGatePreview start={isCypherStart(start) ? start : "quarry"} team={team} canSendContact live catalog={catalog} />
+    <CypherGatePreview start={start === "quarry" ? "quarry" : isCypherStart(start) ? start : "market"} team={team}
+      canSendContact live catalog={catalog} />
     <NoScript />
   </>;
 }
