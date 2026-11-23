@@ -97,7 +97,10 @@ export class Fidelity {
     try {
       for (const probe of this.data.probes) {
         if (this.disposed) return;
-        const sky = await hdr.loadAsync(root + (this.mobile ? probe.mobileFile : probe.file));
+        // 512 x 256 panoramas everywhere (128-pixel PMREM cubes): with the matte roughness floor (0.75, metals
+        // 0.5) reflections sample only the blurred levels, which this size fully covers. The 1024-wide files
+        // (probe.file) cost 7 MB more per visit for a difference visible only in the sharpest puddles.
+        const sky = await hdr.loadAsync(root + probe.mobileFile);
         if (this.disposed) { sky.dispose(); return; }
         sky.mapping = THREE.EquirectangularReflectionMapping;
         this.probeEnvs.push({ probe, env: pmrem.fromEquirectangular(sky).texture });

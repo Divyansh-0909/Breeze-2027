@@ -1,0 +1,64 @@
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync } from "node:fs";
+import { test } from "node:test";
+import { BoxGeometry, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
+import { batchStatic } from "../../components/gullyverse-runtime/static-batching";
+
+const root = "public/models/gullyverse/";
+const chunks = ["market-south", "market-north", "cypher-approach", "cypher-gate", "cypher-plaza", "cypher-audience"];
+const glbJson = (file: string) => { const b = readFileSync(file); return JSON.parse(b.subarray(20, 20 + b.readUInt32LE(12)).toString()); };
+
+test("chunks reference every shared road texture by URI, and each shared file matches its manifest", () => {
+  const shared = JSON.parse(readFileSync(root + "locked-rev15z-shared/manifest.json", "utf8"));
+  for (const entry of shared.files) {
+    const data = readFileSync(root + "locked-rev15z-shared/" + entry.file);
+    assert.equal(data.length, entry.bytes);
+    assert.equal(createHash("sha256").update(data).digest("hex"), entry.sha256);
+  }
+  for (const chunk of chunks) for (const variant of ["optimized", "mobile"]) {
+    const file = `${root}locked-rev15z-${chunk}/contact-frontage.${variant}.glb`;
+    const json = glbJson(file);
+    for (const image of json.images ?? []) {
+      if (image.uri) assert.ok(existsSync(`${root}locked-rev15z-${chunk}/${image.uri}`), `${file}: ${image.uri}`);
+      else assert.ok(image.bufferView < json.bufferViews.length, `${file}: ${image.name}`);
+    }
+    for (const accessor of json.accessors ?? []) assert.ok(accessor.bufferView === undefined || accessor.bufferView < json.bufferViews.length);
+    const names = (json.images ?? []).filter((image: { uri?: string }) => !image.uri).map((image: { name: string }) => image.name);
+    if (chunk !== "cypher-audience") for (const road of ["aggregate-1p2m-normal", "wet-road-world-roughness"]) assert.ok(!names.includes(road), `${chunk} still embeds ${road}`);
+    const manifest = JSON.parse(readFileSync(`${root}locked-rev15z-${chunk}/manifest.json`, "utf8"));
+    const listed = manifest.files.find((entry: { file: string }) => entry.file === `contact-frontage.${variant}.glb`);
+    assert.equal(createHash("sha256").update(readFileSync(file)).digest("hex"), listed.sha256);
+  }
+});
+
+test("static batching merges plain meshes per material and keeps world positions and special objects", () => {
+  const group = new Group();
+  const wall = new MeshStandardMaterial({ name: "wall" }), lamp = new MeshStandardMaterial({ name: "lamp" });
+  const glass = new MeshStandardMaterial({ name: "glass", transparent: true });
+  const at = (x: number, material: MeshStandardMaterial, userData: Record<string, unknown> = {}) => {
+    const mesh = new Mesh(new BoxGeometry(1, 1, 1), material); mesh.position.set(x, 0, 0); mesh.userData = userData; group.add(mesh); return mesh;
+  };
+  at(0, wall, { runtimeOriginalSource: "a", shopId: "s1" }); at(5, wall); at(10, wall);
+  const special = at(20, lamp, { streetLampId: "L01" }); at(25, lamp); const pane = at(30, glass); at(35, glass);
+  const result = batchStatic(group);
+  assert.equal(result.before, 7);
+  assert.equal(result.after, 5); // three walls -> one; lamp, plain lamp-material mesh and both glass panes stay
+  assert.ok(special.parent === group && pane.parent === group);
+  const batched = group.children.find(child => child.userData.batchedFrom === 3) as Mesh;
+  assert.ok(batched);
+  batched.geometry.computeBoundingBox();
+  const box = batched.geometry.boundingBox!;
+  assert.deepEqual([box.min.x, box.max.x], [-0.5, 10.5]);
+  assert.equal(batched.material, wall);
+  assert.ok(new Vector3(10, 0, 0).distanceTo(new Vector3(box.max.x - 0.5, 0, 0)) < 1e-6);
+});
+
+test("the arrival half of the gully loads first and every chunk loads exactly once", async () => {
+  const { chunkOrder } = await import("../../components/gullyverse-runtime/chunk-order");
+  const lane = chunkOrder(24), plaza = chunkOrder(-30);
+  assert.deepEqual(lane.near, ["market-south", "market-north", "cypher-approach", "cypher-gate"]);
+  assert.deepEqual(lane.later, ["cypher-plaza", "cypher-audience"]);
+  assert.deepEqual(plaza.later, ["market-south", "market-north"]);
+  for (const order of [lane, plaza]) assert.equal(new Set([...order.near, ...order.later]).size, 6);
+});

@@ -5,20 +5,26 @@ import { stageVideoSource } from "../landing-page/stage3d/useStageVideo";
 
 export type ScreenFilm = { video: HTMLVideoElement; texture: VideoTexture };
 
+/** The background loop: the same film at 1280 x 720 and about 1.1 Mbit/s (30 MB instead of 52 MB). */
+export const loopSource = "/after-movie-720.mp4";
+
 /**
- * The plaza screen's Aftermovie: one looping video for the whole visit. It starts muted (browsers allow
- * muted autoplay); its sound reaches the gully through GullyAudio once the visitor first interacts.
- * It pauses while the tab is hidden. `restart` plays it from the start (the Watch action).
+ * The plaza screen's Aftermovie: one looping video for the whole visit. It starts once `active` (the
+ * world has finished streaming, so the film never competes with it for bandwidth), muted (browsers
+ * allow muted autoplay); its sound reaches the gully through GullyAudio once the visitor first
+ * interacts. It pauses while the tab is hidden. The loop plays the 720p copy; `restart` (the Watch
+ * action) switches to the full 1080p film and plays it from the start.
  */
-export function useScreenFilm(onError: () => void) {
+export function useScreenFilm(onError: () => void, active: boolean) {
   const [film, setFilm] = useState<ScreenFilm | null>(null);
   const [ready, setReady] = useState(false);
   const failed = useRef(onError);
   failed.current = onError;
 
   useEffect(() => {
+    if (!active) return;
     const video = document.createElement("video");
-    video.src = stageVideoSource; video.loop = true; video.muted = true; video.playsInline = true;
+    video.src = loopSource; video.loop = true; video.muted = true; video.playsInline = true;
     video.setAttribute("playsinline", ""); video.preload = "auto";
     const texture = new VideoTexture(video);
     texture.colorSpace = SRGBColorSpace; texture.minFilter = LinearFilter;
@@ -39,12 +45,12 @@ export function useScreenFilm(onError: () => void) {
       texture.dispose();
       setFilm(null); setReady(false);
     };
-  }, []);
+  }, [active]);
 
   const restart = useCallback(() => {
     if (!film) return;
     const { video } = film;
-    if (video.error) { video.src = stageVideoSource; video.load(); }
+    if (video.error || !video.src.endsWith(stageVideoSource)) { video.src = stageVideoSource; video.load(); }
     video.currentTime = 0;
     void video.play().catch(() => failed.current());
   }, [film]);

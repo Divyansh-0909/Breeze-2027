@@ -4,12 +4,18 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
 import { specularOnlyEnvironment, type Fidelity } from "./fidelity";
+import { batchStatic } from "./static-batching";
 
 export type BakedAsset = { scene: THREE.Group; rgbmRange?: number; dispose(): void };
 /** Leases cancel ownership immediately and dispose late results after the last release. */
 export class BakedAssetPool {
   private entries = new Map<string, { users: number; promise: Promise<BakedAsset> }>();
-  constructor(private renderer: THREE.WebGLRenderer, private workerLimit = 4, private fidelity?: Fidelity) {}
+  private sharedImages = new Map<string, Promise<THREE.Texture>>();
+  private ktx?: KTX2Loader;
+  /** Releases the shared transcoder workers (after every lease has been released). */
+  dispose() { this.ktx?.dispose(); this.ktx = undefined; this.sharedImages.clear(); }
+  /** `batch`: chunk URLs whose plain static meshes are merged per material (see static-batching.ts). */
+  constructor(private renderer: THREE.WebGLRenderer, private workerLimit = 4, private fidelity?: Fidelity, private batch?: RegExp) {}
   get size() { return this.entries.size; }
   acquire(base: string, mobile: boolean, bake: { range: number }, baseline = false) {
     const url = base + (baseline ? "contact-frontage.png.glb" : mobile ? "contact-frontage.mobile.glb" : "contact-frontage.optimized.glb");
@@ -35,10 +41,30 @@ export class BakedAssetPool {
     };
   }
   private async load(url: string, base: string, bake: { range: number }, baseline: boolean): Promise<BakedAsset> {
-    const ktx = new KTX2Loader().setTranscoderPath(base + "transcoders/").setWorkerLimit(this.workerLimit).detectSupport(this.renderer);
+    // One transcoder (and its workers) for every chunk: the chunks ship identical copies of it.
+    const ktx = this.ktx ??= new KTX2Loader().setTranscoderPath(base + "transcoders/").setWorkerLimit(this.workerLimit).detectSupport(this.renderer);
     const loader = new GLTFLoader().setKTX2Loader(ktx).setMeshoptDecoder(MeshoptDecoder);
+    // Images referenced by URI (road textures every chunk shares, see share-textures.mjs) are fetched,
+    // transcoded and uploaded once per pool: every chunk gets a clone sharing the same source.
+    const absolute = new URL(url, window.location.href);
+    loader.register(parser => {
+      const original = parser.loadImageSource.bind(parser);
+      parser.loadImageSource = (index: number, imageLoader: unknown) => {
+        const uri: string | undefined = parser.json.images?.[index]?.uri;
+        if (!uri || uri.startsWith("data:")) return original(index, imageLoader);
+        const key = new URL(uri, absolute).href;
+        let shared = this.sharedImages.get(key);
+        if (!shared) {
+          shared = original(index, imageLoader) as Promise<THREE.Texture>;
+          this.sharedImages.set(key, shared);
+          shared.catch(() => { if (this.sharedImages.get(key) === shared) this.sharedImages.delete(key); });
+        }
+        return shared.then(texture => texture.clone());
+      };
+      return { name: "BREEZE_shared_images" };
+    });
     const geometries = new Set<THREE.BufferGeometry>(), materials = new Set<THREE.Material>(), textures = new Set<THREE.Texture>();
-    const dispose = () => { geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); textures.forEach(t => t.dispose()); ktx.dispose(); };
+    const dispose = () => { geometries.forEach(g => g.dispose()); materials.forEach(m => m.dispose()); textures.forEach(t => t.dispose()); };
     try {
       const gltf = await loader.loadAsync(url);
       // Collect ownership before the second asynchronous load, including failure paths.
@@ -90,6 +116,11 @@ export class BakedAssetPool {
           }
         }
       });
+      if (this.batch?.test(url)) {
+        const batched = batchStatic(gltf.scene);
+        batched.geometries.forEach(geometry => geometries.add(geometry));
+        gltf.scene.userData.batching = { meshesBefore: batched.before, meshesAfter: batched.after };
+      }
       return { scene: gltf.scene, rgbmRange: baseline ? undefined : bake.range, dispose };
     } catch (error) { dispose(); throw error; }
   }

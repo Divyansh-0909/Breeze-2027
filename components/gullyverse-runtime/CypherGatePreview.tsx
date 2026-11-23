@@ -3,7 +3,8 @@
 import Link from "next/link";
 import React, { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { AgXToneMapping, Box3, Color, Euler, MathUtils, PerspectiveCamera, Vector3, type VideoTexture } from "three";
+import { AgXToneMapping, Box3, Color, Euler, MathUtils, Mesh, PerspectiveCamera, Texture, Vector3, VideoTexture,
+  type Camera, type Object3D, type Scene, type WebGLRenderer } from "three";
 import { useImmersiveInput } from "../immersive/input";
 import { phoneCamera, ReadinessGate, SceneRenderer } from "../immersive/rendering";
 import { ImmersiveRuntime, sprintSpeed, walkSpeed } from "../immersive/runtime";
@@ -25,6 +26,8 @@ import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels, 
 import { stageVideoSource } from "../landing-page/stage3d/useStageVideo";
 import { useScreenFilm } from "./cypher-screen-film";
 import { GullyDiagnostics, markLoad } from "./gully-diagnostics";
+import { QualityGovernor } from "./quality-governor";
+import { chunkOrder, laneChunks, type Chunk } from "./chunk-order";
 import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
 import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
@@ -42,6 +45,40 @@ const reviewCamera = (() => {
 })();
 const eventsFocus = lookAtPose([-9.7, 8.9, -31.05], [-15.85, 8.15, -31.05]);
 const assetRoot = "/models/gullyverse/locked-rev15z-";
+function walkingStarted(runtime: ImmersiveRuntime, signal: AbortSignal) {
+  return new Promise<void>((resolve, reject) => {
+    const check = () => { if (runtime.getSnapshot().phase === "local") { off(); resolve(); } };
+    const off = runtime.subscribe(check);
+    signal.addEventListener("abort", () => { off(); reject(signal.reason); }, { once: true });
+    check();
+  });
+}
+/**
+ * Full speed: one second after walking starts. Data saver or a 2G-class connection: when the visitor
+ * comes within about 20 m of the other half (or after three minutes).
+ */
+function laterAllowed(runtime: ImmersiveRuntime, near: Chunk[], signal: AbortSignal) {
+  const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  const constrained = !!connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType ?? "");
+  return new Promise<void>((resolve, reject) => {
+    const towardsPlaza = near === laneChunks, started = performance.now();
+    const timer = window.setInterval(() => {
+      const z = runtime.pose.z, close = towardsPlaza ? z < 14 : z > -26;
+      if (!constrained ? performance.now() - started > 1000 : close || performance.now() - started > 180000) { window.clearInterval(timer); resolve(); }
+    }, 250);
+    signal.addEventListener("abort", () => { window.clearInterval(timer); reject(signal.reason); }, { once: true });
+  });
+}
+/** Uploads a late chunk's textures and compiles its programs with the scene's lighting before it is shown. */
+async function prepareLate(gl: WebGLRenderer, root: Object3D, camera: Camera, scene: Scene) {
+  root.traverse(object => {
+    if (!(object instanceof Mesh)) return;
+    for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
+      for (const value of Object.values(material)) if (value instanceof Texture && !(value instanceof VideoTexture)) gl.initTexture(value);
+    }
+  });
+  await gl.compileAsync(root, camera, scene);
+}
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
 type Start = "quarry" | CypherStart;
 type WallPanel = "events" | "team" | "aftermovie" | "accommodation";
@@ -82,7 +119,7 @@ class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFail
 }
 
 function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, eventPage, reportWall, chooseEvent,
-  teamRequest, reportTeam, film, openWall, stopAftermovie, audio, ducked }: {
+  teamRequest, reportTeam, film, openWall, stopAftermovie, audio, ducked, reportStreaming, reportWorld, setDpr }: {
   runtime: ImmersiveRuntime;
   curtain: React.RefObject<HTMLDivElement | null>;
   reportZone(zone: ReturnType<typeof zoneAt>): void;
@@ -99,13 +136,19 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   stopAftermovie(): void;
   audio: GullyAudio;
   ducked: boolean;
+  reportStreaming(pending: number): void;
+  reportWorld(ready: boolean): void;
+  setDpr(dpr: number): void;
 }) {
   const { gl, scene, camera, size } = useThree();
   const [fidelity] = useState(() => new Fidelity(gl, window.matchMedia("(max-width: 699px)").matches,
     assetRoot + "market-south/transcoders/"));
-  const [pool] = useState(() => new BakedAssetPool(gl, 1, fidelity));
+  // The market chunks hold most of the small static meshes (shops, frontages): merged per material.
+  const [pool] = useState(() => new BakedAssetPool(gl, 2, fidelity, /locked-rev15z-market-(south|north)\//));
+  useEffect(() => () => pool.dispose(), [pool]);
   useEffect(() => () => fidelity.dispose(), [fidelity]);
-  const [assets, setAssets] = useState<BakedAsset[]>();
+  // Chunks stream in: the visitor's half of the gully first, the other half once walking has started.
+  const [assets, setAssets] = useState<Partial<Record<Chunk, BakedAsset>>>();
   const display = useRef<Awaited<ReturnType<typeof mountSponsorDisplay>> | undefined>(undefined);
   const lamps = useRef<ReturnType<typeof mountMarketLamps> | undefined>(undefined);
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
@@ -165,34 +208,69 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
         return fallback.promise;
       }
     }
-    async function load() {
-      const [gateAsset, signAsset, south, north, plazaAsset, audience] = await Promise.all([
-        loadChunk(assetRoot + "cypher-gate/"),
-        loadChunk(assetRoot + "cypher-approach/"),
-        loadChunk(assetRoot + "market-south/"),
-        loadChunk(assetRoot + "market-north/"),
-        loadChunk(assetRoot + "cypher-plaza/"),
-        loadChunk(assetRoot + "cypher-audience/"),
-      ]);
-      abort.signal.throwIfAborted();
-      const led = await mountSponsorDisplay(signAsset.scene, assetRoot + "cypher-approach/sponsor-led.png", abort.signal);
-      if (abort.signal.aborted) { led.dispose(); return; }
-      display.current = led;
-      lamps.current = mountMarketLamps([south.scene, north.scene]);
-      revealAccommodationHouseWall(plazaAsset.scene, plazaAsset.rgbmRange);
-      const bounds = new Box3();
-      plazaAsset.scene.updateMatrixWorld(true);
-      plazaAsset.scene.traverse(object => {
-        if (object.visible && object.userData.contactPart === "contact heading") bounds.expandByObject(object, true);
-      });
-      if (bounds.isEmpty()) {
-        artwork.current = null;
-      } else {
-        const extent = bounds.getSize(new Vector3());
-        artwork.current = { centre: bounds.getCenter(new Vector3()).toArray(), width: Math.hypot(extent.x, extent.z), height: extent.y };
+    /** Per-chunk set-up that other systems need (sponsor LEDs, lamps, the accommodation wall, contact). */
+    async function mount(name: Chunk, asset: BakedAsset, loaded: Partial<Record<Chunk, BakedAsset>>) {
+      if (name === "cypher-approach") {
+        const led = await mountSponsorDisplay(asset.scene, assetRoot + "cypher-approach/sponsor-led.png", abort.signal);
+        if (abort.signal.aborted) { led.dispose(); return; }
+        display.current = led;
       }
+      const south = loaded["market-south"], north = loaded["market-north"];
+      if ((name === "market-south" || name === "market-north") && south && north && !lamps.current) {
+        lamps.current = mountMarketLamps([south.scene, north.scene]);
+      }
+      if (name === "cypher-plaza") {
+        revealAccommodationHouseWall(asset.scene, asset.rgbmRange);
+        const bounds = new Box3();
+        asset.scene.updateMatrixWorld(true);
+        asset.scene.traverse(object => {
+          if (object.visible && object.userData.contactPart === "contact heading") bounds.expandByObject(object, true);
+        });
+        if (bounds.isEmpty()) {
+          artwork.current = null;
+        } else {
+          const extent = bounds.getSize(new Vector3());
+          artwork.current = { centre: bounds.getCenter(new Vector3()).toArray(), width: Math.hypot(extent.x, extent.z), height: extent.y };
+        }
+      }
+    }
+    async function load() {
+      const { near, later } = chunkOrder(runtime.pose.z);
+      const loaded: Partial<Record<Chunk, BakedAsset>> = {};
+      const first = await Promise.all(near.map(name => loadChunk(assetRoot + name + "/")));
+      abort.signal.throwIfAborted();
+      near.forEach((name, index) => { loaded[name] = first[index]; });
+      for (const name of near) await mount(name, loaded[name]!, loaded);
+      abort.signal.throwIfAborted();
+      performance.mark("breeze:near-ready");
+      setAssets({ ...loaded });
+      // The rest streams after walking starts (on slow or data-saving connections, when the visitor
+      // heads towards it). Each chunk's textures and shaders are prepared before it joins the scene,
+      // so it appears without a compile hitch.
+      await walkingStarted(runtime, abort.signal);
+      await laterAllowed(runtime, near, abort.signal);
+      reportStreaming(later.length);
+      let remaining = later.length;
+      await Promise.all(later.map(async name => {
+        try {
+          const asset = await loadChunk(assetRoot + name + "/");
+          abort.signal.throwIfAborted();
+          loaded[name] = asset;
+          await prepareLate(gl, asset.scene, camera, scene);
+          abort.signal.throwIfAborted();
+          await mount(name, asset, loaded);
+          abort.signal.throwIfAborted();
+          setAssets(current => ({ ...current, [name]: asset }));
+        } catch (error) {
+          if (abort.signal.aborted) throw error;
+          // The visitor keeps walking the part that loaded; the map and HTML links still reach everything.
+          console.warn(`Gully chunk ${name} could not load`, error);
+        } finally {
+          if (!abort.signal.aborted) reportStreaming(--remaining);
+        }
+      }));
       performance.mark("breeze:world-ready");
-      setAssets([gateAsset, signAsset, south, north, plazaAsset, audience]);
+      reportWorld(true);
     }
     void load().catch(() => {
       if (!abort.signal.aborted) runtime.fail("The cypher preview could not load.");
@@ -200,7 +278,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       releaseAll();
     });
     return () => { abort.abort(); releaseAll(); };
-  }, [pool, runtime]);
+  }, [pool, runtime, gl, camera, scene, reportStreaming, reportWorld]);
 
   useEffect(() => {
     gl.toneMapping = AgXToneMapping;
@@ -216,7 +294,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     };
   }, [gl, scene, runtime, stopAftermovie]);
 
-  const plazaScene = assets?.[4].scene;
+  const plazaScene = assets?.["cypher-plaza"]?.scene;
   const screenPanels = useMemo(() => plazaScene ? findAftermoviePanels(plazaScene) : null, [plazaScene]);
   useLayoutEffect(() => {
     if (screenPanels && film) return bindAftermovie(screenPanels, film);
@@ -397,8 +475,8 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
 
   return <>
     {assets && <>
-      {assets.map((asset, index) => <primitive key={index} object={asset.scene}
-        onClick={index === 4 && (panel === "events" || wallState.current === "aftermovie" ||
+      {(Object.entries(assets) as [Chunk, BakedAsset][]).map(([name, asset]) => <primitive key={name} object={asset.scene}
+        onClick={name === "cypher-plaza" && (panel === "events" || wallState.current === "aftermovie" ||
           wallState.current === "accommodation") ? event => {
           const eventId = event.object.userData.wallEventId;
           if (panel === "events" && typeof eventId === "string") chooseEvent(eventId);
@@ -409,6 +487,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     </>}
     <SceneRenderer runtime={runtime} />
     <GullyDiagnostics runtime={runtime} />
+    <QualityGovernor runtime={runtime} setDpr={setDpr} />
   </>;
 }
 
@@ -450,6 +529,8 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   useEffect(() => { audio.arm(); return () => audio.dispose(); }, [audio]);
   const toggleSound = useCallback(() => setSound(on => { audio.setEnabled(!on); return !on; }), [audio]);
   const [movieFailed, setMovieFailed] = useState(false);
+  const [streaming, setStreaming] = useState(0);
+  const [canvasDpr, setCanvasDpr] = useState(1);
   const [teamRequest, requestTeam] = useState(() => ({ index: teamIndex(team) }));
   const [teamDisplay, setTeamDisplay] = useState(defaultTeam);
   const [page, setPage] = useState(0);
@@ -473,7 +554,8 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   useImmersiveInput(runtime);
   // The screen loops the Aftermovie all visit; its sound is the stage and radio music (GullyAudio).
-  const screen = useScreenFilm(useCallback(() => setMovieFailed(true), []));
+  const [worldReady, setWorldReady] = useState(false);
+  const screen = useScreenFilm(useCallback(() => setMovieFailed(true), []), worldReady);
   useEffect(() => { if (screen.film) audio.attachFilm(screen.film.video); }, [audio, screen.film]);
   const stopAftermovie = useCallback(() => {
     if (!watchingMovie.current) return;
@@ -566,7 +648,7 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   return <>
     <div ref={canvas} className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}
       data-contact-placement={contact.placement ?? undefined}>
-      <Canvas dpr={1} gl={{ antialias: true, powerPreference: "high-performance" }}
+      <Canvas dpr={canvasDpr} gl={{ antialias: true, powerPreference: "high-performance" }}
         camera={start === "quarry" ? world.camera : { near: 0.05, far: 120 }} fallback={<p>3D is unavailable in this browser.</p>}>
         {activeQuarry ? <Suspense fallback={null}>
           <QuarryArrivalScene runtime={activeQuarry} curtain={curtain} holdCurtain={holdCurtain} />
@@ -574,7 +656,7 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
           form={form} reportContact={setContact} panel={panel} eventPage={eventPage}
           reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam}
           film={screen.ready ? screen.film?.texture ?? null : null} openWall={openWall} stopAftermovie={stopAftermovie}
-          audio={audio} ducked={panel === "aftermovie" && runtime.interacting} />}
+          audio={audio} ducked={panel === "aftermovie" && runtime.interacting} reportStreaming={setStreaming} reportWorld={setWorldReady} setDpr={setCanvasDpr} />}
         {!activeQuarry && <CypherMapProjection runtime={marketRuntime} elements={mapDom} />}
       </Canvas>
       {walking && runtime.interacting && contact.needsHeading &&
@@ -583,7 +665,8 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
     <div className="native-curtain" ref={curtain} aria-hidden="true" />
     {walking && state.map && <CypherMap runtime={marketRuntime} state={state} elements={mapDom} travel={travel} />}
     {landing && <div className="native-controls"><button onClick={() => runtime.enter()}>Enter Gullyverse</button></div>}
-    {walking && !state.map && <p className="gully-location" aria-live="polite"><span className="gully-chip">{zone}</span></p>}
+    {walking && !state.map && <p className="gully-location" aria-live="polite"><span className="gully-chip">{zone}</span>
+      {streaming > 0 && <span className="gully-chip gully-streaming">Loading the rest of the gully…</span>}</p>}
     {walking && !runtime.interacting && <section className="gully-controls" aria-label="Controls">
       <p className="gully-controls-title" aria-hidden="true">Controls</p>
       <ul>

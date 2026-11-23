@@ -71,7 +71,13 @@ function byKind(requests) {
   return totals;
 }
 const marks = page => page.evaluate(() => Object.fromEntries(performance.getEntriesByType("mark").filter(m => m.name.startsWith("breeze:")).map(m => [m.name, Math.round(m.startTime)])));
+/** Walking controls are shown; for pose and cycle tests also wait until every chunk has joined the scene. */
 const waitWalking = (page, timeout = 300000) => page.waitForSelector(".gully-controls", { timeout });
+async function waitWorld(page, timeout = 900000) {
+  await waitWalking(page, timeout);
+  await page.waitForFunction(() => performance.getEntriesByName("breeze:world-ready").length > 0, null, { timeout });
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+}
 
 async function loadSuite(profile) {
   for (let run = 0; run < runs; run++) {
@@ -83,21 +89,23 @@ async function loadSuite(profile) {
       for (const visit of ["cold", "warm"]) {
         if (visit === "warm") requests.clear();
         const t0 = Date.now();
-        await page.goto(base + "/?diagnostics", { waitUntil: "domcontentloaded" });
+        await page.goto(base + "/?diagnostics&tier=balanced", { waitUntil: "domcontentloaded" });
         const html = Date.now() - t0;
         await waitWalking(page);
         const walkingAt = Date.now() - t0;
         const atWalking = byKind(requests);
+        await page.waitForFunction(() => performance.getEntriesByName("breeze:world-ready").length > 0, null, { timeout: 900000 });
+        const worldMs = Date.now() - t0;
         await page.waitForTimeout(5000);
         const nav = await page.evaluate(() => { const n = performance.getEntriesByType("navigation")[0]; return n && { domContentLoaded: Math.round(n.domContentLoadedEventEnd), load: Math.round(n.loadEventEnd), transferSize: n.transferSize }; });
-        entry[visit] = { htmlMs: html, walkingMs: walkingAt, marks: await marks(page), navigation: nav, bytesAtWalking: atWalking, bytesAfter5s: byKind(requests),
+        entry[visit] = { htmlMs: html, walkingMs: walkingAt, worldMs, marks: await marks(page), navigation: nav, bytesAtWalking: atWalking, bytesAfter5s: byKind(requests),
           failed: [...requests.values()].filter(r => r.failed && !r.canceled).map(r => ({ url: r.url, error: r.failed })),
           largest: [...requests.values()].sort((a, b) => (b.bytes ?? 0) - (a.bytes ?? 0)).slice(0, 15).map(r => ({ url: r.url.replace(base, ""), bytes: r.bytes, cached: !!r.fromCache })) };
       }
     } catch (error) { entry.error = String(error); }
     entry.errors = errors;
     results.load.push(entry);
-    console.log(`load ${profile} #${run}`, entry.error ?? `cold walking ${entry.cold?.walkingMs} ms, ${(entry.cold?.bytesAtWalking.total.bytes / 1e6).toFixed(1)} MB; warm ${entry.warm?.walkingMs} ms`);
+    console.log(`load ${profile} #${run}`, entry.error ?? `cold walking ${entry.cold?.walkingMs} ms (${(entry.cold?.bytesAtWalking.total.bytes / 1e6).toFixed(1)} MB), world ${entry.cold?.worldMs} ms (${(entry.cold?.bytesAfter5s.total.bytes / 1e6).toFixed(1)} MB); warm walking ${entry.warm?.walkingMs} ms`);
     await context.close();
   }
 }
@@ -116,8 +124,8 @@ async function poseSuite(profile) {
     const page = await context.newPage();
     const { errors } = await track(page, context);
     try {
-      await page.goto(`${base}/runtime-preview/cypher?diagnostics`, { waitUntil: "domcontentloaded" });
-      await waitWalking(page);
+      await page.goto(`${base}/runtime-preview/cypher?diagnostics&tier=balanced`, { waitUntil: "domcontentloaded" });
+      await waitWorld(page);
       await page.waitForTimeout(3000);
     } catch (error) { results.poses.push({ profile, run, error: String(error), errors }); await context.close(); continue; }
     for (const stop of stops) {
@@ -145,8 +153,8 @@ async function journeySuite(profile) {
     const { errors } = await track(page, context);
     const entry = { profile, run };
     try {
-      await page.goto(`${base}/runtime-preview/cypher?diagnostics`, { waitUntil: "domcontentloaded" });
-      await waitWalking(page);
+      await page.goto(`${base}/runtime-preview/cypher?diagnostics&tier=balanced`, { waitUntil: "domcontentloaded" });
+      await waitWorld(page);
       await page.waitForTimeout(5000);
       await page.mouse.click(640, 200);
       await page.evaluate(() => window.__breezePerf.reset());
@@ -186,8 +194,8 @@ async function cycleSuite(profile) {
   const { errors } = await track(page, context);
   const entry = { profile, snapshots: [] };
   try {
-    await page.goto(`${base}/runtime-preview/cypher?diagnostics`, { waitUntil: "domcontentloaded" });
-    await waitWalking(page);
+    await page.goto(`${base}/runtime-preview/cypher?diagnostics&tier=balanced`, { waitUntil: "domcontentloaded" });
+    await waitWorld(page);
     await page.waitForTimeout(5000);
     const snap = async (cycle) => { const s = await page.evaluate(() => window.__breezePerf.snapshot()); entry.snapshots.push({ cycle, jsHeap: s.jsHeap, stats: s.stats, scene: s.scene }); };
     await snap(0);
