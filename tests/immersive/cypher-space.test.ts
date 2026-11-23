@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { Euler, Group, Mesh, MeshBasicMaterial, PerspectiveCamera, Vector3, VideoTexture } from "three";
 import {
-  accommodationApproach, accommodationFocus, accommodationView, revealAccommodationHouseWall,
+  accommodationApproach, accommodationFocus, accommodationGeometry, accommodationView, revealAccommodationHouseWall,
 } from "../../components/gullyverse-runtime/cypher-accommodation";
 import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels } from "../../components/gullyverse-runtime/cypher-aftermovie";
 import { createCypherSpace } from "../../components/gullyverse-runtime/cypher-space";
@@ -81,12 +81,15 @@ test("the accommodation graffiti is reached from the gate and fits without tilti
     camera.quaternion.setFromEuler(new Euler(0, accommodationFocus.yaw, 0, "YXZ"));
     camera.setViewOffset(width, height, 0, frame.offsetY, width, height);
     camera.updateMatrixWorld();
-    for (const x of [-13.165, -10.865]) for (const y of [8.353333, 9.886667]) {
-      const corner = new Vector3(x, y, -14.009).project(camera);
+    const { centre, facing, halfWidth, halfHeight, lampTop } = accommodationGeometry;
+    for (const side of [-1, 1]) for (const up of [-1, 1]) {
+      // Along the wall is perpendicular to its facing direction.
+      const corner = new Vector3(centre[0] - facing[2] * halfWidth * side, centre[1] + halfHeight * up,
+        centre[2] + facing[0] * halfWidth * side).project(camera);
       assert.ok(Math.abs(corner.x) < 0.96 && corner.y < 0.96);
       assert.ok((1 - corner.y) * height / 2 < height - 76);
     }
-    const lamp = new Vector3(-12.015, 10.38, -14.46).project(camera);
+    const lamp = new Vector3(...lampTop).project(camera);
     assert.ok(Math.abs(lamp.x) < 0.96 && lamp.y < 0.96);
   }
 });

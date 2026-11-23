@@ -3,12 +3,38 @@
   "version": "locked-rev15z-cypher-plaza",
   "chunk": "cypher-plaza",
   "source": {
-    "path": "/dev/shm/cypher-2026-11-21/source/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
+    "path": "/home/user/Breeze-2027/assets-source/gullyverse/locked-rev15z/Gullyverse-Rev15Z-Wide-Contact-Window-and-Restored-Graffiti.blend",
     "sha256": "89e765de6bb68a58a6a2d17d4d6d7ea6c696a6750402ede19306bdddc6a71041",
     "scene": "REV15Z / Wide Contact window and restored graffiti",
     "sceneFingerprint": "2058dbdba49815ac4493ebd59d2023ebab26edce79d1e2afea143a98f1c1c590",
     "lockedBy": "User explicit art lock, 14 November 2026"
   },
+  "sceneOverrides": [
+    {
+      "id": "accommodation-left-wall",
+      "objects": [
+        "REV15Z / COMING above SOON graffiti",
+        "REV15Z / Accommodation shaded wall-lamp fixture",
+        "REV15Z / Accommodation local wall illumination"
+      ],
+      "from": [
+        -12.015,
+        14.009,
+        9.12
+      ],
+      "to": [
+        -16.884,
+        17.546,
+        8.97
+      ],
+      "facing": [
+        0.947,
+        -0.3214,
+        0
+      ],
+      "rotationDegrees": -108.75
+    }
+  ],
   "bake": {
     "engine": "Cycles CPU; combined bake-only receiver",
     "samples": 96,
@@ -1475,16 +1501,16 @@
         ]
       }
     ],
-    "rawPFMSHA256": "1d3658ff5705dae7773c2bc360f72ce09d10bbb31ef67728db232889fcee8f5a",
-    "seconds": 134.39598862799994,
+    "rawPFMSHA256": "a4840311ec6efb7a94302c7ce271f9119473ed7bbfabe8d86272f907f6bd22bf",
+    "seconds": 84.51017720999971,
     "sampleBiasM": 0.001,
-    "previousBakedComponentSHA256": "13edd47ef7b3db60de12dcbaa29ad29501fb9f571996343877ab3b29ae1e86be",
+    "previousBakedComponentSHA256": "76dabfa6f276e17f828899a272d2e072189365a02e928c4e17dce99f6a450a2c",
     "decalsWithoutShadow": [
       "Runtime / REV15Z / COMING above SOON graffiti",
       "Runtime / REV15Z / CONTACT US colourful wall graffiti"
     ],
     "denoising": "Intel Open Image Denoise 2.5.1 RTLightmap high CPU; irradiance only",
-    "denoiseMAE": 0.0021907223854213953,
+    "denoiseMAE": 0.0020998783875256777,
     "range": 4,
     "encoding": "RGBM-linear; independent numeric alpha",
     "baselineURI": "lightmap.hdr",
@@ -1502,9 +1528,9 @@
       "lightmap.mip10.png"
     ],
     "mipFiltering": "Average denoised linear HDR before RGBM packing",
-    "RGBMRoundtripLitPixelMAE": 0.000120003300747008,
-    "RGBMRoundtripMaxError": 0.005227734161678876,
-    "rawPositiveTexelFraction": 0.5025920867919922
+    "RGBMRoundtripLitPixelMAE": 0.00011805399713228595,
+    "RGBMRoundtripMaxError": 0.0055171845555990195,
+    "rawPositiveTexelFraction": 0.5023736953735352
   },
   "objects": [
     {
@@ -2730,7 +2756,7 @@
         "PILOT_world_metres"
       ],
       "originalMaterials": [
-        "CC0 / scuffed cement / matte structural concrete"
+        "WORLD / mineral concrete"
       ]
     },
     {
@@ -2774,7 +2800,7 @@
         "UVMap"
       ],
       "originalMaterials": [
-        "CC0 / scuffed cement / matte structural concrete"
+        "ART / return-right / Entry parapet return.001"
       ]
     },
     {
@@ -19096,10 +19122,20 @@
         {
           "name": "scuffed_cement-basecolor.jpg",
           "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "PILOT / scuffed_cement / normal 1024",
+          "sha256": "8d8412ff2c1b0a9ff9bad9701c4e7a042ba457b356550b9d1119e1f5ad87888d"
+        },
+        {
+          "name": "PILOT / scuffed_cement / roughness 1024",
+          "sha256": "a32153f1a609ac6d4098179eda7579bb24f400551ec6a6706808e816df43df0a"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "normal"
       ]
     },
     {
@@ -19140,10 +19176,16 @@
         {
           "name": "scuffed_cement-basecolor.jpg",
           "sha256": "1da53466331164d6ed092d3fce20e42bf881f3b53f31e7fb039fb48fa92ae5da"
+        },
+        {
+          "name": "ART / generated supporting pieces / shared atlas",
+          "sha256": "84556b2c77c727618f15e3cab8de98b73306075c39470664067c0bc9ccd73b46"
         }
       ],
       "bakedChannels": [
-        "color"
+        "color",
+        "roughness",
+        "metallic"
       ]
     },
     {
@@ -23799,33 +23841,33 @@
   "files": [
     {
       "file": "contact-frontage.png.glb",
-      "bytes": 64347800,
-      "sha256": "9a4745131651fbf51cfc43755689addf994c2ea3ed767f5fa0e3f16c6245269f"
+      "bytes": 65013572,
+      "sha256": "fdc93164197a1160caa0af1f29f01b6fe61e0c97211da33e2e8bc0b842405a0e"
     },
     {
       "file": "contact-frontage.optimized.glb",
-      "bytes": 50067720,
-      "sha256": "1087ec2e6cbda4a7b708345ca09ae73f007e4697f4b106209103cd51bf75236b"
+      "bytes": 50629356,
+      "sha256": "68d7564f666a71941a1a2f88895dda7b3e78f6b0c79e7ba62d9cfc7f3ae02630"
     },
     {
       "file": "contact-frontage.mobile.glb",
-      "bytes": 20807700,
-      "sha256": "ff5abaabd4caa5610f84d9c2d576767cd82d3145407f5e8fe8e5cd9f1d1a942c"
+      "bytes": 21074708,
+      "sha256": "83faf660a6f346a2182a8a76e7e26bb003ec994233403a24b8e01f176ab0c34e"
     },
     {
       "file": "lightmap.hdr",
-      "bytes": 3233175,
-      "sha256": "f680a4fb4ff3b66befd41972560756520c93397245563bd79ec65636b08a161c"
+      "bytes": 3234841,
+      "sha256": "bb90651dc9b4a87e64e49827c0616418784fe673797449d6d276b0970c19b601"
     },
     {
       "file": "lightmap.png",
-      "bytes": 1627212,
-      "sha256": "dfe6f6099562ec1fd70ec2cba27c860b8f2c27413b00d70da572816e317897d6"
+      "bytes": 1622532,
+      "sha256": "a75c8a61a44c406c4128c2e97294ffce553c877b7f2b447dd04e2b6ea02ddaaf"
     },
     {
       "file": "lightmap.ktx2",
-      "bytes": 2075649,
-      "sha256": "2c81ab876e683dadf2c09fb61851497a524691b1d9bebd7e208e0ae62a7bccfa"
+      "bytes": 2070534,
+      "sha256": "b7be5b006571c751804fceec7b5738076c2785b4adc7c6dab5b5a9d4ece0dfd3"
     },
     {
       "file": "transcoders/LICENSE-three",
@@ -23854,8 +23896,8 @@
   "fullWorldIntegration": "PENDING",
   "sourceBakedDerivative": {
     "file": "contact-frontage-baked.blend",
-    "sha256": "b1df42e38f2abf55363b473637d4245d7789edc37e32cefaf26b67f199f1940c",
-    "bytes": 67956596
+    "sha256": "1fcf97ef73aff5a925375a819103e5e9e7f24eca12809c704923cac9b8c164e4",
+    "bytes": 70831429
   },
   "runtime": {
     "baseline": "contact-frontage.png.glb",
@@ -23866,33 +23908,33 @@
     "files": [
       {
         "file": "contact-frontage.png.glb",
-        "bytes": 64347800,
-        "sha256": "9a4745131651fbf51cfc43755689addf994c2ea3ed767f5fa0e3f16c6245269f"
+        "bytes": 65013572,
+        "sha256": "fdc93164197a1160caa0af1f29f01b6fe61e0c97211da33e2e8bc0b842405a0e"
       },
       {
         "file": "contact-frontage.optimized.glb",
-        "bytes": 50067720,
-        "sha256": "1087ec2e6cbda4a7b708345ca09ae73f007e4697f4b106209103cd51bf75236b"
+        "bytes": 50629356,
+        "sha256": "68d7564f666a71941a1a2f88895dda7b3e78f6b0c79e7ba62d9cfc7f3ae02630"
       },
       {
         "file": "contact-frontage.mobile.glb",
-        "bytes": 20807700,
-        "sha256": "ff5abaabd4caa5610f84d9c2d576767cd82d3145407f5e8fe8e5cd9f1d1a942c"
+        "bytes": 21074708,
+        "sha256": "83faf660a6f346a2182a8a76e7e26bb003ec994233403a24b8e01f176ab0c34e"
       },
       {
         "file": "lightmap.hdr",
-        "bytes": 3233175,
-        "sha256": "f680a4fb4ff3b66befd41972560756520c93397245563bd79ec65636b08a161c"
+        "bytes": 3234841,
+        "sha256": "bb90651dc9b4a87e64e49827c0616418784fe673797449d6d276b0970c19b601"
       },
       {
         "file": "lightmap.png",
-        "bytes": 1627212,
-        "sha256": "dfe6f6099562ec1fd70ec2cba27c860b8f2c27413b00d70da572816e317897d6"
+        "bytes": 1622532,
+        "sha256": "a75c8a61a44c406c4128c2e97294ffce553c877b7f2b447dd04e2b6ea02ddaaf"
       },
       {
         "file": "lightmap.ktx2",
-        "bytes": 2075649,
-        "sha256": "2c81ab876e683dadf2c09fb61851497a524691b1d9bebd7e208e0ae62a7bccfa"
+        "bytes": 2070534,
+        "sha256": "b7be5b006571c751804fceec7b5738076c2785b4adc7c6dab5b5a9d4ece0dfd3"
       }
     ]
   },
