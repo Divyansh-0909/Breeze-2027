@@ -39,19 +39,21 @@ test("static batching merges plain meshes per material and keeps world positions
   const at = (x: number, material: MeshStandardMaterial, userData: Record<string, unknown> = {}) => {
     const mesh = new Mesh(new BoxGeometry(1, 1, 1), material); mesh.position.set(x, 0, 0); mesh.userData = userData; group.add(mesh); return mesh;
   };
-  at(0, wall, { runtimeOriginalSource: "a", shopId: "s1" }); at(5, wall); at(10, wall);
+  at(0, wall, { runtimeOriginalSource: "a", shopId: "s1" }); at(3, wall); at(6, wall); at(52, wall); at(55, wall);
   const special = at(20, lamp, { streetLampId: "L01" }); at(25, lamp); const pane = at(30, glass); at(35, glass);
   const result = batchStatic(group);
-  assert.equal(result.before, 7);
-  assert.equal(result.after, 5); // three walls -> one; lamp, plain lamp-material mesh and both glass panes stay
+  assert.equal(result.before, 9);
+  // Walls merge within their 10 m cell (0-6 m -> one, 52-55 m -> one); lamp, lone lamp-material mesh and glass stay.
+  assert.equal(result.after, 6);
   assert.ok(special.parent === group && pane.parent === group);
   const batched = group.children.find(child => child.userData.batchedFrom === 3) as Mesh;
   assert.ok(batched);
   batched.geometry.computeBoundingBox();
   const box = batched.geometry.boundingBox!;
-  assert.deepEqual([box.min.x, box.max.x], [-0.5, 10.5]);
+  assert.deepEqual([box.min.x, box.max.x], [-0.5, 6.5]);
   assert.equal(batched.material, wall);
-  assert.ok(new Vector3(10, 0, 0).distanceTo(new Vector3(box.max.x - 0.5, 0, 0)) < 1e-6);
+  assert.ok(new Vector3(6, 0, 0).distanceTo(new Vector3(box.max.x - 0.5, 0, 0)) < 1e-6);
+  assert.ok(group.children.some(child => child.userData.batchedFrom === 2));
 });
 
 test("the arrival half of the gully loads first and every chunk loads exactly once", async () => {

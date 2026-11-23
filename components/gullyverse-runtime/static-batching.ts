@@ -1,4 +1,11 @@
-import { BufferAttribute, BufferGeometry, Matrix4, Mesh, type Material, type Object3D } from "three";
+import { Box3, BufferAttribute, BufferGeometry, Matrix4, Mesh, Vector3, type Material, type Object3D } from "three";
+
+/**
+ * Merged groups are also split into horizontal cells of this size (metres), so each batch stays local
+ * and frustum culling still drops the parts of the lane behind the visitor. Whole-chunk batches drew
+ * more than the separate meshes from the navigation board looking back down the lane.
+ */
+const cellMetres = 10;
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
 /** userData keys of plain, static, non-interactive geometry (export bookkeeping only). */
@@ -33,8 +40,8 @@ function bake(geometry: BufferGeometry, matrix: Matrix4) {
 }
 
 /**
- * Merges plain static meshes that share a material into one mesh per material (and attribute layout),
- * in the chunk root's space. Lightmap UVs, materials and shaders are unchanged; anything named,
+ * Merges plain static meshes that share a material into one mesh per material, attribute layout and
+ * 10 m cell, in the chunk root's space. Lightmap UVs, materials and shaders are unchanged; anything named,
  * interactive, animated, transparent or projected stays a separate object. Returns the new geometries
  * (for disposal) and the draw-call counts before and after.
  */
@@ -42,12 +49,16 @@ export function batchStatic(root: Object3D) {
   root.updateMatrixWorld(true);
   const toRoot = new Matrix4().copy(root.matrixWorld).invert();
   const groups = new Map<string, Mesh[]>();
+  const box = new Box3(), centre = new Vector3();
   let before = 0;
   root.traverse(object => {
     if (!(object instanceof Mesh)) return;
     before++;
     if (!plain(object)) return;
-    const key = (object.material as Material).uuid + "|" + signature(object.geometry);
+    if (!object.geometry.boundingBox) object.geometry.computeBoundingBox();
+    box.copy(object.geometry.boundingBox!).applyMatrix4(object.matrixWorld).getCenter(centre);
+    const cell = `${Math.floor(centre.x / cellMetres)},${Math.floor(centre.z / cellMetres)}`;
+    const key = (object.material as Material).uuid + "|" + signature(object.geometry) + "|" + cell;
     const list = groups.get(key) ?? [];
     list.push(object);
     groups.set(key, list);
