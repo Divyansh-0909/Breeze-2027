@@ -24,6 +24,7 @@ import {
 import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels, isAftermoviePanel } from "./cypher-aftermovie";
 import { stageVideoSource } from "../landing-page/stage3d/useStageVideo";
 import { useScreenFilm } from "./cypher-screen-film";
+import { GullyDiagnostics, markLoad } from "./gully-diagnostics";
 import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
 import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
@@ -135,6 +136,15 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     };
     const mobile = window.matchMedia("(max-width: 699px)").matches;
     async function loadChunk(base: string) {
+      const name = base.slice(assetRoot.length, -1);
+      markLoad(name, "start");
+      try {
+        const asset = await loadChunkAsset(base);
+        markLoad(name, "ready");
+        return asset;
+      } catch (error) { markLoad(name, "failed"); throw error; }
+    }
+    async function loadChunkAsset(base: string) {
       const response = await fetch(base + "manifest.json", { signal: abort.signal });
       if (!response.ok) throw new Error("The cypher assets are unavailable.");
       const { source, bake } = await response.json();
@@ -181,6 +191,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
         const extent = bounds.getSize(new Vector3());
         artwork.current = { centre: bounds.getCenter(new Vector3()).toArray(), width: Math.hypot(extent.x, extent.z), height: extent.y };
       }
+      performance.mark("breeze:world-ready");
       setAssets([gateAsset, signAsset, south, north, plazaAsset, audience]);
     }
     void load().catch(() => {
@@ -397,6 +408,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       <ReadinessGate key={state.serial} runtime={runtime} serial={state.serial} />
     </>}
     <SceneRenderer runtime={runtime} />
+    <GullyDiagnostics runtime={runtime} />
   </>;
 }
 

@@ -12,6 +12,7 @@
     "test:immersive": "tsx --test tests/immersive/*.test.ts",
     "test:immersive:browser": "node tests/immersive/stabilization.browser.mjs",
     "perf:immersive": "node scripts/perf-gullyverse.mjs",
+    "perf:breeze": "node scripts/perf-breeze.mjs",
     "test:payments": "tsx --test tests/payments/core.test.ts tests/payments/statements.test.ts tests/payments/jev.test.ts",
     "test:payments:integration": "tsx tests/payments/integration.ts",
     "test:payments:browser": "tsx tests/payments/browser.ts",
