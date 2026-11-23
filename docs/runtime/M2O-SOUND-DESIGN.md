@@ -13,7 +13,7 @@ The gully's sound follows how open-world games build theirs. The research is in 
 | Zone reverb, cross-faded by position rather than by timer | Two synthetic convolution reverbs: the lane (0.75 s, quick flutter echoes from walls about 5 m apart) and the plaza (1.5 s, facade echoes at 130 and 210 ms). One 0–1 value over the gate (z −4 to −16) blends the reverbs and the lane and plaza buses |
 | Worldised music: speaker EQ and the room | The music is the screen's looping Aftermovie, in sync with the picture. The stage goes through PA-style EQ (no deep sub, 1 kHz and 2.5 kHz presence, rolled-off top); the shop radio plays the same sound band-passed with a boxy mid peak. Watching the Aftermovie plays it directly and ducks everything else |
 | Footsteps fire by distance travelled; variations with pitch about ±5 % and level about ±3 dB; occasional extra layers | Distance-triggered, heel then toe, alternating feet (slightly left and right), pitch ±5 %, level ±3 dB, grit on about a third of steps, a clothing swish when sprinting, splashes in the 20 puddles |
-| Walk vs sprint differ in cadence and weight | Walk: 2.4 m/s, a soft, slower heel-to-toe roll. Sprint (Shift): 4.2 m/s, heavier, quicker footfalls |
+| Walk vs sprint differ in cadence and weight | Walk: 2.9 m/s, a soft, slower heel-to-toe roll. Sprint (Shift): 4.2 m/s, heavier, quicker footfalls |
 | Ambience 10–15 dB under footsteps; web loudness about −16 to −18 LUFS | Ambient one-shots peak 10–15 dB under walking footsteps; master raised about 4 dB with a limiter |
 | Budget: few HRTF voices, two convolvers, slow parameter updates | 6 HRTF emitters plus short-lived one-shots, two convolvers, emitter curves updated about 15 times a second |
 

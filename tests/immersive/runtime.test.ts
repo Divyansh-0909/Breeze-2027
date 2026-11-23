@@ -517,13 +517,13 @@ test("quarry-side tunnel face encloses the outer shell while leaving the carved 
   } finally {geometry.dispose();material.dispose();}
 });
 
-test("the gully walks at 2.4 m/s and sprints at 4.2 m/s while Shift is held", () => {
+test("the gully walks at 2.9 m/s and sprints at 4.2 m/s while Shift is held", () => {
   const distance = (sprint: boolean) => {
     const runtime = hub(); runtime.pace = { walk: walkSpeed, sprint: sprintSpeed };
     const z = runtime.pose.z; runtime.input.forward = 1; runtime.input.sprint = sprint; advance(runtime, 0.5);
     return Math.abs(runtime.pose.z - z);
   };
   const walk = distance(false), sprint = distance(true);
-  assert.ok(walk > 0.9 && walk < 1.25, `walk ${walk}`);
+  assert.ok(walk > 1.15 && walk < 1.5, `walk ${walk}`);
   assert.ok(sprint > 1.7 && sprint < 2.15, `sprint ${sprint}`);
 });

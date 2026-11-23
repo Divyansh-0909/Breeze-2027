@@ -6,7 +6,7 @@ export type Phase = "boot" | "landing" | "entrance" | "local" | "departure" | "c
 export type Snapshot = { phase: Phase; scene: LocationId; destination: LocationId; serial: number; map: boolean; mapStage: "ascent" | "open" | "descent" | null; destinationMenu: boolean; unavailableDestination: TravelId | null; error: string | null; quality: number; movie: boolean; reduced: boolean; inspection: string | null };
 export type Input = { forward: number; strafe: number; lookX: number; lookY: number; sprint: boolean };
 /** The gully's walking pace, and its sprint pace while Shift is held (m/s). */
-export const walkSpeed = 2.4, sprintSpeed = 4.2;
+export const walkSpeed = 2.9, sprintSpeed = 4.2;
 /** Optional native-space contract; existing quarry behavior remains the default. */
 export interface RuntimeSpace {
   spawn(id: LocationId, approaching: boolean): Pose;

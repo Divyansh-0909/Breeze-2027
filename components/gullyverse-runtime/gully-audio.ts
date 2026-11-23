@@ -36,10 +36,10 @@ const aftermovieSeat: Vec3 = [0, 9.85, -35.5];
 const puddles: readonly (readonly [number, number, number, number])[] = [[-3.16, 26.51, 0.43, 3.35], [3.18, 26.07, 0.44, 3.46], [-3.15, 20.06, 0.42, 3.32], [3.15, 19.84, 0.45, 3.23], [-3.17, 13.68, 0.38, 2.98], [3.15, 13.56, 0.39, 2.98], [-12.66, -26.62, 0.51, 1.91], [-12.67, -30.97, 0.5, 2.03], [-12.67, -37.62, 0.46, 1.73], [12.64, -27.15, 0.47, 1.87], [12.65, -32.0, 0.51, 2.05], [12.66, -38.59, 0.47, 2.06], [-10.94, -15.01, 2.14, 0.41], [10.71, -15.02, 2.05, 0.41], [-12.54, -44.46, 0.42, 1.41], [12.51, -44.74, 0.46, 1.38], [-2.5, 25.96, 0.57, 0.74], [2.48, 13.41, 0.56, 0.64], [10.73, -18.4, 0.68, 0.9], [11.92, -27.37, 0.69, 0.9]];
 
 /**
- * Metres per footfall at a given speed: about 1.25 m at the 2.4 m/s walk (1.9 steps a second) and
+ * Metres per footfall at a given speed: about 1.3 m at the 2.9 m/s walk (2.2 steps a second) and
  * 1.45 m at the 4.2 m/s sprint (2.9 steps a second).
  */
-export const strideAt = (speed: number) => 1.25 + 0.2 * Math.min(1, Math.max(0, (speed - 2.4) / 1.8));
+export const strideAt = (speed: number) => 1.3 + 0.15 * Math.min(1, Math.max(0, (speed - 2.9) / 1.3));
 
 export const isWet = (x: number, z: number) =>
   puddles.some(([px, pz, hx, hz]) => Math.abs(x - px) <= hx && Math.abs(z - pz) <= hz);
@@ -205,7 +205,7 @@ export class GullyAudio {
     audio.graph(ctx);
     let listener: Vec3 = [0, 7.6, 20], forward: Vec3 = [0, 0, -1];
     if (layer.startsWith("footsteps")) {
-      const sprint = layer === "footsteps-sprint", speed = sprint ? 4.2 : 2.4;
+      const sprint = layer === "footsteps-sprint", speed = sprint ? 4.2 : 2.9;
       for (let t = 0.4; t < seconds - 0.4; t += strideAt(speed) / speed) {
         audio.footstep(layer === "footsteps-wet", sprint ? 1 : 0.45, t, sprint);
       }

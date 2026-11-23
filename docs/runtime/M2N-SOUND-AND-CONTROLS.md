@@ -6,7 +6,7 @@ The walking controls sit bottom-left in a **CONTROLS** panel. Keys show as chips
 
 | Key | Action |
 |---|---|
-| W A S D (or arrows) | Walk (2.4 m/s) |
+| W A S D (or arrows) | Walk (2.9 m/s) |
 | Shift (hold) | Sprint (4.2 m/s) |
 | Drag | Look |
 | E | The nearby destination's action (Leave a message, View team murals, Watch Aftermovie, View accommodation, Browse event posters), only when one is in reach |
@@ -18,7 +18,7 @@ Every row with an action is also a button. The current place shows as the same c
 
 ## Walking feel
 
-Walking moves at 2.4 m/s and holding Shift sprints at 4.2 m/s, the former single pace. A stride clock driven by distance walked sets the rhythm: about 1.25 m and 1.9 footfalls a second when walking, 1.45 m and 2.9 a second when sprinting. The head bob follows it: sprinting moves the camera about 2 cm vertically and 1 cm sideways with a quarter-degree roll, and walking under half of that. The lowest point is at each footfall, and the motion settles when you stop. It is off in focused views, on the map, in review captures, and when the visitor prefers reduced motion. A random camera shake is deliberately not used, because it causes motion sickness. Earlier scenes keep their single 4.2 m/s pace (`ImmersiveRuntime.pace`).
+Walking moves at 2.9 m/s and holding Shift sprints at 4.2 m/s, the former single pace. A stride clock driven by distance walked sets the rhythm: about 1.3 m and 2.2 footfalls a second when walking, 1.45 m and 2.9 a second when sprinting. The head bob follows it: sprinting moves the camera about 2 cm vertically and 1 cm sideways with a quarter-degree roll, and walking under half of that. The lowest point is at each footfall, and the motion settles when you stop. It is off in focused views, on the map, in review captures, and when the visitor prefers reduced motion. A random camera shake is deliberately not used, because it causes motion sickness. Earlier scenes keep their single 4.2 m/s pace (`ImmersiveRuntime.pace`).
 
 ## Sound
 
