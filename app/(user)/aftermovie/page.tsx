@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = { title: "Aftermovie ? Breeze 2027" };
-
-// Direct entry is resolved by the shell without replaying the entrance.
+// The Aftermovie lives on the cypher screen in the walkable gully.
 export default function AftermoviePage() {
-  return <noscript><a href="/after-movie.mp4">Watch the Breeze Aftermovie</a></noscript>;
+  redirect("/?start=aftermovie");
 }
