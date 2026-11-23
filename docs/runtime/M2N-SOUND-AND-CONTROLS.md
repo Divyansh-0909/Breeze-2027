@@ -17,7 +17,7 @@ Every row with an action is also a button. The current place shows as the same c
 
 ## Walking feel
 
-A stride clock driven by actual walking speed (0.72 m per step) moves the camera by about 2 cm vertically and 1 cm sideways, with a quarter-degree roll. The lowest point is at each footfall, and the motion settles when you stop. It is off in focused views, on the map, in review captures, and when the visitor prefers reduced motion. A random camera shake is deliberately not used, because it causes motion sickness.
+A stride clock driven by actual walking speed (1.35 m per step, about 3 steps a second) moves the camera by about 2 cm vertically and 1 cm sideways, with a quarter-degree roll. The lowest point is at each footfall, and the motion settles when you stop. It is off in focused views, on the map, in review captures, and when the visitor prefers reduced motion. A random camera shake is deliberately not used, because it causes motion sickness.
 
 ## Sound (`components/gullyverse-runtime/gully-audio.ts`)
 
@@ -31,3 +31,7 @@ Everything except the music is synthesised with Web Audio, so it adds no audio f
 - The Aftermovie ducks the environment when it plays with sound.
 
 Browsers allow audio only after a user gesture, so the context starts on the first click, tap or key press. It suspends when the tab is hidden. `V` and the Sound row toggle it, and the choice is stored in `localStorage` (`breeze:sound`).
+
+## Listening to each layer
+
+`/runtime-preview/sounds` (private; needs `GULLYVERSE_RUNTIME_PREVIEW=1`) renders every layer on its own through the same `GullyAudio` code, offline and without 3D placement, as an 8-second clip. It shows each layer's real peak level, and it can normalise quiet layers to −3 dB so they can be judged by ear. `window.renderGullySound(layer, normalise)` returns the clip as a base64 WAV for scripted capture.

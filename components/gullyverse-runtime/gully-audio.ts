@@ -15,7 +15,7 @@
 
 type Vec3 = readonly [number, number, number];
 const storageKey = "breeze:sound";
-const music = "/music/FireFire.mp3";
+export const music = "/music/FireFire.mp3";
 // Three.js coordinates of the Rev15Z street lamps (L02 and L05 are dead; L03 and L06 flicker).
 const lamps: { position: Vec3; flicker: boolean }[] = [
   { position: [-1.17, 11.86, 25], flicker: false }, { position: [-1.17, 11.86, 15.5], flicker: true },
@@ -26,6 +26,10 @@ const stage: Vec3 = [0, 11, -44.8];
 // Puddles and edge pools (x, z, half width x, half depth z), extracted from the master.
 const puddles: readonly (readonly [number, number, number, number])[] = [[-3.16, 26.51, 0.43, 3.35], [3.18, 26.07, 0.44, 3.46], [-3.15, 20.06, 0.42, 3.32], [3.15, 19.84, 0.45, 3.23], [-3.17, 13.68, 0.38, 2.98], [3.15, 13.56, 0.39, 2.98], [-12.66, -26.62, 0.51, 1.91], [-12.67, -30.97, 0.5, 2.03], [-12.67, -37.62, 0.46, 1.73], [12.64, -27.15, 0.47, 1.87], [12.65, -32.0, 0.51, 2.05], [12.66, -38.59, 0.47, 2.06], [-10.94, -15.01, 2.14, 0.41], [10.71, -15.02, 2.05, 0.41], [-12.54, -44.46, 0.42, 1.41], [12.51, -44.74, 0.46, 1.38], [-2.5, 25.96, 0.57, 0.74], [2.48, 13.41, 0.56, 0.64], [10.73, -18.4, 0.68, 0.9], [11.92, -27.37, 0.69, 0.9]];
 
+/** Footfalls per second at the walking speed (4.2 m/s over a 1.35 m stride). */
+export const strideMetres = 1.35;
+const stepsPerSecond = 4.2 / strideMetres;
+
 export const isWet = (x: number, z: number) =>
   puddles.some(([px, pz, hx, hz]) => Math.abs(x - px) <= hx && Math.abs(z - pz) <= hz);
 
@@ -33,8 +37,22 @@ export function soundPreference() {
   try { return window.localStorage.getItem(storageKey) !== "off"; } catch { return true; }
 }
 
+export const previewLayers = {
+  "footsteps-asphalt": "Footsteps on asphalt",
+  "footsteps-wet": "Footsteps through a puddle",
+  "lane-traffic": "Lane bed: traffic rumble and city hiss",
+  "lane-horns": "Distant horns (random in the lane)",
+  "lamp-buzz": "Street lamp buzz (L01, L04)",
+  "lamp-flicker": "Flickering lamp crackle (L03, L06)",
+  "shop-radio": "Shop radio (FireFire.mp3, band-passed)",
+  "plaza-crowd": "Plaza crowd murmur",
+  "plaza-stage": "Stage music at the screen (FireFire.mp3, low-passed)",
+} as const;
+export type PreviewLayer = keyof typeof previewLayers;
+
 export class GullyAudio {
-  private ctx: AudioContext | null = null;
+  private ctx: BaseAudioContext | null = null;
+  private spatial = true;
   private master!: GainNode;
   private lane!: GainNode;
   private plaza!: GainNode;
@@ -55,7 +73,8 @@ export class GullyAudio {
     }
     const visibility = () => {
       if (!this.ctx) return;
-      if (document.hidden) void this.ctx.suspend(); else if (this.enabled) void this.ctx.resume();
+      const live = this.ctx as AudioContext;
+      if (document.hidden) void live.suspend(); else if (this.enabled) void live.resume();
     };
     document.addEventListener("visibilitychange", visibility);
     this.listeners.push(() => document.removeEventListener("visibilitychange", visibility));
@@ -66,36 +85,66 @@ export class GullyAudio {
     try { window.localStorage.setItem(storageKey, on ? "on" : "off"); } catch { /* private mode */ }
     if (!this.ctx) { if (on) void this.start(); return; }
     this.master.gain.setTargetAtTime(on ? 0.9 : 0, this.ctx.currentTime, 0.15);
-    if (on) void this.ctx.resume();
+    if (on) void (this.ctx as AudioContext).resume();
   }
 
   private async start() {
     if (this.ctx || this.disposed) return;
     const Context = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
     if (!Context) return;
-    const ctx = this.ctx = new Context();
+    const ctx = new Context();
     this.listeners.splice(0).forEach(off => off()); // gestures no longer needed; re-arm visibility below
     const visibility = () => { if (document.hidden) void ctx.suspend(); else if (this.enabled) void ctx.resume(); };
     document.addEventListener("visibilitychange", visibility);
     this.listeners.push(() => document.removeEventListener("visibilitychange", visibility));
-
-    this.master = ctx.createGain(); this.master.gain.value = this.enabled ? 0.9 : 0;
-    this.duck = ctx.createGain(); this.duck.connect(this.master);
-    const limiter = ctx.createDynamicsCompressor(); limiter.threshold.value = -12; limiter.ratio.value = 6;
-    this.master.connect(limiter).connect(ctx.destination);
-    this.lane = ctx.createGain(); this.lane.connect(this.duck);
-    this.plaza = ctx.createGain(); this.plaza.gain.value = 0; this.plaza.connect(this.duck);
-
-    const length = ctx.sampleRate * 3;
-    this.noise = ctx.createBuffer(1, length, ctx.sampleRate);
-    const data = this.noise.getChannelData(0);
-    for (let i = 0; i < length; i++) data[i] = Math.random() * 2 - 1;
+    this.graph(ctx);
+    this.plaza.gain.value = 0;
 
     this.cityBed();
     this.crowdBed();
     lamps.forEach(lamp => this.lampBuzz(lamp.position, lamp.flicker));
     void this.music();
     if (this.enabled) void ctx.resume();
+  }
+
+  /** Master chain, buses and the shared noise buffer. */
+  private graph(ctx: BaseAudioContext) {
+    this.ctx = ctx;
+    this.master = ctx.createGain(); this.master.gain.value = this.enabled ? 0.9 : 0;
+    this.duck = ctx.createGain(); this.duck.connect(this.master);
+    const limiter = ctx.createDynamicsCompressor(); limiter.threshold.value = -12; limiter.ratio.value = 6;
+    this.master.connect(limiter).connect(ctx.destination);
+    this.lane = ctx.createGain(); this.lane.connect(this.duck);
+    this.plaza = ctx.createGain(); this.plaza.connect(this.duck);
+    const length = ctx.sampleRate * 3;
+    this.noise = ctx.createBuffer(1, length, ctx.sampleRate);
+    const data = this.noise.getChannelData(0);
+    for (let i = 0; i < length; i++) data[i] = Math.random() * 2 - 1;
+  }
+
+  /**
+   * Renders one layer on its own, offline and without 3D positioning, through the same code the site
+   * plays (used by the sound preview page). `music` is the FireFire.mp3 bytes for the music layers.
+   */
+  static async renderLayer(layer: PreviewLayer, seconds: number, music?: ArrayBuffer): Promise<AudioBuffer> {
+    const rate = 44100, ctx = new OfflineAudioContext(2, Math.round(rate * seconds), rate);
+    const audio = new GullyAudio();
+    audio.spatial = false; audio.enabled = true;
+    audio.graph(ctx);
+    if (layer === "footsteps-asphalt" || layer === "footsteps-wet") {
+      for (let t = 0.4; t < seconds - 0.4; t += 1 / stepsPerSecond) audio.footstep(layer === "footsteps-wet", 1, t);
+    } else if (layer === "lane-traffic") audio.cityBed();
+    else if (layer === "lane-horns") for (let t = 0.5; t < seconds - 1; t += 2.4) audio.horn(t);
+    else if (layer === "lamp-buzz") audio.lampBuzz([0, 0, 0], false);
+    else if (layer === "lamp-flicker") {
+      audio.lampBuzz([0, 0, 0], true);
+      for (let t = 0; t < seconds; t += 1 / 60) audio.crackle(t);
+    } else if (layer === "plaza-crowd") audio.crowdBed();
+    else if (music) {
+      const buffer = await ctx.decodeAudioData(music.slice(0));
+      if (layer === "shop-radio") audio.radioFrom(buffer); else audio.stageFrom(buffer);
+    }
+    return ctx.startRendering();
   }
 
   private loopNoise(): AudioBufferSourceNode {
@@ -109,7 +158,8 @@ export class GullyAudio {
     const f = this.ctx!.createBiquadFilter(); f.type = type; f.frequency.value = frequency; f.Q.value = q; return f;
   }
 
-  private panner(position: Vec3, ref: number, rolloff: number) {
+  private panner(position: Vec3, ref: number, rolloff: number): AudioNode {
+    if (!this.spatial) return this.ctx!.createGain();
     const p = this.ctx!.createPanner();
     p.panningModel = "HRTF"; p.distanceModel = "inverse";
     p.refDistance = ref; p.rolloffFactor = rolloff; p.maxDistance = 120;
@@ -161,16 +211,32 @@ export class GullyAudio {
       const response = await fetch(music);
       const buffer = await ctx.decodeAudioData(await response.arrayBuffer());
       if (this.disposed) return;
-      const stageSource = ctx.createBufferSource(); stageSource.buffer = buffer; stageSource.loop = true;
-      const stageGain = ctx.createGain(); stageGain.gain.value = 0.55;
-      stageSource.connect(this.filter("lowpass", 260)).connect(stageGain).connect(this.panner(stage, 9, 1.1)).connect(this.plaza);
-      stageSource.start(0, 12);
-      const radioSource = ctx.createBufferSource(); radioSource.buffer = buffer; radioSource.loop = true;
-      const radioGain = ctx.createGain(); radioGain.gain.value = 0.05;
-      radioSource.connect(this.filter("highpass", 500)).connect(this.filter("lowpass", 2600))
-        .connect(radioGain).connect(this.panner(radio, 1.2, 1.6)).connect(this.lane);
-      radioSource.start(0, 70);
+      this.stageFrom(buffer);
+      this.radioFrom(buffer);
     } catch { /* music is optional */ }
+  }
+
+  private stageFrom(buffer: AudioBuffer) {
+    const ctx = this.ctx!;
+    const source = ctx.createBufferSource(); source.buffer = buffer; source.loop = true;
+    const gain = ctx.createGain(); gain.gain.value = 0.55;
+    source.connect(this.filter("lowpass", 260)).connect(gain).connect(this.panner(stage, 9, 1.1)).connect(this.plaza);
+    source.start(0, 12);
+  }
+
+  private radioFrom(buffer: AudioBuffer) {
+    const ctx = this.ctx!;
+    const source = ctx.createBufferSource(); source.buffer = buffer; source.loop = true;
+    const gain = ctx.createGain(); gain.gain.value = 0.05;
+    source.connect(this.filter("highpass", 500)).connect(this.filter("lowpass", 2600))
+      .connect(gain).connect(this.panner(radio, 1.2, 1.6)).connect(this.lane);
+    source.start(0, 70);
+  }
+
+  private crackle(time: number) {
+    for (const gain of this.flickers) if (Math.random() < 0.06) {
+      gain.gain.setTargetAtTime(Math.random() < 0.5 ? 0.005 : 0.07, time, 0.02);
+    }
   }
 
   private horn(time: number) {
@@ -190,10 +256,10 @@ export class GullyAudio {
   }
 
   /** One footstep. `strength` 0-1 follows walking speed. */
-  footstep(wet: boolean, strength: number) {
+  footstep(wet: boolean, strength: number, at?: number) {
     const ctx = this.ctx;
-    if (!ctx || !this.enabled || ctx.state !== "running") return;
-    const t = ctx.currentTime + 0.005, level = (0.09 + Math.random() * 0.03) * Math.min(1, 0.4 + strength * 0.6);
+    if (!ctx || !this.enabled || (at === undefined && ctx.state !== "running")) return;
+    const t = at ?? ctx.currentTime + 0.005, level = (0.09 + Math.random() * 0.03) * Math.min(1, 0.4 + strength * 0.6);
     const scuff = ctx.createBufferSource(); scuff.buffer = this.noise;
     scuff.playbackRate.value = 0.8 + Math.random() * 0.4;
     const tone = this.filter(wet ? "bandpass" : "lowpass", wet ? 1700 + Math.random() * 900 : 700 + Math.random() * 400, wet ? 1.4 : 0.8);
@@ -240,9 +306,7 @@ export class GullyAudio {
     this.plaza.gain.setTargetAtTime(plaza, now, 0.4);
     this.lane.gain.setTargetAtTime(1 - plaza * 0.75, now, 0.4);
     this.duck.gain.setTargetAtTime(ducked ? 0.25 : 1, now, 0.25);
-    for (const gain of this.flickers) if (Math.random() < 0.06) {
-      gain.gain.setTargetAtTime(Math.random() < 0.5 ? 0.005 : 0.07, now, 0.02);
-    }
+    this.crackle(now);
     if (now > this.nextHorn) {
       if (this.nextHorn > 0 && plaza < 0.7) this.horn(now + 0.05);
       this.nextHorn = now + 9 + Math.random() * 18;
@@ -252,7 +316,7 @@ export class GullyAudio {
   dispose() {
     this.disposed = true;
     this.listeners.splice(0).forEach(off => off());
-    void this.ctx?.close();
+    void (this.ctx as AudioContext | null)?.close();
     this.ctx = null;
   }
 }

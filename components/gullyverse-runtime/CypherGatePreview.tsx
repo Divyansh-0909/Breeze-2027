@@ -10,7 +10,7 @@ import { ImmersiveRuntime } from "../immersive/runtime";
 import { lookAtPose, world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
 import { Fidelity } from "./fidelity";
-import { GullyAudio, isWet, soundPreference } from "./gully-audio";
+import { GullyAudio, isWet, soundPreference, strideMetres } from "./gully-audio";
 import { cypherContact } from "./cypher-contact";
 import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialog";
 import { CypherEventsDialog } from "./CypherEventsDialog";
@@ -296,7 +296,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       const stepping = walkingNow && speed <= 7;
       gait.amplitude = MathUtils.damp(gait.amplitude, stepping ? Math.min(1, speed / 4.2) : 0, 8, dt);
       const before = Math.floor(gait.steps);
-      if (stepping) gait.steps += moved / 0.72;
+      if (stepping) gait.steps += moved / strideMetres;
       if (Math.floor(gait.steps) !== before && gait.amplitude > 0.25) {
         audio.footstep(isWet(runtime.pose.x, runtime.pose.z), gait.amplitude);
       }
