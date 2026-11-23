@@ -18,6 +18,6 @@ export function CypherAftermovieControls({ loading, muted, toggleSound, close }:
     </div>
     {loading
       ? <p role="status">Loading Aftermovie…</p>
-      : <button type="button" onClick={toggleSound}>{muted ? "Enable sound" : "Mute sound"}</button>}
+      : <button type="button" aria-keyshortcuts="V" aria-pressed={!muted} onClick={toggleSound}>{muted ? "Sound off" : "Sound on"}</button>}
   </section>;
 }

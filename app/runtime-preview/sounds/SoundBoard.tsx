@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { GullyAudio, music, previewLayers, type PreviewLayer } from "@/components/gullyverse-runtime/gully-audio";
+import { GullyAudio, previewLayers, type PreviewLayer } from "@/components/gullyverse-runtime/gully-audio";
+import { stageVideoSource } from "@/components/landing-page/stage3d/useStageVideo";
 
 const seconds = 10;
 
@@ -33,8 +34,8 @@ const peakDb = (buffer: AudioBuffer) => {
 let track: Promise<ArrayBuffer> | null = null;
 
 async function render(layer: PreviewLayer, normalise: boolean) {
-  const needsMusic = layer === "shop-radio" || layer.startsWith("stage");
-  if (needsMusic) track ??= fetch(music).then(response => response.arrayBuffer());
+  const needsMusic = layer === "shop-radio" || layer.startsWith("stage") || layer === "aftermovie-watching";
+  if (needsMusic) track ??= fetch(stageVideoSource).then(response => response.arrayBuffer());
   const buffer = await GullyAudio.renderLayer(layer, seconds, needsMusic ? await track! : undefined);
   return { blob: wav(buffer, normalise), peakDb: peakDb(buffer) };
 }

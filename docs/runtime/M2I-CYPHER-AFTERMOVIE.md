@@ -1,8 +1,8 @@
 # M2I Cypher Aftermovie screen
 
-Approach the screen at the rear of the cypher and choose **Play Aftermovie** or tap a screen panel. The private preview has a shortcut at `/runtime-preview/cypher?start=aftermovie`. The existing stage player streams `/after-movie.mp4` only after playback starts. The three authored screen panels share one video texture and keep their original crop across the full screen.
+The screen at the rear of the cypher loops `/after-movie.mp4` for the whole visit, starting muted (browsers allow muted autoplay) and pausing while the tab is hidden (`cypher-screen-film.ts`). Its sound is the gully's music: after the visitor's first click, tap or key press it plays from the screen's PA and, band-passed, from the shop radio in the lane, in sync with the picture (see [M2O](M2O-SOUND-DESIGN.md)). Approach the screen and choose **Watch Aftermovie** (E) or tap a screen panel to watch it: the film restarts from the beginning and plays directly while the rest of the gully ducks. The private preview has a shortcut at `/runtime-preview/cypher?start=aftermovie`. The three authored screen panels share one video texture and keep their original crop across the full screen.
 
-Playback starts muted. **Enable sound** and **Mute sound** switch the audio during playback. **Exit Aftermovie**, Escape, and the end of the film restore the exact walking pose and the original still. Leaving the page or losing the 3D context releases the video. Media failures return the visitor to the Play button and offer a direct video link. The direct preview offers the same video link when WebGL is unavailable.
+The **Sound on / off** button (or V) is the gully's sound setting. **Exit Aftermovie** and Escape restore the exact walking pose; the film keeps looping on the screen. Media failures show a retry message and a direct video link. The direct preview offers the same video link when WebGL is unavailable.
 
 ## Verify locally
 

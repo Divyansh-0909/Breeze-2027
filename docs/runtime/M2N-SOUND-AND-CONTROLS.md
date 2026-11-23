@@ -9,7 +9,7 @@ The walking controls sit bottom-left in a **CONTROLS** panel. Keys show as chips
 | W A S D (or arrows) | Walk (2.4 m/s) |
 | Shift (hold) | Sprint (4.2 m/s) |
 | Drag | Look |
-| E | The nearby destination's action (Leave a message, View team murals, Play Aftermovie, View accommodation, Browse event posters), only when one is in reach |
+| E | The nearby destination's action (Leave a message, View team murals, Watch Aftermovie, View accommodation, Browse event posters), only when one is in reach |
 | M | Map / Close map |
 | V | Sound on / off (remembered) |
 | Esc | Leave a focused view or the map |

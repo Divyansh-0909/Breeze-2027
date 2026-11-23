@@ -22,7 +22,8 @@ import {
   accommodationApproach, accommodationFocus, accommodationView, isAccommodationArtwork, revealAccommodationHouseWall,
 } from "./cypher-accommodation";
 import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels, isAftermoviePanel } from "./cypher-aftermovie";
-import { stageVideoSource, useStageVideo } from "../landing-page/stage3d/useStageVideo";
+import { stageVideoSource } from "../landing-page/stage3d/useStageVideo";
+import { useScreenFilm } from "./cypher-screen-film";
 import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
 import { mountSponsorDisplay } from "./sponsor-display";
 import { mountMarketLamps } from "./market-lamps";
@@ -47,7 +48,7 @@ type WallUI = WallPanel | "active" | null;
 const wallFocus = { events: eventsFocus, team: teamFocus, aftermovie: aftermovieFocus, accommodation: accommodationFocus };
 const wallViews = { team: teamView, aftermovie: aftermovieView, accommodation: accommodationView };
 const wallLabel = {
-  events: "Browse event posters", team: "View team murals", aftermovie: "Play Aftermovie",
+  events: "Browse event posters", team: "View team murals", aftermovie: "Watch Aftermovie",
   accommodation: "View accommodation",
 };
 type ContactUI = { available: boolean; placement: ContactPlacement; needsHeading: boolean };
@@ -432,7 +433,6 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   const [contact, setContact] = useState(closedContact);
   const [wallUI, setWallUI] = useState<WallUI>(null);
   const [panel, setPanel] = useState<WallPanel | null>(null);
-  const [movieMuted, setMovieMuted] = useState(true);
   const [audio] = useState(() => new GullyAudio());
   const [sound, setSound] = useState(soundPreference);
   useEffect(() => { audio.arm(); return () => audio.dispose(); }, [audio]);
@@ -460,16 +460,15 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   const [zone, setZone] = useState(() => zoneAt(marketRuntime.pose.z));
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   useImmersiveInput(runtime);
-  const playbackOwnership = useCallback((active: boolean) => {
-    if (active || !watchingMovie.current) return;
+  // The screen loops the Aftermovie all visit; its sound is the stage and radio music (GullyAudio).
+  const screen = useScreenFilm(useCallback(() => setMovieFailed(true), []));
+  useEffect(() => { if (screen.film) audio.attachFilm(screen.film.video); }, [audio, screen.film]);
+  const stopAftermovie = useCallback(() => {
+    if (!watchingMovie.current) return;
     watchingMovie.current = false;
-    marketRuntime.focusInteraction(null);
+    if (marketRuntime.interacting) marketRuntime.focusInteraction(null);
     setPanel(null);
   }, [marketRuntime]);
-  const video = useStageVideo(playbackOwnership, { startMuted: true, onError: () => setMovieFailed(true) });
-  const stopAftermovie = useCallback(() => {
-    if (watchingMovie.current) video.stopMovie();
-  }, [video.stopMovie]);
   const openWall = useCallback((target: WallPanel) => {
     const focus = wallFocus[target];
     if (!canOpenWall(marketRuntime.pose, focus) || !marketRuntime.focusInteraction(focus)) return;
@@ -477,11 +476,10 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
     restoreWallFocus.current = target;
     if (target === "aftermovie") {
       setMovieFailed(false);
-      setMovieMuted(true);
       watchingMovie.current = true;
-      video.startMovie();
+      screen.restart();
     }
-  }, [marketRuntime, video.startMovie]);
+  }, [marketRuntime, screen.restart]);
   const closeContact = useCallback(() => { marketRuntime.focusInteraction(null); }, [marketRuntime]);
   const closeWall = useCallback(() => {
     marketRuntime.focusInteraction(null);
@@ -518,16 +516,6 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
       chooseEvent(null);
     }
   }, [state, runtime, stopAftermovie]);
-  useEffect(() => {
-    if (video.phase === "idle") return;
-    const hide = () => { if (document.hidden) stopAftermovie(); };
-    document.addEventListener("visibilitychange", hide);
-    window.addEventListener("pagehide", stopAftermovie);
-    return () => {
-      document.removeEventListener("visibilitychange", hide);
-      window.removeEventListener("pagehide", stopAftermovie);
-    };
-  }, [video.phase, stopAftermovie]);
   const travel = useCallback((stop: CypherStart) => {
     travelled.current = true;
     restoreContactFocus.current = stop === "contact";
@@ -573,8 +561,8 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
         </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone}
           form={form} reportContact={setContact} panel={panel} eventPage={eventPage}
           reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam}
-          film={video.phase === "playing" ? video.texture : null} openWall={openWall} stopAftermovie={stopAftermovie}
-          audio={audio} ducked={video.phase === "playing" && !movieMuted} />}
+          film={screen.ready ? screen.film?.texture ?? null : null} openWall={openWall} stopAftermovie={stopAftermovie}
+          audio={audio} ducked={panel === "aftermovie" && runtime.interacting} />}
         {!activeQuarry && <CypherMapProjection runtime={marketRuntime} elements={mapDom} />}
       </Canvas>
       {walking && runtime.interacting && contact.needsHeading &&
@@ -630,10 +618,7 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
       advance={advanceTeam} retry={() => requestTeam(current => ({ ...current }))} close={closeWall} />}
     {panel === "accommodation" && wallUI === "active" && <AccommodationControls close={closeWall} />}
     {walking && panel === "aftermovie" && runtime.interacting && <CypherAftermovieControls
-      loading={video.phase !== "playing"} muted={movieMuted} toggleSound={() => {
-        video.setMuted(!movieMuted);
-        setMovieMuted(!movieMuted);
-      }} close={stopAftermovie} />}
+      loading={!screen.ready} muted={!sound} toggleSound={toggleSound} close={stopAftermovie} />}
     {!walking && !landing && state.phase !== "entrance" && <div className="native-loading" role="status">
       <p>{state.error ?? (state.phase === "context-lost" || state.phase === "recovering"
         ? "Restoring 3D…" : activeQuarry ? "Loading the quarry…" : "Loading the market lane…")}</p>

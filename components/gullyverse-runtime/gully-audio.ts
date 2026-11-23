@@ -4,7 +4,7 @@
  *
  * - no constant noise beds. The night is carried by placed emitters (street-lamp mains buzz, a shop
  *   radio, the stage) and scattered one-shots with random timing, choice, position and cooldowns
- *   (distant horns, a two-wheeler passing the lane mouth, a temple bell, a shop shutter);
+ *   (distant horns, a brief two-wheeler passing the lane mouth);
  * - every emitter is heard through distance: HRTF placement, a low-pass that closes with distance
  *   (air absorption), more reverb the further away it is, and culling beyond its reach. The stage is
  *   occluded from the lane by the gate and houses and opens up in the plaza;
@@ -14,7 +14,7 @@
  *   (about 5 %) and level (about 3 dB), with grit on some steps. Sprinting is heavier and quicker
  *   with a clothing swish; puddles splash.
  *
- * Everything except the music (the festival's FireFire.mp3) is synthesised, so it ships no audio files.
+ * The screen and the radio play the looping Aftermovie's own sound; everything else is synthesised.
  * Browsers only allow audio after a user gesture, so the context starts on the first pointer or key
  * press. The on/off choice is remembered.
  */
@@ -23,7 +23,6 @@ type Vec3 = readonly [number, number, number];
 
 const storageKey = "breeze:sound";
 const masterLevel = 1.4;
-export const music = "/music/FireFire.mp3";
 // Three.js coordinates. The lane floor is at y = 6 (eye at about 7.6); the plaza starts near z = -14.
 // Rev15Z street lamps (L02 and L05 are dead; L03 and L06 flicker).
 const lamps: { position: Vec3; flicker: boolean }[] = [
@@ -32,7 +31,7 @@ const lamps: { position: Vec3; flicker: boolean }[] = [
 ];
 const radio: Vec3 = [3.3, 8.6, 16];
 const stage: Vec3 = [0, 11, -44.8];
-const temple: Vec3 = [-34, 14, 6];
+const aftermovieSeat: Vec3 = [0, 9.85, -35.5];
 // Puddles and edge pools (x, z, half width x, half depth z), extracted from the master.
 const puddles: readonly (readonly [number, number, number, number])[] = [[-3.16, 26.51, 0.43, 3.35], [3.18, 26.07, 0.44, 3.46], [-3.15, 20.06, 0.42, 3.32], [3.15, 19.84, 0.45, 3.23], [-3.17, 13.68, 0.38, 2.98], [3.15, 13.56, 0.39, 2.98], [-12.66, -26.62, 0.51, 1.91], [-12.67, -30.97, 0.5, 2.03], [-12.67, -37.62, 0.46, 1.73], [12.64, -27.15, 0.47, 1.87], [12.65, -32.0, 0.51, 2.05], [12.66, -38.59, 0.47, 2.06], [-10.94, -15.01, 2.14, 0.41], [10.71, -15.02, 2.05, 0.41], [-12.54, -44.46, 0.42, 1.41], [12.51, -44.74, 0.46, 1.38], [-2.5, 25.96, 0.57, 0.74], [2.48, 13.41, 0.56, 0.64], [10.73, -18.4, 0.68, 0.9], [11.92, -27.37, 0.69, 0.9]];
 
@@ -55,13 +54,12 @@ export const previewLayers = {
   "footsteps-wet": "Footsteps through a puddle",
   "lane-horns": "Distant horns",
   "two-wheeler": "Two-wheeler passing the lane mouth",
-  "temple-bell": "Temple bell beyond the houses",
-  "shutter": "A shop shutter rattling",
   "lamp-buzz": "Street lamp buzz (L01, L04), standing under it",
   "lamp-flicker": "Flickering lamp crackle (L03, L06), standing under it",
-  "shop-radio": "Shop radio, walking past the shop",
-  "stage-from-lane": "Stage music heard from the lane (occluded)",
-  "stage-in-plaza": "Stage music in the plaza",
+  "shop-radio": "Shop radio playing the Aftermovie's sound, walking past the shop",
+  "stage-from-lane": "The screen's Aftermovie heard from the lane (occluded)",
+  "stage-in-plaza": "The screen's Aftermovie in the plaza",
+  "aftermovie-watching": "Watching the Aftermovie (focused)",
 } as const;
 export type PreviewLayer = keyof typeof previewLayers;
 
@@ -122,7 +120,10 @@ export class GullyAudio {
   private foot = 1;
   private plazaMix = 0;
   private placed = -1;
-  private next = { horn: 0, wheeler: 0, bell: 0, shutter: 0 };
+  private next = { horn: 0, wheeler: 0 };
+  private film: HTMLVideoElement | null = null;
+  private filmSource: HTMLVideoElement | null = null;
+  private filmDirect!: GainNode;
   private disposed = false;
   private listeners: (() => void)[] = [];
   enabled = soundPreference();
@@ -162,10 +163,10 @@ export class GullyAudio {
     this.listeners.push(() => document.removeEventListener("visibilitychange", visibility));
     this.graph(ctx);
     lamps.forEach(lamp => this.lampBuzz(lamp.position, lamp.flicker));
-    void this.music();
+    this.connectFilm();
     // The first one-shots wait a while, so arriving is quiet.
     const now = ctx.currentTime;
-    this.next = { horn: now + rand(6, 14), wheeler: now + rand(10, 25), bell: now + rand(20, 45), shutter: now + rand(15, 35) };
+    this.next = { horn: now + rand(6, 14), wheeler: now + rand(10, 25) };
     if (this.enabled) void ctx.resume();
   }
 
@@ -178,6 +179,7 @@ export class GullyAudio {
     this.master.connect(limiter).connect(ctx.destination);
     this.lane = ctx.createGain(); this.lane.connect(this.duck);
     this.plaza = ctx.createGain(); this.plaza.gain.value = 0; this.plaza.connect(this.duck);
+    this.filmDirect = ctx.createGain(); this.filmDirect.gain.value = 0; this.filmDirect.connect(this.master);
     const length = ctx.sampleRate * 3;
     this.noise = ctx.createBuffer(1, length, ctx.sampleRate);
     const data = this.noise.getChannelData(0);
@@ -194,7 +196,7 @@ export class GullyAudio {
 
   /**
    * Renders one layer on its own, offline, from a listening spot in the gully, through the same code the
-   * site plays (used by the sound preview page). `track` is the FireFire.mp3 bytes for the music layers.
+   * site plays (used by the sound preview page). `track` is the Aftermovie's bytes for the screen layers.
    */
   static async renderLayer(layer: PreviewLayer, seconds: number, track?: ArrayBuffer): Promise<AudioBuffer> {
     const rate = 44100, ctx = new OfflineAudioContext(2, Math.round(rate * seconds), rate);
@@ -208,17 +210,17 @@ export class GullyAudio {
         audio.footstep(layer === "footsteps-wet", sprint ? 1 : 0.45, t, sprint);
       }
     } else if (layer === "lane-horns") for (let t = 0.4; t < seconds - 1; t += 2.6) audio.horn(t);
-    else if (layer === "two-wheeler") { listener = [0, 7.6, 28]; audio.twoWheeler(0.3, 5.5); }
-    else if (layer === "temple-bell") audio.templeBell(0.3);
-    else if (layer === "shutter") { audio.shutter(0.5, [-3.6, 8, 17]); audio.shutter(4.2, [3.6, 8, 23]); }
+    else if (layer === "two-wheeler") { listener = [0, 7.6, 24]; audio.twoWheeler(0.3, 2.8); }
     else if (layer === "lamp-buzz") { listener = [-0.4, 7.6, 25.6]; audio.lampBuzz(lamps[0].position, false); }
     else if (layer === "lamp-flicker") {
       listener = [-0.4, 7.6, 16.1]; audio.lampBuzz(lamps[1].position, true);
       for (let t = 0; t < seconds; t += 1 / 30) audio.crackle(t);
     } else if (track) {
-      const buffer = await ctx.decodeAudioData(track.slice(0));
-      if (layer === "shop-radio") { listener = [1.2, 7.6, 18]; audio.radioFrom(buffer); }
-      else { audio.stageFrom(buffer); if (layer === "stage-in-plaza") listener = [0, 7.6, -28]; else listener = [0, 7.6, 14]; }
+      const source = ctx.createBufferSource();
+      source.buffer = await ctx.decodeAudioData(track.slice(0)); source.start(0, 40);
+      if (layer === "shop-radio") { listener = [1.2, 7.6, 18]; audio.radioFrom(source); }
+      else if (layer === "aftermovie-watching") { listener = aftermovieSeat; source.connect(audio.filmDirect); audio.watching(0, true); }
+      else { audio.stageFrom(source); listener = layer === "stage-in-plaza" ? [0, 7.6, -28] : [0, 7.6, 14]; }
     }
     audio.place(listener, forward, 0, true);
     return ctx.startRendering();
@@ -266,36 +268,46 @@ export class GullyAudio {
     if (flicker) this.flickers.push(gain);
   }
 
-  /** The festival track worldised: stage speakers at the screen and a tinny radio in an open shop. */
-  private async music() {
-    const ctx = this.ctx!;
-    try {
-      const response = await fetch(music);
-      const buffer = await ctx.decodeAudioData(await response.arrayBuffer());
-      if (this.disposed) return;
-      this.stageFrom(buffer);
-      this.radioFrom(buffer);
-    } catch { /* music is optional */ }
+  /**
+   * The plaza screen's looping Aftermovie is the music source: its sound plays from the screen's PA and,
+   * band-passed, from the shop radio, in sync with the picture. While the visitor watches it (focused),
+   * it also plays directly and everything else ducks. Media elements can feed Web Audio only after a user
+   * gesture, so it connects when the audio starts and then unmutes the video.
+   */
+  attachFilm(video: HTMLVideoElement) {
+    this.film = video;
+    this.connectFilm();
   }
 
-  private stageFrom(buffer: AudioBuffer) {
+  private connectFilm() {
+    const ctx = this.ctx, video = this.film;
+    if (!ctx || !video || this.filmSource === video || !("createMediaElementSource" in ctx)) return;
+    this.filmSource = video;
+    this.filmInput((ctx as AudioContext).createMediaElementSource(video));
+    video.muted = false;
+    void video.play().catch(() => { /* paused while hidden */ });
+  }
+
+  private filmInput(source: AudioNode) {
+    this.stageFrom(source);
+    this.radioFrom(source);
+    source.connect(this.filmDirect);
+  }
+
+  private stageFrom(input: AudioNode) {
     const ctx = this.ctx!;
-    const source = ctx.createBufferSource(); source.buffer = buffer; source.loop = true;
-    const gain = ctx.createGain(); gain.gain.value = 0.4;
+    const gain = ctx.createGain(); gain.gain.value = 0.6;
     // PA speakers: no deep sub, a little 1 kHz and 2.5 kHz presence, rolled-off top.
-    source.connect(this.filter("highpass", 55)).connect(this.filter("peaking", 1000, 1, 2))
+    input.connect(this.filter("highpass", 55)).connect(this.filter("peaking", 1000, 1, 2))
       .connect(this.filter("peaking", 2500, 1.2, 2)).connect(this.filter("highshelf", 7000, 0.7, -5)).connect(gain)
       .connect(this.emitter(stage, this.duck, { near: 9000, far: 220, reach: 110, wet: [0.15, 0.7], ref: 9, rolloff: 1.1, occluded: true }));
-    source.start(0, 12);
   }
 
-  private radioFrom(buffer: AudioBuffer) {
+  private radioFrom(input: AudioNode) {
     const ctx = this.ctx!;
-    const source = ctx.createBufferSource(); source.buffer = buffer; source.loop = true;
-    const gain = ctx.createGain(); gain.gain.value = 0.08;
-    source.connect(this.filter("highpass", 500)).connect(this.filter("lowpass", 2600)).connect(this.filter("peaking", 1200, 2, 4))
+    const gain = ctx.createGain(); gain.gain.value = 0.12;
+    input.connect(this.filter("highpass", 500)).connect(this.filter("lowpass", 2600)).connect(this.filter("peaking", 1200, 2, 4))
       .connect(gain).connect(this.emitter(radio, this.lane, { near: 3000, far: 600, reach: 28, wet: [0.1, 0.4], ref: 1.2, rolloff: 1.6 }));
-    source.start(0, 70);
   }
 
   private crackle(time: number) {
@@ -326,14 +338,14 @@ export class GullyAudio {
   }
 
   /** A scooter or motorbike crossing the lane mouth, with Doppler and throttle wobble. */
-  private twoWheeler(time: number, duration = rand(4.5, 6.5)) {
+  private twoWheeler(time: number, duration = rand(2.4, 3.2)) {
     const ctx = this.ctx!, dir = Math.random() < 0.5 ? 1 : -1, f0 = rand(46, 62), end = time + duration;
-    const panner = this.shot([-dir * 40, 6.8, 36], this.lane, 0.5, 5);
-    (panner as PannerNode).positionX.setValueAtTime(-dir * 40, time);
-    (panner as PannerNode).positionX.linearRampToValueAtTime(dir * 40, end);
+    const panner = this.shot([-dir * 22, 6.8, 36], this.lane, 0.5, 5);
+    (panner as PannerNode).positionX.setValueAtTime(-dir * 22, time);
+    (panner as PannerNode).positionX.linearRampToValueAtTime(dir * 22, end);
     const low = this.filter("lowpass", 900, 1.5), gain = ctx.createGain();
-    gain.gain.setValueAtTime(0, time); gain.gain.linearRampToValueAtTime(0.032, time + 0.6);
-    gain.gain.setValueAtTime(0.032, end - 0.6); gain.gain.linearRampToValueAtTime(0, end);
+    gain.gain.setValueAtTime(0, time); gain.gain.linearRampToValueAtTime(0.014, time + 0.5);
+    gain.gain.setValueAtTime(0.014, end - 0.5); gain.gain.linearRampToValueAtTime(0, end);
     const wobble = ctx.createOscillator(), depth = ctx.createGain();
     wobble.frequency.value = rand(2, 4); depth.gain.value = f0 * 0.04; wobble.connect(depth);
     for (const [type, ratio, level] of [["sawtooth", 1, 1], ["square", 0.5, 0.5], ["sawtooth", 2.01, 0.25]] as const) {
@@ -346,47 +358,6 @@ export class GullyAudio {
     }
     wobble.start(time); wobble.stop(end + 0.05);
     low.connect(gain).connect(panner);
-  }
-
-  /** A temple bell beyond the houses: a few strikes of inharmonic, slowly decaying partials. */
-  private templeBell(time: number) {
-    const ctx = this.ctx!, f0 = rand(600, 700), strikes = 2 + Math.floor(Math.random() * 3);
-    const out = this.filter("lowpass", 2600);
-    out.connect(this.shot(temple, this.duck, 0.9, 8));
-    let t = time;
-    for (let s = 0; s < strikes; s++) {
-      const level = 0.02 * rand(0.8, 1.1);
-      for (const [ratio, amp, decay] of [[0.5, 0.3, 4], [1, 1, 3.2], [1.19, 0.45, 2.4], [1.5, 0.3, 2], [2, 0.25, 1.6], [2.74, 0.15, 1.1], [3.76, 0.08, 0.7]] as const) {
-        const o = ctx.createOscillator(), g = ctx.createGain();
-        o.frequency.value = f0 * ratio * rand(0.998, 1.002);
-        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(level * amp, t + 0.004);
-        g.gain.exponentialRampToValueAtTime(0.00001, t + decay);
-        o.connect(g).connect(out); o.start(t); o.stop(t + decay + 0.05);
-      }
-      t += rand(1.2, 2.1);
-    }
-  }
-
-  /** A rolling steel shutter in one of the lane's shops: resonant rattle, then a stop. */
-  private shutter(time: number, at: Vec3 = [Math.random() < 0.5 ? -3.6 : 3.6, 8, rand(-6, 27)]) {
-    const ctx = this.ctx!, duration = rand(0.8, 1.4), end = time + duration;
-    const out = ctx.createGain(); out.connect(this.shot(at, this.lane, 0.45, 2, 1.4));
-    const source = ctx.createBufferSource(); source.buffer = this.noise;
-    const rattle = ctx.createGain(), lfo = ctx.createOscillator(), depth = ctx.createGain();
-    lfo.type = "square"; lfo.frequency.value = rand(16, 24); depth.gain.value = 0.5; rattle.gain.value = 0.5;
-    lfo.connect(depth).connect(rattle.gain);
-    const envelope = ctx.createGain();
-    envelope.gain.setValueAtTime(0, time); envelope.gain.linearRampToValueAtTime(0.07, time + 0.15);
-    envelope.gain.setValueAtTime(0.07, end - 0.2); envelope.gain.linearRampToValueAtTime(0, end);
-    for (const f of [rand(700, 900), rand(1500, 1900), rand(2800, 3400)]) {
-      source.connect(this.filter("bandpass", f, 14)).connect(rattle);
-    }
-    rattle.connect(envelope).connect(out);
-    source.start(time, rand(0, 1.5), duration + 0.05); lfo.start(time); lfo.stop(end);
-    const stop = ctx.createOscillator(), stopGain = ctx.createGain();
-    stop.frequency.setValueAtTime(85, end); stop.frequency.exponentialRampToValueAtTime(50, end + 0.12);
-    stopGain.gain.setValueAtTime(0.12, end); stopGain.gain.exponentialRampToValueAtTime(0.0005, end + 0.15);
-    stop.connect(stopGain).connect(out); stop.start(end); stop.stop(end + 0.16);
   }
 
   /** A short burst of the shared noise through a filter, for footstep layers. */
@@ -470,19 +441,23 @@ export class GullyAudio {
     }
   }
 
+  /** Watching the film: it plays directly, and the gully (its own screen sound included) ducks. */
+  private watching(now: number, on: boolean) {
+    this.duck.gain.setTargetAtTime(on ? 0.12 : 1, now, 0.25);
+    this.filmDirect.gain.setTargetAtTime(on ? 0.7 : 0, now, 0.25);
+  }
+
   /** Per frame: listener, mix, lamp crackle and the scattered one-shots. */
-  update(position: Vec3, forward: Vec3, ducked: boolean) {
+  update(position: Vec3, forward: Vec3, ducked: boolean) { // ducked: the visitor is watching the Aftermovie
     const ctx = this.ctx;
     if (!ctx || ctx.state !== "running") return;
     const now = ctx.currentTime;
     this.place(position, forward, now);
-    this.duck.gain.setTargetAtTime(ducked ? 0.25 : 1, now, 0.25);
+    this.watching(now, ducked);
     this.crackle(now);
     const inLane = this.plazaMix < 0.6, next = this.next;
     if (now > next.horn) { if (inLane || Math.random() < 0.4) this.horn(now + 0.05); next.horn = now + rand(9, 27); }
     if (now > next.wheeler) { if (inLane) this.twoWheeler(now + 0.05); next.wheeler = now + rand(25, 55); }
-    if (now > next.bell) { this.templeBell(now + 0.05); next.bell = now + rand(50, 110); }
-    if (now > next.shutter) { if (inLane) this.shutter(now + 0.05); next.shutter = now + rand(40, 90); }
   }
 
   dispose() {
