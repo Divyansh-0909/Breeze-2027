@@ -4,7 +4,9 @@ import { composeCamera, mapCamera } from "./aerial";
 
 export type Phase = "boot" | "landing" | "entrance" | "local" | "departure" | "covered" | "arrival" | "context-lost" | "recovering" | "error";
 export type Snapshot = { phase: Phase; scene: LocationId; destination: LocationId; serial: number; map: boolean; mapStage: "ascent" | "open" | "descent" | null; destinationMenu: boolean; unavailableDestination: TravelId | null; error: string | null; quality: number; movie: boolean; reduced: boolean; inspection: string | null };
-export type Input = { forward: number; strafe: number; lookX: number; lookY: number };
+export type Input = { forward: number; strafe: number; lookX: number; lookY: number; sprint: boolean };
+/** The gully's walking pace, and its sprint pace while Shift is held (m/s). */
+export const walkSpeed = 2.4, sprintSpeed = 4.2;
 /** Optional native-space contract; existing quarry behavior remains the default. */
 export interface RuntimeSpace {
   spawn(id: LocationId, approaching: boolean): Pose;
@@ -29,7 +31,9 @@ export class ImmersiveRuntime {
   private state: Snapshot;
   private listeners = new Set<() => void>();
   pose: Pose;
-  input: Input = { forward: 0, strafe: 0, lookX: 0, lookY: 0 };
+  input: Input = { forward: 0, strafe: 0, lookX: 0, lookY: 0, sprint: false };
+  /** Movement speeds in m/s. Earlier scenes move at one 4.2 m/s pace; the gully sets walk and sprint. */
+  pace = { walk: 4.2, sprint: 4.2 };
   get reduced() { return this.state.reduced; }
   set reduced(value: boolean) { if (this.state.reduced !== value) this.publish({ reduced: value }); }
   private paused = false;
@@ -85,7 +89,7 @@ export class ImmersiveRuntime {
   private publish(update: Partial<Snapshot>) {
     if (this.clock && (update.phase !== undefined || update.movie !== undefined || update.mapStage !== undefined)) this.activatedAt = this.clock();
     this.state = { ...this.state, ...update }; this.listeners.forEach((fn) => fn()); }
-  clearInput() { this.input.forward = this.input.strafe = this.input.lookX = this.input.lookY = 0; this.vx = this.vz = 0; }
+  clearInput() { this.input.forward = this.input.strafe = this.input.lookX = this.input.lookY = 0; this.input.sprint = false; this.vx = this.vz = 0; }
   setMap(map: boolean) {
     if (map) {
       if (this.state.phase !== "local" || this.state.movie || this.interacting || this.state.destinationMenu || this.state.inspection) return;
@@ -344,7 +348,7 @@ export class ImmersiveRuntime {
       input.lookX = input.lookY = 0;
       const length = Math.max(1, Math.hypot(input.forward, input.strafe));
       const f = input.forward / length, s = input.strafe / length;
-      const speed = 4.2, damping = 1 - Math.exp(-16 * dt);
+      const speed = input.sprint ? this.pace.sprint : this.pace.walk, damping = 1 - Math.exp(-16 * dt);
       this.vx += ((s * Math.cos(this.pose.yaw) - f * Math.sin(this.pose.yaw)) * speed - this.vx) * damping;
       this.vz += ((-f * Math.cos(this.pose.yaw) - s * Math.sin(this.pose.yaw)) * speed - this.vz) * damping;
       const before = { x: this.pose.x, z: this.pose.z };

@@ -14,6 +14,7 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
       let strafe = Number(keys.current.has("KeyD") || keys.current.has("ArrowRight")) - Number(keys.current.has("KeyA") || keys.current.has("ArrowLeft"));
       virtual.current.forEach((v) => { forward += v.forward; strafe += v.strafe; });
       runtime.input.forward = Math.max(-1, Math.min(1, forward)); runtime.input.strafe = Math.max(-1, Math.min(1, strafe));
+      runtime.input.sprint = keys.current.has("ShiftLeft") || keys.current.has("ShiftRight");
     };
     const clear = () => { keys.current.clear(); virtual.current.clear(); drag.current = null; runtime.clearInput(); };
     runtime.suspended = document.hidden;
@@ -26,6 +27,7 @@ export function useImmersiveInput(runtime: ImmersiveRuntime) {
       if (s.inspection || runtime.interacting) return;
       if (s.phase === "landing" && ["Enter", "Space"].includes(e.code) && !(e.target as HTMLElement)?.closest("button, a")) { e.preventDefault(); runtime.enter(); return; }
       if (e.code === "KeyM" && s.phase === "local" && !s.movie && !s.destinationMenu && !e.repeat) { e.preventDefault(); runtime.setMap(!s.map || s.mapStage === "descent"); return; }
+      if (e.code === "ShiftLeft" || e.code === "ShiftRight") { keys.current.add(e.code); update(); return; }
       if (movementCodes.has(e.code) && s.phase === "local" && !s.map && !s.movie && !s.destinationMenu && !runtime.interacting) { if (e.repeat && !keys.current.has(e.code)) return; e.preventDefault(); keys.current.add(e.code); update(); }
     };
     const up = (e: KeyboardEvent) => { keys.current.delete(e.code); update(); };

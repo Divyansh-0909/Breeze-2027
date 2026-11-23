@@ -6,11 +6,11 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { AgXToneMapping, Box3, Color, Euler, MathUtils, PerspectiveCamera, Vector3, type VideoTexture } from "three";
 import { useImmersiveInput } from "../immersive/input";
 import { phoneCamera, ReadinessGate, SceneRenderer } from "../immersive/rendering";
-import { ImmersiveRuntime } from "../immersive/runtime";
+import { ImmersiveRuntime, sprintSpeed, walkSpeed } from "../immersive/runtime";
 import { lookAtPose, world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset } from "./baked-assets";
 import { Fidelity } from "./fidelity";
-import { GullyAudio, isWet, soundPreference, strideMetres } from "./gully-audio";
+import { GullyAudio, isWet, soundPreference, strideAt } from "./gully-audio";
 import { cypherContact } from "./cypher-contact";
 import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialog";
 import { CypherEventsDialog } from "./CypherEventsDialog";
@@ -284,7 +284,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     camera.position.set(view.x, view.y, view.z);
     camera.quaternion.setFromEuler(euler.current.set(view.pitch, view.yaw, 0, "YXZ"));
     {
-      // Stride-driven head bob (about 2 cm vertical, 1 cm sway, a quarter-degree roll) with a footstep at
+      // Stride-driven head bob (sprinting: about 2 cm vertical, 1 cm sway, a quarter-degree roll; walking under half) with a footstep at
       // each footfall. Off in focused views, the map, review captures and for reduced motion.
       const gait = stride.current;
       const dt = Math.min(delta, 0.1);
@@ -294,11 +294,14 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       // Distance-based, so slow frames on weak devices still step; faster than 7 m/s is a map jump.
       const speed = walkingNow ? moved / Math.max(delta, 1e-3) : 0;
       const stepping = walkingNow && speed <= 7;
-      gait.amplitude = MathUtils.damp(gait.amplitude, stepping ? Math.min(1, speed / 4.2) : 0, 8, dt);
+      // Walking bobs at under half the sprint's amplitude; sprinting keeps the full 2 cm.
+      const intensity = speed <= walkSpeed ? 0.45 * speed / walkSpeed
+        : 0.45 + 0.55 * Math.min(1, (speed - walkSpeed) / (sprintSpeed - walkSpeed));
+      gait.amplitude = MathUtils.damp(gait.amplitude, stepping ? intensity : 0, 8, dt);
       const before = Math.floor(gait.steps);
-      if (stepping) gait.steps += moved / strideMetres;
-      if (Math.floor(gait.steps) !== before && gait.amplitude > 0.25) {
-        audio.footstep(isWet(runtime.pose.x, runtime.pose.z), gait.amplitude);
+      if (stepping) gait.steps += moved / strideAt(speed);
+      if (Math.floor(gait.steps) !== before && gait.amplitude > 0.2) {
+        audio.footstep(isWet(runtime.pose.x, runtime.pose.z), gait.amplitude, undefined, speed > (walkSpeed + sprintSpeed) / 2);
       }
       if (!runtime.reduced && gait.amplitude > 0.001) {
         const a = gait.amplitude, cycle = gait.steps;
@@ -443,8 +446,11 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   const eventPage = useMemo(() => catalog === null ? null :
     catalog.data?.slice(page * eventsPerPage, (page + 1) * eventsPerPage) ?? [], [catalog, page]);
   const [atMarket, setAtMarket] = useState(start !== "quarry");
-  const [marketRuntime] = useState(() => new ImmersiveRuntime("hub", undefined, false, undefined,
-    cypherStarts[start === "quarry" ? "market" : start].space));
+  const [marketRuntime] = useState(() => {
+    const runtime = new ImmersiveRuntime("hub", undefined, false, undefined, cypherStarts[start === "quarry" ? "market" : start].space);
+    runtime.pace = { walk: walkSpeed, sprint: sprintSpeed };
+    return runtime;
+  });
   const [quarry] = useState(() => start === "quarry" ? new ImmersiveRuntime("hub", () => {
     holdCurtain.current = true;
     setAtMarket(true);
@@ -584,6 +590,7 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
         {!state.map && <>
           <li className="gully-keyboard-only"><span className="gully-keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
             <span className="gully-label">Move</span></li>
+          <li className="gully-keyboard-only"><span className="gully-keys"><kbd>Shift</kbd></span><span className="gully-label">Hold to sprint</span></li>
           <li className="gully-keyboard-only"><span className="gully-keys"><kbd>Drag</kbd></span><span className="gully-label">Look</span></li>
           {contact.available && <li><button ref={enquiry} aria-keyshortcuts="E" aria-label="Leave a message" onClick={() => {
             if (canOpenContact(marketRuntime.pose) && marketRuntime.focusInteraction(cypherContact.focus)) {

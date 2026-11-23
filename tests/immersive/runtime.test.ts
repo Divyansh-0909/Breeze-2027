@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { DoubleSide, Euler, Mesh, MeshBasicMaterial, PerspectiveCamera, Raycaster, Vector3 } from "three";
-import { ImmersiveRuntime } from "../../components/immersive/runtime";
+import { ImmersiveRuntime, sprintSpeed, walkSpeed } from "../../components/immersive/runtime";
 import { boundaryClearance, boundaryCrossings, constrain, crossedHubDestination, destinationOptions, locationFromPath, movementBoundary, spawnPose, travelZones } from "../../components/immersive/navigation";
 import { constrainQuarry, landingPose, lookAtPose, obstacles, tunnelCenter, world } from "../../components/immersive/world";
 import { mapCamera } from "../../components/immersive/aerial";
@@ -515,4 +515,15 @@ test("quarry-side tunnel face encloses the outer shell while leaving the carved 
     const positions=geometry.getAttribute("position");
     for(let i=0;i<positions.count;i++) assert.ok([positions.getX(i),positions.getY(i),positions.getZ(i)].every(Number.isFinite));
   } finally {geometry.dispose();material.dispose();}
+});
+
+test("the gully walks at 2.4 m/s and sprints at 4.2 m/s while Shift is held", () => {
+  const distance = (sprint: boolean) => {
+    const runtime = hub(); runtime.pace = { walk: walkSpeed, sprint: sprintSpeed };
+    const z = runtime.pose.z; runtime.input.forward = 1; runtime.input.sprint = sprint; advance(runtime, 0.5);
+    return Math.abs(runtime.pose.z - z);
+  };
+  const walk = distance(false), sprint = distance(true);
+  assert.ok(walk > 0.9 && walk < 1.25, `walk ${walk}`);
+  assert.ok(sprint > 1.7 && sprint < 2.15, `sprint ${sprint}`);
 });

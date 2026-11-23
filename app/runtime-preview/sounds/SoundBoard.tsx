@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { GullyAudio, music, previewLayers, type PreviewLayer } from "@/components/gullyverse-runtime/gully-audio";
 
-const seconds = 8;
+const seconds = 10;
 
 /** 16-bit stereo WAV, optionally normalised to -3 dBFS peak so quiet layers can be judged by ear. */
 function wav(buffer: AudioBuffer, normalise: boolean): Blob {
@@ -33,7 +33,7 @@ const peakDb = (buffer: AudioBuffer) => {
 let track: Promise<ArrayBuffer> | null = null;
 
 async function render(layer: PreviewLayer, normalise: boolean) {
-  const needsMusic = layer === "shop-radio" || layer === "plaza-stage";
+  const needsMusic = layer === "shop-radio" || layer.startsWith("stage");
   if (needsMusic) track ??= fetch(music).then(response => response.arrayBuffer());
   const buffer = await GullyAudio.renderLayer(layer, seconds, needsMusic ? await track! : undefined);
   return { blob: wav(buffer, normalise), peakDb: peakDb(buffer) };
@@ -69,7 +69,7 @@ export default function SoundBoard() {
   return (
     <main style={{ maxWidth: 720, margin: "40px auto", padding: 20, font: "15px/1.5 ui-sans-serif, system-ui", color: "#eee", background: "#111" }}>
       <h1>Gully sounds</h1>
-      <p>Each layer the site plays, rendered on its own by the site&apos;s audio code ({seconds} s, without 3D placement).</p>
+      <p>Each layer the site plays, rendered on its own by the site&apos;s audio code ({seconds} s, heard from a spot in the gully).</p>
       <label><input type="checkbox" checked={normalise} onChange={event => setNormalise(event.target.checked)} /> Make quiet layers loud enough to judge (normalise to −3 dB)</label>
       <ol>
         {(Object.keys(previewLayers) as PreviewLayer[]).map(layer => (
