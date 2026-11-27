@@ -89,9 +89,11 @@ A later reversal flags an already confirmed order for team review; it does not s
 
 ## Jev and OCR
 
-Set `TYPESAFE_API_KEY` and optionally `TYPESAFE_MODEL` (default `jev-latest`) in the server environment to enable Jev review of extracted statement text.
+Set `AI_GATEWAY_API_KEY` (a [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) key) and optionally `AI_GATEWAY_JEV_MODEL` (default `typesafe-ai/jev`) in the server environment to enable Jev review of extracted statement text. Requests go to the [TypeSafe-compatible Gateway endpoint](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) and are paid from the Gateway balance, which includes a free monthly credit, so no prepaid TypeSafe pack is needed. Set a spending budget in the Gateway dashboard if you buy credits. A direct `TYPESAFE_API_KEY` (with optional `TYPESAFE_MODEL`, default `jev-latest`) still works as a fallback when no Gateway key is set. Buy TypeSafe credits only from `typesafe.ai`; lookalike domains sell "Jev credits" at much higher prices.
 
-The [official TypeSafe API](https://docs.typesafe.ai/api) is called server-side using typed choices. Jev can suggest incoming/outgoing/reversal/uncertain classifications. It cannot invent a missing reference or override exact approval checks. No key is needed for deterministic matching; Jev is called only when an admin requests a review.
+When Jev is configured, finishing a matching run (admin **Match** or the payment worker) also labels the bank entries behind orders in **Needs review**, up to 20 per account per run. Each entry is sent once; the label and confidence are stored on the bank entry and shown under the order's review reason as "Jev suggests". Labels never change an order's status. Apply `prisma/migrations/20261127120000_bank_credit_jev_label` (additive, nullable columns) before deploying.
+
+Jev is called server-side using typed choices. Jev can suggest incoming/outgoing/reversal/uncertain classifications. It cannot invent a missing reference or override exact approval checks. No key is needed for deterministic matching; Jev is called only when an admin requests a review.
 
 OCR uses Tesseract locally. Its English language model is downloaded on first use and cached in ignored `.payment-ocr-cache`; set `PAYMENT_OCR_CACHE` to a writable directory on the host if needed. OCR does not send bank documents to an external OCR service.
 

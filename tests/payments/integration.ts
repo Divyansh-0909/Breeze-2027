@@ -20,7 +20,7 @@ async function main() {
   try {
     await database.initialise(); await database.start(); await database.createDatabase("breeze_payment_tests");
     process.env.DATABASE_URL = process.env.DIRECT_URL = `postgresql://postgres:${password}@127.0.0.1:${port}/breeze_payment_tests`;
-    delete process.env.EMAIL_HOST; delete process.env.EMAIL_USERNAME; delete process.env.TYPESAFE_API_KEY;
+    delete process.env.EMAIL_HOST; delete process.env.EMAIL_USERNAME; delete process.env.TYPESAFE_API_KEY; delete process.env.AI_GATEWAY_API_KEY;
     const migration = spawnSync(process.execPath, [path.resolve("node_modules/prisma/build/index.js"), "migrate", "deploy"], { env: process.env, encoding: "utf8" });
     assert.equal(migration.status, 0, migration.stderr);
     ({ prisma } = await import("../../lib/prisma"));
@@ -109,6 +109,30 @@ async function main() {
     assert.equal(contested.approved, 0);
     assert.equal(await prisma.submittedTransaction.count({ where: { token: { in: [nextToken, thirdToken] }, paymentStatus: "NEEDS_REVIEW" } }), 2);
     console.log("PASS: two claims for one credit cannot race into automatic approval");
+    {
+      const { labelReviewCredits, reviewLabelsFor } = await import("../../lib/payments/review-labels");
+      const realFetch = global.fetch;
+      let jevCalls = 0;
+      try {
+        assert.equal((await labelReviewCredits(accountB.id)).labelled, 0, "no key: Jev is skipped");
+        process.env.AI_GATEWAY_API_KEY = "gateway-test-only";
+        global.fetch = (async (url: string | URL | Request, options?: RequestInit) => {
+          jevCalls++;
+          assert.equal(url, "https://ai-gateway.vercel.sh/typesafe/v1/systemone");
+          assert.match(JSON.parse(String(options?.body)).state.untrustedStatementText, /CREDIT \| INR 800\.00 \| 612345678902/);
+          return new Response(JSON.stringify({ answers: { entryKind: { choice: "incoming", confidence: 0.93 } }, usage: { input_tokens: 40 } }));
+        }) as typeof fetch;
+        assert.equal((await labelReviewCredits(accountB.id)).labelled, 1);
+        assert.equal((await labelReviewCredits(accountB.id)).labelled, 0, "labelled entries are not sent to Jev again");
+        assert.equal(jevCalls, 1);
+        const reviewOrders = await prisma.submittedTransaction.findMany({ where: { token: { in: [nextToken, thirdToken] } } });
+        assert.ok(reviewOrders.every(order => order.paymentStatus === "NEEDS_REVIEW" && !order.approved), "a Jev label never approves");
+        const labels = await reviewLabelsFor(reviewOrders);
+        assert.deepEqual(labels.get(nextToken), [{ label: "incoming", confidence: 0.93, bankReference: "612345678902" }]);
+        assert.deepEqual(labels.get(thirdToken), labels.get(nextToken));
+      } finally { global.fetch = realFetch; delete process.env.AI_GATEWAY_API_KEY; }
+      console.log("PASS: Jev labels review-queue bank entries once, as a suggestion that never approves");
+    }
     const manualCompetition = await Promise.allSettled([approvePayment(nextToken, "TEST", undefined, false), approvePayment(thirdToken, "TEST", undefined, false)]);
     assert.equal(manualCompetition.filter(result => result.status === "fulfilled").length, 1);
     assert.equal(await prisma.submittedTransaction.count({ where: { token: { in: [nextToken, thirdToken] }, approved: true } }), 1);

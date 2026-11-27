@@ -152,6 +152,10 @@ model BankCredit {
   orderReferences String[]
   conflict        Boolean @default(false)
   matchedOrder    SubmittedTransaction?
+  // Jev review suggestion only. Never used by exact matching or approval.
+  jevLabel        String?
+  jevConfidence   Float?
+  jevCheckedAt    DateTime?
 
   @@unique([accountId, identity])
   @@index([accountId, bankReference])
