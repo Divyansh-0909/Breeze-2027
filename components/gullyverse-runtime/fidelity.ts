@@ -1,6 +1,10 @@
 import * as THREE from "three";
 import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
+import { switchedOff } from "./shop-lights";
+import { deviceBudget, type Budget } from "./device-tier";
+import { classifySurface, gradeCode, gradeDeclare, SurfaceLibrary, type SurfaceClass } from "./gully-materials";
+import { LightPools } from "./light-pools";
 
 /**
  * Restores Rev15Z surfaces the baked exports lost, using data extracted from the locked Blender master
@@ -16,9 +20,9 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
  *   environment the baked diffuse lightmaps cannot (wet road, galvanised metal, glass). The background
  *   stays near-black so unbuilt space fades to darkness.
  *   Lightmapped surfaces keep their baked diffuse light and take only specular from the probe.
- * - Lamp highlights: Blender light objects are invisible to camera rays, so the probes lack them. The
- *   nearest source lights drive a fixed pool of spot lights that add specular only on lightmapped
- *   surfaces (the baked lightmap already holds their diffuse light, so it is not counted twice).
+ * - Lamp highlights: Blender light objects are invisible to camera rays, so the probes lack them. A fixed
+ *   set of source lights per part of the gully drives a pool of spot lights that add specular only on
+ *   lightmapped surfaces (the baked lightmap already holds their diffuse light, so it is not counted twice).
  */
 
 type Op = [string, number, boolean];
@@ -61,14 +65,45 @@ function glslChain(chain: Chain, vector: string) {
   return expr;
 }
 
+/**
+ * Reflections and lamp highlights stay fixed while walking (user request, 26 November 2026). Choosing the
+ * nearest probe and the nearest eight lamps as the camera moved swapped reflections and highlights whenever
+ * the visitor passed a shop. Instead each part of the gully has one probe and one set of lamps, and the only
+ * change is at the cypher gate, inside the wall (z = -15), with half a metre of hysteresis.
+ */
+type Zone = { id: "lane" | "plaza"; probe: string; lights: { desktop: string[]; mobile: string[] } };
+const streetLamps = ["L01 local pool", "L03 local pool", "L04 local pool", "L06 local pool"];
+const zones: Zone[] = [
+  { id: "lane", probe: "market-north", lights: {
+    desktop: [...streetLamps, "Warm open-shop spill 1.002", "Warm open-shop spill 2.002", "Warm open-shop spill 3.002",
+      "C lane-end warm doorway spill"],
+    mobile: streetLamps,
+  } },
+  { id: "plaza", probe: "plaza", lights: {
+    desktop: ["Accommodation local wall illumination", "Contact house lamp 1", "Contact house lamp 2", "Signboard practical.002",
+      "C lane-end warm doorway spill", "gentle LED case spill"],
+    mobile: ["Accommodation local wall illumination", "Contact house lamp 1", "Contact house lamp 2", "Signboard practical.002"],
+  } },
+];
+const gateZ = -15;
+
 export class Fidelity {
   data!: FidelityData;
   private textures = new Map<string, THREE.Texture>();
   private probeEnvs: { probe: Probe; env: THREE.Texture }[] = [];
   private current = -1;
+  private zone: Zone | null = null;
+  private lightZone: Zone | null = null;
   private disposed = false;
   readonly ready: Promise<void>;
+  readonly budget: Budget;
+  /** Shared procedural surfaces (gully-materials.ts), generated while the chunks download. */
+  surfaces: SurfaceLibrary | null = null;
+  /** Diffuse light pools for fixtures added after the bake (light-pools.ts). */
+  readonly pools: LightPools;
   constructor(private renderer: THREE.WebGLRenderer, private mobile: boolean, transcoderPath: string) {
+    this.budget = deviceBudget(renderer.getContext());
+    this.pools = new LightPools(this.budget);
     this.ready = this.load(transcoderPath);
     this.ready.catch(() => {}); // Loaders fall back to the exported surfaces.
   }
@@ -77,6 +112,9 @@ export class Fidelity {
     const response = await fetch(root + "fidelity.json");
     if (!response.ok) throw Error(`Could not load surface data (${response.status}).`);
     this.data = await response.json();
+    if (!this.disposed) this.surfaces = new SurfaceLibrary(this.budget);
+    // Lamps that are switched off give no highlights (shop-lights.ts).
+    this.data.lights = this.data.lights.filter(light => !switchedOff.test(light.name));
     const ktx = new KTX2Loader().setTranscoderPath(transcoderPath).setWorkerLimit(2).detectSupport(this.renderer);
     try {
       await Promise.all(Object.entries(this.data.textures).map(async ([id, t]) => {
@@ -87,7 +125,7 @@ export class Fidelity {
         this.textures.set(id, texture);
       }));
     } finally { ktx.dispose(); }
-    // Probes stream in afterwards, nearest-first along the route, so they never delay the world.
+    // The two probes in use (lane, then plaza) stream in afterwards, so they never delay the world.
     void this.loadProbes().catch(() => {});
   }
 
@@ -95,13 +133,16 @@ export class Fidelity {
     const pmrem = new THREE.PMREMGenerator(this.renderer);
     const hdr = new RGBELoader();
     try {
-      for (const probe of this.data.probes) {
+      const used = zones.map(zone => this.data.probes.find(probe => probe.id === zone.probe)).filter((p): p is Probe => !!p);
+      for (const probe of used) {
         if (this.disposed) return;
         // 512 x 256 panoramas everywhere (128-pixel PMREM cubes): with the matte roughness floor (0.75, metals
         // 0.5) reflections sample only the blurred levels, which this size fully covers. The 1024-wide files
         // (probe.file) cost 7 MB more per visit for a difference visible only in the sharpest puddles.
-        const sky = await hdr.loadAsync(root + probe.mobileFile);
+        // High-class devices take the 1024-wide panoramas: the wet puddles (roughness 0.12-0.18) sample sharp levels.
+        const sky = await hdr.loadAsync(root + (this.budget.sharpProbes ? probe.file : probe.mobileFile));
         if (this.disposed) { sky.dispose(); return; }
+        desaturateProbe(sky);
         sky.mapping = THREE.EquirectangularReflectionMapping;
         this.probeEnvs.push({ probe, env: pmrem.fromEquirectangular(sky).texture });
         sky.dispose();
@@ -111,14 +152,12 @@ export class Fidelity {
   }
 
   private lightPool: THREE.SpotLight[] = [];
-  private lightOrder: SourceLight[] = [];
-  private lightCheck = new THREE.Vector3(Infinity, 0, 0);
 
-  /** Keeps a fixed number of spot lights (no shader recompiles) on the source lights nearest the camera. */
+  /** Keeps a fixed number of spot lights (no shader recompiles) on the lamps of the camera's part of the gully. */
   private updateLights(scene: THREE.Scene, camera: THREE.Camera) {
     if (!this.data?.lights?.length) return;
     if (!this.lightPool.length) {
-      const count = this.mobile ? 4 : 8;
+      const count = this.budget.localLights;
       for (let i = 0; i < count; i++) {
         const light = new THREE.SpotLight(0xffffff, 0, 0, Math.PI / 2, 0.5, 2);
         light.castShadow = false;
@@ -126,15 +165,13 @@ export class Fidelity {
         this.lightPool.push(light);
       }
     }
-    // Re-sort only after the camera moves half a metre.
-    if (camera.position.distanceToSquared(this.lightCheck) < 0.25) return;
-    this.lightCheck.copy(camera.position);
-    const { x, y, z } = camera.position;
-    this.lightOrder = [...this.data.lights].sort((a, b) =>
-      (a.position[0] - x) ** 2 + (a.position[1] - y) ** 2 + (a.position[2] - z) ** 2 -
-      ((b.position[0] - x) ** 2 + (b.position[1] - y) ** 2 + (b.position[2] - z) ** 2));
+    const zone = this.zoneFor(camera);
+    if (zone === this.lightZone) return;
+    this.lightZone = zone;
+    const names = (this.budget.tier === "low" ? zone.lights.mobile : zone.lights.desktop).slice(0, this.budget.localLights);
+    const sources = names.map(name => this.data.lights.find(light => light.name.endsWith(name))).filter((l): l is SourceLight => !!l);
     this.lightPool.forEach((light, i) => {
-      const source = this.lightOrder[i];
+      const source = sources[i];
       if (!source) { light.intensity = 0; return; }
       light.position.set(...source.position);
       light.target.position.set(source.position[0] + source.direction[0], source.position[1] + source.direction[1],
@@ -147,16 +184,24 @@ export class Fidelity {
     });
   }
 
-  /** Chooses the nearest street-level probe for reflections and sky. Call each frame with the camera. */
+  /** The part of the gully the camera is in (lane or plaza), switching only across the gate wall. */
+  private zoneFor(camera: THREE.Camera) {
+    const z = camera.position.z, [lane, plaza] = zones;
+    if (!this.zone) this.zone = z > gateZ ? lane : plaza;
+    else if (this.zone === lane && z < gateZ - 0.5) this.zone = plaza;
+    else if (this.zone === plaza && z > gateZ + 0.5) this.zone = lane;
+    return this.zone;
+  }
+
+  /** Uses the probe of the part of the gully the camera is in for reflections. Call each frame with the camera. */
   updateEnvironment(scene: THREE.Scene, camera: THREE.Camera) {
     this.updateLights(scene, camera);
+    this.pools.update(camera);
     if (!this.probeEnvs.length) return;
-    let best = 0, bestDistance = Infinity;
-    this.probeEnvs.forEach(({ probe }, i) => {
-      const [x, y, z] = probe.position;
-      const d = (camera.position.x - x) ** 2 + (camera.position.y - y) ** 2 + (camera.position.z - z) ** 2;
-      if (d < bestDistance) { bestDistance = d; best = i; }
-    });
+    const zone = this.zoneFor(camera);
+    // Until its own probe has streamed in, the zone uses the other one (lane first, so it is never long).
+    const found = this.probeEnvs.findIndex(({ probe }) => probe.id === zone.probe);
+    const best = found >= 0 ? found : 0;
     if (best === this.current) return;
     this.current = best;
     const { env, probe } = this.probeEnvs[best];
@@ -219,32 +264,113 @@ export class Fidelity {
   /** Program cache key suffix for a prepared material. */
   key(m: THREE.Material) {
     const arts = (m.userData.breezeArts as string[] | undefined)?.join("+") ?? "";
-    return `fid-${this.data.version}-rough${m.userData.breezeMinRoughness ?? 0.75}-${arts}-${m.userData.breezeRoad ?? ""}`;
+    const surface = this.surfaceOf(m);
+    const look = `${surface && this.surfaces ? this.surfaces.key(surface) : "none"}-${this.graded(m) ? "grade" : "raw"}-${m.userData.breezeCollapsed ? "flat" : ""}`;
+    return `fid-${this.data.version}-rough${m.userData.breezeMinRoughness ?? 0.75}-${arts}-${m.userData.breezeRoad ?? ""}-${look}-${this.pools.key()}`;
   }
 
-  /** Adds artwork projection to a standard-material shader. */
-  /** People (see person-shading.ts): full runtime lighting, only the matte roughness floor. */
+  /** Procedural surface class of a prepared material (decided at compile time, after every restyle). */
+  surfaceOf(m: THREE.Material): SurfaceClass | null {
+    if (m.userData.breezeArts?.length || m.userData.runtimeDecal || m.userData.runtimeSignInk || m.userData.breezeNoGrade) return null;
+    if (m.userData.breezeRoad === "aggregate") return "road";
+    return classifySurface(String(m.userData.breezeSourceName ?? m.name));
+  }
+
+  /** The palette grade applies to every lightmapped surface but the navigation board and sign lettering. */
+  graded(m: THREE.Material) { return !m.userData.breezeNoGrade && !m.userData.runtimeSignInk; }
+
+  /** World position and normal varyings for projections (idempotent). */
+  private worldVaryings(shader: { vertexShader: string; fragmentShader: string }) {
+    if (shader.vertexShader.includes("vBreezeWorld")) return;
+    shader.vertexShader = shader.vertexShader
+      .replace("#include <common>", "#include <common>\nvarying vec3 vBreezeWorld;\nvarying vec3 vBreezeNormal;")
+      .replace("#include <project_vertex>", "#include <project_vertex>\nvBreezeWorld = (modelMatrix * vec4(transformed, 1.0)).xyz;\nvBreezeNormal = normalize(mat3(modelMatrix) * objectNormal);");
+    shader.fragmentShader = shader.fragmentShader
+      .replace("#include <common>", "#include <common>\nvarying vec3 vBreezeWorld;\nvarying vec3 vBreezeNormal;");
+  }
+
+  /** People (see person-shading.ts): full runtime lighting, only the matte roughness floor, plus the light pools. */
   patchPerson(shader: { vertexShader: string; fragmentShader: string; uniforms: Record<string, { value: unknown }> }, m: THREE.Material) {
     const floor = Number(m.userData.breezeMinRoughness ?? 0.75).toFixed(2);
     shader.fragmentShader = shader.fragmentShader.replace("#include <normal_fragment_begin>",
       `roughnessFactor = max(roughnessFactor, mix(${floor}, min(${floor}, 0.5), step(0.5, metalnessFactor)));\n#include <normal_fragment_begin>`);
+    this.pools.patch(shader, false);
   }
+
+  /** The Rocketbox crowd (runtime-lit standard materials): the light pools only. */
+  patchCrowd(shader: { fragmentShader: string; uniforms: Record<string, { value: unknown }> }) {
+    this.pools.patch(shader, false);
+  }
+
+  /**
+   * Props, steel and decals added after the bake (courtyard-dressing.ts): runtime lighting plus the light pools and,
+   * optionally, a procedural surface (e.g. rust on the truss), projected in world space like the baked surfaces.
+   */
+  patchProp(shader: { vertexShader: string; fragmentShader: string; uniforms: Record<string, { value: unknown }> }, surface: SurfaceClass | null, fill = 0) {
+    if (surface && this.surfaces) {
+      const code = this.surfaces.shader(surface);
+      shader.uniforms.breezeSurface = { value: this.surfaces.texture(surface) };
+      if (surface === "plaster") shader.uniforms.breezeGroundSheet = { value: this.surfaces.texture("ground") };
+      shader.fragmentShader = shader.fragmentShader
+        .replace("#include <common>", `#include <common>\n${code.declare}`)
+        .replace("#include <color_fragment>", `#include <color_fragment>\n${code.albedo}`)
+        .replace("#include <normal_fragment_begin>", `${code.roughness}\n#include <normal_fragment_begin>`)
+        .replace("#include <normal_fragment_maps>", `#include <normal_fragment_maps>\n${code.normal}`);
+      this.worldVaryings(shader);
+    }
+    this.pools.patch(shader, false);
+    // The same night floor the baked surfaces get (night-look.ts), so unbaked props never crush to black.
+    shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_end>",
+      `irradiance += PI * vec3(0.89, 0.94, 1.0) * ${(0.022 + fill).toFixed(3)};\n#include <lights_fragment_end>`);
+  }
+
+  /** Program cache key for patchProp / patchCrowd materials. */
+  propKey(surface: SurfaceClass | null, fill = 0) { return `breeze-prop-${surface && this.surfaces ? this.surfaces.key(surface) : "none"}-${this.pools.key()}-fill${fill}`; }
 
   patch(shader: { vertexShader: string; fragmentShader: string; uniforms: Record<string, { value: unknown }> }, m: THREE.Material) {
     // Baked lightmaps already hold every source light's diffuse contribution; runtime lights add specular.
     shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_end>",
       "#include <lights_fragment_end>\nreflectedLight.directDiffuse = vec3(0.0);");
+    // Light pools add their diffuse through the irradiance (before lights_fragment_end, so it survives the line above).
+    this.pools.patch(shader, true);
     // Roughness floor (after any artwork adjustments): plaster, concrete and asphalt stay matte, metal
     // reads as brushed rather than mirrored, water keeps a soft glint.
     const floor = Number(m.userData.breezeMinRoughness ?? 0.75).toFixed(2);
+    if (m.userData.breezeCollapsed) {
+      // Collapsed flat-colour materials (flat-collapse.ts): base colour arrives as vertex colour, roughness and
+      // metalness as the breezeRM attribute.
+      shader.vertexShader = shader.vertexShader
+        .replace("#include <common>", "#include <common>\nattribute vec2 breezeRM;\nvarying vec2 vBreezeRM;")
+        .replace("#include <project_vertex>", "#include <project_vertex>\nvBreezeRM = breezeRM;");
+      shader.fragmentShader = shader.fragmentShader
+        .replace("#include <common>", "#include <common>\nvarying vec2 vBreezeRM;")
+        .replace("#include <metalnessmap_fragment>", "#include <metalnessmap_fragment>\nroughnessFactor = vBreezeRM.x;\nmetalnessFactor = vBreezeRM.y;");
+    }
     shader.fragmentShader = shader.fragmentShader.replace("#include <normal_fragment_begin>",
       `roughnessFactor = max(roughnessFactor, mix(${floor}, min(${floor}, 0.5), step(0.5, metalnessFactor)));\n#include <normal_fragment_begin>`);
+    // Procedural surface (gully-materials.ts) and the palette grade; both after the vertex colour.
+    const surface = this.surfaceOf(m);
+    if (surface && this.surfaces) {
+      const code = this.surfaces.shader(surface);
+      shader.uniforms.breezeSurface = { value: this.surfaces.texture(surface) };
+      if (surface === "plaster") shader.uniforms.breezeGroundSheet = { value: this.surfaces.texture("ground") };
+      shader.fragmentShader = shader.fragmentShader
+        .replace("#include <common>", `#include <common>\n${code.declare}`)
+        .replace("#include <color_fragment>", `#include <color_fragment>\n${code.albedo}`)
+        .replace("#include <normal_fragment_begin>", `${code.roughness}\n#include <normal_fragment_begin>`)
+        .replace("#include <normal_fragment_maps>", `#include <normal_fragment_maps>\n${code.normal}`);
+      // After the declarations: the varyings land directly below #include <common>, ahead of the code that reads them.
+      this.worldVaryings(shader);
+    }
+    if (this.graded(m)) {
+      shader.fragmentShader = shader.fragmentShader
+        .replace("#include <common>", `#include <common>\n${gradeDeclare}`)
+        .replace("#include <color_fragment>", `#include <color_fragment>\n${gradeCode(surface)}`);
+    }
     const arts = ((m.userData.breezeArts as string[] | undefined) ?? [])
       .map(id => this.data.arts.find(a => a.id === id)!).filter(Boolean);
     if (!arts.length) return;
-    shader.vertexShader = shader.vertexShader
-      .replace("#include <common>", "#include <common>\nvarying vec3 vBreezeWorld;\nvarying vec3 vBreezeNormal;")
-      .replace("#include <project_vertex>", "#include <project_vertex>\nvBreezeWorld = (modelMatrix * vec4(transformed, 1.0)).xyz;\nvBreezeNormal = normalize(mat3(modelMatrix) * objectNormal);");
+    this.worldVaryings(shader);
     const samplers = [...new Set(arts.map(a => a.texture))];
     samplers.forEach(t => { shader.uniforms[`breezeArt_${t.replace(/-/g, "_")}`] = { value: this.textures.get(t) }; });
     const body = arts.map(a => {
@@ -272,7 +398,7 @@ export class Fidelity {
       return lines.join("\n");
     }).join("\n");
     shader.fragmentShader = shader.fragmentShader
-      .replace("#include <common>", `#include <common>\nvarying vec3 vBreezeWorld;\nvarying vec3 vBreezeNormal;\n${samplers.map(t => `uniform sampler2D breezeArt_${t.replace(/-/g, "_")};`).join("\n")}`)
+      .replace("#include <common>", `#include <common>\n${samplers.map(t => `uniform sampler2D breezeArt_${t.replace(/-/g, "_")};`).join("\n")}`)
       .replace("#include <map_fragment>", `#include <map_fragment>
 float breezeShutter = 0.0, breezePaint = 0.0;
 {
@@ -293,7 +419,30 @@ metalnessFactor *= 1.0 - breezePaint * (1.0 - breezeShutter);`);
     this.lightPool.forEach(light => { light.removeFromParent(); light.target.removeFromParent(); light.dispose(); });
     this.textures.forEach(t => t.dispose());
     this.probeEnvs.forEach(p => p.env.dispose());
+    this.surfaces?.dispose();
   }
+}
+
+/**
+ * The probes were rendered with the old saturated magenta screen glow; the wet puddles mirrored it as lavender.
+ * Reflections keep 35% of their chroma (night palette: charcoal, sodium, one cool accent), and their highlights
+ * are compressed. Works on the
+ * loader's half-float (or float) RGB(A) data in place, before the PMREM is built.
+ */
+function desaturateProbe(texture: THREE.DataTexture) {
+  const data = texture.image.data as unknown as Uint16Array | Float32Array | null;
+  if (!data) return;
+  const half = data instanceof Uint16Array;
+  const read = (i: number) => half ? THREE.DataUtils.fromHalfFloat(data[i]) : data[i];
+  const write = (i: number, v: number) => { data[i] = half ? THREE.DataUtils.toHalfFloat(v) : v; };
+  const stride = texture.format === THREE.RGBAFormat ? 4 : 3;
+  for (let i = 0; i + 2 < data.length; i += stride) {
+    const r = read(i), g = read(i + 1), b = read(i + 2), l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    // Highlights above 1.5 are compressed (x0.3), so wet ground does not mirror bright sky patches as white.
+    const k = l > 1.5 ? (1.5 + (l - 1.5) * 0.3) / l : 1;
+    write(i, (l + (r - l) * 0.35) * k); write(i + 1, (l + (g - l) * 0.35) * k); write(i + 2, (l + (b - l) * 0.35) * k);
+  }
+  texture.needsUpdate = true;
 }
 
 /** The lightmap supplies baked diffuse light; the probe adds only reflections. */

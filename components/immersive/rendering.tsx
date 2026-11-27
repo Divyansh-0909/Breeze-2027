@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import type { ImmersiveRuntime } from "./runtime";
@@ -20,6 +20,14 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
   const warmStartedAt = useRef(0);
   const warmEuler = useRef(new THREE.Euler(0, 0, 0, "YXZ"));
   const warm = useRef({ count: 0, seconds: 0, done: false });
+  // The gate for a new serial mounts while the context is still lost and cannot prepare then; preparation
+  // runs again once the context is restored, otherwise recovery never reaches markReady.
+  const [restores, setRestores] = useState(0);
+  useEffect(() => {
+    const restored = () => setRestores(count => count + 1);
+    gl.domElement.addEventListener("webglcontextrestored", restored);
+    return () => gl.domElement.removeEventListener("webglcontextrestored", restored);
+  }, [gl]);
   useEffect(() => {
     let alive = true;
     prepared.current = false; rendered.current = 0; warmStartedAt.current = 0;
@@ -49,7 +57,7 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
       if (alive && serial === runtime.getSnapshot().serial && !gl.getContext().isContextLost()) runtime.fail(`Scene preparation failed: ${String(error)}`);
     });
     return () => { alive = false; };
-  }, [gl, scene, camera, runtime, serial]);
+  }, [gl, scene, camera, runtime, serial, restores]);
   useFrame((_, dt) => {
     if (!prepared.current || warm.current.done || gl.getContext().isContextLost() || runtime.suspended || runtime.activeFrameDelta <= 0) return;
     // Warm the final viewing composition under the curtain. The approach pose

@@ -6,8 +6,21 @@ import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.j
 import { specularOnlyEnvironment, type Fidelity } from "./fidelity";
 import { batchStatic } from "./static-batching";
 import { applyPeopleMask, isPerson, smoothSeams, type PeopleMask } from "./person-shading";
+import { switchOffSignLamps } from "./shop-lights";
+import { restyleNavigationBoard } from "./nav-board";
+import { collapseFlat } from "./flat-collapse";
+import { nightFloor } from "./night-look";
+
+/** Chunk layout rules (CypherGatePreview.tsx): interactive meshes and materials to keep out of merging. */
+export type ChunkLayout = {
+  keep(mesh: THREE.Mesh): boolean;
+  excludeMaterial(name: string): boolean;
+  /** Meshes to hide before merging (props a later phase replaces). */
+  prune?(mesh: THREE.Mesh): boolean;
+};
 
 export type BakedAsset = { scene: THREE.Group; rgbmRange?: number; dispose(): void };
+
 /** Leases cancel ownership immediately and dispose late results after the last release. */
 export class BakedAssetPool {
   private entries = new Map<string, { users: number; promise: Promise<BakedAsset> }>();
@@ -18,7 +31,7 @@ export class BakedAssetPool {
   /** `batch`: chunk URLs whose plain static meshes are merged per material (see static-batching.ts). */
   /** `hidePeople`: hide the exported Rev13A people (the Rocketbox crowd stands in their places). */
   constructor(private renderer: THREE.WebGLRenderer, private workerLimit = 4, private fidelity?: Fidelity, private batch?: RegExp,
-    private hidePeople = false) {}
+    private hidePeople = false, private layout?: ChunkLayout) {}
   get size() { return this.entries.size; }
   acquire(base: string, mobile: boolean, bake: { range: number }, baseline = false) {
     const url = base + (baseline ? "contact-frontage.png.glb" : mobile ? "contact-frontage.mobile.glb" : "contact-frontage.optimized.glb");
@@ -119,6 +132,45 @@ export class BakedAssetPool {
       textures.add(light);
       light.flipY = false; light.generateMipmaps = baseline; light.minFilter = THREE.LinearMipmapLinearFilter;
       light.magFilter = THREE.LinearFilter; light.colorSpace = THREE.NoColorSpace;
+      /** Gives a material the chunk's baked diffuse light on lighting UV `channel` (decoded RGBM or HDR). */
+      const bindLight = (m: any, channel: number) => {
+        const lm = light.clone(); lm.channel = channel; lm.needsUpdate = true; textures.add(lm);
+        m.lightMap = lm; m.lightMapIntensity = Math.PI;
+        const signInk = m.userData.runtimeSignInk === true;
+        // Surfaces lit mostly by lamps that are now off keep only part of their bake (shop-lights.ts).
+        const scale = Number(m.userData.breezeLightScale ?? 1);
+        if (!baseline || signInk || fidelity || scale !== 1) m.onBeforeCompile = (shader: any) => {
+          const from = "vec3 lightMapIrradiance = lightMapTexel.rgb * lightMapIntensity;";
+          if (!THREE.ShaderChunk.lights_fragment_maps.includes(from)) throw Error("Lighting shader contract changed");
+          const decoded = baseline ? "lightMapTexel.rgb" : `lightMapTexel.rgb * lightMapTexel.a * ${Number(bake.range).toFixed(1)}`;
+          // The sign faces share a practical light. A single diffuse
+          // value for their white ink avoids uneven atlas coverage on
+          // small letters, while the green panels retain baked shading.
+          const irradiance = signInk ? "vec3(0.25, 0.216, 0.172)" : decoded;
+          // Night floor (night-look.ts): shaded surfaces bottom out at deep charcoal instead of black.
+          const floor = signInk ? "" : ` + ${nightFloor}`;
+          shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_maps>",
+            specularOnlyEnvironment(THREE.ShaderChunk.lights_fragment_maps.replace(from, `vec3 lightMapIrradiance = (${irradiance} * ${scale.toFixed(3)}${floor}) * lightMapIntensity;`)));
+          fidelity?.patch(shader, m);
+        };
+        m.customProgramCacheKey = () => `breeze-${baseline ? "hdr" : "rgbm-" + bake.range}-v3${signInk ? "-sign-ink" : ""}${scale !== 1 ? "-light" + scale : ""}${fidelity ? "-" + fidelity.key(m) : ""}`;
+        m.needsUpdate = true;
+      };
+      // The sign-wash lamps above the shops are off; the shop tubes and street lights stay on.
+      switchOffSignLamps(gltf.scene);
+      // The navigation board as a blue highway sign with squircle corners (nav-board.ts).
+      const board = restyleNavigationBoard(gltf.scene);
+      board?.geometries.forEach(geometry => geometries.add(geometry));
+      board?.materials.forEach(material => materials.add(material));
+      // Flat-colour collapse before the lighting is bound, so the merged materials are lit like the rest.
+      const layout = this.layout;
+      if (fidelity && layout && this.batch?.test(url)) {
+        if (layout.prune) gltf.scene.traverse(o => { if ((o as THREE.Mesh).isMesh && layout.prune!(o as THREE.Mesh)) o.visible = false; });
+        const flat = collapseFlat(gltf.scene, layout.keep, layout.excludeMaterial);
+        flat.geometries.forEach(geometry => geometries.add(geometry));
+        flat.materials.forEach(material => materials.add(material));
+        gltf.scene.userData.collapse = { flatMaterials: flat.flatMaterials, merged: flat.merged, into: flat.materials.length };
+      }
       gltf.scene.traverse((o: any) => {
         if (!o.isMesh) return;
         o.castShadow = false;
@@ -132,29 +184,12 @@ export class BakedAssetPool {
           const channel = Number(m.userData.runtimeLightmapChannel);
           if (!Number.isInteger(channel) || !o.geometry.getAttribute(channel === 0 ? "uv" : `uv${channel}`)) throw Error("Missing native lighting UV");
           // glTF deduplicates some materials; don't create a new unused clone per binding.
-          if (!m.lightMap) {
-            const lm = light.clone(); lm.channel = channel; lm.needsUpdate = true; textures.add(lm);
-            m.lightMap = lm; m.lightMapIntensity = Math.PI;
-            const signInk = m.userData.runtimeSignInk === true;
-            if (!baseline || signInk || fidelity) m.onBeforeCompile = (shader: any) => {
-              const from = "vec3 lightMapIrradiance = lightMapTexel.rgb * lightMapIntensity;";
-              if (!THREE.ShaderChunk.lights_fragment_maps.includes(from)) throw Error("Lighting shader contract changed");
-              const decoded = baseline ? "lightMapTexel.rgb" : `lightMapTexel.rgb * lightMapTexel.a * ${Number(bake.range).toFixed(1)}`;
-              // The sign faces share a practical light. A single diffuse
-              // value for their white ink avoids uneven atlas coverage on
-              // small letters, while the green panels retain baked shading.
-              const irradiance = signInk ? "vec3(0.25, 0.216, 0.172)" : decoded;
-              shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_maps>",
-                specularOnlyEnvironment(THREE.ShaderChunk.lights_fragment_maps.replace(from, `vec3 lightMapIrradiance = ${irradiance} * lightMapIntensity;`)));
-              fidelity?.patch(shader, m);
-            };
-            m.customProgramCacheKey = () => `breeze-${baseline ? "hdr" : "rgbm-" + bake.range}-v2${signInk ? "-sign-ink" : ""}${fidelity ? "-" + fidelity.key(m) : ""}`;
-            m.needsUpdate = true;
-          }
+          if (!m.lightMap) bindLight(m, channel);
         }
       });
       if (this.batch?.test(url)) {
-        const batched = batchStatic(gltf.scene);
+        const layout = this.layout;
+        const batched = batchStatic(gltf.scene, layout?.keep);
         batched.geometries.forEach(geometry => geometries.add(geometry));
         gltf.scene.userData.batching = { meshesBefore: batched.before, meshesAfter: batched.after };
       }

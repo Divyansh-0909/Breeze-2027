@@ -47,10 +47,12 @@ export function useScreenFilm(onError: () => void, active: boolean) {
     };
   }, [active]);
 
-  const restart = useCallback(() => {
+  /** `full`: switch to the 1080p film (low-tier devices keep the 720p loop: bandwidth and decoder memory). */
+  const restart = useCallback((full = true) => {
     if (!film) return;
     const { video } = film;
-    if (video.error || !video.src.endsWith(stageVideoSource)) { video.src = stageVideoSource; video.load(); }
+    if (full && (video.error || !video.src.endsWith(stageVideoSource))) { video.src = stageVideoSource; video.load(); }
+    else if (video.error) { video.src = loopSource; video.load(); }
     video.currentTime = 0;
     void video.play().catch(() => failed.current());
   }, [film]);

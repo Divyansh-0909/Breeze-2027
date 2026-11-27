@@ -41,10 +41,11 @@ export function CypherMapProjection({ runtime, elements }: { runtime: ImmersiveR
     const placed: { x: number; y: number; w: number; h: number }[] = [];
     const overlaps = (px: number, py: number, w: number, h: number) =>
       placed.filter(p => Math.abs(px - p.x) < (w + p.w) / 2 + 4 && Math.abs(py - p.y) < (h + p.h) / 2 + 4).length;
-    // Keep labels between the map header and the walking toolbar.
+    // Keep labels between the map header and the controls legend (the HUD layer itself covers the view).
     const frame = elements.container.getBoundingClientRect();
     const header = elements.container.parentElement?.querySelector(".cypher-map-header")?.getBoundingClientRect();
-    const toolbar = elements.container.closest(".native-journey")?.querySelector(".gully-controls")?.getBoundingClientRect();
+    const toolbar = elements.container.closest(".native-journey")
+      ?.querySelector(".gully-controls .hud-legend, .gully-controls .hud-legend-folded")?.getBoundingClientRect();
     const top = header ? header.bottom - frame.top + 8 : 96;
     const bottom = (toolbar ? toolbar.top - frame.top : size.height - 110) - 8;
     const projected = points.map(point => {

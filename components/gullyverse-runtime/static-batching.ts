@@ -1,22 +1,22 @@
-import { Box3, BufferAttribute, BufferGeometry, Matrix4, Mesh, Vector3, type Material, type Object3D } from "three";
-
-/**
- * Merged groups are also split into horizontal cells of this size (metres), so each batch stays local
- * and frustum culling still drops the parts of the lane behind the visitor. Whole-chunk batches drew
- * more than the separate meshes from the navigation board looking back down the lane.
- */
-const cellMetres = 10;
+import { BufferAttribute, BufferGeometry, Matrix4, Mesh, type Material, type Object3D } from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
-/** userData keys of plain, static, non-interactive geometry (export bookkeeping only). */
-const plainKeys = new Set(["name", "runtimeOriginalSource", "runtimeChunk", "runtimeLightmapChannel", "runtimeLightmap",
-  "runtimeLightmapUV", "shopId", "referenceAuthored", "sourceObjectName"]);
+/**
+ * userData keys the runtime reads to find or animate a mesh (lamps, LED, contact window, team mural, people,
+ * events, accommodation, navigation and gate parts). A mesh carrying any of them stays a separate object. Every
+ * other key is export bookkeeping (source names, chunk, lightmap layout, authoring notes). Meshes found by their
+ * source name (aftermovie panels, poster slots, accommodation artwork) are named by the caller's `keep`.
+ */
+const liveKeys = new Set(["streetLampPart", "streetLampId", "lampState", "emissionBase", "ledScreen", "contactPart", "carouselSlide",
+  "artKind", "archetype", "breezePersonMesh", "wallEventId", "accommodationPart", "navigationLabel", "navigationDirection",
+  "entryGatePart"]);
 
-function plain(mesh: Mesh) {
+/** A plain static mesh: export bookkeeping only, one opaque material, nothing animated or projected. */
+export function isPlainStatic(mesh: Mesh) {
   const material = mesh.material as Material;
   return !Array.isArray(mesh.material) && mesh.visible && !(mesh as { isSkinnedMesh?: boolean }).isSkinnedMesh &&
     !(mesh as { isInstancedMesh?: boolean }).isInstancedMesh && !material.transparent && !material.userData.runtimeDecal &&
-    !material.userData.breezeArts && !material.userData.runtimeSignInk && Object.keys(mesh.userData).every(key => plainKeys.has(key)) &&
+    !Object.keys(mesh.userData).some(key => liveKeys.has(key)) &&
     !Object.keys(mesh.geometry.morphAttributes).length;
 }
 
@@ -36,29 +36,40 @@ function bake(geometry: BufferGeometry, matrix: Matrix4) {
   }
   if (geometry.index) copy.setIndex(new BufferAttribute(Uint32Array.from(geometry.index.array as ArrayLike<number>), 1));
   copy.applyMatrix4(matrix);
+  // A mirroring transform reverses triangle winding: restore it, or front-side faces would cull inside out.
+  if (matrix.determinant() < 0) {
+    if (copy.index) {
+      const index = copy.index.array as Uint32Array;
+      for (let i = 0; i + 2 < index.length; i += 3) { const t = index[i + 1]; index[i + 1] = index[i + 2]; index[i + 2] = t; }
+    } else {
+      for (const attribute of Object.values(copy.attributes) as BufferAttribute[]) {
+        const a = attribute.array as Float32Array, n = attribute.itemSize;
+        for (let i = 0; i + 2 < attribute.count; i += 3) for (let c = 0; c < n; c++) {
+          const t = a[(i + 1) * n + c]; a[(i + 1) * n + c] = a[(i + 2) * n + c]; a[(i + 2) * n + c] = t;
+        }
+      }
+    }
+  }
   return copy;
 }
 
 /**
- * Merges plain static meshes that share a material into one mesh per material, attribute layout and
- * 10 m cell, in the chunk root's space. Lightmap UVs, materials and shaders are unchanged; anything named,
- * interactive, animated, transparent or projected stays a separate object. Returns the new geometries
+ * Merges plain static meshes that share a material into one mesh per material and attribute layout, in the
+ * chunk root's space. (Splitting into 10, 20 or 30 m cells measured 728 draws at the market arrival against 656
+ * for whole-chunk batches, and saved only 17 at the navigation board: GTX 1650, 26 Nov 2026.) Lightmap UVs, materials and shaders are unchanged; anything named,
+ * interactive, animated, transparent or projected stays a separate object, as does anything `keep` names. Returns the new geometries
  * (for disposal) and the draw-call counts before and after.
  */
-export function batchStatic(root: Object3D) {
+export function batchStatic(root: Object3D, keep?: (mesh: Mesh) => boolean) {
   root.updateMatrixWorld(true);
   const toRoot = new Matrix4().copy(root.matrixWorld).invert();
   const groups = new Map<string, Mesh[]>();
-  const box = new Box3(), centre = new Vector3();
   let before = 0;
   root.traverse(object => {
     if (!(object instanceof Mesh)) return;
     before++;
-    if (!plain(object)) return;
-    if (!object.geometry.boundingBox) object.geometry.computeBoundingBox();
-    box.copy(object.geometry.boundingBox!).applyMatrix4(object.matrixWorld).getCenter(centre);
-    const cell = `${Math.floor(centre.x / cellMetres)},${Math.floor(centre.z / cellMetres)}`;
-    const key = (object.material as Material).uuid + "|" + signature(object.geometry) + "|" + cell;
+    if (!isPlainStatic(object) || keep?.(object)) return;
+    const key = (object.material as Material).uuid + "|" + signature(object.geometry);
     const list = groups.get(key) ?? [];
     list.push(object);
     groups.set(key, list);

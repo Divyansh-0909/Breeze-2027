@@ -4,6 +4,9 @@ import type { CypherEvent } from "../../lib/events/cypher-catalog";
 export const eventsPerPage = 8;
 const centralSlots = [1, 2, 0, 3, 5, 6, 4, 7];
 
+export const isEventPosterSlot = (object: Object3D) =>
+  /^EVENTS clearly labelled placeholder ([0-7])$/.test(object.userData.sourceObjectName ?? "");
+
 export function eventPosterSlots(scene: Object3D) {
   const slots: (Mesh | undefined)[] = Array(eventsPerPage).fill(undefined);
   scene.traverse(object => {

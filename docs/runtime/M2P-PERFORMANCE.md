@@ -83,6 +83,44 @@ Raw results so far (SwiftShader, Chromium headless, 4 vCPU, no GPU; frame times 
 
 The navigation-board pose drew slightly more with whole-chunk batches (449 vs 433 calls); `1a39ddb` addresses it.
 
+### GPU results (26 November 2026)
+
+**Machine:** NVIDIA GeForce GTX 1650 laptop GPU (ANGLE D3D11), i7-10750H, 16 GB, Windows 11, Chrome 159.0.8154.13 (headless, via `CHROME_PATH`).
+- The laptop also has an Intel UHD GPU, and Chrome picks it by default. `--force_high_performance_gpu` was added to every launch with a `node -r` preload (`gpu-flag.cjs`), so the repository scripts are unchanged; the recorded renderer string is the GTX 1650 in every pose.
+- The display is 120 Hz, so presentation frame times are capped at 8.3 ms. GPU-timer and CPU-submit times are the better comparison.
+- Defaults were used for both builds: 3 runs, 30 s samples, both profiles. The current harness (8a5e36d) was run against both. Values are medians.
+- Baseline is 66a7f69 (port 3001). Candidate is 8a5e36d, which includes the 10 m cells and the Rocketbox crowd. The full table, raw JSON and logs are in `perf/results-2026-11-26-gtx1650/`.
+
+| | Baseline | Candidate |
+|---|---|---|
+| Desktop cold: MB before walking | 127.9 | 38.8 |
+| Desktop cold: walking unlocked | 26.7 s | 7.4 s |
+| Desktop cold: whole world ready | 26.7 s | 13.8 s |
+| Pixel 7 emulation cold: MB before walking | 59.6 | 19.2 |
+| Pixel 7 emulation cold: walking unlocked | 12.0 s | 8.8 s |
+| Market (desktop): GPU p50 / p95 | 5.81 / 7.35 ms | 5.31 / 6.32 ms |
+| Market (desktop): draw calls, triangles | 912, 1.10 M | 878, 0.63 M |
+| Navigation board (desktop): draw calls, GPU p50 | 433, 2.87 ms | 572, 3.53 ms |
+| Plaza (desktop): draw calls, CPU submit p50 | 173, 2.8 ms | 392, 5.8 ms |
+| Aftermovie (desktop): draw calls, triangles | 130, 0.77 M | 275, 1.57 M |
+| Shader programs | 132 | 108 |
+| 10 map round trips (geometries / textures / programs) | flat 974 / 131 / 132 | flat 1,172 / 184 / 108 |
+
+Findings:
+- **Loading:** the progressive-streaming goal is met on a real GPU. Desktop downloads 70% less before walking, and walking starts about 3.5× sooner.
+- **Market:** the market is lighter on the GPU.
+- **10 m cells (`1a39ddb`):** these raised draw calls instead of lowering them. The SwiftShader candidate (73cbe36) drew 711 calls at the market and 449 at the navigation board; this build draws 878 and 572.
+- **Rocketbox crowd (`86421b7`):** it more than doubles plaza and Aftermovie draw calls and CPU submit time. The frame budget still holds on this GPU (p95 ≤ 8.5 ms at every stop except the market and navigation board, 16.7 ms).
+- **The Rocketbox crowd renders broken.** The crowd GLBs use `KHR_mesh_quantization` (normalized Int16 positions). `rocketbox-crowd.ts` bakes the node matrix with `geometry.applyMatrix4()` straight into those attributes, so every coordinate above 1 m is clamped to 1.0. Each person becomes a flat-topped block, which the height scaling then stretches into a pillar (`screenshots/gpu-candidate-desktop-plaza.png`). The attributes need converting to Float32 before the transform.
+
+Functional checks (`scripts/perf-functional.mjs`):
+- **The script needs real Chrome.** It launches Playwright's bundled headless shell, which ignores `CHROME_PATH`. On this machine that shell renders the scene at about 1 fps (OpenGL fallback, ReadPixels stalls), which failed three checks for timing reasons alone. Run through the same preload, which also supplies `CHROME_PATH`, the results are:
+  - PASS: a failed late chunk leaves the arrival half walkable (11.15 m)
+  - PASS: the touch pad walks (10.61 m)
+  - PASS: the Aftermovie loop and Watch work
+  - FAIL: WebGL context loss and restore
+- **The context-loss failure is in the baseline too.** After `restoreContext()`, the page stays on "Restoring 3D…" (phase `recovering`) indefinitely. `ReadinessGate` (`components/immersive/rendering.tsx`) remounts for the new serial while the context is still lost and returns early. Its effect is not re-run when the context comes back, so `markReady` is never called.
+
 ### Running the measurements on the GPU machine
 
 ```bash

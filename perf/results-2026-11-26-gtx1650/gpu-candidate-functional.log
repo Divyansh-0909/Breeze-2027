@@ -1,0 +1,8 @@
+PASS a failed late chunk leaves the arrival half walkable {"movedMetres":11.15}
+FAIL WebGL context loss and restore resumes walking TimeoutError: page.waitForSelector: Timeout 600000ms exceeded.
+Call log:
+[2m  - waiting for locator('.gully-controls') to be visible[22m
+
+PASS touch movement pad walks on a phone viewport {"movedMetres":10.61,"dpr":2.625}
+PASS screen loops the 720p film after streaming; Watch restarts the full film from 0 {"loop":{"src":"after-movie-720.mp4","loop":true,"t":1.002886},"pressed":{"before":1.004087,"after":0,"src":"after-movie.mp4"}}
+{"passed":3,"failed":1}

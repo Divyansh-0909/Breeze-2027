@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import type { ImmersiveRuntime } from "../immersive/runtime";
+import { deviceBudget } from "./device-tier";
 
 type Frame = { at: number; ms: number; cpuRenderMs: number; calls: number; triangles: number; z: number };
 type TimerExtension = { TIME_ELAPSED_EXT: number; GPU_DISJOINT_EXT: number };
@@ -70,11 +71,57 @@ function textureBytes(scene: THREE.Object3D) {
   return { nodes, meshes, uniqueTextureSources: sources.size, textureBytesEstimate: Math.round(textureBytes), geometryBytes };
 }
 
+/**
+ * Estimated draw calls in the camera's frustum, per chunk (the scene child that holds the mesh) and per
+ * material, plus shadow casters and lights. One per visible mesh-and-material group; a BatchedMesh is one
+ * multi-draw. Matches gl.info.render.calls closely for this scene (no shadow or post-processing passes).
+ */
+export function drawBreakdown(scene: THREE.Scene, camera: THREE.Camera) {
+  camera.updateMatrixWorld();
+  const frustum = new THREE.Frustum().setFromProjectionMatrix(
+    new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
+  const byChunk: Record<string, number> = {}, byMaterial: Record<string, number> = {};
+  let shadowCasters = 0, lights = 0, total = 0;
+  const sphere = new THREE.Sphere();
+  const visit = (object: THREE.Object3D, chunk: string) => {
+    if (!object.visible) return;
+    if ((object as THREE.Light).isLight) {
+      const light = object as THREE.Light;
+      if (light.intensity > 0) { lights++; if (light.castShadow) shadowCasters++; }
+    }
+    const mesh = object as THREE.Mesh;
+    if (mesh.isMesh || (object as THREE.Points).isPoints || (object as THREE.Line).isLine) {
+      // A BatchedMesh culls its instances itself and is one multi-draw (its geometry bounds are not the batch's).
+      let inView = !object.frustumCulled || (object as THREE.BatchedMesh).isBatchedMesh === true;
+      if (!inView) {
+        const geometry = mesh.geometry as THREE.BufferGeometry;
+        if (!geometry.boundingSphere) geometry.computeBoundingSphere();
+        inView = frustum.intersectsSphere(sphere.copy(geometry.boundingSphere!).applyMatrix4(object.matrixWorld));
+      }
+      if (inView) {
+        const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+        const groups = Array.isArray(mesh.material) ? Math.max(1, mesh.geometry.groups.length) : 1;
+        total += groups; byChunk[chunk] = (byChunk[chunk] ?? 0) + groups;
+        for (const material of materials) byMaterial[material.name || material.type] = (byMaterial[material.name || material.type] ?? 0) + 1;
+      }
+    }
+    for (const child of object.children) visit(child, chunk);
+  };
+  const chunks: Record<string, unknown> = {};
+  for (const child of scene.children) {
+    visit(child, String(child.userData.breezeChunk ?? (child.name || child.type)));
+    if (child.userData.breezeChunk) chunks[child.userData.breezeChunk] = { collapse: child.userData.collapse, batching: child.userData.batching };
+  }
+  const top = Object.entries(byMaterial).sort((a, b) => b[1] - a[1]).slice(0, 25);
+  return { total, byChunk, topMaterials: Object.fromEntries(top), lights, shadowCasters, chunks };
+}
+
 export function GullyDiagnostics({ runtime }: { runtime: ImmersiveRuntime }) {
-  const { gl, scene } = useThree();
+  const { gl, scene, camera } = useThree();
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (!params.has("diagnostics") && params.get("perf") !== "overlay") return;
+    const overlayRequested = params.get("perf") === "overlay" || params.get("perf") === "1";
+    if (!params.has("diagnostics") && !overlayRequested) return;
     const context = gl.getContext() as WebGL2RenderingContext;
     const debug = context.getExtension("WEBGL_debug_renderer_info");
     const renderer = String(context.getParameter(debug ? debug.UNMASKED_RENDERER_WEBGL : context.RENDERER));
@@ -126,12 +173,16 @@ export function GullyDiagnostics({ runtime }: { runtime: ImmersiveRuntime }) {
         calls: gl.info.render.calls, triangles: gl.info.render.triangles, points: gl.info.render.points, lines: gl.info.render.lines,
         programs: gl.info.programs?.length ?? 0, geometries: gl.info.memory.geometries, textures: gl.info.memory.textures,
         drawingBuffer: [size.x, size.y], dpr: gl.getPixelRatio(), devicePixelRatio: window.devicePixelRatio, tier: tier.name,
+        device: deviceBudget().tier,
       };
     };
     const api = {
       renderer, gpuTimer: timer ? "available" : "unavailable",
       frames, gpu,
       stats,
+      breakdown: () => drawBreakdown(scene, camera),
+      /** Review only: the live scene and camera, for inspection from automation. */
+      scene, camera,
       reset() { frames.length = 0; gpu.length = 0; discardedGpu = 0; },
       summary(sinceMs = 0) {
         const recent = frames.filter(f => f.at >= sinceMs);
@@ -153,7 +204,7 @@ export function GullyDiagnostics({ runtime }: { runtime: ImmersiveRuntime }) {
     (window as unknown as { __breezePerf?: typeof api }).__breezePerf = api;
 
     let overlay: HTMLElement | null = null, interval = 0;
-    if (params.get("perf") === "overlay") {
+    if (overlayRequested) {
       overlay = document.createElement("aside");
       overlay.setAttribute("aria-hidden", "true");
       Object.assign(overlay.style, { position: "fixed", top: "8px", right: "8px", zIndex: "9999", padding: "8px 10px", background: "rgba(0,0,0,.75)",
@@ -167,11 +218,12 @@ export function GullyDiagnostics({ runtime }: { runtime: ImmersiveRuntime }) {
       };
       overlay.append(text, save); document.body.append(overlay);
       interval = window.setInterval(() => {
-        const since = performance.now() - 5000, s = stats(), m = api.summary(since), p = m.presentation;
+        const since = performance.now() - 5000, s = stats(), m = api.summary(since), p = m.presentation, b = drawBreakdown(scene, camera);
         text.textContent = [`${renderer.slice(0, 48)}`, `FPS ${p.effectiveFps.toFixed(1)}  p50 ${p.p50Ms.toFixed(1)}  p95 ${p.p95Ms.toFixed(1)} ms`,
           `GPU p50 ${m.gpu.frames ? m.gpu.p50Ms.toFixed(1) + " ms" : "n/a"}  CPU render p50 ${m.cpuRender.p50Ms.toFixed(1)} ms`,
-          `tier ${s.tier}  dpr ${s.dpr.toFixed(2)}  buffer ${s.drawingBuffer.join("x")}`,
+          `device ${s.device}  tier ${s.tier}  dpr ${s.dpr.toFixed(2)}  buffer ${s.drawingBuffer.join("x")}`,
           `calls ${s.calls}  tris ${(s.triangles / 1000).toFixed(0)}k  programs ${s.programs}`,
+          `lights ${b.lights}  shadow casters ${b.shadowCasters}  in view ${Object.entries(b.byChunk).map(([k, v]) => `${k.replace(/^cypher-|^market-/, "")} ${v}`).join(" ")}`,
           `textures ${s.textures}  geometries ${s.geometries}  loads pending ${gullyLoads.pending}`,
           `z ${runtime.pose.z.toFixed(1)}  phase ${runtime.getSnapshot().phase}`].join("\n");
       }, 500);
@@ -182,6 +234,6 @@ export function GullyDiagnostics({ runtime }: { runtime: ImmersiveRuntime }) {
       pending.forEach(item => context.deleteQuery(item.query));
       delete (window as unknown as { __breezePerf?: unknown }).__breezePerf;
     };
-  }, [gl, scene, runtime]);
+  }, [gl, scene, camera, runtime]);
   return null;
 }

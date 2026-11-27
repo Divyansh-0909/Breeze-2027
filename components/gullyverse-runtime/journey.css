@@ -1,11 +1,15 @@
 html,body,#root{margin:0;width:100%;height:100%;background:#010303}
-.native-journey{position:fixed;inset:0;overflow:hidden;color:#f3efe4;font:14px Arial,sans-serif;background:#010303}
-.native-journey *{box-sizing:border-box}.native-journey button,.native-journey a,.native-journey summary{touch-action:manipulation}.native-journey button{font:inherit;cursor:pointer;background:#174632;color:#f7f3e8;border:1px solid #8caa98;padding:9px 15px;min-height:40px}.native-journey button:disabled{opacity:.45;cursor:default}.native-journey :focus-visible{outline:3px solid #eac853;outline-offset:3px}
+.native-journey{position:fixed;inset:0;overflow:hidden;color:#f3efe4;font:14px Arial,sans-serif;background:#010303;
+  /* HUD tokens: open-world HUD conventions; keys follow shadcn's base Kbd (dark mode: muted / muted-foreground). */
+  --hud-font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--hud-text:#eceae5;--hud-dim:rgba(236,238,240,.62);
+  --key-bg:rgba(38,38,38,.92);--key-fg:#a1a1a1;--key-fg-strong:#f5f5f5;--hud-shadow:0 1px 3px #000,0 0 12px rgba(0,0,0,.55);
+  --hud-here:#4fd1a5;--ease-out:cubic-bezier(.2,.8,.2,1);}
+.native-journey *{box-sizing:border-box}.native-journey button,.native-journey a,.native-journey summary{touch-action:manipulation}.native-journey button{font:500 14px/1.2 var(--hud-font);cursor:pointer;background:#262626;color:#f5f5f5;border:0;border-radius:6px;padding:9px 15px;min-height:40px;transition:background-color .15s,transform .15s var(--ease-out)}.native-journey button:hover{background:#333}.native-journey button:active{transform:scale(.97)}.native-journey button:disabled{opacity:.45;cursor:default}.native-journey :focus-visible{outline:3px solid #eac853;outline-offset:3px}
 .native-canvas,.native-curtain{position:absolute;inset:0}.native-canvas canvas{display:block;touch-action:none}.native-curtain{background:#010303;pointer-events:none;z-index:2}
 .native-header{position:absolute;z-index:4;top:16px;left:20px;right:20px;display:flex;align-items:center;justify-content:space-between;pointer-events:none;text-shadow:0 1px 3px #000}.native-header a{pointer-events:auto;color:inherit;text-decoration:none;font-weight:700;font-size:20px;letter-spacing:2px}.native-header a span{font-size:13px;color:#d7c9a5}
 .native-controls{position:absolute;z-index:3;left:50%;bottom:24px;transform:translateX(-50%);text-align:center;max-width:90vw;background:#0b1816e8;padding:12px 16px;border:1px solid #456155}.native-controls p{margin:0 0 10px}.native-controls>div{display:flex;gap:8px;justify-content:center}.native-controls small{display:block;margin:9px 0 0;color:#b8cbc1;font-size:12px}
 .native-touch{display:none!important}.native-access{position:absolute;z-index:4;bottom:18px;left:18px;display:flex;align-items:flex-end;gap:8px}.native-access details{background:#0b1816ed;padding:12px;max-width:200px}.native-access summary{cursor:pointer}.native-access nav{display:flex;flex-direction:column;gap:14px;margin-top:18px}.native-access a{color:#f7f3e8}
-.native-loading{position:absolute;z-index:5;left:50%;top:42%;transform:translateX(-50%);background:#0a1b16ec;padding:20px;max-width:90vw;text-align:center}.native-loading p{margin:0 0 12px}
+.native-loading{position:absolute;z-index:5;left:50%;top:42%;transform:translateX(-50%);background:rgba(10,10,10,.9);padding:20px 24px;max-width:90vw;text-align:center;border-radius:8px}.native-loading p{margin:0 0 12px}.native-loading a{color:#f3efe4}
 .native-form{position:absolute;z-index:6;color:#24352b;overflow:hidden}.native-form[hidden]{display:none}.native-form .contact-enquiry-form{height:100%;display:grid;grid-template-rows:auto auto minmax(25px,1fr) auto;gap:4px;padding:8px 10px;background:#e4dfce;border:1px solid #a8ad9c}.native-form .form-heading{display:flex;justify-content:space-between;align-items:center}.native-form .form-heading strong{font-size:14px;font-weight:500}.native-form button.close-form{background:transparent;color:#253e31;border:0;font-size:20px;min-height:22px;padding:0 6px;line-height:1}.native-form .identity-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.native-form label{display:flex;flex-direction:column;gap:2px;font-size:10px;min-width:0}.native-form input,.native-form textarea{width:100%;border:1px solid #adb6a5;background:#f4f0e4;color:#203429;font:13px Arial;padding:4px 7px;min-height:25px;border-radius:0}.native-form textarea{resize:none;height:100%;min-height:25px}.native-form .message-field{min-height:0}.native-form .form-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px}.native-form .form-status{font-size:10px;line-height:1.2;margin:0;max-width:72%}.native-form .form-status[data-state=error]{color:#8c312a}.native-form button.send-message{font-size:11px;min-height:27px;padding:5px 14px;white-space:nowrap}
 .native-form[data-flat=true]{left:50%!important;top:50%!important;width:min(760px,94vw)!important;height:min(480px,80vh)!important;transform:translate(-50%,-50%);box-shadow:0 0 0 100vmax #010d0deb}.native-form[data-flat=true] .contact-enquiry-form{padding:20px;gap:14px}.native-test-note{position:absolute;z-index:7;bottom:8px;left:50%;transform:translateX(-50%);font-size:11px;text-align:center;max-width:92vw;margin:0;padding:5px 10px;background:#071913ed}
 @media(max-width:699px){.native-header{top:12px;left:12px;right:12px;font-size:12px}.native-header a{font-size:17px}.native-controls{bottom:85px;min-width:260px;padding:10px 12px}.native-controls small{font-size:11px}.native-touch{display:flex!important;flex-direction:column;align-items:center;margin-top:10px;gap:6px}.native-touch>div{display:flex;gap:6px}.native-touch button{width:44px;height:44px;padding:0;font-size:20px;touch-action:none}.native-access{left:10px;right:10px;bottom:16px;justify-content:space-between;font-size:12px}.native-access details{max-width:180px}.native-form:not([data-flat=true]){left:10px!important;right:10px;top:38%!important;bottom:36px;width:auto!important;height:auto!important}.native-form .contact-enquiry-form{gap:10px;padding:14px;grid-template-rows:auto auto minmax(60px,1fr) auto}.native-form .identity-fields{grid-template-columns:1fr 1fr;gap:10px}.native-form .identity-fields label:last-child{grid-column:1/-1}.native-form label{font-size:12px}.native-form input,.native-form textarea{font-size:16px;min-height:38px;padding:7px}.native-form .form-heading strong{font-size:17px}.native-form .form-status{font-size:11px}.native-form button.send-message{min-height:40px;font-size:12px}.native-form button.close-form{min-height:34px;font-size:26px}.native-test-note{bottom:6px;font-size:10px;width:95%;padding:2px}.native-form[data-flat=true]{height:80vh!important}}
@@ -75,115 +79,6 @@ html,body,#root{margin:0;width:100%;height:100%;background:#010303}
   text-shadow: 0 1px 5px #000;
 }
 .native-canvas[data-contact-placement="sheet"] .cypher-contact-fallback-heading { top: 18%; }
-.cypher-events-dialog {
-  position: absolute;
-  z-index: 6;
-  left: 50%;
-  bottom: max(12px, env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
-  width: min(600px, calc(100% - 24px));
-  max-height: min(34dvh, 260px);
-  overflow: auto;
-  overscroll-behavior: contain;
-  padding: 9px 12px;
-  background: #101c17f5;
-  border: 1px solid #617a6b;
-}
-.cypher-events-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-.cypher-events-toolbar h2 {
-  margin: 0;
-  font-size: 17px;
-}
-.native-journey .cypher-events-toolbar button {
-  min-height: 32px;
-  padding: 4px 10px;
-}
-.cypher-event-links {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4px;
-  margin: 5px 0;
-  padding: 0;
-  list-style: none;
-}
-.native-journey .cypher-event-links button {
-  width: 100%;
-  min-height: 31px;
-  padding: 4px 7px;
-  text-align: left;
-  overflow-wrap: anywhere;
-}
-.cypher-events-dialog p {
-  margin: 6px 0;
-}
-.cypher-event-description {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-.cypher-events-dialog a { color: #ece1bd; }
-.cypher-team-dialog {
-  position: absolute;
-  z-index: 6;
-  left: 50%;
-  bottom: max(12px, env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
-  width: min(360px, calc(100% - 24px));
-  padding: 8px 10px 10px;
-  background: #101c17f5;
-  border: 1px solid #617a6b;
-}
-.cypher-team-header, .cypher-team-navigation, .cypher-team-retry {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-.cypher-team-header h2 {
-  margin: 0;
-  font-size: 16px;
-}
-.cypher-team-navigation { margin-top: 6px; }
-.native-journey .cypher-team-dialog button {
-  min-width: 44px;
-  min-height: 36px;
-  padding: 4px 12px;
-}
-.native-journey .cypher-team-navigation button { font-size: 22px; line-height: 1; }
-.cypher-team-dialog p { margin: 5px 0 0; }
-.cypher-aftermovie-controls {
-  position: absolute;
-  z-index: 6;
-  left: 50%;
-  bottom: max(12px, env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
-  width: min(360px, calc(100% - 24px));
-  padding: 8px 10px 10px;
-  background: #101c17f5;
-  border: 1px solid #617a6b;
-}
-.cypher-aftermovie-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-.cypher-aftermovie-title h2 {
-  margin: 0;
-  font-size: 16px;
-}
-.native-journey .cypher-aftermovie-controls button {
-  min-height: 36px;
-  padding: 4px 12px;
-}
-.cypher-aftermovie-controls p { margin: 6px 0; }
-.cypher-aftermovie-error { margin: 8px 0 0; }
-.cypher-aftermovie-error a { color: #ece1bd; }
 .cypher-accommodation-controls {
   position: absolute;
   z-index: 6;
@@ -252,68 +147,236 @@ html,body,#root{margin:0;width:100%;height:100%;background:#010303}
   .cypher-map-header h2 { font-size: 16px; }
 }
 
-/* Walking UI (23 Nov 2026): reference-style controls bottom-left; keys and place names are kbd chips
-   with a dark grey fill and a light white outline (after ui.shadcn.com/docs/components/kbd). */
-.native-journey kbd, .gully-chip {
-  display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box;
-  min-width: 30px; height: 30px; padding: 0 8px; border-radius: 7px;
-  background: rgba(38, 40, 43, 0.88); border: 1.5px solid rgba(255, 255, 255, 0.78);
-  color: #f5f5f3; font: 700 14px/1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  letter-spacing: 0; box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.35);
+/* HUD (26 Nov 2026, rev 2)
+   Open-world game HUD conventions: text sits on the scene with a soft shadow instead of in boxes; places are
+   revealed once with a large spaced title; prompts are a key plus an action; menus are a dark band along the
+   bottom with a key-hint bar. Keys use shadcn's base Kbd (flat muted fill, muted text) at the earlier sizes. */
+.native-journey kbd, .hud-tap {
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px; box-sizing: border-box;
+  min-width: 30px; height: 30px; padding: 0 8px; border: 0; border-radius: 6px;
+  background: var(--key-bg); color: var(--key-fg); font: 500 14px/1 var(--hud-font); letter-spacing: 0;
+  text-transform: none; text-shadow: none; box-shadow: none; user-select: none;
 }
-.native-journey kbd { text-transform: uppercase; }
-.gully-chip { height: auto; min-height: 30px; padding: 6px 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; }
-.gully-location { position: absolute; z-index: 4; top: 54px; left: 20px; margin: 0; pointer-events: none; }
-.gully-controls {
-  position: absolute; z-index: 4; left: 20px; bottom: 22px; padding: 14px 18px 12px 14px; border-radius: 10px;
-  background: linear-gradient(to top right, rgba(6, 8, 9, 0.62), rgba(6, 8, 9, 0.18)); text-shadow: 0 1px 3px #000;
-}
-.gully-controls-title { margin: 0 0 10px 2px; color: rgba(236, 238, 240, 0.62); font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; }
-.gully-controls ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
-.gully-controls li { display: flex; align-items: center; gap: 12px; }
-.gully-keys { display: inline-flex; gap: 6px; }
-.gully-label { color: #eceae5; font-size: 13px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; }
-.native-journey .gully-controls button {
-  display: inline-flex; align-items: center; gap: 12px; min-height: 34px; padding: 0; margin: 0;
-  background: transparent; border: 0; color: inherit; cursor: pointer; text-align: left;
-}
-.native-journey .gully-controls button:hover kbd, .native-journey .gully-controls button:focus-visible kbd {
-  background: #f5f5f3; color: #16181a; border-color: #fff;
-}
-.native-journey .gully-controls button[aria-pressed="false"] .gully-label { color: rgba(236, 234, 229, 0.55); }
-.gully-controls .cypher-aftermovie-error { margin: 10px 0 0; max-width: 260px; font-size: 12px; }
-.native-touch.gully-touch { position: absolute; z-index: 4; right: 16px; bottom: 24px; }
-.native-touch.gully-touch button {
-  background: rgba(38, 40, 43, 0.88); border: 1.5px solid rgba(255, 255, 255, 0.78); border-radius: 9px; color: #f5f5f3;
-}
-@media (max-width: 699px), (pointer: coarse) {
-  .gully-keyboard-only { display: none !important; }
-  .native-touch.gully-touch { display: flex !important; flex-direction: column; align-items: center; gap: 6px; }
-  .native-touch.gully-touch > div { display: flex; gap: 6px; }
-  .native-touch.gully-touch button { width: 48px; height: 48px; padding: 0; font-size: 20px; touch-action: none; }
-}
-@media (max-width: 699px) {
-  .gully-location { top: 44px; left: 12px; }
-  .gully-controls { left: 10px; bottom: 16px; padding: 10px 12px 8px 10px; }
-  .gully-controls-title { margin-bottom: 7px; font-size: 10px; }
-  .gully-controls ul { gap: 6px; }
-  .gully-label { font-size: 11px; letter-spacing: 0.22em; }
-  .native-journey kbd { min-width: 26px; height: 26px; font-size: 12px; }
+.gully-keys { display: inline-flex; gap: 4px; }
+.hud-label, .hud-legend li > span:last-child, .native-journey .gully-controls button > span:last-child {
+  color: var(--hud-text); font: 500 13px/1.2 var(--hud-font); letter-spacing: .3em; text-transform: uppercase; text-shadow: var(--hud-shadow);
 }
 
-/* Map in the same style: place names are kbd chips. */
-.cypher-map-header p { color: rgba(236, 238, 240, 0.62); font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; }
-.cypher-map-header h2 { font-size: clamp(16px, 1.8vw, 22px); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; }
-.cypher-map .cypher-map-stop, .cypher-map-here {
-  border-radius: 8px; background: rgba(38, 40, 43, 0.92); border: 1.5px solid rgba(255, 255, 255, 0.78);
-  color: #f5f5f3; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; box-shadow: inset 0 -2px 0 rgba(255, 255, 255, 0.1), 0 2px 12px #0009;
+/* Place name, top left: plain spaced text under the wordmark; a quiet line while the far end streams in. */
+.gully-location { position: absolute; z-index: 4; top: 54px; left: 20px; margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; pointer-events: none; }
+.hud-place { color: var(--hud-text); font: 600 12px/1.2 var(--hud-font); letter-spacing: .22em; text-transform: uppercase; text-shadow: var(--hud-shadow); }
+@keyframes hud-spin { to { transform: rotate(360deg); } }
+
+/* First visit to a place: a large spaced title between two fading rules, then it leaves. */
+.hud-discovery { position: absolute; z-index: 4; top: 16vh; left: 0; right: 0; display: flex; justify-content: center; pointer-events: none; }
+.hud-discovery-sign { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 24px; text-align: center; animation: hud-discover 3.6s var(--ease-out) both; }
+.hud-discovery-sign strong {
+  display: flex; align-items: center; gap: 22px; color: #fff; font: 600 clamp(22px, 2.6vw, 32px)/1.1 var(--hud-font);
+  letter-spacing: .32em; text-transform: uppercase; text-shadow: 0 2px 4px #000, 0 0 24px rgba(0, 0, 0, .7); padding-left: .32em;
 }
-.cypher-map .cypher-map-stop { min-height: 40px; padding: 9px 14px; font-size: 12px; }
-.cypher-map .cypher-map-stop[data-kind="place"] { background: rgba(38, 40, 43, 0.92); border-color: rgba(255, 255, 255, 0.5); color: #d9dbdc; }
-.cypher-map .cypher-map-stop:hover, .cypher-map .cypher-map-stop:focus-visible { background: #f5f5f3; color: #16181a; border-color: #fff; outline: none; }
-.cypher-map-here { padding: 5px 10px; font-size: 10px; border-color: #4fd1a5; color: #d6fff0; }
-.cypher-map-markers line { stroke: rgba(255, 255, 255, 0.55); }
-.cypher-map-hint { letter-spacing: 0.18em; text-transform: uppercase; font-size: 11px; color: #e8e8e4; }
+.hud-discovery-sign strong::before, .hud-discovery-sign strong::after { content: ""; width: clamp(28px, 6vw, 90px); height: 1px; }
+.hud-discovery-sign strong::before { background: linear-gradient(to right, transparent, rgba(255, 255, 255, .8)); }
+.hud-discovery-sign strong::after { background: linear-gradient(to left, transparent, rgba(255, 255, 255, .8)); }
+.hud-discovery-sign span { color: var(--hud-dim); font: 500 12px/1.4 var(--hud-font); letter-spacing: .2em; text-transform: uppercase; text-shadow: var(--hud-shadow); }
+@keyframes hud-discover {
+  0% { opacity: 0; transform: translateY(8px); letter-spacing: .5em; }
+  12% { opacity: 1; transform: none; }
+  82% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+
+/* The controls layer covers the view; only its pieces take input. */
+.gully-controls { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.gully-controls > * { pointer-events: auto; }
+.native-journey .gully-controls button {
+  display: inline-flex; align-items: center; gap: 12px; min-height: 34px; padding: 0; margin: 0;
+  background: none; border: 0; border-radius: 6px; color: inherit; text-align: left;
+}
+.native-journey .gully-controls button:hover { background: none; }
+.native-journey .gully-controls button:hover kbd, .native-journey .gully-controls button:focus-visible kbd { background: #f5f5f3; color: #16181a; }
+.native-journey .gully-controls button:active kbd { transform: scale(.94); }
+.native-journey .gully-controls button kbd { transition: background-color .15s, color .15s, transform .15s var(--ease-out); }
+
+/* Legend, bottom left: plain rows on the scene, folded to one key once the visitor is on the move. */
+.hud-legend { position: absolute; left: 20px; bottom: 22px; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.hud-legend li { display: flex; align-items: center; gap: 12px; }
+.native-journey kbd.hud-key-wide { min-width: 52px; }
+.hud-glyph { width: 30px; height: 30px; padding: 5px; border-radius: 6px; background: var(--key-bg); color: var(--key-fg); }
+.native-journey .gully-controls .hud-legend .hud-text-button > span:last-child,
+.native-journey .gully-controls .hud-legend-folded > span:last-child { color: var(--hud-dim); }
+.native-journey .gully-controls .hud-legend-folded { position: absolute; left: 20px; bottom: 22px; }
+
+/* System keys, top right: map and sound. */
+.hud-system { position: absolute; top: 14px; right: 20px; display: flex; gap: 22px; }
+.native-journey .gully-controls button[aria-pressed="false"] > span:last-child { color: var(--hud-dim); }
+
+/* Context prompt: key plus action, centred low on a soft shadow pool rather than a box. */
+.native-journey .gully-controls .hud-prompt {
+  position: absolute; left: 50%; bottom: max(96px, 14vh); translate: -50% 0; gap: 14px; padding: 14px 28px;
+  border-radius: 999px; background: radial-gradient(closest-side, rgba(0, 0, 0, .55), transparent);
+  animation: hud-prompt-in .22s var(--ease-out) both;
+}
+.native-journey .gully-controls .hud-prompt kbd, .native-journey .gully-controls .hud-prompt .hud-tap { min-width: 34px; height: 34px; background: #f5f5f3; color: #16181a; font-weight: 600; }
+.native-journey .gully-controls .hud-prompt:hover kbd { background: #fff; }
+.hud-prompt-text { display: flex; flex-direction: column; gap: 4px; }
+.hud-prompt-text strong { color: #fff; font: 600 14px/1.2 var(--hud-font); letter-spacing: .22em; text-transform: uppercase; text-shadow: var(--hud-shadow); white-space: nowrap; }
+.hud-prompt-text span { color: var(--hud-dim); font: 500 11px/1.2 var(--hud-font); letter-spacing: .18em; text-transform: uppercase; text-shadow: var(--hud-shadow); }
+@keyframes hud-prompt-in { from { opacity: 0; transform: translateY(6px); } }
+.gully-controls .cypher-aftermovie-error {
+  position: absolute; left: 50%; bottom: max(40px, 7vh); translate: -50% 0; margin: 0; max-width: min(440px, 90vw);
+  color: var(--hud-text); font-size: 13px; text-align: center; text-shadow: var(--hud-shadow);
+}
+.cypher-aftermovie-error a { color: #fff; }
+
+/* Touch pad, bottom right on phones: key style. */
+.native-touch.gully-touch { position: absolute; z-index: 4; right: 16px; bottom: max(20px, env(safe-area-inset-bottom)); }
+.native-journey .native-touch.gully-touch button { background: var(--key-bg); color: var(--key-fg-strong); border: 0; border-radius: 9px; }
+.native-journey .native-touch.gully-touch button:active { background: #f5f5f3; color: #16181a; transform: scale(.94); }
+@media (max-width: 699px), (pointer: coarse) {
+  .native-touch.gully-touch { display: flex !important; flex-direction: column; align-items: center; gap: 6px; }
+  .native-touch.gully-touch > div { display: flex; gap: 6px; }
+  .native-journey .native-touch.gully-touch button { width: 50px; height: 50px; padding: 0; font-size: 20px; touch-action: none; }
+}
+
+/* Loading: a plain progress bar, centred. */
+.native-loading.hud-loading {
+  inset: 0; transform: none; max-width: none; padding: 24px; border-radius: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px; text-align: center; background: #050606;
+}
+.hud-loading-bar { width: min(360px, 80vw); }
+.native-loading.hud-loading .hud-loading-bar p { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 10px; color: var(--hud-dim); font: 500 12px/1.2 var(--hud-font); letter-spacing: .22em; text-transform: uppercase; }
+.native-loading.hud-loading .hud-loading-bar p span:last-child { color: var(--hud-text); letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+.hud-meter { display: block; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .12); overflow: hidden; }
+.hud-meter span { display: block; height: 100%; background: #f5f5f3; transform-origin: left; transition: transform .4s var(--ease-out); }
+.native-loading.hud-loading .hud-loading-message { margin: 0; color: var(--hud-text); font: 500 13px/1.4 var(--hud-font); letter-spacing: .2em; text-transform: uppercase; }
+.hud-loading-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.hud-loading-links a { color: var(--hud-text); font: 500 12px/1.2 var(--hud-font); letter-spacing: .22em; text-transform: uppercase; }
+
+/* Menus (Team, Events, Aftermovie): a dark band rising from the bottom edge, key hints along its foot. */
+.hud-panel {
+  position: absolute; z-index: 6; left: 0; right: 0; bottom: 0; transform: none; width: auto; max-height: 46dvh; overflow: auto;
+  padding: 48px max(20px, calc(50% - 300px)) max(16px, env(safe-area-inset-bottom, 0px)); border-radius: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, .86) 0%, rgba(0, 0, 0, .62) 55%, transparent 100%);
+  color: var(--hud-text); text-shadow: 0 1px 3px #000; animation: hud-panel-in .26s var(--ease-out) both;
+}
+@keyframes hud-panel-in { from { opacity: 0; transform: translateY(10px); } }
+.hud-panel h2 { margin: 0; color: #fff; font: 600 18px/1.25 var(--hud-font); letter-spacing: .24em; text-transform: uppercase; }
+.hud-panel p { margin: 0; }
+.native-journey .hud-panel .hud-text-button {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 34px; padding: 0; background: none; border-radius: 6px; color: var(--hud-text);
+  font: 500 12px/1.2 var(--hud-font); letter-spacing: .24em; text-transform: uppercase;
+}
+.native-journey .hud-panel .hud-text-button:hover { background: none; }
+.native-journey .hud-panel .hud-text-button:hover kbd, .native-journey .hud-panel .hud-text-button:focus-visible kbd { background: #f5f5f3; color: #16181a; }
+.hud-panel-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; color: var(--hud-dim); font: 500 11px/1.2 var(--hud-font); letter-spacing: .2em; text-transform: uppercase; }
+.hud-panel-status { margin-top: 10px !important; color: var(--hud-dim); font-size: 13px; }
+
+/* Team murals carousel. */
+.cypher-team-navigation { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; }
+.cypher-team-title { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; text-align: center; }
+.cypher-team-title h2 { overflow-wrap: anywhere; }
+.native-journey .hud-panel .hud-step { width: 44px; height: 44px; min-height: 44px; padding: 0; background: none; border-radius: 8px; color: var(--key-fg-strong); }
+.native-journey .hud-panel .hud-step:hover { background: none; }
+.native-journey .hud-panel .hud-step kbd { min-width: 38px; height: 38px; color: var(--key-fg-strong); font-size: 16px; }
+.native-journey .hud-panel .hud-step:hover kbd, .native-journey .hud-panel .hud-step:focus-visible kbd { background: #f5f5f3; color: #16181a; }
+.native-journey .hud-panel .hud-step:active { transform: scale(.94); }
+.hud-pips { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.hud-pips li { width: 18px; height: 2px; background: rgba(255, 255, 255, .25); transition: background-color .2s; }
+.hud-pips li[data-current] { background: #fff; }
+.cypher-team-retry { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; }
+
+/* Events wall. */
+.cypher-events-dialog { max-height: 52dvh; }
+.cypher-events-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.cypher-event-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 20px; margin: 12px 0; padding: 0; list-style: none; }
+.native-journey .cypher-event-links button {
+  width: 100%; min-height: 36px; padding: 6px 10px; background: none; border-radius: 4px; color: var(--hud-text); text-align: left; overflow-wrap: anywhere;
+  font: 500 14px/1.3 var(--hud-font); border-left: 2px solid rgba(255, 255, 255, .2);
+}
+.native-journey .cypher-event-links button:hover, .native-journey .cypher-event-links button:focus-visible { background: rgba(255, 255, 255, .1); border-left-color: #fff; }
+.cypher-events-dialog p { margin: 8px 0; color: var(--hud-dim); font-size: 14px; line-height: 1.6; }
+.cypher-event-description { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--hud-text) !important; }
+.cypher-events-dialog a { color: #fff; font: 500 12px/1.2 var(--hud-font); letter-spacing: .22em; text-transform: uppercase; }
+
+/* Aftermovie playback. */
+.cypher-aftermovie-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.cypher-aftermovie-controls p { margin: 0; color: var(--hud-dim); }
+
+/* Contact window: a dark in-game form set into the window; shadcn-style fields, keys for actions. */
+.native-journey .native-form .contact-enquiry-form {
+  line-height: 1.2; background: rgba(12, 12, 12, .9); color: var(--hud-text); border: 0; border-top: 2px solid rgba(255, 255, 255, .85); border-radius: 0;
+}
+.native-journey .native-form .form-heading strong { color: #fff; font: 600 14px/1.2 var(--hud-font); letter-spacing: .24em; text-transform: uppercase; }
+.native-journey .native-form label { color: var(--hud-dim); font-family: var(--hud-font); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; line-height: 1.1; }
+.native-journey .native-form input, .native-journey .native-form textarea {
+  background: rgba(255, 255, 255, .05); color: #f5f5f5; border: 1px solid rgba(255, 255, 255, .15); border-radius: 6px;
+  font-family: var(--hud-font); letter-spacing: 0; text-transform: none; transition: border-color .15s, background-color .15s;
+}
+.native-journey .native-form input::placeholder, .native-journey .native-form textarea::placeholder { color: rgba(255, 255, 255, .35); }
+.native-journey .native-form input:hover, .native-journey .native-form textarea:hover { border-color: rgba(255, 255, 255, .3); }
+.native-journey .native-form input:focus-visible, .native-journey .native-form textarea:focus-visible { outline: 2px solid #eac853; outline-offset: 1px; border-color: transparent; }
+.native-journey .native-form button.close-form { background: none; color: var(--hud-text); border-radius: 6px; }
+.native-journey .native-form button.close-form:hover { background: rgba(255, 255, 255, .1); }
+.native-journey .native-form button.send-message { padding-top: 6px; padding-bottom: 6px; background: #f5f5f3; color: #16181a; font-family: var(--hud-font); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.native-journey .native-form button.send-message:hover { background: #fff; }
+.native-journey .native-form button.send-message:disabled { background: rgba(255, 255, 255, .25); color: rgba(0, 0, 0, .6); }
+.native-journey .native-form .form-status { color: var(--hud-dim); font-family: var(--hud-font); }
+.native-journey .native-form .form-status[data-state=error] { color: #ffb4a6; }
+.native-journey .native-form .form-status[data-state=success] { color: var(--hud-here); }
+
+/* Map: place names as key chips with the earlier spaced capitals; you-are-here keeps its teal. */
+.cypher-map-header p { color: var(--hud-dim); font: 500 12px/1.2 var(--hud-font); letter-spacing: .32em; text-transform: uppercase; }
+.cypher-map-header h2 { font: 600 clamp(16px, 1.8vw, 22px)/1.2 var(--hud-font); letter-spacing: .24em; text-transform: uppercase; }
+.native-journey .cypher-map .cypher-map-stop, .cypher-map-here {
+  border: 0; border-radius: 6px; background: var(--key-bg); color: var(--key-fg-strong);
+  font: 500 12px/1 var(--hud-font); letter-spacing: .2em; text-transform: uppercase; box-shadow: 0 2px 12px rgba(0, 0, 0, .55);
+}
+.native-journey .cypher-map .cypher-map-stop { min-height: 40px; padding: 9px 14px; }
+.native-journey .cypher-map .cypher-map-stop[data-kind="place"] { color: var(--key-fg); }
+.native-journey .cypher-map .cypher-map-stop:hover, .native-journey .cypher-map .cypher-map-stop:focus-visible { background: #f5f5f3; color: #16181a; outline: none; }
+.cypher-map-here { padding: 5px 10px; font-size: 10px; color: var(--hud-here); }
+.cypher-map-markers line { stroke: rgba(255, 255, 255, .55); }
+.cypher-map-hint { color: #e8e8e4; font: 500 11px/1.2 var(--hud-font); letter-spacing: .18em; text-transform: uppercase; text-shadow: var(--hud-shadow); }
 .cypher-map-hint kbd { min-width: 24px; height: 24px; padding: 0 6px; font-size: 11px; margin: 0 2px; vertical-align: middle; }
-@media (max-width: 699px) { .cypher-map .cypher-map-stop { min-height: 36px; padding: 7px 10px; font-size: 10px; letter-spacing: 0.14em; } }
-.native-journey .gully-location .gully-streaming { margin-left: 8px; font-weight: 500; opacity: .8; }
+
+@media (max-width: 699px) {
+  .gully-location { top: 44px; left: 12px; }
+  .hud-discovery { top: 18vh; }
+  .hud-discovery-sign strong { gap: 12px; letter-spacing: .22em; }
+  .hud-system { top: 10px; right: 12px; gap: 16px; }
+  .hud-legend, .native-journey .gully-controls .hud-legend-folded { left: 12px; bottom: 18px; }
+  .hud-label, .hud-legend li > span:last-child, .native-journey .gully-controls button > span:last-child { font-size: 11px; letter-spacing: .22em; }
+  .native-journey kbd { min-width: 26px; height: 26px; font-size: 12px; }
+  .native-journey .gully-controls .hud-prompt { bottom: 190px; max-width: calc(100% - 24px); padding: 12px 20px; }
+  .hud-panel { padding-left: 14px; padding-right: 14px; }
+  .cypher-event-links { grid-template-columns: 1fr; }
+  .native-journey .cypher-map .cypher-map-stop { min-height: 36px; padding: 7px 10px; font-size: 10px; letter-spacing: .14em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hud-discovery-sign, .native-journey .gully-controls .hud-prompt, .hud-panel { animation-duration: .01ms !important; }
+  .hud-discovery-sign { animation: none !important; }
+  .hud-meter span { transition: none; }
+}
+.native-journey .cypher-contact-form[data-flat="true"] button.send-message { min-height: 32px; }
+.native-journey .cypher-contact-form[data-flat="true"] .contact-enquiry-form { padding-bottom: 10px; }
+
+/* Aftermovie theater mode (Phase 2): dark backdrop, the film centred at 16:9, the playback band below. */
+.cypher-theater {
+  position: absolute; inset: 0; z-index: 8; display: flex; align-items: center; justify-content: center;
+  background: rgba(14, 14, 15, .88); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  animation: cypher-theater-in .28s var(--ease-out) both;
+}
+.cypher-theater[data-low] { background: rgba(14, 14, 15, .96); -webkit-backdrop-filter: none; backdrop-filter: none; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .cypher-theater { background: rgba(14, 14, 15, .96); } }
+@keyframes cypher-theater-in { from { opacity: 0; } }
+.cypher-theater-frame {
+  width: min(92vw, calc((100dvh - 190px) * 16 / 9)); aspect-ratio: 16 / 9; margin-bottom: 120px; background: #000;
+  border: 1px solid rgba(255, 255, 255, .10); box-shadow: 0 24px 64px rgba(0, 0, 0, .5);
+  animation: cypher-theater-frame-in .34s var(--ease-out) both;
+}
+@keyframes cypher-theater-frame-in { from { opacity: 0; transform: scale(.985); } }
+.cypher-theater-frame video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cypher-theater-frame[data-loading] video { opacity: 0; }
+.cypher-theater .hud-panel { background: linear-gradient(to top, rgba(14, 14, 15, .92) 0%, rgba(14, 14, 15, .6) 60%, transparent 100%); }
+@media (max-width: 699px) { .cypher-theater-frame { width: min(100vw, calc((100dvh - 190px) * 16 / 9)); margin-bottom: 140px; border-left: 0; border-right: 0; } }
+@media (prefers-reduced-motion: reduce) { .cypher-theater, .cypher-theater-frame { animation: none; } }

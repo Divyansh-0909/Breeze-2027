@@ -1,5 +1,7 @@
 // next.config.js
 module.exports = {
+  // A second local server (e.g. `next dev` beside `next start`) can build into its own folder.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   // Enable the user-selected environment only on the WIP branch deployment.
   // Vercel supplies this at build time; main keeps its existing default.
   env: {

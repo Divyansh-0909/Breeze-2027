@@ -4,7 +4,7 @@
  * 1. A late chunk that fails (plaza GLB blocked) leaves the visitor walking the arrival half.
  * 2. WebGL context loss and restore: the scene recovers and walking resumes.
  * 3. Touch (Pixel 7 emulation): the movement pad moves the visitor.
- * 4. The Aftermovie screen loops after the world streams; Watch restarts it from 0 at full quality.
+ * 4. The Aftermovie screen starts only after the world is ready, then loops; Watch restarts it from 0 at full quality.
  * WebM stands in for the MP4s: Playwright's Chromium has no H.264 decoder.
  */
 import { chromium, devices } from "playwright";
@@ -88,10 +88,12 @@ await check("screen loops the 720p film after streaming; Watch restarts the full
     await page.addInitScript(() => {
       const create = document.createElement.bind(document); window.__videos = [];
       document.createElement = (tag, ...rest) => { const el = create(tag, ...rest); if (String(tag).toLowerCase() === "video") window.__videos.push(el); return el; };
+      // When the film first gets a source, to compare with the world-ready mark.
+      const src = Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, "src");
+      Object.defineProperty(HTMLMediaElement.prototype, "src", { ...src, set(value) { window.__filmAt ??= performance.now(); src.set.call(this, value); } });
     });
   });
   await walking(page);
-  const early = await page.evaluate(() => window.__videos.filter(v => v.src).length);
   await world(page);
   await page.waitForFunction(() => window.__videos.some(v => v.src && !v.paused && v.currentTime > 1), null, { timeout: 600000 });
   const loop = await page.evaluate(() => { const v = window.__videos.find(v => v.src); return { src: v.src.split("/").pop(), loop: v.loop, t: v.currentTime }; });
@@ -100,8 +102,10 @@ await check("screen loops the 720p film after streaming; Watch restarts the full
     document.querySelector('.gully-controls button[aria-keyshortcuts="E"]').click();
     return { before, after: v.currentTime, src: v.src.split("/").pop() };
   });
+  // The whole world loads before walking; the film must not start (and compete for bandwidth) before it is ready.
+  const timing = await page.evaluate(() => ({ film: window.__filmAt, world: performance.getEntriesByName("breeze:world-ready")[0]?.startTime }));
   await context.close();
-  if (early !== 0) throw Error("film started before the world streamed");
+  if (!(timing.film >= timing.world)) throw Error("film started before the world was ready " + JSON.stringify(timing));
   if (loop.src !== "after-movie-720.mp4" || !loop.loop) throw Error("loop source " + JSON.stringify(loop));
   if (pressed.after > 0.5 || pressed.src !== "after-movie.mp4") throw Error("watch " + JSON.stringify(pressed));
   return { loop, pressed };

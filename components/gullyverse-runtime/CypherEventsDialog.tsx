@@ -31,10 +31,10 @@ export function CypherEventsDialog({ catalog, visibleEvents, page, pages, event,
     if (!input.shiftKey && document.activeElement === last) { input.preventDefault(); first?.focus(); }
   }
 
-  return <section className="cypher-events-dialog" role="dialog" aria-modal="true" aria-label="Events wall" onKeyDown={onKeyDown}>
+  return <section className="cypher-events-dialog hud-panel" role="dialog" aria-modal="true" aria-label="Events wall" onKeyDown={onKeyDown}>
     <div className="cypher-events-toolbar">
       <h2>{event?.event_name ?? "Events"}</h2>
-      <button ref={dismiss} type="button" onClick={close} aria-label="Close Events">×</button>
+      <button ref={dismiss} type="button" className="hud-text-button hud-close" onClick={close} aria-label="Close Events"><kbd>Esc</kbd><span>Close</span></button>
     </div>
     {event ? <>
       <p>{[event.event_org, event.event_date, event.event_end_date, event.event_venue].filter(Boolean).join(" · ")}</p>

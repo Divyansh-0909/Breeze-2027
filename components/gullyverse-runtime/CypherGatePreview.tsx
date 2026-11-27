@@ -3,31 +3,34 @@
 import Link from "next/link";
 import React, { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { AgXToneMapping, Box3, Color, Euler, MathUtils, Mesh, PerspectiveCamera, Texture, Vector3, VideoTexture,
-  type Camera, type Object3D, type Scene, type WebGLRenderer } from "three";
+import { Box3, Euler, MathUtils, PerspectiveCamera, Vector3, VideoTexture, type Mesh } from "three";
 import { useImmersiveInput } from "../immersive/input";
 import { phoneCamera, ReadinessGate, SceneRenderer } from "../immersive/rendering";
 import { ImmersiveRuntime, sprintSpeed, walkSpeed } from "../immersive/runtime";
 import { lookAtPose, world } from "../immersive/world";
-import { BakedAssetPool, type BakedAsset } from "./baked-assets";
+import { BakedAssetPool, type BakedAsset, type ChunkLayout } from "./baked-assets";
+import { deviceBudget, enforceShadowBudget } from "./device-tier";
+import { applyNightLook } from "./night-look";
+import { mountCourtyardDressing, type CourtyardDressing } from "./courtyard-dressing";
 import { Fidelity } from "./fidelity";
 import { GullyAudio, isWet, soundPreference, strideAt } from "./gully-audio";
 import { cypherContact } from "./cypher-contact";
 import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialog";
 import { CypherEventsDialog } from "./CypherEventsDialog";
-import { eventPosterSlots, eventsPerPage, paintEventPage } from "./event-poster-wall";
+import { eventPosterSlots, eventsPerPage, isEventPosterSlot, paintEventPage } from "./event-poster-wall";
 import type { CypherCatalog, CypherEvent } from "../../lib/events/cypher-catalog";
 import { CypherTeamDialog } from "./CypherTeamDialog";
 import { CypherAftermovieControls } from "./CypherAftermovieControls";
 import {
-  accommodationApproach, accommodationFocus, accommodationView, isAccommodationArtwork, revealAccommodationHouseWall,
+  accommodationApproach, accommodationFocus, accommodationView, isAccommodationArtwork, isAccommodationHousePlaster,
+  isAccommodationOverlay, revealAccommodationHouseWall,
 } from "./cypher-accommodation";
 import { aftermovieFocus, aftermovieView, bindAftermovie, findAftermoviePanels, isAftermoviePanel } from "./cypher-aftermovie";
 import { stageVideoSource } from "../landing-page/stage3d/useStageVideo";
 import { useScreenFilm } from "./cypher-screen-film";
 import { GullyDiagnostics, markLoad } from "./gully-diagnostics";
 import { QualityGovernor } from "./quality-governor";
-import { chunkOrder, laneChunks, type Chunk } from "./chunk-order";
+import { chunkOrder, type Chunk } from "./chunk-order";
 import { loadRocketboxCrowd, type Crowd } from "./rocketbox-crowd";
 import { defaultTeam, mountTeamCarousel, nextTeam, teamFocus, teamIndex, teamView, type TeamDisplay } from "./team-carousel";
 import { mountSponsorDisplay } from "./sponsor-display";
@@ -35,6 +38,7 @@ import { mountMarketLamps } from "./market-lamps";
 import walkSpace from "./cypher-walk-space.json";
 import { cypherStarts, startHref, type CypherStart } from "./cypher-map";
 import { createCypherMapDOM, CypherMap, CypherMapProjection } from "./CypherMap";
+import { DragIcon, HudLoading, HudLocation, PadIcon, useInputMode, zoneAt, type ArrivalProgress } from "./GullyHud";
 
 const { plaza } = cypherStarts;
 // Review only: `/runtime-preview/cypher?reviewCamera=px,py,pz,qx,qy,qz,qw,fov` pins the camera to an exact
@@ -46,40 +50,6 @@ const reviewCamera = (() => {
 })();
 const eventsFocus = lookAtPose([-9.7, 8.9, -31.05], [-15.85, 8.15, -31.05]);
 const assetRoot = "/models/gullyverse/locked-rev15z-";
-function walkingStarted(runtime: ImmersiveRuntime, signal: AbortSignal) {
-  return new Promise<void>((resolve, reject) => {
-    const check = () => { if (runtime.getSnapshot().phase === "local") { off(); resolve(); } };
-    const off = runtime.subscribe(check);
-    signal.addEventListener("abort", () => { off(); reject(signal.reason); }, { once: true });
-    check();
-  });
-}
-/**
- * Full speed: one second after walking starts. Data saver or a 2G-class connection: when the visitor
- * comes within about 20 m of the other half (or after three minutes).
- */
-function laterAllowed(runtime: ImmersiveRuntime, near: Chunk[], signal: AbortSignal) {
-  const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-  const constrained = !!connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType ?? "");
-  return new Promise<void>((resolve, reject) => {
-    const towardsPlaza = near === laneChunks, started = performance.now();
-    const timer = window.setInterval(() => {
-      const z = runtime.pose.z, close = towardsPlaza ? z < 14 : z > -26;
-      if (!constrained ? performance.now() - started > 1000 : close || performance.now() - started > 180000) { window.clearInterval(timer); resolve(); }
-    }, 250);
-    signal.addEventListener("abort", () => { window.clearInterval(timer); reject(signal.reason); }, { once: true });
-  });
-}
-/** Uploads a late chunk's textures and compiles its programs with the scene's lighting before it is shown. */
-async function prepareLate(gl: WebGLRenderer, root: Object3D, camera: Camera, scene: Scene) {
-  root.traverse(object => {
-    if (!(object instanceof Mesh)) return;
-    for (const material of Array.isArray(object.material) ? object.material : [object.material]) {
-      for (const value of Object.values(material)) if (value instanceof Texture && !(value instanceof VideoTexture)) gl.initTexture(value);
-    }
-  });
-  await gl.compileAsync(root, camera, scene);
-}
 const QuarryArrivalScene = lazy(() => import("./QuarryArrivalScene"));
 type Start = "quarry" | CypherStart;
 type WallPanel = "events" | "team" | "aftermovie" | "accommodation";
@@ -87,8 +57,8 @@ type WallUI = WallPanel | "active" | null;
 const wallFocus = { events: eventsFocus, team: teamFocus, aftermovie: aftermovieFocus, accommodation: accommodationFocus };
 const wallViews = { team: teamView, aftermovie: aftermovieView, accommodation: accommodationView };
 const wallLabel = {
-  events: "Browse event posters", team: "View team murals", aftermovie: "Watch Aftermovie",
-  accommodation: "View accommodation",
+  events: "View events", team: "View team", aftermovie: "Watch Aftermovie",
+  accommodation: "Accommodation",
 };
 type ContactUI = { available: boolean; placement: ContactPlacement; needsHeading: boolean };
 const closedContact: ContactUI = { available: false, placement: null, needsHeading: false };
@@ -104,12 +74,13 @@ function canOpenWall(pose: { x: number; z: number }, focus: { x: number; z: numb
   const reached = plaza.resolve(pose, focus);
   return Math.hypot(reached.x - focus.x, reached.z - focus.z) < 0.01;
 }
-const zoneAt = (z: number) => {
-  if (z < -22) return "Cypher plaza";
-  if (z < -15.65) return "Cypher forecourt";
-  if (z < -11.4) return "Cypher gate";
-  if (z < -1.5) return "Navigation approach";
-  return "Market lane";
+
+/** Interactive parts the chunk merging must keep as separate objects (baked-assets.ts). */
+const chunkLayout: ChunkLayout = {
+  keep: (mesh: Mesh) => isAftermoviePanel(mesh) || isAccommodationArtwork(mesh) || isAccommodationOverlay(mesh) || isEventPosterSlot(mesh),
+  excludeMaterial: isAccommodationHousePlaster,
+  // Phase 2: the DJ table read as a floating prop; grounded PA stacks, a drum and crates replace it (courtyard-dressing.ts).
+  prune: (mesh: Mesh) => /DJ table|DJ tabletop|Turntable platter/.test(String(mesh.userData.runtimeOriginalSource ?? mesh.name)),
 };
 
 class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFailure(): void }, { failed: boolean }> {
@@ -120,7 +91,7 @@ class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFail
 }
 
 function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, eventPage, reportWall, chooseEvent,
-  teamRequest, reportTeam, film, openWall, stopAftermovie, audio, ducked, reportStreaming, reportWorld, setDpr }: {
+  teamRequest, reportTeam, film, openWall, stopAftermovie, audio, ducked, reportWorld, reportArrival, setDpr }: {
   runtime: ImmersiveRuntime;
   curtain: React.RefObject<HTMLDivElement | null>;
   reportZone(zone: ReturnType<typeof zoneAt>): void;
@@ -137,21 +108,30 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   stopAftermovie(): void;
   audio: GullyAudio;
   ducked: boolean;
-  reportStreaming(pending: number): void;
   reportWorld(ready: boolean): void;
+  reportArrival(progress: ArrivalProgress): void;
   setDpr(dpr: number): void;
 }) {
   const { gl, scene, camera, size } = useThree();
   const [fidelity] = useState(() => new Fidelity(gl, window.matchMedia("(max-width: 699px)").matches,
     assetRoot + "market-south/transcoders/"));
   // The market chunks hold most of the small static meshes (shops, frontages): merged per material.
-  const [pool] = useState(() => new BakedAssetPool(gl, 2, fidelity, /locked-rev15z-market-(south|north)\//, true));
+  // Every chunk's plain static meshes are merged per material (after the flat-colour collapse); see baked-assets.ts.
+  // Review only: `/runtime-preview/cypher?merge=off` loads the chunks unmerged, for A/B checks of the merging.
+  const [pool] = useState(() => {
+    const unmerged = window.location.pathname.startsWith("/runtime-preview") &&
+      new URLSearchParams(window.location.search).get("merge") === "off";
+    return unmerged ? new BakedAssetPool(gl, 2, fidelity, undefined, true)
+      : new BakedAssetPool(gl, 2, fidelity, /locked-rev15z-/, true, chunkLayout);
+  });
+  const [look] = useState(() => applyNightLook(gl, scene, fidelity.budget));
   const crowd = useRef<Crowd | null>(null);
   useEffect(() => () => pool.dispose(), [pool]);
   useEffect(() => () => fidelity.dispose(), [fidelity]);
   // Chunks stream in: the visitor's half of the gully first, the other half once walking has started.
   const [assets, setAssets] = useState<Partial<Record<Chunk, BakedAsset>>>();
   const display = useRef<Awaited<ReturnType<typeof mountSponsorDisplay>> | undefined>(undefined);
+  const dressing = useRef<CourtyardDressing | null>(null);
   const lamps = useRef<ReturnType<typeof mountMarketLamps> | undefined>(undefined);
   const state = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot, runtime.getSnapshot);
   const euler = useRef(new Euler(0, 0, 0, "YXZ"));
@@ -172,6 +152,8 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     const abort = new AbortController();
     const releases = new Set<() => void>();
     const releaseAll = () => {
+      dressing.current?.dispose();
+      dressing.current = null;
       crowd.current?.dispose();
       crowd.current = null;
       lamps.current?.dispose();
@@ -187,6 +169,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       markLoad(name, "start");
       try {
         const asset = await loadChunkAsset(base);
+        asset.scene.userData.breezeChunk = name; // per-chunk draw-call breakdown (gully-diagnostics.tsx)
         markLoad(name, "ready");
         return asset;
       } catch (error) { markLoad(name, "failed"); throw error; }
@@ -224,6 +207,11 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
         lamps.current = mountMarketLamps([south.scene, north.scene]);
       }
       if (name === "cypher-plaza") {
+        // Cables, truss, lamps, windows, props, wall decals and haze (Phase 2); added before the readiness gate compiles.
+        asset.scene.updateMatrixWorld(true);
+        dressing.current?.dispose();
+        dressing.current = mountCourtyardDressing(asset.scene, fidelity);
+        scene.add(dressing.current.group);
         revealAccommodationHouseWall(asset.scene, asset.rgbmRange);
         const bounds = new Box3();
         asset.scene.updateMatrixWorld(true);
@@ -239,61 +227,63 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       }
     }
     async function load() {
+      // The whole gully loads before walking starts: every chunk and the crowd together, behind the loading
+      // screen, so the visitor never sees parts of the world arrive. The visitor's half is required; a chunk
+      // of the far half that fails leaves the rest walkable (the map and HTML links still reach everything).
       const { near, later } = chunkOrder(runtime.pose.z);
       const loaded: Partial<Record<Chunk, BakedAsset>> = {};
-      const first = await Promise.all(near.map(name => loadChunk(assetRoot + name + "/")));
-      abort.signal.throwIfAborted();
-      near.forEach((name, index) => { loaded[name] = first[index]; });
-      for (const name of near) await mount(name, loaded[name]!, loaded);
-      abort.signal.throwIfAborted();
-      performance.mark("breeze:near-ready");
-      setAssets({ ...loaded });
-      // The rest streams after walking starts (on slow or data-saving connections, when the visitor
-      // heads towards it). Each chunk's textures and shaders are prepared before it joins the scene,
-      // so it appears without a compile hitch.
-      await walkingStarted(runtime, abort.signal);
-      await laterAllowed(runtime, near, abort.signal);
-      reportStreaming(later.length + 1);
-      let remaining = later.length + 1;
-      // The Rocketbox crowd streams alongside the other half; a failure leaves the gully without people.
+      const total = near.length + later.length + 1;
+      let arrived = 0;
+      const step = () => { if (!abort.signal.aborted) reportArrival({ done: ++arrived, total }); };
+      reportArrival({ done: 0, total });
       const crowdLoad = (async () => {
         markLoad("rocketbox-crowd", "start");
         try {
-          const loaded = await loadRocketboxCrowd(gl, mobile, assetRoot + "market-south/transcoders/", abort.signal);
-          if (abort.signal.aborted) { loaded.dispose(); return; }
-          loaded.update(camera);
-          await prepareLate(gl, loaded.group, camera, scene);
-          if (abort.signal.aborted) { loaded.dispose(); return; }
-          scene.add(loaded.group);
-          crowd.current = loaded;
+          const people = await loadRocketboxCrowd(gl, mobile, assetRoot + "market-south/transcoders/", abort.signal,
+            fidelity.budget.crowdAvatars);
+          if (abort.signal.aborted) { people.dispose(); return; }
+          people.update(camera);
           markLoad("rocketbox-crowd", "ready");
+          return people;
         } catch (error) {
           markLoad("rocketbox-crowd", "failed");
           if (!abort.signal.aborted) console.warn("The crowd could not load", error);
-        } finally {
-          if (!abort.signal.aborted) reportStreaming(--remaining);
-        }
+        } finally { step(); }
       })();
-      await Promise.all(later.map(async name => {
-        try {
-          const asset = await loadChunk(assetRoot + name + "/");
-          abort.signal.throwIfAborted();
-          loaded[name] = asset;
-          await prepareLate(gl, asset.scene, camera, scene);
-          abort.signal.throwIfAborted();
-          await mount(name, asset, loaded);
-          abort.signal.throwIfAborted();
-          setAssets(current => ({ ...current, [name]: asset }));
-        } catch (error) {
-          if (abort.signal.aborted) throw error;
-          // The visitor keeps walking the part that loaded; the map and HTML links still reach everything.
-          console.warn(`Gully chunk ${name} could not load`, error);
-        } finally {
-          if (!abort.signal.aborted) reportStreaming(--remaining);
-        }
-      }));
-      await crowdLoad;
+      const [required, optional, people] = await Promise.all([
+        Promise.all(near.map(async name => { try { return await loadChunk(assetRoot + name + "/"); } finally { step(); } })),
+        Promise.all(later.map(async name => {
+          try { return await loadChunk(assetRoot + name + "/"); }
+          catch (error) {
+            if (abort.signal.aborted) throw error;
+            console.warn(`Gully chunk ${name} could not load`, error);
+            return undefined;
+          } finally { step(); }
+        })),
+        crowdLoad,
+      ]);
+      abort.signal.throwIfAborted();
+      near.forEach((name, index) => { loaded[name] = required[index]; });
+      later.forEach((name, index) => { if (optional[index]) loaded[name] = optional[index]; });
+      for (const name of [...near, ...later]) if (loaded[name]) await mount(name, loaded[name]!, loaded);
+      abort.signal.throwIfAborted();
+      if (people) {
+        // The crowd takes the light pools (lamps and screen spill) on top of its runtime lighting.
+        people.group.traverse(object => {
+          const mesh = object as Mesh;
+          if (!mesh.isMesh) return;
+          for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+            material.onBeforeCompile = shader => fidelity.patchCrowd(shader);
+            material.customProgramCacheKey = () => fidelity.propKey(null) + "-crowd";
+            material.needsUpdate = true;
+          }
+        });
+        scene.add(people.group); crowd.current = people;
+      }
+      performance.mark("breeze:near-ready");
       performance.mark("breeze:world-ready");
+      // The readiness gate uploads textures and compiles every shader for the whole scene before walking.
+      setAssets({ ...loaded });
       reportWorld(true);
     }
     void load().catch(() => {
@@ -302,12 +292,9 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       releaseAll();
     });
     return () => { abort.abort(); releaseAll(); };
-  }, [pool, runtime, gl, camera, scene, reportStreaming, reportWorld]);
+  }, [pool, fidelity, runtime, gl, camera, scene, reportWorld, reportArrival]);
 
   useEffect(() => {
-    gl.toneMapping = AgXToneMapping;
-    gl.toneMappingExposure = Math.pow(2, 0.25);
-    scene.background = new Color("#010303");
     const lost = (event: Event) => { event.preventDefault(); stopAftermovie(); runtime.loseContext(); };
     const restored = () => runtime.restoreContext();
     gl.domElement.addEventListener("webglcontextlost", lost);
@@ -319,6 +306,8 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   }, [gl, scene, runtime, stopAftermovie]);
 
   const plazaScene = assets?.["cypher-plaza"]?.scene;
+  // Shadow budget (device-tier.ts): checked once the plaza, the last chunk with lights, has joined the scene.
+  useEffect(() => { if (plazaScene) enforceShadowBudget(scene, camera, fidelity.budget); }, [plazaScene, scene, camera, fidelity]);
   const screenPanels = useMemo(() => plazaScene ? findAftermoviePanels(plazaScene) : null, [plazaScene]);
   useLayoutEffect(() => {
     if (screenPanels && film) return bindAftermovie(screenPanels, film);
@@ -357,6 +346,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
     runtime.tick(delta);
     if (!runtime.reduced) display.current?.advance(runtime.activeFrameDelta);
     lamps.current?.advance(runtime.activeFrameDelta, runtime.reduced);
+    dressing.current?.update(runtime.activeFrameDelta, camera, film?.image as HTMLVideoElement | null ?? null, runtime.reduced);
     const aspect = Math.max(size.width / Math.max(1, size.height), 0.01);
     const view = runtime.cameraPose(aspect, panel === null && phoneCamera(size.width));
     const { phase, map } = runtime.getSnapshot();
@@ -450,6 +440,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       }
     }
     if (assets) fidelity.updateEnvironment(scene, camera);
+    look.update(map, delta, runtime.reduced);
     crowd.current?.update(camera);
     if (curtain.current) curtain.current.style.opacity = String(runtime.revealOpacity);
     const current = zoneAt(runtime.pose.z);
@@ -554,7 +545,12 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   useEffect(() => { audio.arm(); return () => audio.dispose(); }, [audio]);
   const toggleSound = useCallback(() => setSound(on => { audio.setEnabled(!on); return !on; }), [audio]);
   const [movieFailed, setMovieFailed] = useState(false);
-  const [streaming, setStreaming] = useState(0);
+  const [arrival, setArrival] = useState<ArrivalProgress>({ done: 0, total: 0 });
+  const input = useInputMode();
+  // The full controls legend shows until the visitor has walked a few metres, then folds to one key.
+  const [legend, setLegend] = useState(() => {
+    try { return sessionStorage.getItem("gully-legend") !== "folded"; } catch { return true; }
+  });
   const [canvasDpr, setCanvasDpr] = useState(1);
   const [teamRequest, requestTeam] = useState(() => ({ index: teamIndex(team) }));
   const [teamDisplay, setTeamDisplay] = useState(defaultTeam);
@@ -596,7 +592,7 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
     if (target === "aftermovie") {
       setMovieFailed(false);
       watchingMovie.current = true;
-      screen.restart();
+      screen.restart(deviceBudget().tier !== "low");
     }
   }, [marketRuntime, screen.restart]);
   const closeContact = useCallback(() => { marketRuntime.focusInteraction(null); }, [marketRuntime]);
@@ -661,6 +657,7 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
       const target = event.target as HTMLElement | null;
       if (target?.closest("input, textarea, select, [contenteditable=true], form")) return;
       if (event.code === "KeyV") { event.preventDefault(); toggleSound(); return; }
+      if (event.code === "KeyH" && walking) { event.preventDefault(); setLegend(open => !open); return; }
       if (event.code === "KeyE" && walking && !marketRuntime.interacting && !marketRuntime.getSnapshot().map) {
         const action = enquiry.current ?? browse.current;
         if (action) { event.preventDefault(); action.click(); }
@@ -669,6 +666,16 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
     window.addEventListener("keydown", keys);
     return () => window.removeEventListener("keydown", keys);
   }, [walking, marketRuntime, toggleSound]);
+  useEffect(() => {
+    if (!walking || !legend) return;
+    const from = { x: marketRuntime.pose.x, z: marketRuntime.pose.z };
+    const timer = window.setInterval(() => {
+      if (Math.hypot(marketRuntime.pose.x - from.x, marketRuntime.pose.z - from.z) < 5) return;
+      setLegend(false);
+      try { sessionStorage.setItem("gully-legend", "folded"); } catch { /* storage blocked */ }
+    }, 400);
+    return () => window.clearInterval(timer);
+  }, [walking, legend, marketRuntime]);
   const landing = !!activeQuarry && state.phase === "landing";
   return <>
     <div ref={canvas} className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}
@@ -681,7 +688,7 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
           form={form} reportContact={setContact} panel={panel} eventPage={eventPage}
           reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam}
           film={screen.ready ? screen.film?.texture ?? null : null} openWall={openWall} stopAftermovie={stopAftermovie}
-          audio={audio} ducked={panel === "aftermovie" && runtime.interacting} reportStreaming={setStreaming} reportWorld={setWorldReady} setDpr={setCanvasDpr} />}
+          audio={audio} ducked={panel === "aftermovie" && runtime.interacting} reportWorld={setWorldReady} reportArrival={setArrival} setDpr={setCanvasDpr} />}
         {!activeQuarry && <CypherMapProjection runtime={marketRuntime} elements={mapDom} />}
       </Canvas>
       {walking && runtime.interacting && contact.needsHeading &&
@@ -690,33 +697,46 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
     <div className="native-curtain" ref={curtain} aria-hidden="true" />
     {walking && state.map && <CypherMap runtime={marketRuntime} state={state} elements={mapDom} travel={travel} />}
     {landing && <div className="native-controls"><button onClick={() => runtime.enter()}>Enter Gullyverse</button></div>}
-    {walking && !state.map && <p className="gully-location" aria-live="polite"><span className="gully-chip">{zone}</span>
-      {streaming > 0 && <span className="gully-chip gully-streaming">Loading the rest of the gully…</span>}</p>}
-    {walking && !runtime.interacting && <section className="gully-controls" aria-label="Controls">
-      <p className="gully-controls-title" aria-hidden="true">Controls</p>
-      <ul>
-        {!state.map && <>
-          <li className="gully-keyboard-only"><span className="gully-keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
-            <span className="gully-label">Move</span></li>
-          <li className="gully-keyboard-only"><span className="gully-keys"><kbd>Shift</kbd></span><span className="gully-label">Hold to sprint</span></li>
-          <li className="gully-keyboard-only"><span className="gully-keys"><kbd>Drag</kbd></span><span className="gully-label">Look</span></li>
-          {contact.available && <li><button ref={enquiry} aria-keyshortcuts="E" aria-label="Leave a message" onClick={() => {
-            if (canOpenContact(marketRuntime.pose) && marketRuntime.focusInteraction(cypherContact.focus)) {
-              restoreContactFocus.current = true;
-            }
-          }}><kbd>E</kbd><span className="gully-label">Leave a message</span></button></li>}
-          {!contact.available && wallUI && wallUI !== "active" && <li><button ref={browse} aria-keyshortcuts="E"
-            aria-label={wallLabel[wallUI]} onClick={() => openWall(wallUI)}>
-            <kbd>E</kbd><span className="gully-label">{wallLabel[wallUI]}</span></button></li>}
-        </>}
-        <li><button ref={mapButton} aria-keyshortcuts="M"
+    {walking && !state.map && <HudLocation zone={zone} />}
+    {walking && !runtime.interacting && <section className="gully-controls" aria-label="Controls" data-input={input}>
+      {!state.map && (legend
+        ? <ul className="hud-legend">
+          {input === "keys" ? <>
+            <li><span className="gully-keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span>Walk</span></li>
+            <li><span className="gully-keys"><kbd className="hud-key-wide">Shift</kbd></span><span>Sprint</span></li>
+            <li><span className="gully-keys"><kbd className="hud-key-wide">Drag</kbd></span><span>Look</span></li>
+          </> : <>
+            <li><PadIcon /><span>Walk</span></li>
+            <li><DragIcon /><span>Drag to look</span></li>
+          </>}
+          <li><button type="button" className="hud-text-button" aria-keyshortcuts="H" onClick={() => setLegend(false)}>
+            {input === "keys" && <kbd>H</kbd>}<span>Hide</span></button></li>
+        </ul>
+        : <button type="button" className="hud-legend-folded" aria-keyshortcuts="H" aria-expanded="false" onClick={() => setLegend(true)}>
+          {input === "keys" && <kbd>H</kbd>}<span>Controls</span></button>)}
+      {!state.map && contact.available && <button key="contact" ref={enquiry} className="hud-prompt" aria-keyshortcuts="E"
+        aria-label="Leave a message" onClick={() => {
+          if (canOpenContact(marketRuntime.pose) && marketRuntime.focusInteraction(cypherContact.focus)) {
+            restoreContactFocus.current = true;
+          }
+        }}>
+        {input === "keys" ? <kbd>E</kbd> : <span className="hud-tap" aria-hidden="true">Tap</span>}
+        <span className="hud-prompt-text"><strong>Leave a message</strong></span>
+      </button>}
+      {!state.map && !contact.available && wallUI && wallUI !== "active" && <button key={wallUI} ref={browse} className="hud-prompt"
+        aria-keyshortcuts="E" aria-label={wallLabel[wallUI]} onClick={() => openWall(wallUI)}>
+        {input === "keys" ? <kbd>E</kbd> : <span className="hud-tap" aria-hidden="true">Tap</span>}
+        <span className="hud-prompt-text"><strong>{wallLabel[wallUI]}</strong></span>
+      </button>}
+      <div className="hud-system">
+        <button ref={mapButton} type="button" aria-keyshortcuts="M"
           aria-label={state.map && state.mapStage !== "descent" ? "Close map" : "Map"}
           onClick={() => runtime.setMap(!state.map || state.mapStage === "descent")}>
-          <kbd>M</kbd><span className="gully-label">{state.map && state.mapStage !== "descent" ? "Close map" : "Map"}</span>
-        </button></li>
-        {!state.map && <li><button aria-keyshortcuts="V" aria-pressed={sound} aria-label="Sound" onClick={toggleSound}>
-          <kbd>V</kbd><span className="gully-label">{sound ? "Sound on" : "Sound off"}</span></button></li>}
-      </ul>
+          {input === "keys" && <kbd>M</kbd>}<span>{state.map && state.mapStage !== "descent" ? "Close map" : "Map"}</span>
+        </button>
+        {!state.map && <button type="button" aria-keyshortcuts="V" aria-pressed={sound} aria-label="Sound" onClick={toggleSound}>
+          {input === "keys" && <kbd>V</kbd>}<span>{sound ? "Sound on" : "Sound off"}</span></button>}
+      </div>
       {wallUI === "aftermovie" && movieFailed && <p role="status" className="cypher-aftermovie-error">
         The Aftermovie could not play. Try again or <a href={stageVideoSource}>open the video</a>.
       </p>}
@@ -734,19 +754,19 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
     {panel === "events" && wallUI === "active" && catalog && eventPage && <CypherEventsDialog
       catalog={catalog} visibleEvents={eventPage} page={page} pages={pages}
       event={eventPage.find(item => item.id === eventId)} changePage={setPage} choose={chooseEvent} close={closeWall} />}
-    {panel === "team" && wallUI === "active" && <CypherTeamDialog canvas={canvas} display={teamDisplay}
+    {panel === "team" && wallUI === "active" && <CypherTeamDialog canvas={canvas} display={teamDisplay} input={input}
       advance={advanceTeam} retry={() => requestTeam(current => ({ ...current }))} close={closeWall} />}
     {panel === "accommodation" && wallUI === "active" && <AccommodationControls close={closeWall} />}
     {walking && panel === "aftermovie" && runtime.interacting && <CypherAftermovieControls
-      loading={!screen.ready} muted={!sound} toggleSound={toggleSound} close={stopAftermovie} />}
-    {!walking && !landing && state.phase !== "entrance" && <div className="native-loading" role="status">
-      <p>{state.error ?? (state.phase === "context-lost" || state.phase === "recovering"
-        ? "Restoring 3D…" : activeQuarry ? "Loading the quarry…" : "Loading the market lane…")}</p>
-      {state.error && <>
+      loading={!screen.ready} muted={!sound} toggleSound={toggleSound} close={stopAftermovie}
+      video={screen.film?.video ?? null} low={deviceBudget().tier === "low"} />}
+    {!walking && !landing && state.phase !== "entrance" && <HudLoading start={activeQuarry ? "quarry" : start} progress={arrival}
+      message={state.error ?? (state.phase === "context-lost" || state.phase === "recovering" ? "Restoring 3D…" : null)}>
+      {state.error && <nav className="hud-loading-links" aria-label="Without 3D">
         {start === "accommodation" && <AccommodationStatus />}
-        <Link href="/events">Browse events</Link><br /><a href="/get-in-touch">Contact us</a>
-      </>}
-    </div>}
+        <Link href="/events">Browse events</Link><a href="/get-in-touch">Contact us</a>
+      </nav>}
+    </HudLoading>}
   </>;
 }
 

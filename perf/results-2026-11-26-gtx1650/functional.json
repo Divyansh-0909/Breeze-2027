@@ -1,0 +1,41 @@
+[
+ {
+  "name": "a failed late chunk leaves the arrival half walkable",
+  "ok": true,
+  "detail": {
+   "movedMetres": 11.15
+  },
+  "seconds": 18.134
+ },
+ {
+  "name": "WebGL context loss and restore resumes walking",
+  "ok": false,
+  "error": "TimeoutError: page.waitForSelector: Timeout 600000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.gully-controls') to be visible\u001b[22m\n"
+ },
+ {
+  "name": "touch movement pad walks on a phone viewport",
+  "ok": true,
+  "detail": {
+   "movedMetres": 10.61,
+   "dpr": 2.625
+  },
+  "seconds": 11.72
+ },
+ {
+  "name": "screen loops the 720p film after streaming; Watch restarts the full film from 0",
+  "ok": true,
+  "detail": {
+   "loop": {
+    "src": "after-movie-720.mp4",
+    "loop": true,
+    "t": 1.002886
+   },
+   "pressed": {
+    "before": 1.004087,
+    "after": 0,
+    "src": "after-movie.mp4"
+   }
+  },
+  "seconds": 11.492
+ }
+]

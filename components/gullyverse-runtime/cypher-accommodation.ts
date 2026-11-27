@@ -29,6 +29,12 @@ export function isAccommodationArtwork(object: Object3D) {
   return object.userData.runtimeOriginalSource === source;
 }
 
+/** The hidden plaster overlay and the house plaster material that takes its bake (kept out of batching). */
+export function isAccommodationOverlay(object: Object3D) {
+  return object.userData.runtimeOriginalSource === plasterOverlay;
+}
+export const isAccommodationHousePlaster = (materialName: string) => materialName === housePlaster;
+
 export function revealAccommodationHouseWall(plaza: Object3D, rgbmRange?: number) {
   const overlays: Object3D[] = [];
   plaza.traverse(object => { if (object.userData.runtimeOriginalSource === plasterOverlay) overlays.push(object); });
@@ -52,7 +58,8 @@ export function revealAccommodationHouseWall(plaza: Object3D, rgbmRange?: number
   plaza.traverse(object => {
     if (!(object instanceof Mesh) || !(object.material instanceof MeshStandardMaterial)) return;
     const material = object.material;
-    if (material.name !== housePlaster || patched.has(material)) return;
+    if (material.name !== housePlaster || patched.has(material) || material.userData.breezeAccommodationWall) return;
+    material.userData.breezeAccommodationWall = true; // a re-mounted chunk must not wrap the shader twice
     patched.add(material);
     const compile = material.onBeforeCompile;
     const cacheKey = material.customProgramCacheKey();

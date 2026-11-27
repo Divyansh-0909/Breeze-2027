@@ -3,12 +3,14 @@ import { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import type { ImmersiveRuntime } from "../immersive/runtime";
 import { tier } from "./gully-diagnostics";
+import { deviceBudget } from "./device-tier";
 
 /**
  * Bounded, hysteretic render-resolution tiers. Only the drawing-buffer scale changes: geometry, content,
  * lighting, movement, input and destinations are identical in every tier.
  *
- *   high      DPR min(device, 1.5)  capable desktop GPUs, after sustained headroom
+ *   high      DPR min(device, cap)  after sustained headroom; cap from the device budget (device-tier.ts):
+ *                                   1.75 high, 1.5 medium, 1.25 low
  *   balanced  DPR 1                 the starting tier everywhere (the previous fixed setting)
  *   low       DPR 0.8               after sustained overload
  *   minimum   DPR 0.65              after further sustained overload (weak or thermally throttled devices)
@@ -22,7 +24,7 @@ const tiers = [
   { name: "minimum", dpr: () => 0.65 },
   { name: "low", dpr: () => 0.8 },
   { name: "balanced", dpr: () => 1 },
-  { name: "high", dpr: () => Math.min(window.devicePixelRatio, 1.5) },
+  { name: "high", dpr: () => Math.min(window.devicePixelRatio, deviceBudget().dprCap) },
 ] as const;
 
 /** `setDpr` must drive the Canvas `dpr` prop: R3F re-applies that prop whenever it differs. */

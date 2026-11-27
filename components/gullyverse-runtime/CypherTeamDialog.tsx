@@ -2,8 +2,15 @@
 
 import { useEffect, useRef, type KeyboardEvent, type RefObject } from "react";
 import { teamSlides, type TeamDisplay } from "./team-carousel";
+import type { InputMode } from "./GullyHud";
 
-export function CypherTeamDialog({ canvas, display, advance, retry, close }: {
+const Chevron = ({ flip = false }: { flip?: boolean }) => <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"
+  style={flip ? { transform: "scaleX(-1)" } : undefined}>
+  <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+</svg>;
+
+export function CypherTeamDialog({ canvas, display, advance, retry, close, input = "keys" }: {
+  input?: InputMode;
   canvas: RefObject<HTMLDivElement | null>;
   display: TeamDisplay;
   advance(direction: -1 | 1): void;
@@ -56,19 +63,27 @@ export function CypherTeamDialog({ canvas, display, advance, retry, close }: {
   }
 
   const slide = teamSlides[display.index];
-  return <section className="cypher-team-dialog" role="dialog" aria-modal="true" aria-label="Team murals"
+  const touch = input === "touch";
+  return <section className="cypher-team-dialog hud-panel" role="dialog" aria-modal="true" aria-label="Team murals"
     onKeyDown={onKeyDown}>
-    <div className="cypher-team-header">
-      <h2 aria-live="polite">{slide.team}</h2>
-      <button ref={dismiss} type="button" onClick={close} aria-label="Close team murals">×</button>
+    <div className="cypher-team-navigation">
+      <button type="button" className="hud-step" onClick={() => advance(-1)} aria-label="Previous mural" aria-keyshortcuts="ArrowLeft">
+        {touch ? <Chevron flip /> : <kbd>←</kbd>}</button>
+      <div className="cypher-team-title">
+        <h2 aria-live="polite">{slide.team}</h2>
+        <ol className="hud-pips" aria-label={`Mural ${display.index + 1} of ${teamSlides.length}`}>
+          {teamSlides.map((item, index) => <li key={item.team} data-current={index === display.index || undefined} />)}
+        </ol>
+      </div>
+      <button type="button" className="hud-step" onClick={() => advance(1)} aria-label="Next mural" aria-keyshortcuts="ArrowRight">
+        {touch ? <Chevron /> : <kbd>→</kbd>}</button>
     </div>
     <ul className="sr-only">{slide.people.map(person => <li key={person.name}>{person.name}, {person.role}</li>)}</ul>
-    <div className="cypher-team-navigation">
-      <button type="button" onClick={() => advance(-1)} aria-label="Previous mural" aria-keyshortcuts="ArrowLeft">‹</button>
-      <span aria-label={`Mural ${display.index + 1} of ${teamSlides.length}`}>{display.index + 1} / {teamSlides.length}</span>
-      <button type="button" onClick={() => advance(1)} aria-label="Next mural" aria-keyshortcuts="ArrowRight">›</button>
+    <div className="hud-panel-foot">
+      <p>{touch ? "Swipe for more" : `${display.index + 1} / ${teamSlides.length}`}</p>
+      <button ref={dismiss} type="button" className="hud-text-button" onClick={close} aria-label="Close team murals">
+        {!touch && <kbd>Esc</kbd>}<span>Close</span></button>
     </div>
-    {display.status === "loading" && <p role="status">Loading mural…</p>}
     {display.status === "error" && <div className="cypher-team-retry">
       <p role="status">The mural could not load.</p>
       <button type="button" onClick={retry}>Retry</button>
