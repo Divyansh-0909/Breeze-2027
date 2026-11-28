@@ -12,7 +12,8 @@ import type { Budget } from "./device-tier";
 export const voidColour = "#050709";
 export const exposure = 1.1;
 /** Added to decoded lightmap irradiance before lightMapIntensity (GLSL vec3). */
-export const nightFloor = "vec3(0.89, 0.94, 1.0) * 0.022";
+// Realism rescue (27 Nov): 0.022 -> 0.011 (0.0045 lost the plaza buildings), so unlit corners and upper walls sink to deep charcoal (#0c0e12).
+export const nightFloor = "vec3(0.82, 0.89, 1.0) * 0.011";
 
 export function applyNightLook(gl: THREE.WebGLRenderer, scene: THREE.Scene, budget: Budget) {
   gl.toneMapping = THREE.AgXToneMapping;

@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import type { Fidelity } from "./fidelity";
+import type { Cone } from "./light-pools";
 import { blobTexture, decalAtlas, emissiveAtlas, hazeTexture, propAtlas, type Region } from "./dressing-textures";
 
 /**
@@ -13,15 +14,15 @@ import { blobTexture, decalAtlas, emissiveAtlas, hazeTexture, propAtlas, type Re
  * All positions come from ray-cast surveys of the locked scene (plaza floor y = 7.2; facades left x ≈ −15.7 … −17.3
  * stepping back per floor, right x ≈ 15.5 … 16.3, back z ≈ −50.3 … −51.8; screen centre (0, 11.59, −45.72)).
  */
-const FLOOR = 7.2;
-const SODIUM = new THREE.Color("#c4883e"), TUBE = new THREE.Color("#dbeaee");
-type V = [number, number, number];
-const vec = (p: V) => new THREE.Vector3(...p);
+export const FLOOR = 7.2;
+export const SODIUM = new THREE.Color("#c4883e"), TUBE = new THREE.Color("#dbeaee"), TUNGSTEN = new THREE.Color("#ffb870");
+export type V = [number, number, number];
+export const vec = (p: V) => new THREE.Vector3(...p);
 
 // ---------------------------------------------------------------- geometry helpers
 
 /** A sagging wire: parabola between two anchors (sag as a fraction of the span), as a thin 4-sided tube. */
-function wire(a: V, b: V, sag: number, radius: number) {
+export function wire(a: V, b: V, sag: number, radius: number) {
   const A = vec(a), B = vec(b), span = A.distanceTo(B), drop = span * sag;
   const points = Array.from({ length: 9 }, (_, i) => {
     const t = i / 8;
@@ -39,7 +40,7 @@ function bundle(a: V, b: V, count: number, sag: number, spread: number, radius: 
   }
 }
 /** A straight pipe between two points (open cylinder, 4 sides). */
-function strut(a: THREE.Vector3, b: THREE.Vector3, radius: number) {
+export function strut(a: THREE.Vector3, b: THREE.Vector3, radius: number) {
   const dir = new THREE.Vector3().subVectors(b, a), length = dir.length();
   const g = new THREE.CylinderGeometry(radius, radius, length, 4, 1, true);
   g.applyQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize()));
@@ -47,13 +48,13 @@ function strut(a: THREE.Vector3, b: THREE.Vector3, radius: number) {
   return g;
 }
 /** Remaps a geometry's 0..1 UVs into an atlas region. */
-function toRegion(g: THREE.BufferGeometry, r: Region) {
+export function toRegion(g: THREE.BufferGeometry, r: Region) {
   const uv = g.getAttribute("uv") as THREE.BufferAttribute;
   for (let i = 0; i < uv.count; i++) uv.setXY(i, r[0] + uv.getX(i) * (r[2] - r[0]), r[1] + uv.getY(i) * (r[3] - r[1]));
   return g;
 }
 /** A box whose six faces map to atlas regions (+x, −x, +y, −y, +z, −z). */
-function atlasBox(w: number, h: number, d: number, faces: Region[]) {
+export function atlasBox(w: number, h: number, d: number, faces: Region[]) {
   const g = new THREE.BoxGeometry(w, h, d);
   const uv = g.getAttribute("uv") as THREE.BufferAttribute;
   for (let f = 0; f < 6; f++) for (let k = 0; k < 4; k++) {
@@ -63,7 +64,7 @@ function atlasBox(w: number, h: number, d: number, faces: Region[]) {
   return g.toNonIndexed();
 }
 /** A flat quad facing `normal`, centred at `centre`, with UVs in `region` and an optional vertex brightness. */
-function quad(centre: THREE.Vector3, normal: THREE.Vector3, width: number, height: number, region: Region, brightness = 1, roll = 0) {
+export function quad(centre: THREE.Vector3, normal: THREE.Vector3, width: number, height: number, region: Region, brightness = 1, roll = 0) {
   const g = toRegion(new THREE.PlaneGeometry(width, height), region);
   if (roll) g.rotateZ(roll);
   g.applyQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal.clone().normalize()));
@@ -86,7 +87,7 @@ function merge(parts: THREE.BufferGeometry[], keep: string[]) {
 }
 
 /** Finds the facing surface along a ray (nearest hit on visible chunk meshes). */
-function surfaceAt(root: THREE.Object3D, origin: V, direction: V, skipGlass = true) {
+export function surfaceAt(root: THREE.Object3D, origin: V, direction: V, skipGlass = true) {
   const ray = new THREE.Raycaster(vec(origin), vec(direction).normalize(), 0.05, 14);
   const usable = (m: THREE.Material | THREE.Material[]) => {
     const material = Array.isArray(m) ? m[0] : m;
@@ -101,12 +102,17 @@ function surfaceAt(root: THREE.Object3D, origin: V, direction: V, skipGlass = tr
 
 const truss = { x: 7.9, z: -45.7, depth: 0.45, top: 15.2, chord: 0.025, lacing: 0.016 };
 /** Lamps: position (housing on the wall), pool centre and radius, colour, kind. Index = light pool index. */
-type Lamp = { kind: "sodium" | "tube"; housing: V; facing: V; pool: V; radius: number; colour: THREE.Color; intensity: number; soffitFrom?: V; soffit?: number };
+/**
+ * `bulb`: a bare hanging tungsten bulb (cord up to height `cord`); `practical`: an existing baked fixture that only gains a
+ * glow and a pool. `active` limits the lamp's pool to the camera's zone (light-pools.ts registry).
+ */
+export type Lamp = { kind: "sodium" | "tube" | "bulb" | "practical"; housing: V; facing: V; pool: V; radius: number; colour: THREE.Color;
+  intensity: number; soffitFrom?: V; soffit?: number; cord?: number; active?: (eye: THREE.Vector3) => boolean; label?: string; glow?: [number, number]; cone?: Cone };
 const lampSpecs: Lamp[] = [
   // Right-wing balcony building: the overhangs reach only ~0.9 m from the wall (to x ≈ 15.1–15.4; probed). The lamps hang
   // just inside the edge, under the roof eave (sodium, ~19.0) and the floor-2 overhang (cool tube, ~15.9), found by a ray
   // cast straight up at mount (soffitFrom); from street level the edge then does not hide them.
-  { kind: "sodium", housing: [15.65, 19.1, -25.6], facing: [-1, 0, 0], pool: [14.5, 18.4, -25.8], radius: 13, colour: SODIUM, intensity: 2.6, soffitFrom: [15.15, 17.3, -25.6] },
+  { kind: "sodium", housing: [15.65, 19.1, -29.0], facing: [-1, 0, 0], pool: [14.5, 18.4, -29.2], radius: 14, colour: SODIUM, intensity: 2.6, soffitFrom: [15.15, 17.3, -29.0] },
   { kind: "tube", housing: [15.65, 16.0, -25.6], facing: [-1, 0, 0], pool: [14.5, 15.3, -25.8], radius: 12, colour: TUBE, intensity: 1.3, soffitFrom: [15.3, 14.1, -24.0] },
   { kind: "tube", housing: [-11.5, 13.9, -50.35], facing: [0, 0, 1], pool: [-11.5, 13.6, -49.2], radius: 9, colour: TUBE, intensity: 0.75 },
 ];
@@ -173,7 +179,7 @@ void main() {
   vUv = uv; vColour = glowColour;
   vec4 centre = modelViewMatrix * instanceMatrix * vec4(0.0, 0.0, 0.0, 1.0);
   centre.xy += position.xy * glowSize;
-  centre.z += 0.15; // in front of the lens
+  centre.z += 0.02; // just in front of the lens (0.15 pulled wide tube halos through the soffit)
   gl_Position = projectionMatrix * centre;
 }`;
 const glowFragment = `
@@ -181,7 +187,8 @@ varying vec2 vUv;
 varying vec3 vColour;
 void main() {
   float r = length(vUv - 0.5) * 2.0;
-  float a = exp(-r * r * 5.0) * (1.0 - smoothstep(0.85, 1.0, r));
+  // Realism rescue: a tight core plus a wide soft lobe (light scattering in the night air).
+  float a = exp(-r * r * 6.5) * (1.0 - smoothstep(0.25, 1.0, r)) + 0.12 * exp(-r * r * 2.5) * (1.0 - smoothstep(0.5, 1.0, r));
   gl_FragColor = vec4(vColour * a, 1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>
@@ -226,12 +233,33 @@ void main() {
 
 export type CourtyardDressing = { group: THREE.Group; update(delta: number, camera: THREE.Camera, video: HTMLVideoElement | null, reduced: boolean): void; dispose(): void };
 
-export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity): CourtyardDressing {
+/**
+ * Where zone dressing (zone-dressing.ts, Phase 3) adds its parts: they are merged into the courtyard's families, so
+ * a zone costs no extra draw calls. `laneDecals` is a second decal mesh on the gate's lane side (shown only from the
+ * lane, where the plaza's props and decals are hidden).
+ */
+export type DressingSink = {
+  plaza: THREE.Object3D; fidelity: Fidelity; lamps: Lamp[];
+  steel: THREE.BufferGeometry[]; glow: THREE.BufferGeometry[]; props: THREE.BufferGeometry[]; blobs: THREE.BufferGeometry[];
+  decals: THREE.BufferGeometry[]; laneDecals: THREE.BufferGeometry[];
+  atlas: { emissive: ReturnType<typeof emissiveAtlas>; props: ReturnType<typeof propAtlas>; decals: ReturnType<typeof decalAtlas> };
+};
+export type ZoneHooks = { update?(camera: THREE.Camera): void; dispose?(): void };
+
+/** While the camera is in the lane (outside the gate), the plaza's props, their shadows and its wall decals are hidden. */
+export const inLane = (camera: THREE.Camera) => camera.position.z > -13.5;
+
+export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity, zones?: (sink: DressingSink) => ZoneHooks): CourtyardDressing {
   const budget = fidelity.budget, size = budget.textureSize;
   const lamps = placeLamps(plaza);
   const group = new THREE.Group(); group.name = "Courtyard dressing";
   const disposables: { dispose(): void }[] = [];
   const add = (mesh: THREE.Object3D, name: string) => { mesh.name = name; group.add(mesh); return mesh; };
+  const sink: DressingSink = {
+    plaza, fidelity, lamps, steel: [], glow: [], props: [], blobs: [], decals: [], laneDecals: [],
+    atlas: { emissive: emissiveAtlas(size), props: propAtlas(size), decals: decalAtlas(size) },
+  };
+  const hooks = zones?.(sink) ?? {};
 
   // Cables: one merged mesh. Facade anchors are snapped to the wall surface (upper floors step back).
   const anchor = (p: V): V => {
@@ -251,7 +279,7 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
   disposables.push(cableGeometryMerged, cableMaterial);
 
   // Steel: the screen truss (two towers and a top box beam, 48 mm chords, 32 mm lacing) and lamp housings and cages.
-  const steel: THREE.BufferGeometry[] = [];
+  const steel = sink.steel;
   const half = truss.depth / 2;
   const corners = (x: number) => [[x - half, truss.z - half], [x + half, truss.z - half], [x + half, truss.z + half], [x - half, truss.z + half]];
   for (const side of [-1, 1]) {
@@ -278,6 +306,12 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
       const base = lamp.kind === "tube" ? at.clone().addScaledVector(out, 0.1).add(new THREE.Vector3(0, 0.035, 0)) : at;
       steel.push(strut(base, vec([base.x, lamp.soffit, base.z]), 0.012));
     }
+    if (lamp.kind === "practical") continue;
+    if (lamp.kind === "bulb") { // cord up to the ceiling and a small socket
+      steel.push(strut(at.clone().add(new THREE.Vector3(0, 0.05, 0)), vec([at.x, lamp.cord ?? at.y + 0.4, at.z]), 0.005));
+      const socket = new THREE.CylinderGeometry(0.018, 0.022, 0.05, 6); socket.translate(at.x, at.y + 0.055, at.z); steel.push(socket);
+      continue;
+    }
     if (lamp.kind === "sodium") {
       const head = at.clone().addScaledVector(out, 0.42);
       const box = new THREE.BoxGeometry(0.34, 0.2, 0.26); box.translate(head.x, head.y, head.z); steel.push(box);
@@ -296,13 +330,13 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
     }
   }
   const steelGeometry = merge(steel, ["position", "normal"]);
-  const steelMaterial = propMaterial(fidelity, { color: 0x6a4e3a, roughness: 0.65, metalness: 0.55, envMapIntensity: 1.6 }, "rust");
+  const steelMaterial = propMaterial(fidelity, { color: 0x7a7d80, roughness: 0.6, metalness: 0.6, envMapIntensity: 1.6 }, "rust");
   add(new THREE.Mesh(steelGeometry, steelMaterial), "Screen truss and lamp housings");
   disposables.push(steelGeometry, steelMaterial);
 
   // Lived-in windows and lamp lenses: one emissive atlas, one draw.
-  const emissive = emissiveAtlas(size);
-  const glowParts: THREE.BufferGeometry[] = [];
+  const emissive = sink.atlas.emissive;
+  const glowParts = sink.glow;
   const windowGlow: { at: THREE.Vector3; normal: THREE.Vector3; w: number; h: number; brightness: number }[] = [];
   for (const w of windows) {
     const normal = vec(w.normal);
@@ -317,6 +351,14 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
   }
   for (const lamp of lamps) {
     const out = vec(lamp.facing);
+    if (lamp.kind === "practical") continue;
+    if (lamp.kind === "bulb") { // a small glowing box standing in for the bulb
+      const bulb = atlasBox(0.06, 0.08, 0.06, Array(6).fill(emissive.sodiumLens)), at = vec(lamp.housing);
+      bulb.translate(at.x, at.y, at.z);
+      bulb.setAttribute("color", new THREE.Float32BufferAttribute(new Array(bulb.getAttribute("position").count * 3).fill(1), 3));
+      glowParts.push(bulb);
+      continue;
+    }
     if (lamp.kind === "sodium") {
       const lens = vec(lamp.housing).addScaledVector(out, 0.42).add(new THREE.Vector3(0, -0.105, 0));
       glowParts.push(quad(lens, new THREE.Vector3(0, -1, 0), 0.28, 0.2, emissive.sodiumLens, 1.0));
@@ -352,10 +394,13 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
   });
   lamps.forEach((lamp, i) => {
     const out = vec(lamp.facing);
-    const at = vec(lamp.housing).addScaledVector(out, lamp.kind === "sodium" ? 0.5 : 0.18).add(new THREE.Vector3(0, -0.12, 0));
+    const bare = lamp.kind === "bulb" || lamp.kind === "practical";
+    const at = bare ? vec(lamp.housing)
+      : vec(lamp.housing).addScaledVector(out, lamp.kind === "sodium" ? 0.5 : 0.18).add(new THREE.Vector3(0, -0.12, 0));
     sprites.setMatrixAt(i, new THREE.Matrix4().makeTranslation(at.x, at.y, at.z));
-    const c = lamp.colour.clone().multiplyScalar(lamp.kind === "sodium" ? 0.32 : 0.18);
-    colours.set([c.r, c.g, c.b], i * 3); sizes.set(lamp.kind === "sodium" ? [0.95, 0.95] : [1.25, 0.28], i * 2);
+    const c = lamp.colour.clone().multiplyScalar(lamp.kind === "sodium" ? 0.32 : lamp.kind === "bulb" ? 0.26 : 0.18);
+    colours.set([c.r, c.g, c.b], i * 3);
+    sizes.set(lamp.glow ?? (lamp.kind === "sodium" ? [0.95, 0.95] : lamp.kind === "bulb" ? [0.5, 0.5] : [1.25, 0.28]), i * 2);
   });
   spriteGeometry.setAttribute("glowColour", new THREE.InstancedBufferAttribute(colours, 3));
   spriteGeometry.setAttribute("glowSize", new THREE.InstancedBufferAttribute(sizes, 2));
@@ -365,8 +410,8 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
 
   // Grounded props: PA stacks at the screen sides and in the cypher corner (replacing the DJ table), an oil drum,
   // stacked crates. One lit atlas; one contact-shadow draw (not on the low tier).
-  const props = propAtlas(size);
-  const propParts: THREE.BufferGeometry[] = [], blobs: THREE.BufferGeometry[] = [];
+  const props = sink.atlas.props;
+  const propParts = sink.props, blobs = sink.blobs;
   const speakerFaces = (front: "+z" | "+x" | "-x"): Region[] => {
     const faces: Region[] = Array(6).fill(props.speakerSide);
     faces[{ "+x": 0, "-x": 1, "+z": 4 }[front]] = props.speakerFront;
@@ -407,20 +452,21 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
   // Unbaked props see only the dim night probe: twice its intensity keeps them as readable as the baked surfaces.
   // Fill 0.05: the cypher corner is out of reach of every light pool and props have no bake.
   const propsMaterial = propMaterial(fidelity, { map: props.texture, vertexColors: true, roughness: 0.65, metalness: 0.05, envMapIntensity: 2.2 }, null, 0.06);
-  add(new THREE.Mesh(propGeometry, propsMaterial), "Grounded props");
+  const propsMesh = add(new THREE.Mesh(propGeometry, propsMaterial), "Grounded props");
   disposables.push(propGeometry, propsMaterial, props.texture);
+  let blobMesh: THREE.Object3D | null = null;
   if (budget.tier !== "low") {
     const blobGeometry = merge(blobs, ["position", "uv"]);
     const blobMap = blobTexture();
     const blobMaterial = new THREE.MeshBasicMaterial({ map: blobMap, color: 0x000000, transparent: true, opacity: 0.6, depthWrite: false,
       polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
-    add(new THREE.Mesh(blobGeometry, blobMaterial), "Prop contact shadows");
+    blobMesh = add(new THREE.Mesh(blobGeometry, blobMaterial), "Prop contact shadows");
     disposables.push(blobGeometry, blobMaterial, blobMap);
   } else blobs.forEach(g => g.dispose());
 
   // Wall stencils and flyers on the left wing's plain ground-floor walls, placed on the surveyed wall surface.
-  const decals = decalAtlas(size);
-  const decalParts: THREE.BufferGeometry[] = [];
+  const decals = sink.atlas.decals;
+  const decalParts = sink.decals;
   const onWall = (z: number, y: number, w: number, h: number, region: Region, brightness: number, roll = 0) => {
     const hit = surfaceAt(plaza, [-12.5, y, z], [-1, 0, 0]);
     if (!hit) return;
@@ -431,14 +477,24 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
   onWall(-45.8, 8.85, 2.6, 2.6 / 4.76, decals.gullyVerse, 0.2);
   onWall(-45.8, 8.15, 1.4, 1.4 / 4.6, decals.breeze, 0.18);
   // Flyers: around the stencils, and a few on the plain wall by the cypher corner (between its window and door).
-  const flyerSpots: [number, number, number][] = [[-42.0, 8.45, 0.04], [-41.35, 8.8, -0.03], [-21.25, 8.45, 0.05], [-24.75, 8.6, -0.02]];
-  flyerSpots.forEach(([z, y, roll], i) => onWall(z, y, 0.56, 0.6, decals.flyers[i % decals.flyers.length], 0.11 + 0.03 * (i % 2), roll));
+  const flyerSpots: [number, number, number][] = [[-42.0, 8.45, 0.04], [-41.35, 8.8, -0.03], [-24.75, 8.6, -0.02]]; // z −21.25 clipped the accommodation corner
+  flyerSpots.forEach(([z, y, roll], i) => onWall(z, y, 0.56, 0.6, decals.flyers[i % decals.flyers.length], 0.3 + 0.05 * (i % 2), roll));
+  const decalMaterial = new THREE.MeshBasicMaterial({ map: decals.texture, vertexColors: true, transparent: true, alphaTest: 0.02, depthWrite: false,
+    polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, toneMapped: true, fog: true });
+  // Lit by the lamp pools on top of their fixed (bake-standing) brightness (light-pools.ts patchUnlit).
+  decalMaterial.onBeforeCompile = shader => fidelity.pools.patchUnlit(shader);
+  decalMaterial.customProgramCacheKey = () => `breeze-decal-${fidelity.pools.key()}`;
+  disposables.push(decalMaterial);
+  let decalMesh: THREE.Object3D | null = null, laneDecalMesh: THREE.Object3D | null = null;
   if (decalParts.length) {
     const decalGeometry = merge(decalParts, ["position", "normal", "uv", "color"]);
-    const decalMaterial = new THREE.MeshBasicMaterial({ map: decals.texture, vertexColors: true, transparent: true, alphaTest: 0.02, depthWrite: false,
-      polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, toneMapped: true, fog: true });
-    add(new THREE.Mesh(decalGeometry, decalMaterial), "Wall stencils and flyers");
-    disposables.push(decalGeometry, decalMaterial);
+    decalMesh = add(new THREE.Mesh(decalGeometry, decalMaterial), "Wall stencils and flyers");
+    disposables.push(decalGeometry);
+  }
+  if (sink.laneDecals.length) {
+    const laneGeometry = merge(sink.laneDecals, ["position", "normal", "uv", "color"]);
+    laneDecalMesh = add(new THREE.Mesh(laneGeometry, decalMaterial), "Lane stencils and flyers");
+    disposables.push(laneGeometry);
   }
   disposables.push(decals.texture);
 
@@ -467,10 +523,12 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
   disposables.push(hazeGeometry, hazeMaterial, noise, haze);
 
   // Light pools: the three lamps (the low tier has three pools: the back tube is dropped) and the screen spill (pool 0).
+  // Registered (light-pools.ts): the registry binds the nearest few per frame, so zone pools can join.
   const pools = fidelity.pools;
-  const screenPool = new THREE.Vector3(0, 11.0, -43.4);
-  pools.set(0, screenPool, 15.5, "#9aa4b0", 0.28);
-  lamps.forEach((lamp, i) => pools.set(i + 1, vec(lamp.pool), lamp.radius, lamp.colour, lamp.intensity));
+  const core = budget.tier === "low" ? 4 : 0; // phones keep the plaza's own pools ahead of the zones' while in the plaza
+  const screenPool = pools.add({ x: 0, y: 11.0, z: -43.4 }, 15.5, "#9aa4b0", 0.28, { label: "screen spill", bias: core });
+  const registered = [screenPool, ...lamps.map((lamp, i) => pools.add(vec(lamp.pool), lamp.radius, lamp.colour, lamp.intensity,
+    { label: lamp.label ?? `courtyard ${lamp.kind} ${i}`, bias: lamp.active ? 0 : core, active: lamp.active, cone: lamp.cone }))];
 
   // Film colour: 8 × 8 canvas average every 0.5 s, eased per frame.
   const sampler = document.createElement("canvas"); sampler.width = sampler.height = 8;
@@ -482,6 +540,10 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
   return {
     group,
     update(delta, camera, video, reduced) {
+      const lane = inLane(camera);
+      for (const mesh of [propsMesh, blobMesh, decalMesh]) if (mesh) mesh.visible = !lane;
+      if (laneDecalMesh) laneDecalMesh.visible = camera.position.z > -24;
+      hooks.update?.(camera);
       time += reduced ? 0 : delta;
       hazeUniforms.hazeTime.value = time;
       since += delta;
@@ -498,13 +560,15 @@ export function mountCourtyardDressing(plaza: THREE.Object3D, fidelity: Fidelity
       const k = 1 - Math.exp(-delta * 2);
       current.lerp(target, reduced ? 1 : k);
       spill.copy(neutral).lerp(current, 0.6);
-      pools.set(0, screenPool, 15.5, spill, 0.28 + 0.28 * (current.r * 0.2126 + current.g * 0.7152 + current.b * 0.0722));
+      screenPool.colour.copy(spill);
+      screenPool.intensity = 0.28 + 0.28 * (current.r * 0.2126 + current.g * 0.7152 + current.b * 0.0722);
       hazeUniforms.hazeColour.value.copy(hazeBase).lerp(current, 0.48);
     },
     dispose() {
       group.removeFromParent();
       disposables.forEach(d => d.dispose());
-      for (let i = 0; i < pools.count; i++) pools.set(i, { x: 0, y: -1000, z: 0 }, 1, 0x000000, 0);
+      registered.forEach(spec => pools.remove(spec));
+      hooks.dispose?.();
     },
   };
 }

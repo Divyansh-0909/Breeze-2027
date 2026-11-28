@@ -31,11 +31,11 @@ export type Budget = {
 };
 
 const budgets: Record<DeviceTier, Omit<Budget, "tier">> = {
-  high: { dprCap: 1.75, shadowCasters: 2, shadowMapSize: 1024, localLights: 8, textureSize: 1024, anisotropy: 4, bump: 0.25,
+  high: { dprCap: 1.75, shadowCasters: 2, shadowMapSize: 1024, localLights: 8, textureSize: 1024, anisotropy: 16, bump: 0.42,
     hazePlanes: 4, bloom: true, fogDensity: 0.011, sharpProbes: true, crowdAvatars: 15 },
-  medium: { dprCap: 1.5, shadowCasters: 1, shadowMapSize: 1024, localLights: 6, textureSize: 512, anisotropy: 4, bump: 0.25,
+  medium: { dprCap: 1.5, shadowCasters: 1, shadowMapSize: 1024, localLights: 6, textureSize: 512, anisotropy: 8, bump: 0.38,
     hazePlanes: 3, bloom: false, fogDensity: 0.011, sharpProbes: false, crowdAvatars: 15 },
-  low: { dprCap: 1.25, shadowCasters: 1, shadowMapSize: 512, localLights: 4, textureSize: 512, anisotropy: 2, bump: 0,
+  low: { dprCap: 1.25, shadowCasters: 1, shadowMapSize: 512, localLights: 4, textureSize: 512, anisotropy: 4, bump: 0.08,
     hazePlanes: 2, bloom: false, fogDensity: 0.012, sharpProbes: false, crowdAvatars: 8 },
 };
 

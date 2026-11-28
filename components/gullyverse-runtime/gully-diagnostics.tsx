@@ -128,32 +128,48 @@ export function GullyDiagnostics({ runtime }: { runtime: ImmersiveRuntime }) {
     let timer = context.getExtension("EXT_disjoint_timer_query_webgl2") as TimerExtension | null;
     const frames: Frame[] = [], gpu: { at: number; ms: number }[] = [];
     let discardedGpu = 0, last = 0, frame = 0, cpuRenderMs = 0, raf = 0;
-    const pending: { query: WebGLQuery; at: number }[] = [];
+    // One frame can render more than once (the scene into the finishing pass's target, then the pass itself), so
+    // CPU and GPU time are summed per animation frame: every render of a sampled frame gets its own query, and a
+    // frame's GPU sample is pushed once all of its queries have resolved.
+    const pending: { query: WebGLQuery; at: number; id: number }[] = [];
+    const sums = new Map<number, { at: number; ms: number; lost: boolean }>();
+    let renderFrame = -1, sampled = false;
     const original = gl.render;
     gl.render = function (s, camera) {
       const start = performance.now();
-      const sample = timer && ++frame % 6 === 0;
-      if (sample) {
+      const newFrame = frame !== renderFrame;
+      if (newFrame) { renderFrame = frame; cpuRenderMs = 0; }
+      if (newFrame) sampled = !!timer && frame % 6 === 0 && pending.length < 14; // both renders of a frame, or neither
+      const sample = sampled;
+      // Results are collected at the start of every frame (not only sampled ones), so a full queue always drains.
+      if (newFrame && pending.length) {
         const disjoint = context.getParameter(timer!.GPU_DISJOINT_EXT);
         for (let i = pending.length - 1; i >= 0; i--) {
           const item = pending[i];
           if (disjoint || context.getQueryParameter(item.query, context.QUERY_RESULT_AVAILABLE)) {
-            if (disjoint) discardedGpu++;
-            else gpu.push({ at: item.at, ms: Number(context.getQueryParameter(item.query, context.QUERY_RESULT)) / 1e6 });
+            const sum = sums.get(item.id) ?? { at: item.at, ms: 0, lost: false };
+            if (disjoint) sum.lost = true; else sum.ms += Number(context.getQueryParameter(item.query, context.QUERY_RESULT)) / 1e6;
+            sums.set(item.id, sum);
             context.deleteQuery(item.query); pending.splice(i, 1);
           }
         }
+        for (const [id, sum] of sums) {
+          if (pending.some(item => item.id === id)) continue;
+          if (sum.lost) discardedGpu++; else gpu.push({ at: sum.at, ms: sum.ms });
+          sums.delete(id);
+        }
       }
-      const query = sample && pending.length < 8 ? context.createQuery() : null;
+      const query = sample ? context.createQuery() : null;
       if (query) context.beginQuery(timer!.TIME_ELAPSED_EXT, query);
       try { original.call(gl, s, camera); } finally {
-        if (query) { context.endQuery(timer!.TIME_ELAPSED_EXT); pending.push({ query, at: start }); }
-        cpuRenderMs = performance.now() - start;
+        if (query) { context.endQuery(timer!.TIME_ELAPSED_EXT); pending.push({ query, at: start, id: frame }); }
+        cpuRenderMs += performance.now() - start;
         if (gpu.length > 20000) gpu.splice(0, 2000);
       }
     };
     const tick = (now: number) => {
       raf = requestAnimationFrame(tick);
+      frame++; // renders between two ticks belong to one frame
       if (last && !document.hidden) {
         frames.push({ at: now, ms: now - last, cpuRenderMs, calls: gl.info.render.calls, triangles: gl.info.render.triangles, z: runtime.pose.z });
         if (frames.length > 40000) frames.splice(0, 4000);

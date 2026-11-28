@@ -48,7 +48,8 @@ export async function mountSponsorDisplay(scene: Object3D, url: string, signal: 
         vec2 pixel = vec2(mod(column, 2048.0) + 0.5, row + 0.5) / vec2(2048.0, 384.0);
         float ink = texture2D(strip, pixel).r;
         float dotMask = 1.0 - smoothstep(0.29, 0.43, length(fract(grid) - 0.5));
-        gl_FragColor = vec4(vec3(1.0, 0.035, 0.002) * ((ink * 8.0 + 0.008) * dotMask), 1.0);
+        // Phase 3: dimmed to 30% so the LED reads as a strip under the streetlamp, not the brightest thing in the lane.
+        gl_FragColor = vec4(vec3(1.0, 0.035, 0.002) * ((ink * 2.4 + 0.006) * dotMask), 1.0);
         #include <tonemapping_fragment>
         #include <colorspace_fragment>
       }

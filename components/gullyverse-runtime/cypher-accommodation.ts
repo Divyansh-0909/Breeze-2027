@@ -18,11 +18,14 @@ const housePlaster = "Runtime / REV15Z / REV15N / Existing Events house shell / 
 // Walk-up spawn and level focused view at about the Contact window's distances (4.6 and 5.3 m). The
 // floor in front of the wall starts just inside the plaza, so both sit a little toward the plaza
 // rather than straight out (which would be in the gate approach); the view is about 11 degrees oblique.
-export const accommodationApproach = lookAtPose([-12.8, 8.85, -16.85], centre);
-export const accommodationFocus = lookAtPose([-11.6, 8.95, -16.9], [centre[0], 8.95, centre[2]]);
+// Phase 3: the focused view frames the wall and the check-in window to its right (offset 1.1 m along the wall toward
+// the window, 4.6 m wide), so the shutter or the open counter stays in frame on phones.
+const viewCentre = [centre[0] + 0.3214 * 1.1, centre[1], centre[2] - 0.947 * 1.1] as const;
+export const accommodationApproach = lookAtPose([-12.23, 8.85, -16.66], viewCentre); // 0.6 m further back: phones keep the whole stencil
+export const accommodationFocus = lookAtPose([-11.6, 8.95, -16.9], [viewCentre[0], 8.95, viewCentre[2]]);
 
 export function accommodationView(width: number, height: number, eye: readonly number[]) {
-  return fitWallView(width, height, eye, centre, 3.65, 2.95);
+  return fitWallView(width, height, eye, viewCentre, 4.6, 2.95);
 }
 
 export function isAccommodationArtwork(object: Object3D) {
@@ -86,7 +89,8 @@ export function revealAccommodationHouseWall(plaza: Object3D, rgbmRange?: number
           vec2 lampUv = mix(accommodationLampAtlas.xy, accommodationLampAtlas.zw, edge);
           vec4 lampTexel = texture2D(lightMap, lampUv);
           float blend = 1.0 - smoothstep(0.0, 0.36, distanceFromPatch);
-          lightMapIrradiance = mix(lightMapIrradiance, ${decode} * lightMapIntensity, blend);
+          // Through the same contrast curve and zone gain as the wall around it (baked-assets.ts), so the patch has no edge.
+          lightMapIrradiance = mix(lightMapIrradiance, breezeLit(${decode}) * lightMapIntensity, blend);
         }
         irradiance += lightMapIrradiance;
         `,

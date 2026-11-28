@@ -14,7 +14,7 @@ import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.j
  * only when the camera has moved half a metre. Lighting is runtime (probe + lamps), like the rest of the people.
  */
 const root = "/models/gullyverse/crowd-rocketbox/";
-type Placement = { avatar: string; pose: string; position: [number, number, number]; yaw: number; height: number };
+export type Placement = { avatar: string; pose: string; position: [number, number, number]; yaw: number; height: number };
 type CrowdData = { avatars: Record<string, { file: string; mobileFile: string }>; lods: { name: string; until: number }[]; placements: Placement[] };
 type Part = { geometry: THREE.BufferGeometry; material: THREE.Material };
 
@@ -36,6 +36,41 @@ function bake(geometry: THREE.BufferGeometry, matrix: THREE.Matrix4) {
   if (geometry.index) copy.setIndex(new THREE.BufferAttribute(Uint32Array.from(geometry.index.array as ArrayLike<number>), 1));
   copy.applyMatrix4(matrix);
   return copy;
+}
+
+/**
+ * A seated pose bent from the standing idle mesh (no seated clip was baked; user request, 28 Nov: people sitting in
+ * the contact booth). The mesh stands on y = 0, centred on the pelvis, facing +z. Everything above the hip joint
+ * (≈ 0.52 h) drops by the thigh length; the thighs swing 90° forward about the hip; the shins hang straight below the
+ * knee (≈ 0.285 h), moved forward to it. Short bands at both joints blend the two, so the creases stay closed. Hands
+ * hanging below the hip end on the lap. The underside of the thighs ends ≈ 0.07 h below knee height (sitAt).
+ */
+export const sitAt = { knee: 0.285, under: 0.245 }; // fractions of the standing height: knee, and the seat under the thighs
+function sitDown(source: THREE.BufferGeometry, height: number) {
+  const g = source.clone();
+  const pos = g.getAttribute("position") as THREE.BufferAttribute, nor = g.getAttribute("normal") as THREE.BufferAttribute | undefined;
+  const hip = 0.52 * height, knee = sitAt.knee * height, L = hip - knee;
+  const hipTop = hip + 0.02 * height, hipLow = hip - 0.045 * height, kneeTop = knee + 0.03 * height, kneeLow = knee - 0.02 * height;
+  const smooth = (e0: number, e1: number, x: number) => { const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+  const v = new THREE.Vector3(), n = new THREE.Vector3(), thigh = new THREE.Vector3(), shin = new THREE.Vector3();
+  const rotate = (out: THREE.Vector3, y: number, z: number, a: number) => out.set(0, y * Math.cos(a) - z * Math.sin(a), y * Math.sin(a) + z * Math.cos(a));
+  for (let i = 0; i < pos.count; i++) {
+    v.fromBufferAttribute(pos, i);
+    const a = -Math.PI / 2 * smooth(hipTop, hipLow, v.y); // 0 above the hip, −90° (down → forward) on the thigh
+    rotate(thigh, v.y - hip, v.z, a); thigh.set(v.x, thigh.y + hip - L, thigh.z);
+    shin.set(v.x, v.y, v.z + L);
+    const w = smooth(kneeLow, kneeTop, v.y); // 0 on the shin, 1 on the thigh
+    pos.setXYZ(i, v.x, shin.y + (thigh.y - shin.y) * w, shin.z + (thigh.z - shin.z) * w);
+    if (nor) {
+      n.fromBufferAttribute(nor, i);
+      const r = rotate(new THREE.Vector3(), n.y, n.z, a * w);
+      nor.setXYZ(i, n.x, r.y, r.z);
+    }
+  }
+  pos.needsUpdate = true;
+  if (nor) nor.needsUpdate = true;
+  g.computeBoundingBox(); g.computeBoundingSphere();
+  return g;
 }
 
 /**
@@ -61,12 +96,21 @@ export function limitAvatars(placements: Placement[], limit: number): Placement[
   });
 }
 
+/**
+ * `extra`: placements added after the limit (e.g. the contact booth's clerk). Each wears its own avatar if that avatar is
+ * already loaded for this tier, otherwise one of the kept avatars, so it costs no extra download.
+ */
 export async function loadRocketboxCrowd(renderer: THREE.WebGLRenderer, mobile: boolean, transcoders: string, signal: AbortSignal,
-  maxAvatars = Infinity): Promise<Crowd> {
+  maxAvatars = Infinity, extra: Placement[] = []): Promise<Crowd> {
   const response = await fetch(root + "crowd.json", { signal });
   if (!response.ok) throw new Error("crowd.json unavailable");
   const data = (await response.json()) as CrowdData;
   data.placements = limitAvatars(data.placements, maxAvatars);
+  const present = [...new Set(data.placements.map(p => p.avatar))];
+  for (const p of extra) {
+    const same = present.filter(a => a.startsWith("Female") === p.avatar.startsWith("Female"));
+    data.placements.push({ ...p, avatar: present.includes(p.avatar) ? p.avatar : (same[0] ?? present[0]) });
+  }
   const ktx = new KTX2Loader().setTranscoderPath(transcoders).setWorkerLimit(2).detectSupport(renderer);
   const loader = new GLTFLoader().setKTX2Loader(ktx).setMeshoptDecoder(MeshoptDecoder);
   const used = [...new Set(data.placements.map(p => p.avatar))];
@@ -96,6 +140,13 @@ export async function loadRocketboxCrowd(renderer: THREE.WebGLRenderer, mobile: 
           const box = new THREE.Box3();
           list.forEach(part => { part.geometry.computeBoundingBox(); box.union(part.geometry.boundingBox!); });
           heights.set(avatar, box.max.y - box.min.y);
+        }
+      }
+      // A seated variant (sitDown) wherever this avatar is placed sitting.
+      if (data.placements.some(p => p.avatar === avatar && p.pose === "sit")) {
+        const h = heights.get(avatar) ?? 1.8;
+        for (const [name, list] of [...byNode]) {
+          if (name.startsWith("idle|")) byNode.set(`sit|${name.slice(5)}`, list.map(part => ({ geometry: sitDown(part.geometry, h), material: part.material })));
         }
       }
       parts.set(avatar, byNode);
@@ -140,16 +191,33 @@ export async function loadRocketboxCrowd(renderer: THREE.WebGLRenderer, mobile: 
     }
   }
   const last = new THREE.Vector3(Infinity, 0, 0), position = new THREE.Vector3();
+  // Crowd glimpse (Phase 3 entrance budget): from the lane only the people in the lane and the four nearest the
+  // doorway inside the gate can be seen; the rest stand behind the compound wall. Avatars whose every instance is
+  // hidden drop their draws entirely. The three in front of the lane's right-wall flyers step out of the lane view.
+  const inLaneView = data.placements.flatMap((p, i) => {
+    const [x, , z] = p.position;
+    return z > -14.2 && !(x > 0.8 && x < 4.4) ? [i] : [];
+  });
+  const doorway = data.placements.map((p, i) => ({ i, x: p.position[0], z: p.position[2] }))
+    .filter(p => p.z <= -14.2 && Math.abs(p.x) < 3).sort((a, b) => Math.hypot(a.x, a.z + 17.5) - Math.hypot(b.x, b.z + 17.5))
+    .slice(0, maxAvatars <= 8 ? 2 : 4).map(p => p.i);
+  const glimpse = new Set([...inLaneView, ...doorway]);
+  let wasLane: boolean | null = null;
 
   function update(camera: THREE.Camera) {
     camera.getWorldPosition(position);
-    if (position.distanceToSquared(last) < 0.25) return;
-    last.copy(position);
+    const lane = position.z > -13.5;
+    if (position.distanceToSquared(last) < 0.25 && lane === wasLane) return;
+    last.copy(position); wasLane = lane;
     const lodOf = data.placements.map(p => data.lods.find(l => Math.hypot(p.position[0] - position.x, p.position[2] - position.z) < l.until)!.name);
-    for (const { mesh, ids, instances } of batches) for (const { placement, instance } of instances) {
-      const id = ids.get(`${data.placements[placement].pose}|${lodOf[placement]}`);
-      mesh.setVisibleAt(instance, id !== undefined);
-      if (id !== undefined) mesh.setGeometryIdAt(instance, id);
+    for (const { mesh, ids, instances } of batches) {
+      let any = false;
+      for (const { placement, instance } of instances) {
+        const id = lane && !glimpse.has(placement) ? undefined : ids.get(`${data.placements[placement].pose}|${lodOf[placement]}`);
+        mesh.setVisibleAt(instance, id !== undefined);
+        if (id !== undefined) { mesh.setGeometryIdAt(instance, id); any = true; }
+      }
+      mesh.visible = any;
     }
   }
 

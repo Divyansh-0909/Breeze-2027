@@ -45,8 +45,8 @@ export function CypherEventsDialog({ catalog, visibleEvents, page, pages, event,
         <a href={`/events/${encodeURIComponent(event.id)}`}>Event details</a>
       </div>
     </> : <>
-      {!catalog.available ? <p>Event listings are temporarily unavailable.</p> :
-        !visibleEvents.length ? <p>No upcoming events are listed yet.</p> :
+      {/* Phase 3: an empty or unreachable catalog reads as the wall does (shutter down, "lineup dropping soon"). */}
+      {!catalog.available || !visibleEvents.length ? <p>Lineup dropping soon. Check back for the BREEZE 2027 events.</p> :
         <ul className="cypher-event-links">
           {visibleEvents.map(item => <li key={item.id}>
             <button type="button" onClick={() => choose(item.id)}>{item.event_name}</button>

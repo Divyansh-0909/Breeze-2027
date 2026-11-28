@@ -6,6 +6,7 @@ import type { ImmersiveRuntime } from "./runtime";
 import { installDiagnostics, recordPreparation, sampleMemory, type FrameSample } from "./diagnostics";
 import { world } from "./world";
 import type { WallPreviewSession } from "./wallSection";
+import type { FinishingPass } from "./finishing";
 
 let touchScreens: MediaQueryList | undefined;
 export function phoneCamera(width: number) {
@@ -13,7 +14,8 @@ export function phoneCamera(width: number) {
 }
 
 /** The whole critical scene must instantiate before this gate mounts. */
-export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; serial: number }) {
+/** `target`: the finishing pass's render target, bound while shaders compile so their variants match (finishing.ts). */
+export function ReadinessGate({ runtime, serial, target }: { runtime: ImmersiveRuntime; serial: number; target?: THREE.WebGLRenderTarget | null }) {
   const { gl, scene, camera } = useThree();
   const prepared = useRef(false);
   const rendered = useRef(0);
@@ -48,7 +50,14 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
       recordPreparation(runtime, "texture-initialization", started, performance.now() - started);
       const compileStart = performance.now();
       // KHR_parallel_shader_compile when available; Three falls back to compile.
-      await gl.compileAsync(scene, camera);
+      // compile() runs synchronously inside compileAsync, so the target only needs binding around the call.
+      const previous = gl.getRenderTarget();
+      let compiling: Promise<unknown>;
+      try {
+        if (target) gl.setRenderTarget(target);
+        compiling = gl.compileAsync(scene, camera);
+      } finally { if (target) gl.setRenderTarget(previous); }
+      await compiling;
       recordPreparation(runtime, "shader-compilation", compileStart, performance.now() - compileStart);
       if (alive && serial === runtime.getSnapshot().serial && !gl.getContext().isContextLost()) {
         prepared.current = true; runtime.preparedSerial = serial;
@@ -57,7 +66,7 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
       if (alive && serial === runtime.getSnapshot().serial && !gl.getContext().isContextLost()) runtime.fail(`Scene preparation failed: ${String(error)}`);
     });
     return () => { alive = false; };
-  }, [gl, scene, camera, runtime, serial, restores]);
+  }, [gl, scene, camera, runtime, serial, restores, target]);
   useFrame((_, dt) => {
     if (!prepared.current || warm.current.done || gl.getContext().isContextLost() || runtime.suspended || runtime.activeFrameDelta <= 0) return;
     // Warm the final viewing composition under the curtain. The approach pose
@@ -90,14 +99,16 @@ export function ReadinessGate({ runtime, serial }: { runtime: ImmersiveRuntime; 
 }
 
 export const QUALITY_DPR = [1.25, 1, 0.75, 0.6];
-export function SceneRenderer({ runtime,wallPreview }: { runtime: ImmersiveRuntime;wallPreview?:WallPreviewSession|null }) {
-  useFrame(({ gl, scene, camera }) => {
+export function SceneRenderer({ runtime,wallPreview,finish }: { runtime: ImmersiveRuntime;wallPreview?:WallPreviewSession|null;finish?:FinishingPass|null }) {
+  useFrame(({ gl, scene, camera }, delta) => {
     const state = runtime.getSnapshot();
     if(wallPreview?.state.busy)return;
     // Avoid triggering synchronous shader creation by drawing a partially mounted
     // scene before its gate. This does not stop R3F's animation loop or camera ticks.
     if (["context-lost", "recovering", "boot", "covered"].includes(state.phase) && runtime.preparedSerial !== state.serial) return;
-    gl.render(scene, camera);
+    // Reduced motion: the grain holds still.
+    if (finish) finish.render(gl, scene, camera, runtime.reduced ? 0 : delta);
+    else gl.render(scene, camera);
   }, 1);
   return null;
 }

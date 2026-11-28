@@ -117,13 +117,14 @@ function plasterSheet(size: number) {
   const streak = fbm(size, 32, 2, 3, rand), crack = cracks(size, Math.round(9 * size / 1024) + 4, rand);
   const data = new Uint8Array(size * size * 4);
   for (let i = 0; i < size * size; i++) {
-    const flaked = smooth(0.7, 0.78, peel[i]), rim = Math.max(0, smooth(0.66, 0.72, peel[i]) - flaked) * 0.5;
+    const flaked = smooth(0.66, 0.73, peel[i]), rim = Math.max(0, smooth(0.62, 0.68, peel[i]) - flaked) * 0.5;
     let albedo = 1 + 0.16 * (base[i] - 0.5) + 0.12 * (drift[i] - 0.5);
-    albedo = albedo * (1 - flaked) + (0.84 + 0.08 * base[i]) * flaked + 0.06 * rim;
+    // Peeled patches show darker render beneath; the lifted paint edge casts a thin shadow line and catches light.
+    albedo = albedo * (1 - flaked) + (0.52 + 0.08 * base[i]) * flaked + 0.1 * rim - 0.16 * Math.max(0, smooth(0.64, 0.665, peel[i]) - smooth(0.665, 0.69, peel[i]));
     albedo *= 1 - 0.45 * crack[i];
     data[i * 4] = byte(albedo / 1.5);
     data[i * 4 + 1] = byte(0.35 + 0.35 * base[i] + 0.3 * flaked);
-    data[i * 4 + 2] = byte(0.6 + 0.15 * base[i] - 0.25 * flaked + 0.1 * rim - 0.35 * crack[i]);
+    data[i * 4 + 2] = byte(0.6 + 0.15 * base[i] - 0.4 * flaked + 0.18 * rim - 0.35 * crack[i]);
     data[i * 4 + 3] = byte(smooth(0.38, 0.8, streak[i]));
   }
   return data;
@@ -214,7 +215,8 @@ vec2 breezeSurfaceUv() {
 void breezeGround(sampler2D sheet, vec2 uv, bool grain, inout vec3 albedo) {
   breezeSheet = texture2D(sheet, uv); breezeHeight = breezeSheet.b;
   float field = texture2D(sheet, uv * 0.26 + vec2(0.17, 0.53)).a * 0.7 + breezeSheet.a * 0.3;
-  breezeWet = smoothstep(0.54, 0.74, field + (breezeSheet.g - 0.5) * 0.08);
+  // The lane (z > -15) runs wetter than the plaza.
+  breezeWet = smoothstep(0.54, 0.74, field + (breezeSheet.g - 0.5) * 0.08 + (vBreezeWorld.z > -15.0 ? 0.08 : 0.0));
   if (grain) albedo *= breezeSheet.r * 1.5;
   albedo *= mix(1.0, 0.36, breezeWet);
 }
@@ -232,7 +234,8 @@ vec3 breezePerturb(vec3 surfPos, vec3 surfNorm, vec2 dHdxy, float faceDir) {
   float lb = length(bumped);
   return lb > 1e-8 ? bumped / lb : surfNorm;
 }`;
-    const groundRoughness = "mix(mix(0.88, 0.94, breezeSheet.g), mix(0.2, 0.3, breezeSheet.g), breezeWet)";
+    // Realism rescue: mirror-wet puddles (0.055 … 0.11; 0.10 floor on phones, whose probes are 512) against dry 0.88 … 0.94.
+    const groundRoughness = `mix(mix(0.88, 0.94, breezeSheet.g), mix(${this.budget.tier === "low" ? "0.18, 0.22" : "0.055, 0.11"}, breezeSheet.g), breezeWet)`;
     let albedo = "", roughness = "";
     if (surface === "plaster") {
       albedo = `{ breezeFloor = step(0.7, normalize(vBreezeNormal).y);
@@ -240,10 +243,13 @@ vec3 breezePerturb(vec3 surfPos, vec3 surfNorm, vec2 dHdxy, float faceDir) {
   else {
     vec2 suv = breezeSurfaceUv(); breezeSheet = texture2D(breezeSurface, suv); breezeHeight = breezeSheet.b;
     float detail = breezeSheet.r * 1.5;
+    ${macro ? `// A second, rotated lookup blended by the macro field breaks the 4 m repeat of the peel blotches.
+    detail = mix(detail, texture2D(breezeSurface, mat2(0.8, -0.6, 0.6, 0.8) * suv * 0.73 + vec2(0.37, 0.11)).r * 1.5,
+      smoothstep(0.3, 0.7, texture2D(breezeSurface, suv * 0.23 + vec2(0.31, 0.17)).g));` : ""}
     ${macro ? `float big = texture2D(breezeSurface, suv * 0.23 + vec2(0.31, 0.17)).g; detail *= 0.86 + 0.24 * big; float damp = breezeSheet.a * smoothstep(0.35, 0.75, big);`
     : "float damp = breezeSheet.a * 0.6;"}
     detail *= mix(0.88, 1.0, breezeHeight);
-    float plasterTone = detail * (1.0 - 0.42 * damp);
+    float plasterTone = detail * (1.0 - 0.58 * damp);
     // Step risers, kerb fronts and building bases share the concrete material: they read as damp ground concrete.
     breezeKerb = breezeKerbBand(vBreezeWorld, normalize(vBreezeNormal));
     float kerbTone = 1.0;
@@ -253,6 +259,8 @@ vec3 breezePerturb(vec3 surfPos, vec3 surfNorm, vec2 dHdxy, float faceDir) {
       breezeHeight = mix(breezeHeight, kerbSheet.b, breezeKerb);
     }
     diffuseColor.rgb *= mix(plasterTone, kerbTone, breezeKerb);
+    // Contact occlusion at the wall-to-floor seam: the bottom 0.45 m darkens toward the floor (0.28 at the seam).
+    diffuseColor.rgb *= mix(0.28, 1.0, smoothstep(0.0, 0.45, vBreezeWorld.y - breezeGroundY(vBreezeWorld.z)));
     breezeWet = damp * (1.0 - breezeKerb);
   } }`;
       roughness = `roughnessFactor = breezeFloor > 0.5 ? ${groundRoughness} : mix(clamp(mix(0.85, 0.97, breezeSheet.g) - 0.08 * breezeWet, 0.0, 1.0), 0.9, breezeKerb);`;
@@ -261,12 +269,12 @@ vec3 breezePerturb(vec3 surfPos, vec3 surfNorm, vec2 dHdxy, float faceDir) {
       roughness = `roughnessFactor = ${groundRoughness};`;
     } else {
       albedo = `{ vec2 suv = breezeSurfaceUv(); breezeSheet = texture2D(breezeSurface, suv); breezeHeight = breezeSheet.b;
-  breezeRust = smoothstep(0.42, 0.78, breezeSheet.a);
+  breezeRust = smoothstep(0.55, 0.84, breezeSheet.a);
   vec3 rustTone = vec3(0.157, 0.052, 0.020) * (0.7 + 0.6 * breezeSheet.r * 1.5);
   diffuseColor.rgb = mix(diffuseColor.rgb * breezeSheet.r * 1.5, rustTone, breezeRust * 0.78);
   ${surface === "shutter" ? "breezeHeight = mix(breezeHeight, 0.5 + 0.5 * sin(vBreezeWorld.y * 83.776), 0.75);" : ""} }`;
       roughness = `roughnessFactor = mix(roughnessFactor, mix(0.78, 0.92, breezeSheet.g), breezeRust);
-metalnessFactor *= 1.0 - 0.85 * breezeRust;`;
+metalnessFactor = max(metalnessFactor * (1.0 - 0.85 * breezeRust), 0.35 * (1.0 - breezeRust));`;
     }
     const normal = bump > 0
       ? `normal = breezePerturb(-vViewPosition, normal, vec2(dFdx(breezeHeight), dFdy(breezeHeight)) * ${(bump * (surface === "shutter" ? 1.6 : 1)).toFixed(3)} * (1.0 - breezeWet), faceDirection);`
@@ -308,7 +316,7 @@ export function gradeCode(surface: SurfaceClass | null) {
   float terra = ${plasterOnly ? "(1.0 - smoothstep(0.10, 0.14, hsv.x)) * step(hsv.x, 0.5) * smoothstep(0.08, 0.2, hsv.y) * (1.0 - floorFacing)" : "0.0"};
   attenuate = max(attenuate, 0.85 * terra);
   ${ground ? "attenuate = max(attenuate, 0.6);" : plasterOnly ? "attenuate = max(attenuate, 0.6 * floorFacing);" : ""}
-  ${surface === "ground" ? "hsv.z *= 0.78;" : surface === "road" ? "hsv.z *= 0.85;" : plasterOnly ? "hsv.z *= mix(1.0, 0.78, floorFacing);" : ""}
+  ${surface === "ground" ? "hsv.z *= 0.78;" : surface === "road" ? "hsv.z *= 0.85;" : plasterOnly ? "hsv.z *= mix(1.0, 0.6, floorFacing);" : ""}
   hsv.y = min(hsv.y * (1.0 - attenuate), 0.65);
   hsv.z *= (1.0 - 0.12 * magenta) * (1.0 - 0.15 * terra);
   vec3 graded = breezeHsv2rgb(hsv);

@@ -8,6 +8,7 @@ import { batchStatic } from "./static-batching";
 import { applyPeopleMask, isPerson, smoothSeams, type PeopleMask } from "./person-shading";
 import { switchOffSignLamps } from "./shop-lights";
 import { restyleNavigationBoard } from "./nav-board";
+import zoneLight from "./zone-light.json";
 import { collapseFlat } from "./flat-collapse";
 import { nightFloor } from "./night-look";
 
@@ -17,6 +18,11 @@ export type ChunkLayout = {
   excludeMaterial(name: string): boolean;
   /** Meshes to hide before merging (props a later phase replaces). */
   prune?(mesh: THREE.Mesh): boolean;
+  /**
+   * Materials that may share one representative before merging (key, or null to keep their own), per file tier
+   * (`mobile`: the phone export). Meshes with the same key then merge into one draw.
+   */
+  share?(materialName: string, mobile: boolean): string | null;
 };
 
 export type BakedAsset = { scene: THREE.Group; rgbmRange?: number; dispose(): void };
@@ -149,16 +155,55 @@ export class BakedAssetPool {
           const irradiance = signInk ? "vec3(0.25, 0.216, 0.172)" : decoded;
           // Night floor (night-look.ts): shaded surfaces bottom out at deep charcoal instead of black.
           const floor = signInk ? "" : ` + ${nightFloor}`;
+          // Realism rescue (docs/runtime/REALISM-RESCUE-PLAN.md): the bake's soft fill is the "ambient wash", so its low end
+          // is crushed (dim bounce light falls to near black, lamp-lit surfaces keep their value) and walls above the
+          // first floor (y 10.5 … 17.5 m) fade toward the night sky. Sign ink keeps its flat practical light.
+          const lit = signInk ? `${irradiance} * ${scale.toFixed(3)}` : `breezeCrush(${irradiance} * ${scale.toFixed(3)})`;
+          if (!signInk) {
+            shader.vertexShader = `varying vec3 vBreezeLmP;
+${shader.vertexShader.replace("#include <project_vertex>", `#include <project_vertex>
+vBreezeLmP = (modelMatrix * vec4(transformed, 1.0)).xyz;`)}`;
+            shader.fragmentShader = `varying vec3 vBreezeLmP;
+// Measured per-zone light levels (scripts/measure-look.py against references/; zone-light.json).
+float breezeZoneGain(vec3 p) {
+  // Soft boxes, blended in log space (equal steps read as equal ratios): no hard seams where zones meet.
+  float lane = smoothstep(-15.1, -14.1, p.z) * (1.0 - smoothstep(-1.0, 1.0, p.z));
+  float market = smoothstep(-1.0, 1.0, p.z);
+  float below = 1.0 - smoothstep(10.2, 11.6, p.y);
+  float events = (1.0 - smoothstep(-14.6, -12.8, p.x)) * smoothstep(-37.8, -36.0, p.z) * (1.0 - smoothstep(-25.5, -23.7, p.z)) * below;
+  float stay = (1.0 - smoothstep(-15.0, -13.2, p.x)) * smoothstep(-23.7, -21.9, p.z) * (1.0 - smoothstep(-14.4, -13.0, p.z)) * below;
+  float g = log(${zoneLight.plaza.toFixed(3)});
+  g = mix(g, log(${zoneLight.events.toFixed(3)}), events * (1.0 - lane));
+  g = mix(g, log(${zoneLight.stay.toFixed(3)}), stay * (1.0 - lane));
+  g = mix(g, log(${zoneLight.lane.toFixed(3)}), lane);
+  g = mix(g, 0.0, market);
+  return exp(g);
+}
+vec3 breezeCrush(vec3 lm);
+/** A decoded bake texel as the wall shows it: contrast curve, zone gain and night floor (used by patches too). */
+vec3 breezeLit(vec3 lm) { return breezeCrush(lm) + ${nightFloor}; }
+vec3 breezeCrush(vec3 lm) {
+  vec3 raw = lm;
+  float l = dot(lm, vec3(0.2126, 0.7152, 0.0722));
+  lm *= 0.48 + 0.62 * smoothstep(0.01, 0.28, l);
+  vec3 lit = lm * mix(1.0, 0.72, smoothstep(10.5, 17.5, vBreezeLmP.y)) * breezeZoneGain(vBreezeLmP);
+  // The team mural wall keeps its baked light as painted (the rescue's curve and the plaza gain washed the mural out).
+  vec3 p = vBreezeLmP;
+  float mural = smoothstep(14.6, 14.95, p.x) * smoothstep(-36.4, -35.7, p.z) * (1.0 - smoothstep(-27.2, -26.5, p.z)) * (1.0 - smoothstep(11.3, 11.8, p.y));
+  return mix(lit, raw, mural);
+}
+` + shader.fragmentShader;
+          }
           shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_maps>",
-            specularOnlyEnvironment(THREE.ShaderChunk.lights_fragment_maps.replace(from, `vec3 lightMapIrradiance = (${irradiance} * ${scale.toFixed(3)}${floor}) * lightMapIntensity;`)));
+            specularOnlyEnvironment(THREE.ShaderChunk.lights_fragment_maps.replace(from, `vec3 lightMapIrradiance = (${lit}${floor}) * lightMapIntensity;`)));
           fidelity?.patch(shader, m);
         };
-        m.customProgramCacheKey = () => `breeze-${baseline ? "hdr" : "rgbm-" + bake.range}-v3${signInk ? "-sign-ink" : ""}${scale !== 1 ? "-light" + scale : ""}${fidelity ? "-" + fidelity.key(m) : ""}`;
+        m.customProgramCacheKey = () => `breeze-${baseline ? "hdr" : "rgbm-" + bake.range}-v6-z${zoneLight.lane}-${zoneLight.events}-${zoneLight.stay}-${zoneLight.plaza}${signInk ? "-sign-ink" : ""}${scale !== 1 ? "-light" + scale : ""}${fidelity ? "-" + fidelity.key(m) : ""}`;
         m.needsUpdate = true;
       };
       // The sign-wash lamps above the shops are off; the shop tubes and street lights stay on.
       switchOffSignLamps(gltf.scene);
-      // The navigation board as a blue highway sign with squircle corners (nav-board.ts).
+      // The navigation board as a weathered painted sign with squircle corners (nav-board.ts).
       const board = restyleNavigationBoard(gltf.scene);
       board?.geometries.forEach(geometry => geometries.add(geometry));
       board?.materials.forEach(material => materials.add(material));
@@ -166,6 +211,17 @@ export class BakedAssetPool {
       const layout = this.layout;
       if (fidelity && layout && this.batch?.test(url)) {
         if (layout.prune) gltf.scene.traverse(o => { if ((o as THREE.Mesh).isMesh && layout.prune!(o as THREE.Mesh)) o.visible = false; });
+        if (layout.share) {
+          const mobileFile = url.endsWith(".mobile.glb"), representatives = new Map<string, THREE.Material>();
+          gltf.scene.traverse(o => {
+            const mesh = o as THREE.Mesh;
+            if (!mesh.isMesh || Array.isArray(mesh.material)) return;
+            const key = layout.share!(mesh.material.name, mobileFile);
+            if (!key) return;
+            const representative = representatives.get(key);
+            if (representative) mesh.material = representative; else representatives.set(key, mesh.material);
+          });
+        }
         const flat = collapseFlat(gltf.scene, layout.keep, layout.excludeMaterial);
         flat.geometries.forEach(geometry => geometries.add(geometry));
         flat.materials.forEach(material => materials.add(material));

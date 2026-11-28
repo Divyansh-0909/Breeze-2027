@@ -1,15 +1,21 @@
 import * as THREE from "three";
+import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
 /**
- * Navigation board (user request, 26 November 2026): squircle corners on every panel and white inset line,
- * and the GULLYVERSE header as a blue Indian highway sign with larger lettering; the direction panels keep
- * their green. The exported panels are boxes and the lines rectangular frames, so both are rebuilt here at
+ * Navigation board (user request, 26 November 2026): squircle corners on every panel and inset line, larger
+ * GULLYVERSE lettering; restyled in Phase 3 as a weathered hand-painted sign (see the colours below). The exported panels are boxes and the lines rectangular frames, so both are rebuilt here at
  * the same size and place; the lettering and arrows are the exported ones.
  */
 const panel = /Reused sign hierarchy|EXISTING GULLYVERSE hero raster$|Past Sponsors plaque/;
 const border = /White inset border/;
 const title = /Highway Gullyverse title/;
-const blue = new THREE.Color("#1659a6");
+/** The direction labels and arrows (exported with the title's and the arrow's materials). */
+const lettering = /^REV15Z \/ REV15L \/ (Navigation \/|Past Sponsors label)|white diagonal arrow|Aftermovie upward arrow/;
+// Phase 3 (user decision, 27 Nov): a weathered hand-painted gully sign in the night palette instead of a highway
+// sign: faded rust-brown header, dull charcoal-teal direction panels, chalk lettering; only a faint glow is kept
+// (emissive 0.08) so the paint still reads under the entrance streetlamp and does not drop to black.
+const rust = new THREE.Color("#7a4a2e"), teal = new THREE.Color("#2f4542"), chalk = new THREE.Color("#d3ccbc");
+const glow = 0.08;
 /** Title lettering scale (it stays well inside its white line). */
 const titleScale = 1.25;
 
@@ -98,7 +104,7 @@ function recentre(mesh: THREE.Mesh) {
 
 /** Restyles the board if this chunk holds it. Returns the geometries it made (for disposal). */
 export function restyleNavigationBoard(root: THREE.Object3D) {
-  const panels: THREE.Mesh[] = [], borders: THREE.Mesh[] = [], titles: THREE.Mesh[] = [];
+  const panels: THREE.Mesh[] = [], borders: THREE.Mesh[] = [], titles: THREE.Mesh[] = [], labels: THREE.Mesh[] = [];
   root.traverse(o => {
     const mesh = o as THREE.Mesh;
     if (!mesh.isMesh) return;
@@ -106,16 +112,17 @@ export function restyleNavigationBoard(root: THREE.Object3D) {
     if (border.test(source)) borders.push(mesh);
     else if (panel.test(source)) panels.push(mesh);
     else if (title.test(source)) titles.push(mesh);
+    else if (lettering.test(source)) labels.push(mesh);
   });
   if (!panels.length) return null;
   root.updateMatrixWorld(true);
   const made: THREE.BufferGeometry[] = [], materials: THREE.Material[] = [];
-  /** The GULLYVERSE header (its panel, line and lettering) is the only blue part; the rest keep their green. */
+  /** The GULLYVERSE header panel is painted rust; the direction panels charcoal-teal. */
   const header = (mesh: THREE.Mesh) => /EXISTING GULLY/.test(String(mesh.userData.runtimeOriginalSource ?? mesh.name));
   // One restyled copy per original material, so meshes that shared a material still share one (and batch).
-  // Keyed by role too: the blue header and the white lettering are restyled differently.
+  // Keyed by role too: header, panels and lettering are restyled differently.
   const copies = new Map<string, THREE.MeshStandardMaterial>();
-  const own = (mesh: THREE.Mesh, role: "header" | "ink") => {
+  const own = (mesh: THREE.Mesh, role: "header" | "panel" | "ink") => {
     const original = mesh.material as THREE.MeshStandardMaterial;
     let copy = copies.get(role + original.uuid);
     if (!copy) { copy = original.clone(); copies.set(role + original.uuid, copy); materials.push(copy); }
@@ -137,17 +144,15 @@ export function restyleNavigationBoard(root: THREE.Object3D) {
     made.push(mesh.geometry);
     // The rebuilt panels can't reuse the box's baked light layout, so every panel takes the board's shared
     // sign light (as the lettering does): the green panels stay evenly lit as before.
-    (mesh.material as THREE.Material).userData.runtimeSignInk = true;
-    if (header(mesh)) {
-      const material = own(mesh, "header");
-      material.color.copy(blue);
-      material.map = null;
-      // Retroreflective sheeting: even light across the panel (as its lettering has) and a little glow,
-      // so the blue reads at night under the warm lamps instead of turning brown.
-      material.userData.runtimeSignInk = true;
-      material.emissive.copy(blue);
-      material.emissiveIntensity = 0.32;
-    }
+    const paint = header(mesh) ? rust : teal;
+    const material = own(mesh, header(mesh) ? "header" : "panel");
+    material.color.copy(paint);
+    material.map = null;
+    material.roughness = Math.max(material.roughness, 0.85); // flat sign paint, not sheeting
+    material.userData.runtimeSignInk = true;
+    material.emissive.copy(paint);
+    material.emissiveIntensity = glow;
+    material.userData.breezeSignWear = "paint"; // chipped, faded, rust-streaked (sign-wear.ts)
   }
   for (const mesh of borders) {
     // The exported frame: outer edge = its box; the line width = gap between its outer and inner edges.
@@ -179,16 +184,65 @@ export function restyleNavigationBoard(root: THREE.Object3D) {
     const shift = centre.sub(moved);
     mesh.position.add(mesh.parent!.worldToLocal(mesh.getWorldPosition(new THREE.Vector3()).add(shift)).sub(mesh.position));
   }
-  // White lettering and line on the blue header, as on retroreflective highway signs (the sign light is warm).
-  for (const mesh of [...titles, ...borders.filter(header)]) {
+  // Chalk-white brushed lettering and lines (no retroreflective glow).
+  for (const mesh of [...titles, ...borders, ...labels]) {
     const ink = own(mesh, "ink");
-    ink.emissive.setRGB(1, 1, 1);
-    ink.emissiveIntensity = 0.38;
+    ink.color.copy(chalk);
+    ink.emissive.copy(chalk);
+    ink.emissiveIntensity = glow * 1.5;
+    ink.userData.breezeSignWear = "ink";
   }
   // The board keeps its sign colours: no palette grade or procedural surface (fidelity.ts).
-  for (const mesh of [...panels, ...borders, ...titles]) {
+  for (const mesh of [...panels, ...borders, ...titles, ...labels]) {
     for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) material.userData.breezeNoGrade = true;
   }
   root.updateMatrixWorld(true);
-  return { geometries: made, materials, panels: panels.length, borders: borders.length, titles: titles.length };
+  // Phase 3 entrance budget: board parts that share a material become one mesh (the lettering and lines are
+  // transparent decals, which the static batching leaves alone): ~16 draws become ~4.
+  const merged = mergeByMaterial([...panels, ...borders, ...titles, ...labels], made);
+  return { geometries: made, materials, panels: panels.length, borders: borders.length, titles: titles.length, merged };
+}
+
+/**
+ * Merges meshes that share a material into the first of them (geometry re-expressed in its local space). Groups whose
+ * geometries do not share one attribute layout are left alone. Returns how many meshes were folded away.
+ */
+function mergeByMaterial(meshes: THREE.Mesh[], made: THREE.BufferGeometry[]) {
+  const groups = new Map<THREE.Material, THREE.Mesh[]>();
+  for (const mesh of meshes) {
+    if (Array.isArray(mesh.material) || !mesh.parent) continue;
+    groups.set(mesh.material, [...(groups.get(mesh.material) ?? []), mesh]);
+  }
+  let folded = 0;
+  for (const list of groups.values()) {
+    if (list.length < 2) continue;
+    const host = list[0];
+    const toHost = host.matrixWorld.clone().invert();
+    const parts = list.map(mesh => toFloat(mesh.geometry).applyMatrix4(new THREE.Matrix4().multiplyMatrices(toHost, mesh.matrixWorld)));
+    const layout = (g: THREE.BufferGeometry) => Object.keys(g.attributes).sort().join() + (g.index ? "+i" : "");
+    const geometry = parts.every(g => layout(g) === layout(parts[0])) ? mergeGeometries(parts, false) : null;
+    parts.forEach(g => g.dispose());
+    if (!geometry) continue;
+    for (const mesh of list) if (!made.includes(mesh.geometry)) made.push(mesh.geometry); // the originals, for disposal
+    host.geometry = geometry; made.push(geometry);
+    list.slice(1).forEach(mesh => mesh.removeFromParent());
+    folded += list.length - 1;
+  }
+  return folded;
+}
+
+/**
+ * A copy of the geometry with every attribute as plain float32 (the exported meshes are quantized, the rebuilt
+ * panels are not; mergeGeometries needs one array type per attribute).
+ */
+function toFloat(source: THREE.BufferGeometry) {
+  const g = new THREE.BufferGeometry();
+  if (source.index) g.setIndex(Array.from(source.index.array as ArrayLike<number>));
+  for (const [name, attribute] of Object.entries(source.attributes)) {
+    const size = attribute.itemSize, out = new Float32Array(attribute.count * size);
+    const read = [attribute.getX, attribute.getY, attribute.getZ, attribute.getW];
+    for (let i = 0; i < attribute.count; i++) for (let c = 0; c < size; c++) out[i * size + c] = read[c].call(attribute, i);
+    g.setAttribute(name, new THREE.BufferAttribute(out, size));
+  }
+  return g;
 }

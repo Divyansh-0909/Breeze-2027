@@ -6,6 +6,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Box3, Euler, MathUtils, PerspectiveCamera, Vector3, VideoTexture, type Mesh } from "three";
 import { useImmersiveInput } from "../immersive/input";
 import { phoneCamera, ReadinessGate, SceneRenderer } from "../immersive/rendering";
+import { FinishingPass } from "../immersive/finishing";
 import { ImmersiveRuntime, sprintSpeed, walkSpeed } from "../immersive/runtime";
 import { lookAtPose, world } from "../immersive/world";
 import { BakedAssetPool, type BakedAsset, type ChunkLayout } from "./baked-assets";
@@ -17,7 +18,11 @@ import { GullyAudio, isWet, soundPreference, strideAt } from "./gully-audio";
 import { cypherContact } from "./cypher-contact";
 import { CypherContactDialog, type ContactPlacement } from "./CypherContactDialog";
 import { CypherEventsDialog } from "./CypherEventsDialog";
-import { eventPosterSlots, eventsPerPage, isEventPosterSlot, paintEventPage } from "./event-poster-wall";
+import { eventsPerPage, isEventPosterSlot } from "./event-poster-wall";
+import { fixtureEvents } from "./event-wall-art";
+import { isReplacedByZones, mountZoneDressing, type PosterTarget, type ZoneState } from "./zone-dressing";
+import { contactClerk, contactSitters } from "./contact-booth";
+import { accommodation } from "@/lib/accommodation";
 import type { CypherCatalog, CypherEvent } from "../../lib/events/cypher-catalog";
 import { CypherTeamDialog } from "./CypherTeamDialog";
 import { CypherAftermovieControls } from "./CypherAftermovieControls";
@@ -75,12 +80,23 @@ function canOpenWall(pose: { x: number; z: number }, focus: { x: number; z: numb
   return Math.hypot(reached.x - focus.x, reached.z - focus.z) < 0.01;
 }
 
+/**
+ * The camera finishing pass (immersive/finishing.ts) renders through its own MSAA target, so the canvas then needs no
+ * antialiasing of its own. Preview A/B: `?finish=off` renders without the pass (and with canvas antialiasing).
+ */
+const finishEnabled = () => typeof window === "undefined" ||
+  !(window.location.pathname.startsWith("/runtime-preview") && new URLSearchParams(window.location.search).get("finish") === "off");
+
 /** Interactive parts the chunk merging must keep as separate objects (baked-assets.ts). */
 const chunkLayout: ChunkLayout = {
-  keep: (mesh: Mesh) => isAftermoviePanel(mesh) || isAccommodationArtwork(mesh) || isAccommodationOverlay(mesh) || isEventPosterSlot(mesh),
+  keep: (mesh: Mesh) => isAftermoviePanel(mesh) || isAccommodationArtwork(mesh) || isAccommodationOverlay(mesh) || isEventPosterSlot(mesh) ||
+    isReplacedByZones(mesh),
   excludeMaterial: isAccommodationHousePlaster,
   // Phase 2: the DJ table read as a floating prop; grounded PA stacks, a drum and crates replace it (courtyard-dressing.ts).
   prune: (mesh: Mesh) => /DJ table|DJ tabletop|Turntable platter/.test(String(mesh.userData.runtimeOriginalSource ?? mesh.name)),
+  // Phase 3 phone entrance budget: the market's hanging snack strips (7 printed fronts, 7 bodies, each its own print)
+  // share two prints on phones, so they merge into 2 draws instead of 14; at phone size the prints are a few pixels.
+  share: (name: string, mobile: boolean) => mobile ? /L02 \/ (printed packet|packet body)/.exec(name)?.[1] ?? null : null,
 };
 
 class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFailure(): void }, { failed: boolean }> {
@@ -91,7 +107,7 @@ class CanvasBoundary extends React.Component<{ children: React.ReactNode; onFail
 }
 
 function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, eventPage, reportWall, chooseEvent,
-  teamRequest, reportTeam, film, openWall, stopAftermovie, audio, ducked, reportWorld, reportArrival, setDpr }: {
+  teamRequest, reportTeam, film, openWall, stopAftermovie, audio, ducked, reportWorld, reportArrival, setDpr, zoneState }: {
   runtime: ImmersiveRuntime;
   curtain: React.RefObject<HTMLDivElement | null>;
   reportZone(zone: ReturnType<typeof zoneAt>): void;
@@ -111,8 +127,12 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   reportWorld(ready: boolean): void;
   reportArrival(progress: ArrivalProgress): void;
   setDpr(dpr: number): void;
+  zoneState: ZoneState;
 }) {
   const { gl, scene, camera, size } = useThree();
+  // Zone states (events count, accommodation open) are read once, when the plaza mounts (zone-dressing.ts).
+  const zones = useRef(zoneState);
+  zones.current = zoneState;
   const [fidelity] = useState(() => new Fidelity(gl, window.matchMedia("(max-width: 699px)").matches,
     assetRoot + "market-south/transcoders/"));
   // The market chunks hold most of the small static meshes (shops, frontages): merged per material.
@@ -125,6 +145,14 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       : new BakedAssetPool(gl, 2, fidelity, /locked-rev15z-/, true, chunkLayout);
   });
   const [look] = useState(() => applyNightLook(gl, scene, fidelity.budget));
+  // Camera finishing pass (realism rescue): halation, grain, vignette, one tone map. Preview A/B: `?finish=off`.
+  const [finish] = useState(() => {
+    if (!finishEnabled()) return null;
+    const pass = new FinishingPass(gl, fidelity.budget.tier === "low");
+    pass.compile(gl);
+    return pass;
+  });
+  useEffect(() => () => finish?.dispose(), [finish]);
   const crowd = useRef<Crowd | null>(null);
   useEffect(() => () => pool.dispose(), [pool]);
   useEffect(() => () => fidelity.dispose(), [fidelity]);
@@ -210,7 +238,7 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
         // Cables, truss, lamps, windows, props, wall decals and haze (Phase 2); added before the readiness gate compiles.
         asset.scene.updateMatrixWorld(true);
         dressing.current?.dispose();
-        dressing.current = mountCourtyardDressing(asset.scene, fidelity);
+        dressing.current = mountCourtyardDressing(asset.scene, fidelity, sink => mountZoneDressing(sink, zones.current));
         scene.add(dressing.current.group);
         revealAccommodationHouseWall(asset.scene, asset.rgbmRange);
         const bounds = new Box3();
@@ -239,8 +267,9 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
       const crowdLoad = (async () => {
         markLoad("rocketbox-crowd", "start");
         try {
+          // The contact booth's clerk joins the crowd (contact-booth.ts).
           const people = await loadRocketboxCrowd(gl, mobile, assetRoot + "market-south/transcoders/", abort.signal,
-            fidelity.budget.crowdAvatars);
+            fidelity.budget.crowdAvatars, [contactClerk(), ...contactSitters()]);
           if (abort.signal.aborted) { people.dispose(); return; }
           people.update(camera);
           markLoad("rocketbox-crowd", "ready");
@@ -312,11 +341,6 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   useLayoutEffect(() => {
     if (screenPanels && film) return bindAftermovie(screenPanels, film);
   }, [screenPanels, film]);
-  useEffect(() => {
-    if (!plazaScene || !eventPage) return;
-    const slots = eventPosterSlots(plazaScene);
-    if (slots.every(slot => slot !== undefined)) return paintEventPage(slots, eventPage);
-  }, [plazaScene, eventPage]);
   useEffect(() => {
     if (!plazaScene) return;
     const mounted = mountTeamCarousel(plazaScene);
@@ -492,38 +516,49 @@ function GateScene({ runtime, curtain, reportZone, form, reportContact, panel, e
   return <>
     {assets && <>
       {(Object.entries(assets) as [Chunk, BakedAsset][]).map(([name, asset]) => <primitive key={name} object={asset.scene}
-        onClick={name === "cypher-plaza" && (panel === "events" || wallState.current === "aftermovie" ||
+        onClick={name === "cypher-plaza" && (panel === "events" || wallState.current === "events" || wallState.current === "aftermovie" ||
           wallState.current === "accommodation") ? event => {
-          const eventId = event.object.userData.wallEventId;
-          if (panel === "events" && typeof eventId === "string") chooseEvent(eventId);
+          // Events wall posters (zone-dressing.ts): a poster opens its event, the cracked shutter (7+ events) the list.
+          const targets = event.object.userData.posterTargets as PosterTarget[] | undefined;
+          const target = targets && event.faceIndex != null ? targets[Math.floor(event.faceIndex / 2)] : undefined;
+          if (target) {
+            event.stopPropagation();
+            if (panel !== "events") openWall("events");
+            chooseEvent(target === "list" ? null : target);
+          }
           else if (wallState.current === "aftermovie" && isAftermoviePanel(event.object)) openWall("aftermovie");
           else if (wallState.current === "accommodation" && isAccommodationArtwork(event.object)) openWall("accommodation");
         } : undefined} />)}
-      <ReadinessGate key={state.serial} runtime={runtime} serial={state.serial} />
+      <ReadinessGate key={state.serial} runtime={runtime} serial={state.serial} target={finish?.target ?? null} />
     </>}
-    <SceneRenderer runtime={runtime} />
+    <SceneRenderer runtime={runtime} finish={finish} />
     <GullyDiagnostics runtime={runtime} />
     <QualityGovernor runtime={runtime} setDpr={setDpr} />
   </>;
 }
 
-function AccommodationControls({ close }: { close(): void }) {
+/** The accommodation status line: "coming soon" while closed, the tiers once open (lib/accommodation.ts). */
+const stayLine = (open: boolean) => open
+  ? `Check-in open: ${accommodation.tiers.map(tier => `${tier.name.toLowerCase()} ${tier.price}`).join(", ")}`
+  : "Coming soon";
+
+function AccommodationControls({ close, open }: { close(): void; open: boolean }) {
   const back = useRef<HTMLButtonElement>(null);
   useEffect(() => { back.current?.focus({ preventScroll: true }); }, []);
   return <section className="cypher-accommodation-controls" aria-label="Accommodation" aria-describedby="accommodation-status">
-    <p className="sr-only" id="accommodation-status">Coming soon</p>
+    <p className="sr-only" id="accommodation-status">{stayLine(open)}</p>
     <button type="button" ref={back} onClick={close}>Back to walking</button>
   </section>;
 }
 
-function AccommodationStatus() {
+function AccommodationStatus({ open = accommodation.isAccommodationOpen }: { open?: boolean }) {
   return <section className="cypher-accommodation-status" aria-label="Accommodation">
     <h2>Accommodation</h2>
-    <p>Coming soon</p>
+    <p>{stayLine(open)}</p>
   </section>;
 }
 
-function GateWalk({ start, team, canSendContact, catalog, live }:
+function GateWalk({ start, team, canSendContact, catalog: served, live }:
   { start: Start; team?: string; canSendContact: boolean; catalog: CypherCatalog | null; live: boolean }) {
   const curtain = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLDivElement>(null);
@@ -554,11 +589,29 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   const [canvasDpr, setCanvasDpr] = useState(1);
   const [teamRequest, requestTeam] = useState(() => ({ index: teamIndex(team) }));
   const [teamDisplay, setTeamDisplay] = useState(defaultTeam);
+  // Preview only: `?events=0|1|4|9` fills the wall with fixtures, `?stay=open|closed` overrides lib/accommodation.ts.
+  const [preview] = useState(() => {
+    const query = typeof window !== "undefined" && window.location.pathname.startsWith("/runtime-preview")
+      ? new URLSearchParams(window.location.search) : null;
+    const events = query?.get("events"), stay = query?.get("stay");
+    return {
+      catalog: events && /^\d+$/.test(events) ? { available: true as const, data: fixtureEvents(Number(events)) } as CypherCatalog : null,
+      stayOpen: stay === "open" ? true : stay === "closed" ? false : accommodation.isAccommodationOpen,
+    };
+  });
+  const catalog = preview.catalog ?? served;
   const [page, setPage] = useState(0);
   const [eventId, chooseEvent] = useState<string | null>(null);
   const pages = Math.ceil((catalog?.data?.length ?? 0) / eventsPerPage);
   const eventPage = useMemo(() => catalog === null ? null :
     catalog.data?.slice(page * eventsPerPage, (page + 1) * eventsPerPage) ?? [], [catalog, page]);
+  // A wall poster can show an event from any page of the list: open the dialog on that event's page.
+  const chooseWallEvent = useCallback((id: string | null) => {
+    const index = id ? catalog?.data?.findIndex(item => item.id === id) ?? -1 : -1;
+    if (index >= 0) setPage(Math.floor(index / eventsPerPage));
+    chooseEvent(id);
+  }, [catalog]);
+  const zoneState = useMemo<ZoneState>(() => ({ events: catalog?.data ?? [], stayOpen: preview.stayOpen }), [catalog, preview]);
   const [atMarket, setAtMarket] = useState(start !== "quarry");
   const [marketRuntime] = useState(() => {
     const runtime = new ImmersiveRuntime("hub", undefined, false, undefined, cypherStarts[start === "quarry" ? "market" : start].space);
@@ -680,14 +733,14 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
   return <>
     <div ref={canvas} className="native-canvas" data-world={activeQuarry ? "quarry" : "market"} data-phase={state.phase}
       data-contact-placement={contact.placement ?? undefined}>
-      <Canvas dpr={canvasDpr} gl={{ antialias: true, powerPreference: "high-performance" }}
+      <Canvas dpr={canvasDpr} gl={{ antialias: !finishEnabled(), powerPreference: "high-performance" }}
         camera={start === "quarry" ? world.camera : { near: 0.05, far: 120 }} fallback={<p>3D is unavailable in this browser.</p>}>
         {activeQuarry ? <Suspense fallback={null}>
           <QuarryArrivalScene runtime={activeQuarry} curtain={curtain} holdCurtain={holdCurtain} />
         </Suspense> : <GateScene runtime={marketRuntime} curtain={curtain} reportZone={setZone}
           form={form} reportContact={setContact} panel={panel} eventPage={eventPage}
-          reportWall={setWallUI} chooseEvent={chooseEvent} teamRequest={teamRequest} reportTeam={reportTeam}
-          film={screen.ready ? screen.film?.texture ?? null : null} openWall={openWall} stopAftermovie={stopAftermovie}
+          reportWall={setWallUI} chooseEvent={chooseWallEvent} teamRequest={teamRequest} reportTeam={reportTeam}
+          film={screen.ready ? screen.film?.texture ?? null : null} openWall={openWall} stopAftermovie={stopAftermovie} zoneState={zoneState}
           audio={audio} ducked={panel === "aftermovie" && runtime.interacting} reportWorld={setWorldReady} reportArrival={setArrival} setDpr={setCanvasDpr} />}
         {!activeQuarry && <CypherMapProjection runtime={marketRuntime} elements={mapDom} />}
       </Canvas>
@@ -756,7 +809,7 @@ function GateWalk({ start, team, canSendContact, catalog, live }:
       event={eventPage.find(item => item.id === eventId)} changePage={setPage} choose={chooseEvent} close={closeWall} />}
     {panel === "team" && wallUI === "active" && <CypherTeamDialog canvas={canvas} display={teamDisplay} input={input}
       advance={advanceTeam} retry={() => requestTeam(current => ({ ...current }))} close={closeWall} />}
-    {panel === "accommodation" && wallUI === "active" && <AccommodationControls close={closeWall} />}
+    {panel === "accommodation" && wallUI === "active" && <AccommodationControls close={closeWall} open={preview.stayOpen} />}
     {walking && panel === "aftermovie" && runtime.interacting && <CypherAftermovieControls
       loading={!screen.ready} muted={!sound} toggleSound={toggleSound} close={stopAftermovie}
       video={screen.film?.video ?? null} low={deviceBudget().tier === "low"} />}

@@ -1,0 +1,366 @@
+{
+  "about": "Matched sample areas for scripts/measure-look.py: each zone's mockup (references/) and our capture of it. Rects are [x, y, w, h] as fractions of the image. Pick areas that show the same kind of surface under the same kind of light (lit wall, shadowed wall, floor, sky, opening). \"light\" names the zone light multiplier the zone fits (components/gullyverse-runtime/zone-light.json); samples with \"baked\": false (sky, the view through the gate) are measured but not fitted.",
+  "zones": [
+    {
+      "zone": "01-entrance-gate",
+      "reference": "references/01-entrance-gate.webp",
+      "samples": [
+        {
+          "name": "left compound wall, lamp-lit",
+          "ref": [
+            0.15,
+            0.55,
+            0.12,
+            0.12
+          ],
+          "cap": [
+            0.33,
+            0.74,
+            0.07,
+            0.05
+          ]
+        },
+        {
+          "name": "right compound wall",
+          "ref": [
+            0.68,
+            0.62,
+            0.12,
+            0.1
+          ],
+          "cap": [
+            0.6,
+            0.76,
+            0.08,
+            0.05
+          ]
+        },
+        {
+          "name": "lane floor near the gate",
+          "ref": [
+            0.4,
+            0.85,
+            0.2,
+            0.08
+          ],
+          "cap": [
+            0.42,
+            0.92,
+            0.2,
+            0.05
+          ]
+        },
+        {
+          "name": "side building in shadow",
+          "ref": [
+            0.0,
+            0.4,
+            0.06,
+            0.3
+          ],
+          "cap": [
+            0.0,
+            0.55,
+            0.05,
+            0.2
+          ]
+        },
+        {
+          "name": "night sky",
+          "ref": [
+            0.25,
+            0.08,
+            0.15,
+            0.08
+          ],
+          "cap": [
+            0.33,
+            0.11,
+            0.05,
+            0.04
+          ],
+          "baked": false
+        },
+        {
+          "name": "view through the gate",
+          "ref": [
+            0.45,
+            0.45,
+            0.1,
+            0.1
+          ],
+          "cap": [
+            0.47,
+            0.68,
+            0.06,
+            0.08
+          ],
+          "baked": false
+        }
+      ],
+      "light": "lane"
+    },
+    {
+      "zone": "02-courtyard-plaza",
+      "reference": "references/02-courtyard-plaza.webp",
+      "samples": [
+        {
+          "name": "left ground-floor wall",
+          "ref": [
+            0.02,
+            0.5,
+            0.15,
+            0.2
+          ],
+          "cap": [
+            0.0,
+            0.55,
+            0.12,
+            0.08
+          ]
+        },
+        {
+          "name": "left upper facade",
+          "ref": [
+            0.2,
+            0.08,
+            0.15,
+            0.15
+          ],
+          "cap": [
+            0.02,
+            0.25,
+            0.12,
+            0.12
+          ]
+        },
+        {
+          "name": "back building",
+          "ref": [
+            0.4,
+            0.35,
+            0.2,
+            0.1
+          ],
+          "cap": [
+            0.25,
+            0.3,
+            0.1,
+            0.1
+          ]
+        },
+        {
+          "name": "plaza floor",
+          "ref": [
+            0.3,
+            0.8,
+            0.3,
+            0.12
+          ],
+          "cap": [
+            0.25,
+            0.85,
+            0.3,
+            0.1
+          ]
+        },
+        {
+          "name": "night sky",
+          "ref": [
+            0.45,
+            0.0,
+            0.15,
+            0.04
+          ],
+          "cap": [
+            0.4,
+            0.05,
+            0.15,
+            0.08
+          ],
+          "baked": false
+        },
+        {
+          "name": "right facade",
+          "ref": [
+            0.75,
+            0.3,
+            0.15,
+            0.15
+          ],
+          "cap": [
+            0.82,
+            0.3,
+            0.12,
+            0.15
+          ]
+        }
+      ],
+      "light": "plaza"
+    },
+    {
+      "zone": "04-accommodation",
+      "reference": "references/04-accommodation.png",
+      "samples": [
+        {
+          "name": "wall under the lamp",
+          "ref": [
+            0.42,
+            0.72,
+            0.18,
+            0.08
+          ],
+          "cap": [
+            0.4,
+            0.62,
+            0.15,
+            0.08
+          ]
+        },
+        {
+          "name": "doorway",
+          "ref": [
+            0.27,
+            0.45,
+            0.08,
+            0.25
+          ],
+          "cap": [
+            0.02,
+            0.35,
+            0.06,
+            0.25
+          ]
+        },
+        {
+          "name": "floor",
+          "ref": [
+            0.3,
+            0.88,
+            0.3,
+            0.08
+          ],
+          "cap": [
+            0.4,
+            0.9,
+            0.3,
+            0.06
+          ]
+        },
+        {
+          "name": "upper wall",
+          "ref": [
+            0.3,
+            0.05,
+            0.2,
+            0.08
+          ],
+          "cap": [
+            0.4,
+            0.05,
+            0.2,
+            0.1
+          ]
+        }
+      ],
+      "light": "stay"
+    },
+    {
+      "zone": "06-events-wall",
+      "reference": "references/06-events-wall.webp",
+      "samples": [
+        {
+          "name": "plaster beside the posters",
+          "ref": [
+            0.08,
+            0.55,
+            0.05,
+            0.12
+          ],
+          "cap": [
+            0.2,
+            0.62,
+            0.06,
+            0.08
+          ]
+        },
+        {
+          "name": "shutter",
+          "ref": [
+            0.45,
+            0.4,
+            0.1,
+            0.15
+          ],
+          "cap": [
+            0.38,
+            0.45,
+            0.2,
+            0.2
+          ]
+        },
+        {
+          "name": "apron floor",
+          "ref": [
+            0.3,
+            0.68,
+            0.3,
+            0.06
+          ],
+          "cap": [
+            0.3,
+            0.83,
+            0.3,
+            0.05
+          ]
+        },
+        {
+          "name": "slab above",
+          "ref": [
+            0.3,
+            0.12,
+            0.2,
+            0.06
+          ],
+          "cap": [
+            0.25,
+            0.25,
+            0.15,
+            0.04
+          ]
+        },
+        {
+          "name": "doorway",
+          "ref": [
+            0.18,
+            0.4,
+            0.05,
+            0.2
+          ],
+          "cap": [
+            0.06,
+            0.5,
+            0.06,
+            0.2
+          ]
+        },
+        {
+          "name": "plaster right of the shutter",
+          "ref": [
+            0.565,
+            0.42,
+            0.025,
+            0.15
+          ],
+          "cap": [
+            0.62,
+            0.5,
+            0.04,
+            0.12
+          ]
+        }
+      ],
+      "light": "events"
+    }
+  ]
+}

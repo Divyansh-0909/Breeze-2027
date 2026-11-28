@@ -53,6 +53,8 @@ export function mountTeamCarousel(plaza: Object3D) {
       Math.abs(bounds.max.y - bounds.min.y - first.heightM) > 0.002 || Math.abs(bounds.max.x - bounds.min.x) > 0.002 ||
       mesh.quaternion.angleTo(mesh.quaternion.clone().identity()) > 0.0001 || scale === 0) return null;
   const pivot = mesh.worldToLocal(anchor).z;
+  // Full colour (user request): the mural is exempt from the night palette grade (fidelity.ts), as painted.
+  if (!original.userData.breezeNoGrade) { original.userData.breezeNoGrade = true; original.needsUpdate = true; }
   const loader = new TextureLoader();
   const alternate = original.clone();
   alternate.onBeforeCompile = original.onBeforeCompile;

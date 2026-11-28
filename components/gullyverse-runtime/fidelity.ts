@@ -5,6 +5,8 @@ import { switchedOff } from "./shop-lights";
 import { deviceBudget, type Budget } from "./device-tier";
 import { classifySurface, gradeCode, gradeDeclare, SurfaceLibrary, type SurfaceClass } from "./gully-materials";
 import { LightPools } from "./light-pools";
+import { signWearCode, signWearDeclare, signWearRoughness } from "./sign-wear";
+import { holeCode } from "./contact-booth";
 
 /**
  * Restores Rev15Z surfaces the baked exports lost, using data extracted from the locked Blender master
@@ -266,7 +268,7 @@ export class Fidelity {
     const arts = (m.userData.breezeArts as string[] | undefined)?.join("+") ?? "";
     const surface = this.surfaceOf(m);
     const look = `${surface && this.surfaces ? this.surfaces.key(surface) : "none"}-${this.graded(m) ? "grade" : "raw"}-${m.userData.breezeCollapsed ? "flat" : ""}`;
-    return `fid-${this.data.version}-rough${m.userData.breezeMinRoughness ?? 0.75}-${arts}-${m.userData.breezeRoad ?? ""}-${look}-${this.pools.key()}`;
+    return `fid-${this.data.version}-rough${m.userData.breezeMinRoughness ?? 0.75}-${arts}-${m.userData.breezeRoad ?? ""}-${look}-${this.pools.key()}-wear${m.userData.breezeSignWear ?? ""}${m.userData.breezeHole ? `-hole${(m.userData.breezeHole as unknown[]).length}` : ""}`;
   }
 
   /** Procedural surface class of a prepared material (decided at compile time, after every restyle). */
@@ -300,6 +302,8 @@ export class Fidelity {
   /** The Rocketbox crowd (runtime-lit standard materials): the light pools only. */
   patchCrowd(shader: { fragmentShader: string; uniforms: Record<string, { value: unknown }> }) {
     this.pools.patch(shader, false);
+    // A faint ambient floor (realism rescue): with the darker night, people outside every pool still separate.
+    shader.fragmentShader = shader.fragmentShader.replace("#include <lights_fragment_end>", "irradiance += vec3(0.018 * PI);\n#include <lights_fragment_end>");
   }
 
   /**
@@ -366,6 +370,21 @@ export class Fidelity {
       shader.fragmentShader = shader.fragmentShader
         .replace("#include <common>", `#include <common>\n${gradeDeclare}`)
         .replace("#include <color_fragment>", `#include <color_fragment>\n${gradeCode(surface)}`);
+    }
+    // Openings cut in the shader (contact-booth.ts): the contact window through the facade, the accommodation doorway.
+    const hole = m.userData.breezeHole as number[] | number[][] | undefined;
+    if (hole) {
+      shader.fragmentShader = shader.fragmentShader.replace("#include <clipping_planes_fragment>", `#include <clipping_planes_fragment>\n${holeCode(hole)}`);
+      this.worldVaryings(shader);
+    }
+    // Weathered sign paint (sign-wear.ts): the navigation board's panels and lettering.
+    const wear = m.userData.breezeSignWear as "paint" | "ink" | undefined;
+    if (wear) {
+      shader.fragmentShader = shader.fragmentShader
+        .replace("#include <common>", `#include <common>\n${signWearDeclare}`)
+        .replace("#include <color_fragment>", `#include <color_fragment>\n${signWearCode(wear)}`)
+        .replace("#include <roughnessmap_fragment>", `#include <roughnessmap_fragment>\n${signWearRoughness}`);
+      this.worldVaryings(shader);
     }
     const arts = ((m.userData.breezeArts as string[] | undefined) ?? [])
       .map(id => this.data.arts.find(a => a.id === id)!).filter(Boolean);
